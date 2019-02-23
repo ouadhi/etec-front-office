@@ -1,0 +1,27 @@
+<div class="mainWrapper">
+<mat-toolbar color="primary">  
+  <mat-toolbar-row >
+    <span>بوابة المستفيدين</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar color="">
+<mat-toolbar-row>
+    <span>
+        <a mat-button routerLink="/" routerLinkActive="active">الرئيسية</a>
+        <a mat-button routerLink="/service-catalog" routerLinkActive="active">دليل الخدمات</a>
+        <a mat-button routerLink="/my-requests" routerLinkActive="active">طلباتي</a>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<mat-toolbar color="primary">  
+    <mat-toolbar-row >
+      <span>
+        بوابة المستفيدين
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

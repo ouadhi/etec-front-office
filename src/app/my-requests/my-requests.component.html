@@ -1,0 +1,7 @@
+<app-page pageTitle="طلباتي">
+  <mat-card *ngFor="let x of data">
+    
+{{x.requestName + x.department + x.requestType + x.requestDate + x.status}}
+
+  </mat-card>
+</app-page>

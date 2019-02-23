@@ -1,0 +1,21 @@
+.serviceCard{
+    text-decoration: none;
+}
+
+.serviceCard__continer {
+    box-shadow: 0 0;
+    border-right: 4px solid #ececec;
+    border-radius: 0;
+    margin-bottom: 10px;
+    background: #f8f8f8;
+    background-image: linear-gradient(to right, #ebebeb, #f9f9f9, #f9f9f9);
+    /* margin-right: 30px; */
+}
+
+.serviceCard__title {
+    font-size: 20px;
+}
+
+.serviceCard__desc {
+    font-size: 13px;
+}

@@ -1,0 +1,148 @@
+<app-page pageTitle="خدمة {{data.serviceName_ar}}">
+
+  <div *ngIf="data.lifeCycle=='unpublished'">
+      هذه الخدمة غير فعاله حاليا
+  </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top">
+      
+    <div fxFlex="70">
+      <app-section sectionTitle="تفاصيل الخدمة">
+      
+            {{data.description_ar}}  
+
+        <button [routerLink]="['/request', data.link]" target="_blank" mat-raised-button color="primary">التقديم على الخدمة <mat-icon>arrow_right</mat-icon></button>
+      </app-section>
+
+      <app-section sectionTitle="الشروط">
+          {{data.conditionsAndRequirements_ar}}
+      </app-section>
+
+      <app-section sectionTitle="الاسئلة المتكررة">
+          
+        <mat-accordion>
+
+          <mat-expansion-panel *ngFor="let item of data.FAQ">
+            <mat-expansion-panel-header>
+                {{item.question_ar}}
+            </mat-expansion-panel-header>
+            {{item.answer_ar}}
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </app-section>
+
+      <app-section sectionTitle="الوثائق المطلوبة">
+          <ul>
+            <li *ngFor="let doc of data.requiredDocs_ar">
+              {{doc.value}}
+            </li>
+          </ul>
+      </app-section>
+
+      <app-section sectionTitle="خطوات الخدمة">
+          <ol>
+            <li *ngFor="let step of data.steps_ar">
+                {{step.value}}
+            </li>
+          </ol>
+      </app-section>
+
+      <app-section sectionTitle="اتفاقية مستوى الخدمة">
+          
+          <dt>الوقت المتوقع</dt>
+          <dd>{{data.expectedTime}}</dd>
+          
+          <dt>خدمة مدفوعة</dt>
+          <dd>{{data.payed}}</dd>
+  
+          <dt>القناة</dt>
+          <dd>
+              <mat-chip-list>
+                <mat-chip color="primary" *ngFor="let channel of data.channel_ar">{{channel.value}}</mat-chip>
+              </mat-chip-list>
+          </dd>
+
+      </app-section>
+
+      <app-section>
+
+        <dt>كلمات دليلية</dt>
+        <dd>
+            <mat-chip-list>
+              <mat-chip color="primary" *ngFor="let tag of data.tag">{{tag.tag}}</mat-chip>
+            </mat-chip-list>
+        </dd>
+
+        
+
+        <dt>الخدمة الرئيسية</dt>
+        <dd>{{data.primaryService_ar}}</dd>
+
+        <dt>الاقسام:</dt>
+        <dd>
+            <mat-chip-list>
+              <mat-chip color="primary" *ngFor="let item of data.department">{{item.departmentName_ar}}</mat-chip>
+            </mat-chip-list>
+        </dd>
+
+      </app-section>
+
+    </div>
+    <div fxFlex="25">
+
+      
+      <app-section sectionTitle="فيديو تعريفي">
+          <!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <video controls width="324" height="196" src="{{assets_url}}/storage/uploads/{{data.video.path}}" ></video>
+        
+          
+      </app-section>
+
+      <app-section sectionTitle="الاحصائيات">
+        تم طلب الخدمة خلال اخر ٣٠ يوم عدد
+        <b>6519</b>
+      </app-section>
+      
+      <app-section sectionTitle="تقييم الخدمة">
+        {{data.rating}} / 5
+      </app-section>
+
+      <app-section sectionTitle="المستفيدين">
+        <ul *ngIf="segments">
+          <ng-container *ngFor="let item of segments">
+            <li>{{item.segmentType.segmentTypeName_ar}}: {{item.segmentName_ar}}</li>
+          </ng-container>
+        </ul>
+      </app-section>
+
+      <app-section sectionTitle="التصنيف">
+        <ul>
+            <li *ngFor="let item of data.category">{{item.categoryName_ar}}</li>
+        </ul>
+      </app-section>
+
+      <app-section sectionTitle="دليل الخدمة">
+          <a href="{{assets_url}}/{{data.serviceGuide}}" target="_blank">
+            <img src="http://placehold.it/400x200&text=Guide" alt="">
+          </a>
+      </app-section>
+      
+      
+      
+      
+      
+    </div>
+
+    </div>
+
+    <app-section sectionTitle="التعليقات">
+      <div *ngFor="let comment of comments">
+        <small>on: {{comment._created}}</small>
+        <p>
+            {{comment.commentText}}
+        </p>
+      </div>
+    </app-section>
+      
+
+</app-page>

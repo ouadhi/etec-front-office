@@ -1,0 +1,29 @@
+.filtersSection{
+    background: #f7f7f7;
+    margin: 0 0 0 20px;
+    padding: 10px;
+}
+
+.filtersSection__keywordForm{
+    width: 100%;
+    text-align: right;
+}
+
+.filtersList{
+    margin:15px 0;
+    border-bottom: 1px #ccc solid;
+    padding-bottom: 15px;
+}
+
+.filtersList__head{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.filtersList__item {
+
+}
+
+.filtersList__item .mat-checkbox-inner-container{
+    margin-left: 10px;
+}
