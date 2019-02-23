@@ -23,7 +23,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              {
+                "input": "node_modules/font-awesome/scss/font-awesome.scss"
+              },
+              {
+                "input": "node_modules/formiojs/dist/formio.form.min.css"
+              }
             ],
             "scripts": [],
             "es5BrowserSupport": true
