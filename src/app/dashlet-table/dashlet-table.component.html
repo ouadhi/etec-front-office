@@ -1,0 +1,69 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>
+      {{title | translate}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-chip (click)="toggleFilter($event)" color="medium" size="medium" slot="end">
+        <ion-icon [color]="showFilter ? 'danger':'tertiary'" [name]="showFilter  ? 'close':'funnel'"></ion-icon>
+        <ion-label>
+          {{'Filter' | translate}}
+        </ion-label>
+      </ion-chip>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<formio-loader></formio-loader>
+<div class="content">
+  <app-dashlet-filter [show]="showFilter" (filter)="onFilter($event)"></app-dashlet-filter>
+  <mat-table multiTemplateDataRows [dataSource]="data" matSort class="width-100">
+
+    <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
+      <mat-header-cell mat-sort-header [disabled]="!columns[col].sortable" *matHeaderCellDef>
+        {{columns[col].name | translate}} </mat-header-cell>
+      <mat-cell [attr.data-label]="columns[col].name" *matCellDef="let element">
+        <ion-badge *ngIf="columns[col].display == 'badge'" [color]="columns[col].color" size="medium" mode="ios">
+          {{element[col]}}
+        </ion-badge>
+        <ion-chip *ngIf="columns[col].display == 'chip'" [color]="columns[col].color" size="medium" slot="end">
+          <ion-icon [name]="columns[col].icon" [color]="columns[col].color"></ion-icon>
+          <ion-label>
+            {{element[col]}}
+          </ion-label>
+        </ion-chip>
+        <ion-text *ngIf="!columns[col].display || columns[col].display == 'text'">
+          {{element[col]}}
+        </ion-text>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="expandedDetail" *ngIf="expandableColumns.length > 0">
+      <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <p *ngFor="let epxandable of expandableColumns">
+            {{element[epxandable]}}
+          </p>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="footerMessage">
+      <mat-footer-cell *matFooterCellDef colspan="5" class="footer">
+        {{'No Entries' | translate}}
+      </mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row class="mat-elevation-z3" *matRowDef="let row; columns: displayedColumns;"
+      [class.expanded]="expandedElement === row" (click)="expandedElement = expandedElement === row ? null : row">
+    </mat-row>
+    <ng-container *ngIf="expandableColumns.length > 0">
+      <mat-row class="mat-elevation-z3 detail-row" *matRowDef="let row; columns: ['expandedDetail']"></mat-row>
+    </ng-container>
+    <mat-footer-row *matFooterRowDef="['footerMessage']" [hidden]='data.length > 0'>
+    </mat-footer-row>
+
+
+
+  </mat-table>
+  <mat-paginator [length]="resultsLength" [pageSize]="5"></mat-paginator>
+</div>

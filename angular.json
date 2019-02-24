@@ -20,16 +20,30 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
-              "src/styles.css",
+              {
+                "input": "src/theme/variables.scss"
+              },
+              {
+                "input": "src/global.scss"
+              },
               {
                 "input": "node_modules/font-awesome/scss/font-awesome.scss"
               },
               {
                 "input": "node_modules/formiojs/dist/formio.form.min.css"
-              }
+              },
+              {
+                "input": "node_modules/@ng-select/ng-select/themes/material.theme.css"
+              },
+              "src/styles.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

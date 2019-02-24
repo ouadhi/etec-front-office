@@ -1,0 +1,58 @@
+<div class="filter" [@slideInOut]="show ? 'in' : 'out'">
+    <ion-grid no-padding>
+        <ion-row>
+            <ion-col no-padding>
+                <ion-row [ngStyle]="{'margin-top': '-10px'}">
+                    <ion-col size="2">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="filterData.requestDateAfter" [matDatepicker]="fd"
+                                placeholder="From Date">
+                            <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
+                            <mat-datepicker #fd></mat-datepicker>
+                        </mat-form-field>
+                    </ion-col>
+                    <ion-col size="2">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="filterData.requestDateBefore" [matDatepicker]="td"
+                                placeholder="To Date">
+                            <mat-datepicker-toggle matSuffix [for]="td"></mat-datepicker-toggle>
+                            <mat-datepicker #td></mat-datepicker>
+                        </mat-form-field>
+                    </ion-col>
+
+                    <ion-col>
+                        <app-select [placeholder]="'Status'" [hideLoaded]="true"></app-select>
+                    </ion-col>
+
+
+                </ion-row>
+                <ion-row [ngStyle]="{'margin-top': '-10px'}">
+
+
+                    <ion-col>
+                        <app-select *ngIf="departments.length" [multiple]="true" [hideSelectedItems]="true"
+                            [(ngModel)]="filterData.requestNames" [groupBy]="'categories'" [placeholder]="'Depertment'"
+                            [data]="departments" [bindLabel]="'name'" [bindValue]="'id'" [hideLoaded]="true">
+                        </app-select>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col no-padding size="1">
+                <ion-row>
+                    <ion-col>
+                        <ion-button fill="solid" expand="block" (click)="applyFilter()" color="success">
+                            <ion-icon name="search"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-button fill="clear" expand="block" color="primary" (click)="reset()">
+                            <ion-icon name="refresh"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>

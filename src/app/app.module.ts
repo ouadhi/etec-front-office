@@ -14,7 +14,7 @@ import { ServiceCatalogComponent } from './service-catalog/service-catalog.compo
 //material
 //Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCheckboxModule } from '@angular/material';
+import { MatCheckboxModule, MatNativeDateModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -51,9 +51,17 @@ import { SectionComponent } from './section/section.component';
 import { RequestComponent } from './request/request.component';
 import { MyRequestsComponent } from './my-requests/my-requests.component';
 import { RequestDetailsComponent } from './request-details/request-details.component';
+
+// Components & Module added by imad
 import { FormModule } from './form/form.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { IonicModule } from '@ionic/angular';
+import { DashletFilterComponent } from './dashlet-filter/dashlet-filter.component';
+import { DashletTableComponent } from './dashlet-table/dashlet-table.component';
+import { SelectComponent } from './select/select.component';
+
+import { NgSelectModule } from '@ng-select/ng-select';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -69,9 +77,15 @@ export function createTranslateLoader(http: HttpClient) {
     SectionComponent,
     RequestComponent,
     MyRequestsComponent,
-    RequestDetailsComponent
+    RequestDetailsComponent,
+    SelectComponent,
+    DashletFilterComponent,
+    DashletTableComponent
   ],
   imports: [
+    MatNativeDateModule,
+    NgSelectModule,
+    IonicModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
