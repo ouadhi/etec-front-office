@@ -1,6 +1,6 @@
 <app-page pageTitle="خدمة {{data.serviceName_ar}}">
 
-  <div *ngIf="data.lifeCycle=='unpublished'">
+  <div *ngIf="data.lifeCycle != active">
       هذه الخدمة غير فعاله حاليا
   </div>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top">

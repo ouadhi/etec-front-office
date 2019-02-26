@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServicesService } from '../services.service';
-import { assets_url } from '../config';
+import { assets_url,LifeCycleService } from '../config';
 
 @Component({
   selector: 'app-service-details',
@@ -9,6 +9,9 @@ import { assets_url } from '../config';
   styleUrls: ['./service-details.component.css']
 })
 export class ServiceDetailsComponent implements OnInit {
+
+  
+  
 
   constructor(
     private route:ActivatedRoute,
@@ -21,8 +24,12 @@ export class ServiceDetailsComponent implements OnInit {
   data:any;
   comments:any;
   segments:any;
-
-  public assets_url = "http://localhost:8080"
+  
+  active:boolean = false;
+  public assets_url = assets_url;
+  // public lifeCycleService:LifeCycleService
+  
+  
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -32,9 +39,9 @@ export class ServiceDetailsComponent implements OnInit {
   }
 
   load(id){
-    this.servicesService.getService(id).subscribe(data=>this.data = data.entries[0],
-      ()=>{},
-      ()=>{
+    this.servicesService.getService(id).subscribe(
+      (data)=>{
+        this.data = data.entries[0];
         let ids:Array<string>=[];
         this.data.beneficiaries.forEach(element => {
           ids.push(element._id);
@@ -42,6 +49,14 @@ export class ServiceDetailsComponent implements OnInit {
         });
         this.servicesService.getSegmentsByIds(ids).subscribe(data=>this.segments = data.entries)
         this.servicesService.getComments(id).subscribe(data=>this.comments = data.entries)
+
+        if(this.data.lifeCycle == LifeCycleService.PUBLISHED){
+          this.active = true;
+        }
+      },
+      ()=>{},
+      ()=>{
+        
       })
     
   }

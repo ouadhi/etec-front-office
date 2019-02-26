@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
+import { LifeCycleService } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,8 @@ import { Observable } from 'rxjs';
 
 export class ServicesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient) { }
   
 
   getCollectionAll(collection:string):Observable<any> {
@@ -46,7 +48,7 @@ export class ServicesService {
   }
 
   getServices(){
-    return this.getCollectionAllActive('Service','lifeCycle','Published')
+    return this.getCollectionAllActive('Service','lifeCycle',LifeCycleService.PUBLISHED)
   }
 
   getTags(){
