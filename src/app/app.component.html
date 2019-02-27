@@ -13,7 +13,10 @@
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
-
+  
+  <b *ngIf="loggedIn">
+    اهلا:{{userDetails.username}}, <button (click)="doLogout()">تسجيل خروج</button>
+  </b>
   <router-outlet></router-outlet>
 
   <mat-toolbar color="primary">

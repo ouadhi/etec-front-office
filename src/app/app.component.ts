@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { KeycloakProfile } from 'keycloak-js';
+import { KeycloakService } from 'keycloak-angular';
 
 
 @Component({
@@ -8,5 +10,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rms';
+
+  loggedIn:boolean = false;
+  userDetails: KeycloakProfile;
+
+  constructor(private keycloakService: KeycloakService) {}
+
+  async ngOnInit() {
+    if (await this.keycloakService.isLoggedIn()) {
+      this.userDetails = await this.keycloakService.loadUserProfile();
+      this.loggedIn = true;
+    }
+  }
+
+  async doLogout() {
+    await this.keycloakService.logout();
+  }
   
 }

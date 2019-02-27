@@ -2,8 +2,24 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
+import { KeycloakConfig } from 'keycloak-angular';
+
+// Add here your keycloak setup infos
+let keycloakConfig: KeycloakConfig = {
+  url: 'http://127.0.0.1:9080/auth',
+  realm: 'rms',
+  clientId: 'login'
+};
+
 export const environment = {
-  production: false
+  production: false,
+  assets: {
+    dotaImages:
+      'https://cdn-keycloak-angular.herokuapp.com/assets/images/dota-heroes/'
+  },
+  apis: { dota: 'http://localhost:3000' },
+  keycloak: keycloakConfig
 };
 
 /*

@@ -7,6 +7,11 @@ import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
+import { APP_INITIALIZER } from '@angular/core';
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+import { initializer } from './app-init';
+
+
 import { FilterPipeModule } from 'ngx-filter-pipe';
 
 import { ServiceCatalogComponent } from './service-catalog/service-catalog.component';
@@ -83,6 +88,7 @@ export function createTranslateLoader(http: HttpClient) {
     DashletTableComponent
   ],
   imports: [
+    KeycloakAngularModule,
     MatNativeDateModule,
     NgSelectModule,
     IonicModule.forRoot(),
@@ -136,7 +142,14 @@ export function createTranslateLoader(http: HttpClient) {
     // Formio implementation Module Import
     FormModule
   ],
-  providers: [],
+  providers: [
+    {
+    provide: APP_INITIALIZER,
+      useFactory: initializer,
+      multi: true,
+      deps: [KeycloakService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
