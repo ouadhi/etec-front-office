@@ -8,10 +8,10 @@ import { RequestDetailsComponent } from './request-details/request-details.compo
 
 
 const routes: Routes = [
+  { path: '', component: MyRequestsComponent},
   { path: 'service-catalog', component: ServiceCatalogComponent },
   { path: 'service-details/:id', component: ServiceDetailsComponent },
   { path: 'request/:id', component: RequestComponent },
-  { path: 'my-requests', component: MyRequestsComponent },
   { path: 'request-details/:id', component: RequestDetailsComponent }
 ];
 

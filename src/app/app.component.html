@@ -10,12 +10,10 @@
       <span>
         <a mat-button routerLink="/" routerLinkActive="active">الرئيسية</a>
         <a mat-button routerLink="/service-catalog" routerLinkActive="active">دليل الخدمات</a>
-        <a mat-button routerLink="/my-requests" routerLinkActive="active">طلباتي</a>
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <app-dashlet-table [columns]="dashletCols" [title]="'الحالات العاجلة'" [service]="dashletService"></app-dashlet-table>
   <router-outlet></router-outlet>
 
   <mat-toolbar color="primary">
