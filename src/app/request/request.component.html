@@ -1,7 +1,2 @@
-<p>
-  request works!
-  {{id}}
-  {{data}}
-</p>
-<app-form [formKey]="'emergencypaymentrequest'" [resourceName]="'emergencypaymentrequest'" [resourceId]="''"
+<app-form [formKey]="id" [resourceName]="id" [resourceId]="''"
   [readOnly]="false" (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)"></app-form>

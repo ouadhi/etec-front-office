@@ -29,11 +29,6 @@ export class RequestComponent implements OnInit {
 
 
   loadRequest(id){
-    this.servicesService.getRequest(id).subscribe(data=>this.data = data,
-      ()=>{},
-      ()=>{}
-      )
-    
   }
 
   ngOnDestroy() {
