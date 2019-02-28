@@ -7,9 +7,9 @@ import { KeycloakConfig } from 'keycloak-angular';
 
 // Add here your keycloak setup infos
 let keycloakConfig: KeycloakConfig = {
-  url: 'http://127.0.0.1:9080/auth',
+  url: 'http://localhost:9080/auth',
   realm: 'rms',
-  clientId: 'login'
+  clientId: 'Angular'
 };
 
 export const environment = {
