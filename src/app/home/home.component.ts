@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private keycloakService: KeycloakService) {}
 
   async ngOnInit() {
-    if (await !this.keycloakService.isLoggedIn()) {
+    if (await this.keycloakService.isLoggedIn()) {
       this.loggedIn = true;
     }
   }

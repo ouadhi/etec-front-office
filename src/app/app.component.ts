@@ -26,5 +26,12 @@ export class AppComponent {
   async doLogout() {
     await this.keycloakService.logout();
   }
+
+  
+  login(){
+   
+    this.keycloakService.login();
+  
+  }
   
 }

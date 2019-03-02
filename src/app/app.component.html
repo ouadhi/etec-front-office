@@ -1,7 +1,15 @@
 <div class="mainWrapper">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span>بوابة المستفيدين</span>
+      <span fxFlex>بوابة المستفيدين</span>
+
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn"> <mat-icon>person</mat-icon> اهلا ({{userDetails.username}})</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="doLogout()">تسجيل خروج</button>
+      </mat-menu>
+
+      <button mat-button (click)="login()" *ngIf="!loggedIn">تسجيل الدخول</button>
+
     </mat-toolbar-row>
   </mat-toolbar>
 
@@ -14,9 +22,6 @@
     </mat-toolbar-row>
   </mat-toolbar>
   
-  <b *ngIf="loggedIn">
-    اهلا:{{userDetails.username}}, <button (click)="doLogout()">تسجيل خروج</button>
-  </b>
   <router-outlet></router-outlet>
 
   <mat-toolbar color="primary">
