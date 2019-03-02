@@ -3,7 +3,7 @@
   <div *ngIf="!active">
       هذه الخدمة غير فعاله حاليا
   </div>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
       
     <div fxFlex="70">
       <app-section sectionTitle="تفاصيل الخدمة">
