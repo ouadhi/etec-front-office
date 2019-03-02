@@ -39,7 +39,6 @@ export class ServiceCatalogComponent implements OnInit {
     this.servicesService.getSegments().subscribe(data=>{
       this.segments = data.entries
     },()=>{},()=>{
-
       this.segments.forEach( (element,i) => {
         if(element.activation){
             let newObj = {};
