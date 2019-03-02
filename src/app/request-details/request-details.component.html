@@ -1,3 +1,4 @@
-<p>
-  request-details works!
-</p>
+<app-page>
+    <app-form [formKey]="id" [resourceName]="id" [resourceId]="''"
+    [readOnly]="true" (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)"></app-form>
+</app-page>
