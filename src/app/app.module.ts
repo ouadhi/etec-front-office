@@ -67,7 +67,6 @@ import { DashletTableComponent } from './dashlet-table/dashlet-table.component';
 import { SelectComponent } from './select/select.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
-import { HomeComponent } from './home/home.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -86,8 +85,7 @@ export function createTranslateLoader(http: HttpClient) {
     RequestDetailsComponent,
     SelectComponent,
     DashletFilterComponent,
-    DashletTableComponent,
-    HomeComponent
+    DashletTableComponent
   ],
   imports: [
     KeycloakAngularModule,
