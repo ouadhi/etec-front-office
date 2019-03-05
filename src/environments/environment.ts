@@ -14,12 +14,33 @@ let keycloakConfig: KeycloakConfig = {
 
 export const environment = {
   production: false,
-  assets: {
-    dotaImages:
-      'https://cdn-keycloak-angular.herokuapp.com/assets/images/dota-heroes/'
+
+  cms:{
+    api: {
+      master:'http://localhost:8080',
+      assets:'http://localhost:8080'
+    }
   },
-  apis: { dota: 'http://localhost:3000' },
-  keycloak: keycloakConfig
+
+  keycloak: keycloakConfig,
+  
+  requestApi: '',
+
+  formio:{
+    api: {
+      master:'https://api.form.io', //formioApiUrl
+      requestForm:'https://rllslkfteqdgmpv.form.io' //formioAppUrl
+    }
+  },
+
+  filter:{
+    api: 'http://34.207.137.198:8120',
+    rest: {
+      deparments: '/departments',
+      statuses:'/departments',
+      request:'/caseNames'
+    } 
+  }
 };
 
 /*

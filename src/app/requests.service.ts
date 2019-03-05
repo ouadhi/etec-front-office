@@ -41,10 +41,6 @@ export class RequestsService {
   };
   constructor(private http: HttpClient) { }
 
-
-  getMyRequests(userId: string): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:8080/api/collections/get/temp_myrequests');
-  }
   getDummyRequests(params) {
     const delayedObservable = of(this.dummyRequests).pipe(
       delay(1000)

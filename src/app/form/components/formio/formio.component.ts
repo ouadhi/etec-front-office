@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Form, Formio, Utils } from 'formiojs';
 import { assign, get } from 'lodash';
 import { ReplaySubject } from 'rxjs';
-import { formioAppUrl, formioApiUrl } from '../../../config';
+import { environment } from '../../../../environments/environment';
 import { FormioAlerts } from '../alerts/formio.alerts';
 import { FormioLoader } from '../loader/formio.loader';
 
@@ -59,9 +59,9 @@ export class AppFormioComponent implements OnInit, OnChanges, OnDestroy {
         public loader: FormioLoader,
         public translate: TranslateService
     ) {
-        if (formioApiUrl && formioAppUrl) {
-            Formio.setBaseUrl(formioApiUrl);
-            Formio.setProjectUrl(formioAppUrl);
+        if (environment.formio.api.master && environment.formio.api.requestForm) {
+            Formio.setBaseUrl(environment.formio.api.master);
+            Formio.setProjectUrl(environment.formio.api.requestForm);
         } else {
             console.warn('You must provide formio Config');
         }

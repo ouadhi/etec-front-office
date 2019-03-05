@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServicesService } from '../services.service';
-import { assets_url,LifeCycleService } from '../config';
+import { LifeCycleService } from '../config';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-service-details',
@@ -26,7 +27,9 @@ export class ServiceDetailsComponent implements OnInit {
   segments:any;
   
   active:boolean = false;
-  public assets_url = assets_url;
+  public assets_url:string = environment.cms.api.assets;
+  // public assets_url:string = 'http://localhost:8080';
+
   // public lifeCycleService:LifeCycleService
   
   

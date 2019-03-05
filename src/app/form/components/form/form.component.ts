@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Formio } from 'formiojs';
 import _ from 'lodash';
 import { ReplaySubject } from 'rxjs';
-import { formioApiUrl, formioAppUrl } from '../../../config';
+import { environment } from '../../../../environments/environment';
 
 /**
  * FormComponent
@@ -52,9 +52,9 @@ export class FormComponent implements OnInit, OnDestroy {
 
   ) {
     this.formLoaded = new Promise(() => { });
-    if (formioApiUrl && formioAppUrl) {
-      Formio.setBaseUrl(formioApiUrl);
-      Formio.setProjectUrl(formioAppUrl);
+    if (environment.formio.api.master && environment.formio.api.requestForm) {
+      Formio.setBaseUrl(environment.formio.api.master);
+      Formio.setProjectUrl(environment.formio.api.requestForm);
     } else {
       console.error('You must provide an AppConfig within your application!');
     }
@@ -82,8 +82,8 @@ export class FormComponent implements OnInit, OnDestroy {
    */
   setContext() {
     this.resource = { data: {} };
-    this.resourceUrl = formioAppUrl + '/' + this.resourceName;
-    this.formUrl = formioAppUrl + '/' + this.formKey;
+    this.resourceUrl = environment.formio.api.requestForm + '/' + this.resourceName;
+    this.formUrl = environment.formio.api.requestForm + '/' + this.formKey;
     if (this.resourceId) {
       this.resourceUrl += '/submission/' + this.resourceId;
     }

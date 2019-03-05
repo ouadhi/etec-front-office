@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { LifeCycleService } from './config';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ServicesService {
 
   getCollectionAll(collection:string):Observable<any> {
     return this.http.post<any[]>(
-      `http://localhost:8080/api/collections/get/${collection}/`,{"populate": 1});
+      `${environment.cms.api.master}/api/collections/get/${collection}/`,{"populate": 1});
   }
 
   getCollectionAllActive(collection:string,activeKey,activeVal):Observable<any> {
@@ -25,7 +26,7 @@ export class ServicesService {
     console.log(filter);
 
     return this.http.post<any[]>(
-      `http://localhost:8080/api/collections/get/${collection}/`,{
+      `${environment.cms.api.master}/api/collections/get/${collection}/`,{
         filter,
         "populate": 1
       });
@@ -33,7 +34,7 @@ export class ServicesService {
 
   getCollectionEntryById(collection:string,filterKey:string,id:any):Observable<any> {
     return this.http.post<any[]>(
-      `http://localhost:8080/api/collections/get/${collection}/`,
+      `${environment.cms.api.master}/api/collections/get/${collection}/`,
       {
         "filter":{
           "_id": `${id}`
@@ -75,7 +76,7 @@ export class ServicesService {
 
   getComments(serviceId){
       return this.http.post<any>(
-        `http://localhost:8080/api/collections/get/comments/`,
+        `${environment.cms.api.master}/api/collections/get/comments/`,
         {
           "filter":{
             "serviceName._id": `${serviceId}`
@@ -90,7 +91,7 @@ export class ServicesService {
     });
 
     return this.http.post<any[]>(
-      `http://localhost:8080/api/collections/get/segment/`,
+      `${environment.cms.api.master}/api/collections/get/segment/`,
       {
         "filter":{
           "$or": body
@@ -127,7 +128,7 @@ export class ServicesService {
     
 
     return this.http.post<any[]>(
-      `http://localhost:8080/api/collections/get/Service/`,body,{});
+      `${environment.cms.api.master}/api/collections/get/Service/`,body,{});
   }
 
 
@@ -135,7 +136,7 @@ export class ServicesService {
 
   getRequest(id:string):Observable<any[]> {
     return this.http.get<any[]>(
-      `http://localhost:8080/api/collections/get/${id}/`);
+      `${environment.cms.api.master}/api/collections/get/${id}/`);
   }
 
 }

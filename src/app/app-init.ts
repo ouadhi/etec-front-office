@@ -1,7 +1,6 @@
 import { KeycloakService } from 'keycloak-angular';
 
 import { environment } from '../environments/environment';
-import {assets_url, formioAppUrl, formioApiUrl } from './config'
 
 export function initializer(keycloak: KeycloakService): () => Promise<any> {
   return (): Promise<any> => {
@@ -14,11 +13,11 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             checkLoginIframe: false
           },
           bearerExcludedUrls: [
-            'http://localhost:8080',
-            formioAppUrl,
-            formioApiUrl,
-            'http://34.207.137.198:8120',
-            assets_url,
+            environment.cms.api.master,
+            environment.cms.api.assets,
+            environment.formio.api.requestForm,
+            environment.formio.api.master,
+            environment.filter.api
           ],
         });
         resolve();
