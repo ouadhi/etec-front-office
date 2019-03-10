@@ -73,17 +73,8 @@
             </mat-chip-list>
         </dd>
 
-        
-
         <dt>الخدمة الرئيسية</dt>
         <dd>{{data.primaryService_ar}}</dd>
-
-        <dt>الاقسام:</dt>
-        <dd>
-            <mat-chip-list>
-              <mat-chip color="primary" *ngFor="let item of data.department">{{item.departmentName_ar}}</mat-chip>
-            </mat-chip-list>
-        </dd>
 
       </app-section>
 
@@ -117,7 +108,7 @@
 
       <app-section sectionTitle="التصنيف">
         <ul>
-            <li *ngFor="let item of data.category">{{item.categoryName_ar}}</li>
+          {{data.category['categoryName_ar']}} ( {{data.category.department.departmentName_ar}} )
         </ul>
       </app-section>
 
@@ -137,7 +128,7 @@
 
     <app-section sectionTitle="التعليقات">
       <div *ngFor="let comment of comments">
-        <small>on: {{comment._created}}</small>
+        <small>في: {{comment._created*1000 | date:'yyyy-MM-dd'}}</small>
         <p>
             {{comment.commentText}}
         </p>

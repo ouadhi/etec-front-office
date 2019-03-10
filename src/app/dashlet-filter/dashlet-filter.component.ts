@@ -51,7 +51,7 @@ export class DashletFilterComponent implements OnInit {
 
 
     ngOnInit() {
-        this.filterService.getDepartments().subscribe(data => this.departments = data);
+        //this.filterService.getDepartments().subscribe(data => this.departments = data);
         this.filterService.getRequestNames().subscribe(data => this.requestNames = data);
 
         /*

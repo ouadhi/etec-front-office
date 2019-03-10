@@ -15,9 +15,10 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
           bearerExcludedUrls: [
             environment.cms.api.master,
             environment.cms.api.assets,
-            environment.formio.api.requestForm,
-            environment.formio.api.master,
-            environment.filter.api
+            // environment.formio.api.requestForm,
+            // environment.formio.api.master,
+            // environment.filter.api
+            // environment.requestApi.api
           ],
         });
         resolve();

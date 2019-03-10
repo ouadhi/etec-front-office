@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,14 @@ export class RequestsService {
       delay(1000)
     );
     return delayedObservable;
+  }
+
+  getRequests(requesterId:string):Observable<any> {
+    let header = new HttpHeaders();
+    header= header.append('content-type', 'application/json');
+
+
+    return this.http.get<any[]>(
+      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`);
   }
 }

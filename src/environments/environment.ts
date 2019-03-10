@@ -7,9 +7,9 @@ import { KeycloakConfig } from 'keycloak-angular';
 
 // Add here your keycloak setup infos
 let keycloakConfig: KeycloakConfig = {
-  url: 'http://localhost:9080/auth',
-  realm: 'rms',
-  clientId: 'Angular'
+  url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
+  realm: 'jhipster',
+  clientId: 'web_app'
 };
 
 export const environment = {
@@ -18,13 +18,19 @@ export const environment = {
   cms:{
     api: {
       master:'http://localhost:8080',
-      assets:'http://localhost:8080'
+      assets:'http://localhost:8080/storage/uploads'
     }
   },
 
   keycloak: keycloakConfig,
   
-  requestApi: '',
+  requestApi:{
+    // api: 'http://localhost:8082'
+    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8082',
+    rest: {
+      "myRequests":"/api/portal/requests"
+    }
+  },
 
   formio:{
     api: {
@@ -34,9 +40,11 @@ export const environment = {
   },
 
   filter:{
-    api: 'http://34.207.137.198:8120',
+    // api: 'http://34.207.137.198:8120',
+    // api: 'http://localhost:8083',
+    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8083',
     rest: {
-      deparments: '/departments',
+      deparments: '/api/portal/departments',
       statuses:'/departments',
       request:'/caseNames'
     } 

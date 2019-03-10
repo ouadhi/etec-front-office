@@ -11,10 +11,11 @@ import { APP_INITIALIZER } from '@angular/core';
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { initializer } from './app-init';
 
-
 import { FilterPipeModule } from 'ngx-filter-pipe';
 
 import { ServiceCatalogComponent } from './service-catalog/service-catalog.component';
+
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 //material
 //Angular Material Components
@@ -105,7 +106,8 @@ export function createTranslateLoader(http: HttpClient) {
     FlexLayoutModule,
     FormsModule,
     FilterPipeModule,
-
+    SlideshowModule,
+    
     // material
     BrowserAnimationsModule,
     MatCheckboxModule,

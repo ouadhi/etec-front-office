@@ -3,6 +3,9 @@ import { ServicesService } from '../services.service';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { Input, Output, EventEmitter } from '@angular/core';
 
+import {IImage} from 'ng-simple-slideshow'
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-service-catalog',
   templateUrl: './service-catalog.component.html',
@@ -31,10 +34,30 @@ export class ServiceCatalogComponent implements OnInit {
 
   }
 
+  public imagesSlider:IImage[];
+
 
   constructor(private servicesService: ServicesService,public filterPipe:FilterPipe) { }
 
   ngOnInit() {
+
+
+  
+    this.servicesService.getBanners().subscribe(data=>{
+
+      this.imagesSlider=[];
+      data.entries.forEach(element => {
+        let item={
+        url :`${environment.cms.api.assets}${element.url.path}`,
+        href : element.href
+      }
+          
+        this.imagesSlider.push(item)
+      });
+
+    });
+
+
 
     this.servicesService.getSegments().subscribe(data=>{
       this.segments = data.entries

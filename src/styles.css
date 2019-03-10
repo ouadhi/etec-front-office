@@ -4,8 +4,19 @@
 
 html,
 body{
-    font-family: 'Tajawal','Quicksand', sans-serif;
     color: #444;
+}
+
+html,
+body,
+h1,h2,h3,h4,h5,h6,
+p,span,
+div,section,
+b,strong,small,
+ul,ol,li,
+button,a,
+table,thead,tbody,tr,td,th{
+    font-family: 'Tajawal','Quicksand', sans-serif;
 }
 
 /* // @TODO arabic */

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { RequestsService} from './../requests.service'
 import { from, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
 import { concatMap } from 'rxjs/internal/operators';
+ 
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-my-requests',
@@ -12,8 +15,11 @@ import { concatMap } from 'rxjs/internal/operators';
 })
 export class MyRequestsComponent {
 
+  dxService:any=[]
   constructor(
     private http: HttpClient,
+    private keykloackService:KeycloakService,
+    private requestsService:RequestsService    
     ) { }
 
     dummyData = {
@@ -57,6 +63,16 @@ export class MyRequestsComponent {
     );
     return delayedObservable;
   }
+
+  dService = async()=>{
+    let token = await this.keykloackService.getToken();
+    return this.requestsService.getRequests(token).subscribe((data)=>{
+      this.dxService = data;
+    })
+  }
+
+
+  
   
 
 }

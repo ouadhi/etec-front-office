@@ -72,6 +72,10 @@ export class ServicesService {
     return this.getCollectionAllActive('category','activation',true);
   }
 
+  getBanners(){
+    return this.getCollectionAllActive('bannerSlider','activation',true);
+  }
+
   
 
   getComments(serviceId){
