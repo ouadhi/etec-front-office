@@ -9,18 +9,21 @@ import { ActivatedRoute } from '@angular/router';
 export class RequestDetailsComponent implements OnInit {
 
   constructor(
-    private route:ActivatedRoute
+    private route: ActivatedRoute
   ) { }
 
   id: any;
   sub: any;
 
-  data:any;
+  data: any;
+  formKey = 'requestahmad';
+  formReady = false;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = params['id']; 
-   });
+      this.id = params['id'];
+      this.formReady = true;
+    });
   }
 
   ngOnDestroy() {

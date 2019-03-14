@@ -1,4 +1,5 @@
 <app-page>
-    <app-form [formKey]="id" [resourceName]="id" [resourceId]="''"
-    [readOnly]="true" (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)"></app-form>
+    <app-formio *ngIf="formReady" [formKey]="formKey" [submissionId]="id" [readOnly]="true"
+        (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)">
+    </app-formio>
 </app-page>
