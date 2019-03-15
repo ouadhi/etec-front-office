@@ -43,7 +43,7 @@
               {
                 "input": "node_modules/@ng-select/ng-select/themes/material.theme.css"
               },
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true
