@@ -15,39 +15,39 @@ let keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: false,
 
-  cms:{
+  cms: {
     api: {
-      master:'http://localhost:8080',
-      assets:'http://localhost:8080/storage/uploads'
+      master: 'http://localhost:8080',
+      assets: 'http://localhost:8080/storage/uploads'
     }
   },
 
   keycloak: keycloakConfig,
-  
-  requestApi:{
+
+  requestApi: {
     // api: 'http://localhost:8082'
     api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8082',
     rest: {
-      "myRequests":"/api/portal/requests"
+      "myRequests": "/api/portal/requests"
     }
   },
 
-  formio:{
+  formio: {
     api: {
-      master:'https://api.form.io', //formioApiUrl
-      requestForm:'https://rllslkfteqdgmpv.form.io' //formioAppUrl
+      master: 'https://api.form.io/', //formioApiUrl
+      project: 'https://pihfhtwvqagqwzm.form.io/' //formioAppUrl
     }
   },
 
-  filter:{
+  filter: {
     // api: 'http://34.207.137.198:8120',
     // api: 'http://localhost:8083',
     api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8083',
     rest: {
       deparments: '/api/portal/departments',
-      statuses:'/departments',
-      request:'/caseNames'
-    } 
+      statuses: '/departments',
+      request: '/caseNames'
+    }
   }
 };
 

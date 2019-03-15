@@ -10,25 +10,27 @@ import { ServicesService } from '../services.service';
 export class RequestComponent implements OnInit {
 
   constructor(
-    private route:ActivatedRoute,
-    private servicesService:ServicesService
+    private route: ActivatedRoute,
+    private servicesService: ServicesService
   ) { }
 
   id: any;
+  formReady = false;
   sub: any;
 
-  data:any;
+  data: any;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = params['id']; 
+      this.id = params['id'];
       this.loadRequest(this.id);
-   });
+      this.formReady = true;
+    });
 
   }
 
 
-  loadRequest(id){
+  loadRequest(id) {
   }
 
   ngOnDestroy() {
