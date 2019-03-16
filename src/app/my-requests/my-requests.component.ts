@@ -36,7 +36,6 @@ export class MyRequestsComponent {
 
   dashletService = (params) => {
     this.requestsService.getRequests(params).subscribe((response: HttpResponse<object>) => {
-      console.log('fn call', response);
       this.data.totalCount = response.headers.get('X-Total-Count');
       this.data.items = response.body;
     });

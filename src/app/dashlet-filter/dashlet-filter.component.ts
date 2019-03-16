@@ -31,8 +31,8 @@ export class DashletFilterComponent implements OnInit {
     filterData = {
         services: [],
         statuses: [],
-        requestDateAfter: null,
-        requestDateBefore: null
+        requestDateAfter: '',
+        requestDateBefore: ''
 
     };
     @Input() show = false;
@@ -46,8 +46,8 @@ export class DashletFilterComponent implements OnInit {
         this.filterData = {
             services: [],
             statuses: [],
-            requestDateAfter: null,
-            requestDateBefore: null
+            requestDateAfter: '',
+            requestDateBefore: ''
         };
         this.filter.next({});
     }
