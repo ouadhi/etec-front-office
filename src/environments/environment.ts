@@ -6,7 +6,7 @@
 import { KeycloakConfig } from 'keycloak-angular';
 
 // Add here your keycloak setup infos
-let keycloakConfig: KeycloakConfig = {
+const keycloakConfig: KeycloakConfig = {
   url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
   realm: 'jhipster',
   clientId: 'web_app'
@@ -28,14 +28,14 @@ export const environment = {
     // api: 'http://localhost:8082'
     api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
     rest: {
-      myRequests: "/api/portal/requests"
+      myRequests: '/api/portal/requests'
     }
   },
 
   formio: {
     api: {
-      master: 'https://api.form.io/', //formioApiUrl
-      project: 'https://aqnkygpwykfzugd.form.io/' //formioAppUrl
+      master: 'https://api.form.io/', // formioApiUrl
+      project: 'https://aqnkygpwykfzugd.form.io/' // formioAppUrl
     }
   },
 
@@ -50,7 +50,13 @@ export const environment = {
       request: '/caseNames'
     },
     data: {
-      status: [{ key:'NEW', val:'NEW' },{ key:'In_PROGRESS', val:'In_PROGRESS' },{ key:'COMPLETED', val:'COMPLETED' }]
+      status: [{ key: 'NEW', val: 'NEW' }, { key: 'In_PROGRESS', val: 'In_PROGRESS' }, { key: 'COMPLETED', val: 'COMPLETED' }]
+    }
+  },
+  camunda: {
+    base: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8081/',
+    endpoints: {
+      rest: 'rest/',
     }
   }
 };

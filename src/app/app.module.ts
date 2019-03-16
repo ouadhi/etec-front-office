@@ -68,6 +68,7 @@ import { DashletTableComponent } from './dashlet-table/dashlet-table.component';
 import { SelectComponent } from './select/select.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CaseActivitiesComponent } from './case-activities/case-activities.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -86,7 +87,8 @@ export function createTranslateLoader(http: HttpClient) {
     RequestDetailsComponent,
     SelectComponent,
     DashletFilterComponent,
-    DashletTableComponent
+    DashletTableComponent,
+    CaseActivitiesComponent
   ],
   imports: [
     KeycloakAngularModule,
@@ -107,7 +109,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     FilterPipeModule,
     SlideshowModule,
-    
+
     // material
     BrowserAnimationsModule,
     MatCheckboxModule,
@@ -146,7 +148,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     {
-    provide: APP_INITIALIZER,
+      provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
       deps: [KeycloakService]
