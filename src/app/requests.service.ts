@@ -11,10 +11,10 @@ export class RequestsService {
 
   constructor(private http: HttpClient) { }
 
-  getRequests():Observable<HttpResponse<Object>> {
-    return this.http.get<HttpResponse<Object>>(
-      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,{ observe: 'response' }).pipe(
-        tap(resp => {return resp})
+  getRequests(queryParams = {}): Observable<HttpResponse<object>> {
+    return this.http.get<HttpResponse<object>>(
+      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`, { observe: 'response', params: queryParams }).pipe(
+        tap(resp => resp)
       );
-    }
+  }
 }

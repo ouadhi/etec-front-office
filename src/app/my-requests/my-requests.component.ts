@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
-import { RequestsService} from './../requests.service'
+import { RequestsService } from './../requests.service'
 import { from, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
 import { concatMap } from 'rxjs/internal/operators';
@@ -15,13 +15,13 @@ export class MyRequestsComponent {
 
   constructor(
     private http: HttpClient,
-    private requestsService:RequestsService    
-    ) { }
+    private requestsService: RequestsService
+  ) { }
 
 
   data = {
-    totalCount:null,
-    items:{}
+    totalCount: null,
+    items: {}
   };
 
   dashletCols = {
@@ -30,28 +30,23 @@ export class MyRequestsComponent {
     requestName: { name: 'request Name', sortable: true, display: 'badge', color: 'primary' },
     requestDate: { name: 'request Date', sortable: true },
     status: { name: 'status', sortable: true },
-    data: { name: 'Details', sortable: true, display:'detailsButton',param1:'link',param2:'data' }
-    
+    data: { name: 'Details', sortable: true, display: 'detailsButton', param1: 'link', param2: 'data' }
+
   };
 
-  dashletService = () => {
-    this.requestsService.getRequests().subscribe((response:HttpResponse<Object>)=>{
-      console.log('fn call',response)
+  dashletService = (params) => {
+    this.requestsService.getRequests(params).subscribe((response: HttpResponse<object>) => {
+      console.log('fn call', response);
       this.data.totalCount = response.headers.get('X-Total-Count');
       this.data.items = response.body;
-    })
-    
+    });
+
     // pass params to service function and return observable
     const delayedObservable = of(this.data).pipe(
       delay(1000)
     );
     return delayedObservable;
-    
-    
-  }
 
-
-  
-  
+  };
 
 }
