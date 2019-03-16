@@ -58,6 +58,11 @@ body{
     direction: rtl;
 }
 
+.routerOutletContainer {
+    position: relative;
+    min-height: 400px;
+}
+
 img {
     max-width: 100%;
 }
@@ -118,4 +123,7 @@ mat-checkbox .mat-checkbox-inner-container{
     margin-left: 8px;
 }
 
+.mat-form-field{
+    text-align: right !important;
+}
 

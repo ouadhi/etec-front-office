@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { RequestsService} from './../requests.service'
 import { from, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
 import { concatMap } from 'rxjs/internal/operators';
- 
-import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-my-requests',
@@ -15,60 +13,41 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class MyRequestsComponent {
 
-  dxService:any=[]
   constructor(
     private http: HttpClient,
-    private keykloackService:KeycloakService,
     private requestsService:RequestsService    
     ) { }
 
-    dummyData = {
-    totalCount: 200, items:
-      [{
-        id: 1, caseName: 'طلب صرف مكافأة نجاح',
-        department: 'إدارة الأبناء', caseType: 'الخدمات التعليمية',
-        caseDate: '10/02/2019',
-        status: 'تحت المعالجة', beneficiary: 'عبد الله الحربي - من 15 الى 20 - عازب', description: 'مكافأة نجاح من الصف الثالث متوسط'
-      },
-      {
-        id: 12, caseName: 'طلب إعانة علاجية ',
-        department: 'إدارة التمكين', caseType: 'المساعدة المالية',
-        caseDate: '24/01/2019', status: 'تحت المعالجة',
-        beneficiary: 'ابراهيم العتيبي - من 21 الى 30 - عازب',
-        description: 'دورة تأهيل في النجاره'
-      },
-      {
-        id: 50, caseName: 'طلب إعانة تهيئة مبتعث',
-        department: 'إدارة الأبناء',
-        caseType: 'الخدمات التعليمية',
-        caseDate: '01/01/2019',
-        status: 'معلق', beneficiary: 'ابراهيم العتيبي - من 21 الى 30 - عازب', description: 'ابتعاث لاكمال الماجستير في جامعة لندن'
-      }]
+
+  data = {
+    totalCount:null,
+    items:{}
   };
+
   dashletCols = {
-    caseName: { name: 'Name', sortable: true },
-    department: { name: 'Department', sortable: true, display: 'chip', color: 'tertiary', icon: 'cube' },
-    caseType: { name: 'Type', sortable: true, display: 'badge', color: 'primary' },
-    caseDate: { name: 'Date', sortable: true, display: 'chip', color: 'medium', icon: 'calendar' },
-    status: { name: 'Status', sortable: true, display: 'badge', color: 'secondary' },
-    beneficiary: { name: 'Beneficiary', sortable: true },
-    description: { name: 'Description', sortable: false }
+    id: { name: 'id', sortable: true },
+    serviceId: { name: 'service Id', sortable: true, display: 'chip', color: 'tertiary', icon: 'cube' },
+    requestName: { name: 'request Name', sortable: true, display: 'badge', color: 'primary' },
+    requestDate: { name: 'request Date', sortable: true },
+    status: { name: 'status', sortable: true },
+    data: { name: 'Details', sortable: true, display:'detailsButton',param1:'link',param2:'data' }
+    
   };
-  dashletService = (queryParams) => {
-    console.log("dashletService-----");
-    console.log(queryParams);
+
+  dashletService = () => {
+    this.requestsService.getRequests().subscribe((response:HttpResponse<Object>)=>{
+      console.log('fn call',response)
+      this.data.totalCount = response.headers.get('X-Total-Count');
+      this.data.items = response.body;
+    })
+    
     // pass params to service function and return observable
-    const delayedObservable = of(this.dummyData).pipe(
+    const delayedObservable = of(this.data).pipe(
       delay(1000)
     );
     return delayedObservable;
-  }
-
-  dService = async()=>{
-    let token = await this.keykloackService.getToken();
-    return this.requestsService.getRequests(token).subscribe((data)=>{
-      this.dxService = data;
-    })
+    
+    
   }
 
 

@@ -23,6 +23,7 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
   @ViewChild(DashletFilterComponent) casesFilter: DashletFilterComponent;
   @Input() title: any = '';
   @Input() columns;
+  @Input() detailsRouterForEachItem?;
   @Input() service: (param) => Observable<any>;
   data = [];
   showFilter = false;
@@ -41,6 +42,7 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
     this.showFilter = !this.showFilter;
   }
   onFilter(filterData) {
+    console.log('filterData');
     console.log(filterData);
     // this.toggleFilter();
   }

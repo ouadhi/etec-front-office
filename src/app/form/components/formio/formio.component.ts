@@ -112,7 +112,7 @@ export class AppFormioComponent implements OnInit, OnChanges {
             this.formio.setUrl(this.src, this.formioOptions || {});
         }
 
-        this.formio.nosubmit = true;
+        this.formio.nosubmit = false;
         this.formio.on('languageChanged', () => {
             this.disableForms(this.formio);
         });

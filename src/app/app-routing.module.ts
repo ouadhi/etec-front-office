@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'my-requests', component: MyRequestsComponent ,canActivate: [AppAuthGuard] },
   { path: 'service-details/:id', component: ServiceDetailsComponent },
   { path: 'request/:id', component: RequestComponent ,canActivate: [AppAuthGuard] },
-  { path: 'request-details/:id', component: RequestDetailsComponent ,canActivate: [AppAuthGuard] }
+  { path: 'request-details/:link/:formData', component: RequestDetailsComponent ,canActivate: [AppAuthGuard] }
 ];
 
 @NgModule({

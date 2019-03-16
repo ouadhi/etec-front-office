@@ -1,6 +1,5 @@
 <app-page pageTitle="طلباتي">
-  
-  <app-dashlet-table [columns]="dashletCols" [title]="'الحالات العاجلة'" [service]="dService"></app-dashlet-table>
 
-  
+  <app-dashlet-table [columns]="dashletCols" [title]="'الحالات العاجلة'" [service]="dashletService" [detailsRouterForEachItem]="'/request-details'"></app-dashlet-table>
+
 </app-page>

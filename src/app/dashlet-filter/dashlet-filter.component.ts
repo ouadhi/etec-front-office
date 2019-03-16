@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Observable } from 'rxjs';
 import { FilterService } from '../filter.service';
+import { environment } from '../../environments/environment'
 
 @Component({
     selector: 'app-dashlet-filter',
@@ -16,16 +17,19 @@ import { FilterService } from '../filter.service';
         ])]
 })
 export class DashletFilterComponent implements OnInit {
-    public requestNames = [];
-    public departments = [];
-    public statuses = [];
+    // public requestNames = [];
+    // public departments = [];
+    // public statuses = [];
+
+    
+    public servicesFilterData = [];
+    public statusFilterData = environment.filter.data.status;
 
     /**
      * Filter Object
      */
     filterData = {
-        requestNames: [],
-        caseTypes: [],
+        services: [],
         statuses: [],
         requestDateAfter: null,
         requestDateBefore: null
@@ -40,8 +44,7 @@ export class DashletFilterComponent implements OnInit {
     }
     reset() {
         this.filterData = {
-            requestNames: [],
-            caseTypes: [],
+            services: [],
             statuses: [],
             requestDateAfter: null,
             requestDateBefore: null
@@ -52,8 +55,10 @@ export class DashletFilterComponent implements OnInit {
 
     ngOnInit() {
         //this.filterService.getDepartments().subscribe(data => this.departments = data);
-        this.filterService.getRequestNames().subscribe(data => this.requestNames = data);
-
+        // this.filterService.getRequestNames().subscribe(data => this.requestNames = data);
+        
+        this.filterService.getServices().subscribe(data => this.servicesFilterData = data);
+        
         /*
         this.filterService.getBranches().subscribe(data => this.branches = data);
         this.filterService.getCaseTypes().subscribe(data => this.caseTypes = data);

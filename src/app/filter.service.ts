@@ -21,6 +21,12 @@ export class FilterService {
     publishReplay(1),
     refCount()
   );
+
+  private services = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.services}`).pipe(
+    publishReplay(1),
+    refCount()
+  );
+
   constructor(private http: HttpClient) { }
 
   getDepartments() {
@@ -28,6 +34,9 @@ export class FilterService {
   }
   getRequestNames() {
     return this.requestNames;
+  }
+  getServices(){
+    return this.services;
   }
 
 

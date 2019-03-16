@@ -17,8 +17,8 @@ export const environment = {
 
   cms: {
     api: {
-      master: 'http://localhost:8080',
-      assets: 'http://localhost:8080/storage/uploads'
+      master: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8081',
+      assets: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8081/storage/uploads'
     }
   },
 
@@ -26,27 +26,31 @@ export const environment = {
 
   requestApi: {
     // api: 'http://localhost:8082'
-    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8082',
+    api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
     rest: {
-      "myRequests": "/api/portal/requests"
+      myRequests: "/api/portal/requests"
     }
   },
 
   formio: {
     api: {
       master: 'https://api.form.io/', //formioApiUrl
-      project: 'https://pihfhtwvqagqwzm.form.io/' //formioAppUrl
+      project: 'https://aqnkygpwykfzugd.form.io/' //formioAppUrl
     }
   },
 
   filter: {
     // api: 'http://34.207.137.198:8120',
     // api: 'http://localhost:8083',
-    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8083',
+    api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8083',
     rest: {
       deparments: '/api/portal/departments',
+      services: '/api/eservice-trans?language=en',
       statuses: '/departments',
       request: '/caseNames'
+    },
+    data: {
+      status: [{ key:'NEW', val:'NEW' },{ key:'In_PROGRESS', val:'In_PROGRESS' },{ key:'COMPLETED', val:'COMPLETED' }]
     }
   }
 };

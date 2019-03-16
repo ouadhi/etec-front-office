@@ -1,60 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestsService {
-  dummyRequests = {
-    totalCount: 200,
-    requests: [
-      {
-        id: 1,
-        requestName: 'طلب صرف مكافأة نجاح',
-        department: 'إدارة الأبناء',
-        requestCategory: 'الخدمات التعليمية',
-        requestDate: '10/02/2019',
-        status: 'تحت المعالجة',
-        description: 'مكافأة نجاح من الصف الثالث متوسط'
-      },
-      {
-        id: 12,
-        requestName: 'طلب إعانة علاجية ',
-        department: 'إدارة التمكين',
-        requestCategory: 'المساعدة المالية',
-        requestDate: '24/01/2019',
-        status: 'تحت المعالجة',
-        description: 'دورة تأهيل في النجاره'
-      },
-      {
-        id: 50,
-        requestName: 'طلب إعانة تهيئة مبتعث',
-        department: 'إدارة الأبناء',
-        requestCategory: 'الخدمات التعليمية',
-        requestDate: '01/01/2019',
-        status: 'معلق',
-        description: 'ابتعاث لاكمال الماجستير في جامعة لندن'
-      }
-    ]
-  };
+
   constructor(private http: HttpClient) { }
 
-  getDummyRequests(params) {
-    const delayedObservable = of(this.dummyRequests).pipe(
-      delay(1000)
-    );
-    return delayedObservable;
-  }
-
-  getRequests(requesterId:string):Observable<any> {
-    let header = new HttpHeaders();
-    header= header.append('content-type', 'application/json');
-
-
-    return this.http.get<any[]>(
-      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`);
-  }
+  getRequests():Observable<HttpResponse<Object>> {
+    return this.http.get<HttpResponse<Object>>(
+      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,{ observe: 'response' }).pipe(
+        tap(resp => {return resp})
+      );
+    }
 }

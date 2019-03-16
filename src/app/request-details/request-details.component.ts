@@ -12,7 +12,8 @@ export class RequestDetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  id: any;
+  link: any;
+  formData: any;
   sub: any;
 
   data: any;
@@ -21,7 +22,10 @@ export class RequestDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = params['id'];
+      this.link = params['link'];
+      this.formData = params['formData'];
+      alert(this.link);
+      alert(this.formData);
       this.formReady = true;
     });
   }

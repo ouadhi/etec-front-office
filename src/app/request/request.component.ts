@@ -23,14 +23,9 @@ export class RequestComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.loadRequest(this.id);
       this.formReady = true;
     });
 
-  }
-
-
-  loadRequest(id) {
   }
 
   ngOnDestroy() {
