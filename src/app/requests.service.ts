@@ -5,14 +5,23 @@ import { delay, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
 
+interface filterData {
+  services:string[],
+  statuses:string[],
+  requestDateAfter:string,
+  requestDateBefore:string
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class RequestsService {
 
   constructor(private http: HttpClient, private datePipe:DatePipe) { }
 
-  getRequests(queryParams = {}): Observable<HttpResponse<object>> {
+  getRequests(queryParams:filterData): Observable<HttpResponse<object>> {
 
     // DUE TO Server do not accepet a format, only like this 1997-07-16T19:20:30.45+01:00
     if(queryParams.requestDateAfter){

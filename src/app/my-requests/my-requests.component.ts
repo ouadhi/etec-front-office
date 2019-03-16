@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
-import { RequestsService } from './../requests.service'
+import { RequestsService } from './../requests.service';
 import { from, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
 import { concatMap } from 'rxjs/internal/operators';
@@ -46,6 +46,6 @@ export class MyRequestsComponent {
     );
     return delayedObservable;
 
-  };
+  }
 
 }
