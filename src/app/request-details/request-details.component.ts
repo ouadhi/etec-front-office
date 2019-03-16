@@ -24,8 +24,8 @@ export class RequestDetailsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.link = params['link'];
       this.formData = params['formData'];
-      alert(this.link);
-      alert(this.formData);
+      console.log(this.link);
+      console.log(this.formData);
       this.formReady = true;
     });
   }

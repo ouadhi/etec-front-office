@@ -68,6 +68,7 @@ import { DashletTableComponent } from './dashlet-table/dashlet-table.component';
 import { SelectComponent } from './select/select.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DatePipe } from '@angular/common';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -145,6 +146,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormModule
   ],
   providers: [
+    DatePipe,
     {
     provide: APP_INITIALIZER,
       useFactory: initializer,
