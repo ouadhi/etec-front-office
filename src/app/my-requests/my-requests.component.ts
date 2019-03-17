@@ -26,9 +26,8 @@ export class MyRequestsComponent {
 
   dashletCols = {
     id: { name: 'id', sortable: true },
-    serviceId: { name: 'service Id', sortable: true, display: 'chip', color: 'tertiary', icon: 'cube' },
-    requestName: { name: 'request Name', sortable: true, display: 'badge', color: 'primary' },
-    requestDate: { name: 'request Date', sortable: true },
+    requestName: { name: 'request Name', sortable: true},
+    requestDate: { name: 'request Date', sortable: true, formatDate: true },
     status: { name: 'status', sortable: true },
     data: { name: 'Details', sortable: true, display: 'detailsButton', param1: 'link', param2: 'data', param3: 'cmmnId' }
 

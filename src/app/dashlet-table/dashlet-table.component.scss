@@ -30,6 +30,7 @@ ion-toolbar {
 mat-header-row {
   background: var(--ion-color-lesslight);
   border-radius: 3px;
+  background: #f7f7f7;
 }
 mat-table {
   font-family: inherit;
@@ -37,10 +38,11 @@ mat-table {
 }
 mat-row {
   border:0px;
-  min-height: 68px;
-  background: #fff;
-  border-radius: 5px;
-  margin: 10px auto;
+  min-height: 58px;
+  background: #fcfcfc;
+  border-radius: 0;
+  margin: 5px auto;
+  box-shadow: 0 0!important;
 
   &:hover {
     opacity: 0.8;
@@ -75,6 +77,13 @@ mat-paginator {
   width: calc(100% - 20px);
   height: calc(100% - 56px);
 }
+
+mat-cell:first-of-type,
+mat-footer-cell:first-of-type,
+mat-header-cell:first-of-type {
+  padding-right: 24px;
+  }
+
 @media screen and (max-width: 960px) {
   mat-row {
     padding: 5px 10px;
