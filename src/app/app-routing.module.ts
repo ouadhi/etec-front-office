@@ -10,12 +10,12 @@ import { MyRequestsComponent } from './my-requests/my-requests.component';
 
 
 const routes: Routes = [
-  { path: '',pathMatch: 'full', redirectTo:'/service-catalog'},
+  { path: '', pathMatch: 'full', redirectTo: '/service-catalog' },
   { path: 'service-catalog', component: ServiceCatalogComponent },
-  { path: 'my-requests', component: MyRequestsComponent ,canActivate: [AppAuthGuard] },
+  { path: 'my-requests', component: MyRequestsComponent, canActivate: [AppAuthGuard] },
   { path: 'service-details/:id', component: ServiceDetailsComponent },
-  { path: 'request/:id', component: RequestComponent ,canActivate: [AppAuthGuard] },
-  { path: 'request-details/:link/:formData', component: RequestDetailsComponent ,canActivate: [AppAuthGuard] }
+  { path: 'request/:id', component: RequestComponent, canActivate: [AppAuthGuard] },
+  { path: 'request-details/:link/:formData/:cmmnId', component: RequestDetailsComponent, canActivate: [AppAuthGuard] }
 ];
 
 @NgModule({

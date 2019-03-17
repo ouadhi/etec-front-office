@@ -30,7 +30,7 @@ export class MyRequestsComponent {
     requestName: { name: 'request Name', sortable: true, display: 'badge', color: 'primary' },
     requestDate: { name: 'request Date', sortable: true },
     status: { name: 'status', sortable: true },
-    data: { name: 'Details', sortable: true, display: 'detailsButton', param1: 'link', param2: 'data' }
+    data: { name: 'Details', sortable: true, display: 'detailsButton', param1: 'link', param2: 'data', param3: 'cmmnId' }
 
   };
 

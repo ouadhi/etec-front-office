@@ -32,8 +32,9 @@
           </ion-label>
         </ion-chip>
         <ion-text *ngIf="columns[col].display == 'detailsButton'">
-            <button mat-flat-button color="primary" [routerLink]="[detailsRouterForEachItem, element[columns[col].param1], element[columns[col].param2]]">{{'Details' | translate}}</button>
-          </ion-text>
+          <button mat-flat-button color="primary"
+            [routerLink]="[detailsRouterForEachItem, element[columns[col].param1], element[columns[col].param2], (element[columns[col].param3] || '')]">{{'Details' | translate}}</button>
+        </ion-text>
         <ion-text *ngIf="!columns[col].display || columns[col].display == 'text'">
           {{element[col]}}
         </ion-text>

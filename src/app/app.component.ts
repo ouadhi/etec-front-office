@@ -11,10 +11,10 @@ import { KeycloakService } from 'keycloak-angular';
 export class AppComponent {
   title = 'rms';
 
-  loggedIn:boolean = false;
+  loggedIn: boolean = false;
   userDetails: KeycloakProfile;
 
-  constructor(private keycloakService: KeycloakService) {}
+  constructor(private keycloakService: KeycloakService) { }
 
   async ngOnInit() {
     if (await this.keycloakService.isLoggedIn()) {
@@ -27,11 +27,11 @@ export class AppComponent {
     await this.keycloakService.logout();
   }
 
-  
-  login(){
-   
+
+  login() {
+
     this.keycloakService.login();
-  
+
   }
-  
+
 }

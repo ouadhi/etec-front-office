@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './request-details.component.html',
   styleUrls: ['./request-details.component.css']
 })
-export class RequestDetailsComponent implements OnInit {
+export class RequestDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute
@@ -14,6 +14,7 @@ export class RequestDetailsComponent implements OnInit {
 
   link: any;
   formData: any;
+  cmmnId: any;
   sub: any;
 
   data: any;
@@ -22,8 +23,9 @@ export class RequestDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.link = params['link'];
-      this.formData = params['formData'];
+      this.link = params.link;
+      this.formData = params.formData;
+      this.cmmnId = params.cmmnId;
       console.log(this.link);
       console.log(this.formData);
       this.formReady = true;
