@@ -483,8 +483,9 @@ export class AppFormioComponent implements OnInit, OnChanges {
                 if (this.params.url) {
                     const temp = Object.assign({}, this.submission);
                     this.externalService.apiCall('get', this.params.url).subscribe(response => {
-                        this.submission = this.formio.submission =
-                            Utils.evaluate('submission.data = response;', { submission: temp, response: response }, 'submission');
+                        this.formio.submission = this.submission =
+                            Utils.evaluate(this.params.success || 'submission = response;',
+                                { submission: temp, response }, 'submission');
                     });
                 }
             } catch (e) {

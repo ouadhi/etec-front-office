@@ -28,8 +28,12 @@ export const environment = {
     // api: 'http://localhost:8082'
     api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
     rest: {
-      myRequests: '/api/portal/requests'
+      myRequests: '/api/portal/requests',
+      caseActivity: '/api/history/case-activity-instance'
     }
+  },
+  beneficiaryApi: {
+    api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8084/api/portal/beneficiaries',
   },
 
   formio: {
@@ -51,12 +55,6 @@ export const environment = {
     },
     data: {
       status: [{ key: 'NEW', val: 'NEW' }, { key: 'In_PROGRESS', val: 'In_PROGRESS' }, { key: 'COMPLETED', val: 'COMPLETED' }]
-    }
-  },
-  camunda: {
-    base: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8081/',
-    endpoints: {
-      rest: 'rest/',
     }
   }
 };
