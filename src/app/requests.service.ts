@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { DashletFilterAdapter } from './dashlet-filter.adapter';
 
 interface filterData {
 
@@ -20,7 +21,7 @@ interface filterData {
 
 export class RequestsService {
 
-  constructor(private http: HttpClient, private datePipe: DatePipe) { }
+  constructor(private http: HttpClient, private datePipe: DatePipe, private dashletFilterAdapter: DashletFilterAdapter) { }
 
   getRequests(queryParams: filterData): Observable<HttpResponse<object>> {
 
@@ -42,12 +43,7 @@ export class RequestsService {
       `${environment.requestApi.api}${environment.requestApi.rest.myRequests}?`,
       {
         observe: 'response',
-        params: {
-          'requestDate.greaterOrEqualThan': queryParams.requestDateAfter,
-          'requestDate.lessOrEqualThan': queryParams.requestDateBefore,
-          'status.in': queryParams.statuses,
-          'serviceId.in': queryParams.services
-        }
+        params: this.dashletFilterAdapter.adapt(queryParams)
       }).pipe(
         tap(resp => resp)
       );
