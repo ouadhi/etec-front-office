@@ -18,7 +18,7 @@ export class CaseActivityService {
 
     }
     getCaseHistoryActivities(queryParams = {}) {
-        const endpoint = `${environment.requestApi}${environment.requestApi.rest.caseActivity}`;
+        const endpoint = `${environment.requestApi.api}${environment.requestApi.rest.caseActivity}`;
         return this.http.get<any[]>(endpoint, { params: queryParams }).pipe(
             map(data => (data.map(item => this.activityInstanceAdapter.adapt(item)))
             ));

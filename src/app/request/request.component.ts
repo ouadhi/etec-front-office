@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 import { environment } from '../../environments/environment';
 @Component({
@@ -11,6 +11,7 @@ export class RequestComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private servicesService: ServicesService
   ) { }
 
@@ -30,7 +31,16 @@ export class RequestComponent implements OnInit {
     });
 
   }
+  onSubmit() {
+    this.goBack();
+  }
+  /**
+   * Go Back After Request is sent
+   */
+  goBack() {
+    this.router.navigate(['/']);
 
+  }
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

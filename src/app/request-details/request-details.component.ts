@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-request-details',
@@ -20,12 +21,16 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
   data: any;
   formKey = 'requestahmad';
   formReady = false;
+  params = { url: null, success: null };
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.link = params.link;
       this.formData = params.formData;
       this.cmmnId = params.cmmnId;
+      this.params.url = environment.beneficiaryApi.api;
+      this.params.success = 'submission.data = {...submission.data, requesterInfo: {data: response}};';
+      this.formReady = true;
       console.log(this.link);
       console.log(this.formData);
       this.formReady = true;

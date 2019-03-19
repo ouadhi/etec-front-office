@@ -29,7 +29,7 @@ export const environment = {
     api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
     rest: {
       myRequests: '/api/portal/requests',
-      caseActivity: '/api/history/case-activity-instance'
+      caseActivity: '/rest/history/case-activity-instance'
     }
   },
   beneficiaryApi: {

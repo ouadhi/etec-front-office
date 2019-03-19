@@ -238,6 +238,7 @@ export class AppFormioComponent implements OnInit, OnChanges {
                                     this.formio.options.readOnly = true;
                                 }
                                 this.submission = this.formio.submission = submission;
+                                this.processFormCalls(this.formio);
                             },
                             err => this.onError(err)
                         );
