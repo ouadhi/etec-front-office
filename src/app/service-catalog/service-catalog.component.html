@@ -25,7 +25,7 @@
 
         <div class="filtersSection__resetFilters">
           <mat-list-item>
-              <button mat-button (click)="resetFilters()"><mat-icon>close</mat-icon> حذف المصفيات</button>
+              <button mat-button (click)="resetFilters()" [disabled]="userSegments.length>0"><mat-icon>close</mat-icon> حذف المصفيات</button>
           </mat-list-item>
         </div>
 
@@ -54,7 +54,7 @@
             <div class="filtersList__head">{{a.segmentTypeName_ar}}</div>
               <ng-container *ngFor="let b of segments">
                 <div class="filtersList__item">
-                  <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment(b._id)">{{b.segmentName_ar}}</mat-checkbox>
+                  <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment(b._id)" [disabled]="userSegments.length>0">{{b.segmentName_ar}}</mat-checkbox>
                 </div>
               </ng-container>
           </div>
@@ -111,7 +111,7 @@
           <mat-card *ngIf="(data | filterBy: dataFilters).length === 0">
                 لا يوحد نتائج تطابق المحددات المختارة
                 <br><br>
-              <button mat-stroked-button color="warn" (click)="resetFilters()">حذف جميع المحددات</button>
+              <button mat-stroked-button color="warn" (click)="resetFilters()" [disabled]="userSegments.length>0">حذف جميع المحددات</button>
           </mat-card>
         </div>
       </section>

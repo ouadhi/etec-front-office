@@ -48,4 +48,11 @@ export class RequestsService {
         tap(resp => resp)
       );
   }
+
+  
+  getListOfUserSegments():Observable<any> {
+    return this.http.get<any[]>(
+      './assets/listOfUserSegments.json');
+  }
+
 }

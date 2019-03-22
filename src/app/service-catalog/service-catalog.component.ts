@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../services.service';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { Input, Output, EventEmitter } from '@angular/core';
-
+import {RequestsService} from '../requests.service';
 import {IImage} from 'ng-simple-slideshow'
 import { environment } from 'src/environments/environment';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-service-catalog',
@@ -37,14 +38,19 @@ export class ServiceCatalogComponent implements OnInit {
 
   public imagesSlider:IImage[];
 
-  constructor(private servicesService: ServicesService,public filterPipe:FilterPipe) { }
+
+  userSegments:string[]=[];
+
+  constructor(private servicesService: ServicesService,public filterPipe:FilterPipe,private keycloakService:KeycloakService, private requestsService:RequestsService) { }
 
   ngOnInit() {
+
     this.loadBanners();
     this.mostUsed();
 
-    this.prepareFilters();
-    this.search();  
+    this.search()
+    this.prepareFiltersFetch();  //this.prepareFilters(this.userSegments);
+  
   }
 
   loadBanners(){
@@ -70,7 +76,7 @@ export class ServiceCatalogComponent implements OnInit {
 
 
   // prepare filter to be displayed
-  prepareFilters(){
+  prepareFilters(userSegments){
 
     this.servicesService.getSegments().subscribe(data=>{
       this.segments = data.entries;
@@ -78,10 +84,16 @@ export class ServiceCatalogComponent implements OnInit {
       this.segments.forEach( (element,i) => {
         if(element.activation){
             let newObj = {};
-            newObj[element._id]= false
+            if(userSegments.includes(element._id)){
+              newObj[element._id]= true
+            }else{
+              newObj[element._id]= false
+            }
             this.segmentInput = {...this.segmentInput, ...newObj};
         }
-      })
+      });
+
+      this.filterSegment();
       
     });
 
@@ -106,6 +118,8 @@ export class ServiceCatalogComponent implements OnInit {
     this.servicesService.getCategories().subscribe(data=>{
       this.categories = data.entries
     });
+
+    return true;
 
   }
 
@@ -224,6 +238,30 @@ export class ServiceCatalogComponent implements OnInit {
     
     this.tagsInput=[]
     this.segmentInput=[]
+  }
+
+  //apply filter for loggedIn user
+  async prepareFiltersFetch(){
+
+    console.log('prepareFiltersFetch');
+
+    if (await this.keycloakService.isLoggedIn()) {
+      
+      console.log('prepareFiltersFetch->loggedin');
+
+      this.requestsService.getListOfUserSegments().subscribe(data=>{
+        this.userSegments = data;
+        this.prepareFilters(this.userSegments);
+      });
+      
+    }
+    else{
+      console.log('prepareFiltersFetch->Not loggedin');
+      this.prepareFilters(this.userSegments);
+    }
+    
+    
+
   }
 
 }
