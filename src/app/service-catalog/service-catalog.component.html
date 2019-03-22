@@ -23,23 +23,23 @@
       <div class="filtersSection">
 
 
-        <div class="filtersSection__resetFilters" *ngIf="!isEmptyFilters()">
+        <div class="filtersSection__resetFilters">
           <mat-list-item>
-              <button mat-button (click)="showAll()"><mat-icon>close</mat-icon> حذف المصفيات</button>
+              <button mat-button (click)="resetFilters()"><mat-icon>close</mat-icon> حذف المصفيات</button>
           </mat-list-item>
         </div>
 
         <div class="filtersSection__keywordChip" *ngIf="keyword">
           <mat-chip-list>
-            <mat-chip (click)="keyword='';changeKeyword()">بحث عن: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>
+            <mat-chip (click)="keyword='';filterKeyword()">بحث عن: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>
           </mat-chip-list>
         </div>
           
         <div class="filtersSection__keyword">
           <mat-form-field class="filtersSection__keywordForm">
             
-            <input matInput class="filtersSection__keywordInput" [(ngModel)]="keyword" (keyup)="changeKeyword()" placeholder="كلمة بحث">
-            <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear" (click)="keyword='';changeKeyword()">
+            <input matInput class="filtersSection__keywordInput" [(ngModel)]="keyword" (keyup)="filterKeyword()" placeholder="كلمة بحث">
+            <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear" (click)="keyword='';filterKeyword()">
                 <mat-icon>close</mat-icon>
               </button>
           </mat-form-field>
@@ -78,18 +78,21 @@
       
 
       <div fxLayout="row" class="department__section">
-          <button fxFlex class="department" [class.active]="!dataFilters.department_inline || dataFilters.department_inline == null" mat-button (click)="department()">جميع الاقسام</button>
+          <button fxFlex class="department" [class.active]="!dataFilters.category.department._id || dataFilters.category.department._id == null" mat-button (click)="filterDepartment()">جميع الاقسام</button>
           <ng-container *ngFor="let x of departments">
-              <button fxFlex class="department" [class.active]="x._id==dataFilters.department_inline" mat-button (click)="department(x._id)">{{x.departmentName_ar}}</button>
+              <button fxFlex class="department" [class.active]="x._id==dataFilters.category.department._id" mat-button (click)="filterDepartment(x._id)">{{x.departmentName_ar}}</button>
           </ng-container>
       </div>
       <div class="category__section">
 
           <ng-container *ngFor="let x of departments">
             
-              <div *ngIf="dataFilters.department_inline == x._id" fxLayout="row" fxLayoutAlign="start center">
+              <div *ngIf="dataFilters.category.department._id == x._id" fxLayout="row" fxLayoutAlign="start center">
+                  <button [class.active]="dataFilters.category._id==null" class="category" mat-button (click)="filterCategory(null)">
+                      جميع التصنيفات
+                    </button>
                   <ng-container  *ngFor="let y of categories">
-                    <button *ngIf="y.department._id == x._id" [class.active]="y._id==dataFilters.category_inline" class="category" mat-button (click)="category(y._id)">
+                    <button *ngIf="y.department._id == x._id" [class.active]="y._id==dataFilters.category._id" class="category" mat-button (click)="filterCategory(y._id)">
                       {{y.categoryName_ar}}
                     </button>
                 </ng-container>
