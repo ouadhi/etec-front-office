@@ -7,9 +7,13 @@ import { KeycloakConfig } from 'keycloak-angular';
 
 // Add here your keycloak setup infos
 const keycloakConfig: KeycloakConfig = {
-  url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
+  // url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
+  url: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:9080/auth',
   realm: 'jhipster',
   clientId: 'web_app'
+  // url: 'http://localhost:9080/auth',
+  // realm: 'rms',
+  // clientId: 'Angular'
 };
 
 export const environment = {
@@ -19,6 +23,8 @@ export const environment = {
     api: {
       master: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8081',
       assets: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8081/storage/uploads'
+      // master: 'http://localhost:8080',
+      // assets: 'http://localhost:8080/storage/uploads'
     }
   },
 
@@ -26,9 +32,11 @@ export const environment = {
 
   requestApi: {
     // api: 'http://localhost:8082'
+    // api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
     api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
     rest: {
       myRequests: '/api/portal/requests',
+      myBeneficiarySegments:'/api/portal/beneficiary-segments-cms',
       caseActivity: '/rest/history/case-activity-instance'
     }
   },

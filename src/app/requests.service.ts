@@ -52,7 +52,7 @@ export class RequestsService {
   
   getListOfUserSegments():Observable<any> {
     return this.http.get<any[]>(
-      './assets/listOfUserSegments.json');
+      `${environment.requestApi.api}${environment.requestApi.rest.myBeneficiarySegments}`);
   }
 
 }
