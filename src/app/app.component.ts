@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { KeycloakProfile } from 'keycloak-js';
 import { KeycloakService } from 'keycloak-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -14,9 +15,10 @@ export class AppComponent {
   loggedIn: boolean = false;
   userDetails: KeycloakProfile;
 
-  constructor(private keycloakService: KeycloakService) { }
+  constructor(private keycloakService: KeycloakService, public translate: TranslateService) { }
 
   async ngOnInit() {
+    this.translate.setDefaultLang('ar');
     if (await this.keycloakService.isLoggedIn()) {
       this.userDetails = await this.keycloakService.loadUserProfile();
       this.loggedIn = true;
