@@ -19,7 +19,7 @@
   <mat-table multiTemplateDataRows [dataSource]="data" matSort class="width-100">
 
     <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
-      <mat-header-cell mat-sort-header [disabled]="!columns[col].sortable" *matHeaderCellDef>
+      <mat-header-cell mat-sort-header disableClear="true" [disabled]="!columns[col].sortable" *matHeaderCellDef>
         {{columns[col].name | translate}} </mat-header-cell>
       <mat-cell [attr.data-label]="columns[col].name" *matCellDef="let element">
         <ion-badge *ngIf="columns[col].display == 'badge'" [color]="columns[col].color" size="medium" mode="ios">
