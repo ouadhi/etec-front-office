@@ -31,19 +31,19 @@
             {{element[col]}}
           </ion-label>
         </ion-chip>
-        <ion-text *ngIf="columns[col].display == 'detailsButton'">
+        <ng-container *ngIf="columns[col].display == 'detailsButton'">
           <button mat-flat-button color="primary"
             [routerLink]="[detailsRouterForEachItem, element[columns[col].param1], element[columns[col].param2], (element[columns[col].param3] || '')]">{{'Details' | translate}}</button>
-        </ion-text>
-        <ion-text *ngIf="!columns[col].display || columns[col].display == 'text'">
-          <ion-text *ngIf="columns[col]['formatDate'];else normal">
-            {{element[col].substring(0, 19) | date:'yyyy-MM-dd hh:mm:ss a'}}
+        </ng-container>
+        <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
+          <ng-container *ngIf="columns[col]['formatDate'];else normal">
+            {{element[col].substring(0, 19) | date:'yyyy-MM-dd,hh:mm:ssa'}}
             <!-- @TODO workaround to remove [universal] text and the end of datetime format-->
-          </ion-text>
+          </ng-container>
           <ng-template #normal>
             {{element[col]}}
           </ng-template>
-        </ion-text>
+        </ng-container>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="expandedDetail" *ngIf="expandableColumns.length > 0">

@@ -78,10 +78,15 @@ mat-paginator {
   height: calc(100% - 56px);
 }
 
+.mat-header-cell,
+.mat-cell{
+  justify-content: center; 
+}
+
 mat-cell:first-of-type,
 mat-footer-cell:first-of-type,
 mat-header-cell:first-of-type {
-  padding-right: 24px;
+  //padding-right: 24px;
   }
 
 @media screen and (max-width: 960px) {
