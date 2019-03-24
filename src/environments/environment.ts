@@ -62,7 +62,7 @@ export const environment = {
       request: '/caseNames'
     },
     data: {
-      status: [{ key: 'NEW', val: 'NEW' }, { key: 'IN_PROGRESS', val: 'IN_PROGRESS' }, { key: 'COMPLETED', val: 'COMPLETED' }]
+      status: [{ key: 'NEW', val: 'NEW' }, { key: 'In_PROGRESS', val: 'In_PROGRESS' }, { key: 'COMPLETED', val: 'COMPLETED' }]
     }
   }
 };
