@@ -26,7 +26,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor, OnChanges 
   @Input() attachSource = false;
   @Input() closeOnSelect = false;
   @Input() source$: Observable<any>;
-  @Output() select: Subject<object> = new Subject();
+  @Output() select: Subject<Object> = new Subject();
   selection;
   buffer = [];
   bufferSize = 50;
@@ -84,26 +84,18 @@ export class SelectComponent implements OnInit, ControlValueAccessor, OnChanges 
   validate(c: FormControl) {
     return this.validateFn(c);
   }
-  getFromSource() {
-    this.source$.subscribe(data => {
-      this.data = data;
-      this.buffer = this.data.slice(0, this.bufferSize);
-    });
-  }
+
   ngOnChanges(changes): void {
-    if (changes.source$ && changes.source$.currentValue && changes.source$.previousValue && !this.attachSource) {
-      this.getFromSource();
-    }
     if (changes.data && changes.data.currentValue && changes.data.previousValue) {
-      this.data = changes.data.currentValue;
+      this.data = [...changes.data.currentValue];
+      this.buffer = this.data.slice(0, this.bufferSize);
+
+
     }
   }
   ngOnInit() {
-    if (this.isAsync && !this.attachSource) {
-      this.getFromSource();
-    } else {
-      this.buffer = this.data.slice(0, this.bufferSize);
-    }
+    this.buffer = this.data.slice(0, this.bufferSize);
+
   }
 
 }
