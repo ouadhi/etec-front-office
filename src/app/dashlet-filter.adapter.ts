@@ -14,7 +14,8 @@ export class DashletFilterAdapter {
         'requestDate.greaterOrEqualThan': item.requestDateAfter,
           'requestDate.lessOrEqualThan': item.requestDateBefore,
           'status.in': item.statuses,
-          'serviceId.in': item.services
+          'serviceId.in': item.services,
+          'sort':item.sort
         });
         Object.keys(query).forEach((key) => (query[key] == null || !query[key].length) && delete query[key]);
         return (query);

@@ -12,6 +12,9 @@ interface filterData {
   statuses: string[];
   requestDateAfter: string;
   requestDateBefore: string;
+  sortBy: string;
+  sortDirection: string;
+  sort: string
 }
 
 
@@ -24,6 +27,16 @@ export class RequestsService {
   constructor(private http: HttpClient, private datePipe: DatePipe, private dashletFilterAdapter: DashletFilterAdapter) { }
 
   getRequests(queryParams: filterData): Observable<HttpResponse<object>> {
+
+    if(!queryParams.sortBy){
+      queryParams.sortBy = 'requestDate'
+    }
+
+    if(!queryParams.sortDirection){
+      queryParams.sortDirection = 'desc'
+    }
+
+    queryParams.sort = queryParams.sortBy+','+queryParams.sortDirection;
 
     // DUE TO Server do not accepet a format, only like this 1997-07-16T19:20:30.45+01:00
     if (queryParams.requestDateAfter) {
@@ -38,9 +51,9 @@ export class RequestsService {
     } else {
       queryParams.requestDateBefore = '';
     }
-
+    
     return this.http.get<HttpResponse<object>>(
-      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}?`,
+      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,
       {
         observe: 'response',
         params: this.dashletFilterAdapter.adapt(queryParams)
