@@ -57,12 +57,12 @@ export const environment = {
     api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8083',
     rest: {
       deparments: '/api/portal/departments',
-      services: '/api/eservice-trans?language=en',
+      services: '/api/request/eservices',
       statuses: '/departments',
       request: '/caseNames'
     },
     data: {
-      status: [{ key: 'NEW', val: 'NEW' }, { key: 'In_PROGRESS', val: 'In_PROGRESS' }, { key: 'COMPLETED', val: 'COMPLETED' }]
+      status: [{ key: 'NEW', val: 'NEW' }, { key: 'IN_PROGRESS', val: 'IN_PROGRESS' }, { key: 'COMPLETED', val: 'COMPLETED' }]
     }
   }
 };

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { publishReplay, refCount } from 'rxjs/operators';
-import { environment } from '../environments/environment'
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,11 @@ export class FilterService {
     refCount()
   );
 
-  private services = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.services}`).pipe(
+  private services = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.services}`, {
+    params: {
+      language: 'ar'
+    }
+  }).pipe(
     publishReplay(1),
     refCount()
   );
@@ -35,7 +39,7 @@ export class FilterService {
   getRequestNames() {
     return this.requestNames;
   }
-  getServices(){
+  getServices() {
     return this.services;
   }
 
