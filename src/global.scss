@@ -1,6 +1,6 @@
 // http://ionicframework.com/docs/theming/
 
- @import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/core.css";
 // @import "~@ionic/angular/css/normalize.css";
 // @import "~@ionic/angular/css/structure.css";
 // @import "~@ionic/angular/css/typography.css";
@@ -18,3 +18,14 @@
 
 //$app-direction: multi;
 
+html[dir="rtl"] {
+  .formio-form {
+    direction: rtl !important;
+  }
+  .app-formio {
+    dd {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+}

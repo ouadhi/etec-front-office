@@ -1,11 +1,15 @@
-:host::ng-deep{
-@import "~bootswatch/dist/yeti/variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/yeti/bootswatch";
+:host::ng-deep {
+  @import "~bootswatch/dist/yeti/variables";
+  @import "~bootstrap/scss/bootstrap";
+  @import "~bootswatch/dist/yeti/bootswatch";
+  ul,
+  menu,
+  dir {
+    padding-inline-start: 0px;
+  }
 }
-formio-loader{
-    .formio-loader {
-        border-top: 6px solid  var(--ion-color-secondary) !important;
-      }
-
+formio-loader {
+  .formio-loader {
+    border-top: 6px solid var(--ion-color-secondary) !important;
+  }
 }

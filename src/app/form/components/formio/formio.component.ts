@@ -191,7 +191,7 @@ export class AppFormioComponent implements OnInit, OnChanges {
         if (this.translate) {
             this.addLanguage(this.translate.currentLang);
             this.translate.onLangChange.subscribe((lang) => {
-                this.addLanguage(lang);
+                this.addLanguage(lang.lang);
             });
         }
 

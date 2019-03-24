@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   }
   async ngOnInit() {
     this.translate.setDefaultLang('ar');
+    this.translate.use('ar');
     this.fixDom(this.translate.instant('dir'));
     this.translate.onLangChange.subscribe((data) => {
       this.fixDom(data.translations.dir);
