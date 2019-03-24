@@ -28,15 +28,8 @@ export class RequestsService {
 
   getRequests(queryParams: filterData): Observable<HttpResponse<object>> {
 
-    if(!queryParams.sortBy){
-      queryParams.sortBy = 'requestDate'
-    }
 
-    if(!queryParams.sortDirection){
-      queryParams.sortDirection = 'desc'
-    }
-
-    queryParams.sort = queryParams.sortBy+','+queryParams.sortDirection;
+    queryParams.sort = queryParams.sortBy + ',' + queryParams.sortDirection;
 
     // DUE TO Server do not accepet a format, only like this 1997-07-16T19:20:30.45+01:00
     if (queryParams.requestDateAfter) {
@@ -51,7 +44,7 @@ export class RequestsService {
     } else {
       queryParams.requestDateBefore = '';
     }
-    
+
     return this.http.get<HttpResponse<object>>(
       `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,
       {
@@ -62,8 +55,8 @@ export class RequestsService {
       );
   }
 
-  
-  getListOfUserSegments():Observable<any> {
+
+  getListOfUserSegments(): Observable<any> {
     return this.http.get<any[]>(
       `${environment.requestApi.api}${environment.requestApi.rest.myBeneficiarySegments}`);
   }

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTable } from '@angular/material';
+import { MatPaginator, MatSort, MatTable, MatSortable } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { merge, of as observableOf, Observable } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
@@ -48,6 +48,11 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.sort.sort({
+      id: 'requestDate',
+      start: 'desc'
+    } as MatSortable);
+
     this.displayedColumns = Object.keys(this.columns);
     this.expandableColumns = this.displayedColumns.filter((item) => {
       return this.columns[item].expandable === true;
