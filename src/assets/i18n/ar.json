@@ -26,6 +26,15 @@
   "NORMAL": "عادي",
   "carAccidentCompensationCase": "تعويض حادث سيارة",
   "LOW": "منخفض",
+  "From Date": "من تاريخ",
+  "To Date": "إلى تاريخ",
+  "Service": "الخدمة",
+  "Status": "الحالة",
+  "Filter": "المرشح",
+  "Id": "رقم الطلب",
+  "Request Name": "اسم الطلب",
+  "Request Date": "تاريخ الطلب",
+  "Details": "التفاصيل",
   "forms": {
     "common": {
       "SAVE": "حفظ",

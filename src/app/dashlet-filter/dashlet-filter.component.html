@@ -4,39 +4,46 @@
             <ion-col no-padding>
                 <ion-row [ngStyle]="{'margin-top': '-10px'}">
 
-                    <ion-col size="2">
+                    <ion-col size="3">
                         <mat-form-field>
                             <input matInput [(ngModel)]="filterData.requestDateAfter" [matDatepicker]="fd"
-                                placeholder="From Date">
+                                [placeholder]="'From Date' | translate">
                             <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
                             <mat-datepicker #fd></mat-datepicker>
                         </mat-form-field>
                     </ion-col>
 
-                    <ion-col size="2">
+                    <ion-col size="3">
                         <mat-form-field>
                             <input matInput [(ngModel)]="filterData.requestDateBefore" [matDatepicker]="td"
-                                placeholder="To Date">
+                                [placeholder]="'To Date' | translate">
                             <mat-datepicker-toggle matSuffix [for]="td"></mat-datepicker-toggle>
                             <mat-datepicker #td></mat-datepicker>
                         </mat-form-field>
                     </ion-col>
 
-                    <ion-col size="2">
-                        <app-select [placeholder]="'Status'" [hideLoaded]="true" [(ngModel)]="filterData.statuses"  [data]="statusFilterData" [bindValue]="'val'" [bindLabel]="'key'" [multiple]="true"></app-select>
+                    <ion-col size="3">
+                        <app-select [placeholder]="'Status' | translate" [hideLoaded]="true"
+                            [(ngModel)]="filterData.statuses" [data]="statusFilterData" [bindValue]="'val'"
+                            [bindLabel]="'key'" [multiple]="true">
+                        </app-select>
                     </ion-col>
 
-                    <ion-col size="2">
-                        <app-select [placeholder]="'Service'" [hideLoaded]="true" [(ngModel)]="filterData.services"  [data]="servicesFilterData" [bindValue]="'eserviceId'" [bindLabel]="'name'" [multiple]="true"></app-select>
+                    <ion-col size="3">
+                        <app-select [placeholder]="'Service' | translate" [hideLoaded]="true"
+                            [(ngModel)]="filterData.services" [data]="servicesFilterData" [bindValue]="'id'"
+                            [bindLabel]="'name'" [multiple]="true">
+                        </app-select>
                     </ion-col>
 
                 </ion-row>
             </ion-col>
-            
+
             <ion-col no-padding size="1">
                 <ion-row>
                     <ion-col>
-                        <button mat-flat-button color="primary" fill="solid" expand="block" (click)="applyFilter()" color="success">
+                        <button mat-flat-button color="primary" fill="solid" expand="block" (click)="applyFilter()"
+                            color="success">
                             <ion-icon name="search"></ion-icon>
                         </button>
                     </ion-col>

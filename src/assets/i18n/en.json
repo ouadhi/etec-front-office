@@ -23,6 +23,15 @@
   "HIGH": "High",
   "NORMAL": "Normal",
   "LOW": "Low",
+  "From Date": "From Date",
+  "To Date": "To Date",
+  "Service": "Service",
+  "Status": "Status",
+  "Filter": "Filter",
+  "Id": "Id",
+  "Request Name": "Request Name",
+  "Request Date": "Request Date",
+  "Details": "Details",
   "carAccidentCompensationCase": "Car Accident Subsidy",
   "forms": {
     "common": {

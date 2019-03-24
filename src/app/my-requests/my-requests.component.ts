@@ -25,10 +25,10 @@ export class MyRequestsComponent {
   };
 
   dashletCols = {
-    id: { name: 'id', sortable: true },
-    requestName: { name: 'request Name', sortable: true},
-    requestDate: { name: 'request Date', sortable: true, formatDate: true },
-    status: { name: 'status', sortable: true },
+    id: { name: 'Id', sortable: true },
+    requestName: { name: 'Request Name', sortable: true },
+    requestDate: { name: 'Request Date', sortable: true, formatDate: true },
+    status: { name: 'Status', sortable: true },
     data: { name: 'Details', sortable: true, display: 'detailsButton', param1: 'link', param2: 'data', param3: 'cmmnId' }
 
   };
