@@ -41,7 +41,12 @@ export class ServiceCatalogComponent implements OnInit {
 
   userSegments:string[]=[];
 
-  constructor(private servicesService: ServicesService,public filterPipe:FilterPipe,private keycloakService:KeycloakService, private requestsService:RequestsService) { }
+  constructor(
+    private servicesService: ServicesService,
+    public filterPipe:FilterPipe,
+    private keycloakService:KeycloakService, 
+    private requestsService:RequestsService
+    ) { }
 
   ngOnInit() {
 
@@ -243,20 +248,17 @@ export class ServiceCatalogComponent implements OnInit {
   //apply filter for loggedIn user
   async prepareFiltersFetch(){
 
-    console.log('prepareFiltersFetch');
-
     if (await this.keycloakService.isLoggedIn()) {
       
-      console.log('prepareFiltersFetch->loggedin');
-
       this.requestsService.getListOfUserSegments().subscribe(data=>{
         this.userSegments = data;
+        this.prepareFilters(this.userSegments);
+      },err=>{
         this.prepareFilters(this.userSegments);
       });
       
     }
     else{
-      console.log('prepareFiltersFetch->Not loggedin');
       this.prepareFilters(this.userSegments);
     }
     
