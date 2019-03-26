@@ -1,6 +1,10 @@
 ion-toolbar {
   --background: transparent;
   z-index: 0;
+  font-family: inherit;
+  * {
+    font-family: inherit;
+  }
 }
 .content {
   position: relative;
@@ -37,12 +41,12 @@ mat-table {
   background: transparent;
 }
 mat-row {
-  border:0px;
+  border: 0px;
   min-height: 58px;
   background: #fcfcfc;
   border-radius: 0;
   margin: 5px auto;
-  box-shadow: 0 0!important;
+  box-shadow: 0 0 !important;
 
   &:hover {
     opacity: 0.8;
@@ -62,13 +66,13 @@ mat-paginator {
   padding: 5px 20px;
 }
 .detail-row {
-  margin-top:-10px;
+  margin-top: -10px;
   min-height: 0;
   border-radius: 0px 0px 5px 5px;
   z-index: 1;
 }
 
-.filter-container{
+.filter-container {
   margin: 5px 10px;
   padding-top: 50px;
   position: absolute;
@@ -79,15 +83,15 @@ mat-paginator {
 }
 
 .mat-header-cell,
-.mat-cell{
-  justify-content: center; 
+.mat-cell {
+  justify-content: center;
 }
 
 mat-cell:first-of-type,
 mat-footer-cell:first-of-type,
 mat-header-cell:first-of-type {
   //padding-right: 24px;
-  }
+}
 
 @media screen and (max-width: 960px) {
   mat-row {
