@@ -35,6 +35,7 @@
   "Request Name": "اسم الطلب",
   "Request Date": "تاريخ الطلب",
   "Details": "التفاصيل",
+  "No Entries": "لا يوجد طلبات",
   "forms": {
     "common": {
       "SAVE": "حفظ",
@@ -50,7 +51,7 @@
       "Submit": "إرسال",
       "Ekhaa Number": "رقم اخاء",
       "Mobile Number": "رقم الجوال",
-      "Services Stopped": "الخمدمات متوقفة",
+      "Services Stopped": "الخدمات متوقفة",
       "Beneficiary Number": "رقم المستفيد",
       "Full Name": "الاسم الرباعي",
       "Branch": "الفرع",
@@ -64,8 +65,8 @@
       "Driving License": "رخصة القيادة",
       "File Name": "اسم الملف",
       "Size": "الحجم",
-      "Drop files to attach, or": "أسقط الملفات هنا للإرفاق, أو",
-      "browse": "قم باختيارها",
+      "Drop files to attach, or": "اسحب الملف هنا للإرفاق, أو",
+      "browse": "قم باختياره",
       "Technical report and repair costs": "التقرير التقني وتكاليف الصيانة",
       "Supervisor Review": "مراجعة المشرف",
       "Sons Services Specialist Review": "مراجعة مسؤول خدمات الأبناء",
@@ -77,7 +78,9 @@
       "Approve Request": "اعتماد الطلب",
       "Request for exceptional assistance": "طلب مساعدة استثنائية",
       "Sons Financial Services Specialist Review": "مراجعة مسؤول خدمات الأبناء المالية",
-      "Sons Department Manager Review": "مراجعة مدير إدارة الأبناء"
+      "Sons Department Manager Review": "مراجعة مدير إدارة الأبناء",
+      "SAR": "ريال",
+      "Supervisor": "المشرف"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",
