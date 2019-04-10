@@ -8,7 +8,7 @@ import { KeycloakConfig } from 'keycloak-angular';
 // Add here your keycloak setup infos
 const keycloakConfig: KeycloakConfig = {
   // url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
-  url: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:9080/auth',
+  url: 'http://10.60.34.28:9080/auth',
   realm: 'jhipster',
   clientId: 'web_app'
   // url: 'http://localhost:9080/auth',
@@ -21,8 +21,8 @@ export const environment = {
 
   cms: {
     api: {
-      master: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8081',
-      assets: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8081/storage/uploads'
+      master: 'http://10.60.34.28:8089',
+      assets: 'http://10.60.34.28:8089/storage/uploads'
       // master: 'http://localhost:8080',
       // assets: 'http://localhost:8080/storage/uploads'
     }
@@ -33,7 +33,7 @@ export const environment = {
   requestApi: {
     // api: 'http://localhost:8082'
     // api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
-    api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
+    api: 'http://10.60.34.28:8082',
     rest: {
       myRequests: '/api/portal/requests',
       myBeneficiarySegments: '/api/portal/beneficiary-segments-cms',
@@ -41,7 +41,7 @@ export const environment = {
     }
   },
   beneficiaryApi: {
-    api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8084/api/portal/beneficiaries',
+    api: 'http://10.60.34.28:8084/api/portal/beneficiaries',
   },
 
   formio: {
@@ -54,7 +54,7 @@ export const environment = {
   filter: {
     // api: 'http://34.207.137.198:8120',
     // api: 'http://localhost:8083',
-    api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8083',
+    api: 'http://10.60.34.28:8083',
     rest: {
       deparments: '/api/portal/departments',
       services: '/api/request/eservices',
