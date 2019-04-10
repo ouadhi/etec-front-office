@@ -8,7 +8,11 @@ export const environmentLoader = new Promise<any>((resolve, reject) => {
     xmlhttp.open(method, url, true);
     xmlhttp.onload = () => {
         if (xmlhttp.status === 200) {
-            resolve(JSON.parse(xmlhttp.responseText));
+            try {
+                resolve(JSON.parse(xmlhttp.responseText));
+            } catch (e) {
+                resolve(defaultEnvironment);
+            }
         } else {
             resolve(defaultEnvironment);
         }
