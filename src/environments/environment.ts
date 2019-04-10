@@ -17,7 +17,7 @@ const keycloakConfig: KeycloakConfig = {
 };
 
 export const environment = {
-  production: false,
+  production: true,
 
   cms: {
     api: {
@@ -47,11 +47,7 @@ export const environment = {
   formio: {
     api: {
       master: 'https://api.form.io/', // formioApiUrl
-<<<<<<< Updated upstream
       project: 'https://pgmlavdtvhqeqmb.form.io/' // formioAppUrl
-=======
-      project: 'https://tlobdcwgogfgsgr.form.io/' // formioAppUrl
->>>>>>> Stashed changes
     }
   },
 
