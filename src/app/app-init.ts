@@ -13,7 +13,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             checkLoginIframe: false
           },
           bearerExcludedUrls: [
-            '/assets/', // due to call ngx-translate 
+            '/assets/', // due to call ngx-translate
             environment.cms.api.master,
             environment.cms.api.assets,
             // environment.formio.api.requestForm,

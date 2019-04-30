@@ -8,7 +8,7 @@ import { KeycloakConfig } from 'keycloak-angular';
 // Add here your keycloak setup infos
 const keycloakConfig: KeycloakConfig = {
   // url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
-  url: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:9080/auth',
+  url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
   realm: 'jhipster',
   clientId: 'web_app'
   // url: 'http://localhost:9080/auth',
@@ -17,12 +17,12 @@ const keycloakConfig: KeycloakConfig = {
 };
 
 export const environment = {
-  production: false,
+  production: true,
 
   cms: {
     api: {
-      master: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8081',
-      assets: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8081/storage/uploads'
+      master: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8089',
+      assets: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8089/storage/uploads'
       // master: 'http://localhost:8080',
       // assets: 'http://localhost:8080/storage/uploads'
     }
@@ -41,13 +41,13 @@ export const environment = {
     }
   },
   beneficiaryApi: {
-    api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8084/api/portal/beneficiaries',
+    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal/beneficiaries',
   },
 
   formio: {
     api: {
       master: 'https://api.form.io/', // formioApiUrl
-      project: 'https://aqnkygpwykfzugd.form.io/' // formioAppUrl
+      project: 'https://pgmlavdtvhqeqmb.form.io/' // formioAppUrl
     }
   },
 
