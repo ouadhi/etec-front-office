@@ -126,3 +126,11 @@ mat-checkbox .mat-checkbox-inner-container{
 .mat-form-field{
     text-align: right !important;
 }
+
+.inlineRowItem {
+    margin: 15px 0;
+}
+
+.mat-chip-list--inlineBlock {
+    display: inline-block
+}

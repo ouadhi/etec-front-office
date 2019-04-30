@@ -96,5 +96,12 @@
       "Request Date": "تاريخ الطلب",
       "Beneficiary": "المستفيد"
     }
+  },
+  "service":{
+    "No Comments":"لا يوجد تعليقات",
+    "Category":"الفئة",
+    "Department":"القسم",
+    "payed_true": "نعم مدفوعه",
+    "payed_false": "مجانية"
   }
 }

@@ -92,5 +92,10 @@
       "Request Date": "Request Date",
       "Beneficiary": "Beneficiary"
     }
+  },
+  "service":{
+    "No Comments":"No Comments",
+    "Category":"Category",
+    "Department":"Department"
   }
 }

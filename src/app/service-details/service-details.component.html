@@ -14,7 +14,9 @@
       </app-section>
 
       <app-section sectionTitle="الشروط">
-          {{data.conditionsAndRequirements_ar}}
+        <ul>
+          <li *ngFor="let item of data.conditionsAndRequirements_ar">{{item.value}}</li>
+        </ul>
       </app-section>
 
       <app-section sectionTitle="الاسئلة المتكررة">
@@ -49,32 +51,27 @@
 
       <app-section sectionTitle="اتفاقية مستوى الخدمة">
           
-          <dt>الوقت المتوقع</dt>
-          <dd>{{data.expectedTime}}</dd>
+          <div class="inlineRowItem">الوقت المتوقع: {{data.expectedTime}}</div>
           
-          <dt>خدمة مدفوعة</dt>
-          <dd>{{data.payed}}</dd>
+          <div class="inlineRowItem">خدمة مدفوعة : {{'service.payed_'+data.payed | translate}}</div>
   
-          <dt>القناة</dt>
-          <dd>
-              <mat-chip-list>
-                <mat-chip color="primary" *ngFor="let channel of data.channel_ar">{{channel.value}}</mat-chip>
-              </mat-chip-list>
-          </dd>
+          <div class="inlineRowItem">القناة: 
+            <mat-chip-list class="mat-chip-list--inlineBlock">
+              <mat-chip color="primary" *ngFor="let channel of data.channel_ar">{{channel.value}}</mat-chip>
+            </mat-chip-list>
+          </div>
 
       </app-section>
 
       <app-section>
 
-        <dt>كلمات دليلية</dt>
-        <dd>
-            <mat-chip-list>
-              <mat-chip color="primary" *ngFor="let tag of data.tag">{{tag.tag}}</mat-chip>
-            </mat-chip-list>
-        </dd>
+        <div class="inlineRowItem">كلمات دليلية : 
+          <mat-chip-list class="mat-chip-list--inlineBlock">
+            <mat-chip color="primary" *ngFor="let tag of data.tag">{{tag.tag}}</mat-chip>
+          </mat-chip-list>
+        </div>      
 
-        <dt>الخدمة الرئيسية</dt>
-        <dd>{{data.primaryService_ar}}</dd>
+        <div class="inlineRowItem">الخدمة الرئيسية : {{data.primaryService_ar}}</div>
 
       </app-section>
 
@@ -108,7 +105,8 @@
 
       <app-section sectionTitle="التصنيف">
         <ul>
-          {{data.category['categoryName_ar']}} ( {{data.category.department.departmentName_ar}} )
+          <li>{{'service.Category' | translate }}: {{data.category['categoryName_ar']}}</li>
+          <li>{{'service.Department' | translate }}: {{data.category.department.departmentName_ar}}</li>
         </ul>
       </app-section>
 
@@ -132,6 +130,9 @@
         <p>
             {{comment.commentText}}
         </p>
+      </div>
+      <div [hidden]="comments.length">
+        {{'service.No Comments' | translate}}
       </div>
     </app-section>
       
