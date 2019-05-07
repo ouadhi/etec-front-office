@@ -1,5 +1,64 @@
 {
   "dir": "rtl",
+
+  "LAYOUT": {
+    "TITLE":"بوابة المستفيدين",
+    "CHANGE_LANGUAGE": "تغيير اللغة",
+    "WELCOME": "اهلا",
+    "LOGOUT":"تسجيل خروج",
+    "LOGIN":"تسجيل الدخول"
+  },
+
+  "NAV": {
+    "SERVICES_CATALOG":"دليل الخدمات",
+    "MY_REQUESTS":"طلباتي"
+  },
+
+  "CATALOG":{
+    "SERVICE_CATALOG_TITLE":"دليل الخدمات",
+    "MOST_USED_SERVICES":"اكثر الخدمات استخداما",
+    "DIRECTORY":"الدليل",
+    "REMOVE_FILTERS":"حذف المصفيات",
+    "REMOVE_ALL_SEARCH_PARAMS":"حذف جميع المحددات",
+    "SEARCH_FOR":"بحث عن",
+    "SEARCH_KEYWORD":"كلمة بحث",
+    "TAGS":"كلمات دليلة",
+    "ALL_DEPARTMENTS":"جميع الاقسام",
+    "ALL_CATEGORIES":"جميع التصنيفات",
+    "NO_RESULTS_MATCHED_APPLIED_FILTERS":"لا يوحد نتائج تطابق المحددات المختارة",
+    "DISPLAY_RESULTS_COUNT":"عرض عدد",
+    "SERVICE_MATCHED_SEARCH_FROM_ORIGIN":"خدمه تطابق بحثك،،، من اصل",
+    "SERVICE":"خدمة"
+  },
+
+  "SERVICE":{
+    "SERVICE":"خدمة",
+    "IS_NOT_ACTIVE":"هذه الخدمة غير فعاله حاليا",
+    "DETAILS":"تفاصيل الخدمة",
+    "APPLY":"التقديم على الخدمة",
+    "CONDITIONS": "الشروط",
+    "FAQ":"الاسئلة المتكررة",
+    "REQUIRED_DOCS":"الوثائق المطلوبة",
+    "STEPS":"خطوات الخدمة",
+    "SERVICE_LEVEL_AGREEMENT":"اتفاقية مستوى الخدمة",
+    "EXPECTED_TIME":"الوقت المتوقع",
+    "COST_TYPE":"خدمة مدفوعة",
+    "PAYED_true":"مدفوعة",
+    "PAYED_false":"مجانية",
+    "CHANNEL":"القناة",
+    "TAGS":"كلمات دليلية",
+    "PRIMARY_SERVICE":"الخدمة الرئيسية",
+    "VIDEO": "فيديو تعريفي",
+    "STATISTICS": "الاحصائيات",
+    "RATING": "تقييم الخدمة",
+    "REQUESTED_ON_LAST_30DAYS":"تم طلب الخدمة خلال اخر ٣٠ يوم عدد",
+    "BENEFICIARIES":"المستفيدين",
+    "CLASSIFICATION":"التصنيف",
+    "GUIDE": "دليل الخدمة",
+    "COMMENTS": "التعليقات",
+    "COMMENT_ON":"في"
+  },
+
   "appTitle": "إدارة المهام",
   "arabic": "عربي",
   "english": "English",

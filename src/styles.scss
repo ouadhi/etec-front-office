@@ -55,7 +55,10 @@ body{
 }
 
 .mainWrapper{
-    direction: rtl;
+    
+    &--rtl {
+        direction: rtl;
+    }
 }
 
 .routerOutletContainer {

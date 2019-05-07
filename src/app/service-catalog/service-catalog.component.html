@@ -1,21 +1,23 @@
 <slideshow [imageUrls]="imagesSlider" [minHeight]="'400px'" [backgroundPosition]="'center center'" [showDots]="true"></slideshow>
 
-<app-page pageTitle="دليل الخدمات">
+<app-page pageTitle="{{'CATALOG.SERVICE_CATALOG_TITLE' | translate}}">
   
-  <app-section sectionTitle="اكثر الخدمات استخداما">
+  <app-section sectionTitle="{{'CATALOG.MOST_USED_SERVICES' | translate}}">
     <section fxLayout="row wrap" fxLayoutAlign="space-between top">
 
       <ng-container *ngFor="let x of dataMostUsed;let i = index">
-          <app-service-card *ngIf="i < 6" id="{{x._id}}" cardTitle="{{x.serviceName_ar}}" text="{{x.description_ar}}"  fxFlex="49" fxFlex.xs="100"></app-service-card><!-- @TODO temp -->
+          <app-service-card *ngIf="i < 6" id="{{x._id}}" cardTitle="{{x[trans._key('serviceName')]}}" text="{{x[trans._key('description')]}}"  fxFlex="49" fxFlex.xs="100"></app-service-card><!-- @TODO temp -->
       </ng-container>
         
       </section>
   </app-section>
 
-  <app-section sectionTitle="الدليل">
+  <app-section sectionTitle="{{'CATALOG.DIRECTORY' | translate}}">
     
     <div fxLayout="row" 
     fxLayout.xs="column" 
+    fxLayoutGap="30px grid"
+    fxLayoutAlign="space-between top"
     fxFlexFill>
       
     <div fxFlex="20">
@@ -25,20 +27,20 @@
 
         <div class="filtersSection__resetFilters">
           <mat-list-item>
-              <button mat-button (click)="resetFilters()" [disabled]="userSegments.length>0"><mat-icon>close</mat-icon> حذف المصفيات</button>
+              <button mat-button (click)="resetFilters()" [disabled]="userSegments.length>0"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>
           </mat-list-item>
         </div>
 
         <div class="filtersSection__keywordChip" *ngIf="keyword">
           <mat-chip-list>
-            <mat-chip (click)="keyword='';filterKeyword()">بحث عن: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>
+            <mat-chip (click)="keyword='';filterKeyword()">{{'CATALOG.SEARCH_FOR' | translate}}: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>
           </mat-chip-list>
         </div>
           
         <div class="filtersSection__keyword">
           <mat-form-field class="filtersSection__keywordForm">
             
-            <input matInput class="filtersSection__keywordInput" [(ngModel)]="keyword" (keyup)="filterKeyword()" placeholder="كلمة بحث">
+            <input matInput class="filtersSection__keywordInput" [(ngModel)]="keyword" (keyup)="filterKeyword()" placeholder="{{'CATALOG.SEARCH_KEYWORD' | translate}}">
             <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear" (click)="keyword='';filterKeyword()">
                 <mat-icon>close</mat-icon>
               </button>
@@ -51,16 +53,16 @@
 
           <ng-container *ngFor="let a of segmentType">
             <div class="filtersList">
-            <div class="filtersList__head">{{a.segmentTypeName_ar}}</div>
+            <div class="filtersList__head">{{a[trans._key('segmentTypeName')]}}</div>
               <ng-container *ngFor="let b of segments">
                 <div class="filtersList__item">
-                  <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment(b._id)" [disabled]="userSegments.length>0">{{b.segmentName_ar}}</mat-checkbox>
+                  <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment(b._id)" [disabled]="userSegments.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
                 </div>
               </ng-container>
           </div>
           </ng-container>
 
-          <mat-list-item *ngIf="tags,length">كلمات دليلة</mat-list-item>
+          <mat-list-item *ngIf="tags,length">{{'CATALOG.TAGS' | translate}}</mat-list-item>
 
           <ng-container *ngFor="let x of tags">
             <mat-list-item>
@@ -78,9 +80,9 @@
       
 
       <div fxLayout="row" class="department__section">
-          <button fxFlex class="department" [class.active]="!dataFilters.category.department._id || dataFilters.category.department._id == null" mat-button (click)="filterDepartment()">جميع الاقسام</button>
+          <button fxFlex class="department" [class.active]="!dataFilters.category.department._id || dataFilters.category.department._id == null" mat-button (click)="filterDepartment()">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button>
           <ng-container *ngFor="let x of departments">
-              <button fxFlex class="department" [class.active]="x._id==dataFilters.category.department._id" mat-button (click)="filterDepartment(x._id)">{{x.departmentName_ar}}</button>
+              <button fxFlex class="department" [class.active]="x._id==dataFilters.category.department._id" mat-button (click)="filterDepartment(x._id)">{{x[trans._key('departmentName')]}}</button>
           </ng-container>
       </div>
       <div class="category__section">
@@ -89,11 +91,11 @@
             
               <div *ngIf="dataFilters.category.department._id == x._id" fxLayout="row" fxLayoutAlign="start center">
                   <button [class.active]="dataFilters.category._id==null" class="category" mat-button (click)="filterCategory(null)">
-                      جميع التصنيفات
+                      {{"CATALOG.ALL_CATEGORIES" | translate}}
                     </button>
                   <ng-container  *ngFor="let y of categories">
                     <button *ngIf="y.department._id == x._id" [class.active]="y._id==dataFilters.category._id" class="category" mat-button (click)="filterCategory(y._id)">
-                      {{y.categoryName_ar}}
+                      {{y[trans._key('categoryName')]}}
                     </button>
                 </ng-container>
               </div>
@@ -104,20 +106,22 @@
       
       <section fxLayout="row wrap" fxLayoutAlign="space-between top">
         <ng-container *ngFor="let x of data | filterBy: dataFilters">
-          <app-service-card id="{{x._id}}" cardTitle="{{x.serviceName_ar}}" text="{{x.description_ar}}" fxFlex="49" fxFlex.xs="100"></app-service-card><!-- @TODO temp -->          
+          <app-service-card id="{{x._id}}" cardTitle="{{x[trans._key('serviceName')]}}" text="{{x[trans._key('description')]}}" fxFlex="49" fxFlex.xs="100"></app-service-card><!-- @TODO temp -->          
         </ng-container>
 
         <div fxLayout="row" fxLayoutAlign="center center">
           <mat-card *ngIf="(data | filterBy: dataFilters).length === 0">
-                لا يوحد نتائج تطابق المحددات المختارة
+                {{'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate}}
                 <br><br>
-              <button mat-stroked-button color="warn" (click)="resetFilters()" [disabled]="userSegments.length>0">حذف جميع المحددات</button>
+              <button mat-stroked-button color="warn" (click)="resetFilters()" [disabled]="userSegments.length>0">{{'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate}}</button>
           </mat-card>
         </div>
       </section>
       <small *ngIf="(data | filterBy: dataFilters).length != 0">
-        عرض عدد {{(data | filterBy: dataFilters).length}} 
-        <ng-container *ngIf="(data | filterBy: dataFilters).length !=totalResult">خدمه تطابق بحثك،،، من اصل {{totalResult}}</ng-container> خدمة
+        {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(data | filterBy: dataFilters).length}} 
+        <ng-container *ngIf="(data | filterBy: dataFilters).length !=totalResult">
+          {{'CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN' | translate }} {{totalResult}}</ng-container> 
+          {{'CATALOG.SERVICE' | translate }}
       </small>
     </div>
   </div>

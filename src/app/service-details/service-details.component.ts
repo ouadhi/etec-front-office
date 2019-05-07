@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ServicesService } from '../services.service';
 import { LifeCycleService } from '../config';
 import { environment } from '../../environments/environment';
+import { SwitchLangService } from './../switch-lang.service';
 
 @Component({
   selector: 'app-service-details',
@@ -16,7 +17,8 @@ export class ServiceDetailsComponent implements OnInit {
 
   constructor(
     private route:ActivatedRoute,
-    private servicesService:ServicesService
+    private servicesService:ServicesService,
+    public trans:SwitchLangService
     ) { }
 
   id: any;
