@@ -26,6 +26,7 @@ $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn
 // that you are using.
 @include angular-material-theme($rms-app-theme);
 
+@import '~css-star-rating/scss/star-rating';
 
 html,
 body{

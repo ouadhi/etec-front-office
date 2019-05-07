@@ -17,6 +17,8 @@ import { ServiceCatalogComponent } from './service-catalog/service-catalog.compo
 
 import { SlideshowModule } from 'ng-simple-slideshow';
 
+import { StarRatingModule } from 'angular-star-rating';
+
 //material
 //Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -112,6 +114,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     FilterPipeModule,
     SlideshowModule,
+    StarRatingModule.forRoot(),
 
     // material
     BrowserAnimationsModule,
