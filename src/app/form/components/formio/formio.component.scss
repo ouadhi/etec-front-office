@@ -7,6 +7,19 @@
   dir {
     padding-inline-start: 0px;
   }
+
+  .control-label {
+    font-size: inherit;
+    font-weight: 700;
+  }
+  .form-control[disabled="disabled"] {
+    background-color: #eee;
+  }
+  .formio-component-file[disabled="disabled"] {
+    .fileSelector {
+      display: none;
+    }
+  }
 }
 formio-loader {
   .formio-loader {

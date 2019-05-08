@@ -41,13 +41,13 @@ export const environment = {
     }
   },
   beneficiaryApi: {
-    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal/beneficiaries',
+    api: 'http://edigitpath.ap.ngrok.io.ngrok.io/api/portal/beneficiaries',
   },
 
   formio: {
     api: {
       master: 'https://api.form.io/', // formioApiUrl
-      project: 'https://pgmlavdtvhqeqmb.form.io/' // formioAppUrl
+      project: 'https://aqnkygpwykfzugd.form.io/' // formioAppUrl
     }
   },
 

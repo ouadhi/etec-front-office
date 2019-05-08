@@ -9,6 +9,7 @@ import { FormioLoader } from '../loader/formio.loader';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 import { KeycloakService } from 'keycloak-angular';
+import { isObject } from 'util';
 
 
 /* tslint:disable */
@@ -115,6 +116,10 @@ export class AppFormioComponent implements OnInit, OnChanges {
         this.formio.nosubmit = false;
         this.formio.on('languageChanged', () => {
             this.disableForms(this.formio);
+            const choices = this.formio.element.querySelectorAll('.choices__list') || [];
+            choices.forEach((el) => {
+                el.setAttribute('dir', this.formio.i18next.dir());
+            });
         });
         this.formio.on('prevPage', (data: any) => this.onPrevPage(data));
         this.formio.on('nextPage', (data: any) => this.onNextPage(data));
@@ -329,6 +334,9 @@ export class AppFormioComponent implements OnInit, OnChanges {
             return;
         }
 
+        // Make sure it is not an object.
+        err = isObject(err) ? err.error_description || err.detail || err.message : err;
+
         // Make sure it is an array.
         const errors = Array.isArray(err) ? err : [err];
 
@@ -368,6 +376,7 @@ export class AppFormioComponent implements OnInit, OnChanges {
             });
         });
     }
+
 
     submitExecute(submission: object) {
         if (this.service && !this.url) {
@@ -487,6 +496,8 @@ export class AppFormioComponent implements OnInit, OnChanges {
                         this.formio.submission = this.submission =
                             Utils.evaluate(this.params.success || 'submission = response;',
                                 { submission: temp, response }, 'submission');
+                        setTimeout(() => this.disableForms(this.formio), 0);
+
                     });
                 }
             } catch (e) {
