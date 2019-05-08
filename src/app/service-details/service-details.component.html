@@ -1,80 +1,77 @@
-<app-page pageTitle="خدمة {{data.serviceName_ar}}">
+<app-page pageTitle="{{'SERVICE.SERVICE' | translate}}: {{data[trans._key('serviceName')]}}">
 
   <div *ngIf="!active">
-      هذه الخدمة غير فعاله حاليا
+    {{'SERVICE.IS_NOT_ACTIVE' | translate}}
   </div>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
       
     <div fxFlex="70">
-      <app-section sectionTitle="تفاصيل الخدمة">
+      <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
       
-            {{data.description_ar}}  
+            {{data[trans._key('description')]}}
 
-        <button [routerLink]="['/request', data.link]" target="_blank" mat-raised-button color="primary">التقديم على الخدمة <mat-icon>arrow_right</mat-icon></button>
+        <button [routerLink]="['/request', data.link]" target="_blank" mat-raised-button color="primary">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right</mat-icon></button>
       </app-section>
 
-      <app-section sectionTitle="الشروط">
-          {{data.conditionsAndRequirements_ar}}
+      <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
+        <ul>
+          <li *ngFor="let item of data[trans._key('conditionsAndRequirements')]">{{item.value}}</li>
+        </ul>
       </app-section>
 
-      <app-section sectionTitle="الاسئلة المتكررة">
+      <app-section sectionTitle="{{'SERVICE.FAQ' | translate}}">
           
         <mat-accordion>
 
           <mat-expansion-panel *ngFor="let item of data.FAQ">
             <mat-expansion-panel-header>
-                {{item.question_ar}}
+                {{item[trans._key('question')]}}
             </mat-expansion-panel-header>
-            {{item.answer_ar}}
+            {{item[trans._key('answer')]}}
           </mat-expansion-panel>
         </mat-accordion>
 
       </app-section>
 
-      <app-section sectionTitle="الوثائق المطلوبة">
+      <app-section sectionTitle="{{'SERVICE.REQUIRED_DOCS' | translate}}">
           <ul>
-            <li *ngFor="let doc of data.requiredDocs_ar">
+            <li *ngFor="let doc of data[trans._key('requiredDocs')]">
               {{doc.value}}
             </li>
           </ul>
       </app-section>
 
-      <app-section sectionTitle="خطوات الخدمة">
+      <app-section sectionTitle="{{'SERVICE.STEPS' | translate}}">
           <ol>
-            <li *ngFor="let step of data.steps_ar">
+            <li *ngFor="let step of data[trans._key('steps')]">
                 {{step.value}}
             </li>
           </ol>
       </app-section>
 
-      <app-section sectionTitle="اتفاقية مستوى الخدمة">
+      <app-section sectionTitle="{{'SERVICE.SERVICE_LEVEL_AGREEMENT' | translate}}">
           
-          <dt>الوقت المتوقع</dt>
-          <dd>{{data.expectedTime}}</dd>
+          <div class="inlineRowItem">{{'SERVICE.EXPECTED_TIME' | translate}}: {{data.expectedTime}}</div>
           
-          <dt>خدمة مدفوعة</dt>
-          <dd>{{data.payed}}</dd>
+          <div class="inlineRowItem">{{'SERVICE.COST_TYPE' |translate }} : {{'SERVICE.PAYED_'+data.payed | translate}}</div>
   
-          <dt>القناة</dt>
-          <dd>
-              <mat-chip-list>
-                <mat-chip color="primary" *ngFor="let channel of data.channel_ar">{{channel.value}}</mat-chip>
-              </mat-chip-list>
-          </dd>
+          <div class="inlineRowItem">{{'SERVICE.CHANNEL' | translate}}: 
+            <mat-chip-list class="mat-chip-list--inlineBlock">
+              <mat-chip color="primary" *ngFor="let channel of data[trans._key('channel')]">{{channel.value}}</mat-chip>
+            </mat-chip-list>
+          </div>
 
       </app-section>
 
       <app-section>
 
-        <dt>كلمات دليلية</dt>
-        <dd>
-            <mat-chip-list>
-              <mat-chip color="primary" *ngFor="let tag of data.tag">{{tag.tag}}</mat-chip>
-            </mat-chip-list>
-        </dd>
+        <div class="inlineRowItem">{{'SERVICE.TAGS' | translate}} : 
+          <mat-chip-list class="mat-chip-list--inlineBlock">
+            <mat-chip color="primary" *ngFor="let tag of data.tag">{{tag.tag}}</mat-chip>
+          </mat-chip-list>
+        </div>      
 
-        <dt>الخدمة الرئيسية</dt>
-        <dd>{{data.primaryService_ar}}</dd>
+        <div class="inlineRowItem">{{'SERVICE.PRIMARY_SERVICE' |translate}} : {{data[trans._key('primaryService')]}}</div>
 
       </app-section>
 
@@ -82,37 +79,40 @@
     <div fxFlex="25">
 
       
-      <app-section sectionTitle="فيديو تعريفي">
+      <app-section sectionTitle="{{'SERVICE.VIDEO' | translate}}">
           <!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
           <video controls width="324" height="196" src="{{assets_url}}/storage/uploads/{{data.video.path}}" ></video>
         
           
       </app-section>
 
-      <app-section sectionTitle="الاحصائيات">
-        تم طلب الخدمة خلال اخر ٣٠ يوم عدد
+      <app-section sectionTitle="{{'SERVICE.STATISTICS' | translate}}">
+        {{'SERVICE.REQUESTED_ON_LAST_30DAYS' | translate}}
         <b>6519</b>
       </app-section>
       
-      <app-section sectionTitle="تقييم الخدمة">
-        {{data.rating}} / 5
+      <app-section sectionTitle="{{'SERVICE.RATING' | translate}}">
+        
+        <star-rating [starType]="'icon'" [rating]="data.rating" [readOnly]="true" [showHalfStars]="true" labelText="{{data.rating}}/5" labelPosition="bottom"></star-rating>
+
       </app-section>
 
-      <app-section sectionTitle="المستفيدين">
+      <app-section sectionTitle="{{'SERVICE.BENEFICIARIES' | translate}}">
         <ul *ngIf="segments">
           <ng-container *ngFor="let item of segments">
-            <li>{{item.segmentType.segmentTypeName_ar}}: {{item.segmentName_ar}}</li>
+            <li>{{item.segmentType[trans._key('segmentTypeName')]}}: {{item[trans._key('segmentName')]}}</li>
           </ng-container>
         </ul>
       </app-section>
 
-      <app-section sectionTitle="التصنيف">
+      <app-section sectionTitle="{{'SERVICE.CLASSIFICATION' | translate}}">
         <ul>
-          {{data.category['categoryName_ar']}} ( {{data.category.department.departmentName_ar}} )
+          <li>{{'service.Category' | translate }}: {{data.category[trans._key('categoryName')]}}</li>
+          <li>{{'service.Department' | translate }}: {{data.category.department[trans._key('departmentName')]}}</li>
         </ul>
       </app-section>
 
-      <app-section sectionTitle="دليل الخدمة">
+      <app-section sectionTitle="{{'SERVICE.GUIDE' | translate}}">
           <a href="{{assets_url}}/{{data.serviceGuide}}" target="_blank">
             <img src="http://placehold.it/400x200&text=Guide" alt="">
           </a>
@@ -126,12 +126,15 @@
 
     </div>
 
-    <app-section sectionTitle="التعليقات">
+    <app-section sectionTitle="{{'SERVICE.COMMENTS' | translate}}">
       <div *ngFor="let comment of comments">
-        <small>في: {{comment._created*1000 | date:'yyyy-MM-dd'}}</small>
+        <small>{{'SERVICE.COMMENT_ON' | translate}}: {{comment._created*1000 | date:'yyyy-MM-dd'}}</small>
         <p>
             {{comment.commentText}}
         </p>
+      </div>
+      <div [hidden]="comments.length">
+        {{'service.No Comments' | translate}}
       </div>
     </app-section>
       

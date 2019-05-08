@@ -26,6 +26,7 @@ $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn
 // that you are using.
 @include angular-material-theme($rms-app-theme);
 
+@import '~css-star-rating/scss/star-rating';
 
 html,
 body{
@@ -55,7 +56,10 @@ body{
 }
 
 .mainWrapper{
-    direction: rtl;
+    
+    &--rtl {
+        direction: rtl;
+    }
 }
 
 .routerOutletContainer {
@@ -125,4 +129,12 @@ mat-checkbox .mat-checkbox-inner-container{
 
 .mat-form-field{
     text-align: right !important;
+}
+
+.inlineRowItem {
+    margin: 15px 0;
+}
+
+.mat-chip-list--inlineBlock {
+    display: inline-block
 }

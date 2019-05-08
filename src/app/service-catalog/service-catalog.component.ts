@@ -6,6 +6,7 @@ import {RequestsService} from '../requests.service';
 import {IImage} from 'ng-simple-slideshow'
 import { environment } from 'src/environments/environment';
 import { KeycloakService } from 'keycloak-angular';
+import { SwitchLangService } from './../switch-lang.service';
 
 @Component({
   selector: 'app-service-catalog',
@@ -45,7 +46,8 @@ export class ServiceCatalogComponent implements OnInit {
     private servicesService: ServicesService,
     public filterPipe:FilterPipe,
     private keycloakService:KeycloakService, 
-    private requestsService:RequestsService
+    private requestsService:RequestsService,
+    public trans:SwitchLangService
     ) { }
 
   ngOnInit() {

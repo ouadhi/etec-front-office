@@ -1,14 +1,24 @@
-<div class="mainWrapper">
+<div class="mainWrapper" [class.mainWrapper--rtl]="currentLang=='ar'">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span fxFlex>بوابة المستفيدين</span>
+      <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span>
 
-      <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn"> <mat-icon>person</mat-icon> اهلا ({{userDetails.username}})</button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="doLogout()">تسجيل خروج</button>
+
+      
+      <button mat-button [matMenuTriggerFor]="langDropdown"> <mat-icon>person</mat-icon> {{'LAYOUT.CHANGE_LANGUAGE' | translate}}</button>
+      <mat-menu #langDropdown="matMenu">
+        <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
+        <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
       </mat-menu>
 
-      <button mat-button (click)="login()" *ngIf="!loggedIn">تسجيل الدخول</button>
+
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn"> <mat-icon>person</mat-icon> {{'LAYOUT.WELCOME' | translate}} ({{userDetails.username}})</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="doLogout()">{{'LAYOUT.LOGOUT' | translate}}</button>
+      </mat-menu>
+
+
+      <button mat-button (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
 
     </mat-toolbar-row>
   </mat-toolbar>
@@ -16,8 +26,8 @@
   <mat-toolbar color="">
     <mat-toolbar-row>
       <span>
-        <a mat-button routerLink="/service-catalog" routerLinkActive="active">دليل الخدمات</a>
-        <a mat-button routerLink="/my-requests" routerLinkActive="active">طلباتي</a>
+        <a mat-button routerLink="/service-catalog" routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate }}</a>
+        <a mat-button routerLink="/my-requests" routerLinkActive="active">{{'NAV.MY_REQUESTS' | translate}}</a>
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -29,7 +39,7 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span>
-        بوابة المستفيدين
+        {{'LAYOUT.TITLE' | translate}}
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
