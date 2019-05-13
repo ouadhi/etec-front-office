@@ -3,7 +3,7 @@ import { MatPaginator, MatSort, MatTable, MatSortable } from '@angular/material'
 import { TranslateService } from '@ngx-translate/core';
 import { merge, of as observableOf, Observable } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { FormioLoader } from '../form/components/loader/formio.loader';
+import { FormioLoader } from 'dp-formio';
 import { DashletFilterComponent } from '../dashlet-filter/dashlet-filter.component';
 
 /**

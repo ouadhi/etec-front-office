@@ -1,5 +1,5 @@
 <app-page>
-    <app-formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" (customEvent)="onCustomEvent($event)"
+    <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" (customEvent)="onCustomEvent($event)"
         (submit)="onSubmit($event)">
-    </app-formio>
+    </formio>
 </app-page>

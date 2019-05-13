@@ -61,8 +61,7 @@ import { MyRequestsComponent } from './my-requests/my-requests.component';
 import { RequestDetailsComponent } from './request-details/request-details.component';
 
 // Components & Module added by imad
-import { FormModule } from './form/form.module';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicModule } from '@ionic/angular';
 import { DashletFilterComponent } from './dashlet-filter/dashlet-filter.component';
@@ -73,11 +72,18 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import { DatePipe } from '@angular/common';
 import { CaseActivitiesComponent } from './case-activities/case-activities.component';
+import { FormioModule, ExternalService, FormioAppConfig, FormioTranslate, AuthService } from 'dp-formio';
+import { environment } from 'src/environments/environment';
 
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+export function createExternalService(http: HttpClient) {
+  return new ExternalService(http);
+}
+
 
 @NgModule({
   declarations: [
@@ -150,7 +156,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatSortModule,
     MatPaginatorModule,
     // Formio implementation Module Import
-    FormModule
+    FormioModule
   ],
   providers: [
     DatePipe,
@@ -159,6 +165,25 @@ export function createTranslateLoader(http: HttpClient) {
       useFactory: initializer,
       multi: true,
       deps: [KeycloakService]
+    },
+    { provide: FormioAppConfig, useValue: environment.formio },
+    {
+      provide: FormioTranslate,
+      useClass: TranslateService
+    },
+    {
+      provide: ExternalService,
+      deps: [HttpClient],
+      useFactory: (createExternalService)
+
+    },
+    {
+      provide: AuthService,
+      deps: [KeycloakService],
+      useFactory: function AuthFactory(keycloakService: KeycloakService) {
+        return keycloakService;
+      }
+
     }
   ],
   bootstrap: [AppComponent]

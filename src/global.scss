@@ -17,15 +17,8 @@
 // @import "~@ionic/angular/css/utils.bundle.css";
 
 //$app-direction: multi;
-
-html[dir="rtl"] {
-  .formio-form {
-    direction: rtl !important;
-  }
-  .app-formio {
-    dd {
-      margin-right: 0;
-      margin-left: 10px;
-    }
-  }
+.app-formio {
+  @import "~bootswatch/dist/yeti/variables";
+  @import "~bootstrap/scss/bootstrap";
+  @import "~bootswatch/dist/yeti/bootswatch";
 }

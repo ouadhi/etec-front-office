@@ -16,6 +16,7 @@ export class RequestComponent implements OnInit {
   ) { }
 
   id: any;
+  serviceId: any;
   formReady = false;
   sub: any;
 
@@ -25,8 +26,10 @@ export class RequestComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
+      this.serviceId = params['serviceId'];
+      console.log(this.route.snapshot);
       this.params.url = environment.beneficiaryApi.api;
-      this.params.success = 'submission.data = {requesterInfo: {data: response}};';
+      this.params.success = `submission.data = {serviceId:"${this.serviceId}",requesterInfo: {data: response}};`;
       this.formReady = true;
     });
 

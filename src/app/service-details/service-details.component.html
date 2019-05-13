@@ -3,14 +3,15 @@
   <div *ngIf="!active">
     {{'SERVICE.IS_NOT_ACTIVE' | translate}}
   </div>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
-      
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
+
     <div fxFlex="70">
       <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
-      
-            {{data[trans._key('description')]}}
 
-        <button [routerLink]="['/request', data.link]" target="_blank" mat-raised-button color="primary">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right</mat-icon></button>
+        {{data[trans._key('description')]}}
+
+        <button [routerLink]="['/request', data.link, { serviceId: data._id }]"  skipLocationChange=true target="_blank" mat-raised-button
+          color="primary">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right</mat-icon></button>
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
@@ -20,12 +21,12 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.FAQ' | translate}}">
-          
+
         <mat-accordion>
 
           <mat-expansion-panel *ngFor="let item of data.FAQ">
             <mat-expansion-panel-header>
-                {{item[trans._key('question')]}}
+              {{item[trans._key('question')]}}
             </mat-expansion-panel-header>
             {{item[trans._key('answer')]}}
           </mat-expansion-panel>
@@ -34,66 +35,69 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.REQUIRED_DOCS' | translate}}">
-          <ul>
-            <li *ngFor="let doc of data[trans._key('requiredDocs')]">
-              {{doc.value}}
-            </li>
-          </ul>
+        <ul>
+          <li *ngFor="let doc of data[trans._key('requiredDocs')]">
+            {{doc.value}}
+          </li>
+        </ul>
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.STEPS' | translate}}">
-          <ol>
-            <li *ngFor="let step of data[trans._key('steps')]">
-                {{step.value}}
-            </li>
-          </ol>
+        <ol>
+          <li *ngFor="let step of data[trans._key('steps')]">
+            {{step.value}}
+          </li>
+        </ol>
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.SERVICE_LEVEL_AGREEMENT' | translate}}">
-          
-          <div class="inlineRowItem">{{'SERVICE.EXPECTED_TIME' | translate}}: {{data.expectedTime}}</div>
-          
-          <div class="inlineRowItem">{{'SERVICE.COST_TYPE' |translate }} : {{'SERVICE.PAYED_'+data.payed | translate}}</div>
-  
-          <div class="inlineRowItem">{{'SERVICE.CHANNEL' | translate}}: 
-            <mat-chip-list class="mat-chip-list--inlineBlock">
-              <mat-chip color="primary" *ngFor="let channel of data[trans._key('channel')]">{{channel.value}}</mat-chip>
-            </mat-chip-list>
-          </div>
+
+        <div class="inlineRowItem">{{'SERVICE.EXPECTED_TIME' | translate}}: {{data.expectedTime}}</div>
+
+        <div class="inlineRowItem">{{'SERVICE.COST_TYPE' |translate }} : {{'SERVICE.PAYED_'+data.payed | translate}}
+        </div>
+
+        <div class="inlineRowItem">{{'SERVICE.CHANNEL' | translate}}:
+          <mat-chip-list class="mat-chip-list--inlineBlock">
+            <mat-chip color="primary" *ngFor="let channel of data[trans._key('channel')]">{{channel.value}}</mat-chip>
+          </mat-chip-list>
+        </div>
 
       </app-section>
 
       <app-section>
 
-        <div class="inlineRowItem">{{'SERVICE.TAGS' | translate}} : 
+        <div class="inlineRowItem">{{'SERVICE.TAGS' | translate}} :
           <mat-chip-list class="mat-chip-list--inlineBlock">
             <mat-chip color="primary" *ngFor="let tag of data.tag">{{tag.tag}}</mat-chip>
           </mat-chip-list>
-        </div>      
+        </div>
 
-        <div class="inlineRowItem">{{'SERVICE.PRIMARY_SERVICE' |translate}} : {{data[trans._key('primaryService')]}}</div>
+        <div class="inlineRowItem">{{'SERVICE.PRIMARY_SERVICE' |translate}} : {{data[trans._key('primaryService')]}}
+        </div>
 
       </app-section>
 
     </div>
     <div fxFlex="25">
 
-      
+
       <app-section sectionTitle="{{'SERVICE.VIDEO' | translate}}">
-          <!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-          <video controls width="324" height="196" src="{{assets_url}}/storage/uploads/{{data.video.path}}" ></video>
-        
-          
+        <!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+        <video controls width="324" height="196" src="{{assets_url}}/storage/uploads/{{data.video.path}}"></video>
+
+
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.STATISTICS' | translate}}">
         {{'SERVICE.REQUESTED_ON_LAST_30DAYS' | translate}}
         <b>6519</b>
       </app-section>
-      
+
       <app-section sectionTitle="{{'SERVICE.RATING' | translate}}">
-        
-        <star-rating [starType]="'icon'" [rating]="data.rating" [readOnly]="true" [showHalfStars]="true" labelText="{{data.rating}}/5" labelPosition="bottom"></star-rating>
+
+        <star-rating [starType]="'icon'" [rating]="data.rating" [readOnly]="true" [showHalfStars]="true"
+          labelText="{{data.rating}}/5" labelPosition="bottom"></star-rating>
 
       </app-section>
 
@@ -113,30 +117,30 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.GUIDE' | translate}}">
-          <a href="{{assets_url}}/{{data.serviceGuide}}" target="_blank">
-            <img src="http://placehold.it/400x200&text=Guide" alt="">
-          </a>
+        <a href="{{assets_url}}/{{data.serviceGuide}}" target="_blank">
+          <img src="http://placehold.it/400x200&text=Guide" alt="">
+        </a>
       </app-section>
-      
-      
-      
-      
-      
-    </div>
+
+
+
+
 
     </div>
 
-    <app-section sectionTitle="{{'SERVICE.COMMENTS' | translate}}">
-      <div *ngFor="let comment of comments">
-        <small>{{'SERVICE.COMMENT_ON' | translate}}: {{comment._created*1000 | date:'yyyy-MM-dd'}}</small>
-        <p>
-            {{comment.commentText}}
-        </p>
-      </div>
-      <div [hidden]="comments.length">
-        {{'service.No Comments' | translate}}
-      </div>
-    </app-section>
-      
+  </div>
+
+  <app-section sectionTitle="{{'SERVICE.COMMENTS' | translate}}">
+    <div *ngFor="let comment of comments">
+      <small>{{'SERVICE.COMMENT_ON' | translate}}: {{comment._created*1000 | date:'yyyy-MM-dd'}}</small>
+      <p>
+        {{comment.commentText}}
+      </p>
+    </div>
+    <div [hidden]="comments.length">
+      {{'service.No Comments' | translate}}
+    </div>
+  </app-section>
+
 
 </app-page>
