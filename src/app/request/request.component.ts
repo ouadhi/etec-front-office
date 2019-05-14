@@ -29,7 +29,9 @@ export class RequestComponent implements OnInit {
       this.serviceId = params['serviceId'];
       console.log(this.route.snapshot);
       this.params.url = environment.beneficiaryApi.api;
-      this.params.success = `submission.data = {serviceId:"${this.serviceId}",requesterInfo: {data: response}};`;
+      // this.params.success = `submission.data = {serviceId:"${this.serviceId}",requesterInfo: {data: response}};`;
+      // @TODO: pass ServiceId
+      this.params.success = `submission.data = {requesterInfo: {data: response}};`;
       this.formReady = true;
     });
 
