@@ -21,17 +21,18 @@ export class RequestComponent implements OnInit {
   sub: any;
 
   data: any;
-  params = { url: null, success: null };
+  params;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.serviceId = params['serviceId'];
       console.log(this.route.snapshot);
-      this.params.url = environment.beneficiaryApi.api;
+      this.params = [
+        { url: environment.beneficiaryApi.api, success: `submission.data = {requesterInfo: {data: response}};` }
+      ];
       // this.params.success = `submission.data = {serviceId:"${this.serviceId}",requesterInfo: {data: response}};`;
       // @TODO: pass ServiceId
-      this.params.success = `submission.data = {requesterInfo: {data: response}};`;
       this.formReady = true;
     });
 
