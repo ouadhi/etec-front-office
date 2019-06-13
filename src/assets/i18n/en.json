@@ -1,64 +1,59 @@
 {
   "dir": "ltr",
-
   "LAYOUT": {
-    "TITLE":"RMS portal",
+    "TITLE": "RMS portal",
     "CHANGE_LANGUAGE": "Change Language",
-    "WELCOME":"Welcome",
-    "LOGOUT":"Logout",
-    "LOGIN":"Login"
+    "WELCOME": "Welcome",
+    "LOGOUT": "Logout",
+    "LOGIN": "Login"
   },
-
   "NAV": {
-    "SERVICES_CATALOG":"Services Catalog",
-    "MY_REQUESTS":"My Requests"
+    "SERVICES_CATALOG": "Services Catalog",
+    "MY_REQUESTS": "My Requests"
   },
-
-  "CATALOG":{
-    "SERVICE_CATALOG_TITLE":"Services Catalog",
-    "MOST_USED_SERVICES":"Most Used Service",
-    "DIRECTORY":"Directory",
-    "REMOVE_FILTERS":"Remove Filters",
-    "REMOVE_ALL_SEARCH_PARAMS":"Remove all search parameters",
-    "SEARCH_FOR":"Serach For",
-    "SEARCH_KEYWORD":"Search Keyword",
-    "TAGS":"Tags",
-    "ALL_DEPARTMENTS":"All Departments",
-    "ALL_CATEGORIES":"All Categories",
-    "NO_RESULTS_MATCHED_APPLIED_FILTERS":"No Results matched applied filters",
-    "DISPLAY_RESULTS_COUNT":"Showing",
-    "SERVICE_MATCHED_SEARCH_FROM_ORIGIN":"service matched search.. originally is",
-    "SERVICE":"Service"
+  "CATALOG": {
+    "SERVICE_CATALOG_TITLE": "Services Catalog",
+    "MOST_USED_SERVICES": "Most Used Service",
+    "DIRECTORY": "Directory",
+    "REMOVE_FILTERS": "Remove Filters",
+    "REMOVE_ALL_SEARCH_PARAMS": "Remove all search parameters",
+    "SEARCH_FOR": "Serach For",
+    "SEARCH_KEYWORD": "Search Keyword",
+    "TAGS": "Tags",
+    "ALL_DEPARTMENTS": "All Departments",
+    "ALL_CATEGORIES": "All Categories",
+    "NO_RESULTS_MATCHED_APPLIED_FILTERS": "No Results matched applied filters",
+    "DISPLAY_RESULTS_COUNT": "Showing",
+    "SERVICE_MATCHED_SEARCH_FROM_ORIGIN": "service matched search.. originally is",
+    "SERVICE": "Service"
   },
-
-  "SERVICE":{
-    "SERVICE":"Service",
-    "IS_NOT_ACTIVE":"Service is not active",
-    "DETAILS":"Service Details",
-    "APPLY":"Apply",
+  "SERVICE": {
+    "SERVICE": "Service",
+    "IS_NOT_ACTIVE": "Service is not active",
+    "DETAILS": "Service Details",
+    "APPLY": "Apply",
     "CONDITIONS": "Conditions",
-    "FAQ":"FAQ",
-    "REQUIRED_DOCS":"Required Documents",
-    "STEPS":"Steps",
-    "SERVICE_LEVEL_AGREEMENT":"Service Level Agreement",
-    "EXPECTED_TIME":"Expected time",
-    "COST_TYPE":"Payed service",
-    "PAYED_true":"payed",
-    "PAYED_false":"free",
-    "CHANNEL":"Channel",
-    "TAGS":"Tags",
-    "PRIMARY_SERVICE":"Primary service",
+    "FAQ": "FAQ",
+    "REQUIRED_DOCS": "Required Documents",
+    "STEPS": "Steps",
+    "SERVICE_LEVEL_AGREEMENT": "Service Level Agreement",
+    "EXPECTED_TIME": "Expected time",
+    "COST_TYPE": "Payed service",
+    "PAYED_true": "payed",
+    "PAYED_false": "free",
+    "CHANNEL": "Channel",
+    "TAGS": "Tags",
+    "PRIMARY_SERVICE": "Primary service",
     "VIDEO": "Video",
     "STATISTICS": "Statistics",
     "RATING": "Rating",
-    "REQUESTED_ON_LAST_30DAYS":"Service requested on last 30 days",
-    "BENEFICIARIES":"Beneficiaries",
-    "CLASSIFICATION":"Classification",
+    "REQUESTED_ON_LAST_30DAYS": "Service requested on last 30 days",
+    "BENEFICIARIES": "Beneficiaries",
+    "CLASSIFICATION": "Classification",
     "GUIDE": "Guide",
     "COMMENTS": "Comments",
-    "COMMENT_ON":"on"
+    "COMMENT_ON": "on"
   },
-
   "appTitle": "CASE MANAGEMENT",
   "arabic": "عربي",
   "english": "English",
@@ -94,6 +89,7 @@
   "carAccidentCompensationCase": "Car Accident Subsidy",
   "forms": {
     "common": {
+      "formLoadError": "An unknown error happened while loading the page, please try again later.",
       "SAVE": "SAVE",
       "COMPLETE": "COMPLETE",
       "Complete": "Complete",
@@ -152,9 +148,18 @@
       "Beneficiary": "Beneficiary"
     }
   },
-  "service":{
-    "No Comments":"No Comments",
-    "Category":"Category",
-    "Department":"Department"
+  "service": {
+    "No Comments": "No Comments",
+    "Category": "Category",
+    "Department": "Department"
+  },
+  "matTable": {
+    "ITEMS_PER_PAGE_LABEL": "Items Per Page ",
+    "NEXT_PAGE_LABEL": "Next",
+    "PREVIOUS_PAGE_LABEL": "Previous",
+    "FIRST_PAGE_LABEL": "First",
+    "LAST_PAGE_LABEL": "Last",
+    "RANGE_PAGE_LABEL_1": "0 of {{length}}",
+    "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} of {{length}}"
   }
 }

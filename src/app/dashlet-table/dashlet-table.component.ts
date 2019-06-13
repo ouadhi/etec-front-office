@@ -26,6 +26,7 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
   @Input() detailsRouterForEachItem?;
   @Input() service: (param) => Observable<any>;
   data = [];
+  pageSize = 7;
   showFilter = false;
   isLoadingResults = false;
   isRateLimitReached = false;
@@ -73,8 +74,8 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
           return this.service({
             ...this.casesFilter.filterData,
             sortBy: this.sort.active, sortDirection: this.sort.direction,
-            startResult: this.paginator.pageIndex * this.paginator.pageSize,
-            totalResults: this.paginator.pageSize
+            page: this.paginator.pageIndex,
+            size: this.paginator.pageSize
           });
         }),
         map((data) => {

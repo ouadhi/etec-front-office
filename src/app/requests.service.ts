@@ -14,7 +14,9 @@ interface filterData {
   requestDateBefore: string;
   sortBy: string;
   sortDirection: string;
-  sort: string
+  sort: string;
+  page: number;
+  size: number;
 }
 
 
@@ -44,6 +46,7 @@ export class RequestsService {
     } else {
       queryParams.requestDateBefore = '';
     }
+    console.log(this.dashletFilterAdapter.adapt(queryParams));
 
     return this.http.get<HttpResponse<object>>(
       `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,

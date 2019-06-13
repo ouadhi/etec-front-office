@@ -51,7 +51,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
 import { ServiceCardComponent } from './service-card/service-card.component';
 import { PageComponent } from './page/page.component';
@@ -74,6 +74,7 @@ import { DatePipe } from '@angular/common';
 import { CaseActivitiesComponent } from './case-activities/case-activities.component';
 import { FormioModule, ExternalService, FormioAppConfig, FormioTranslate, AuthService } from 'dp-formio';
 import { environment } from 'src/environments/environment';
+import { PaginatorI18n } from './paginator-i18n';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -183,7 +184,6 @@ export function createExternalService(http: HttpClient) {
       useFactory: function AuthFactory(keycloakService: KeycloakService) {
         return keycloakService;
       }
-
     }
   ],
   bootstrap: [AppComponent]
