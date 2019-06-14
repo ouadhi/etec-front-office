@@ -21,18 +21,20 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
   data: any;
   formKey = 'requestahmad';
   formReady = false;
-  params = { url: null, success: null };
+  params;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.link = params.link;
       this.formData = params.formData;
       this.cmmnId = params.cmmnId;
-      this.params.url = environment.beneficiaryApi.api;
-      this.params.success = 'submission.data = {...submission.data, requesterInfo: {data: response}};';
-      this.formReady = true;
-      console.log(this.link);
-      console.log(this.formData);
+      this.params = [
+        {
+          url: environment.beneficiaryApi.api,
+          success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
+          parralel: true
+        }
+      ];
       this.formReady = true;
     });
   }
