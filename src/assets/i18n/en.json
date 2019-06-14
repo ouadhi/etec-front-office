@@ -88,8 +88,10 @@
   "Details": "Details",
   "carAccidentCompensationCase": "Car Accident Subsidy",
   "forms": {
-    "common": {
+    "errors": {
       "formLoadError": "An unknown error happened while loading the page, please try again later.",
+    },
+    "common": {
       "SAVE": "SAVE",
       "COMPLETE": "COMPLETE",
       "Complete": "Complete",
