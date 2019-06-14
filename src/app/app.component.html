@@ -1,18 +1,24 @@
 <div class="mainWrapper" [class.mainWrapper--rtl]="currentLang=='ar'">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span>
+      <!-- <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span> -->
 
+      <span fxFlex>
+        <img style="margin-top:10px;" height="60" src="/assets/SMEs-support-center.png" />
+      </span>
 
-      
-      <button mat-button [matMenuTriggerFor]="langDropdown"> <mat-icon>person</mat-icon> {{'LAYOUT.CHANGE_LANGUAGE' | translate}}</button>
+      <button mat-button [matMenuTriggerFor]="langDropdown">
+        <mat-icon>person</mat-icon> {{'LAYOUT.CHANGE_LANGUAGE' | translate}}
+      </button>
       <mat-menu #langDropdown="matMenu">
         <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
         <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
       </mat-menu>
 
 
-      <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn"> <mat-icon>person</mat-icon> {{'LAYOUT.WELCOME' | translate}} ({{userDetails.username}})</button>
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn">
+        <mat-icon>person</mat-icon> {{'LAYOUT.WELCOME' | translate}} ({{userDetails.username}})
+      </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="doLogout()">{{'LAYOUT.LOGOUT' | translate}}</button>
       </mat-menu>
@@ -26,12 +32,13 @@
   <mat-toolbar color="">
     <mat-toolbar-row>
       <span>
-        <a mat-button routerLink="/service-catalog" routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate }}</a>
+        <a mat-button routerLink="/service-catalog"
+          routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate }}</a>
         <a mat-button routerLink="/my-requests" routerLinkActive="active">{{'NAV.MY_REQUESTS' | translate}}</a>
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
-  
+
   <div class="routerOutletContainer">
     <router-outlet></router-outlet>
   </div>

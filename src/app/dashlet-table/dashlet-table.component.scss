@@ -15,7 +15,8 @@ ion-toolbar {
   padding: 10px;
 }
 :host {
-  min-height: 500px;
+  overflow: hidden;
+  background: #fcfcfc;
   display: block;
   padding: 5px;
 }

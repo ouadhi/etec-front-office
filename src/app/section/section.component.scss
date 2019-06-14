@@ -1,14 +1,14 @@
 .section {
-    margin-bottom: 40px;
-        
-    &__title {
-        margin:0;
-        padding: 0 0 5px 0;
-        font-size: 22px;
-        text-transform: capitalize;
-    }
-    &__container{
-        background:#fff;
-        padding:20px 0;
-    }
+  margin-bottom: 40px;
+
+  &__title {
+    margin: 0;
+    padding: 0 0 5px 0;
+    font-size: 22px;
+    text-transform: capitalize;
+  }
+  &__container {
+    background: #fff;
+    padding: 20px 0;
+  }
 }
