@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { isNumber } from 'util';
 
 
 @Injectable({
@@ -11,13 +12,16 @@ export class DashletFilterAdapter {
     }
     adapt(item: any) {
         const query = Object.assign({}, {
-        'requestDate.greaterOrEqualThan': item.requestDateAfter,
-          'requestDate.lessOrEqualThan': item.requestDateBefore,
-          'status.in': item.statuses,
-          'serviceId.in': item.services,
-          'sort':item.sort
+            'requestDate.greaterOrEqualThan': item.requestDateAfter,
+            'requestDate.lessOrEqualThan': item.requestDateBefore,
+            'status.in': item.statuses,
+            'serviceId.in': item.services,
+            sort: item.sort,
+            page: item.page,
+            size: item.size
         });
-        Object.keys(query).forEach((key) => (query[key] == null || !query[key].length) && delete query[key]);
+        Object.keys(query).forEach((key) => (query[key] == null || !query[key].length && !isNumber(query[key])) && delete query[key]);
+
         return (query);
     }
 }
