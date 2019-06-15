@@ -89,7 +89,7 @@
   "carAccidentCompensationCase": "Car Accident Subsidy",
   "forms": {
     "errors": {
-      "formLoadError": "An unknown error happened while loading the page, please try again later.",
+      "formLoadError": "An unknown error happened while loading the page, please try again later."
     },
     "common": {
       "SAVE": "SAVE",

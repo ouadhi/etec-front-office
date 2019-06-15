@@ -43,12 +43,9 @@ export const environment = {
   beneficiaryApi: {
     api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal/beneficiaries',
   },
-
   formio: {
-    api: {
-      master: 'https://api.form.io/', // formioApiUrl
-      project: 'https://pgmlavdtvhqeqmb.form.io/' // formioAppUrl
-    }
+    apiUrl: 'https://api.form.io/', // formioApiUrl
+    appUrl: 'https://aqnkygpwykfzugd.form.io/' // formioAppUrl
   },
 
   filter: {
