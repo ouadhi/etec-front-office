@@ -40,28 +40,27 @@ $md-accents: (
     A700: #000000
   )
 );
-
-$md-monshaat: (
-  50: #e6eff3,
-  100: #bfd6e0,
-  200: #95bbcc,
-  300: #6b9fb8,
-  400: #4b8ba8,
-  500: #2b7699,
-  600: #266e91,
-  700: #206386,
-  800: #1a597c,
-  900: #10466b,
-  A100: #a0d5ff,
-  A200: #6dbfff,
-  A400: #3aa8ff,
-  A700: #209dff,
+$md-ekhaa: (
+  50: #e8f3f5,
+  100: #c5e0e6,
+  200: #9eccd5,
+  300: #77b7c4,
+  400: #5aa7b7,
+  500: #3d98aa,
+  600: #3790a3,
+  700: #2f8599,
+  800: #277b90,
+  900: #1a6a7f,
+  A100: #b8efff,
+  A200: #85e3ff,
+  A400: #52d7ff,
+  A700: #39d1ff,
   contrast: (
     50: #000000,
     100: #000000,
     200: #000000,
     300: #000000,
-    400: #ffffff,
+    400: #000000,
     500: #ffffff,
     600: #ffffff,
     700: #ffffff,
@@ -77,7 +76,7 @@ $md-monshaat: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$rms-app-primary: mat-palette($md-monshaat);
+$rms-app-primary: mat-palette($md-ekhaa);
 $rms-app-accent: mat-palette($md-accents, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
