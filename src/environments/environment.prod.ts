@@ -45,10 +45,8 @@ export const environment = {
   },
 
   formio: {
-    api: {
-      master: 'https://api.form.io/', // formioApiUrl
-      project: 'https://pgmlavdtvhqeqmb.form.io/' // formioAppUrl
-    }
+    apiUrl: 'https://api.form.io/', // formioApiUrl
+    appUrl: 'https://aqnkygpwykfzugd.form.io/' // formioAppUrl
   },
 
   filter: {
