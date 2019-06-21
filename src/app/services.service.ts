@@ -143,4 +143,9 @@ export class ServicesService {
       `${environment.cms.api.master}/api/collections/get/${id}/`);
   }
 
+  getStats(id:string):Observable<any[]> {
+    return this.http.get<any[]>(
+      `${environment.statisticsApi.api}#${id}`);
+  }
+
 }

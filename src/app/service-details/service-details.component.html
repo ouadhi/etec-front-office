@@ -90,8 +90,8 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.STATISTICS' | translate}}">
-        {{'SERVICE.REQUESTED_ON_LAST_30DAYS' | translate}}
-        <b>6519</b>
+        <!-- {{'SERVICE.REQUESTED_ON_LAST_30DAYS' | translate}} -->
+        <b [translate]="'SERVICE.REQUESTED_ON_LAST_30DAYS'" [translateParams]="{value: stats}"></b>
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.RATING' | translate}}">

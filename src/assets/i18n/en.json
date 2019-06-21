@@ -48,7 +48,7 @@
     "VIDEO": "Video",
     "STATISTICS": "Statistics",
     "RATING": "Rating",
-    "REQUESTED_ON_LAST_30DAYS": "Service requested on last 30 days",
+    "REQUESTED_ON_LAST_30DAYS": "Service requested {{value}} times on last 30 days",
     "BENEFICIARIES": "Beneficiaries",
     "CLASSIFICATION": "Classification",
     "GUIDE": "Guide",

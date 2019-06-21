@@ -27,6 +27,7 @@ export class ServiceDetailsComponent implements OnInit {
   data:any;
   comments:any;
   segments:any;
+  stats:number;
   
   active:boolean = false;
   public assets_url:string = environment.cms.api.assets;
@@ -40,6 +41,7 @@ export class ServiceDetailsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
        this.id = params['id']; 
        this.load(this.id);
+       this.getStats(this.id);
     });
   }
 
@@ -64,6 +66,10 @@ export class ServiceDetailsComponent implements OnInit {
         
       })
     
+  }
+
+  getStats(id){  
+    this.servicesService.getStats(id).subscribe(data=>this.stats = data.entries.length);
   }
 
   ngOnDestroy() {

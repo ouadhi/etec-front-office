@@ -44,6 +44,10 @@ export const environment = {
     api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal/beneficiaries',
   },
 
+  statisticsApi: {
+    api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8089/api/collections/get/segment/'
+  },
+
   formio: {
     apiUrl: 'https://api.form.io/', // formioApiUrl
     appUrl: 'https://aqnkygpwykfzugd.form.io/' // formioAppUrl
