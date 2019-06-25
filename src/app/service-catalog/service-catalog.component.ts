@@ -37,7 +37,7 @@ export class ServiceCatalogComponent implements OnInit {
     tags_inline:{}
   }
 
-  public imagesSlider:IImage[];
+  //public imagesSlider:IImage[];
 
 
   userSegments:string[]=[];
@@ -52,7 +52,7 @@ export class ServiceCatalogComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loadBanners();
+    //this.loadBanners();
     this.mostUsed();
 
     this.search()
@@ -60,21 +60,21 @@ export class ServiceCatalogComponent implements OnInit {
   
   }
 
-  loadBanners(){
-    this.servicesService.getBanners().subscribe(data=>{
+  // loadBanners(){
+  //   this.servicesService.getBanners().subscribe(data=>{
 
-      this.imagesSlider=[];
-      data.entries.forEach(element => {
-        let item={
-        url :`${environment.cms.api.assets}${element.url.path}`,
-        href : element.href
-      }
+  //     this.imagesSlider=[];
+  //     data.entries.forEach(element => {
+  //       let item={
+  //       url :`${environment.cms.api.assets}${element.url.path}`,
+  //       href : element.href
+  //     }
           
-        this.imagesSlider.push(item)
-      });
+  //       this.imagesSlider.push(item)
+  //     });
 
-    });
-  }
+  //   });
+  // }
 
   mostUsed(){
     this.dataMostUsed=[];
