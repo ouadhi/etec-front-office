@@ -1,0 +1,17 @@
+.newsItemUi {
+    text-decoration: none;
+    color: #858585;
+
+    &__title {
+        margin: 0;
+        color: #159588;
+        text-align: justify;
+    }
+    &__date {
+        color: #ababab;
+    }
+    &__description {
+        margin: 0;
+        text-align: justify;
+    }
+}

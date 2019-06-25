@@ -7,12 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PageComponent implements OnInit {
 
-  @Input()
-    pageTitle?;
+  @Input() pageTitle?;
+  @Input() hasBackButton?;
     
   constructor() { }
 
   ngOnInit() {
+  }
+
+  back(){
+    window.history.back()
   }
 
 }

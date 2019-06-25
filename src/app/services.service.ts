@@ -148,4 +148,12 @@ export class ServicesService {
       `${environment.statisticsApi.api}#${id}`);
   }
 
+  getNews(){
+    return this.getCollectionAllActive('news','disable',false)
+  }
+
+  getSingleNews(id){
+    return this.getCollectionEntryById('news','_id',id);
+  }
+
 }

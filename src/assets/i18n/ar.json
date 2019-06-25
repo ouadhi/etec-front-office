@@ -29,6 +29,10 @@
     "SERVICE_MATCHED_SEARCH_FROM_ORIGIN": "خدمه تطابق بحثك،،، من اصل",
     "SERVICE": "خدمة"
   },
+  "NEWS":{
+    "TITLE": "الأخبار",
+    "MORE_DETAILS":"التفاصيل"
+  },
   "SERVICE": {
     "SERVICE": "خدمة",
     "IS_NOT_ACTIVE": "هذه الخدمة غير فعاله حاليا",
@@ -56,6 +60,7 @@
     "COMMENTS": "التعليقات",
     "COMMENT_ON": "في"
   },
+  "BACK": "رجوع",
   "appTitle": "إدارة المهام",
   "arabic": "عربي",
   "english": "English",

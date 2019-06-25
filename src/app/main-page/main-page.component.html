@@ -1,1 +1,19 @@
 <slideshow [imageUrls]="imagesSlider" [minHeight]="'400px'" [backgroundPosition]="'center center'" [showDots]="true"></slideshow>
+
+<div fxLayout="row" fxLayoutAlign="center top" style="margin-top:30px;">
+    <div fxFlex="90">
+
+        <div fxLayout="row" fxLayoutGap="40px grid">
+            <div fxFlex="70">
+                <app-news-section></app-news-section>
+            </div>
+            <div fxFlex="30">
+                <app-section sectionTitle="{{'ADS.TITLE' | translate}}">
+                    gggg
+                </app-section>
+            </div>
+        </div>
+
+    </div>
+</div>
+

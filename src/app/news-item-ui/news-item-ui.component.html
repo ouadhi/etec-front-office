@@ -1,0 +1,17 @@
+<a class="newsItemUi" routerLink="{{link}}" fxLayout="row" fxLayoutGap="20px grid">
+  <div class="newsItemUi__asideCol" fxFlex="180px">
+    <img src="{{assetPath}}/{{image.path}}" alt="{{title}}" width="180px" height="180px">
+  </div>
+  <div class="newsItemUi__mainCol" fxFlex>
+    <h3 class="newsItemUi__title">
+        {{(title.length>maxTitleLength)? (title | slice:0:maxTitleLength)+'..':(title)}}
+    </h3>
+    <small class="newsItemUi__date">
+      {{date * 1000 | date}}
+    </small>
+    <p class="newsItemUi__description">
+      {{(description_plainText.length>maxDescriptionLength)? (description_plainText | slice:0:maxDescriptionLength)+'..':(description_plainText)}}
+    </p>
+    <button mat-button>{{'NEWS.MORE_DETAILS' | translate}}</button>
+  </div>
+</a>

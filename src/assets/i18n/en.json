@@ -29,6 +29,10 @@
     "SERVICE_MATCHED_SEARCH_FROM_ORIGIN": "service matched search.. originally is",
     "SERVICE": "Service"
   },
+  "NEWS":{
+    "TITLE": "News",
+    "MORE_DETAILS":"Details"
+  },
   "SERVICE": {
     "SERVICE": "Service",
     "IS_NOT_ACTIVE": "Service is not active",
@@ -56,6 +60,7 @@
     "COMMENTS": "Comments",
     "COMMENT_ON": "on"
   },
+  "BACK": "Back",
   "appTitle": "CASE MANAGEMENT",
   "arabic": "عربي",
   "english": "English",
