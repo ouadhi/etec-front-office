@@ -156,4 +156,12 @@ export class ServicesService {
     return this.getCollectionEntryById('news','_id',id);
   }
 
+  getAds(){
+    return this.getCollectionAllActive('ads','disable',false)
+  }
+
+  getSingleAds(id){
+    return this.getCollectionEntryById('ads','_id',id);
+  }
+
 }

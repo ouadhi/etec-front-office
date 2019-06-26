@@ -1,0 +1,17 @@
+<app-page pageTitle="{{data[trans._key('title')]}}" hasBackButton="true">
+  
+  <div fxLayout="row">
+    
+    <div fxFlex="70">
+      <small>{{data['_created'] * 1000 | date}}</small>
+      <div [innerHTML]="data[trans._key('description')]"></div>
+    </div>
+
+    <div fxFlex="30">
+        <img src="{{assetPath}}/{{data['image'].path}}">
+    </div>
+
+  </div>
+
+</app-page>
+

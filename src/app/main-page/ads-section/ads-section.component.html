@@ -1,0 +1,7 @@
+<app-section sectionTitle="{{'ADS.TITLE' | translate}}">
+    <div *ngFor="let item of ads">
+        <a class="adsItem" [routerLink]="'/ads-details/'+item._id">
+            {{item[trans._key('title')]}}
+        </a>
+    </div>
+</app-section>

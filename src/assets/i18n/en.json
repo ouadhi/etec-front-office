@@ -33,6 +33,9 @@
     "TITLE": "News",
     "MORE_DETAILS":"Details"
   },
+  "ADS":{
+    "TITLE": "Ads"
+  },
   "SERVICE": {
     "SERVICE": "Service",
     "IS_NOT_ACTIVE": "Service is not active",

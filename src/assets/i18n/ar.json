@@ -33,6 +33,9 @@
     "TITLE": "الأخبار",
     "MORE_DETAILS":"التفاصيل"
   },
+  "ADS":{
+    "TITLE": "الاعلانات"
+  },
   "SERVICE": {
     "SERVICE": "خدمة",
     "IS_NOT_ACTIVE": "هذه الخدمة غير فعاله حاليا",

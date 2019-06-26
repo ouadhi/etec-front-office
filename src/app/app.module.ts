@@ -75,10 +75,15 @@ import { CaseActivitiesComponent } from './case-activities/case-activities.compo
 import { FormioModule, ExternalService, FormioAppConfig, FormioTranslate, AuthService } from 'dp-formio';
 import { environment } from 'src/environments/environment';
 import { PaginatorI18n } from './paginator-i18n';
+
 import { MainPageComponent } from './main-page/main-page.component';
+
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { NewsItemUiComponent } from './news-item-ui/news-item-ui.component';
 import { NewsSecctionComponent } from './main-page/news-section/news-section.component';
+
+import { AdsSecctionComponent } from './main-page/ads-section/ads-section.component';
+import { AdsDetailsComponent } from './ads-details/ads-details.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -108,7 +113,9 @@ export function createExternalService(http: HttpClient) {
     MainPageComponent,
     NewsSecctionComponent,
     NewsDetailsComponent,
-    NewsItemUiComponent
+    NewsItemUiComponent,
+    AdsSecctionComponent,
+    AdsDetailsComponent
   ],
   imports: [
     KeycloakAngularModule,
