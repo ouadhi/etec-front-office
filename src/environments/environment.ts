@@ -66,6 +66,9 @@ export const environment = {
     data: {
       status: [{ key: 'NEW', val: 'NEW' }, { key: 'In_PROGRESS', val: 'In_PROGRESS' }, { key: 'COMPLETED', val: 'COMPLETED' }]
     }
+  },
+  profile: {
+      "api": "http://3.87.111.211:8120/Ekhaa/beneficiaries"
   }
 };
 

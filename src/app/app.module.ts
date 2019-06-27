@@ -84,6 +84,7 @@ import { NewsSecctionComponent } from './main-page/news-section/news-section.com
 
 import { AdsSecctionComponent } from './main-page/ads-section/ads-section.component';
 import { AdsDetailsComponent } from './ads-details/ads-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -115,7 +116,8 @@ export function createExternalService(http: HttpClient) {
     NewsDetailsComponent,
     NewsItemUiComponent,
     AdsSecctionComponent,
-    AdsDetailsComponent
+    AdsDetailsComponent,
+    ProfileComponent
   ],
   imports: [
     KeycloakAngularModule,

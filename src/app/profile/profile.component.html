@@ -1,0 +1,96 @@
+<app-page pageTitle="{{'PROFILE.TITLE' | translate}}">
+
+  <div fxLayout="row" fxLayoutGap="20px" class="profileHero">
+
+    <div fxFlex="50">
+      <div class="profileHero__name">{{'PROFILE.NAME' | translate }} : {{data.fullName}}</div>
+      <div class="profileHero__secondarySection">
+        <div class="profileHero__meta"><mat-icon class="profileHero__icon">beenhere</mat-icon> {{'PROFILE.ID' | translate }} : {{data.id}}</div>
+        <div class="profileHero__meta"><mat-icon class="profileHero__icon">phone</mat-icon> {{data.mobile}}</div>
+        <div class="profileHero__meta"><mat-icon class="profileHero__icon">email</mat-icon> {{data.email}}</div>
+      </div>
+    </div>
+
+    <div fxFlex="50">
+      
+    </div>
+
+  </div>
+  
+  <div class="profileData">
+    <div fxLayout="row" fxLayoutGap="40px grid">
+      
+      <div fxFlex="33">
+        
+          <app-section sectionTitle="{{'PROFILE.MAININFO' | translate }}">
+            <div>{{'PROFILE.NATIONAL_ID' | translate }} : {{data.nationalId}}</div>
+            <div>{{'PROFILE.BIRTHDATE' | translate }} : {{data.birthDate}}</div>
+            <div>{{'PROFILE.GENDER' | translate }} : {{data.gender}}</div>
+            <div>{{'PROFILE.EDU_STAGE' | translate }} : {{data.eduStage}}</div>
+          </app-section>
+
+          <app-section sectionTitle="{{'PROFILE.IQ' | translate }}">
+              <div>{{'PROFILE.IQ_PARTY' | translate }} : {{data.IQExamParty}}</div>
+              <div>{{'PROFILE.IQ_DATE' | translate }} : {{data.IQExamDate}}</div>
+              <div>{{'PROFILE.IQ_SCORE' | translate }} : {{data.IQExamScore}}</div>
+            </app-section>
+
+          
+
+          <!-- <app-section sectionTitle="{{'PROFILE.CONTACT' | translate }}"> -->
+            <!-- <div>{{'PROFILE.MOBILE' | translate }} : {{data.mobile}}</div> -->
+            <!-- <div>{{'PROFILE.EMAIL' | translate }} : {{data.email}}</div> -->
+          <!-- </app-section> -->
+
+          
+
+      </div>
+
+      <div fxFlex="33">
+
+        <!-- <app-section sectionTitle="{{'PROFILE.INFO' | translate }}">
+          <div>{{'PROFILE.ACTIVE' | translate }} : {{data.active}}</div>
+          <div>{{'PROFILE.ID' | translate }} : {{data.id}}</div>
+          <div>{{'PROFILE.INTERNAL_ID' | translate }} : {{data.EkhaaId}}</div>
+        </app-section> -->
+
+        <app-section sectionTitle="{{'PROFILE.STATE' | translate }}">
+            <div>{{'PROFILE.MARITAL_STATE' | translate }} : {{data.maritalStatus}}</div>
+            <div>{{'PROFILE.PRISONED' | translate }} : {{data.prisoned}}</div>
+            <div>{{'PROFILE.STOPPED_SERVICES' | translate }} : {{data.stoppedServices}}</div>
+            <div>{{'PROFILE.HAS_COMMERCIAL_REGISTRATION' | translate }} : {{data.hasCommercialRegistration}}</div>
+            <div>{{'PROFILE.STATUS' | translate }} : {{data.status}}</div>
+          </app-section>
+
+          <app-section sectionTitle="{{'PROFILE.ORIGIN' | translate }}">
+              <div>{{'PROFILE.NATIONAL_ORIGIN' | translate }} : {{data.nationalIdOrigin}}</div>
+              <div>{{'PROFILE.NATIONAL_ID_DATE' | translate }} : {{data.nationalIdDate}}</div>
+            </app-section>
+
+        
+
+        
+
+      </div>
+
+      <div fxFlex="33">
+
+          <app-section sectionTitle="{{'PROFILE.CLASSIFICATION' | translate }}">
+            <div>{{'PROFILE.BRANCH' | translate }} : {{data.branch}}</div>
+            <div>{{'PROFILE.FORMER_ASSOCIATION' | translate }} : {{data.formerAssociation}}</div>
+            <div>{{'PROFILE.INVESTMENT_BANK_IBAN' | translate }} : {{data.investmentBankIBAN}}</div>
+            <div>{{'PROFILE.SEGMENTS' | translate }} : {{data.segments}}</div>
+          </app-section>
+
+          <app-section sectionTitle="{{'PROFILE.RECEIVING' | translate }}">
+              <div>{{'PROFILE.RECEIVING_DATE' | translate }} : {{data.receivingDate}}</div>
+              <div>{{'PROFILE.RECEIVING_PERSON' | translate }} : {{data.receivingPersonInCharge}}</div>
+            </app-section>
+
+          
+
+      </div>
+
+    </div>
+  </div>
+</app-page>

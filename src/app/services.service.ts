@@ -164,4 +164,9 @@ export class ServicesService {
     return this.getCollectionEntryById('ads','_id',id);
   }
 
+  getProfile(id):Observable<any[]> {
+    return this.http.get<any[]>(
+      `${environment.profile.api}/${id}`);
+  }
+
 }

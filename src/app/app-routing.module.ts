@@ -10,6 +10,7 @@ import { MyRequestsComponent } from './my-requests/my-requests.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { AdsDetailsComponent } from './ads-details/ads-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'request/:id', component: RequestComponent, canActivate: [AppAuthGuard] },
   { path: 'request-details/:link/:formData/:cmmnId', component: RequestDetailsComponent, canActivate: [AppAuthGuard] },
   { path: 'news-details/:id', component: NewsDetailsComponent },
-  { path: 'ads-details/:id', component: AdsDetailsComponent }
+  { path: 'ads-details/:id', component: AdsDetailsComponent },
+  { path: 'profile/:id', component: ProfileComponent }
 ];
 
 @NgModule({
