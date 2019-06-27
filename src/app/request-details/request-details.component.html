@@ -1,6 +1,6 @@
 <app-page>
     <app-case-activities *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
-    <formio *ngIf="formReady" [params]="params" [formKey]="link" [submissionId]="formData" [readOnly]="true"
-        (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)">
+    <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link"
+        [submissionId]="formData" [readOnly]="true" (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)">
     </formio>
 </app-page>

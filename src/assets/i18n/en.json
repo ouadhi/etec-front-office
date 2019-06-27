@@ -9,6 +9,7 @@
     "LOGIN": "Login"
   },
   "NAV": {
+    "MAIN_PAGE": "Main Page",
     "SERVICES_CATALOG": "Services Catalog",
     "MY_REQUESTS": "My Requests"
   },
@@ -48,7 +49,7 @@
     "VIDEO": "Video",
     "STATISTICS": "Statistics",
     "RATING": "Rating",
-    "REQUESTED_ON_LAST_30DAYS": "Service requested on last 30 days",
+    "REQUESTED_ON_LAST_30DAYS": "Service requested {{value}} times on last 30 days",
     "BENEFICIARIES": "Beneficiaries",
     "CLASSIFICATION": "Classification",
     "GUIDE": "Guide",
@@ -131,7 +132,29 @@
       "Approve Request": "Approve Request",
       "Request for exceptional assistance": "Request for exceptional assistance",
       "Sons Financial Services Specialist Review": "Sons Financial Services Specialist Review",
-      "Sons Department Manager Review": "Sons Department Manager Review"
+      "Sons Department Manager Review": "Sons Department Manager Review",
+      "fullName": "Full Name",
+      "nationalId": "National ID",
+      "nationalIDIssuePlace": "National Id Issue Place",
+      "birthDate": "Birth Date",
+      "mobile": "Mobile",
+      "email": "Email",
+      "date": "Date",
+      "buildingNo": "Building No",
+      "additionalNo": "Additional No",
+      "postalCode": "Postal Code",
+      "street": "Street",
+      "district": "District",
+      "city": "City",
+      "subject": "Subject",
+      "description": "Description",
+      "attachment": "Attachments",
+      "agreement": "Agreement",
+      "finalStatement": "Final Statement",
+      "initialOpinion": "Initial Opinion",
+      "transformToOrganaization": "Transform To Organaization",
+      "Internal": "Internal Transfer Party",
+      "external": "External Transfer Party"
     },
     "request-details": {
       "Request Details": "Request Details",
