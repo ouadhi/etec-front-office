@@ -57,8 +57,9 @@ export class RequestComponent implements OnInit {
         case '5d0429fb3031360013000249':
           this.serviceId = 5;
           break;
+        default:
+          this.serviceId = null;
       }
-      console.log(this.route.snapshot);
       this.params = [
         // { url: environment.beneficiaryApi.api, success: `submission.data = {requesterInfo: {data: response}};` }
         {
@@ -66,6 +67,9 @@ export class RequestComponent implements OnInit {
           success: `submission.data = {entrepreneurshipType:"${this.serviceId}",serviceId:"${this.serviceId}",requesterInfo: {data: response}};`
         }
       ];
+      if (!this.serviceId) {
+        this.params[0].success = `submission.data = {requesterInfo: {data: response}};`;
+      }
       // this.params.success = `submission.data = {serviceId:"${this.serviceId}",requesterInfo: {data: response}};`;
       // @TODO: pass ServiceId
       this.formReady = true;
