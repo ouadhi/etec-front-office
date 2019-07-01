@@ -84,6 +84,9 @@ export function createTranslateLoader(http: HttpClient) {
 export function createExternalService(http: HttpClient) {
   return new ExternalService(http);
 }
+export function getFormioEnv() {
+  return environment.formio;
+}
 
 
 @NgModule({
@@ -167,7 +170,7 @@ export function createExternalService(http: HttpClient) {
       multi: true,
       deps: [KeycloakService]
     },
-    { provide: FormioAppConfig, useValue: environment.formio },
+    { provide: FormioAppConfig, useFactory: (getFormioEnv) },
     {
       provide: FormioTranslate,
       useClass: TranslateService
@@ -188,4 +191,6 @@ export function createExternalService(http: HttpClient) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}
