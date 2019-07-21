@@ -10,7 +10,7 @@
 
         {{data[trans._key('description')]}}
 
-        <button [routerLink]="['/request', data.link, { serviceId: data._id }]"  skipLocationChange=true target="_blank" mat-raised-button
+        <button [routerLink]="['/request', data.link, { serviceId: data.serviceDefinition }]"  skipLocationChange=true target="_blank" mat-raised-button
           color="primary">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right</mat-icon></button>
       </app-section>
 

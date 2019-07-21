@@ -29,10 +29,15 @@ export class RequestComponent implements OnInit {
       this.serviceId = params['serviceId'];
       console.log(this.route.snapshot);
       this.params = [
-        { url: environment.beneficiaryApi.api, success: `submission.data = {requesterInfo: {data: response}};` }
+        // { url: environment.beneficiaryApi.api, success: `submission.data = {requesterInfo: {data: response}};` }
+        {
+          url: environment.beneficiaryApi.api,
+          success: `submission.data = {serviceId:"${this.serviceId}",requesterInfo: {data: response}};`
+        }
       ];
-      // this.params.success = `submission.data = {serviceId:"${this.serviceId}",requesterInfo: {data: response}};`;
-      // @TODO: pass ServiceId
+      if (!this.serviceId || this.serviceId === null || this.serviceId === undefined || this.serviceId === '') {
+        this.params[0].success = `submission.data = {requesterInfo: {data: response}};`;
+      }
       this.formReady = true;
     });
 

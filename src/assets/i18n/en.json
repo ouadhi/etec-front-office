@@ -29,11 +29,11 @@
     "SERVICE_MATCHED_SEARCH_FROM_ORIGIN": "service matched search.. originally is",
     "SERVICE": "Service"
   },
-  "NEWS":{
+  "NEWS": {
     "TITLE": "News",
-    "MORE_DETAILS":"Details"
+    "MORE_DETAILS": "Details"
   },
-  "ADS":{
+  "ADS": {
     "TITLE": "Ads"
   },
   "SERVICE": {
@@ -140,7 +140,29 @@
       "Approve Request": "Approve Request",
       "Request for exceptional assistance": "Request for exceptional assistance",
       "Sons Financial Services Specialist Review": "Sons Financial Services Specialist Review",
-      "Sons Department Manager Review": "Sons Department Manager Review"
+      "Sons Department Manager Review": "Sons Department Manager Review",
+      "fullName": "Full Name",
+      "nationalId": "National ID",
+      "nationalIDIssuePlace": "National Id Issue Place",
+      "birthDate": "Birth Date",
+      "mobile": "Mobile",
+      "email": "Email",
+      "date": "Date",
+      "buildingNo": "Building No",
+      "additionalNo": "Additional No",
+      "postalCode": "Postal Code",
+      "street": "Street",
+      "district": "District",
+      "city": "City",
+      "subject": "Subject",
+      "description": "Description",
+      "attachment": "Attachments",
+      "agreement": "Agreement",
+      "finalStatement": "Final Statement",
+      "initialOpinion": "Initial Opinion",
+      "transformToOrganaization": "Transform To Organaization",
+      "Internal": "Internal Transfer Party",
+      "external": "External Transfer Party"
     },
     "request-details": {
       "Request Details": "Request Details",
