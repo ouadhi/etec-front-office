@@ -26,36 +26,23 @@ export class RequestComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      /*
-      5d0429e530313600190003de - 1
-
-5d0429e830313600170001ee - 2
 
 
-5d0429f130313600120000da - 3
-دعم تجهيزات مشروع
-
-5d0429f730313600110000a9 - 4 رسوم خدمات استشاريه
-
-
-5d0429fb3031360013000249 - 5
-د
-       */
       switch (params['serviceId']) {
-        case '5d0429e530313600190003de':
-          this.serviceId = 1;
+        case '5cd28710346263008a0003b1':
+          this.serviceId = 24;
           break;
-        case '5d0429e830313600170001ee':
-          this.serviceId = 2;
+        case '5cd29c2d3462630088000053':
+          this.serviceId = 27;
           break;
-        case '5d0429f130313600120000da':
-          this.serviceId = 3;
+        case '5cd29c4f3462630071000220':
+          this.serviceId = 28;
           break;
-        case '5d0429f730313600110000a9':
-          this.serviceId = 4;
+        case '5cc767913462630061000174':
+          this.serviceId = 9;
           break;
-        case '5d0429fb3031360013000249':
-          this.serviceId = 5;
+        case '5cd29be4346263008c000070':
+          this.serviceId = 26;
           break;
         default:
           this.serviceId = null;
@@ -64,7 +51,8 @@ export class RequestComponent implements OnInit {
         // { url: environment.beneficiaryApi.api, success: `submission.data = {requesterInfo: {data: response}};` }
         {
           url: environment.beneficiaryApi.api,
-          success: `submission.data = {entrepreneurshipType:"${this.serviceId}",serviceId:"${this.serviceId}",requesterInfo: {data: response}};`
+          success: `submission.data = {entrepreneurshipType:"${this.serviceId}",
+          serviceId:"${this.serviceId}",requesterInfo: {data: response}};`
         }
       ];
       if (!this.serviceId) {

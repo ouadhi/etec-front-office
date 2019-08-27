@@ -1,10 +1,12 @@
 <ion-grid no-padding>
     <ion-row align-items-center>
-        <ion-col *ngFor="let activity of activities" >
-            <ion-chip [color]="activity.completed ? 'success' : 'medium'">
-                <ion-label>{{activity.caseActivityName}}</ion-label>
-                <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"></ion-icon>
-            </ion-chip>
-        </ion-col>
+        <ng-container *ngFor="let activity of activities">
+            <ion-col *ngIf="activity.completed">
+                <ion-chip [color]="activity.completed ? 'success' : 'medium'">
+                    <ion-label>{{activity.caseActivityName}}</ion-label>
+                    <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"></ion-icon>
+                </ion-chip>
+            </ion-col>
+        </ng-container>
     </ion-row>
 </ion-grid>
