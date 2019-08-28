@@ -21,4 +21,23 @@
   @import "~bootswatch/dist/yeti/variables";
   @import "~bootstrap/scss/bootstrap";
   @import "~bootswatch/dist/yeti/bootswatch";
+  .formio-edit-grid-header {
+    background-color: #f7f7f7;
+    padding: 15px 20px;
+  }
+  .editgrid-listgroup {
+    text-align: center;
+    .editgrid-body {
+      text-align: -webkit-auto;
+    }
+  }
+  .list-group-item {
+    padding: 10px 25px;
+  }
+}
+.readOnly {
+  .editRow,
+  .removeRow {
+    display: none;
+  }
 }
