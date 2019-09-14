@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { LifeCycleService } from './config';
 import { environment } from '../environments/environment';
@@ -12,11 +12,19 @@ export class ServicesService {
 
   constructor(
     private http: HttpClient) { }
+
+    getCMSheaders(){
+      let headers:HttpHeaders = new HttpHeaders();
+      headers = headers.append('Authorization', 'Bearer '+environment.cms.portalUserToken);
+      return headers;
+    }
   
 
   getCollectionAll(collection:string):Observable<any> {
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/${collection}/`,{"populate": 1});
+      `${environment.cms.api.master}/api/collections/get/${collection}/`,{"populate": 1}, {
+        headers: this.getCMSheaders()
+      });
   }
 
   getCollectionAllActive(collection:string,activeKey,activeVal):Observable<any> {
@@ -25,10 +33,14 @@ export class ServicesService {
     filter[activeKey]= activeVal;
     console.log(filter);
 
+    
+
     return this.http.post<any[]>(
       `${environment.cms.api.master}/api/collections/get/${collection}/`,{
         filter,
         "populate": 1
+      }, {
+        headers: this.getCMSheaders()
       });
   }
 
@@ -40,8 +52,9 @@ export class ServicesService {
           "_id": `${id}`
         },
         "populate": 1
-      },
-      {});
+      }, {
+        headers: this.getCMSheaders()
+      });
   }
 
   getService(id){
@@ -86,7 +99,9 @@ export class ServicesService {
             "serviceName._id": `${serviceId}`
           },
           "populate": 0
-        },{})};
+        }, {
+          headers: this.getCMSheaders()
+        })};
 
   getSegmentsByIds(ids:Array<string>):Observable<any> {
     let body = [];
@@ -101,8 +116,9 @@ export class ServicesService {
           "$or": body
         },
         "populate": 1
-      },
-      {});
+      }, {
+        headers: this.getCMSheaders()
+      });
   }
 
   search(keyword:string):Observable<any> {
@@ -132,7 +148,9 @@ export class ServicesService {
     
 
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/Service/`,body,{});
+      `${environment.cms.api.master}/api/collections/get/Service/`,body, {
+        headers: this.getCMSheaders()
+      });
   }
 
 
@@ -140,7 +158,9 @@ export class ServicesService {
 
   getRequest(id:string):Observable<any[]> {
     return this.http.get<any[]>(
-      `${environment.cms.api.master}/api/collections/get/${id}/`);
+      `${environment.cms.api.master}/api/collections/get/${id}/`, {
+        headers: this.getCMSheaders()
+      });
   }
 
   getStats(id:string):Observable<any[]> {
@@ -166,7 +186,9 @@ export class ServicesService {
 
   getProfile(id):Observable<any[]> {
     return this.http.get<any[]>(
-      `${environment.profile.api}/${id}`);
+      `${environment.profile.api}/${id}`, {
+        headers: this.getCMSheaders()
+      });
   }
 
 }

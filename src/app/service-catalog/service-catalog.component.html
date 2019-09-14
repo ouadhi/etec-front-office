@@ -52,7 +52,7 @@
 
 
           <ng-container *ngFor="let a of segmentType">
-            <div class="filtersList">
+            <div class="filtersList" [style.display]="a.visible ? 'block': 'none'">
             <div class="filtersList__head">{{a[trans._key('segmentTypeName')]}}</div>
               <ng-container *ngFor="let b of segments">
                 <div class="filtersList__item">

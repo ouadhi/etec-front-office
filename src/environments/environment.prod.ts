@@ -25,7 +25,8 @@ export const environment = {
       assets: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8089/storage/uploads'
       // master: 'http://localhost:8080',
       // assets: 'http://localhost:8080/storage/uploads'
-    }
+    },
+    portalUserToken: 'account-14ce9c9a25353166aee307ef60c25c'
   },
 
   keycloak: keycloakConfig,
