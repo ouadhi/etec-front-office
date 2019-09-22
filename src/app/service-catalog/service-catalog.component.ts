@@ -33,7 +33,7 @@ export class ServiceCatalogComponent implements OnInit {
 
   dataFilters:any = {
     category: { _id: null, department: { _id: null } },
-    segments_inline:{},
+    segmentsGroup_inline:[],
     tags_inline:{}
   }
 
@@ -142,14 +142,27 @@ export class ServiceCatalogComponent implements OnInit {
         // transform data structure
         this.data.forEach( (element,i) => {
 
-          // change segment object to array with new key
-          let segments_inline=[];
+          // change segment object to object of arrays with new key
+          let segmentsGroup_inline=[];
           if(element.beneficiaries.length>0){
+            
+
             element.beneficiaries.forEach(element2 => {
-              segments_inline[element2._id]=true;
+              segmentsGroup_inline.push(element2.segments);
             });
+
+            let segments = segmentsGroup_inline;
+            segmentsGroup_inline = [];
+            segments.forEach(segmentSet => {
+              let set = {};
+              segmentSet.forEach(segment => {
+                set[segment._id] = true;
+              });
+              segmentsGroup_inline.push(set);
+            });
+
           }
-          this.data[i]['segments_inline']= segments_inline;
+          this.data[i]['segmentsGroup_inline']= segmentsGroup_inline;
 
           // change tag object to array with new key
           let tags_inline=[];
@@ -188,17 +201,19 @@ export class ServiceCatalogComponent implements OnInit {
   // action filter for segment(beneficiaries)
   filterSegment(){
     // clear array
-    this.dataFilters.segments_inline={}
+    this.dataFilters.segmentsGroup_inline=[]
+    let set = {}
      
     // convert to array
     for (var key in this.segmentInput) {
       if (this.segmentInput.hasOwnProperty(key)) {
         // only if checked
         if(this.segmentInput[key] ==true){  
-          this.dataFilters.segments_inline[key] = true
+          set[key] = true
         }
       }
     }
+    this.dataFilters.segmentsGroup_inline.push(set);
 
   }
 
@@ -240,7 +255,7 @@ export class ServiceCatalogComponent implements OnInit {
   resetFilters(){
     this.keyword="";
     this.filterKeyword();
-    this.dataFilters.segments_inline={},
+    this.dataFilters.segmentsGroup_inline=[],
     this.dataFilters.tags_inline={}
     
     this.tagsInput=[]
