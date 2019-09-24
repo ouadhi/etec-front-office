@@ -181,13 +181,6 @@ export function getFormioEnv() {
       useFactory: (createExternalService)
 
     },
-    {
-      provide: AuthService,
-      deps: [KeycloakService],
-      useFactory: function AuthFactory(keycloakService: KeycloakService) {
-        return keycloakService;
-      }
-    }
   ],
   bootstrap: [AppComponent]
 })
