@@ -72,7 +72,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import { DatePipe } from '@angular/common';
 import { CaseActivitiesComponent } from './case-activities/case-activities.component';
-import { FormioModule, ExternalService, FormioAppConfig, FormioTranslate, AuthService } from 'dp-formio';
+import { FormioModule, ExternalService, FormioAppConfig, FormioTranslate } from 'dp-formio';
 import { environment } from 'src/environments/environment';
 import { PaginatorI18n } from './paginator-i18n';
 
