@@ -11,6 +11,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
+import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
 
 
 const routes: Routes = [
@@ -22,7 +24,10 @@ const routes: Routes = [
   { path: 'request-details/:link/:formData/:cmmnId', component: RequestDetailsComponent, canActivate: [AppAuthGuard] },
   { path: 'news-details/:id', component: NewsDetailsComponent },
   { path: 'ads-details/:id', component: AdsDetailsComponent },
-  { path: 'profile/:id', component: ProfileComponent }
+  { path: 'profile/:id', component: ProfileComponent },
+  
+  { path: 'opportunity/add', component: AddOpportunityComponent },
+  { path: 'opportunity/view/:id', component: ViewOpportunityComponent }
 ];
 
 @NgModule({

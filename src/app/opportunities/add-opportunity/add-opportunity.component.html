@@ -1,0 +1,5 @@
+<app-page>
+    <formio *ngIf="formReady" [formKey]="'JobOpportunity-New'" [readOnly]="false" [params]="params" (customEvent)="onCustomEvent($event)"
+        (submit)="onSubmit($event)">
+    </formio>
+</app-page>

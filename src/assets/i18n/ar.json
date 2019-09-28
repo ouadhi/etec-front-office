@@ -545,5 +545,9 @@
     "IQ_PARTY":"الاختبار",
     "IQ_DATE":"التاريخ",
     "IQ_SCORE":"النقاط"
+    },
+    "OPPORTUNITY":{
+      "ADD_PAGETITLE": "اضافة فرصه وظيفية جديدة",
+      "VIEW_PAGETITLE": "عرض فرصة وظيفية"
     }
 }
