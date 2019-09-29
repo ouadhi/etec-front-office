@@ -35,6 +35,10 @@
           <button mat-flat-button color="primary"
             [routerLink]="[detailsRouterForEachItem, element[columns[col].param1], element[columns[col].param2], (element[columns[col].param3] || '')]">{{'Details' | translate}}</button>
         </ng-container>
+        <ng-container *ngIf="columns[col].display == 'detailsButton_oneParam'">
+          <button mat-flat-button color="primary"
+            [routerLink]="[detailsRouterForEachItem, (element[columns[col].param1] || '' )]">{{'Details' | translate}}</button>
+        </ng-container>
         <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
           <ng-container *ngIf="columns[col]['formatDate'];else normal">
             {{element[col].substring(0, 19) | date:'yyyy-MM-dd,hh:mm:ssa'}}

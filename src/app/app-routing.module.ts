@@ -13,6 +13,7 @@ import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
 import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
+import { AllOpportunitiesComponent } from './opportunities/all-opportunities/all-opportunities.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'profile/:id', component: ProfileComponent },
   
   { path: 'opportunity/add', component: AddOpportunityComponent },
-  { path: 'opportunity/view/:id', component: ViewOpportunityComponent }
+  { path: 'opportunity/view/:id', component: ViewOpportunityComponent },
+  { path: 'opportunity/all' , component: AllOpportunitiesComponent }
 ];
 
 @NgModule({

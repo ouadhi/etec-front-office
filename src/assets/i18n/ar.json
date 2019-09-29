@@ -11,7 +11,8 @@
   "NAV": {
     "MAIN_PAGE": "الرئيسية",
     "SERVICES_CATALOG": "دليل الخدمات",
-    "MY_REQUESTS": "طلباتي"
+    "MY_REQUESTS": "طلباتي",
+    "ALL_OPPORTUNITIES": "الفرص الوظيفية"
   },
   "CATALOG": {
     "SERVICE_CATALOG_TITLE": "دليل الخدمات",
@@ -548,6 +549,12 @@
     },
     "OPPORTUNITY":{
       "ADD_PAGETITLE": "اضافة فرصه وظيفية جديدة",
-      "VIEW_PAGETITLE": "عرض فرصة وظيفية"
+      "VIEW_PAGETITLE": "عرض فرصة وظيفية",
+      "ALL_PAGETITLE": "الفرص الوظيفية",
+      "EMPLOYER": "الجهة",
+      "NAME": "مسمى الوظيفة",
+      "NUMBER": "رقم الوظيفة",
+      "CITY": "المدينة",
+      "VACANCIES": "عدد الشواغر"
     }
 }
