@@ -1,22 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat-core();
+$md-accents: (
+  50: #e6f3f0,
+  100: #bfe0da,
+  200: #95ccc2,
+  300: #6bb8aa,
+  400: #4ba897,
+  500: #2b9985,
+  600: #26917d,
+  700: #208672,
+  800: #1a7c68,
+  900: #106b55,
+  A100: #a0ffe6,
+  A200: #6dffd9,
+  A400: #3affcb,
+  A700: #20ffc5,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+$md-ekhaa: (
+  50: #e8f3f5,
+  100: #c5e0e6,
+  200: #9eccd5,
+  300: #77b7c4,
+  400: #5aa7b7,
+  500: #3d98aa,
+  600: #3790a3,
+  700: #2f8599,
+  800: #277b90,
+  900: #1a6a7f,
+  A100: #b8efff,
+  A200: #85e3ff,
+  A400: #52d7ff,
+  A700: #39d1ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$rms-app-primary: mat-palette($mat-teal);
-$rms-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$rms-app-primary: mat-palette($md-ekhaa);
+$rms-app-accent: mat-palette($md-accents, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$rms-app-warn:    mat-palette($mat-red);
+$rms-app-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn);
@@ -26,115 +90,126 @@ $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn
 // that you are using.
 @include angular-material-theme($rms-app-theme);
 
-@import '~css-star-rating/scss/star-rating';
+@import "~css-star-rating/scss/star-rating";
 
 html,
-body{
-    color: #444;
+body {
+  color: #444;
 }
 
 html,
 body,
-h1,h2,h3,h4,h5,h6,
-p,span,
-div,section,
-b,strong,small,
-ul,ol,li,
-button,a,
-table,thead,tbody,tr,td,th{
-    font-family: 'Tajawal','Quicksand', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+section,
+b,
+strong,
+small,
+ul,
+ol,
+li,
+button,
+a,
+table,
+thead,
+tbody,
+tr,
+td,
+th {
+  font-family: "Tajawal", "Quicksand", sans-serif;
 }
 
 /* // @TODO arabic */
-.lang-ar body{
-    font-family: 'Tajawal', sans-serif;
+.lang-ar body {
+  font-family: "Tajawal", sans-serif;
 }
 
-body{
-    margin:0;
-    background: #ebebeb;
+body {
+  margin: 0;
+  background: #ebebeb;
 }
 
-.mainWrapper{
-    
-    &--rtl {
-        direction: rtl;
-    }
+.mainWrapper {
+  &--rtl {
+    direction: rtl;
+  }
 }
 
 .routerOutletContainer {
-    position: relative;
-    min-height: 400px;
+  position: relative;
+  min-height: 400px;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
-.serviceCard{
-
+.serviceCard {
 }
-
 
 .department__section {
-    border-bottom: 5px #444 solid;
+  border-bottom: 5px #444 solid;
 }
 
 .department {
-    background: #ebebeb;
-    font-weight: normal;
-    border-radius: 0!important;
-    line-height: 50px!important;
+  background: #ebebeb;
+  font-weight: normal;
+  border-radius: 0 !important;
+  line-height: 50px !important;
 }
 
-.department.active{
-    color: #fff;
-    background: #444;
-    font-weight: bold;
+.department.active {
+  color: #fff;
+  background: #444;
+  font-weight: bold;
 }
-
 
 .category__section {
-    background: #444;
-    color:#fff;
-    margin-bottom: 30px;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+  background: #444;
+  color: #fff;
+  margin-bottom: 30px;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 
 .category {
-    background: #444;
-    font-weight: normal;
-    border-radius: 0!important;
-    margin-bottom: 5px !important;
+  background: #444;
+  font-weight: normal;
+  border-radius: 0 !important;
+  margin-bottom: 5px !important;
 }
 
-.category.active{
-    color: #fff;
-    background: mat-color($rms-app-primary);
-    font-weight: bold;
+.category.active {
+  color: #fff;
+  background: mat-color($rms-app-primary);
+  font-weight: bold;
+}
+.mat-expansion-panel:not([class*="mat-elevation-z"]),
+mat-expansion-panel.mat-expansion-panel.mat-expanded.mat-expansion-panel-spacing {
+  box-shadow: 0 0;
+  border: 1px rgba(0, 0, 0, 0.06) solid;
+  background: #f7f7f7;
 }
 
-
-.mat-expansion-panel:not([class*=mat-elevation-z]),
-mat-expansion-panel.mat-expansion-panel.mat-expanded.mat-expansion-panel-spacing{
-    box-shadow: 0 0;
-    border: 1px rgba(0, 0, 0, .06) solid;
-    background: #f7f7f7;
+mat-checkbox .mat-checkbox-inner-container {
+  margin-left: 8px;
 }
 
-mat-checkbox .mat-checkbox-inner-container{
-    margin-left: 8px;
-}
-
-.mat-form-field{
-    text-align: right !important;
+.mat-form-field {
+  text-align: right !important;
 }
 
 .inlineRowItem {
-    margin: 15px 0;
+  margin: 15px 0;
 }
 
 .mat-chip-list--inlineBlock {
-    display: inline-block
+  display: inline-block;
 }

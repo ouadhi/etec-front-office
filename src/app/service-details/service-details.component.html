@@ -15,9 +15,11 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
-        <ul>
+        {{data[trans._key('conditionsAndRequirements')]}}
+        <!-- <ul>
           <li *ngFor="let item of data[trans._key('conditionsAndRequirements')]">{{item.value}}</li>
         </ul>
+        -->
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.FAQ' | translate}}">

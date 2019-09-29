@@ -21,9 +21,38 @@
   @import "~bootswatch/dist/yeti/variables";
   @import "~bootstrap/scss/bootstrap";
   @import "~bootswatch/dist/yeti/bootswatch";
-  .formio-edit-grid-header {
-    background-color: #f7f7f7;
-    padding: 15px 20px;
+  padding: 10px;
+  font-size: 14px;
+  min-height: 0 !important;
+  h4 {
+    font-size: 16px !important;
+  }
+  .formio-component-editgrid {
+    overflow: auto;
+    ul {
+      display: table;
+      min-width: 100%;
+    }
+  }
+  .formio-component-datagrid {
+    overflow: auto;
+    td {
+      min-width: 200px;
+    }
+    .formio-component-file {
+      min-width: 395px;
+    }
+  }
+  .hide-buttons {
+    .formio-remove-column {
+      display: none;
+    }
+  }
+  .car-header {
+    padding: 10px;
+  }
+  .list-group-item {
+    padding: 10px 25px;
   }
   .editgrid-listgroup {
     text-align: center;
@@ -31,8 +60,9 @@
       text-align: -webkit-auto;
     }
   }
-  .list-group-item {
-    padding: 10px 25px;
+  .formio-edit-grid-header {
+    background-color: #f7f7f7;
+    padding: 15px 20px;
   }
 }
 .readOnly {
