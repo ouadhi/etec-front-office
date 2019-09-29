@@ -97,10 +97,6 @@ export function createExternalService(http: HttpClient) {
 export function getFormioEnv() {
   return environment.formio;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/ekhaaTheme
 
 @NgModule({
   declarations: [

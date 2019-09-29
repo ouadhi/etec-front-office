@@ -78,7 +78,10 @@ export class ServiceCatalogComponent implements OnInit {
 
   mostUsed(){
     this.dataMostUsed=[];
-    this.servicesService.getServices().subscribe(data=>this.dataMostUsed = data.entries);
+    this.servicesService.getServices().subscribe(data=>{
+      console.log(2);
+      this.dataMostUsed = data.entries
+    });
   }
 
 
