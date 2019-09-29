@@ -26,27 +26,7 @@ export class RequestComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-
-
-      switch (params['serviceId']) {
-        case '5cd28710346263008a0003b1':
-          this.serviceId = 24;
-          break;
-        case '5cd29c2d3462630088000053':
-          this.serviceId = 27;
-          break;
-        case '5cd29c4f3462630071000220':
-          this.serviceId = 28;
-          break;
-        case '5cc767913462630061000174':
-          this.serviceId = 9;
-          break;
-        case '5cd29be4346263008c000070':
-          this.serviceId = 26;
-          break;
-        default:
-          this.serviceId = null;
-      }
+      this.serviceId = params['serviceId'];
       this.params = [
         // { url: environment.beneficiaryApi.api, success: `submission.data = {requesterInfo: {data: response}};` }
         {

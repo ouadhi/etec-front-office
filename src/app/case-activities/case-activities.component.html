@@ -3,7 +3,11 @@
         <ng-container *ngFor="let activity of activities">
             <ion-col *ngIf="activity.completed">
                 <ion-chip [color]="activity.completed ? 'success' : 'medium'">
-                    <ion-label>{{activity.caseActivityName}}</ion-label>
+                    <ion-label>{{activity.caseActivityName}}
+                        <span class="mdate">
+                            {{activity.createTime | date}}
+                        </span>
+                    </ion-label>
                     <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"></ion-icon>
                 </ion-chip>
             </ion-col>
