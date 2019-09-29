@@ -85,6 +85,8 @@ import { NewsSecctionComponent } from './main-page/news-section/news-section.com
 import { AdsSecctionComponent } from './main-page/ads-section/ads-section.component';
 import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
+import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -119,7 +121,9 @@ export function getFormioEnv() {
     NewsItemUiComponent,
     AdsSecctionComponent,
     AdsDetailsComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddOpportunityComponent,
+    ViewOpportunityComponent
   ],
   imports: [
     KeycloakAngularModule,
