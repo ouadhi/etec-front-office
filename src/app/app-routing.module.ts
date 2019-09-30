@@ -25,7 +25,6 @@ const routes: Routes = [
   { path: 'news-details/:id', component: NewsDetailsComponent },
   { path: 'ads-details/:id', component: AdsDetailsComponent },
   { path: 'profile/:id', component: ProfileComponent },
-  
   { path: 'opportunity/add', component: AddOpportunityComponent },
   { path: 'opportunity/view/:id', component: ViewOpportunityComponent }
 ];

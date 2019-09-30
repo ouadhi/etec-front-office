@@ -14,6 +14,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
           },
           bearerExcludedUrls: [
             '/assets/', // due to call ngx-translate
+            environment.statisticsApi.api,
             environment.cms.api.master,
             environment.cms.api.assets,
             // environment.formio.api.requestForm,
