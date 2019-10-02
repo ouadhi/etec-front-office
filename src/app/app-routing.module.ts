@@ -16,7 +16,8 @@ import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: MainPageComponent },
+  // { path: '', pathMatch: 'full', component: MainPageComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'service-catalog' },
   { path: 'service-catalog', component: ServiceCatalogComponent },
   { path: 'my-requests', component: MyRequestsComponent, canActivate: [AppAuthGuard] },
   { path: 'service-details/:id', component: ServiceDetailsComponent },

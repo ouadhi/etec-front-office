@@ -69,7 +69,7 @@
     <ng-container *ngIf="expandableColumns.length > 0">
       <mat-row class="mat-elevation-z3 detail-row" *matRowDef="let row; columns: ['expandedDetail']"></mat-row>
     </ng-container>
-    <mat-footer-row *matFooterRowDef="['footerMessage']" [hidden]='data.length > 0'>
+    <mat-footer-row *matFooterRowDef="['footerMessage']" [hidden]='data && data.length'>
     </mat-footer-row>
 
 
