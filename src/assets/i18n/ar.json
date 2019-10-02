@@ -29,11 +29,11 @@
     "SERVICE_MATCHED_SEARCH_FROM_ORIGIN": "خدمه تطابق بحثك،،، من اصل",
     "SERVICE": "خدمة"
   },
-  "NEWS":{
+  "NEWS": {
     "TITLE": "الأخبار",
-    "MORE_DETAILS":"التفاصيل"
+    "MORE_DETAILS": "التفاصيل"
   },
-  "ADS":{
+  "ADS": {
     "TITLE": "الاعلانات"
   },
   "SERVICE": {
@@ -61,7 +61,9 @@
     "CLASSIFICATION": "التصنيف",
     "GUIDE": "دليل الخدمة",
     "COMMENTS": "التعليقات",
-    "COMMENT_ON": "في"
+    "COMMENT_ON": "في",
+    "beneficiaryTask": "تحديث البيانات",
+    "required": "مطلوب"
   },
   "BACK": "رجوع",
   "appTitle": "إدارة المهام",
@@ -102,7 +104,7 @@
   "No Entries": "لا يوجد طلبات",
   "forms": {
     "common": {
-       "SAVE": "حفظ",
+      "SAVE": "حفظ",
       "COMPLETE": "إنهاء",
       "Complete": "إنهاء",
       "required": "{{field}} لايمكن ان يكون فارغاً",
@@ -473,7 +475,6 @@
       "Edit": "تعديل",
       "day": "اليوم",
       "School": "المدرسة",
-
       "Complaint": "الشكوى",
       "Technical Remarks": "الملاحظات الفنية",
       "First Aid Guide": "مدى تحسن الحالة",
@@ -636,45 +637,45 @@
     "payed_true": "نعم مدفوعه",
     "payed_false": "مجانية"
   },
-  "PROFILE":{
-    "TITLE":"عرض الملف الشخصي",
-    "MAININFO":"البيانات الاساسية",
-    "NAME":"الاسم",
-    "NATIONAL_ID":"رقم الهوية",
-    "BIRTHDATE":"تاريخ الميلاد",
-    "GENDER":"النوع",
-    "EDU_STAGE":"مستوى التعليم",
-    "CONTACT":"بيانات التواصل",
-    "MOBILE":"الجوال",
-    "EMAIL":"البريد الالكتروني",
-    "STATE":"الحالة",
-    "MARITAL_STATE":"الحالة الاجتماعية",
-    "PRISONED":"مسحون",
-    "STOPPED_SERVICES":"موقوف الخدمات",
-    "HAS_COMMERCIAL_REGISTRATION":"لديه سجل تجاري",
-    "STATUS":"الحالة",
-    "INFO":"معلومات",
-    "ACTIVE":"فعال",
-    "ID":"الرقم التسلسلي",
-    "INTERNAL_ID":"الرقم التسلسلي الداخلي",
-    "RECEIVING":"بيانات الاستلام",
-    "RECEIVING_DATE":"تاريخ الاستلام",
-    "RECEIVING_PERSON":"الشخص المستلم المسئول",
-    "CLASSIFICATION":"التصنيف",
-    "BRANCH":"الفرع",
-    "FORMER_ASSOCIATION":"المعلومات السابقة",
-    "INVESTMENT_BANK_IBAN":"رقم ايبان البنك",
-    "SEGMENTS":"تصنيف المستفيدين",
-    "ORIGIN":"بيانات البلد الاصلية",
-    "NATIONAL_ORIGIN":"رقم الهوية الاصلية",
-    "NATIONAL_ID_DATE":"تاريخ الهوية الاصلية",
-    "IQ":"اختبار القدرات",
-    "IQ_PARTY":"الاختبار",
-    "IQ_DATE":"التاريخ",
-    "IQ_SCORE":"النقاط"
-    },
-    "OPPORTUNITY":{
-      "ADD_PAGETITLE": "اضافة فرصه وظيفية جديدة",
-      "VIEW_PAGETITLE": "عرض فرصة وظيفية"
-    }
+  "PROFILE": {
+    "TITLE": "عرض الملف الشخصي",
+    "MAININFO": "البيانات الاساسية",
+    "NAME": "الاسم",
+    "NATIONAL_ID": "رقم الهوية",
+    "BIRTHDATE": "تاريخ الميلاد",
+    "GENDER": "النوع",
+    "EDU_STAGE": "مستوى التعليم",
+    "CONTACT": "بيانات التواصل",
+    "MOBILE": "الجوال",
+    "EMAIL": "البريد الالكتروني",
+    "STATE": "الحالة",
+    "MARITAL_STATE": "الحالة الاجتماعية",
+    "PRISONED": "مسحون",
+    "STOPPED_SERVICES": "موقوف الخدمات",
+    "HAS_COMMERCIAL_REGISTRATION": "لديه سجل تجاري",
+    "STATUS": "الحالة",
+    "INFO": "معلومات",
+    "ACTIVE": "فعال",
+    "ID": "الرقم التسلسلي",
+    "INTERNAL_ID": "الرقم التسلسلي الداخلي",
+    "RECEIVING": "بيانات الاستلام",
+    "RECEIVING_DATE": "تاريخ الاستلام",
+    "RECEIVING_PERSON": "الشخص المستلم المسئول",
+    "CLASSIFICATION": "التصنيف",
+    "BRANCH": "الفرع",
+    "FORMER_ASSOCIATION": "المعلومات السابقة",
+    "INVESTMENT_BANK_IBAN": "رقم ايبان البنك",
+    "SEGMENTS": "تصنيف المستفيدين",
+    "ORIGIN": "بيانات البلد الاصلية",
+    "NATIONAL_ORIGIN": "رقم الهوية الاصلية",
+    "NATIONAL_ID_DATE": "تاريخ الهوية الاصلية",
+    "IQ": "اختبار القدرات",
+    "IQ_PARTY": "الاختبار",
+    "IQ_DATE": "التاريخ",
+    "IQ_SCORE": "النقاط"
+  },
+  "OPPORTUNITY": {
+    "ADD_PAGETITLE": "اضافة فرصه وظيفية جديدة",
+    "VIEW_PAGETITLE": "عرض فرصة وظيفية"
+  }
 }

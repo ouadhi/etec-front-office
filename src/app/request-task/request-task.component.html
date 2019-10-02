@@ -1,0 +1,4 @@
+<app-page>
+    <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
+        [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (submit)="onSubmit($event)"></formio>
+</app-page>

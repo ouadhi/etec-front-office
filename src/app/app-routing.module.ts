@@ -13,6 +13,7 @@ import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
 import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
+import { RequestTaskComponent } from './request-task/request-task.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,11 @@ const routes: Routes = [
   { path: 'my-requests', component: MyRequestsComponent, canActivate: [AppAuthGuard] },
   { path: 'service-details/:id', component: ServiceDetailsComponent },
   { path: 'request/:id', component: RequestComponent, canActivate: [AppAuthGuard] },
-  { path: 'request-details/:link/:formData/:cmmnId', component: RequestDetailsComponent, canActivate: [AppAuthGuard] },
+  { path: 'request-details/:link/:formData/:cmmnId/:caseId/:requestId', component: RequestDetailsComponent, canActivate: [AppAuthGuard] },
+  {
+    path: 'request-task/:formKey/:caseDefinitionId/:caseInstanceId/:taskDefinitionKey/:taskId/:caseId/:requestId',
+    component: RequestTaskComponent, canActivate: [AppAuthGuard]
+  },
   { path: 'news-details/:id', component: NewsDetailsComponent },
   { path: 'ads-details/:id', component: AdsDetailsComponent },
   { path: 'profile/:id', component: ProfileComponent },

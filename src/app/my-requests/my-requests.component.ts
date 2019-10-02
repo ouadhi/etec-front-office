@@ -29,7 +29,10 @@ export class MyRequestsComponent {
     requestName: { name: 'Request Name', sortable: false },
     requestDate: { name: 'Request Date', sortable: true, formatDate: true },
     status: { name: 'Status', sortable: true },
-    data: { name: 'Details', sortable: false, display: 'detailsButton', param1: 'link', param2: 'data', param3: 'cmmnId' }
+    data: {
+      name: 'Details', sortable: false, display: 'detailsButton',
+      param1: 'link', param2: 'data', param3: 'cmmnId', param4: 'caseId', param5: 'id'
+    }
 
   };
 

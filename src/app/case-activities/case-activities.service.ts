@@ -23,4 +23,10 @@ export class CaseActivityService {
             map(data => (data.map(item => this.activityInstanceAdapter.adapt(item)))
             ));
     }
+    getRequestTasks(queryParams = {}) {
+        const endpoint = `${environment.requestApi.api}${environment.requestApi.rest.tasks}`;
+        return this.http.get<any[]>(endpoint, { params: queryParams }).pipe(
+            map(data => (data)
+            ));
+    }
 }

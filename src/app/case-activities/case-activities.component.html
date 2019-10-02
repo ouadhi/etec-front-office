@@ -11,6 +11,16 @@
                     <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"></ion-icon>
                 </ion-chip>
             </ion-col>
+            <ion-col *ngIf="activity.activityName == 'task' && activity.active && !activity.completed">
+                <ion-chip (click)="action(activity)" [ngClass]="{'glowing': true}" [color]="'warning'">
+                    <ion-label>{{'SERVICE.beneficiaryTask' | translate}}
+                        <!-- <span class="mdate">
+                            {{'SERVICE.required' | translate}}
+                        </span> -->
+                    </ion-label>
+                    <ion-icon [name]="'alert'"></ion-icon>
+                </ion-chip>
+            </ion-col>
         </ng-container>
     </ion-row>
 </ion-grid>

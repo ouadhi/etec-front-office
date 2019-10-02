@@ -36,6 +36,7 @@ export const environment = {
     // api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
     api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8082',
     rest: {
+      tasks: '/rest/task',
       myRequests: '/api/portal/requests',
       myBeneficiarySegments: '/api/portal/beneficiary-segments-cms',
       caseActivity: '/rest/history/case-activity-instance'
@@ -69,7 +70,10 @@ export const environment = {
     }
   },
   profile: {
-      "api": "http://3.87.111.211:8120/Ekhaa/beneficiaries"
+    api: 'http://3.87.111.211:8120/Ekhaa/beneficiaries'
+  },
+  task: {
+    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal'
   }
 };
 

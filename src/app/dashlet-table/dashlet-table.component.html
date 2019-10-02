@@ -33,7 +33,7 @@
         </ion-chip>
         <ng-container *ngIf="columns[col].display == 'detailsButton'">
           <button mat-flat-button color="primary"
-            [routerLink]="[detailsRouterForEachItem, element[columns[col].param1], element[columns[col].param2], (element[columns[col].param3] || '')]">{{'Details' | translate}}</button>
+            [routerLink]="[detailsRouterForEachItem, element[columns[col].param1], element[columns[col].param2], (element[columns[col].param3] || ''),(element[columns[col].param4] || ''),(element[columns[col].param5] || '')]">{{'Details' | translate}}</button>
         </ng-container>
         <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
           <ng-container *ngIf="columns[col]['formatDate'];else normal">

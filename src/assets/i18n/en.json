@@ -61,7 +61,9 @@
     "CLASSIFICATION": "Classification",
     "GUIDE": "Guide",
     "COMMENTS": "Comments",
-    "COMMENT_ON": "on"
+    "COMMENT_ON": "on",
+    "beneficiaryTask": "Data Update",
+    "required": "Required"
   },
   "BACK": "Back",
   "appTitle": "CASE MANAGEMENT",

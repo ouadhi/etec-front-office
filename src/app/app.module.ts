@@ -87,6 +87,7 @@ import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
 import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
+import { RequestTaskComponent } from './request-task/request-task.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -123,7 +124,8 @@ export function getFormioEnv() {
     AdsDetailsComponent,
     ProfileComponent,
     AddOpportunityComponent,
-    ViewOpportunityComponent
+    ViewOpportunityComponent,
+    RequestTaskComponent
   ],
   imports: [
     KeycloakAngularModule,
