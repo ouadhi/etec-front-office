@@ -555,6 +555,17 @@
       "NAME": "مسمى الوظيفة",
       "NUMBER": "رقم الوظيفة",
       "CITY": "المدينة",
-      "VACANCIES": "عدد الشواغر"
+      "VACANCIES": "عدد الشواغر",
+      "DESCRIPTION": "التوصيف",
+      "SALARYTYPE": "طريقة تحديد الراتب",
+      "SALARYAMOUNT": "الراتب",
+      "FROM": "تاريخ بدء التقديم",
+      "TO": "تاريخ نهاية التقديم",
+      "EDUCATION": "مستوى التعليم",
+      "REQUIREMENTS": "المتطلبات",
+      "QUALIFICATIONS": "المؤهلات",
+      "CERTIFICATES": "الشهادات",
+      "YEARSOFEXPERIENCE": "عدد سنوات الخبره المطلوبة",
+      "NOTES": "ملاحظات"
     }
 }
