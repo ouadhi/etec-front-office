@@ -4,8 +4,7 @@
         "api": {
             "master": "http://ec2-3-95-138-52.compute-1.amazonaws.com:8089",
             "assets": "http://ec2-3-95-138-52.compute-1.amazonaws.com:8089/storage/uploads"
-        },
-        "portalUserToken": "account-14ce9c9a25353166aee307ef60c25c"
+        }
     },
     "keycloak": {
         "url": "http://ec2-34-226-249-174.compute-1.amazonaws.com:9080/auth",
