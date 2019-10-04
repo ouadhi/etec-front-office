@@ -4,6 +4,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SwitchLangService } from './switch-lang.service';
 
+import { Formio } from 'formiojs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,16 +12,47 @@ import { SwitchLangService } from './switch-lang.service';
 })
 export class AppComponent implements OnInit {
   title = 'rms';
-  
+
 
   loggedIn = false;
   userDetails: KeycloakProfile;
 
   constructor(
-    private keycloakService: KeycloakService, 
+    private keycloakService: KeycloakService,
     public translate: TranslateService,
     public switchLangService: SwitchLangService
-    ) { }
+  ) {
+    const DelayPlugin = {
+      priority: 100,
+      preRequest: (requestArgs) => {
+        return new Promise((resolve, reject) => {
+          this.keycloakService.getToken().then(token => {
+            console.log(requestArgs);
+            if (!requestArgs.opts) {
+              requestArgs.opts = {};
+            }
+            if (!requestArgs.opts.header) {
+              requestArgs.opts.header = new Headers();
+            }
+            if (requestArgs.type !== 'submission' && requestArgs.type !== 'form') {
+              if (requestArgs.opts.header.has('authorization')) {
+                requestArgs.opts.header.append('BE-Authorization', `bearer ${token}`);
+              } else {
+                requestArgs.opts.header.append('Authorization', `bearer ${token}`);
+              }
+            }
+            if (requestArgs.type === 'submission') {
+              requestArgs.opts.header.append('content-type', `application/json`);
+              requestArgs.opts.header.append('Authorization', `bearer ${token}`);
+            }
+            resolve();
+          });
+        });
+      }
+    };
+
+    Formio.registerPlugin(DelayPlugin, 'delay');
+  }
 
 
   async ngOnInit() {

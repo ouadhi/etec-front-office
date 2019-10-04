@@ -27,7 +27,6 @@ export class RequestComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.serviceId = params['serviceId'];
-      console.log(this.route.snapshot);
       this.params = [
         // { url: environment.beneficiaryApi.api, success: `submission.data = {requesterInfo: {data: response}};` }
         {

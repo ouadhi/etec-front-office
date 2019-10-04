@@ -1,18 +1,24 @@
 <div class="mainWrapper" [class.mainWrapper--rtl]="switchLangService.currentLang=='ar'">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span>
+      <!-- <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span> -->
 
+      <span fxFlex>
+        <img style="margin-top:8px;margin-right:5px;" height="50" src="/assets/logo.png" />
+      </span>
 
-      
-      <button mat-button [matMenuTriggerFor]="langDropdown"> <mat-icon>person</mat-icon> {{'LAYOUT.CHANGE_LANGUAGE' | translate}}</button>
+      <button mat-button [matMenuTriggerFor]="langDropdown">
+        <mat-icon>person</mat-icon> {{'LAYOUT.CHANGE_LANGUAGE' | translate}}
+      </button>
       <mat-menu #langDropdown="matMenu">
         <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
         <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
       </mat-menu>
 
 
-      <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn"> <mat-icon>person</mat-icon> {{'LAYOUT.WELCOME' | translate}} ({{userDetails.username}})</button>
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn">
+        <mat-icon>person</mat-icon> {{'LAYOUT.WELCOME' | translate}} ({{userDetails.username}})
+      </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="doLogout()">{{'LAYOUT.LOGOUT' | translate}}</button>
       </mat-menu>
@@ -33,7 +39,7 @@
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
-  
+
   <div class="routerOutletContainer">
     <router-outlet></router-outlet>
   </div>
