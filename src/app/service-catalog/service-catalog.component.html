@@ -27,7 +27,7 @@
 
         <div class="filtersSection__resetFilters">
           <mat-list-item>
-              <button mat-button (click)="resetFilters()" [disabled]="userSegments.length>0"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>
+              <button mat-button (click)="resetFilters()" [disabled]="userSegments?.length>0"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>
           </mat-list-item>
         </div>
 
@@ -56,7 +56,7 @@
             <div class="filtersList__head">{{a[trans._key('segmentTypeName')]}}</div>
               <ng-container *ngFor="let b of segments">
                 <div class="filtersList__item">
-                  <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment(b._id)" [disabled]="userSegments.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
+                  <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment(b._id)" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
                 </div>
               </ng-container>
           </div>
@@ -110,16 +110,16 @@
         </ng-container>
 
         <div fxLayout="row" fxLayoutAlign="center center">
-          <mat-card *ngIf="(data | filterBy: dataFilters).length === 0">
+          <mat-card *ngIf="(data | filterBy: dataFilters)?.length === 0">
                 {{'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate}}
                 <br><br>
               <button mat-stroked-button color="warn" (click)="resetFilters()" [disabled]="userSegments.length>0">{{'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate}}</button>
           </mat-card>
         </div>
       </section>
-      <small *ngIf="(data | filterBy: dataFilters).length != 0">
-        {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(data | filterBy: dataFilters).length}} 
-        <ng-container *ngIf="(data | filterBy: dataFilters).length !=totalResult">
+      <small *ngIf="(data | filterBy: dataFilters)?.length != 0">
+        {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(data | filterBy: dataFilters)?.length}} 
+        <ng-container *ngIf="(data | filterBy: dataFilters)?.length !=totalResult">
           {{'CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN' | translate }} {{totalResult}}</ng-container> 
           {{'CATALOG.SERVICE' | translate }}
       </small>

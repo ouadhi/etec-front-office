@@ -13,26 +13,72 @@ import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
 import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
+import { environment } from '../environments/environment';
+import { AppRoleGuard } from './app.roleguard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
   // { path: '', pathMatch: 'full', component: MainPageComponent },
   { path: '', pathMatch: 'full', redirectTo: 'service-catalog' },
-  { path: 'service-catalog', component: ServiceCatalogComponent },
-  { path: 'my-requests', component: MyRequestsComponent, canActivate: [AppAuthGuard] },
-  { path: 'service-details/:id', component: ServiceDetailsComponent },
-  { path: 'request/:id', component: RequestComponent, canActivate: [AppAuthGuard] },
-  { path: 'request-details/:link/:formData/:cmmnId', component: RequestDetailsComponent, canActivate: [AppAuthGuard] },
-  { path: 'news-details/:id', component: NewsDetailsComponent },
-  { path: 'ads-details/:id', component: AdsDetailsComponent },
-  { path: 'profile/:id', component: ProfileComponent },
-  { path: 'opportunity/add', component: AddOpportunityComponent },
-  { path: 'opportunity/view/:id', component: ViewOpportunityComponent }
+  {
+    path: 'service-catalog', component: ServiceCatalogComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'my-requests', component: MyRequestsComponent,
+    canActivate: [AppAuthGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'service-details/:id', component: ServiceDetailsComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'request/:id', component: RequestComponent,
+    canActivate: [AppAuthGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'request-details/:link/:formData/:cmmnId', component: RequestDetailsComponent,
+    canActivate: [AppAuthGuard],
+    data: { roles: [environment.roles.beneficiary] },
+
+  },
+  {
+    path: 'news-details/:id', component: NewsDetailsComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'ads-details/:id', component: AdsDetailsComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'profile/:id', component: ProfileComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'opportunity/add', component: AddOpportunityComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'opportunity/view/:id', component: ViewOpportunityComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AppAuthGuard]
+  providers: [AppAuthGuard, AppRoleGuard]
 })
 export class AppRoutingModule { }

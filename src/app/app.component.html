@@ -17,7 +17,7 @@
 
 
       <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn">
-        <mat-icon>person</mat-icon> {{'LAYOUT.WELCOME' | translate}} ({{userDetails.username}})
+        <mat-icon>person</mat-icon> {{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}} {{userDetails.lastName}})
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="doLogout()">{{'LAYOUT.LOGOUT' | translate}}</button>

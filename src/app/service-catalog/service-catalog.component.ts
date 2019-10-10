@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../services.service';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { Input, Output, EventEmitter } from '@angular/core';
-import {RequestsService} from '../requests.service';
-import {IImage} from 'ng-simple-slideshow'
+import { RequestsService } from '../requests.service';
+import { IImage } from 'ng-simple-slideshow'
 import { environment } from 'src/environments/environment';
 import { KeycloakService } from 'keycloak-angular';
 import { SwitchLangService } from './../switch-lang.service';
@@ -48,7 +48,7 @@ export class ServiceCatalogComponent implements OnInit {
     private keycloakService: KeycloakService,
     private requestsService: RequestsService,
     public trans: SwitchLangService
-    ) { }
+  ) { }
 
   ngOnInit() {
 
@@ -60,21 +60,21 @@ export class ServiceCatalogComponent implements OnInit {
 
   }
 
-   loadBanners() {
-     this.servicesService.getBanners().subscribe(data => {
+  loadBanners() {
+    this.servicesService.getBanners().subscribe(data => {
 
-       this.imagesSlider = [];
-       data.entries.forEach(element => {
-         const item = {
-         url : `${environment.cms.api.assets}${element.url.path}`,
-         href : element.href
-       };
+      this.imagesSlider = [];
+      data.entries.forEach(element => {
+        const item = {
+          url: `${environment.cms.api.assets}${element.url.path}`,
+          href: element.href
+        };
 
-         this.imagesSlider.push(item);
-       });
+        this.imagesSlider.push(item);
+      });
 
-     });
-   }
+    });
+  }
 
   mostUsed() {
     this.dataMostUsed = [];
@@ -88,15 +88,15 @@ export class ServiceCatalogComponent implements OnInit {
     this.servicesService.getSegments().subscribe(data => {
       this.segments = data.entries;
 
-      this.segments.forEach( (element, i) => {
+      this.segments.forEach((element, i) => {
         if (element.activation) {
-            const newObj = {};
-            if (userSegments.includes(element._id)) {
-              newObj[element._id] = true;
-            } else {
-              newObj[element._id] = false;
-            }
-            this.segmentInput = {...this.segmentInput, ...newObj};
+          const newObj = {};
+          if (userSegments.includes(element._id)) {
+            newObj[element._id] = true;
+          } else {
+            newObj[element._id] = false;
+          }
+          this.segmentInput = { ...this.segmentInput, ...newObj };
         }
       });
 
@@ -115,10 +115,10 @@ export class ServiceCatalogComponent implements OnInit {
     this.servicesService.getTags().subscribe(data => {
       this.tags = data.entries;
 
-      this.tags.forEach( (element, i) => {
+      this.tags.forEach((element, i) => {
         const newObj = {};
         newObj[element._id] = false;
-        this.tagsInput = {...this.tagsInput, ...newObj};
+        this.tagsInput = { ...this.tagsInput, ...newObj };
       });
     });
 
@@ -135,46 +135,46 @@ export class ServiceCatalogComponent implements OnInit {
   search() {
 
     this.servicesService.getServices().subscribe(data => {
-        this.data = data.entries;
-        this.totalResult = data.entries.length;
+      this.data = data.entries;
+      this.totalResult = data.entries.length;
 
-        // transform data structure
-        this.data.forEach( (element, i) => {
+      // transform data structure
+      this.data.forEach((element, i) => {
 
-          // change segment object to object of arrays with new key
-          let segmentsGroup_inline = [];
-          if (element.beneficiaries.length > 0) {
+        // change segment object to object of arrays with new key
+        let segmentsGroup_inline = [];
+        if (element.beneficiaries.length > 0) {
 
 
-            element.beneficiaries.forEach(element2 => {
-              segmentsGroup_inline.push(element2.segments);
+          element.beneficiaries.forEach(element2 => {
+            segmentsGroup_inline.push(element2.segments);
+          });
+
+          const segments = segmentsGroup_inline;
+          segmentsGroup_inline = [];
+          segments.forEach(segmentSet => {
+            const set = {};
+            segmentSet.forEach(segment => {
+              set[segment._id] = true;
             });
+            segmentsGroup_inline.push(set);
+          });
 
-            const segments = segmentsGroup_inline;
-            segmentsGroup_inline = [];
-            segments.forEach(segmentSet => {
-              const set = {};
-              segmentSet.forEach(segment => {
-                set[segment._id] = true;
-              });
-              segmentsGroup_inline.push(set);
-            });
+        }
+        this.data[i].segmentsGroup_inline = segmentsGroup_inline;
 
-          }
-          this.data[i].segmentsGroup_inline = segmentsGroup_inline;
+        // change tag object to array with new key
+        const tags_inline = [];
+        if (element.tag.length > 0) {
+          element.tag.forEach(element2 => {
+            tags_inline[element2._id] = true;
+          });
+        }
+        this.data[i].tags_inline = tags_inline;
 
-          // change tag object to array with new key
-          const tags_inline = [];
-          if (element.tag.length > 0) {
-            element.tag.forEach(element2 => {
-              tags_inline[element2._id] = true;
-            });
-          }
-          this.data[i].tags_inline = tags_inline;
+      });
 
-        });
-
-      }
+    }
     );
   }
 
@@ -224,9 +224,9 @@ export class ServiceCatalogComponent implements OnInit {
     // convert to array
     for (const key in this.tagsInput) {
       if (this.tagsInput.hasOwnProperty(key)) {
-          // only if checked
-          if (this.tagsInput[key] === true) {
-            this.dataFilters.tags_inline[key] = true;
+        // only if checked
+        if (this.tagsInput[key] === true) {
+          this.dataFilters.tags_inline[key] = true;
         }
       }
     }
@@ -255,7 +255,7 @@ export class ServiceCatalogComponent implements OnInit {
     this.keyword = '';
     this.filterKeyword();
     this.dataFilters.segmentsGroup_inline = [],
-    this.dataFilters.tags_inline = {};
+      this.dataFilters.tags_inline = {};
 
     this.tagsInput = [];
     this.segmentInput = [];

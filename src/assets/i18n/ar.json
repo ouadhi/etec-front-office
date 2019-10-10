@@ -61,6 +61,7 @@
     "CLASSIFICATION": "التصنيف",
     "GUIDE": "دليل الخدمة",
     "COMMENTS": "التعليقات",
+    "NO_ENTRY": "لا يوجد",
     "COMMENT_ON": "في"
   },
   "BACK": "رجوع",
@@ -185,7 +186,7 @@
       "No": "لا",
       "Type to search": "بحث",
       "Case Details": "تفاصيل الطلب",
-      "Department": "القسم",
+      "Department": "الإدارة",
       "Status": "الحالة",
       "Case Name": "اسم الطلب",
       "Date": "تاريخ الطلب",
@@ -605,14 +606,15 @@
       "Theft Date": "تاريخ وقوع الحادثة",
       "Attachments": "المرفقات",
       "Theft Description": "وصف واقعة السرقة",
-      "Period Cannot be more than 90 days": "مدة الدورة يجب أن لا تتجاوز ٩٠ يوم"
+      "Period cannot be longer than 3 months": "مدة الدورة يجب أن لا تتجاوز ثلاثة أشهر",
+      "To date should be greater than from date":"تاريخ البداية يجب ان يسبق تاريخ النهاية"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",
       "Request Name": "اسم الطلب",
       "Number": "رقم الطلب",
       "Branch": "الفرع",
-      "Department": "القسم",
+      "Department": "الإدارة",
       "Status": "الحالة",
       "Priority": "الأهمية",
       "Security": "الضمانة",
@@ -634,7 +636,7 @@
   "service": {
     "No Comments": "لا يوجد تعليقات",
     "Category": "الفئة",
-    "Department": "القسم",
+    "Department": "الإدارة",
     "payed_true": "نعم مدفوعه",
     "payed_false": "مجانية"
   },

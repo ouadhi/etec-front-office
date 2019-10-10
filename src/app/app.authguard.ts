@@ -29,7 +29,12 @@ export class AppAuthGuard extends KeycloakAuthGuard {
             break;
           }
         }
-        resolve(granted);
+        if (granted) {
+          resolve(granted);
+
+        } else {
+          resolve(true);
+        }
       }
     });
   }

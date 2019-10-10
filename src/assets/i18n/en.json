@@ -61,6 +61,7 @@
     "CLASSIFICATION": "Classification",
     "GUIDE": "Guide",
     "COMMENTS": "Comments",
+    "NO_ENTRY": "Unspecified",
     "COMMENT_ON": "on"
   },
   "BACK": "Back",
