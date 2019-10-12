@@ -13,25 +13,7 @@ import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
 import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
-<<<<<<< HEAD
 import { AllOpportunitiesComponent } from './opportunities/all-opportunities/all-opportunities.component';
-
-
-const routes: Routes = [
-  { path: '', pathMatch: 'full', component: MainPageComponent },
-  { path: 'service-catalog', component: ServiceCatalogComponent },
-  { path: 'my-requests', component: MyRequestsComponent, canActivate: [AppAuthGuard] },
-  { path: 'service-details/:id', component: ServiceDetailsComponent },
-  { path: 'request/:id', component: RequestComponent, canActivate: [AppAuthGuard] },
-  { path: 'request-details/:link/:formData/:cmmnId', component: RequestDetailsComponent, canActivate: [AppAuthGuard] },
-  { path: 'news-details/:id', component: NewsDetailsComponent },
-  { path: 'ads-details/:id', component: AdsDetailsComponent },
-  { path: 'profile/:id', component: ProfileComponent },
-  
-  { path: 'opportunity/add', component: AddOpportunityComponent },
-  { path: 'opportunity/view/:id', component: ViewOpportunityComponent },
-  { path: 'opportunity/all' , component: AllOpportunitiesComponent }
-=======
 import { environment } from '../environments/environment';
 import { AppRoleGuard } from './app.roleguard';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -91,9 +73,14 @@ const routes: Routes = [
     canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
+  { 
+    path: 'opportunity/all' , component: AllOpportunitiesComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' }
->>>>>>> 767280a419099dbf30fa78d4f383fa3da0f720d3
+
 ];
 
 @NgModule({
