@@ -16,7 +16,7 @@ export class ServicesService {
 
     getCMSheaders(){
       let headers:HttpHeaders = new HttpHeaders();
-      headers = headers.append('Authorization', 'Bearer '+environment.cms.portalUserToken);
+      // headers = headers.append('Authorization', 'Bearer '+environment.cms.portalUserToken);
       return headers;
     }
   

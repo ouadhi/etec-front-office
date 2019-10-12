@@ -17,7 +17,7 @@
 
 
       <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn">
-        <mat-icon>person</mat-icon> {{'LAYOUT.WELCOME' | translate}} ({{userDetails.username}})
+        <mat-icon>person</mat-icon> {{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}} {{userDetails.lastName}})
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="doLogout()">{{'LAYOUT.LOGOUT' | translate}}</button>
@@ -32,7 +32,7 @@
   <mat-toolbar color="">
     <mat-toolbar-row>
       <span>
-        <a mat-button routerLink="/" routerLinkActive="active">{{'NAV.MAIN_PAGE' | translate }}</a>
+        <!-- <a mat-button routerLink="/" routerLinkActive="active">{{'NAV.MAIN_PAGE' | translate }}</a> -->
         <a mat-button routerLink="/service-catalog" routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate }}</a>
         <a mat-button routerLink="/my-requests" routerLinkActive="active">{{'NAV.MY_REQUESTS' | translate}}</a>
         <a mat-button routerLink="/opportunity/all" routerLinkActive="active">{{'NAV.ALL_OPPORTUNITIES' | translate}}</a>

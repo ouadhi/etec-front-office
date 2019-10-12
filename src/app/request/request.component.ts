@@ -28,13 +28,16 @@ export class RequestComponent implements OnInit {
       this.id = params['id'];
       this.serviceId = params['serviceId'];
       this.params = [
-        // { url: environment.beneficiaryApi.api, success: `submission.data = {requesterInfo: {data: response}};` }
         {
           url: environment.beneficiaryApi.api,
-          success: `submission.data = {serviceId:"${this.serviceId}",requesterInfo: {data: response}};`
+          parallel: true,
+          success: `submission.data = {serviceId:"${this.serviceId}",entrepreneurshipType:"${this.serviceId}", requesterInfo: {data: response}};`
         }
       ];
-      if (!this.serviceId || this.serviceId === null || this.serviceId === undefined || this.serviceId === '') {
+      if (
+        !this.serviceId || this.serviceId === null ||
+        this.serviceId === undefined || this.serviceId === '' ||
+        this.serviceId === 'undefined') {
         this.params[0].success = `submission.data = {requesterInfo: {data: response}};`;
       }
       this.formReady = true;

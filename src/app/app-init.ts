@@ -8,12 +8,14 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
       try {
         await keycloak.init({
           config: environment.keycloak,
+          loadUserProfileAtStartUp: false,
           initOptions: {
             onLoad: 'check-sso',
             checkLoginIframe: false
           },
           bearerExcludedUrls: [
             '/assets/', // due to call ngx-translate
+            environment.statisticsApi.api,
             environment.cms.api.master,
             environment.cms.api.assets,
             // environment.formio.api.requestForm,

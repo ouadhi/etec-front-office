@@ -5,6 +5,7 @@ import { RequestsService } from './../requests.service';
 import { from, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
 import { concatMap } from 'rxjs/internal/operators';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-my-requests',
@@ -15,7 +16,8 @@ export class MyRequestsComponent {
 
   constructor(
     private http: HttpClient,
-    private requestsService: RequestsService
+    private requestsService: RequestsService,
+    public datePipe: DatePipe
   ) { }
 
 
@@ -34,17 +36,22 @@ export class MyRequestsComponent {
   };
 
   dashletService = (params) => {
-    this.requestsService.getRequests(params).subscribe((response: HttpResponse<object>) => {
-      this.data.totalCount = response.headers.get('X-Total-Count');
-      this.data.items = response.body;
-    });
+    params.sort = params.sortBy + ',' + params.sortDirection;
 
-    // pass params to service function and return observable
-    const delayedObservable = of(this.data).pipe(
-      delay(1000)
-    );
-    return delayedObservable;
+    // DUE TO Server do not accepet a format, only like this 1997-07-16T19:20:30.45+01:00
+    if (params.requestDateAfter) {
+      params.requestDateAfter = this.datePipe.transform(params.requestDateAfter, 'yyyy-MM-ddTHH:mm:ss') + 'z';
+    } else {
+      params.requestDateAfter = '';
+    }
 
+    // DUE TO Server do not accepet a format, only like this 1997-07-16T19:20:30.45+01:00
+    if (params.requestDateBefore) {
+      params.requestDateBefore = this.datePipe.transform(params.requestDateBefore, 'yyyy-MM-ddT') + '23:59:59z';
+    } else {
+      params.requestDateBefore = '';
+    }
+    return this.requestsService.getRequests(params);
   }
 
 }

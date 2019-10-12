@@ -5,10 +5,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { SwitchLangService } from './switch-lang.service';
 
 import { Formio } from 'formiojs';
+import { AccountService } from './account.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [AccountService]
 })
 export class AppComponent implements OnInit {
   title = 'rms';
@@ -20,8 +22,10 @@ export class AppComponent implements OnInit {
   constructor(
     private keycloakService: KeycloakService,
     public translate: TranslateService,
-    public switchLangService: SwitchLangService
+    public switchLangService: SwitchLangService,
+    private accountService: AccountService
   ) {
+    console.log('.');
     const DelayPlugin = {
       priority: 100,
       preRequest: (requestArgs) => {
@@ -37,6 +41,7 @@ export class AppComponent implements OnInit {
             if (requestArgs.type !== 'submission' && requestArgs.type !== 'form') {
               if (requestArgs.opts.header.has('authorization')) {
                 requestArgs.opts.header.append('BE-Authorization', `bearer ${token}`);
+                // requestArgs.opts.header.set('Authorization', `bearer ${token}`);
               } else {
                 requestArgs.opts.header.append('Authorization', `bearer ${token}`);
               }
@@ -60,7 +65,8 @@ export class AppComponent implements OnInit {
     this.switchLangService.changeLang(this.switchLangService.getSelectedLang());
 
     if (await this.keycloakService.isLoggedIn()) {
-      this.userDetails = await this.keycloakService.loadUserProfile();
+      this.userDetails = await this.accountService.getAccount().toPromise()
+        .then(result => { console.log(result); return result; }); // await this.keycloakService.loadUserProfile();
       this.loggedIn = true;
     }
   }
