@@ -13,6 +13,7 @@ import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
 import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
+import { AllOpportunitiesComponent } from './opportunities/all-opportunities/all-opportunities.component';
 import { environment } from '../environments/environment';
 import { AppRoleGuard } from './app.roleguard';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -72,8 +73,14 @@ const routes: Routes = [
     canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
+  { 
+    path: 'opportunity/all' , component: AllOpportunitiesComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' }
+
 ];
 
 @NgModule({

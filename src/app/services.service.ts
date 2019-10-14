@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { LifeCycleService } from './config';
 import { environment } from '../environments/environment';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -87,6 +88,25 @@ export class ServicesService {
 
   getBanners(){
     return this.getCollectionAllActive('bannerSlider','activation',true);
+  }
+
+  getOpportunity(id){
+    return this.getCollectionEntryById('opportunity','_id',id);
+  }
+
+  getAllOpportunitiesAvailForToday():Observable<any> {
+    const todayDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
+
+    return this.http.post<any[]>(
+      `${environment.cms.api.master}/api/collections/get/opportunity/`,
+      {
+        "filter":{
+          //"from": `${todayDate}`
+        },
+        "populate": 1
+      }, {
+        headers: this.getCMSheaders()
+      });
   }
 
   

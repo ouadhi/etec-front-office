@@ -30,6 +30,11 @@ export class ServiceDetailsComponent implements OnInit {
   stats = 10;
 
   active = false;
+  department = {
+    'departmentName_ar': '',
+    'departmentName_en': ''
+  }
+
   public assets_url: string = environment.cms.api.assets;
   // public assets_url:string = 'http://localhost:8080';
 
@@ -49,17 +54,31 @@ export class ServiceDetailsComponent implements OnInit {
     this.servicesService.getService(id).subscribe(
       (data) => {
         this.data = data.entries[0];
-        const ids: Array<string> = [];
-        this.data.beneficiaries.forEach(element => {
-          ids.push(element._id);
-        });
-        this.servicesService.getSegmentsByIds(ids).subscribe(data => this.segments = data.entries);
-        this.servicesService.getComments(id).subscribe(data => this.comments = data.entries);
-        console.log(LifeCycleService.PUBLISHED);
-        console.log(this.data.lifeCycle);
-        if (this.data.lifeCycle === LifeCycleService.PUBLISHED) {
+        if (this.data.lifeCycle == LifeCycleService.PUBLISHED) {
           this.active = true;
         }
+        const ids: Array<string> = [];
+
+        this.data.beneficiaries.forEach(elementParent => {
+          
+          elementParent.segments.forEach(element => {
+            ids.push(element._id);
+          });
+
+        });
+
+        
+
+        this.servicesService.getSegmentsByIds(ids).subscribe(data => this.segments = data.entries);
+        this.servicesService.getComments(id).subscribe(data => this.comments = data.entries);
+        
+        this.servicesService.getCollectionEntryById('department','_id',this.data.category.department._id).subscribe(
+          (data)=> {
+            console.log('depart',data)
+            this.department['departmentName_ar'] = data.entries[0].departmentName_ar;
+            this.department['departmentName_en'] = data.entries[0].departmentName_en;
+          }
+        )
       },
       () => { },
       () => {
