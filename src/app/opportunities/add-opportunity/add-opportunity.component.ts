@@ -31,7 +31,7 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
       // TODO: Get Required params to use them in here, assign form key to this.id etc...
       this.params = [
         {
-          url: `${environment.wso2.base}${environment.wso2.api.integration}employees/322`,
+          url: `${environment.wso2.base}${environment.wso2.api.erp}employees/322`,
           parallel: true,
           success: `submission.data = {requesterInfo: {data: response}};`
           // this is an automated call that will happen in the form,

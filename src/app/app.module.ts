@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http'
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -92,6 +92,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HasRoleDirective } from './has-role.directive';
 import { SessionService } from './session.service';
 import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
+import { Wso2Interceptor } from './wso2.inteceptor';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -193,6 +194,11 @@ export function getFormioEnv() {
   ],
   providers: [
     DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Wso2Interceptor,
+      multi: true
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: initializer,

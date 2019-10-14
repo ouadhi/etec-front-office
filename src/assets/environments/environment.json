@@ -28,7 +28,7 @@
         "base": "http://100.25.39.251:8280/",
         "token": "a9ff3dbd-50fa-3275-b7a4-80f81efc5e65",
         "api": {
-          "integration": "integration/1.0.0/api/"
+          "erp": "erp/1.0.0/"
         }
       },
     "formio": {

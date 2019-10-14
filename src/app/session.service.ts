@@ -57,9 +57,6 @@ export class SessionService {
                 }
             });
         } else {
-            setTimeout(() => { 
-                console.log(this.keycloakService.isUserInRole(environment.roles[role]));
-            }, 3000);
             hasRole = this.keycloakService.isUserInRole(environment.roles[role]);
         }
         return hasRole;
