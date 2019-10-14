@@ -44,7 +44,13 @@ export const environment = {
   beneficiaryApi: {
     api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal/beneficiaries',
   },
-
+  wso2: {
+    base: 'http://100.25.39.251:8280/',
+    token: 'a9ff3dbd-50fa-3275-b7a4-80f81efc5e65',
+    api: {
+      integration: 'integration/1.0.0/api/'
+    }
+  },
   statisticsApi: {
     api: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8089/api/collections/get/segment/'
   },
@@ -73,7 +79,8 @@ export const environment = {
     account: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/api/account'
   },
   roles: {
-    beneficiary: 'ROLE_BENEFICIARY'
+    beneficiary: 'ROLE_BENEFICIARY',
+    department_specialist: 'specialst'
   }
 };
 

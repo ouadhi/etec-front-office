@@ -89,6 +89,9 @@ import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opp
 import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
 import { AllOpportunitiesComponent } from './opportunities/all-opportunities/all-opportunities.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HasRoleDirective } from './has-role.directive';
+import { SessionService } from './session.service';
+import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -127,7 +130,9 @@ export function getFormioEnv() {
     AddOpportunityComponent,
     ViewOpportunityComponent,
     AllOpportunitiesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HasRoleDirective,
+    ApplyOpportunityComponent
   ],
   imports: [
     KeycloakAngularModule,
@@ -192,7 +197,7 @@ export function getFormioEnv() {
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
-      deps: [KeycloakService]
+      deps: [KeycloakService, SessionService]
     },
     { provide: FormioAppConfig, useFactory: (getFormioEnv) },
     {
