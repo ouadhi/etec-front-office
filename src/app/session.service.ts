@@ -38,7 +38,7 @@ export class SessionService {
             }
             this.accountService.getAccount().toPromise()
                 .then(result => {
-                    this._userProfile = result as Keycloak.KeycloakProfile;
+                    this._userProfile = result;
                     resolve(this._userProfile);
                 },
                     // () => reject('The user profile could not be loaded.')
