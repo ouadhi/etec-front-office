@@ -2,17 +2,17 @@
     "production": true,
     "cms": {
         "api": {
-            "master": "http://ec2-100-24-44-125.compute-1.amazonaws.com:8089",
-            "assets": "http://ec2-100-24-44-125.compute-1.amazonaws.com:8089/storage/uploads"
-        }
+            "master": "https://eservice.ekhaa.org.sa/api/cms",
+            "assets": "https://eservice.ekhaa.org.sa/api/cms/storage/uploads"
+        }        
     },
     "keycloak": {
-        "url": "http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth",
-        "realm": "jhipster",
-        "clientId": "web_app"
+        "url": "https://eservice.ekhaa.org.sa/auth/",
+        "realm": "ekhaa",
+        "clientId": "fo-web"
     },
     "requestApi": {
-        "api": "http://ec2-100-24-44-125.compute-1.amazonaws.com:8082",
+        "api": "https://eservice.ekhaa.org.sa/api/requestmanagement",
         "rest": {
             "myRequests": "/api/portal/requests",
             "myBeneficiarySegments": "/api/portal/beneficiary-segments-cms",
@@ -20,14 +20,14 @@
         }
     },
     "beneficiaryApi": {
-        "api": "http://edigitpath.ap.ngrok.io.ngrok.io/api/portal/beneficiaries"
+        "api": "https://eservice.ekhaa.org.sa/api/orphanmanagement/api/portal/beneficiaries"
     },
     "formio": {
         "apiUrl": "https://api.form.io/",
-        "appUrl": "https://aqnkygpwykfzugd.form.io/"
+        "appUrl": "https://eservice.ekhaa.org.sa/api/formioUrl/"
     },
     "filter": {
-        "api": "http://ec2-100-24-44-125.compute-1.amazonaws.com:8083",
+        "api": "https://eservice.ekhaa.org.sa/api/referencedata",
         "rest": {
             "deparments": "/api/portal/departments",
             "services": "/api/request/eservices",
@@ -53,12 +53,13 @@
     },
     "profile": {
         "api": "http://3.87.111.211:8120/Ekhaa/beneficiaries",
-        "account": "http://ec2-100-24-44-125.compute-1.amazonaws.com:8080/api/account"
+        "account": "https://eservice.ekhaa.org.sa/api/api/account"
     },
     "roles": {
-        "beneficiary": "ROLE_BENEFICIARY"
+        "beneficiary": "ROLE_BENEFICIARY",
+        "employee": "ROLE_EMPLOYEE"
     },
     "statisticsApi": {
-        "api": "http://ec2-100-24-44-125.compute-1.amazonaws.com:8089/api/collections/get/segment/"
+        "api": "https://eservice.ekhaa.org.sa/api/cms/api/collections/get/segment/"
     }
 }
