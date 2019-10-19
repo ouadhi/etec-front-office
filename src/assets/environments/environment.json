@@ -2,17 +2,17 @@
     "production": true,
     "cms": {
         "api": {
-            "master": "https://eservice.ekhaa.org.sa/api/cms",
-            "assets": "https://eservice.ekhaa.org.sa/api/cms/storage/uploads"
+            "master": "http://3.95.138.52:8089",
+            "assets": "http://3.95.138.52:8089/storage/uploads"
         }        
     },
     "keycloak": {
-        "url": "https://eservice.ekhaa.org.sa/auth/",
+        "url": "http://ec2-34-226-249-174.compute-1.amazonaws.com:9080/auth/",
         "realm": "ekhaa",
         "clientId": "fo-web"
     },
     "requestApi": {
-        "api": "https://eservice.ekhaa.org.sa/api/requestmanagement",
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/requestmanagement",
         "rest": {
             "myRequests": "/api/portal/requests",
             "myBeneficiarySegments": "/api/portal/beneficiary-segments-cms",
@@ -20,14 +20,14 @@
         }
     },
     "beneficiaryApi": {
-        "api": "https://eservice.ekhaa.org.sa/api/orphanmanagement/api/portal/beneficiaries"
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/orphansmicroservices/api/portal/beneficiaries"
     },
     "formio": {
         "apiUrl": "https://api.form.io/",
-        "appUrl": "https://eservice.ekhaa.org.sa/api/formioUrl/"
+        "appUrl": "https://aqnkygpwykfzugd.form.io/"
     },
     "filter": {
-        "api": "https://eservice.ekhaa.org.sa/api/referencedata",
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/referencedata",
         "rest": {
             "deparments": "/api/portal/departments",
             "services": "/api/request/eservices",
@@ -53,7 +53,7 @@
     },
     "profile": {
         "api": "http://3.87.111.211:8120/Ekhaa/beneficiaries",
-        "account": "https://eservice.ekhaa.org.sa/api/api/account"
+        "account": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/api/account"
     },
     "roles": {
         "beneficiary": "ROLE_BENEFICIARY",

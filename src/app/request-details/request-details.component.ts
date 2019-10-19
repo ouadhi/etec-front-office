@@ -32,7 +32,7 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
         {
           url: environment.beneficiaryApi.api,
           success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
-          parralel: true
+          parallel: true
         }
       ];
       this.formReady = true;
