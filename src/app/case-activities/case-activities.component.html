@@ -5,7 +5,7 @@
                 <ion-chip [color]="activity.completed ? 'success' : 'medium'">
                     <ion-label>{{activity.caseActivityName}}
                         <span class="mdate">
-                            {{activity.createTime | date}} {{ activity.createTime | date:'shortTime' }}
+                            {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
                         </span>
                     </ion-label>
                     <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"></ion-icon>
