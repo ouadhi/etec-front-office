@@ -619,7 +619,13 @@
       "Student Prove": "تعريف الطالب",
       "Required Service": "الخدمة المطلوبة",
       "Required Service Details": "تفاصيل الخدمة المطلوبة",
-      "Bills": "الفواتير"
+      "Bills": "الفواتير",
+      "Will": "الوصية",
+      "Report must contains information about corpse reception, burial, solace and inventory of legacy": "التقرير يجب أن يتضمن معلومات استلام الجثمان، وتفاصيل الدفن، والعزاء، وحصر الإرث",
+      "Generated File": "تحميل الخطاب المولد",
+      "I accept to activate my investment account": "أقر بالموافقة على تفعيل حسابي الاستثماري",
+      "caseName": "القضية",
+      "Authority Letter": "خطاب الشفاعة"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",
