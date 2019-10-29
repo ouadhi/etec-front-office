@@ -85,7 +85,7 @@
     <div fxFlex="25">
 
 
-      <app-section sectionTitle="{{'SERVICE.VIDEO' | translate}}">
+      <app-section [hidden]="true" sectionTitle="{{'SERVICE.VIDEO' | translate}}">
         <!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
         <video controls width="324" height="196" src="{{assets_url}}/storage/uploads/{{data.video.path}}"></video>
 

@@ -39,8 +39,8 @@ export class AppComponent implements OnInit {
             }
             if (requestArgs.type !== 'submission' && requestArgs.type !== 'form') {
               if (requestArgs.opts.header.has('authorization')) {
-                requestArgs.opts.header.append('BE-Authorization', `bearer ${token}`);
-                // requestArgs.opts.header.set('Authorization', `bearer ${token}`);
+                // requestArgs.opts.header.append('BE-Authorization', `bearer ${token}`);
+                requestArgs.opts.header.set('Authorization', `bearer ${token}`);
               } else {
                 requestArgs.opts.header.append('Authorization', `bearer ${token}`);
               }
