@@ -20,23 +20,34 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
   sub: any;
 
   data: any;
+  submission: any;
   params;
 
   ngOnInit() {
+    // Make API Call TO Construct Submission Object.
+    /*
+    this.submission = {
+      data : {
+        field : "Value"
+      }
+    }
+    */
+
+
     this.sub = this.route.params.subscribe(params => {
       // TODO: Get Required params to use them in here, assign form key to this.id etc...
-      this.params = [
+     /* this.params = [
         {
           url: environment.beneficiaryApi.api,
           parallel: true,
-          success: `submission.data = {requesterInfo: {data: response}};`
+          success: `submission.data = {...submission.data , requesterInfo: {data: response}};`
           // this is an automated call that will happen in the form,
           // on success it will run the operation specified in here
           // You can use this to assign other required parameters.
           // example:  success: `submission.data =
           // {opportunityName:${params['opportunityName']},requesterInfo: {data: response}};`
         }
-      ];
+      ]; */
       // after your data is ready flip formReady to True.
       this.formReady = true;
     });
@@ -44,7 +55,7 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
   }
   onSubmit(submission) {
     console.log(submission);
-    this.goBack();
+    // this.goBack();
   }
   /**
    * Go Back After Request is sent

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../../services.service';
 import { environment } from '../../../environments/environment';
 import { SessionService } from '../../session.service';
+import { encodeUriFragment } from '@angular/router/src/url_tree';
 
 @Component({
   selector: 'app-add-opportunity',
@@ -26,14 +27,27 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
   data: any;
   params;
 
-  ngOnInit() {
+  async ngOnInit() {
+    const userInfo: any = await this.sessionService.loadUserProfile();
     this.sub = this.route.params.subscribe(params => {
       // TODO: Get Required params to use them in here, assign form key to this.id etc...
       this.params = [
         {
-          url: `${environment.wso2.base}${environment.wso2.api.erp}employees/322`,
+          url: `${environment.wso2.base}${environment.wso2.api.erp}employees/${encodeURIComponent(userInfo.username)}`,
           parallel: true,
-          success: `submission.data = {requesterInfo: {data: response}};`
+          success: `submission.data =  { branchId: response.role_branchId };`
+          /*
+          submission = {
+            data : {
+              requesterInfo : {
+                data : {
+                  Field:"value"
+                }
+              },
+              anotherField: "Value"
+            }
+          }
+          */
           // this is an automated call that will happen in the form,
           // on success it will run the operation specified in here
           // You can use this to assign other required parameters.
@@ -47,7 +61,8 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
   }
   onSubmit(submission) {
     console.log(submission);
-    this.goBack();
+    // submit to CMS To save Data.
+    // this.goBack();
   }
   /**
    * Go Back After Request is sent
