@@ -45,7 +45,8 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
       this.formReady = true;
     });
   }
-  onSubmit() {
+  onSubmit(submission) {
+    console.log(submission);
     this.goBack();
   }
   /**

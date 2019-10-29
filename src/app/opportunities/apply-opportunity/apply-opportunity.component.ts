@@ -42,7 +42,8 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
     });
 
   }
-  onSubmit() {
+  onSubmit(submission) {
+    console.log(submission);
     this.goBack();
   }
   /**

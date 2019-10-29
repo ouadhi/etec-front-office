@@ -21,8 +21,8 @@ export class Wso2Interceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
         // how to update the request Parameters
         let updatedRequest = request;
-        if (request.url.includes(environment.wso2.base)) {
-        // if (false) {
+        // if (request.url.includes(environment.wso2.base)) {
+        if (false) {
             updatedRequest = updatedRequest.clone({
                 headers: updatedRequest.headers.set(
                     'BE-Authorization',

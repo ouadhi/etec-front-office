@@ -10,26 +10,26 @@ import { ServicesService } from '../../services.service';
 export class ViewOpportunityComponent implements OnInit {
 
   constructor(
-    private route:ActivatedRoute,
-    private servicesService:ServicesService
-    ) { }
+    private route: ActivatedRoute,
+    private servicesService: ServicesService
+  ) { }
 
   id: any;
   sub: any;
-  data:any;
+  data: any;
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       this.id = params['id']; 
-       this.load(this.id);
+      this.id = params['id'];
+      this.load(this.id);
     });
   }
-  
-  load(id){
+
+  load(id) {
     this.servicesService.getOpportunity(id).subscribe(
-      (data)=>{
+      (data) => {
         this.data = data.entries[0];
-      }) 
+      })
   }
 
   ngOnDestroy() {
