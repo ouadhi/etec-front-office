@@ -8,6 +8,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
       try {
         await keycloak.init({
           config: environment.keycloak,
+          loadUserProfileAtStartUp: false,
           initOptions: {
             onLoad: 'check-sso',
             checkLoginIframe: false

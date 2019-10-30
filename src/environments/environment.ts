@@ -70,7 +70,12 @@ export const environment = {
     }
   },
   profile: {
-    api: 'http://3.87.111.211:8120/Ekhaa/beneficiaries'
+    api: 'http://3.87.111.211:8120/Ekhaa/beneficiaries',
+    account: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/api/account'
+
+  },
+  roles: {
+    beneficiary: 'ROLE_BENEFICIARY'
   },
   task: {
     api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal'

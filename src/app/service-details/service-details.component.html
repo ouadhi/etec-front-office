@@ -1,4 +1,4 @@
-<app-page pageTitle="{{'SERVICE.SERVICE' | translate}}: {{data[trans._key('serviceName')]}}">
+<app-page pageTitle="{{'SERVICE.SERVICE' | translate}}: {{data ? data[trans._key('serviceName')]: '' }}">
 
   <div *ngIf="!active">
     {{'SERVICE.IS_NOT_ACTIVE' | translate}}
@@ -10,16 +10,15 @@
 
         {{data[trans._key('description')]}}
 
-        <button [routerLink]="['/request', data.link, { serviceId: data.key }]"  skipLocationChange=true target="_blank" mat-raised-button
-          color="primary">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right</mat-icon></button>
+        <button [routerLink]="['/request', data.link, { serviceId: data.key }]" skipLocationChange=true target="_blank"
+          mat-raised-button color="primary" [disabled]="data.isApplyActive == false ? true : false" >{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right</mat-icon></button>
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
-        {{data[trans._key('conditionsAndRequirements')]}}
-        <!-- <ul>
+        <!-- {{data[trans._key('conditionsAndRequirements')]}} -->
+        <ul>
           <li *ngFor="let item of data[trans._key('conditionsAndRequirements')]">{{item.value}}</li>
         </ul>
-        -->
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.FAQ' | translate}}">
@@ -56,8 +55,8 @@
 
         <div class="inlineRowItem">{{'SERVICE.EXPECTED_TIME' | translate}}: {{data.expectedTime}}</div>
 
-        <div class="inlineRowItem">{{'SERVICE.COST_TYPE' |translate }} : {{'SERVICE.PAYED_'+data.payed | translate}}
-        </div>
+        <!-- <div class="inlineRowItem">{{'SERVICE.COST_TYPE' |translate }} : {{'SERVICE.PAYED_'+data.payed | translate}}
+        </div> -->
 
         <div class="inlineRowItem">{{'SERVICE.CHANNEL' | translate}}:
           <mat-chip-list class="mat-chip-list--inlineBlock">
@@ -69,13 +68,15 @@
 
       <app-section>
 
-        <div class="inlineRowItem">{{'SERVICE.TAGS' | translate}} :
+        <div class="inlineRowItem">{{'SERVICE.TAGS' | translate}} : <span
+            [hidden]="data.tag?.length">{{'SERVICE.NO_ENTRY' | translate}}</span>
           <mat-chip-list class="mat-chip-list--inlineBlock">
             <mat-chip color="primary" *ngFor="let tag of data.tag">{{tag.tag}}</mat-chip>
           </mat-chip-list>
         </div>
 
         <div class="inlineRowItem">{{'SERVICE.PRIMARY_SERVICE' |translate}} : {{data[trans._key('primaryService')]}}
+          <span [hidden]="data[trans._key('primaryService')]">{{'SERVICE.NO_ENTRY' | translate}}</span>
         </div>
 
       </app-section>
@@ -84,7 +85,7 @@
     <div fxFlex="25">
 
 
-      <app-section sectionTitle="{{'SERVICE.VIDEO' | translate}}">
+      <app-section [hidden]="true" sectionTitle="{{'SERVICE.VIDEO' | translate}}">
         <!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
         <video controls width="324" height="196" src="{{assets_url}}/storage/uploads/{{data.video.path}}"></video>
 
@@ -114,7 +115,7 @@
       <app-section sectionTitle="{{'SERVICE.CLASSIFICATION' | translate}}">
         <ul>
           <li>{{'service.Category' | translate }}: {{data.category[trans._key('categoryName')]}}</li>
-          <li>{{'service.Department' | translate }}: {{data.category.department[trans._key('departmentName')]}}</li>
+          <li>{{'service.Department' | translate }}: {{department[trans._key('departmentName')]}}</li>
         </ul>
       </app-section>
 
@@ -139,7 +140,7 @@
         {{comment.commentText}}
       </p>
     </div>
-    <div [hidden]="comments.length">
+    <div [hidden]="comments?.length">
       {{'service.No Comments' | translate}}
     </div>
   </app-section>

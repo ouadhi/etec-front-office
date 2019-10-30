@@ -63,7 +63,8 @@
     "COMMENTS": "Comments",
     "COMMENT_ON": "on",
     "beneficiaryTask": "Data Update",
-    "required": "Required"
+    "required": "Required",
+    "NO_ENTRY": "Unspecified"
   },
   "BACK": "Back",
   "appTitle": "CASE MANAGEMENT",

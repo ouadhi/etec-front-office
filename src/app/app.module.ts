@@ -88,6 +88,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
 import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
 import { RequestTaskComponent } from './request-task/request-task.component';
+import { AllOpportunitiesComponent } from './opportunities/all-opportunities/all-opportunities.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -125,7 +127,9 @@ export function getFormioEnv() {
     ProfileComponent,
     AddOpportunityComponent,
     ViewOpportunityComponent,
-    RequestTaskComponent
+    RequestTaskComponent,
+    AllOpportunitiesComponent,
+    NotFoundComponent
   ],
   imports: [
     KeycloakAngularModule,

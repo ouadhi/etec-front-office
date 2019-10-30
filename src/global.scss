@@ -27,12 +27,26 @@
   h4 {
     font-size: 16px !important;
   }
-  .formio-component-editgrid {
+  .formio-component-editgrid:not(.formio-component-editgrid-row-open) {
     overflow: auto;
     ul {
       display: table;
       min-width: 100%;
     }
+  }
+  .formio-component-editgrid.formio-component-editgrid-row-open {
+    overflow: hidden;
+    ul {
+      display: block;
+      min-width: 100%;
+      max-width: 100%;
+      .row{
+        overflow: hidden !important;
+      }
+    }
+  }
+  .editgrid-add{
+    margin: 15px 0px;
   }
   .formio-component-datagrid {
     overflow: auto;

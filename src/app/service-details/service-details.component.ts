@@ -12,64 +12,83 @@ import { SwitchLangService } from './../switch-lang.service';
 })
 export class ServiceDetailsComponent implements OnInit {
 
-  
-  
+
+
 
   constructor(
-    private route:ActivatedRoute,
-    private servicesService:ServicesService,
-    public trans:SwitchLangService
-    ) { }
+    private route: ActivatedRoute,
+    private servicesService: ServicesService,
+    public trans: SwitchLangService
+  ) { }
 
   id: any;
   sub: any;
 
-  data:any;
-  comments:any;
-  segments:any;
-  stats:number;
-  
-  active:boolean = false;
-  public assets_url:string = environment.cms.api.assets;
+  data: any;
+  comments: any;
+  segments: any;
+  stats = 10;
+
+  active = false;
+  department = {
+    'departmentName_ar': '',
+    'departmentName_en': ''
+  }
+
+  public assets_url: string = environment.cms.api.assets;
   // public assets_url:string = 'http://localhost:8080';
 
   // public lifeCycleService:LifeCycleService
-  
-  
+
+
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       this.id = params['id']; 
-       this.load(this.id);
-       this.getStats(this.id);
+      this.id = params.id;
+      this.load(this.id);
+      this.getStats(this.id);
     });
   }
 
-  load(id){
+  load(id) {
     this.servicesService.getService(id).subscribe(
-      (data)=>{
+      (data) => {
         this.data = data.entries[0];
-        let ids:Array<string>=[];
-        this.data.beneficiaries.forEach(element => {
-          ids.push(element._id);
-          console.log(ids);
-        });
-        this.servicesService.getSegmentsByIds(ids).subscribe(data=>this.segments = data.entries)
-        this.servicesService.getComments(id).subscribe(data=>this.comments = data.entries)
-
-        if(this.data.lifeCycle == LifeCycleService.PUBLISHED){
+        if (this.data.lifeCycle == LifeCycleService.PUBLISHED) {
           this.active = true;
         }
-      },
-      ()=>{},
-      ()=>{
+        const ids: Array<string> = [];
+
+        this.data.beneficiaries.forEach(elementParent => {
+          
+          elementParent.segments.forEach(element => {
+            ids.push(element._id);
+          });
+
+        });
+
         
-      })
-    
+
+        this.servicesService.getSegmentsByIds(ids).subscribe(data => this.segments = data.entries);
+        this.servicesService.getComments(id).subscribe(data => this.comments = data.entries);
+        
+        this.servicesService.getCollectionEntryById('department','_id',this.data.category.department._id).subscribe(
+          (data)=> {
+            console.log('depart',data)
+            this.department['departmentName_ar'] = data.entries[0].departmentName_ar;
+            this.department['departmentName_en'] = data.entries[0].departmentName_en;
+          }
+        )
+      },
+      () => { },
+      () => {
+
+      });
+
   }
 
-  getStats(id){  
-    this.servicesService.getStats(id).subscribe(data=>this.stats = data.entries.length);
+  getStats(id) {
+    // this.servicesService.getStats(id).subscribe(data=>this.stats = data.entries.length);
   }
 
   ngOnDestroy() {

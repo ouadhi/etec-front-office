@@ -35,6 +35,10 @@
           <button mat-flat-button color="primary"
             [routerLink]="[detailsRouterForEachItem, element[columns[col].param1], element[columns[col].param2], (element[columns[col].param3] || ''),(element[columns[col].param4] || ''),(element[columns[col].param5] || '')]">{{'Details' | translate}}</button>
         </ng-container>
+        <ng-container *ngIf="columns[col].display == 'detailsButton_oneParam'">
+          <button mat-flat-button color="primary"
+            [routerLink]="[detailsRouterForEachItem, (element[columns[col].param1] || '' )]">{{'Details' | translate}}</button>
+        </ng-container>
         <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
           <ng-container *ngIf="columns[col]['formatDate'];else normal">
             {{element[col].substring(0, 19) | date:'yyyy-MM-dd,hh:mm:ssa'}}
@@ -69,7 +73,7 @@
     <ng-container *ngIf="expandableColumns.length > 0">
       <mat-row class="mat-elevation-z3 detail-row" *matRowDef="let row; columns: ['expandedDetail']"></mat-row>
     </ng-container>
-    <mat-footer-row *matFooterRowDef="['footerMessage']" [hidden]='data.length > 0'>
+    <mat-footer-row *matFooterRowDef="['footerMessage']" [hidden]='data && data.length'>
     </mat-footer-row>
 
 

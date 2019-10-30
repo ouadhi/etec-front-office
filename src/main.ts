@@ -11,7 +11,6 @@ environmentLoaderPromise.then(env => {
   }
   Object.keys(env).forEach((key) => {
     environment[key] = env[key];
-    console.log(JSON.stringify(env[key]));
   });
 
   platformBrowserDynamic().bootstrapModule(AppModule);
