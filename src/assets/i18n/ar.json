@@ -639,7 +639,8 @@
       "Teacher Info": "بيانات المعلم - الأستاذ الجامعي",
       "Expiry Date": "تاريخ الانتهاء",
       "Care Organization": "الرعاية الاجتماعية",
-      "Apply Discount": "تطبيق الخصم"
+      "Apply Discount": "تطبيق الخصم",
+      "payment must not exceed 600 for every beneficiary": "لا يجب أن يتجاوز إجمالي الدفعات 600 للعميل"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",
