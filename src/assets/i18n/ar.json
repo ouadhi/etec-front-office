@@ -625,7 +625,21 @@
       "Generated File": "تحميل الخطاب المولد",
       "I accept to activate my investment account": "أقر بالموافقة على تفعيل حسابي الاستثماري",
       "caseName": "القضية",
-      "Authority Letter": "خطاب الشفاعة"
+      "Authority Letter": "خطاب الشفاعة",
+      "submit": "تقديم",
+      "Acceptance Letter": "خطاب القبول",
+      "Upload Ministry Letter": "تحميل خطاب الوزارة",
+      "Financial claim must contains beneficiary name": "يجب أن يحتوي مرفق المطالبة المالية على اسم المستفيد",
+      "Monthly Studying Report": "التقرير الدراسي الشهري",
+      "Teacher Identity": "هوية المدرس",
+      "contains an invalid value": "يحتوي قيمة غير صحيحة",
+      "Arrive Date": "تاريخ الدخول",
+      "Enablement Manager Decision is Required": "لا يمكن لقرار مدير التمكين أن يكون فارغاً",
+      "Name (Company, Institution, Driver)": "الاسم (الشركة،المؤسسة،السائق)",
+      "Teacher Info": "بيانات المعلم - الأستاذ الجامعي",
+      "Expiry Date": "تاريخ الانتهاء",
+      "Care Organization": "الرعاية الاجتماعية",
+      "Apply Discount": "تطبيق الخصم"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",
