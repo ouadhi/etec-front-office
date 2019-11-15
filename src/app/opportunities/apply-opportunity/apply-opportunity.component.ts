@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../../services.service';
 import { environment } from '../../../environments/environment';
+import { AccountService } from 'src/app/account.service';
+
 @Component({
   selector: 'app-apply-opportunity',
   templateUrl: './apply-opportunity.component.html',
@@ -12,7 +14,9 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    private accountService: AccountService
+    
   ) { }
 
   id: any;
@@ -22,19 +26,24 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
   data: any;
   submission: any;
   params;
+  accountId:string;
+  branchId: string;
 
   ngOnInit() {
-    // Make API Call TO Construct Submission Object.
-    /*
-    this.submission = {
-      data : {
-        field : "Value"
-      }
-    }
-    */
+    
+    this.accountService.getBranchIfForbeneficiary().subscribe(res=>{
+      console.log('getBranchIfForbeneficiary res ',res)
+      this.branchId = res.branchId
+    })
 
+    
+    this.accountService.getAccount().subscribe(res=>{
+      this.accountId = res.id;
+    })
 
     this.sub = this.route.params.subscribe(params => {
+      console.log('apply params url',params)
+      this.id = params['id'];
       // TODO: Get Required params to use them in here, assign form key to this.id etc...
      /* this.params = [
         {
@@ -54,7 +63,19 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
 
   }
   onSubmit(submission) {
-    console.log(submission);
+    //this.data.data
+    console.log('submission',submission);
+    
+    submission.submission.data['opportunityId'] = this.id;
+    submission.submission.data['candidate'] = this.accountId;
+    submission.submission.data['branchId'] = this.branchId;
+
+    this.servicesService.applyOpportunity(submission.submission.data).subscribe(
+      (data) => {
+        console.log('data_cms',data)
+      })
+
+    // submit to CMS To save Data.
     // this.goBack();
   }
   /**

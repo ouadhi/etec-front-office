@@ -94,6 +94,68 @@ export class ServicesService {
     return this.getCollectionEntryById('opportunity', '_id', id);
   }
 
+  postOpportunity(formData): Observable<any> {
+    return this.http.post<any[]>(
+      `${environment.cms.api.master}/api/collections/save/opportunity/`,
+      {
+        "data": {
+          "name":formData.jobTitle,
+          "number":formData.id,
+          "city":formData.city,
+          "employer":formData.organization,
+          "description":formData.description,
+          "salaryType":formData.salaryNegotiation,
+          "salaryAmount":formData.opportunityDetailsPanelColumnsExpectedSalaryinSar,
+          "from":formData.applicationStartDate,
+          "to":formData.applicationEndDate,
+          "education":formData.educationLevel,
+          "vacancies":formData.opportunityDetailsPanelColumnsPositionsCounts,
+          "requirements":formData.requirements,
+          "qualifications":formData.qualifications,
+          "certificates":formData.certificates,
+          "yearsOfExperience":formData.requiredExperienceYears,
+          "notes":formData.notes,
+          "branchId":formData.branchId
+        }
+      }, {
+      headers: this.getCMSheaders()
+    });
+  }
+
+  applyOpportunity(formData): Observable<any> {
+    return this.http.post<any[]>(
+      `${environment.cms.api.master}/api/collections/save/opportunitySubmit/`,
+      {
+        "data": {
+          "isCurrentlyEmployed": formData.currentlyWorking,
+          //"currentEmployer": formData.,
+          //"sectorType": formData.,
+          //"currentTitle": formData.,
+          "educationAndMajor": formData.specialization,
+          "educationPlace": formData.educationalOrganization,
+          "graduationYear": formData.graduationYear,
+          "graduationScore": formData.gpa,
+          "yearOfExperienceSameTitle": formData.experienceYearsPosition,
+          "yearOfExperienceOtherTitles": formData.otherExperienceYears,
+          "englishLevel": formData.englishLevel,
+          "computerSkillsLevel": formData.computerSkillsLevel,
+          "cv": formData.cv[0],
+          "linkedinProfile": formData.linkedInProfile,
+          
+          "branchId": formData.branchId,
+          "candidate": formData.candidate,
+          "opportunityId": formData.opportunityId,
+        }
+      }, {
+      headers: this.getCMSheaders()
+    });
+  }
+
+
+  appliedOpportunity(id): Observable<any> {
+    return this.getCollectionEntryById('opportunitySubmit', '_id', id);
+  }
+
   getAllOpportunitiesAvailForToday(): Observable<any> {
     const todayDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
 

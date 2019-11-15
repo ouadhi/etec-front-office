@@ -11,7 +11,8 @@
   "NAV": {
     "MAIN_PAGE": "Main Page",
     "SERVICES_CATALOG": "Services Catalog",
-    "MY_REQUESTS": "My Requests"
+    "MY_REQUESTS": "My Requests",
+    "ADD_OPPORTUNITY": "Add Opportunity"
   },
   "CATALOG": {
     "SERVICE_CATALOG_TITLE": "Services Catalog",

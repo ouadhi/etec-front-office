@@ -1,47 +1,11 @@
 <app-page pageTitle="{{ 'OPPORTUNITY.VIEW_PAGETITLE' | translate }}" hasBackButton="false">
-  <app-page>
-    <formio *ngIf="formReady" [formKey]="'JobOpportunity-New'" [readOnly]="true" [params]="params"
+  
+    <formio *ngIf="formReady" [formKey]="'JobOpportunity-New'" [submission]="data"  [readOnly]="true"
       (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)">
     </formio>
-  </app-page>
-  <div fxLayout="row">
 
-    <div fxFlex="70">
-
-
-      <ul>
-
-        <li>{{'OPPORTUNITY.NAME' | translate }} {{ data.name }}</li>
-        <li>{{'OPPORTUNITY.NUMBER' | translate }} {{ data.number }}</li>
-        <li>{{'OPPORTUNITY.CITY' | translate }} {{ data.city }}</li>
-        <li>{{'OPPORTUNITY.EMPLOYER' | translate }} {{ data.employer }}</li>
-        <li>{{'OPPORTUNITY.DESCRIPTION' | translate }} {{ data.description }}</li>
-        <li>{{'OPPORTUNITY.SALARYTYPE' | translate }} {{ data.salaryType }}</li>
-        <li>{{'OPPORTUNITY.SALARYAMOUNT' | translate }} {{ data.salaryAmount }}</li>
-        <li>{{'OPPORTUNITY.FROM' | translate }} {{ data.from }}</li>
-        <li>{{'OPPORTUNITY.TO' | translate }} {{ data.to }}</li>
-        <li>{{'OPPORTUNITY.EDUCATION' | translate }} {{ data.education }}</li>
-        <li>{{'OPPORTUNITY.VACANCIES' | translate }} {{ data.vacancies }}</li>
-        <li>{{'OPPORTUNITY.REQUIREMENTS' | translate }} {{ data.requirements }}</li>
-        <li>{{'OPPORTUNITY.QUALIFICATIONS' | translate }} {{ data.qualifications }}</li>
-        <li>{{'OPPORTUNITY.CERTIFICATES' | translate }} {{ data.certificates }}</li>
-        <li>{{'OPPORTUNITY.YEARSOFEXPERIENCE' | translate }} {{ data.yearsOfExperience }}</li>
-        <li>{{'OPPORTUNITY.NOTES' | translate }} {{ data.notes }}</li>
-
-      </ul>
-
-      <pre>
-          {{data | json}}
-        </pre>
-
-
-
-    </div>
-
-    <div fxFlex="30">
-
-    </div>
-
-  </div>
+    <a mat-button mat-raised-button color="primary"  [routerLink]="applyRoute">
+        Apply
+    </a>
 
 </app-page>

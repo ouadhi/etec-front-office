@@ -12,7 +12,8 @@
     "MAIN_PAGE": "الرئيسية",
     "SERVICES_CATALOG": "دليل الخدمات",
     "MY_REQUESTS": "طلباتي",
-    "ALL_OPPORTUNITIES": "الفرص الوظيفية"
+    "ALL_OPPORTUNITIES": "الفرص الوظيفية",
+    "ADD_OPPORTUNITY": "اضافة فرصة وظيفية"
   },
   "CATALOG": {
     "SERVICE_CATALOG_TITLE": "دليل الخدمات",

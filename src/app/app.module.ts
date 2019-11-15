@@ -93,6 +93,7 @@ import { HasRoleDirective } from './has-role.directive';
 import { SessionService } from './session.service';
 import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
 import { Wso2Interceptor } from './wso2.inteceptor';
+import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -133,7 +134,8 @@ export function getFormioEnv() {
     AllOpportunitiesComponent,
     NotFoundComponent,
     HasRoleDirective,
-    ApplyOpportunityComponent
+    ApplyOpportunityComponent,
+    AppliedOpportunityComponent
   ],
   imports: [
     KeycloakAngularModule,
