@@ -1,19 +1,20 @@
-<app-page pageTitle="{{ 'OPPORTUNITY.VIEW_PAGETITLE' | translate }}" hasBackButton="false">
+<app-page pageTitleNarrow="{{ 'OPPORTUNITY.VIEW_PAGETITLE' | translate }}" hasBackButton="false">
 
   <div *appHasRole="['beneficiary']">
 
-    <div *ngIf="!isWithinDate">
+    <mat-card *ngIf="!isWithinDate">
         {{"OPPORTUNITY.NOT_AVAILABLE_DUE_TO_DATE" | translate}}
-    </div>
+    </mat-card>
 
-    <div *ngIf="isAlreadyApplied">
+    <mat-card *ngIf="isAlreadyApplied">
         {{"OPPORTUNITY.ALREADY_APPLIED" | translate}}
-    </div>
+    </mat-card>
   
-    <a mat-button mat-raised-button color="primary" [routerLink]="applyRoute" *ngIf="!isAlreadyApplied && isWithinDate">
-        {{"OPPORTUNITY.APPLY" | translate}}
-    </a>
-
+    <div class="sideButtonContainer">
+      <a mat-button mat-raised-button color="primary" [routerLink]="applyRoute" *ngIf="!isAlreadyApplied && isWithinDate">
+          {{"OPPORTUNITY.APPLY" | translate}}
+      </a>
+    </div>
   </div>
 
   <formio *ngIf="formReady" [formKey]="'JobOpportunity-New'" [submission]="data"  [readOnly]="true"

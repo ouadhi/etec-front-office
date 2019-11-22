@@ -11,6 +11,12 @@
       </mat-toolbar-row>
     </mat-toolbar>
 
+    <mat-toolbar class="page__title--narrow" color="" *ngIf="pageTitleNarrow">
+      <mat-toolbar-row>
+        <span>{{pageTitleNarrow}}</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
     <ng-content></ng-content>
   </div>
 </div>
