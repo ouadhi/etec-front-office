@@ -6,6 +6,8 @@ import {ServicesService} from '../../services.service'
 import { from, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
 import { concatMap } from 'rxjs/internal/operators';
+import { AccountService } from 'src/app/account.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-all-opportunities',
@@ -16,9 +18,11 @@ export class AllOpportunitiesComponent {
 
   constructor(
     private http: HttpClient,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    private accountService: AccountService
   ) { }
 
+  branchId;
 
   data = {
     totalCount: null,
@@ -26,24 +30,53 @@ export class AllOpportunitiesComponent {
   };
 
   dashletCols = {
-    employer: { name: 'OPPORTUNITY.EMPLOYER', sortable: true}, 
     name: { name: 'OPPORTUNITY.NAME', sortable: true },
     number: { name: 'OPPORTUNITY.NUMBER', sortable: false },
     city: { name: 'OPPORTUNITY.CITY', sortable: true },
+    employer: { name: 'OPPORTUNITY.EMPLOYER', sortable: true}, 
+    from: { name: 'OPPORTUNITY.FROM', sortable: true}, 
+    to: { name: 'OPPORTUNITY.TO', sortable: true}, 
     vacancies: { name: 'OPPORTUNITY.VACANCIES', sortable: true },
     data: { name: 'Details', sortable: false, display: 'detailsButton_oneParam', param1: '_id'}
 
   };
 
   dashletService = (params) => {
-    this.servicesService.getAllOpportunitiesAvailForToday().subscribe((response: HttpResponse<object>) => {
-      this.data.totalCount = response['total'];
-      this.data.items = response['entries'];
-    });
+
+    this.accountService.getAccount().subscribe(account=>{
+        if(account.authorities.indexOf('ROLE_USER')>=0){
+
+          this.accountService.getBranchIfForbeneficiary().subscribe(res=>{
+            this.branchId = res.branchId;
+      
+            this.servicesService.getAllOpportunitiesAvailForToday(this.branchId).subscribe((response: HttpResponse<object>) => {
+              this.data.totalCount = response['total'];
+              this.data.items = response['entries'];
+            });
+      
+          })
+
+
+        }else{
+
+          this.accountService.getBranchId(account.login).subscribe(res=>{          
+            this.branchId = res.branchId;
+      
+            this.servicesService.getAllOpportunitiesAvailForToday(this.branchId).subscribe((response: HttpResponse<object>) => {
+              this.data.totalCount = response['total'];
+              this.data.items = response['entries'];
+            });
+
+          })
+      
+        }
+      }
+    )
+
 
     // pass params to service function and return observable
     const delayedObservable = of(this.data).pipe(
-      delay(1000)
+      delay(3000)
     );
     return delayedObservable;
 

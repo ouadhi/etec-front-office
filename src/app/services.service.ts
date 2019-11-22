@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { LifeCycleService } from './config';
 import { environment } from '../environments/environment';
 import { DatePipe } from '@angular/common';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ import { DatePipe } from '@angular/common';
 export class ServicesService {
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private accountService: AccountService) { }
 
   getCMSheaders() {
     let headers: HttpHeaders = new HttpHeaders();
@@ -156,14 +158,44 @@ export class ServicesService {
     return this.getCollectionEntryById('opportunitySubmit', '_id', id);
   }
 
-  getAllOpportunitiesAvailForToday(): Observable<any> {
+  getAllOpportunitiesAvailForToday(branchId): Observable<any> {
+
     const todayDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
 
     return this.http.post<any[]>(
       `${environment.cms.api.master}/api/collections/get/opportunity/`,
       {
         "filter": {
-          //"from": `${todayDate}`
+          "branchId": `${branchId}`
+        },
+        "populate": 1
+      }, {
+      headers: this.getCMSheaders()
+    });
+  }
+
+
+  getApplicants(opportunityId): Observable<any> {
+
+    return this.http.post<any[]>(
+      `${environment.cms.api.master}/api/collections/get/opportunitySubmit/`,
+      {
+        "filter": {
+          "opportunityId": `${opportunityId}`
+        },
+        "populate": 1
+      }, {
+      headers: this.getCMSheaders()
+    });
+  }
+  getApplicantById(opportunityId, userId): Observable<any> {
+
+    return this.http.post<any[]>(
+      `${environment.cms.api.master}/api/collections/get/opportunitySubmit/`,
+      {
+        "filter": {
+          "opportunityId": `${opportunityId}`,
+          "candidate": `${userId}`
         },
         "populate": 1
       }, {

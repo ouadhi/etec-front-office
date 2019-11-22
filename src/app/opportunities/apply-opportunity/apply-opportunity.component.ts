@@ -38,7 +38,7 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
 
     
     this.accountService.getAccount().subscribe(res=>{
-      this.accountId = res.id;
+      this.accountId = res.login;
     })
 
     this.sub = this.route.params.subscribe(params => {
@@ -73,16 +73,21 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
     this.servicesService.applyOpportunity(submission.submission.data).subscribe(
       (data) => {
         console.log('data_cms',data)
+
+        setTimeout(()=>{
+          this.goBack(data._id);
+        },2000)
+        
       })
 
-    // submit to CMS To save Data.
-    // this.goBack();
+    
+    
   }
   /**
    * Go Back After Request is sent
    */
-  goBack() {
-    this.router.navigate(['/']);
+  goBack(newOppId) {
+    this.router.navigate(['/opportunity/applied/'+newOppId]);
 
   }
   ngOnDestroy() {

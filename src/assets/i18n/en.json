@@ -194,5 +194,13 @@
     "LAST_PAGE_LABEL": "Last",
     "RANGE_PAGE_LABEL_1": "0 of {{length}}",
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} of {{length}}"
+  },
+  "OPPORTUNITY": {
+    "APPLY":"Apply",
+    "ALREADY_APPLIED":"Already applied before",
+    "NOT_AVAILABLE_DUE_TO_DATE":"No longer accept apply. due to date",
+    "CANDIDATE_NAME":"Candidate name",
+    "DATE":"Applied Date",
+    "DETAILS":"Details"
   }
 }

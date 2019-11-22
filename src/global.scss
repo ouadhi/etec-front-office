@@ -17,21 +17,57 @@
 // @import "~@ionic/angular/css/utils.bundle.css";
 
 //$app-direction: multi;
+
 .app-formio {
   @import "~bootswatch/dist/yeti/variables";
   @import "~bootstrap/scss/bootstrap";
   @import "~bootswatch/dist/yeti/bootswatch";
+  .formio-component-popupform {
+    display: inline-block;
+    margin: 0px 10px;
+    margin-bottom: 5px;
+  }
+  .formio-component-dataGrid.hide-buttons tr th:last-child {
+    display: none;
+  }
+  .table-bordered thead th {
+    border-bottom-width: 2px;
+    background: #f7f7f7;
+  }
+  .no-padding {
+    padding: 0px !important;
+    .card-body {
+      min-width: 250px;
+      padding: 0px !important;
+    }
+  }
   padding: 10px;
   font-size: 14px;
   min-height: 0 !important;
   h4 {
     font-size: 16px !important;
   }
+  .formio-component-editgrid {
+    .editgrid-row-error {
+      text-align: left;
+      display: none;
+    }
+  }
   .formio-component-editgrid:not(.formio-component-editgrid-row-open) {
     overflow: auto;
+    color: #333;
     ul {
       display: table;
       min-width: 100%;
+    }
+  }
+  .formio-component-editgrid.alert-danger {
+    .editgrid-row-error {
+      display: block;
+      color: red;
+    }
+    .invalid-feedback {
+      color: #fff !important;
     }
   }
   .formio-component-editgrid.formio-component-editgrid-row-open {
@@ -40,12 +76,12 @@
       display: block;
       min-width: 100%;
       max-width: 100%;
-      .row{
+      .row {
         overflow: hidden !important;
       }
     }
   }
-  .editgrid-add{
+  .editgrid-add {
     margin: 15px 0px;
   }
   .formio-component-datagrid {
@@ -83,5 +119,29 @@
   .editRow,
   .removeRow {
     display: none;
+  }
+}
+
+html[dir="rtl"] {
+  .app-formio {
+    dd {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+    .formio-component-editgrid {
+      .editgrid-row-error {
+        text-align: right;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .app-formio {
+    padding: 10px;
+    font-size: 13px;
+    h4 {
+      font-size: 15px !important;
+    }
   }
 }

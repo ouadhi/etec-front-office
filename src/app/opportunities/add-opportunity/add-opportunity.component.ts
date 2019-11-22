@@ -63,15 +63,17 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
       (data) => {
         console.log('data_cms',data)
       })
-
-    // submit to CMS To save Data.
-    // this.goBack();
+    
+      setTimeout(()=>{
+        this.goBack();
+      },2000
+    )
   }
   /**
    * Go Back After Request is sent
    */
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/opportunity/all']);
 
   }
   ngOnDestroy() {

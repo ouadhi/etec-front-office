@@ -86,7 +86,7 @@ import { AdsSecctionComponent } from './main-page/ads-section/ads-section.compon
 import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
-import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
+import { ViewOpportunityComponent, MessageDialog } from './opportunities/view-opportunity/view-opportunity.component';
 import { AllOpportunitiesComponent } from './opportunities/all-opportunities/all-opportunities.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HasRoleDirective } from './has-role.directive';
@@ -94,7 +94,6 @@ import { SessionService } from './session.service';
 import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
 import { Wso2Interceptor } from './wso2.inteceptor';
 import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
-
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -135,7 +134,8 @@ export function getFormioEnv() {
     NotFoundComponent,
     HasRoleDirective,
     ApplyOpportunityComponent,
-    AppliedOpportunityComponent
+    AppliedOpportunityComponent,
+    MessageDialog
   ],
   imports: [
     KeycloakAngularModule,
@@ -219,7 +219,8 @@ export function getFormioEnv() {
 
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[MessageDialog]
 })
 export class AppModule {
 

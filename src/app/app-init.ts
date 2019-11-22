@@ -2,6 +2,7 @@ import { KeycloakService } from 'keycloak-angular';
 
 import { environment } from '../environments/environment';
 import { SessionService } from './session.service';
+import { AccountService } from './account.service';
 
 export function initializer(keycloak: KeycloakService, session: SessionService): () => Promise<any> {
   return (): Promise<any> => {
