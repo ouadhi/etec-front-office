@@ -31,11 +31,11 @@ export class AllOpportunitiesComponent {
 
   dashletCols = {
     name: { name: 'OPPORTUNITY.NAME', sortable: true },
-    number: { name: 'OPPORTUNITY.NUMBER', sortable: false },
+    number: { name: 'OPPORTUNITY.NUMBER', sortable: true },
     city: { name: 'OPPORTUNITY.CITY', sortable: true },
     employer: { name: 'OPPORTUNITY.EMPLOYER', sortable: true}, 
-    from: { name: 'OPPORTUNITY.FROM', sortable: true}, 
-    to: { name: 'OPPORTUNITY.TO', sortable: true}, 
+    from: { name: 'OPPORTUNITY.FROM', sortable: true,formatDate: true}, 
+    to: { name: 'OPPORTUNITY.TO', sortable: true,formatDate: true}, 
     vacancies: { name: 'OPPORTUNITY.VACANCIES', sortable: true },
     data: { name: 'Details', sortable: false, display: 'detailsButton_oneParam', param1: '_id'}
 
@@ -49,7 +49,7 @@ export class AllOpportunitiesComponent {
           this.accountService.getBranchIfForbeneficiary().subscribe(res=>{
             this.branchId = res.branchId;
       
-            this.servicesService.getAllOpportunitiesAvailForToday(this.branchId).subscribe((response: HttpResponse<object>) => {
+            this.servicesService.getAllOpportunitiesAvailForToday(this.branchId,params).subscribe((response: HttpResponse<object>) => {
               this.data.totalCount = response['total'];
               this.data.items = response['entries'];
             });
@@ -62,7 +62,7 @@ export class AllOpportunitiesComponent {
           this.accountService.getBranchId(account.login).subscribe(res=>{          
             this.branchId = res.branchId;
       
-            this.servicesService.getAllOpportunitiesAvailForToday(this.branchId).subscribe((response: HttpResponse<object>) => {
+            this.servicesService.getAllOpportunitiesAvailForToday(this.branchId,params).subscribe((response: HttpResponse<object>) => {
               this.data.totalCount = response['total'];
               this.data.items = response['entries'];
             });
@@ -79,6 +79,9 @@ export class AllOpportunitiesComponent {
       delay(3000)
     );
     return delayedObservable;
+
+    //return this.requestsService.getRequests(params);
+    
 
   }
 

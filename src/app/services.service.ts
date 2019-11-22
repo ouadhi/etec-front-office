@@ -158,22 +158,37 @@ export class ServicesService {
     return this.getCollectionEntryById('opportunitySubmit', '_id', id);
   }
 
-  getAllOpportunitiesAvailForToday(branchId): Observable<any> {
+  getAllOpportunitiesAvailForToday(branchId,params?): Observable<any> {
+
+    let sendParams = {
+      "filter": {
+        "branchId": `${branchId}`
+      },
+      "populate": 1
+    }
 
     const todayDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
 
+    if(params.number && params.number.length){sendParams["filter"]["number"]=`${params.number}`};
+    if(params.name && params.name.length){sendParams["filter"]["name"]=`${params.name}`};
+    if(params.city && params.city.length){sendParams["filter"]["city"]=`${params.city}`};
+    if(params.employer && params.employer.length){sendParams["filter"]["employer"]=`${params.employer}`};
+
+    if(params.sortBy && params.sortDirection){
+      sendParams["sort"]={}
+      if(params.sortDirection=='desc'){
+        sendParams["sort"][params.sortBy]= -1
+      }else{
+        sendParams["sort"][params.sortBy]=1
+      }
+    }
+
     return this.http.post<any[]>(
       `${environment.cms.api.master}/api/collections/get/opportunity/`,
-      {
-        "filter": {
-          "branchId": `${branchId}`
-        },
-        "populate": 1
-      }, {
+      sendParams, {
       headers: this.getCMSheaders()
     });
   }
-
 
   getApplicants(opportunityId): Observable<any> {
 

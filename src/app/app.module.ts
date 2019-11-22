@@ -65,7 +65,9 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicModule } from '@ionic/angular';
 import { DashletFilterComponent } from './dashlet-filter/dashlet-filter.component';
+import { DashletFilterOppComponent } from './dashlet-filter-opp/dashlet-filter-opp.component';
 import { DashletTableComponent } from './dashlet-table/dashlet-table.component';
+import { DashletTableOppComponent } from './dashlet-table-opp/dashlet-table-opp.component';
 import { SelectComponent } from './select/select.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -95,6 +97,7 @@ import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/app
 import { Wso2Interceptor } from './wso2.inteceptor';
 import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -119,7 +122,9 @@ export function getFormioEnv() {
     RequestDetailsComponent,
     SelectComponent,
     DashletFilterComponent,
+    DashletFilterOppComponent,
     DashletTableComponent,
+    DashletTableOppComponent,
     CaseActivitiesComponent,
     MainPageComponent,
     NewsSecctionComponent,

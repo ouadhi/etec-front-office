@@ -773,7 +773,8 @@
     "JOB_TITLE":"مسمى الوظيفة",
     "ACTIONS":"الخيارات",
     "CANDIDATE_VIEW":"استعراض",
-    "SEND_TO_CANDIDATES_TITLE":"بيانات التواصل مع الجهة الموظفة"
+    "SEND_TO_CANDIDATES_TITLE":"بيانات التواصل مع الجهة الموظفة",
+    "NO_RESULTS":"لا يوجد فرص وظيفية"
   },
   "CLOSE":"اغلاق",
   "SEND":"ارسال"
