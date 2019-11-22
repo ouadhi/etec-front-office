@@ -667,7 +667,9 @@
       "Other Experience Years":"عدد سنوات الخبره غير المسمى الوظيفي",
       "Computer Skills Level":"مستوى مهارات الحاسب الآلي",
       "Currently Working":"على رأس العمل",
-      "Work Info":"بيانات العمل الحالي"
+      "Work Info":"بيانات العمل الحالي",
+      "Work Organization Type":"نوع القطاع الذي تعمل لديه",
+      "Current Job Title":"المسمى الوظيفي الحالي"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",
