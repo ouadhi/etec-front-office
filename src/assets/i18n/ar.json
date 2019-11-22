@@ -766,6 +766,9 @@
     "SEND_TO_CANDIDATES":"ارسال اشعار بمعلومات التواصل",
     "APPLICANTS_LIST":"المتقدمين على الوظيفة",
     "CANDIDATE_SELECT":"ترشيح",
+    "NATIONAL_ID":"رقم الهوية",
+    "MOBILE":"الجوال",
+    "JOB_TITLE":"مسمى الوظيفة",
     "ACTIONS":"الخيارات",
     "CANDIDATE_VIEW":"استعراض",
     "SEND_TO_CANDIDATES_TITLE":"بيانات التواصل مع الجهة الموظفة"

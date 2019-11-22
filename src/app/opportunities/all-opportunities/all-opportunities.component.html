@@ -1,5 +1,9 @@
 <app-page>
 
+  <div class="sideButtonContainer" *appHasRole="['department_specialist']">
+    <a mat-button mat-raised-button color="primary" routerLink="/opportunity/add">{{'NAV.ADD_OPPORTUNITY' | translate}}</a>
+  </div>
+
   <app-dashlet-table [columns]="dashletCols" title="{{ 'OPPORTUNITY.ALL_PAGETITLE' | translate}}" [service]="dashletService"
     [detailsRouterForEachItem]="'/opportunity/view'"></app-dashlet-table>
 
