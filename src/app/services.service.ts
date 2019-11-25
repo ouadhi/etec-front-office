@@ -147,6 +147,9 @@ export class ServicesService {
           "branchId": formData.branchId,
           "candidate": formData.candidate,
           "opportunityId": formData.opportunityId,
+          "_fullName":formData._fullName,
+          "_mobile": formData._mobile,
+          "_nationalId": formData._nationalId
         }
       }, {
       headers: this.getCMSheaders()

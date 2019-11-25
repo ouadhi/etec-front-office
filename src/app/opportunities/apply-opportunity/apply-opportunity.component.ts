@@ -28,12 +28,19 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
   params;
   accountId:string;
   branchId: string;
+  
+  _mobile:string;
+  _nationalId:string;
+  _fullName:string;
 
   ngOnInit() {
     
     this.accountService.getBranchIfForbeneficiary().subscribe(res=>{
       console.log('getBranchIfForbeneficiary res ',res)
       this.branchId = res.branchId
+      this._mobile = res.mobile
+      this._nationalId = res.nationalId
+      this._fullName= res.fullName
     })
 
     
@@ -86,7 +93,16 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
     submission.submission.data['candidate'] = this.accountId;
     submission.submission.data['branchId'] = this.branchId;
 
-    this.servicesService.applyOpportunity(submission.submission.data).subscribe(
+    let dataSubmissionToCms = submission.submission.data;
+
+    dataSubmissionToCms['_fullName'] = this._fullName;
+    //dataSubmissionToCms['_city'] = "x1";
+    dataSubmissionToCms['_nationalId'] = this._nationalId;
+    dataSubmissionToCms['_mobile'] = this._mobile;
+
+    console.log('dataSubmissionToCms',dataSubmissionToCms);
+
+    this.servicesService.applyOpportunity(dataSubmissionToCms).subscribe(
       (data) => {
         console.log('data_cms',data)
 
