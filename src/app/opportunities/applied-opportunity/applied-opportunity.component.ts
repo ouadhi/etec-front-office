@@ -24,6 +24,7 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
   sub: any;
 
   data: any;
+  oppData:any;
   submission: any;
   params;
 
@@ -41,29 +42,43 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
           this.data = data.entries[0];
           this.formReady = true;
 
-          this.data = {
-            data : {
-              "currentlyWorking": this.data.isCurrentlyEmployed,
-              //"currentEmployer": ,
-              //"sectorType": ,
-              //"currentTitle": ,
-              "specialization": this.data.educationAndMajor,
-              "educationalOrganization": this.data.educationPlace,
-              "graduationYear": this.data.graduationYear,
-              "gpa": this.data.graduationScore,
-              "experienceYearsPosition": this.data.yearOfExperienceSameTitle,
-              "otherExperienceYears": this.data.yearOfExperienceOtherTitles,
-              "englishLevel": this.data.englishLevel,
-              "computerSkillsLevel": this.data.computerSkillsLevel,
-              "cv": this.data.cv ,
-              "linkedInProfile": this.data.linkedinProfile ,
-              
-              "branchId": this.data.branchId,
-              "candidate": this.data.candidate,
-              "opportunityId": this.data.opportunityId
 
+          // get opp data
+          this.servicesService.getOpportunity(this.data.opportunityId).toPromise().then((opp)=>{
+            this.oppData = opp['entries'][0];
+
+
+            this.data = {
+              data : {
+                "currentlyWorking": this.data.isCurrentlyEmployed,
+                //"currentEmployer": ,
+                //"sectorType": ,
+                //"currentTitle": ,
+                "specialization": this.data.educationAndMajor,
+                "educationalOrganization": this.data.educationPlace,
+                "graduationYear": this.data.graduationYear,
+                "gpa": this.data.graduationScore,
+                "experienceYearsPosition": this.data.yearOfExperienceSameTitle,
+                "otherExperienceYears": this.data.yearOfExperienceOtherTitles,
+                "englishLevel": this.data.englishLevel,
+                "computerSkillsLevel": this.data.computerSkillsLevel,
+                "cv": this.data.cv ,
+                "linkedInProfile": this.data.linkedinProfile ,
+                
+                "branchId": this.data.branchId,
+                "candidate": this.data.candidate,
+                "opportunityId": this.data.opportunityId,
+                "panelColumnsId": this.oppData.number,
+                "panelColumnsJobTitle": this.oppData.name
+  
+              }
             }
-          }
+
+
+          })
+
+
+          
           
         })
         

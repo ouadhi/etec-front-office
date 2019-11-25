@@ -58,8 +58,24 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
         }
       ]; */
       // after your data is ready flip formReady to True.
-      this.formReady = true;
-    });
+
+      this.servicesService.getOpportunity(this.id).toPromise().then((opp)=>{
+        let oppData = opp['entries'][0];
+        this.submission={
+          data:{
+            "panelColumnsId": oppData.number,
+            "panelColumnsJobTitle": oppData.name
+          }
+        }
+      }).then(()=>{
+        this.formReady = true;
+      })
+
+      
+    })
+      
+      
+  
 
   }
   onSubmit(submission) {
