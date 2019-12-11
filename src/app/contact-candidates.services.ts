@@ -12,10 +12,25 @@ export class ContactCandidatesService {
   constructor(
     private http: HttpClient) { }
 
-  contactCandidates(candidates,oppId,message): Observable<any> {
-    console.log('caling send mail service', candidates,oppId,message);
+  getCMSheaders() {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Authorization', 'Bearer ' + environment.cms.portalUserToken);
+    return headers;
+  }
+  
+  contactCandidates(candidatesAppliedId,message): Observable<any> {
+    console.log('caling send mail service', candidatesAppliedId,message);
+  
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/XXX_CONTACT_CANDIDATES_YYY`, { "candidates": candidates, "oppId":oppId,"message":message }, {
+      `${environment.cms.api.master}/api/collections/save/opportunitySubmit/`,{
+        data:{
+          "_id": candidatesAppliedId,
+          "isContacted":1
+        }
+      }, {
+      headers: this.getCMSheaders()
     });
+
+
   }
 }

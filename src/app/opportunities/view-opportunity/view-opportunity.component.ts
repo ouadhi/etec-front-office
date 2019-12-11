@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../../services.service';
 import { environment } from 'src/environments/environment.prod';
 import { SessionService } from 'src/app/session.service';
@@ -96,7 +96,11 @@ export class ViewOpportunityComponent implements OnInit {
       this.displayedColumns = ['name','nid','mobile','city','title','education','checkbox','actions'];
 
       res.entries.forEach(x => {
-        this.checkboxCandidates[x.candidate] = false
+        if(x.isContacted == 1){
+          this.checkboxCandidates[x._id] = true
+        }else{
+        this.checkboxCandidates[x._id] = false
+        }
       });
     })
   }
@@ -178,6 +182,7 @@ export class MessageDialog {
 
   constructor(
     private contactCandidatesService: ContactCandidatesService,
+    private router: Router,
     public dialogRef: MatDialogRef<MessageDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
@@ -188,15 +193,26 @@ export class MessageDialog {
 
   sendMessage(){
     if(this.message.length){
-      this.contactCandidatesService.contactCandidates(this.data.candidates,this.data.oppId,this.message).toPromise().then(()=>{
-        setTimeout(()=>{
-          this.dialogRef.close()
-        },2000)
-        }
-      )
+      // this.contactCandidatesService.contactCandidates(this.data.candidates,this.data.oppId,this.message).toPromise().then(()=>{
+      //   setTimeout(()=>{
+      //     this.dialogRef.close()
+      //   },2000)
+      //   }
+      // )
+
+      this.data.candidates.forEach(candidateObj => {
+        this.contactCandidatesService.contactCandidates(candidateObj,this.message).toPromise().then(()=>{
+          console.log('isContacted updated for',candidateObj)
+          }
+        )
+      });
+
+      this.dialogRef.close()
+      this.router.navigate(['/']);
+      
       
     }else{
-      alert('empty message, please add a message')
+      //alert('empty message, please add a message')
     }
   }
 

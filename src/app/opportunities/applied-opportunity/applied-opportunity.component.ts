@@ -42,11 +42,13 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
           this.data = data.entries[0];
           this.formReady = true;
 
-
+          
           // get opp data
           this.servicesService.getOpportunity(this.data.opportunityId).toPromise().then((opp)=>{
             this.oppData = opp['entries'][0];
 
+            let cvAsArray = [];
+            cvAsArray[0]= this.data.cv;
 
             this.data = {
               data : {
@@ -62,7 +64,7 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
                 "otherExperienceYears": this.data.yearOfExperienceOtherTitles,
                 "englishLevel": this.data.englishLevel,
                 "computerSkillsLevel": this.data.computerSkillsLevel,
-                "cv": this.data.cv ,
+                "cv": cvAsArray,
                 "linkedInProfile": this.data.linkedinProfile ,
                 
                 "branchId": this.data.branchId,

@@ -6,7 +6,7 @@
         </mat-form-field>
     </div>
     <div mat-dialog-actions>
-        <button mat-button mat-raised-button color="primary" (click)="sendMessage()" cdkFocusInitial>{{'SEND' | translate}}</button>
+        <button mat-button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="!message" cdkFocusInitial>{{'SEND' | translate}}</button>
         <button mat-button (click)="onNoClick()">{{'CLOSE' | translate}}</button>
         <!-- <button mat-button [mat-dialog-close]="data.candidates" cdkFocusInitial>{{'SEND' | translate}}</button> -->
     </div>
