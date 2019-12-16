@@ -1,0 +1,13 @@
+<div dir="rtl">
+    <h1 mat-dialog-title>{{'OPPORTUNITY.SEND_TO_CANDIDATES_TITLE' | translate}}</h1>
+    <div mat-dialog-content>
+        <mat-form-field style="width:100%">
+            <textarea matInput [(ngModel)]="message" placeholder="{{'OPPORTUNITY.SEND_TO_CANDIDATES_TITLE' | translate}}"></textarea>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="!message" cdkFocusInitial>{{'SEND' | translate}}</button>
+        <button mat-button (click)="onNoClick()">{{'CLOSE' | translate}}</button>
+        <!-- <button mat-button [mat-dialog-close]="data.candidates" cdkFocusInitial>{{'SEND' | translate}}</button> -->
+    </div>
+</div>

@@ -17,6 +17,8 @@ import { AllOpportunitiesComponent } from './opportunities/all-opportunities/all
 import { environment } from '../environments/environment';
 import { AppRoleGuard } from './app.roleguard';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
+import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
 
 
 const routes: Routes = [
@@ -70,6 +72,16 @@ const routes: Routes = [
   },
   {
     path: 'opportunity/view/:id', component: ViewOpportunityComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'opportunity/apply/:id', component: ApplyOpportunityComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'opportunity/applied/:id', component: AppliedOpportunityComponent,
     canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },

@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PageComponent implements OnInit {
 
   @Input() pageTitle?;
+  @Input() pageTitleNarrow?;
   @Input() hasBackButton?;
     
   constructor() { }
