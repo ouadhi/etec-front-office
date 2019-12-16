@@ -1,4 +1,5 @@
 <app-page>
+    <p class="note">{{'SERVICE.REQUEST_NOTE' | translate}}</p>
     <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" (customEvent)="onCustomEvent($event)"
         (submit)="onSubmit($event)">
     </formio>
