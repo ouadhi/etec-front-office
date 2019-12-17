@@ -24,7 +24,8 @@ export class AccountService {
 
   getBranchId(userid): Observable<any> {
     const endpoint = `${environment.wso2.base}${environment.wso2.api.erp}employee/${encodeURIComponent(userid)}`;
-    return this.http.get<any>(endpoint)
+    console.log(endpoint);
+    return this.http.get<any>(endpoint);
   }
 
   getBranchIfForbeneficiary(): Observable<any> {

@@ -3,8 +3,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { ServicesService } from '../../services.service'
 
-import { from, of, iif } from 'rxjs';
-import { delay, switchMap, map } from 'rxjs/internal/operators';
+import { from, of } from 'rxjs';
+import { delay } from 'rxjs/internal/operators';
 import { concatMap } from 'rxjs/internal/operators';
 import { AccountService } from 'src/app/account.service';
 import { environment } from 'src/environments/environment.prod';
@@ -41,78 +41,45 @@ export class AllOpportunitiesComponent {
   };
 
   dashletService = (params) => {
-    return this.accountService.getAccount().pipe(
-      switchMap(account => {
-        return iif(
-          () => account.authorities.indexOf('ROLE_USER') >= 0,
-          this.accountService.getBranchIfForbeneficiary().pipe(
-            switchMap((res) => {
-              const branchId = res.branchId;
-              return iif(
-                () => branchId,
-                this.servicesService.getAllOpportunitiesAvailForToday(branchId, params)
-                  .pipe(
-                    map(opps => ({
-                      totalCount: opps.total,
-                      items: opps.entries
-                    })))
-              );
-            })
-          ),
-          this.accountService.getBranchId(account.login).pipe(
-            switchMap((res) => {
-              const branchId = res.branchId;
-              return iif(
-                () => branchId,
-                this.servicesService.getAllOpportunitiesAvailForToday(branchId, params).pipe(
-                  map(opps => ({
-                    totalCount: opps.total,
-                    items: opps.entries
-                  })))
-              );
-            })
-          )
-        );
-      }));
-    /*
-  this.accountService.getAccount().subscribe(account => {
-    if (account.authorities.indexOf('ROLE_USER') >= 0) {
 
-      this.accountService.getBranchIfForbeneficiary().subscribe(res => {
-        this.branchId = res.branchId;
+    this.accountService.getAccount().subscribe(account => {
+      if (account.authorities.indexOf('ROLE_USER') >= 0) {
 
-        this.servicesService.getAllOpportunitiesAvailForToday(this.branchId, params).subscribe((response: HttpResponse<object>) => {
-          this.data.totalCount = response['total'];
-          this.data.items = response['entries'];
-        });
+        this.accountService.getBranchIfForbeneficiary().subscribe(res => {
+          this.branchId = res.branchId;
 
-      })
+          this.servicesService.getAllOpportunitiesAvailForToday(this.branchId, params).subscribe((response: HttpResponse<object>) => {
+            this.data.totalCount = response['total'];
+            this.data.items = response['entries'];
+          });
+
+        })
 
 
-    } else {
+      } else {
 
-      this.accountService.getBranchId(account.login).subscribe(res => {
-        this.branchId = res.branchId;
+        this.accountService.getBranchId(account.login).subscribe(res => {
+          this.branchId = res.branchId;
 
-        this.servicesService.getAllOpportunitiesAvailForToday(this.branchId, params).subscribe((response: HttpResponse<object>) => {
-          this.data.totalCount = response['total'];
-          this.data.items = response['entries'];
-        });
+          this.servicesService.getAllOpportunitiesAvailForToday(this.branchId, params).subscribe((response: HttpResponse<object>) => {
+            this.data.totalCount = response['total'];
+            this.data.items = response['entries'];
+          });
 
-      })
+        })
 
+      }
     }
-  }
-  )
+    )
 
 
-  // pass params to service function and return observable
-  const delayedObservable = of(this.data).pipe(
-    delay(3000)
-  );
-  return delayedObservable;
+    // pass params to service function and return observable
+    const delayedObservable = of(this.data).pipe(
+      delay(3000)
+    );
+    return delayedObservable;
 
-  //return this.requestsService.getRequests(params); */
+    //return this.requestsService.getRequests(params);
 
 
   }
