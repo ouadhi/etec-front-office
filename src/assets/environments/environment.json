@@ -65,7 +65,8 @@
     },
     "roles": {
         "beneficiary": "ROLE_USER",
-        "department_specialist": "ROLE_BRANCH_ENABLEMENT_SPECIALIST"
+        "department_specialist": "ROLE_BRANCH_ENABLEMENT_SPECIALIST",
+        "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST": "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
     },
     "statisticsApi": {
         "api": "http://ec2-100-24-44-125.compute-1.amazonaws.com:8089/api/collections/get/segment/"
