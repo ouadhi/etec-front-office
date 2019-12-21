@@ -134,6 +134,7 @@ export class ServicesService {
           //"sectorType": formData.,
           //"currentTitle": formData.,
           "educationAndMajor": formData.specialization,
+          "major":formData.educationalQualification,
           "educationPlace": formData.educationalOrganization,
           "graduationYear": formData.graduationYear,
           "graduationScore": formData.gpa,
@@ -149,7 +150,8 @@ export class ServicesService {
           "opportunityId": formData.opportunityId,
           "_fullName": formData._fullName,
           "_mobile": formData._mobile,
-          "_nationalId": formData._nationalId
+          "_nationalId": formData._nationalId,
+          "_birthDate": formData._birthDate
         }
       }, {
       headers: this.getCMSheaders()

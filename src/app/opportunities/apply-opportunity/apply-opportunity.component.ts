@@ -32,6 +32,7 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
   _mobile:string;
   _nationalId:string;
   _fullName:string;
+  _birthDate:string;
 
   ngOnInit() {
     
@@ -41,6 +42,7 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
       this._mobile = res.mobile
       this._nationalId = res.nationalId
       this._fullName= res.fullName
+      this._birthDate= res.birthDate
     })
 
     
@@ -99,6 +101,7 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
     //dataSubmissionToCms['_city'] = "x1";
     dataSubmissionToCms['_nationalId'] = this._nationalId;
     dataSubmissionToCms['_mobile'] = this._mobile;
+    dataSubmissionToCms['_birthDate'] = this._birthDate;
 
     console.log('dataSubmissionToCms',dataSubmissionToCms);
 

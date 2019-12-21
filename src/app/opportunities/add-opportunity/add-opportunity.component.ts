@@ -29,6 +29,7 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
   data: any;
   params;
   branchId: string;
+  submission;
 
   async ngOnInit() {
 
@@ -40,6 +41,23 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
       console.log('userInfo', userInfo)
       console.log('getbrachid', res)
     })
+
+    if(userInfo.authorities.indexOf(environment.roles.ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST) > -1){
+      this.submission={
+        data:{
+          'enableBranch' : true
+        }
+      }
+    }
+
+    if(userInfo.authorities.indexOf(environment.roles.department_specialist) > -1){
+      this.submission={
+        data:{
+          'enableBranch' : false
+        }
+      }
+    }
+    
     this.sub = this.route.params.subscribe(params => {
       // TODO: Get Required params to use them in here, assign form key to this.id etc...
       // this.params = [

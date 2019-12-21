@@ -655,7 +655,6 @@
       "Salary Negotiation":"طريقة تحديد الراتب",
       "Application Start Date": "تاريخ بداية التقديم",
       "Application End Date":"تاريخ نهاية التقديم",
-      "Education Level":"مستوى التعليم",
       "Positions Counts":"عدد الشواغر",
       "Requirements":"المتطلبات",
       "Qualifications":"المؤهلات",
@@ -686,7 +685,11 @@
       "The original treatment must be mailed within two business days": "يجب إرسال أصل المعاملة عن طريق البريد خلال يومي عمل",
       "After request you must review the branch to fill Marriage form (1) and Marriage form (2)": "لا بد من مراجعة الفرع بعد تقديم الطلب مباشرة لتعبئة نموذج استمارة الزواج( 1) ونموذج استمارة الزواج( 2)",
       "Lawyer Report Response": "رد مكتب المحاماة",
-      "invalid input": "قيمة غير صحيحة"
+      "invalid input": "قيمة غير صحيحة",
+      "salary start with" : "الراتب يبدأ من",
+      "Education Level" : "المؤهل التعليمي المطلوب",
+      "Opportunity Educational Qualification" : "المؤهل العلمي",
+      "Opportunity Specialization" : "التخصص"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",
@@ -791,7 +794,8 @@
     "ACTIONS":"الخيارات",
     "CANDIDATE_VIEW":"استعراض",
     "SEND_TO_CANDIDATES_TITLE":"بيانات التواصل مع الجهة الموظفة",
-    "NO_RESULTS":"لا يوجد فرص وظيفية"
+    "NO_RESULTS":"لا يوجد فرص وظيفية",
+    "BIRTH_DATE": "تاريخ الميلاد"
   },
   "CLOSE":"اغلاق",
   "SEND":"ارسال"
