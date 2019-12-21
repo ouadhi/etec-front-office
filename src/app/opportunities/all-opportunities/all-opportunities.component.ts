@@ -31,17 +31,10 @@ export class AllOpportunitiesComponent {
 
   dashletCols = {
     name: { name: 'OPPORTUNITY.NAME', sortable: true },
-<<<<<<< HEAD
     _cityId: { name: 'OPPORTUNITY.CITY', sortable: true },
     employer: { name: 'OPPORTUNITY.EMPLOYER', sortable: true}, 
     from: { name: 'OPPORTUNITY.FROM', sortable: true,formatDate: true}, 
     to: { name: 'OPPORTUNITY.TO', sortable: true,formatDate: true}, 
-=======
-    number: { name: 'OPPORTUNITY.NUMBER', sortable: true },
-    employer: { name: 'OPPORTUNITY.EMPLOYER', sortable: true },
-    from: { name: 'OPPORTUNITY.FROM', sortable: true, formatDate: true },
-    to: { name: 'OPPORTUNITY.TO', sortable: true, formatDate: true },
->>>>>>> 8893b5ad226d0aa89f4412f08ac86093459a62f6
     vacancies: { name: 'OPPORTUNITY.VACANCIES', sortable: true },
     data: { name: 'Details', sortable: false, display: 'detailsButton_oneParam', param1: '_id' }
 
