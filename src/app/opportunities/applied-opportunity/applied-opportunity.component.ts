@@ -57,6 +57,7 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
                 //"sectorType": ,
                 //"currentTitle": ,
                 "specialization": this.data.educationAndMajor,
+                "educationalQualification": this.data.major,
                 "educationalOrganization": this.data.educationPlace,
                 "graduationYear": this.data.graduationYear,
                 "gpa": this.data.graduationScore,

@@ -134,6 +134,7 @@ export class ServicesService {
           //"sectorType": formData.,
           //"currentTitle": formData.,
           "educationAndMajor": formData.specialization,
+          "major":formData.educationalQualification,
           "educationPlace": formData.educationalOrganization,
           "graduationYear": formData.graduationYear,
           "graduationScore": formData.gpa,
