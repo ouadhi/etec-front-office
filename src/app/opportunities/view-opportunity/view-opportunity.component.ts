@@ -93,7 +93,7 @@ export class ViewOpportunityComponent implements OnInit {
     this.servicesService.getApplicants(this.oppId).subscribe(res=>{
       console.log('applicants', res.entries);
       this.applicants = res.entries;
-      this.displayedColumns = ['name','nid','mobile','city','title','education','checkbox','actions'];
+      this.displayedColumns = ['name','nid','birthdate','mobile','city','title','education','checkbox','actions'];
 
       res.entries.forEach(x => {
         if(x.isContacted == 1){

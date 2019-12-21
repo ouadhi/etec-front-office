@@ -792,7 +792,8 @@
     "ACTIONS":"الخيارات",
     "CANDIDATE_VIEW":"استعراض",
     "SEND_TO_CANDIDATES_TITLE":"بيانات التواصل مع الجهة الموظفة",
-    "NO_RESULTS":"لا يوجد فرص وظيفية"
+    "NO_RESULTS":"لا يوجد فرص وظيفية",
+    "BIRTH_DATE": "تاريخ الميلاد"
   },
   "CLOSE":"اغلاق",
   "SEND":"ارسال"

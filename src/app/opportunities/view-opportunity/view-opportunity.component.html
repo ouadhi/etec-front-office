@@ -48,9 +48,15 @@
 
       <!-- nid Column -->
       <ng-container matColumnDef="nid">
-          <th mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.NATIONAL_ID' | translate}}</th>
-          <td mat-cell *matCellDef="let element"> {{element._nationalId}} </td>
-        </ng-container>
+        <th mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.NATIONAL_ID' | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element._nationalId}} </td>
+      </ng-container>
+
+      <!-- birthdate Column -->
+      <ng-container matColumnDef="birthdate">
+        <th mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.BIRTH_DATE' | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element._birthDate}} </td>
+      </ng-container>
 
 
         <!-- mobile Column -->
