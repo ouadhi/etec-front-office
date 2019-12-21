@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
-import {ServicesService} from '../../services.service'
+import { ServicesService } from '../../services.service'
 
 import { from, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
@@ -31,45 +31,52 @@ export class AllOpportunitiesComponent {
 
   dashletCols = {
     name: { name: 'OPPORTUNITY.NAME', sortable: true },
+<<<<<<< HEAD
     _cityId: { name: 'OPPORTUNITY.CITY', sortable: true },
     employer: { name: 'OPPORTUNITY.EMPLOYER', sortable: true}, 
     from: { name: 'OPPORTUNITY.FROM', sortable: true,formatDate: true}, 
     to: { name: 'OPPORTUNITY.TO', sortable: true,formatDate: true}, 
+=======
+    number: { name: 'OPPORTUNITY.NUMBER', sortable: true },
+    employer: { name: 'OPPORTUNITY.EMPLOYER', sortable: true },
+    from: { name: 'OPPORTUNITY.FROM', sortable: true, formatDate: true },
+    to: { name: 'OPPORTUNITY.TO', sortable: true, formatDate: true },
+>>>>>>> 8893b5ad226d0aa89f4412f08ac86093459a62f6
     vacancies: { name: 'OPPORTUNITY.VACANCIES', sortable: true },
-    data: { name: 'Details', sortable: false, display: 'detailsButton_oneParam', param1: '_id'}
+    data: { name: 'Details', sortable: false, display: 'detailsButton_oneParam', param1: '_id' }
 
   };
 
   dashletService = (params) => {
 
-    this.accountService.getAccount().subscribe(account=>{
-        if(account.authorities.indexOf('ROLE_USER')>=0){
+    this.accountService.getAccount().subscribe(account => {
+      if (account.authorities.indexOf('ROLE_USER') >= 0) {
 
-          this.accountService.getBranchIfForbeneficiary().subscribe(res=>{
-            this.branchId = res.branchId;
-      
-            this.servicesService.getAllOpportunitiesAvailForToday(this.branchId,params).subscribe((response: HttpResponse<object>) => {
-              this.data.totalCount = response['total'];
-              this.data.items = response['entries'];
-            });
-      
-          })
+        this.accountService.getBranchIfForbeneficiary().subscribe(res => {
+          this.branchId = res.branchId;
+
+          this.servicesService.getAllOpportunitiesAvailForToday(this.branchId, params).subscribe((response: HttpResponse<object>) => {
+            this.data.totalCount = response['total'];
+            this.data.items = response['entries'];
+          });
+
+        })
 
 
-        }else{
+      } else {
 
-          this.accountService.getBranchId(account.login).subscribe(res=>{          
-            this.branchId = res.branchId;
-      
-            this.servicesService.getAllOpportunitiesAvailForToday(this.branchId,params).subscribe((response: HttpResponse<object>) => {
-              this.data.totalCount = response['total'];
-              this.data.items = response['entries'];
-            });
+        this.accountService.getBranchId(account.login).subscribe(res => {
+          this.branchId = res.branchId;
 
-          })
-      
-        }
+          this.servicesService.getAllOpportunitiesAvailForToday(this.branchId, params).subscribe((response: HttpResponse<object>) => {
+            this.data.totalCount = response['total'];
+            this.data.items = response['entries'];
+          });
+
+        })
+
       }
+    }
     )
 
 
@@ -80,7 +87,7 @@ export class AllOpportunitiesComponent {
     return delayedObservable;
 
     //return this.requestsService.getRequests(params);
-    
+
 
   }
 

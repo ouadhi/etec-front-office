@@ -18,7 +18,7 @@ export class ServicesService {
 
   getCMSheaders() {
     let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('Authorization', 'Bearer ' + environment.cms.portalUserToken);
+    // headers = headers.append('Authorization', 'Bearer ' + environment.cms.portalUserToken);
     return headers;
   }
 
@@ -101,23 +101,23 @@ export class ServicesService {
       `${environment.cms.api.master}/api/collections/save/opportunity/`,
       {
         "data": {
-          "name":formData.jobTitle,
-          "number":formData.id,
-          "city":formData.city,
-          "employer":formData.organization,
-          "description":formData.description,
-          "salaryType":formData.salaryNegotiation,
-          "salaryAmount":formData.opportunityDetailsPanelColumnsExpectedSalaryinSar,
-          "from":formData.applicationStartDate,
-          "to":formData.applicationEndDate,
-          "education":formData.educationLevel,
-          "vacancies":formData.opportunityDetailsPanelColumnsPositionsCounts,
-          "requirements":formData.requirements,
-          "qualifications":formData.qualifications,
-          "certificates":formData.certificates,
-          "yearsOfExperience":formData.requiredExperienceYears,
-          "notes":formData.notes,
-          "branchId":formData.branchId
+          "name": formData.jobTitle,
+          "number": formData.id,
+          "city": formData.city,
+          "employer": formData.organization,
+          "description": formData.description,
+          "salaryType": formData.salaryNegotiation,
+          "salaryAmount": formData.opportunityDetailsPanelColumnsExpectedSalaryinSar,
+          "from": formData.applicationStartDate,
+          "to": formData.applicationEndDate,
+          "education": formData.educationLevel,
+          "vacancies": formData.opportunityDetailsPanelColumnsPositionsCounts,
+          "requirements": formData.requirements,
+          "qualifications": formData.qualifications,
+          "certificates": formData.certificates,
+          "yearsOfExperience": formData.requiredExperienceYears,
+          "notes": formData.notes,
+          "branchId": formData.branchId
         }
       }, {
       headers: this.getCMSheaders()
@@ -144,11 +144,11 @@ export class ServicesService {
           "computerSkillsLevel": formData.computerSkillsLevel,
           "cv": formData.cv[0],
           "linkedinProfile": formData.linkedInProfile,
-          
+
           "branchId": formData.branchId,
           "candidate": formData.candidate,
           "opportunityId": formData.opportunityId,
-          "_fullName":formData._fullName,
+          "_fullName": formData._fullName,
           "_mobile": formData._mobile,
           "_nationalId": formData._nationalId,
           "_birthDate": formData._birthDate
@@ -163,7 +163,7 @@ export class ServicesService {
     return this.getCollectionEntryById('opportunitySubmit', '_id', id);
   }
 
-  getAllOpportunitiesAvailForToday(branchId,params?): Observable<any> {
+  getAllOpportunitiesAvailForToday(branchId, params?): Observable<any> {
 
     let sendParams = {
       "filter": {
@@ -174,17 +174,17 @@ export class ServicesService {
 
     const todayDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
 
-    if(params.number && params.number.length){sendParams["filter"]["number"]=`${params.number}`};
-    if(params.name && params.name.length){sendParams["filter"]["name"]=`${params.name}`};
-    if(params.city && params.city.length){sendParams["filter"]["city"]=`${params.city}`};
-    if(params.employer && params.employer.length){sendParams["filter"]["employer"]=`${params.employer}`};
+    if (params.number && params.number.length) { sendParams["filter"]["number"] = `${params.number}` };
+    if (params.name && params.name.length) { sendParams["filter"]["name"] = `${params.name}` };
+    if (params.city && params.city.length) { sendParams["filter"]["city"] = `${params.city}` };
+    if (params.employer && params.employer.length) { sendParams["filter"]["employer"] = `${params.employer}` };
 
-    if(params.sortBy && params.sortDirection){
-      sendParams["sort"]={}
-      if(params.sortDirection=='desc'){
-        sendParams["sort"][params.sortBy]= -1
-      }else{
-        sendParams["sort"][params.sortBy]=1
+    if (params.sortBy && params.sortDirection) {
+      sendParams["sort"] = {}
+      if (params.sortDirection == 'desc') {
+        sendParams["sort"][params.sortBy] = -1
+      } else {
+        sendParams["sort"][params.sortBy] = 1
       }
     }
 

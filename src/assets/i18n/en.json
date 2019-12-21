@@ -38,6 +38,8 @@
     "TITLE": "Ads"
   },
   "SERVICE": {
+    "REQUEST_NOTE": "If you can't find the option you need please refer to your supervisor",
+    "SERVICES_NOTE": "If you have any questions please refer to your supervisor",
     "SERVICE": "Service",
     "IS_NOT_ACTIVE": "Service is not active",
     "DETAILS": "Service Details",
