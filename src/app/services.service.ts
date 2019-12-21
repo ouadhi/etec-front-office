@@ -117,7 +117,9 @@ export class ServicesService {
           "certificates": formData.certificates,
           "yearsOfExperience": formData.requiredExperienceYears,
           "notes": formData.notes,
-          "branchId": formData.branchId
+          "branchId": formData.branchId,
+          "_cityName": formData._cityName,
+          "_cityId": formData._cityId
         }
       }, {
       headers: this.getCMSheaders()
@@ -164,12 +166,14 @@ export class ServicesService {
   }
 
   getAllOpportunitiesAvailForToday(branchId, params?): Observable<any> {
-
     let sendParams = {
       "filter": {
-        "branchId": `${branchId}`
       },
       "populate": 1
+    }
+
+    if(branchId !== false){
+      sendParams.filter["branchId"] = `${branchId}`
     }
 
     const todayDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
