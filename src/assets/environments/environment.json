@@ -64,7 +64,8 @@
     },
     "roles": {
         "beneficiary": "ROLE_USER",
-        "department_specialist": "ROLE_BRANCH_ENABLEMENT_SPECIALIST"
+        "department_specialist": "ROLE_BRANCH_ENABLEMENT_SPECIALIST",
+        "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST": "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
     },
     "statisticsApi": {
         "api": "https://eservice.ekhaa.org.sa/api/cms/api/collections/get/segment/"

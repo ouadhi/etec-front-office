@@ -80,7 +80,8 @@ export const environment = {
   },
   roles: {
     beneficiary: 'ROLE_BENEFICIARY',
-    department_specialist: 'specialst'
+    department_specialist: 'specialst',
+    ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST: "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
   }
 };
 
