@@ -35,7 +35,7 @@ export class ServiceDetailsComponent implements OnInit {
     'departmentName_en': ''
   }
 
-  public assets_url: string = environment.cms.api.assets;
+  public assets_url: string = environment.cms.api.master;
   // public assets_url:string = 'http://localhost:8080';
 
   // public lifeCycleService:LifeCycleService
