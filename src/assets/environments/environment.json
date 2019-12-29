@@ -10,7 +10,7 @@
     "cms": {
         "api": {
             "master": "http://3.95.138.52:8089",
-            "assets": "http://3.95.138.52:8089/storage/uploads"
+            "assets": "http://3.95.138.52:8089/"
         }
     },
     "keycloak": {
