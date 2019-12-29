@@ -1,40 +1,40 @@
-<div class="filter" [@slideInOut]="show ? 'in' : 'out'">
+<div class="container" [@slideInOut]="show ? 'in' : 'out'">
     <ion-grid no-padding>
         <ion-row>
             <ion-col no-padding>
                 <ion-row [ngStyle]="{'margin-top': '-10px'}">
 
-                    <ion-col size="3">    
+                    <ion-col size="auto">    
                         <mat-form-field>
                             <input matInput [(ngModel)]="filterData.name" [placeholder]="'OPPORTUNITY.NAME' | translate">
                         </mat-form-field>
                     </ion-col>
 
-                    <ion-col size="3">
+                    <ion-col size="auto">
                         <mat-form-field>
                             <input matInput [(ngModel)]="filterData.number" [placeholder]="'OPPORTUNITY.NUMBER' | translate">
                         </mat-form-field>
                     </ion-col>
 
-                    <ion-col size="3">
-                        <app-select [placeholder]="'OPPORTUNITY.CITY' | translate" [hideLoaded]="true"
-                            [(ngModel)]="filterData.city" [data]="cityFilterData" [bindValue]="'val'"
-                            [bindLabel]="'key'">
-                        </app-select>
-                    </ion-col>
-
-                    <ion-col size="3">
+                    <ion-col size="auto">
                         <mat-form-field>
                             <input matInput [(ngModel)]="filterData.employer" [placeholder]="'OPPORTUNITY.EMPLOYER' | translate">
                         </mat-form-field>
                     </ion-col>
 
+                    <ion-col size="auto">
+                        <app-select [placeholder]="'OPPORTUNITY.CITY' | translate" [hideLoaded]="true"
+                            [(ngModel)]="filterData.city" [data]="cityFilterData" [bindValue]="'val'"
+                            [bindLabel]="'key'" [multiple]="true">
+                        </app-select>
+                    </ion-col>
+
                 </ion-row>
             </ion-col>
 
-            <ion-col no-padding size="1">
+            <ion-col no-padding size="auto">
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="auto">
                         <button mat-flat-button color="primary" fill="solid" expand="block" (click)="applyFilter()"
                             color="success">
                             <ion-icon name="search"></ion-icon>
@@ -42,7 +42,7 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="auto">
                         <ion-button fill="clear" expand="block" color="primary" (click)="reset()">
                             <ion-icon name="refresh"></ion-icon>
                         </ion-button>
@@ -52,3 +52,4 @@
         </ion-row>
     </ion-grid>
 </div>
+

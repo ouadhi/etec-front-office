@@ -1,6 +1,9 @@
 <app-page>
+    <div class="container">
     <p class="note">{{'SERVICE.REQUEST_NOTE' | translate}}</p>
-    <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" (customEvent)="onCustomEvent($event)"
+        <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" (customEvent)="onCustomEvent($event)"
         (submit)="onSubmit($event)">
-    </formio>
+        </formio>
+    </div>
 </app-page>
+

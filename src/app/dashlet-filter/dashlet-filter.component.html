@@ -1,10 +1,10 @@
-<div class="filter" [@slideInOut]="show ? 'in' : 'out'">
+<div class="container filter" [@slideInOut]="show ? 'in' : 'out'">
     <ion-grid no-padding>
         <ion-row>
             <ion-col no-padding>
                 <ion-row [ngStyle]="{'margin-top': '-10px'}">
 
-                    <ion-col size="3">
+                    <ion-col size="auto">
                         <mat-form-field>
                             <input matInput [(ngModel)]="filterData.requestDateAfter" [matDatepicker]="fd"
                                 [placeholder]="'From Date' | translate">
@@ -13,7 +13,7 @@
                         </mat-form-field>
                     </ion-col>
 
-                    <ion-col size="3">
+                    <ion-col size="auto">
                         <mat-form-field>
                             <input matInput [(ngModel)]="filterData.requestDateBefore" [matDatepicker]="td"
                                 [placeholder]="'To Date' | translate">
@@ -22,14 +22,14 @@
                         </mat-form-field>
                     </ion-col>
 
-                    <ion-col size="3">
+                    <ion-col size="auto">
                         <app-select [placeholder]="'Status' | translate" [hideLoaded]="true"
                             [(ngModel)]="filterData.statuses" [data]="statusFilterData" [bindValue]="'val'"
                             [bindLabel]="'key'" [multiple]="true">
                         </app-select>
                     </ion-col>
 
-                    <ion-col size="3">
+                    <ion-col size="auto">
                         <app-select [placeholder]="'Service' | translate" [hideLoaded]="true"
                             [(ngModel)]="filterData.services" [data]="servicesFilterData" [bindValue]="'id'"
                             [bindLabel]="'name'" [multiple]="true">
@@ -39,9 +39,9 @@
                 </ion-row>
             </ion-col>
 
-            <ion-col no-padding size="1">
+            <ion-col no-padding size="auto">
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="auto">
                         <button mat-flat-button color="primary" fill="solid" expand="block" (click)="applyFilter()"
                             color="success">
                             <ion-icon name="search"></ion-icon>
@@ -49,7 +49,7 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col size="auto">
                         <ion-button fill="clear" expand="block" color="primary" (click)="reset()">
                             <ion-icon name="refresh"></ion-icon>
                         </ion-button>
@@ -59,3 +59,5 @@
         </ion-row>
     </ion-grid>
 </div>
+
+
