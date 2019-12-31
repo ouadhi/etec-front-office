@@ -14,10 +14,12 @@
   </ion-toolbar>
 </ion-header>
 <formio-loader></formio-loader>
+
 <div class="content">
   <app-dashlet-filter [show]="showFilter" (filter)="onFilter($event)"></app-dashlet-filter>
+  
   <mat-table multiTemplateDataRows [dataSource]="data" matSort class="width-100">
-
+    
     <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
       <mat-header-cell mat-sort-header disableClear="true" [disabled]="!columns[col].sortable" *matHeaderCellDef>
         {{columns[col].name | translate}} </mat-header-cell>

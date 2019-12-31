@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SwitchLangService } from '../switch-lang.service';
+ 
+ 
 
 @Component({
   selector: 'app-service-card',
@@ -13,7 +16,9 @@ export class ServiceCardComponent implements OnInit {
   
   random:number;
 
-  constructor() { }
+  constructor(
+    public switchLangService: SwitchLangService,
+  ) { }
 
   ngOnInit() {
   }

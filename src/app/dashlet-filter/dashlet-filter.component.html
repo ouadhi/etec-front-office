@@ -1,63 +1,51 @@
 <div class="container filter" [@slideInOut]="show ? 'in' : 'out'">
-    <ion-grid no-padding>
-        <ion-row>
-            <ion-col no-padding>
-                <ion-row [ngStyle]="{'margin-top': '-10px'}">
-
-                    <ion-col size="auto">
-                        <mat-form-field>
-                            <input matInput [(ngModel)]="filterData.requestDateAfter" [matDatepicker]="fd"
-                                [placeholder]="'From Date' | translate">
-                            <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
-                            <mat-datepicker #fd></mat-datepicker>
-                        </mat-form-field>
-                    </ion-col>
-
-                    <ion-col size="auto">
-                        <mat-form-field>
-                            <input matInput [(ngModel)]="filterData.requestDateBefore" [matDatepicker]="td"
-                                [placeholder]="'To Date' | translate">
-                            <mat-datepicker-toggle matSuffix [for]="td"></mat-datepicker-toggle>
-                            <mat-datepicker #td></mat-datepicker>
-                        </mat-form-field>
-                    </ion-col>
-
-                    <ion-col size="auto">
-                        <app-select [placeholder]="'Status' | translate" [hideLoaded]="true"
+  <div class="row">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-lg">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="filterData.requestDateAfter" [matDatepicker]="fd"
+                        [placeholder]="'From Date' | translate">
+                    <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
+                    <mat-datepicker #fd></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-lg">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="filterData.requestDateBefore" [matDatepicker]="td"
+                        [placeholder]="'To Date' | translate">
+                    <mat-datepicker-toggle matSuffix [for]="td"></mat-datepicker-toggle>
+                    <mat-datepicker #td></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-lg">
+                <app-select [placeholder]="'Status' | translate" [hideLoaded]="true"
                             [(ngModel)]="filterData.statuses" [data]="statusFilterData" [bindValue]="'val'"
                             [bindLabel]="'key'" [multiple]="true">
-                        </app-select>
-                    </ion-col>
-
-                    <ion-col size="auto">
-                        <app-select [placeholder]="'Service' | translate" [hideLoaded]="true"
+                </app-select>
+            </div>
+            <div class="col-lg">
+                <app-select [placeholder]="'Service' | translate" [hideLoaded]="true"
                             [(ngModel)]="filterData.services" [data]="servicesFilterData" [bindValue]="'id'"
                             [bindLabel]="'name'" [multiple]="true">
-                        </app-select>
-                    </ion-col>
-
-                </ion-row>
-            </ion-col>
-
-            <ion-col no-padding size="auto">
-                <ion-row>
-                    <ion-col size="auto">
-                        <button mat-flat-button color="primary" fill="solid" expand="block" (click)="applyFilter()"
-                            color="success">
-                            <ion-icon name="search"></ion-icon>
-                        </button>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size="auto">
-                        <ion-button fill="clear" expand="block" color="primary" (click)="reset()">
-                            <ion-icon name="refresh"></ion-icon>
-                        </ion-button>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+                </app-select>
+            </div>
+          </div>
+    </div>
+    <div class="col-4">
+        <div class="row">
+            <div class="col-lg">
+               
+            </div>
+            <div class="col-lg">
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="applyFilter()" style="margin-left: 5px; margin-right: 5px;">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="reset()">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                </button>
+            </div>
+          </div>
+    </div>
+  </div>
 </div>
-
-

@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ContactCandidatesService } from 'src/app/contact-candidates.services';
 
+
 @Component({
   selector: 'app-view-opportunity',
   templateUrl: './view-opportunity.component.html',

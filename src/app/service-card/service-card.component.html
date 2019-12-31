@@ -1,5 +1,5 @@
 <a class="serviceCard" [routerLink]="['/service-details/'+id]">
-  <mat-card class="serviceCard__continer">
+  <mat-card class="serviceCard__continer" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
 
     <div class="serviceCard__title">{{cardTitle}}</div>
     <small class="serviceCard__desc">{{text}}</small>

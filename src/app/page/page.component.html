@@ -6,14 +6,12 @@
       <button class="page__back" mat-stroked-button (click)="back()" *ngIf="hasBackButton=='true'">
         {{'BACK' | translate}}
       </button>
-      
-  
-          <div class="container page__title"  color="" *ngIf="pageTitle">
-            <h4>
+          
+          <div class="container page__title" color="" *ngIf="pageTitle">
+            <h4 [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
               {{pageTitle}}
             </h4>
           </div>
-  
 
       <mat-toolbar class="page__title--narrow" color="" *ngIf="pageTitleNarrow">
         <mat-toolbar-row>

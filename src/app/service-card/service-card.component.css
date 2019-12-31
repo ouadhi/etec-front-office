@@ -19,3 +19,10 @@
 .serviceCard__desc {
     font-size: 13px;
 }
+
+.alignSwitchAR{
+    text-align: right;
+  }
+  .alignSwitchEN{
+    text-align: left;
+  } 

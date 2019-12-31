@@ -1,3 +1,10 @@
 formio {
   padding: 10px;
 }
+.alignSwitchAR{
+  text-align: right;
+}
+.alignSwitchEN{
+  text-align: left;
+} 
+
