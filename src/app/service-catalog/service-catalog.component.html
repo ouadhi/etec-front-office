@@ -31,84 +31,120 @@
   <app-section sectionTitle="{{'CATALOG.DIRECTORY' | translate}}">
 
     <div class="row">
-      <div class="col-lg-4" [ngClass]="{'alignSwitchAR': trans.currentLang=='ar', 'alignSwitchEN':trans.currentLang=='en'}">
-        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-          <div class="card">
-            <nav class="navbar navbar-light bg-light card-header" id="headingOne1">
-              <h5 class="mb-0 text-dark">
-                {{'Filter' | translate}}
-              </h5>
-              <button class="navbar-toggler text-dark" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup1" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-angle-down" aria-hidden="true" ></i>
-              </button>
-
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup1">
-                <div class="filtersSection">
-                  <div class="filtersSection__resetFilters">
-                    <mat-list-item>
-                        <button mat-button (click)="resetFilters()" [disabled]="userSegments?.length>0"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>
-                    </mat-list-item>
-                  </div>
-          
-                  <div class="filtersSection__keywordChip" *ngIf="keyword">
-                    <mat-chip-list>
-                      <mat-chip (click)="keyword='';filterKeyword()">{{'CATALOG.SEARCH_FOR' | translate}}: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>
-                    </mat-chip-list>
-                  </div>
-                    
-                  <div class="filtersSection__keyword">
-                    <mat-form-field class="filtersSection__keywordForm">
-                      <input matInput class="filtersSection__keywordInput"  [(ngModel)]="keyword" (keyup)="filterKeyword()" placeholder="{{'CATALOG.SEARCH_KEYWORD' | translate}}">
-                      <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear" (click)="keyword='';filterKeyword()">
-                          <mat-icon>close</mat-icon>
-                        </button>
-                    </mat-form-field>    
-                  </div>
-          
-                  <ng-container *ngFor="let a of segmentType">
-                    <div class="filtersList" [style.display]="a.visible ? 'block': 'none'">
-                    <div class="filtersList__head">{{a[trans._key('segmentTypeName')]}}</div>
-                      <ng-container *ngFor="let b of segments">
-                        <div class="filtersList__item">
-                          <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment(b._id)" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
-                        </div>
-                      </ng-container>
-                  </div>
+      <div class="col-lg-3" [ngClass]="{'alignSwitchAR': trans.currentLang=='ar', 'alignSwitchEN':trans.currentLang=='en'}">
+        <div class="d-none d-xl-block">
+          <div class="filtersSection">
+            <div class="filtersSection__resetFilters">
+              <mat-list-item>
+                  <button mat-button (click)="resetFilters()" [disabled]="userSegments?.length>0"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>
+              </mat-list-item>
+            </div>
+    
+            <div class="filtersSection__keywordChip" *ngIf="keyword">
+              <mat-chip-list>
+                <mat-chip (click)="keyword='';filterKeyword()">{{'CATALOG.SEARCH_FOR' | translate}}: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>
+              </mat-chip-list>
+            </div>
+              
+            <div class="filtersSection__keyword">
+              <mat-form-field class="filtersSection__keywordForm">
+                
+                <input matInput class="filtersSection__keywordInput" [(ngModel)]="keyword" (keyup)="filterKeyword()" placeholder="{{'CATALOG.SEARCH_KEYWORD' | translate}}">
+                <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear" (click)="keyword='';filterKeyword()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+              </mat-form-field>
+            </div>
+    
+              <ng-container *ngFor="let a of segmentType">
+                <div class="filtersList" [style.display]="a.visible ? 'block': 'none'">
+                <div class="filtersList__head">{{a[trans._key('segmentTypeName')]}}</div>
+                  <ng-container *ngFor="let b of segments">
+                    <div class="filtersList__item">
+                      <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment(b._id)" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
+                    </div>
                   </ng-container>
-          
-                  <mat-list-item *ngIf="tags,length">{{'CATALOG.TAGS' | translate}}</mat-list-item>
-          
-                  <ng-container *ngFor="let x of tags">
-                    <mat-list-item>
-                        <mat-checkbox [(ngModel)]="tagsInput[x._id]" (change)="filterTag()">{{x.tag}}</mat-checkbox>
-                    </mat-list-item>
-                  </ng-container>       
-                </div>
               </div>
-            </nav>
+              </ng-container>
+    
+              <mat-list-item *ngIf="tags,length">{{'CATALOG.TAGS' | translate}}</mat-list-item>
+    
+              <ng-container *ngFor="let x of tags">
+                <mat-list-item>
+                    <mat-checkbox [(ngModel)]="tagsInput[x._id]" (change)="filterTag()">{{x.tag}}</mat-checkbox>
+                </mat-list-item>
+              </ng-container> 
+            </div>
+        </div>
+        <div class="d-xl-none">
+          <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+            <div class="card">
+              <nav class="navbar navbar-light bg-light card-header" id="headingOne1">
+                <h5 class="mb-0 text-dark">
+                  {{'Filter' | translate}}
+                </h5>
+                <button class="navbar-toggler text-dark" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup1" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="fa fa-angle-down" aria-hidden="true" ></i>
+                </button>
+  
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup1">
+                  <div class="filtersSection">
+                    <div class="filtersSection__resetFilters">
+                      <mat-list-item>
+                          <button mat-button (click)="resetFilters()" [disabled]="userSegments?.length>0"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>
+                      </mat-list-item>
+                    </div>
+            
+                    <div class="filtersSection__keywordChip" *ngIf="keyword">
+                      <mat-chip-list>
+                        <mat-chip (click)="keyword='';filterKeyword()">{{'CATALOG.SEARCH_FOR' | translate}}: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>
+                      </mat-chip-list>
+                    </div>
+                      
+                    <div class="filtersSection__keyword">
+                      <mat-form-field class="filtersSection__keywordForm">
+                        <input matInput class="filtersSection__keywordInput"  [(ngModel)]="keyword" (keyup)="filterKeyword()" placeholder="{{'CATALOG.SEARCH_KEYWORD' | translate}}">
+                        <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear" (click)="keyword='';filterKeyword()">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                      </mat-form-field>    
+                    </div>
+            
+                    <ng-container *ngFor="let a of segmentType">
+                      <div class="filtersList" [style.display]="a.visible ? 'block': 'none'">
+                      <div class="filtersList__head">{{a[trans._key('segmentTypeName')]}}</div>
+                        <ng-container *ngFor="let b of segments">
+                          <div class="filtersList__item">
+                            <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment(b._id)" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
+                          </div>
+                        </ng-container>
+                    </div>
+                    </ng-container>
+            
+                    <mat-list-item *ngIf="tags,length">{{'CATALOG.TAGS' | translate}}</mat-list-item>
+            
+                    <ng-container *ngFor="let x of tags">
+                      <mat-list-item>
+                          <mat-checkbox [(ngModel)]="tagsInput[x._id]" (change)="filterTag()">{{x.tag}}</mat-checkbox>
+                      </mat-list-item>
+                    </ng-container>       
+                  </div>
+                </div>
+              </nav>
+            </div>
           </div>
         </div>
+        
       </div>
             
-      <div class="col-lg-8" [ngClass]="{'alignSwitchAR': trans.currentLang=='ar', 'alignSwitchEN':trans.currentLang=='en'}">
+      <div class="col-lg-9" [ngClass]="{'alignSwitchAR': trans.currentLang=='ar', 'alignSwitchEN':trans.currentLang=='en'}">
         <div class="d-none d-xl-block">
-          <nav class="navbar navbar-expand-lg navbar-light department__section">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <button class="btn btn-block department" [class.active]="!dataFilters.category.department._id || dataFilters.category.department._id == null" mat-button (click)="filterDepartment()">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button>
-                </li>
-                  <ng-container *ngFor="let x of departments">
-                    <li class="nav-item">
-                    <button class="btn btn-block department" [class.active]="x._id==dataFilters.category.department._id" mat-button (click)="filterDepartment(x._id)">{{x[trans._key('departmentName')]}}</button>
-                  </li>
-                  </ng-container>
-              </ul>
-            </div>
-          </nav>
+          <div fxLayout="row" class="department__section">
+            <button fxFlex class="department" [class.active]="!dataFilters.category.department._id || dataFilters.category.department._id == null" mat-button (click)="filterDepartment()">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button>
+            <ng-container *ngFor="let x of departments">
+                <button fxFlex class="department" [class.active]="x._id==dataFilters.category.department._id" mat-button (click)="filterDepartment(x._id)">{{x[trans._key('departmentName')]}}</button>
+            </ng-container>
+        </div>
           
           <div class="category__section" id="navbarSupportedContent">
             <ng-container *ngFor="let x of departments">
@@ -127,7 +163,7 @@
       </div>
 
       <div class="d-xl-none">
-        <div class="accordion md-accordion" id="accordionEx1" role="tablist"  aria-multiselectable="true">
+        <div class="accordion md-accordion" id="accordionEx1" role="tablist"  aria-multiselectable="true" style="margin-top: 20px;">
           <div class="card">
                 <nav class="navbar navbar-light bg-light card-header">
                   <h5 class="mb-0 text-dark">
@@ -140,7 +176,7 @@
                   <div class="accordion" id="accordionExample">
                     <div class="card">
                       <div class="card-header" id="headingOne">
-                          <a class="text-dark" href="#departments" data-toggle="collapse"> <button fxFlex class="department btn" [class.active]="!dataFilters.category.department._id || dataFilters.category.department._id == null" mat-button (click)="filterDepartment()">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button></a>
+                          <a class="text-dark" href="#departments" data-toggle="collapse"> <button fxFlex class="btn department" [class.active]="!dataFilters.category.department._id || dataFilters.category.department._id == null" mat-button (click)="filterDepartment()">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button></a>
                       </div>
                       <div id="departments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         
@@ -154,15 +190,15 @@
                       </div>
                       <div id="departments-{{ i }}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
-                          <ul class="nav nav-tabs category__section mx-auto justify-content-center">
+                          <ul class="nav nav-tabs category__section d-flex justify-content-center">
                             <div *ngFor="let x of departments">
-                              <div *ngIf="dataFilters.category.department._id == x._id" fxLayout="row" fxLayoutAlign="start center">
+                              <div *ngIf="dataFilters.category.department._id == x._id">
                                   <li  class="nav-item">
-                                    <button [class.active]="dataFilters.category._id==null" class="category" mat-button (click)="filterCategory(null)">
+                                    <button [class.active]="dataFilters.category._id==null" class="btn btn-lg btn-block category" mat-button (click)="filterCategory(null)">
                                       {{"CATALOG.ALL_CATEGORIES" | translate}}
                                     </button>
                                     <div *ngFor="let y of categories">
-                                      <button *ngIf="y.department._id == x._id" [class.active]="y._id==dataFilters.category._id" class="category" mat-button (click)="filterCategory(y._id)">
+                                      <button *ngIf="y.department._id == x._id" [class.active]="y._id==dataFilters.category._id" class="btn btn-lg btn-block category" mat-button (click)="filterCategory(y._id)">
                                         {{y[trans._key('categoryName')]}}
                                       </button>
                                     </div>

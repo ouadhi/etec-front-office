@@ -29,6 +29,7 @@
   }
   .formio-component-dataGrid.hide-buttons tr th:last-child {
     display: none;
+    
   }
   .table-bordered thead th {
     border-bottom-width: 2px;
@@ -150,4 +151,12 @@ html[dir="rtl"] {
 .sideButtonContainer{
   padding: 10px 0 0 0;
   text-align: left;
+}
+
+.right-aligned-header > .mat-content {
+  justify-content: space-between;
+}
+
+.mat-content > mat-panel-title, .mat-content > mat-panel-description {
+flex: 0 0 auto;
 }

@@ -1,4 +1,4 @@
-<ion-grid no-padding>
+<ion-grid no-padding class="d-none d-xl-block">
     <ion-row align-items-center>
         <ng-container *ngFor="let activity of activities">
             <ion-col *ngIf="activity.completed">
@@ -14,3 +14,27 @@
         </ng-container>
     </ion-row>
 </ion-grid>
+
+
+<div class="container d-xl-none" style="margin-top: 5px;">
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+               <div id="tracking">
+                  <div class="tracking-list" *ngFor="let activity of activities">
+                     <div [ngClass]="activity.completed ? 'greenBorder tracking-item' : 'lightBorder tracking-item'" *ngIf="activity.completed">
+                        <div [ngClass]="activity.completed ? 'bg-success tracking-icon' : 'bg-secondary tracking-icon'">
+                          <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'" style="font-size: 40px;"></ion-icon>
+                        </div>
+                        <ion-chip [color]="activity.completed ? 'success' : 'medium'">
+                          <ion-label>{{activity.caseActivityName}}
+                              <span class="mdate">
+                                  {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
+                              </span>
+                          </ion-label>
+                      </ion-chip>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </div>

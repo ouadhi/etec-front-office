@@ -14,6 +14,7 @@ export class ServiceCardComponent implements OnInit {
   @Input() cardTitle:string;
   @Input() text:string;
   
+  
   random:number;
 
   constructor(

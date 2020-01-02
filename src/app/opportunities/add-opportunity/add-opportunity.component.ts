@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { SessionService } from '../../session.service';
 import { encodeUriFragment } from '@angular/router/src/url_tree';
 import { AccountService } from 'src/app/account.service';
-
+import { SwitchLangService } from '../../switch-lang.service';
 @Component({
   selector: 'app-add-opportunity',
   templateUrl: './add-opportunity.component.html',
@@ -18,7 +18,8 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
     private router: Router,
     private servicesService: ServicesService,
     private sessionService: SessionService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    public switchLangService: SwitchLangService,
   ) { }
 
   id: any;

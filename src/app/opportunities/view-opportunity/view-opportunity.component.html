@@ -1,6 +1,6 @@
 <app-page pageTitleNarrow="{{ 'OPPORTUNITY.VIEW_PAGETITLE' | translate }}" hasBackButton="false">
 
-  <div *appHasRole="['beneficiary']">
+  <div *appHasRole="['beneficiary']" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
 
     <mat-card *ngIf="!isWithinDate">
         {{"OPPORTUNITY.NOT_AVAILABLE_DUE_TO_DATE" | translate}}
@@ -18,7 +18,7 @@
   </div>
 
   <formio *ngIf="formReady" [formKey]="'JobOpportunity-New'" [submission]="data"  [readOnly]="true"
-    (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)">
+    (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
   </formio>
 
   <div class="applicantsSection" *appHasRole="['department_specialist','ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST']">

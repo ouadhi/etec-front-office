@@ -17,7 +17,7 @@
                         <input matInput [(ngModel)]="filterData.employer" [placeholder]="'OPPORTUNITY.EMPLOYER' | translate">
                     </mat-form-field>
                 </div>
-                <div class="col-lg">
+                <div class="col-lg-6">
                     <app-select [placeholder]="'OPPORTUNITY.CITY' | translate" [hideLoaded]="true"
                             [(ngModel)]="filterData.city" [data]="cityFilterData" [bindValue]="'val'"
                             [bindLabel]="'key'" [multiple]="true">

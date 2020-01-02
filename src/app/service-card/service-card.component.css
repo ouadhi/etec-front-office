@@ -12,8 +12,22 @@
     /* margin-right: 30px; */
 }
 
+.serviceText{
+    margin-top: 20px;
+    height: 100px;
+    line-height: 1.5em;
+    height: 3em;     
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}
+
 .serviceCard__title {
     font-size: 20px;
+}
+
+.serviceCard__title2 {
+    font-size: 15px;
 }
 
 .serviceCard__desc {
@@ -26,3 +40,14 @@
   .alignSwitchEN{
     text-align: left;
   } 
+
+  .mat-expansion-panel:not([class*='mat-elevation-z']) {
+    box-shadow: none;
+}
+.acc{
+    border-width: 0;
+    border-color: white;
+    background: #f8f8f8;
+    padding: 0px;
+    background-image: linear-gradient(to right, #ebebeb, #f9f9f9, #f9f9f9);
+}

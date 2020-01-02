@@ -15,15 +15,18 @@
 </ion-header>
 <formio-loader></formio-loader>
 
+
 <div class="content">
   <app-dashlet-filter [show]="showFilter" (filter)="onFilter($event)"></app-dashlet-filter>
-  
-  <mat-table multiTemplateDataRows [dataSource]="data" matSort class="width-100">
+
+  <mat-table multiTemplateDataRows [dataSource]="data" matSort class="width-100" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
     
     <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
-      <mat-header-cell mat-sort-header disableClear="true" [disabled]="!columns[col].sortable" *matHeaderCellDef>
-        {{columns[col].name | translate}} </mat-header-cell>
-      <mat-cell [attr.data-label]="columns[col].name" *matCellDef="let element">
+        <mat-header-cell  mat-sort-header disableClear="true" [disabled]="!columns[col].sortable" *matHeaderCellDef>
+          {{columns[col].name | translate}} 
+        </mat-header-cell>
+    
+      <mat-cell [attr.data-label]="columns[col].name | translate" *matCellDef="let element">
         <ion-badge *ngIf="columns[col].display == 'badge'" [color]="columns[col].color" size="medium" mode="ios">
           {{element[col]}}
         </ion-badge>
@@ -41,16 +44,20 @@
           <button mat-flat-button color="primary"
             [routerLink]="[detailsRouterForEachItem, (element[columns[col].param1] || '' )]">{{'Details' | translate}}</button>
         </ng-container>
-        <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
-          <ng-container *ngIf="columns[col]['formatDate'];else normal">
-            {{element[col].substring(0, 19) | date:'yyyy-MM-dd,hh:mm:ssa'}}
-            <!-- @TODO workaround to remove [universal] text and the end of datetime format-->
+
+          <ng-container  *ngIf="!columns[col].display || columns[col].display == 'text'">
+            <ng-container *ngIf="columns[col]['formatDate'];else normal">
+              {{element[col].substring(0, 19) | date:'yyyy-MM-dd,hh:mm:ssa'}}
+              
+            </ng-container>
+            <ng-template #normal>
+              {{element[col]}}
+            </ng-template>
           </ng-container>
-          <ng-template #normal>
-            {{element[col]}}
-          </ng-template>
-        </ng-container>
+      
       </mat-cell>
+
+
     </ng-container>
     <ng-container matColumnDef="expandedDetail" *ngIf="expandableColumns.length > 0">
       <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">

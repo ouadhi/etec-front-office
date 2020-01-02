@@ -11,3 +11,11 @@
 app-page ::ng-deep .formio-disabled-input button:disabled{
     display: none;
 }
+
+.alignSwitchAR{
+    text-align: right;
+  }
+  .alignSwitchEN{
+    text-align: left;
+  } 
+  

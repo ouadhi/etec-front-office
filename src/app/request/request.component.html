@@ -1,8 +1,8 @@
 <app-page>
-    <div class="container" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+    <div class="container-fluid" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
     <p class="note">{{'SERVICE.REQUEST_NOTE' | translate}}</p>
         <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" (customEvent)="onCustomEvent($event)"
-        (submit)="onSubmit($event)">
+        (submit)="onSubmit($event)" class="container">
         </formio>
     </div>
 </app-page>
