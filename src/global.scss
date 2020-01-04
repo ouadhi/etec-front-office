@@ -141,6 +141,10 @@ html[dir="rtl"] {
   }
 }
 @media (max-width: 767px) {
+  .formio-component-file {
+    position: relative !important;
+    overflow: hidden;
+    }
   .alignSwitchAR {
     padding-left: 0px;
     padding-right: 0px;
