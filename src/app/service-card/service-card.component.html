@@ -2,14 +2,10 @@
   <a class="serviceCard" [routerLink]="['/service-details/'+id]">
     <mat-card class="serviceCard__continer" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div class="serviceCard__title">{{cardTitle}}</div>
-      <p class="serviceText serviceCard__desc">{{text}}</p>
+        <p class="serviceCard__desc" [ngClass]="{'block-with-text-ar': switchLangService.currentLang=='ar', 'block-with-text-en':switchLangService.currentLang=='en'}">{{text}}</p>
     </mat-card>
   </a>
 </div>
-
-
-
-
 <div class="d-xl-none">
   <mat-card class="serviceCard__continer">
     <mat-accordion>

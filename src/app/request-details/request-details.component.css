@@ -9,7 +9,6 @@
   
   .tab-content{
       background-color:#fff;
-      color:#fff;
       padding:5px
   }
   .nav-tabs > li > a{
@@ -21,3 +20,11 @@
     color: white;
     font-weight: bolder;
 }
+
+
+.alignSwitchAR{
+  text-align: right;
+}
+.alignSwitchEN{
+  text-align: left;
+} 

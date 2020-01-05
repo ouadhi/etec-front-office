@@ -12,16 +12,6 @@
     /* margin-right: 30px; */
 }
 
-.serviceText{
-    margin-top: 20px;
-    height: 100px;
-    line-height: 1.5em;
-    height: 3em;     
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    white-space: nowrap;
-}
-
 .serviceCard__title {
     font-size: 20px;
 }
@@ -51,3 +41,56 @@
     padding: 0px;
     background-image: linear-gradient(to right, #ebebeb, #f9f9f9, #f9f9f9);
 }
+
+/* styles for '...' */ 
+.block-with-text-ar {
+    font-size: 13px;
+    height: 100px;
+    overflow: hidden;
+    position: relative; 
+    line-height: 1.5em;
+    max-height: 3em; 
+    text-align: justify;  
+    margin-left: -1em;
+    padding-left: 1em;
+  }
+  .block-with-text-ar:before {
+    content: '...';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  .block-with-text-ar:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 1em;
+    height: 5em;
+    margin-top: 0.2em;
+    background:#EDEDED;
+  }
+
+.block-with-text-en {
+    overflow: hidden;
+    position: relative; 
+    line-height: 1.5em;
+    max-height: 3em; 
+    text-align: justify;  
+    margin-right: -1em;
+    padding-right: 1em;
+  }
+  .block-with-text-en:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .block-with-text-en:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: white;
+  }

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { SwitchLangService } from '../switch-lang.service';
 
 @Component({
   selector: 'app-request-details',
@@ -10,7 +11,8 @@ import { environment } from '../../environments/environment';
 export class RequestDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public switchLangService: SwitchLangService,
   ) { }
 
   link: any;
