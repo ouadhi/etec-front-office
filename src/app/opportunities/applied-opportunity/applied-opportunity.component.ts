@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../../services.service';
 import { environment } from '../../../environments/environment';
 import { AccountService } from 'src/app/account.service';
+import { SwitchLangService } from '../../switch-lang.service';
 
 @Component({
   selector: 'app-applied-opportunity',
@@ -15,7 +16,8 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private servicesService: ServicesService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    public switchLangService: SwitchLangService,
     
   ) { }
 

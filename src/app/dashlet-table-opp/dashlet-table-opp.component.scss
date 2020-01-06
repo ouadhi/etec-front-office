@@ -101,6 +101,10 @@ mat-header-cell:first-of-type {
     vertical-align: middle;
   }
 
+  mat-header-row{
+    display: none;
+  }
+
   .mat-table caption {
     font-size: 1em;
   }

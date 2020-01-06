@@ -13,7 +13,7 @@ import { SwitchLangService } from '../../switch-lang.service';
 @Component({
   selector: 'app-view-opportunity',
   templateUrl: './view-opportunity.component.html',
-  styleUrls: ['./view-opportunity.component.css']
+  styleUrls: ['./view-opportunity.component.scss']
 })
 export class ViewOpportunityComponent implements OnInit {
 
