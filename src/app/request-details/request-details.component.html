@@ -2,7 +2,7 @@
     <div class="d-none d-xl-block">
         <app-case-activities *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
         <div class="container-fluid" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
-          <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link" [submissionId]="formData" [readOnly]="true"
+          <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link" [submissionId]="formData" [readOnly]="true" [viewOnly]="true"
             (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)">
           </formio>
         </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
           <div class="container-fluid" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
-            <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link" [submissionId]="formData" [readOnly]="true"
+            <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link" [submissionId]="formData" [readOnly]="true" [viewOnly]="true"
             (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)">
             </formio>
           </div>
