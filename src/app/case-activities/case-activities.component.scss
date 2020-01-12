@@ -9,7 +9,7 @@ ion-chip {
     font-family: inherit;
   }
 }
-.mdate{
+.mdate {
   font-size: 12px;
   display: block;
   clear: both;
@@ -18,48 +18,51 @@ ion-chip {
   margin-top: 5px;
 }
 
- #tracking {
-  margin-bottom:1rem
- }
- 
- .tracking-list {
-  border:1px solid #e5e5e5
- }
- .tracking-item {
-  position:relative;
-  padding:2rem 2rem 2rem 0rem;
-  font-size:.9rem;
-  margin-left:3rem;
- }
-
- .tracking-item:last-child {
-  padding-bottom:2rem
- }
- 
- 
- .tracking-item .tracking-icon {
-  line-height:2.6rem;
-  position:absolute;
-  left:-1.3rem;
-  width:2.6rem;
-  height:2.6rem;
-  text-align:center;
-  border-radius:50%;
-  font-size:1.1rem;
-  background-color:#fff;
-  color:#fff
- }
- .greenBorder{
-  border-left: 3px solid #4BB543;
- }
-
- .lightBorder{
-  border-left: 3px solid #6c757d;
- }
- 
- @media(min-width:992px) {
-  .tracking-item {
-   margin-left:10rem
+#tracking {
+  margin-bottom: 1rem;
+}
+.milestones .milestone {
+  opacity: 0.4;
+  &:last-child {
+    opacity: 1;
   }
-  
- }
+}
+.tracking-list {
+  border: 1px solid #e5e5e5;
+}
+.tracking-item {
+  position: relative;
+  padding: 2rem 2rem 2rem 0rem;
+  font-size: 0.9rem;
+  margin-left: 3rem;
+}
+
+.tracking-item:last-child {
+  padding-bottom: 2rem;
+}
+
+.tracking-item .tracking-icon {
+  line-height: 2.6rem;
+  position: absolute;
+  left: -1.3rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  background-color: #fff;
+  color: #fff;
+}
+.greenBorder {
+  border-left: 3px solid #4bb543;
+}
+
+.lightBorder {
+  border-left: 3px solid #6c757d;
+}
+
+@media (min-width: 992px) {
+  .tracking-item {
+    margin-left: 10rem;
+  }
+}
