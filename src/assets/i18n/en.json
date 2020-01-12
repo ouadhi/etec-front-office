@@ -38,6 +38,7 @@
     "TITLE": "Ads"
   },
   "SERVICE": {
+    "SUCCESS": "Request Has Been sent Successfully",
     "REQUEST_NOTE": "If you can't find the option you need please refer to your supervisor",
     "SERVICES_NOTE": "If you have any questions please refer to your supervisor",
     "SERVICE": "Service",
@@ -198,11 +199,11 @@
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} of {{length}}"
   },
   "OPPORTUNITY": {
-    "APPLY":"Apply",
-    "ALREADY_APPLIED":"Already applied before",
-    "NOT_AVAILABLE_DUE_TO_DATE":"No longer accept apply. due to date",
-    "CANDIDATE_NAME":"Candidate name",
-    "DATE":"Applied Date",
-    "DETAILS":"Details"
+    "APPLY": "Apply",
+    "ALREADY_APPLIED": "Already applied before",
+    "NOT_AVAILABLE_DUE_TO_DATE": "No longer accept apply. due to date",
+    "CANDIDATE_NAME": "Candidate name",
+    "DATE": "Applied Date",
+    "DETAILS": "Details"
   }
 }

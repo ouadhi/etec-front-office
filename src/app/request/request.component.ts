@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 import { environment } from '../../environments/environment';
 import { SwitchLangService } from '../switch-lang.service';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -14,7 +16,9 @@ export class RequestComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private servicesService: ServicesService,
+    private translate: TranslateService,
     public switchLangService: SwitchLangService,
+    public toastr: ToastrService
   ) { }
 
   id: any;
@@ -48,13 +52,14 @@ export class RequestComponent implements OnInit {
     });
   }
   onSubmit() {
+    this.toastr.success('', this.translate.instant('SERVICE.SUCCESS'));
     this.goBack();
   }
   /**
    * Go Back After Request is sent
    */
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/my-requests']);
 
   }
   ngOnDestroy() {

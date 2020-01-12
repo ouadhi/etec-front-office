@@ -123,6 +123,10 @@
 }
 
 html[dir="rtl"] {
+  .toast-container {
+    direction: rtl;
+    text-align: right;
+  }
   .app-formio {
     dd {
       margin-right: 0;
@@ -144,7 +148,7 @@ html[dir="rtl"] {
   .formio-component-file {
     position: relative !important;
     overflow: hidden;
-    }
+  }
   .alignSwitchAR {
     padding-left: 0px;
     padding-right: 0px;

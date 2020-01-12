@@ -96,7 +96,9 @@ import { SessionService } from './session.service';
 import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
 import { Wso2Interceptor } from './wso2.inteceptor';
 import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
+import { CommonModule } from '@angular/common';
 
+import { ToastrModule } from 'ngx-toastr';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -143,6 +145,7 @@ export function getFormioEnv() {
     MessageDialog
   ],
   imports: [
+    CommonModule,
     KeycloakAngularModule,
     MatNativeDateModule,
     NgSelectModule,
@@ -165,6 +168,9 @@ export function getFormioEnv() {
 
     // material
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
