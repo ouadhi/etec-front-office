@@ -162,7 +162,11 @@ img {
   background: #ebebeb;
   font-weight: normal;
   border-radius: 0 !important;
-  line-height: 50px !important;
+  line-height: 15px !important;
+  white-space:normal !important;
+  word-wrap: break-word;
+  width:auto; 
+  height: 56px;
 }
 
 .department.active {
@@ -184,6 +188,11 @@ img {
   font-weight: normal;
   border-radius: 0 !important;
   margin-bottom: 5px !important;
+  line-height: 15px !important;
+  white-space:normal !important;
+  word-wrap: break-word;
+  height: 40px;
+ 
 }
 
 .category.active {

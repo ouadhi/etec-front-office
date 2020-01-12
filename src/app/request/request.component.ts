@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 import { environment } from '../../environments/environment';
+import { SwitchLangService } from '../switch-lang.service';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -12,7 +13,8 @@ export class RequestComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    public switchLangService: SwitchLangService,
   ) { }
 
   id: any;
@@ -42,7 +44,6 @@ export class RequestComponent implements OnInit {
       }
       this.formReady = true;
     });
-
   }
   onSubmit() {
     this.goBack();

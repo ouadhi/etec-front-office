@@ -9,7 +9,13 @@
   }
   &__container {
     background: #fff;
-    padding: 20px 0;
+    padding: 20px 20px;
     white-space: pre-line;
   }
+  .alignSwitchAR{
+    text-align: right;
+  }
+  .alignSwitchEN{
+    text-align: left;
+  } 
 }

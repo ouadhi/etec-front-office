@@ -7,11 +7,13 @@ import { AccountService } from 'src/app/account.service';
 import { DatePipe } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ContactCandidatesService } from 'src/app/contact-candidates.services';
+import { SwitchLangService } from '../../switch-lang.service';
+
 
 @Component({
   selector: 'app-view-opportunity',
   templateUrl: './view-opportunity.component.html',
-  styleUrls: ['./view-opportunity.component.css']
+  styleUrls: ['./view-opportunity.component.scss']
 })
 export class ViewOpportunityComponent implements OnInit {
 
@@ -22,7 +24,8 @@ export class ViewOpportunityComponent implements OnInit {
     private accountService: AccountService,
     private datePipe: DatePipe,
     public dialog: MatDialog,
-    private contactCandidatesService: ContactCandidatesService
+    private contactCandidatesService: ContactCandidatesService,
+    public switchLangService: SwitchLangService,
   ) { }
 
   oppId: any;

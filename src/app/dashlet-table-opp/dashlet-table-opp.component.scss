@@ -74,7 +74,7 @@ mat-paginator {
 .filter-container {
   margin: 5px 10px;
   padding-top: 50px;
-  position: absolute;
+  //position: absolute;
   top: 60px;
   left: 0px;
   width: calc(100% - 20px);
@@ -99,6 +99,10 @@ mat-header-cell:first-of-type {
   .mat-table {
     border: 0;
     vertical-align: middle;
+  }
+
+  mat-header-row{
+    display: none;
   }
 
   .mat-table caption {
@@ -130,7 +134,7 @@ mat-header-cell:first-of-type {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: 15px;
-    text-align: right;
+    text-align: left;
     min-height: auto;
     height: 24px;
     margin-bottom: 0%;
@@ -152,7 +156,7 @@ mat-header-cell:first-of-type {
     content: attr(aria-label);
     */
     content: attr(data-label);
-    float: left;
+    float: right;
     text-transform: uppercase;
     font-weight: normal;
 

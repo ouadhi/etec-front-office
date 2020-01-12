@@ -8,6 +8,7 @@ import { delay } from 'rxjs/internal/operators';
 import { concatMap } from 'rxjs/internal/operators';
 import { AccountService } from 'src/app/account.service';
 import { environment } from 'src/environments/environment.prod';
+import { SwitchLangService } from '../../switch-lang.service';
 
 @Component({
   selector: 'app-all-opportunities',
@@ -19,7 +20,8 @@ export class AllOpportunitiesComponent {
   constructor(
     private http: HttpClient,
     private servicesService: ServicesService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    public switchLangService: SwitchLangService,
   ) { }
 
   branchId;
