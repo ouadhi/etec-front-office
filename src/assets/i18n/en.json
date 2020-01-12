@@ -2,7 +2,7 @@
   "formLoadError": "An unknown error happened while loading the page, please try again later.",
   "dir": "ltr",
   "LAYOUT": {
-    "TITLE": "RMS portal",
+    "TITLE": "Beneficiary Portal",
     "CHANGE_LANGUAGE": "Change Language",
     "WELCOME": "Welcome",
     "LOGOUT": "Logout",

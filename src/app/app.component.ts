@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     private keycloakService: KeycloakService,
     public translate: TranslateService,
     public switchLangService: SwitchLangService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
   ) {
     console.log('.');
     const DelayPlugin = {
