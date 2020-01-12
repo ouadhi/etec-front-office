@@ -19,6 +19,7 @@ export class RequestComponent implements OnInit {
 
   id: any;
   serviceId: any;
+  serviceName: any;
   formReady = false;
   sub: any;
 
@@ -29,6 +30,7 @@ export class RequestComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.serviceId = params['serviceId'];
+      this.serviceName = params['name'];
       this.params = [
         {
           url: environment.beneficiaryApi.api,
