@@ -107,6 +107,10 @@
   "Details": "التفاصيل",
   "No Entries": "لا يوجد طلبات",
   "forms": {
+    "errors": {
+      "tooMany": "الرجاء التأكد من إتمام كافة الحقول المطلوبة بالطريقة الصحيحة",
+      "generic":"لقد حدث خطأ ما, الرجاء التواصل مع المشرف"
+    },
     "common": {
       "Add Comment": "أضف تعليقاً",
       "Something went wrong, please try again later.": "لقد حدث خطأ ما, الرجاء المحاولة لاحقاً",
