@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class SwitchLangService {
   currentLang;
   defaultLang = 'ar';
 
-  constructor(public translate: TranslateService) { }
+  constructor(public translate: TranslateService, private titleService: Title  ) { }
 
   /**
    * Fix Dom Direction - localization
@@ -18,27 +19,28 @@ export class SwitchLangService {
     document.documentElement.setAttribute('dir', dir);
   }
 
-  changeLang(lang){
+  changeLang(lang) {
     this.currentLang = lang;
-    localStorage.setItem('lang',lang);
+    localStorage.setItem('lang', lang);
     this.translate.setDefaultLang(lang);
     this.translate.use(lang);
     this.fixDom(this.translate.instant('dir'));
     this.translate.onLangChange.subscribe((data) => {
       this.fixDom(data.translations.dir);
+      this.titleService.setTitle(this.translate.instant('LAYOUT.TITLE'));
     });
   }
 
-  getSelectedLang(){
-    if(localStorage.getItem('lang') =='ar' || localStorage.getItem('lang') =='en'){
+  getSelectedLang() {
+    if (localStorage.getItem('lang') == 'ar' || localStorage.getItem('lang') == 'en') {
       return localStorage.getItem('lang');
-    }else{
+    } else {
       return this.defaultLang;
     }
   }
 
-  _key(key){
-    return key+'_'+this.getSelectedLang();
+  _key(key) {
+    return key + '_' + this.getSelectedLang();
   }
 
 }

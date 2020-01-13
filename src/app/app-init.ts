@@ -1,8 +1,10 @@
 import { KeycloakService } from 'keycloak-angular';
 
 import { environment } from '../environments/environment';
+import { SessionService } from './session.service';
+import { AccountService } from './account.service';
 
-export function initializer(keycloak: KeycloakService): () => Promise<any> {
+export function initializer(keycloak: KeycloakService, session: SessionService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -24,7 +26,11 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             // environment.requestApi.api
           ],
         });
+        if (await keycloak.isLoggedIn()) {
+          await session.loadUserProfile();
+        }
         resolve();
+
       } catch (error) {
         reject(error);
       }

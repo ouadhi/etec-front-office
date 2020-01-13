@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SwitchLangService } from '../switch-lang.service';
 
 @Component({
   selector: 'app-page',
@@ -8,9 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PageComponent implements OnInit {
 
   @Input() pageTitle?;
+  @Input() pageTitleNarrow?;
   @Input() hasBackButton?;
     
-  constructor() { }
+  constructor(
+    public switchLangService: SwitchLangService,
+  ) { 
+    
+  }
 
   ngOnInit() {
   }

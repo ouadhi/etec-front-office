@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~ngx-toastr/toastr';
 
 @import "~@angular/material/theming";
 // Plus imports for other components in your app.
@@ -162,7 +163,11 @@ img {
   background: #ebebeb;
   font-weight: normal;
   border-radius: 0 !important;
-  line-height: 50px !important;
+  line-height: 15px !important;
+  white-space:normal !important;
+  word-wrap: break-word;
+  width:auto; 
+  height: 56px;
 }
 
 .department.active {
@@ -184,6 +189,11 @@ img {
   font-weight: normal;
   border-radius: 0 !important;
   margin-bottom: 5px !important;
+  line-height: 15px !important;
+  white-space:normal !important;
+  word-wrap: break-word;
+  height: 40px;
+ 
 }
 
 .category.active {
@@ -209,7 +219,12 @@ mat-checkbox .mat-checkbox-inner-container {
 .inlineRowItem {
   margin: 15px 0;
 }
-
+.note {
+  text-align: center;
+  margin: 35px 0px 0px 0px;
+  font-size: 17px;
+  font-weight: 900;
+}
 .mat-chip-list--inlineBlock {
   display: inline-block;
 }

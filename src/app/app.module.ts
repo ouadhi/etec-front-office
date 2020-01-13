@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http'
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -65,7 +65,9 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicModule } from '@ionic/angular';
 import { DashletFilterComponent } from './dashlet-filter/dashlet-filter.component';
+import { DashletFilterOppComponent } from './dashlet-filter-opp/dashlet-filter-opp.component';
 import { DashletTableComponent } from './dashlet-table/dashlet-table.component';
+import { DashletTableOppComponent } from './dashlet-table-opp/dashlet-table-opp.component';
 import { SelectComponent } from './select/select.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -86,11 +88,18 @@ import { AdsSecctionComponent } from './main-page/ads-section/ads-section.compon
 import { AdsDetailsComponent } from './ads-details/ads-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddOpportunityComponent } from './opportunities/add-opportunity/add-opportunity.component';
-import { ViewOpportunityComponent } from './opportunities/view-opportunity/view-opportunity.component';
 import { RequestTaskComponent } from './request-task/request-task.component';
+import { ViewOpportunityComponent, MessageDialog } from './opportunities/view-opportunity/view-opportunity.component';
 import { AllOpportunitiesComponent } from './opportunities/all-opportunities/all-opportunities.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HasRoleDirective } from './has-role.directive';
+import { SessionService } from './session.service';
+import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
+import { Wso2Interceptor } from './wso2.inteceptor';
+import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
+import { CommonModule } from '@angular/common';
 
+import { ToastrModule } from 'ngx-toastr';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -116,7 +125,9 @@ export function getFormioEnv() {
     RequestDetailsComponent,
     SelectComponent,
     DashletFilterComponent,
+    DashletFilterOppComponent,
     DashletTableComponent,
+    DashletTableOppComponent,
     CaseActivitiesComponent,
     MainPageComponent,
     NewsSecctionComponent,
@@ -129,9 +140,14 @@ export function getFormioEnv() {
     ViewOpportunityComponent,
     RequestTaskComponent,
     AllOpportunitiesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HasRoleDirective,
+    ApplyOpportunityComponent,
+    AppliedOpportunityComponent,
+    MessageDialog
   ],
   imports: [
+    CommonModule,
     KeycloakAngularModule,
     MatNativeDateModule,
     NgSelectModule,
@@ -154,6 +170,9 @@ export function getFormioEnv() {
 
     // material
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
@@ -191,10 +210,15 @@ export function getFormioEnv() {
   providers: [
     DatePipe,
     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Wso2Interceptor,
+      multi: true
+    },
+    {
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
-      deps: [KeycloakService]
+      deps: [KeycloakService, SessionService]
     },
     { provide: FormioAppConfig, useFactory: (getFormioEnv) },
     {
@@ -208,7 +232,8 @@ export function getFormioEnv() {
 
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[MessageDialog]
 })
 export class AppModule {
 

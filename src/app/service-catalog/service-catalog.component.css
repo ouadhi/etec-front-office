@@ -26,3 +26,10 @@
 .filtersList__item .mat-checkbox-inner-container{
     margin-left: 10px;
 }
+
+.alignSwitchAR{
+    text-align: right;
+  }
+  .alignSwitchEN{
+    text-align: left;
+  } 

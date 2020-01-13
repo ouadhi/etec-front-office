@@ -101,6 +101,10 @@ mat-header-cell:first-of-type {
     vertical-align: middle;
   }
 
+  mat-header-row{
+    display: none;
+  }
+
   .mat-table caption {
     font-size: 1em;
   }
@@ -126,11 +130,13 @@ mat-header-cell:first-of-type {
   .mat-table .mat-header-cell {
     padding-left: 10px;
   }
+
   .mat-table .mat-cell {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: 15px;
-    text-align: right;
+    text-align: left;
+    //text-align: "(switchLangService.currentLang=='ar')? left : right";
     min-height: auto;
     height: 24px;
     margin-bottom: 0%;
@@ -146,13 +152,15 @@ mat-header-cell:first-of-type {
       margin-top: -7px;
     }
   }
+  
   .mat-table .mat-cell:before {
     /*
     * aria-label has no advantage, it won't be read inside a table
     content: attr(aria-label);
     */
     content: attr(data-label);
-    float: left;
+    float: right;
+    //float: "(switchLangService.currentLang=='ar')? right : left";
     text-transform: uppercase;
     font-weight: normal;
 
@@ -164,4 +172,11 @@ mat-header-cell:first-of-type {
   .mat-table .mat-cell:first-child {
     margin-top: 4%;
   }
+
+ .alignSwitchAR{
+    text-align: right;
+  }
+  .alignSwitchEN{
+    text-align: left;
+  } 
 }

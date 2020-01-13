@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { SwitchLangService } from '../switch-lang.service';
 
 @Component({
   selector: 'app-section',
@@ -10,7 +11,9 @@ export class SectionComponent implements OnInit {
 
   @Input() sectionTitle;
 
-  constructor() { }
+  constructor(
+    public switchLangService: SwitchLangService,
+  ) { }
 
   ngOnInit() {
   }

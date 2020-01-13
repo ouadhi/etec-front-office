@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { publishReplay, refCount, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { Observable, of } from 'rxjs';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,17 @@ export class AccountService {
     return this.http.get<any>(endpoint, { params: queryParams }).pipe(
       catchError(this.handleError('getAccount', []))
     );
+  }
+
+  getBranchId(userid): Observable<any> {
+    const endpoint = `${environment.wso2.base}${environment.wso2.api.erp}employee/${encodeURIComponent(userid)}`;
+    console.log(endpoint);
+    return this.http.get<any>(endpoint);
+  }
+
+  getBranchIfForbeneficiary(): Observable<any> {
+    const endpoint = `${environment.beneficiaryApi.api}`;
+    return this.http.get<any>(endpoint)
   }
 
   private handleError<T>(operation = 'operation', result?) {

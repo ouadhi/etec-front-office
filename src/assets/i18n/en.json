@@ -2,7 +2,7 @@
   "formLoadError": "An unknown error happened while loading the page, please try again later.",
   "dir": "ltr",
   "LAYOUT": {
-    "TITLE": "RMS portal",
+    "TITLE": "Beneficiary Portal",
     "CHANGE_LANGUAGE": "Change Language",
     "WELCOME": "Welcome",
     "LOGOUT": "Logout",
@@ -11,7 +11,8 @@
   "NAV": {
     "MAIN_PAGE": "Main Page",
     "SERVICES_CATALOG": "Services Catalog",
-    "MY_REQUESTS": "My Requests"
+    "MY_REQUESTS": "My Requests",
+    "ADD_OPPORTUNITY": "Add Opportunity"
   },
   "CATALOG": {
     "SERVICE_CATALOG_TITLE": "Services Catalog",
@@ -37,6 +38,9 @@
     "TITLE": "Ads"
   },
   "SERVICE": {
+    "SUCCESS": "Request Has Been sent Successfully",
+    "REQUEST_NOTE": "If you can't find the option you need please refer to your supervisor",
+    "SERVICES_NOTE": "If you have any questions please refer to your supervisor",
     "SERVICE": "Service",
     "IS_NOT_ACTIVE": "Service is not active",
     "DETAILS": "Service Details",
@@ -101,6 +105,10 @@
   "Details": "Details",
   "carAccidentCompensationCase": "Car Accident Subsidy",
   "forms": {
+    "errors": {
+      "tooMany": "Please Complete all required fields correctly",
+      "generic":"An error occured, please contact your supervisor"
+    },
     "common": {
       "SAVE": "SAVE",
       "COMPLETE": "COMPLETE",
@@ -195,5 +203,13 @@
     "LAST_PAGE_LABEL": "Last",
     "RANGE_PAGE_LABEL_1": "0 of {{length}}",
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} of {{length}}"
+  },
+  "OPPORTUNITY": {
+    "APPLY": "Apply",
+    "ALREADY_APPLIED": "Already applied before",
+    "NOT_AVAILABLE_DUE_TO_DATE": "No longer accept apply. due to date",
+    "CANDIDATE_NAME": "Candidate name",
+    "DATE": "Applied Date",
+    "DETAILS": "Details"
   }
 }

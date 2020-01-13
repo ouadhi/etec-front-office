@@ -6,6 +6,7 @@ import { from, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
 import { concatMap } from 'rxjs/internal/operators';
 import { DatePipe } from '@angular/common';
+import { SwitchLangService } from '../switch-lang.service';
 
 @Component({
   selector: 'app-my-requests',
@@ -17,7 +18,8 @@ export class MyRequestsComponent {
   constructor(
     private http: HttpClient,
     private requestsService: RequestsService,
-    public datePipe: DatePipe
+    public datePipe: DatePipe,
+    public switchLangService: SwitchLangService,
   ) { }
 
 

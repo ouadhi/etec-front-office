@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { RequestsService } from '../requests.service';
 import { CaseActivityService } from '../case-activities/case-activities.service';
+import { SwitchLangService } from '../switch-lang.service';
 
 @Component({
   selector: 'app-request-details',
@@ -14,7 +15,8 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private caseActivity: CaseActivityService
+    private caseActivity: CaseActivityService,
+    public switchLangService: SwitchLangService
   ) { }
 
   link: any;

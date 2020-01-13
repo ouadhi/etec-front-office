@@ -18,6 +18,8 @@ import { environment } from '../environments/environment';
 import { AppRoleGuard } from './app.roleguard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RequestTaskComponent } from './request-task/request-task.component';
+import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
+import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
 
 
 const routes: Routes = [
@@ -48,7 +50,7 @@ const routes: Routes = [
     data: { roles: [environment.roles.beneficiary] },
   },
   {
-    path: 'request-details/:link/:formData/:cmmnId', component: RequestDetailsComponent,
+    path: 'request-details/:link/:formData/:cmmnId/:caseId/:id', component: RequestDetailsComponent,
     canActivate: [AppAuthGuard],
     data: { roles: [environment.roles.beneficiary] },
 
@@ -78,14 +80,21 @@ const routes: Routes = [
     canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
-  { 
-    path: 'opportunity/all' , component: AllOpportunitiesComponent,
+  {
+    path: 'opportunity/apply/:id', component: ApplyOpportunityComponent,
     canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
-  { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '404' }
-
+  {
+    path: 'opportunity/applied/:id', component: AppliedOpportunityComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'opportunity/all' , component: AllOpportunitiesComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  }
 ];
 
 @NgModule({

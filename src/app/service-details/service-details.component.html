@@ -10,8 +10,10 @@
 
         {{data[trans._key('description')]}}
 
-        <button [routerLink]="['/request', data.link, { serviceId: data.key }]" skipLocationChange=true target="_blank"
-          mat-raised-button color="primary" [disabled]="data.isApplyActive == false ? true : false" >{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right</mat-icon></button>
+        <button [routerLink]="['/request', data.link, { serviceId: data.key, name: data[trans._key('serviceName')] }]" skipLocationChange=true target="_blank"
+          mat-raised-button color="primary"
+          [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right
+          </mat-icon></button>
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
@@ -144,6 +146,8 @@
       {{'service.No Comments' | translate}}
     </div>
   </app-section>
-
+  <app-section> 
+    <p class="note">{{'SERVICE.SERVICES_NOTE' | translate}}</p>
+  </app-section>
 
 </app-page>

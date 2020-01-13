@@ -5,6 +5,8 @@ import { merge, of as observableOf, Observable } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { FormioLoader } from 'dp-formio';
 import { DashletFilterComponent } from '../dashlet-filter/dashlet-filter.component';
+import { SwitchLangService } from '../switch-lang.service';
+
 
 /**
  * Permission Table
@@ -35,7 +37,7 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
   expandedElement;
   resultsLength = 0;
 
-  constructor(public translate: TranslateService, public loader: FormioLoader) {
+  constructor(public translate: TranslateService, public loader: FormioLoader, public switchLangService: SwitchLangService,) {
 
   }
 

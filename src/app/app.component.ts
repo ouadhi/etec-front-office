@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { KeycloakProfile } from 'keycloak-js';
-import { KeycloakService } from 'keycloak-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Formio } from 'formiojs';
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
+import { SessionService } from './session.service';
 import { SwitchLangService } from './switch-lang.service';
 
-import { Formio } from 'formiojs';
-import { AccountService } from './account.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AccountService]
 })
 export class AppComponent implements OnInit {
   title = 'rms';
@@ -23,7 +22,7 @@ export class AppComponent implements OnInit {
     private keycloakService: KeycloakService,
     public translate: TranslateService,
     public switchLangService: SwitchLangService,
-    private accountService: AccountService
+    private sessionService: SessionService,
   ) {
     console.log('.');
     const DelayPlugin = {
@@ -65,8 +64,7 @@ export class AppComponent implements OnInit {
     this.switchLangService.changeLang(this.switchLangService.getSelectedLang());
 
     if (await this.keycloakService.isLoggedIn()) {
-      this.userDetails = await this.accountService.getAccount().toPromise()
-        .then(result => { console.log(result); return result; }); // await this.keycloakService.loadUserProfile();
+      this.userDetails = await this.sessionService.loadUserProfile();
       this.loggedIn = true;
     }
   }

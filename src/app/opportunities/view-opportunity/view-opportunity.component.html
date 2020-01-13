@@ -1,45 +1,134 @@
-<app-page pageTitle="{{ 'OPPORTUNITY.VIEW_PAGETITLE' | translate }}" hasBackButton="false">
+<app-page pageTitleNarrow="{{ 'OPPORTUNITY.VIEW_PAGETITLE' | translate }}" hasBackButton="false">
+
+  <div *appHasRole="['beneficiary']" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+
+    <mat-card *ngIf="!isWithinDate">
+        {{"OPPORTUNITY.NOT_AVAILABLE_DUE_TO_DATE" | translate}}
+    </mat-card>
+
+    <mat-card *ngIf="isAlreadyApplied">
+        {{"OPPORTUNITY.ALREADY_APPLIED" | translate}}
+    </mat-card>
   
-    <div fxLayout="row">
-      
-      <div fxFlex="70">
-
-
-        <ul>
-        
-            <li>{{'OPPORTUNITY.NAME' | translate }} {{ data.name }}</li>
-            <li>{{'OPPORTUNITY.NUMBER' | translate }} {{ data.number }}</li>
-            <li>{{'OPPORTUNITY.CITY' | translate }} {{ data.city }}</li>
-            <li>{{'OPPORTUNITY.EMPLOYER' | translate }} {{ data.employer }}</li>
-            <li>{{'OPPORTUNITY.DESCRIPTION' | translate }} {{ data.description }}</li>
-            <li>{{'OPPORTUNITY.SALARYTYPE' | translate }} {{ data.salaryType }}</li>
-            <li>{{'OPPORTUNITY.SALARYAMOUNT' | translate }} {{ data.salaryAmount }}</li>
-            <li>{{'OPPORTUNITY.FROM' | translate }} {{ data.from }}</li>
-            <li>{{'OPPORTUNITY.TO' | translate }} {{ data.to }}</li>
-            <li>{{'OPPORTUNITY.EDUCATION' | translate }} {{ data.education }}</li>
-            <li>{{'OPPORTUNITY.VACANCIES' | translate }} {{ data.vacancies }}</li>
-            <li>{{'OPPORTUNITY.REQUIREMENTS' | translate }} {{ data.requirements }}</li>
-            <li>{{'OPPORTUNITY.QUALIFICATIONS' | translate }} {{ data.qualifications }}</li>
-            <li>{{'OPPORTUNITY.CERTIFICATES' | translate }} {{ data.certificates }}</li>
-            <li>{{'OPPORTUNITY.YEARSOFEXPERIENCE' | translate }} {{ data.yearsOfExperience }}</li>
-            <li>{{'OPPORTUNITY.NOTES' | translate }} {{ data.notes }}</li>
-
-          </ul>
-
-        <pre>
-          {{data | json}}
-        </pre>
-        
-
-
-      </div>
-  
-      <div fxFlex="30">
-        
-      </div>
-  
+    <div class="sideButtonContainer">
+      <a mat-button mat-raised-button color="primary" [routerLink]="applyRoute" *ngIf="!isAlreadyApplied && isWithinDate">
+          {{"OPPORTUNITY.APPLY" | translate}}
+      </a>
     </div>
+  </div>
+
+  <formio *ngIf="formReady" [formKey]="'JobOpportunity-New'" [submission]="data"  [readOnly]="true"
+    (customEvent)="onCustomEvent($event)" (submit)="onSubmit($event)" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+  </formio>
+
+  <div class="applicantsSection" *appHasRole="['department_specialist','ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST']">
+    <h3 class="applicantsSection__title" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+        {{'OPPORTUNITY.APPLICANTS_LIST' | translate}}
+    </h3>
+
   
-  </app-page>
-  
-  
+    <div class="content ustify-content-center">
+    <mat-table multiTemplateDataRows [dataSource]="applicants" [class.isMobile]="isMobile">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.CANDIDATE_NAME' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.CANDIDATE_NAME' | translate">
+          <a class="text-info" [routerLink]="'/opportunity/applied/'+element._id">
+            {{element._fullName}}
+          </a>
+        </mat-cell>>
+      </ng-container>
+    
+      <!-- date Column -->
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.DATE' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.DATE' | translate"> {{element._created * 1000  | date:"yyyy-MM-dd HH:mm"}} </mat-cell>
+      </ng-container>
+
+
+      <!-- nid Column -->
+      <ng-container matColumnDef="nid">
+        <mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.NATIONAL_ID' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.NATIONAL_ID' | translate"> {{element._nationalId}} </mat-cell>
+      </ng-container>
+
+      <!-- birthdate Column -->
+      <ng-container matColumnDef="birthdate">
+        <mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.BIRTH_DATE' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.BIRTH_DATE' | translate"> {{element._birthDate}} </mat-cell>
+      </ng-container>
+
+
+        <!-- mobile Column -->
+      <ng-container matColumnDef="mobile">
+          <mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.MOBILE' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.MOBILE' | translate"> {{element._mobile}} </mat-cell>
+        </ng-container>
+
+
+        <!-- city Column -->
+      <ng-container matColumnDef="city">
+          <mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.CITY' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.CITY' | translate"> {{element._created}} </mat-cell>
+        </ng-container>
+
+
+        <!-- title Column -->
+      <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.JOB_TITLE' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.JOB_TITLE' | translate"> {{res.name}} </mat-cell>
+        </ng-container>
+
+        <!-- education Column -->
+      <ng-container matColumnDef="education">
+          <mat-header-cell *matHeaderCellDef>{{'OPPORTUNITY.EDUCATION' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.EDUCATION' | translate"> {{element.educationAndMajor}} </mat-cell>
+        </ng-container>
+
+      <!-- checkbox Column -->
+      <ng-container matColumnDef="checkbox">
+        <mat-header-cell *matHeaderCellDef>
+          <span *appHasRole="['department_specialist']">
+            <mat-checkbox class="example-margin" (click)="selectAllCandidates()" (ngModel)="isAllCandidates">
+                {{'OPPORTUNITY.CANDIDATE_SELECT' | translate}}
+            </mat-checkbox>
+          </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.CANDIDATE_SELECT' | translate">
+          <span *appHasRole="['department_specialist']">
+            <mat-checkbox class="example-margin" [(ngModel)]="checkboxCandidates[element._id]"></mat-checkbox>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+
+        <!-- details Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          {{'OPPORTUNITY.ACTIONS' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.ACTIONS' | translate">
+            <a class="text-info" [routerLink]="'/opportunity/applied/'+element._id">
+              {{'OPPORTUNITY.CANDIDATE_VIEW' | translate}}
+            </a>
+        </mat-cell>
+      </ng-container>
+    
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>    
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </div>
+    <div *appHasRole="['department_specialist']">
+        <a mat-button mat-raised-button color="primary" class="applicantsSection__send" (click)="sendToCandidates()">
+            {{"OPPORTUNITY.SEND_TO_CANDIDATES" | translate}}
+        </a>
+    </div>
+
+    
+
+  </div>
+
+</app-page>

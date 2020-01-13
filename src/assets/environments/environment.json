@@ -1,5 +1,12 @@
 {
     "production": true,
+    "wso2": {
+        "base": "http://100.25.39.251:8280/",
+        "token": "a9ff3dbd-50fa-3275-b7a4-80f81efc5e65",
+        "api": {
+            "erp": "erp/1.0.0/"
+        }
+    },
     "cms": {
         "api": {
             "master": "http://3.95.138.52:8089",
@@ -57,8 +64,9 @@
         "account": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/api/account"
     },
     "roles": {
-        "beneficiary": "ROLE_BENEFICIARY",
-        "employee": "ROLE_EMPLOYEE"
+        "beneficiary": "ROLE_USER",
+        "department_specialist": "ROLE_BRANCH_ENABLEMENT_SPECIALIST",
+        "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST": "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
     },
     "statisticsApi": {
         "api": "https://eservice.ekhaa.org.sa/api/cms/api/collections/get/segment/"

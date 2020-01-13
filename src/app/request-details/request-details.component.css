@@ -1,0 +1,30 @@
+.nav-tabs{
+    background-color:#fff;
+    color: #6c757d;
+  }
+
+  a{
+    color: #6c757d;
+  }
+  
+  .tab-content{
+      background-color:#fff;
+      padding:5px
+  }
+  .nav-tabs > li > a{
+    border: medium none;
+  }
+
+  .nav-tabs .nav-link.active {
+    background-color: #3d98aa;
+    color: white;
+    font-weight: bolder;
+}
+
+
+.alignSwitchAR{
+  text-align: right;
+}
+.alignSwitchEN{
+  text-align: left;
+} 
