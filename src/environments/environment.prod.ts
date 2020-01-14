@@ -80,7 +80,7 @@ export const environment = {
     account: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/api/account'
   },
   task: {
-    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal'
+    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal/'
   },
   roles: {
     beneficiary: 'ROLE_BENEFICIARY',

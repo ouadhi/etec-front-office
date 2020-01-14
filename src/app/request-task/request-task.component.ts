@@ -73,7 +73,7 @@ export class RequestTaskComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.form.ready = false;
       this.params = [{
-        url: `${environment.task.api}${params.processDefinitionId}/${params.taskDefinitionKey}/${params.taskId}`,
+        url: `${environment.task.api}${params.caseDefinitionId}/${params.caseId}`,
         parallel: true
       }];
       this.form.formKey = params.formKey;

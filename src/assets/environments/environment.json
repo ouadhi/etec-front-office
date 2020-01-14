@@ -72,6 +72,6 @@
         "api": "https://eservice.ekhaa.org.sa/api/cms/api/collections/get/segment/"
     },
     "task": {
-        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/api/portal"
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/orphansmicroservices/api/"
     }
 }

@@ -81,12 +81,12 @@ export const environment = {
 
   },
   task: {
-    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal'
+    api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal/'
   },
   roles: {
     beneficiary: 'ROLE_BENEFICIARY',
     department_specialist: 'specialst',
-    ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST: "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
+    ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST: 'ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST'
   }
 };
 
