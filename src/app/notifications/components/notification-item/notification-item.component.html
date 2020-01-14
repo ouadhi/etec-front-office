@@ -19,7 +19,7 @@
         </ion-row>
         <ion-row>
             <ion-col no-padding>
-                <ion-button (click)="toggleRead()"
+                <ion-button (click)="toggleRead($event)"
                     [matTooltip]="(notification.status === 'READ' ? 'notifications.markAsUnread' : 'notifications.markAsRead') | translate"
                     [matTooltipPosition]="'before'" aria-label="" size="small" fill="none">
                     <ion-icon *ngIf="notification.status != 'READ'" size="small" color="medium" slot="icon-only"

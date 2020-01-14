@@ -14,11 +14,13 @@ export class NotificationItemComponent {
     constructor(private popoverCtrl: PopoverController) {
 
     }
-    toggleRead() {
+    toggleRead(event) {
+        event.stopPropagation();
         this.update.emit({ action: 'status', notification: this.notification });
     }
 
     async showOptions(event) {
+        event.stopPropagation();
         const popover = await this.popoverCtrl.create({
             component: NotificationOptionsComponent,
             cssClass: 'notification-options',
