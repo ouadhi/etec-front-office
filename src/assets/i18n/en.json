@@ -209,5 +209,17 @@
     "CANDIDATE_NAME": "Candidate name",
     "DATE": "Applied Date",
     "DETAILS": "Details"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAsRead": "Mark As Read",
+    "markAsUnread": "Mark As Unread",
+    "markAllAsRead": "Mark All As Read",
+    "all": "All",
+    "noEntry": "No Notifications",
+    "delete": "Delete Notification",
+    "more": "Loading More..",
+    "new": "New",
+    "earlier": "Earlier"
   }
 }

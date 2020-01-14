@@ -69,5 +69,8 @@
     },
     "statisticsApi": {
         "api": "https://eservice.ekhaa.org.sa/api/cms/api/collections/get/segment/"
+    },
+    "notifications": {
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/notification/api/"
     }
 }

@@ -1,0 +1,44 @@
+:host::ng-deep {
+  ion-toolbar {
+    box-shadow: none !important;
+    --background: transparent;
+    display: none;
+  }
+  ion-item {
+    --min-height: 79px !important;
+    --padding-top: !important;
+    --padding-bottom: !important;
+    --background: #f9f9f9;
+  }
+  > ion-content {
+    --background: var(--ion-color-light);
+    height: 100%;
+    ion-content {
+      --background: var(--ion-color-light);
+      --padding-top: 20px;
+      --padding-bottom: 0px;
+      --padding-start: 66px;
+      --padding-end: 66px;
+    }
+  }
+}
+ion-content {
+  height: 100%;
+}
+.page-title {
+  margin: 28px 11px -20px 12px;
+  background-color: #f5f5f5;
+  padding: 24px 16px 14px 16px;
+}
+.container-fluid {
+  display: block;
+  margin-bottom: 50px;
+  position: relative;
+  height: calc(100vh - 276px);
+}
+.list-container {
+  padding: 13px;
+  display: block;
+  height: 100%;
+  margin: 20px 0px;
+}
