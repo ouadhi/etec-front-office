@@ -11,7 +11,7 @@
                     <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"></ion-icon>
                 </ion-chip>
             </ion-col>
-            <ion-col *ngIf="activity.activityName == 'task' && activity.active && !activity.completed">
+            <ion-col *ngIf="activity.caseActivityName == 'task' && activity.active && !activity.completed">
                 <ion-chip (click)="action(activity)" [ngClass]="{'glowing': true}" [color]="'warning'">
                     <ion-label>{{'SERVICE.beneficiaryTask' | translate}}
                         <!-- <span class="mdate">
@@ -30,22 +30,43 @@
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="milestones" id="tracking">
-                <div class="tracking-list milestone" *ngFor="let activity of activities">
-                    <div [ngClass]="activity.completed ? 'greenBorder tracking-item' : 'lightBorder tracking-item'"
-                        *ngIf="activity.completed">
-                        <div [ngClass]="activity.completed ? 'bg-success tracking-icon' : 'bg-secondary tracking-icon'">
-                            <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"
-                                style="font-size: 40px;"></ion-icon>
+                <ng-container *ngFor="let activity of activities">
+                    <div class="tracking-list milestone">
+                        <div [ngClass]="activity.completed ? 'greenBorder tracking-item' : 'lightBorder tracking-item'"
+                            *ngIf="activity.completed">
+                            <div
+                                [ngClass]="activity.completed ? 'bg-success tracking-icon' : 'bg-secondary tracking-icon'">
+                                <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"
+                                    style="font-size: 40px;"></ion-icon>
+                            </div>
+                            <ion-chip [color]="activity.completed ? 'success' : 'medium'">
+                                <ion-label>{{activity.caseActivityName}}
+                                    <span class="mdate">
+                                        {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
+                                    </span>
+                                </ion-label>
+                            </ion-chip>
                         </div>
-                        <ion-chip [color]="activity.completed ? 'success' : 'medium'">
-                            <ion-label>{{activity.caseActivityName}}
-                                <span class="mdate">
-                                    {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
-                                </span>
-                            </ion-label>
-                        </ion-chip>
                     </div>
-                </div>
+                    <div class="tracking-list milestone"
+                        *ngIf="activity.caseActivityName == 'task' && activity.active && !activity.completed">
+                        <div [ngClass]="activity.completed ? 'greenBorder tracking-item' : 'lightBorder tracking-item'">
+                            <div
+                                [ngClass]="activity.completed ? 'bg-success tracking-icon' : 'bg-secondary tracking-icon'">
+                                <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"
+                                    style="font-size: 40px;"></ion-icon>
+                            </div>
+                            <ion-chip (click)="action(activity)" [ngClass]="{'glowing': true}" [color]="'warning'">
+                                <ion-label>{{'SERVICE.beneficiaryTask' | translate}}
+                                    <!-- <span class="mdate">
+                                    {{'SERVICE.required' | translate}}
+                                </span> -->
+                                </ion-label>
+                            </ion-chip>
+                        </div>
+
+                    </div>
+                </ng-container>
             </div>
         </div>
     </div>

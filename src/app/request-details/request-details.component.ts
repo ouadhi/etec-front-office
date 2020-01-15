@@ -34,7 +34,7 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
       this.caseActivity.getRequestTasks({ caseInstanceId: this.cmmnId }).subscribe((data) => {
         this.requestTask = data;
         this.router.navigate(['/request-task',
-          this.requestTask[this.requestTask.length - 1].formKey,
+          `${this.link}-task`,
           this.requestTask[this.requestTask.length - 1].caseDefinitionId.split(':')[0],
           this.requestTask[this.requestTask.length - 1].caseInstanceId,
           this.requestTask[this.requestTask.length - 1].taskDefinitionKey,
