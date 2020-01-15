@@ -109,7 +109,7 @@
   "forms": {
     "errors": {
       "tooMany": "الرجاء التأكد من إتمام كافة الحقول المطلوبة بالطريقة الصحيحة",
-      "generic":"لقد حدث خطأ ما, الرجاء التواصل مع المشرف"
+      "generic": "لقد حدث خطأ ما, الرجاء التواصل مع المشرف"
     },
     "common": {
       "Add Comment": "أضف تعليقاً",
@@ -821,5 +821,16 @@
     "earlier": "سابقاً"
   },
   "CLOSE": "اغلاق",
-  "SEND": "ارسال"
+  "SEND": "ارسال",
+  "a few seconds ago": "منذ بضع ثوان",
+  "a minute ago": "منذ دقيقة",
+  "minutes ago": "منذ {{minutes}} دقائق",
+  "an hour ago": "منذ ساعة",
+  "hours ago": "منذ {{hours}} ساعات",
+  "a day ago": "منذ يوم",
+  "days ago": "منذ {{days}} يوم",
+  "a month ago": "منذ شهر",
+  "months ago": "منذ {{months}} أشهر",
+  "a year ago": "منذ سنة",
+  "years ago": "منذ {{years}} سنوات"
 }

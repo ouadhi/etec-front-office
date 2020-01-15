@@ -17,7 +17,7 @@
     </ion-buttons>
 </ion-toolbar>
 
-<div [dir]='dir' text-center padding [hidden]="notifications?.length > 0">
+<div [dir]='dir' class="no-notification" [hidden]="notifications?.length > 0">
     <ion-text>
         <h6 padding [ngStyle]="{ 'opacity': 0.5}">{{"notifications.noEntry" | translate}}</h6>
     </ion-text>
