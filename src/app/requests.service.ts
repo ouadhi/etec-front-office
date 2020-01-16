@@ -41,6 +41,22 @@ export class RequestsService {
         })
       );
   }
+  getRequestsCount(serviceId) {
+    const d = new Date(new Date().getFullYear(), 0, 1);
+    return this.http.get<any>(
+      `${environment.requestApi.api}${environment.requestApi.rest.count}`,
+      {
+        params: {
+          'requestDate.greaterOrEqualThan': this.datePipe.transform(d, 'yyyy-MM-ddTHH:mm:ss') + 'z',
+          'serviceId.equals': serviceId
+        }
+      }
+    ).pipe(
+      tap(resp => resp),
+      map(resp => resp)
+    );
+
+  }
 
 
   getListOfUserSegments(): Observable<any> {

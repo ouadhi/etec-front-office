@@ -38,7 +38,8 @@ export const environment = {
     rest: {
       myRequests: '/api/portal/requests',
       myBeneficiarySegments: '/api/portal/beneficiary-segments-cms',
-      caseActivity: '/rest/history/case-activity-instance'
+      caseActivity: '/rest/history/case-activity-instance',
+      count: ''
     }
   },
   beneficiaryApi: {
