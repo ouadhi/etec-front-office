@@ -33,23 +33,23 @@ export class TimeAgoPipe implements PipeTransform, OnDestroy {
         } else if (seconds <= 90) {
             return this.translate.instant('a minute ago');
         } else if (minutes <= 45) {
-            return this.translate.instant('minutes ago', { minutes: minutes });
+            return this.translate.instant('minutes ago', { minutes });
         } else if (minutes <= 90) {
             return this.translate.instant('an hour ago');
         } else if (hours <= 22) {
-            this.translate.instant('hours ago', { hours: hours });
+            return this.translate.instant('hours ago', { hours });
         } else if (hours <= 36) {
             return this.translate.instant('a day ago');
         } else if (days <= 25) {
-            return this.translate.instant('days ago', { days: days });
+            return this.translate.instant('days ago', { days });
         } else if (days <= 45) {
             return this.translate.instant('a month ago');
         } else if (days <= 345) {
-            return this.translate.instant('months ago', { months: months });
+            return this.translate.instant('months ago', { months });
         } else if (days <= 545) {
             return this.translate.instant('a year ago');
         } else { // (days > 545)
-            return this.translate.instant('years ago', { years: years });
+            return this.translate.instant('years ago', { years });
         }
     }
     ngOnDestroy(): void {

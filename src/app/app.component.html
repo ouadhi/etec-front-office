@@ -1,53 +1,43 @@
 <div class="mainWrapper" [class.mainWrapper--rtl]="switchLangService.currentLang=='ar'">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <!-- <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span> -->
 
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #3d98aa;">
-    <img style="margin:2px" height="50" src="/assets/logo.png" />
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse text-white" id="navbarNav">
-      <ul class="navbar-nav" [ngClass]="{'mr-auto': switchLangService.currentLang=='ar', 'ml-auto':switchLangService.currentLang=='en'}">
-        <li *ngIf="loggedIn" class="nav-item">
-          <app-notifications-button></app-notifications-button>
-        </li>
-        <li  class="nav-item">
-          <button mat-button [matMenuTriggerFor]="langDropdown">
-            <i class="fa fa-language" aria-hidden="true"></i>   {{'LAYOUT.CHANGE_LANGUAGE' | translate}}
-          </button>
-          <mat-menu #langDropdown="matMenu">
-            <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
-            <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
-          </mat-menu>
-        </li>
-        <li class="nav-item">
-          <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn">
-            <i class="fa fa-user" aria-hidden="true"></i>   {{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}} {{userDetails.lastName}})
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="doLogout()">{{'LAYOUT.LOGOUT' | translate}}</button>
-          </mat-menu>
-        </li>
-        <li class="nav-item">
-          <button mat-button  (click)="login()" *ngIf="!loggedIn">
-            <i class="fa fa-user" aria-hidden="true"></i>   {{'LAYOUT.LOGIN' | translate}}
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
- 
+      <span fxFlex>
+        <img height="50" src="/assets/logo.png" />
+      </span>
+      <app-notifications-button *ngIf="loggedIn"></app-notifications-button>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <span class="d-none d-md-inline" *ngIf="loggedIn">{{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}}
+          {{userDetails.lastName}})</span>
+        <mat-icon>person</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
+        <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
+        <button mat-menu-item [matMenuTriggerFor]="langDropdown">
+          {{'LAYOUT.CHANGE_LANGUAGE' | translate}}
+        </button>
+        <mat-menu #langDropdown="matMenu">
+          <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
+          <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
+        </mat-menu>
+      </mat-menu>
 
 
+
+    </mat-toolbar-row>
+  </mat-toolbar>
 
   <mat-toolbar color="">
     <mat-toolbar-row>
-      <span style="line-height: 10px !important;white-space:normal !important;word-wrap: break-word;">
+      <span>
         <!-- <a mat-button routerLink="/" routerLinkActive="active">{{'NAV.MAIN_PAGE' | translate }}</a> -->
-        <a mat-button routerLink="/service-catalog" routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate }}</a>
+        <a mat-button routerLink="/service-catalog"
+          routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate }}</a>
         <a mat-button routerLink="/my-requests" routerLinkActive="active">{{'NAV.MY_REQUESTS' | translate}}</a>
-        <a mat-button routerLink="/opportunity/all" routerLinkActive="active">{{'NAV.ALL_OPPORTUNITIES' | translate}}</a>
+        <a mat-button routerLink="/opportunity/all"
+          routerLinkActive="active">{{'NAV.ALL_OPPORTUNITIES' | translate}}</a>
       </span>
     </mat-toolbar-row>
   </mat-toolbar>

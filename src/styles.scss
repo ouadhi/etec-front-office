@@ -132,6 +132,7 @@ th {
   font-family: "Tajawal", sans-serif;
 }
 
+
 body {
   margin: 0;
   background: #ebebeb;
@@ -140,6 +141,7 @@ body {
 .mainWrapper {
   &--rtl {
     direction: rtl;
+    text-align:right;
   }
 }
 
@@ -235,4 +237,7 @@ mat-checkbox .mat-checkbox-inner-container {
     overflow: hidden;
     padding: 0px;
   }
+}
+button:focus{
+  outline-width:0px;
 }

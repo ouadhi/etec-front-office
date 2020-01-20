@@ -123,6 +123,10 @@
 }
 
 html[dir="rtl"] {
+  --font-family-md-base: "Tajawal", sans-serif;
+  --font-family-ios-base: "Tajawal", sans-serif;
+  --font-family-wp-base: "Tajawal", sans-serif;
+  --ion-font-family: "Tajawal", sans-serif !important;
   .toast-container {
     direction: rtl;
     text-align: right;

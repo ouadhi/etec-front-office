@@ -13,7 +13,7 @@ export class NotificationsIndexComponent implements AfterViewInit {
 
     }
     ngAfterViewInit() {
-        this.NotificationsModalComponent.itemHeight = 79;
+        this.NotificationsModalComponent.itemHeight = 80;
         this.NotificationsModalComponent.divider = false;
         this.NotificationsModalComponent.all = false;
         this.NotificationsModalComponent.title = 'notifications.all';
