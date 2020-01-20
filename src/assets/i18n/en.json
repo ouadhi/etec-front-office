@@ -38,6 +38,7 @@
     "TITLE": "Ads"
   },
   "SERVICE": {
+    "BENEFICIARY_TASK_SUCCESS": "Request has been updated successfully",
     "SUCCESS": "Request Has Been sent Successfully",
     "REQUEST_NOTE": "If you can't find the option you need please refer to your supervisor",
     "SERVICES_NOTE": "If you have any questions please refer to your supervisor",

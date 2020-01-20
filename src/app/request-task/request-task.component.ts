@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../environments/environment';
 import { ModalController } from '@ionic/angular';
-
+import { SwitchLangService } from '../switch-lang.service';
+import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 /**
  * Main Task Component
@@ -37,7 +39,10 @@ export class RequestTaskComponent implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     public translate: TranslateService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public switchLangService: SwitchLangService,
+    public toastr: ToastrService,
+    private location: Location
 
   ) {
     //
@@ -50,8 +55,7 @@ export class RequestTaskComponent implements OnInit {
   goBack() {
     /* return this.router.navigate(['tasks',
        ...(this.route.parent.snapshot.params.filterId ? [this.route.parent.snapshot.params.filterId] : [])]);*/
-    this.router.navigate(['../../'], { relativeTo: this.route });
-
+    this.location.back();
   }
 
 
@@ -61,6 +65,7 @@ export class RequestTaskComponent implements OnInit {
    *  Submission Object
    */
   onSubmit(submission) {
+    this.toastr.success('', this.translate.instant('SERVICE.BENEFICIARY_TASK_SUCCESS'));
     this.goBack();
   }
 

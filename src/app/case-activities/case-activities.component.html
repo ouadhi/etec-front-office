@@ -3,7 +3,8 @@
         <ng-container *ngFor="let activity of activities">
             <ion-col class="milestone" *ngIf="activity.completed">
                 <ion-chip [color]="activity.completed ? 'success' : 'medium'">
-                    <ion-label>{{activity.caseActivityName}}
+                    <ion-label>
+                        {{activity.caseActivityName === 'task' ? ('SERVICE.beneficiaryTask' | translate) : activity.caseActivityName}}
                         <span class="mdate">
                             {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
                         </span>
@@ -40,7 +41,8 @@
                                     style="font-size: 40px;"></ion-icon>
                             </div>
                             <ion-chip [color]="activity.completed ? 'success' : 'medium'">
-                                <ion-label>{{activity.caseActivityName}}
+                                <ion-label>
+                                    {{activity.caseActivityName === 'task' ? ('SERVICE.beneficiaryTask' | translate) : activity.caseActivityName}}
                                     <span class="mdate">
                                         {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
                                     </span>
@@ -50,13 +52,13 @@
                     </div>
                     <div class="tracking-list milestone"
                         *ngIf="activity.caseActivityName == 'task' && activity.active && !activity.completed">
-                        <div [ngClass]="activity.completed ? 'greenBorder tracking-item' : 'lightBorder tracking-item'">
+                        <div [ngClass]="'warningBorder tracking-item'">
                             <div
-                                [ngClass]="activity.completed ? 'bg-success tracking-icon' : 'bg-secondary tracking-icon'">
-                                <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"
+                                [ngClass]="activity.completed ? 'bg-success tracking-icon' : 'bg-warning tracking-icon'">
+                                <ion-icon [name]="'alert'"
                                     style="font-size: 40px;"></ion-icon>
                             </div>
-                            <ion-chip (click)="action(activity)" [ngClass]="{'glowing': true}" [color]="'warning'">
+                            <ion-chip (click)="action(activity)" [ngClass]="{'glowing': false}" [color]="'warning'">
                                 <ion-label>{{'SERVICE.beneficiaryTask' | translate}}
                                     <!-- <span class="mdate">
                                     {{'SERVICE.required' | translate}}

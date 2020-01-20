@@ -70,6 +70,9 @@ ion-chip {
 .lightBorder {
   border-left: 3px solid #6c757d;
 }
+.warningBorder {
+  border-left: 3px solid var(--ion-color-warning);
+}
 
 @media (min-width: 992px) {
   .tracking-item {

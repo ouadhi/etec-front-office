@@ -1,4 +1,10 @@
 <app-page>
-    <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
-        [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (submit)="onSubmit($event)"></formio>
+    <div class="container-fluid"
+        [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+        <div class="service-title">
+            <h5 class="alignSwitchAR">{{'SERVICE.beneficiaryTask' | translate}}</h5>
+        </div>
+        <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
+            [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (submit)="onSubmit($event)"></formio>
+    </div>
 </app-page>
