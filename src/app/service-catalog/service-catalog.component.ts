@@ -264,8 +264,8 @@ export class ServiceCatalogComponent implements OnInit {
   // apply filter for loggedIn user
   async prepareFiltersFetch() {
 
-    if (await this.keycloakService.isLoggedIn()) {
-
+    //if (await this.keycloakService.isLoggedIn()) {
+    if (false) {
       this.requestsService.getListOfUserSegments().subscribe(data => {
         this.userSegments = data;
         this.prepareFilters(this.userSegments);

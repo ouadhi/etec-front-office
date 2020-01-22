@@ -212,12 +212,12 @@ export function getFormioEnv() {
       useClass: Wso2Interceptor,
       multi: true
     },
-    {
+    /*{
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
       deps: [KeycloakService, SessionService]
-    },
+    },*/
     { provide: FormioAppConfig, useFactory: (getFormioEnv) },
     {
       provide: FormioTranslate,

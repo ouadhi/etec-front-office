@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../../services.service';
 import { environment } from '../../../environments/environment';
 import { SessionService } from '../../session.service';
-import { encodeUriFragment } from '@angular/router/src/url_tree';
 import { AccountService } from 'src/app/account.service';
 import { SwitchLangService } from '../../switch-lang.service';
 @Component({

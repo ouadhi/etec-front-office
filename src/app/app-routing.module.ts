@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'service-catalog' },
   {
     path: 'service-catalog', component: ServiceCatalogComponent,
-    canActivate: [AppRoleGuard],
+   // canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
@@ -36,7 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'service-details/:id', component: ServiceDetailsComponent,
-    canActivate: [AppRoleGuard],
+   // canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
@@ -52,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: 'news-details/:id', component: NewsDetailsComponent,
-    canActivate: [AppRoleGuard],
+   // canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
