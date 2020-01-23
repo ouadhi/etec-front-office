@@ -63,12 +63,22 @@ export class AppComponent implements OnInit {
 
     this.switchLangService.changeLang(this.switchLangService.getSelectedLang());
 
-    /*
-     if (await this.keycloakService.isLoggedIn()) {
-       this.userDetails = await this.sessionService.loadUserProfile();
-       this.loggedIn = true;
-     }
-    */
+    if (await this.keycloakService.isLoggedIn()) {
+      this.userDetails = await this.sessionService.loadUserProfile();
+      this.loggedIn = true;
+    } else {
+      this.loggedIn = false;
+    }
+
+    this.keycloakService.keycloakEvents$.subscribe(async () => {
+      if (await this.keycloakService.isLoggedIn()) {
+        this.userDetails = await this.sessionService.loadUserProfile();
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    });
+
   }
 
   async doLogout() {
