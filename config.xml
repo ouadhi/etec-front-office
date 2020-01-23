@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
@@ -99,4 +100,12 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <universal-links>
+        <host name="ec2-34-226-249-174.compute-1.amazonaws.com:9080" scheme="https">
+            <path url="/auth" />
+        </host>
+        <host name="ec2-34-226-249-174.compute-1.amazonaws.com:9080" scheme="http">
+            <path url="/auth" />
+        </host>
+    </universal-links>
 </widget>

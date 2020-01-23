@@ -63,7 +63,7 @@ import { RequestDetailsComponent } from './request-details/request-details.compo
 // Components & Module added by imad
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, Platform } from '@ionic/angular';
 import { DashletFilterComponent } from './dashlet-filter/dashlet-filter.component';
 import { DashletFilterOppComponent } from './dashlet-filter-opp/dashlet-filter-opp.component';
 import { DashletTableComponent } from './dashlet-table/dashlet-table.component';
@@ -212,12 +212,12 @@ export function getFormioEnv() {
       useClass: Wso2Interceptor,
       multi: true
     },
-    /*{
+    {
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
-      deps: [KeycloakService, SessionService]
-    },*/
+      deps: [KeycloakService, SessionService, Platform]
+    },
     { provide: FormioAppConfig, useFactory: (getFormioEnv) },
     {
       provide: FormioTranslate,
@@ -231,7 +231,7 @@ export function getFormioEnv() {
     },
   ],
   bootstrap: [AppComponent],
-  entryComponents:[MessageDialog]
+  entryComponents: [MessageDialog]
 })
 export class AppModule {
 
