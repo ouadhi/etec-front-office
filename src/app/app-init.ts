@@ -15,7 +15,7 @@ export function initializer(keycloak: KeycloakService, session: SessionService, 
             loadUserProfileAtStartUp: false,
             initOptions: {
               onLoad: 'check-sso',
-              checkLoginIframe: true
+              checkLoginIframe: false
             },
             bearerExcludedUrls: [
               '/assets/', // due to call ngx-translate
