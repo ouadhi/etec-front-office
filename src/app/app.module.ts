@@ -169,7 +169,8 @@ export function getFormioEnv() {
     // material
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
+      positionClass: 'toast-bottom-right',
+      timeOut: 100000
     }),
     MatCheckboxModule,
     MatCheckboxModule,

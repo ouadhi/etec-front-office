@@ -121,9 +121,22 @@
     display: none;
   }
 }
-
+.toast-container {
+  right: 12px !important;
+  bottom: 12px !important;
+  .ngx-toastr {
+    padding: 20px !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+  }
+  .toast-title {
+    font-weight: normal;
+  }
+}
 html[dir="rtl"] {
   .toast-container {
+    left: 12px !important;
+    right: auto !important;
     direction: rtl;
     text-align: right;
   }
@@ -145,6 +158,9 @@ html[dir="rtl"] {
   }
 }
 @media (max-width: 767px) {
+  .ngx-toastr{
+    width: calc(100vw - 25px) !important;
+  }
   .formio-component-file {
     position: relative !important;
     overflow: hidden;
