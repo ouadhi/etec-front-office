@@ -8,13 +8,18 @@
     --min-height: 79px !important;
     --padding-top: !important;
     --padding-bottom: !important;
-    --background: #f9f9f9;
+    --background: #f9f9f9 !important;
+    margin: 10px 0px 0px 0px;
+    border-radius: 5px;
+  }
+  ion-content {
+    --background: transparent;
   }
   > ion-content {
-    --background: var(--ion-color-light);
+    --background: transparent;
     height: 100%;
     ion-content {
-      --background: var(--ion-color-light);
+      --background: transparent;
       --padding-top: 20px;
       --padding-bottom: 0px;
       --padding-start: 66px;

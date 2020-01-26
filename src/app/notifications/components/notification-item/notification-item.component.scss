@@ -10,7 +10,7 @@ ion-item {
   --padding-top: 7px;
   --padding-bottom: 7px;
   &.unread {
-    --background: rgba(var(--ion-color-primary-rgb), 0.18);
+    --background: rgba(var(--ion-color-primary-rgb), 0.18) !important;
   }
   ion-button {
     --background: transparent;

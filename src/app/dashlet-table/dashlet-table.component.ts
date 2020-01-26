@@ -19,10 +19,10 @@ import { SwitchLangService } from '../switch-lang.service';
 })
 export class DashletTableComponent implements OnInit, AfterViewInit {
 
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<any>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(DashletFilterComponent) casesFilter: DashletFilterComponent;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(DashletFilterComponent, { static: true }) casesFilter: DashletFilterComponent;
   @Input() title: any = '';
   @Input() columns;
   @Input() detailsRouterForEachItem?;
@@ -37,7 +37,7 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
   expandedElement;
   resultsLength = 0;
 
-  constructor(public translate: TranslateService, public loader: FormioLoader, public switchLangService: SwitchLangService,) {
+  constructor(public translate: TranslateService, public loader: FormioLoader, public switchLangService: SwitchLangService, ) {
 
   }
 

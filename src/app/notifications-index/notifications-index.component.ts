@@ -8,12 +8,12 @@ import { NotificationsModalComponent } from '../notifications/components/notific
 })
 
 export class NotificationsIndexComponent implements AfterViewInit {
-    @ViewChild(NotificationsModalComponent) NotificationsModalComponent: NotificationsModalComponent;
+    @ViewChild(NotificationsModalComponent, { static: true }) NotificationsModalComponent: NotificationsModalComponent;
     constructor() {
 
     }
     ngAfterViewInit() {
-        this.NotificationsModalComponent.itemHeight = 80;
+        this.NotificationsModalComponent.itemHeight = 90;
         this.NotificationsModalComponent.divider = false;
         this.NotificationsModalComponent.all = false;
         this.NotificationsModalComponent.title = 'notifications.all';

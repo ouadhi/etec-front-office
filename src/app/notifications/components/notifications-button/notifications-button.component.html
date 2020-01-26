@@ -1,6 +1,6 @@
 <button mat-button [matMenuTriggerFor]="notifications">
     <i class="fa fa-bell" aria-hidden="true"></i> 
-    <ion-badge [color]="notificationsCount >  0 ? 'danger' : 'primary'" class="notifications" slot="start">
+    <ion-badge [color]="notificationsCount >  0 ? 'warning' : 'primary'" class="notifications" slot="start">
         {{notificationsCount}}</ion-badge>
   </button>
   <mat-menu class="notifications" #notifications="matMenu">

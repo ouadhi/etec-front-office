@@ -17,10 +17,10 @@ import { DashletFilterOppComponent } from '../dashlet-filter-opp/dashlet-filter-
 })
 export class DashletTableOppComponent implements OnInit, AfterViewInit {
 
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<any>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(DashletFilterOppComponent) casesFilter: DashletFilterOppComponent;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(DashletFilterOppComponent, { static: true }) casesFilter: DashletFilterOppComponent;
   @Input() title: any = '';
   @Input() columns;
   @Input() detailsRouterForEachItem?;
@@ -92,6 +92,6 @@ export class DashletTableOppComponent implements OnInit, AfterViewInit {
           this.isRateLimitReached = true;
           return observableOf({});
         })
-      ).subscribe((data) => {this.data = data.items;this.isLoadingResults=false});
+      ).subscribe((data) => { this.data = data.items; this.isLoadingResults = false });
   }
 }
