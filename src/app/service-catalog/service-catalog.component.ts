@@ -3,7 +3,7 @@ import { ServicesService } from '../services.service';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { RequestsService } from '../requests.service';
-import { IImage } from 'ng-simple-slideshow'
+import { IImage } from 'ng-simple-slideshow';
 import { environment } from 'src/environments/environment';
 import { KeycloakService } from 'keycloak-angular';
 import { SwitchLangService } from './../switch-lang.service';
@@ -265,7 +265,6 @@ export class ServiceCatalogComponent implements OnInit {
   async prepareFiltersFetch() {
 
     if (await this.keycloakService.isLoggedIn()) {
-
       this.requestsService.getListOfUserSegments().subscribe(data => {
         this.userSegments = data;
         this.prepareFilters(this.userSegments);

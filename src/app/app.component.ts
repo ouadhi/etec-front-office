@@ -5,6 +5,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { SessionService } from './session.service';
 import { SwitchLangService } from './switch-lang.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
     public translate: TranslateService,
     public switchLangService: SwitchLangService,
     private sessionService: SessionService,
+    public platform: Platform
   ) {
     console.log('.');
     const DelayPlugin = {
@@ -66,7 +68,19 @@ export class AppComponent implements OnInit {
     if (await this.keycloakService.isLoggedIn()) {
       this.userDetails = await this.sessionService.loadUserProfile();
       this.loggedIn = true;
+    } else {
+      this.loggedIn = false;
     }
+
+    this.keycloakService.keycloakEvents$.subscribe(async () => {
+      if (await this.keycloakService.isLoggedIn()) {
+        this.userDetails = await this.sessionService.loadUserProfile();
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    });
+
   }
 
   async doLogout() {
