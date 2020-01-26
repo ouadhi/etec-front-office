@@ -1,0 +1,4 @@
+#Thu Jan 23 13:28:50 EET 2020
+base.0=/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

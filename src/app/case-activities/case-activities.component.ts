@@ -12,6 +12,7 @@ import { CaseActivityService } from './case-activities.service';
 export class CaseActivitiesComponent implements OnInit {
     @Input() caseInstanceId;
     @Output() activityAction = new EventEmitter();
+    @Output() task = new EventEmitter();
     activities = [];
     constructor(
         private caseActivityService: CaseActivityService,
@@ -36,6 +37,11 @@ export class CaseActivitiesComponent implements OnInit {
             .subscribe(data => {
 
                 this.activities = data;
+                this.activities.filter(activity => {
+                    if (activity.caseActivityName === 'task' && activity.active && !activity.completed) {
+                        this.task.emit(activity);
+                    }
+                });
             });
     }
 }

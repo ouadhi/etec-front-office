@@ -26,6 +26,7 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
   requestTask = [];
   data: any;
   formReady = false;
+  hasTask = false;
   params;
 
   handleAction(event) {
@@ -45,6 +46,9 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
 
       });
     }
+  }
+  showTask() {
+    this.hasTask = true;
   }
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

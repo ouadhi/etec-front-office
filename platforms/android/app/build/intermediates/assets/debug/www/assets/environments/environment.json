@@ -1,0 +1,73 @@
+{
+    "production": true,
+    "wso2": {
+        "base": "http://100.25.39.251:8280/",
+        "token": "a9ff3dbd-50fa-3275-b7a4-80f81efc5e65",
+        "api": {
+            "erp": "erp/1.0.0/"
+        }
+    },
+    "cms": {
+        "api": {
+            "master": "http://3.95.138.52:8089",
+            "assets": "http://3.95.138.52:8089/storage/uploads"
+        }
+    },
+    "keycloak": {
+        "url": "http://ec2-34-226-249-174.compute-1.amazonaws.com:9080/auth/",
+        "realm": "ekhaa",
+        "clientId": "fo-web"
+    },
+    "requestApi": {
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/requestmanagement",
+        "rest": {
+            "myRequests": "/api/portal/requests",
+            "myBeneficiarySegments": "/api/portal/beneficiary-segments-cms",
+            "caseActivity": "/rest/history/case-activity-instance"
+        }
+    },
+    "beneficiaryApi": {
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/orphansmicroservices/api/portal/beneficiaries"
+    },
+    "formio": {
+        "apiUrl": "https://api.form.io/",
+        "appUrl": "https://aqnkygpwykfzugd.form.io/"
+    },
+    "filter": {
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/referencedata",
+        "rest": {
+            "deparments": "/api/portal/departments",
+            "services": "/api/request/eservices",
+            "statuses": "/departments",
+            "request": "/caseNames"
+        },
+        "data": {
+            "status": [
+                {
+                    "key": "NEW",
+                    "val": "NEW"
+                },
+                {
+                    "key": "In_PROGRESS",
+                    "val": "In_PROGRESS"
+                },
+                {
+                    "key": "COMPLETED",
+                    "val": "COMPLETED"
+                }
+            ]
+        }
+    },
+    "profile": {
+        "api": "http://3.87.111.211:8120/Ekhaa/beneficiaries",
+        "account": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/api/account"
+    },
+    "roles": {
+        "beneficiary": "ROLE_USER",
+        "department_specialist": "ROLE_BRANCH_ENABLEMENT_SPECIALIST",
+        "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST": "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
+    },
+    "statisticsApi": {
+        "api": "https://eservice.ekhaa.org.sa/api/cms/api/collections/get/segment/"
+    }
+}
