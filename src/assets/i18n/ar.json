@@ -70,7 +70,10 @@
     "COMMENT_ON": "في",
     "beneficiaryTask": "تحديث البيانات",
     "required": "مطلوب",
-    "NO_ENTRY": "لا يوجد"
+    "NO_ENTRY": "لا يوجد",
+    "needs": "يحتاج طلبكم إلى",
+    "pleasePress": "الرجاء الضغط",
+    "hereToUpdate": "هنا لتحديث البيانات"
   },
   "BACK": "رجوع",
   "appTitle": "إدارة المهام",

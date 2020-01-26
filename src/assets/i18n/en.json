@@ -67,9 +67,12 @@
     "GUIDE": "Guide",
     "COMMENTS": "Comments",
     "COMMENT_ON": "on",
-    "beneficiaryTask": "Data Update",
+    "beneficiaryTask": "Information Update",
     "required": "Required",
-    "NO_ENTRY": "Unspecified"
+    "NO_ENTRY": "Unspecified",
+    "needs": "Your request needs",
+    "pleasePress": "Please Press",
+    "hereToUpdate": "here to update request information"
   },
   "BACK": "Back",
   "appTitle": "CASE MANAGEMENT",

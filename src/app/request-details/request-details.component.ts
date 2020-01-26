@@ -47,8 +47,8 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
       });
     }
   }
-  showTask() {
-    this.hasTask = true;
+  showTask(event) {
+    this.hasTask = event;
   }
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

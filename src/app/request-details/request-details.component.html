@@ -1,11 +1,22 @@
 <app-page>
-  <div *ngIf="hasTask" class="alert alert-warning">
-    <strong>Success!</strong> You should <a href="#" class="alert-link">read this message</a>.
-  </div>
   <div class="d-none d-xl-block">
-    <app-case-activities (activityAction)="handleAction($event)" (task)="showTask()" *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
+    <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
     <div class="container-fluid"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+      <div class="padder" *ngIf="hasTask">
+        <div class="alert alert-warning">
+          <div class="row">
+            <div class="col-auto align-self-start">
+              <ion-icon [name]="'alert'" class="alert-icon"></ion-icon>
+            </div>
+            <div class="col alert-text">
+              {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
+              {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction({type:'task',activity:hasTask})"
+                class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
+            </div>
+          </div>
+        </div>
+      </div>
       <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link"
         [submissionId]="formData" [readOnly]="true" [viewOnly]="true" (customEvent)="onCustomEvent($event)"
         (submit)="onSubmit($event)">
@@ -32,7 +43,22 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <app-case-activities (activityAction)="handleAction($event)" (task)="showTask()" *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
+        <div class="padder" *ngIf="hasTask"
+          [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+          <div class="alert alert-warning">
+            <div class="row">
+              <div class="col-auto align-self-start">
+                <ion-icon [name]="'alert'" class="alert-icon"></ion-icon>
+              </div>
+              <div class="col">
+                {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
+                {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction({type:'task',activity:hasTask})"
+                  class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
       </div>
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
         <div class="container-fluid"

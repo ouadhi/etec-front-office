@@ -12,16 +12,6 @@
                     <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"></ion-icon>
                 </ion-chip>
             </ion-col>
-            <ion-col *ngIf="activity.caseActivityName == 'task' && activity.active && !activity.completed">
-                <ion-chip (click)="action(activity)" [ngClass]="{'glowing': true}" [color]="'warning'">
-                    <ion-label>{{'SERVICE.beneficiaryTask' | translate}}
-                        <!-- <span class="mdate">
-                            {{'SERVICE.required' | translate}}
-                        </span> -->
-                    </ion-label>
-                    <ion-icon [name]="'alert'"></ion-icon>
-                </ion-chip>
-            </ion-col>
         </ng-container>
     </ion-row>
 </ion-grid>
@@ -49,24 +39,6 @@
                                 </ion-label>
                             </ion-chip>
                         </div>
-                    </div>
-                    <div class="tracking-list milestone"
-                        *ngIf="activity.caseActivityName == 'task' && activity.active && !activity.completed">
-                        <div [ngClass]="'warningBorder tracking-item'">
-                            <div
-                                [ngClass]="activity.completed ? 'bg-success tracking-icon' : 'bg-warning tracking-icon'">
-                                <ion-icon [name]="'alert'"
-                                    style="font-size: 40px;"></ion-icon>
-                            </div>
-                            <ion-chip (click)="action(activity)" [ngClass]="{'glowing': false}" [color]="'warning'">
-                                <ion-label>{{'SERVICE.beneficiaryTask' | translate}}
-                                    <!-- <span class="mdate">
-                                    {{'SERVICE.required' | translate}}
-                                </span> -->
-                                </ion-label>
-                            </ion-chip>
-                        </div>
-
                     </div>
                 </ng-container>
             </div>
