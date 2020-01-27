@@ -16,7 +16,7 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
     private router: Router,
     private servicesService: ServicesService,
     private accountService: AccountService
-    
+
   ) { }
 
   id: any;
@@ -26,71 +26,71 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
   data: any;
   submission: any;
   params;
-  accountId:string;
+  accountId: string;
   branchId: string;
-  
-  _mobile:string;
-  _nationalId:string;
-  _fullName:string;
-  _birthDate:string;
+
+  _mobile: string;
+  _nationalId: string;
+  _fullName: string;
+  _birthDate: string;
 
   ngOnInit() {
-    
-    this.accountService.getBranchIfForbeneficiary().subscribe(res=>{
-      console.log('getBranchIfForbeneficiary res ',res)
+
+    this.accountService.getBranchIfForbeneficiary().subscribe(res => {
+      console.log('getBranchIfForbeneficiary res ', res)
       this.branchId = res.branchId
       this._mobile = res.mobile
       this._nationalId = res.nationalId
-      this._fullName= res.fullName
-      this._birthDate= res.birthDate
+      this._fullName = res.fullName
+      this._birthDate = res.birthDate
     })
 
-    
-    this.accountService.getAccount().subscribe(res=>{
+
+    this.accountService.getAccount().subscribe(res => {
       this.accountId = res.login;
     })
 
     this.sub = this.route.params.subscribe(params => {
-      console.log('apply params url',params)
+      console.log('apply params url', params)
       this.id = params['id'];
       // TODO: Get Required params to use them in here, assign form key to this.id etc...
-     /* this.params = [
-        {
-          url: environment.beneficiaryApi.api,
-          parallel: true,
-          success: `submission.data = {...submission.data , requesterInfo: {data: response}};`
-          // this is an automated call that will happen in the form,
-          // on success it will run the operation specified in here
-          // You can use this to assign other required parameters.
-          // example:  success: `submission.data =
-          // {opportunityName:${params['opportunityName']},requesterInfo: {data: response}};`
-        }
-      ]; */
+      /* this.params = [
+         {
+           url: environment.beneficiaryApi.api,
+           parallel: true,
+           success: `submission.data = {...submission.data , requesterInfo: {data: response}};`
+           // this is an automated call that will happen in the form,
+           // on success it will run the operation specified in here
+           // You can use this to assign other required parameters.
+           // example:  success: `submission.data =
+           // {opportunityName:${params['opportunityName']},requesterInfo: {data: response}};`
+         }
+       ]; */
       // after your data is ready flip formReady to True.
 
-      this.servicesService.getOpportunity(this.id).toPromise().then((opp)=>{
+      this.servicesService.getOpportunity(this.id).toPromise().then((opp) => {
         let oppData = opp['entries'][0];
-        this.submission={
-          data:{
+        this.submission = {
+          data: {
             "panelColumnsId": oppData.number,
             "panelColumnsJobTitle": oppData.name
           }
         }
-      }).then(()=>{
+      }).then(() => {
         this.formReady = true;
       })
 
-      
+
     })
-      
-      
-  
+
+
+
 
   }
   onSubmit(submission) {
     //this.data.data
-    console.log('submission',submission);
-    
+    console.log('submission', submission);
+
     submission.submission.data['opportunityId'] = this.id;
     submission.submission.data['candidate'] = this.accountId;
     submission.submission.data['branchId'] = this.branchId;
@@ -103,30 +103,34 @@ export class ApplyOpportunityComponent implements OnInit, OnDestroy {
     dataSubmissionToCms['_mobile'] = this._mobile;
     dataSubmissionToCms['_birthDate'] = this._birthDate;
 
-    console.log('dataSubmissionToCms',dataSubmissionToCms);
+    console.log('dataSubmissionToCms', dataSubmissionToCms);
 
     this.servicesService.applyOpportunity(dataSubmissionToCms).subscribe(
       (data) => {
-        console.log('data_cms',data)
+        console.log('data_cms', data)
 
-        setTimeout(()=>{
+        setTimeout(() => {
           this.goBack(data._id);
-        },2000)
-        
+        }, 2000)
+
       })
 
-    
-    
+
+
   }
   /**
    * Go Back After Request is sent
    */
   goBack(newOppId) {
-    this.router.navigate(['/opportunity/applied/'+newOppId]);
+    this.router.navigate(['/opportunity/applied/' + newOppId]);
 
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+ 
+  onCustomEvent(event) {
+
   }
 
 }

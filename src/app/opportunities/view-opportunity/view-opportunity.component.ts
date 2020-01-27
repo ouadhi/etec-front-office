@@ -30,7 +30,7 @@ export class ViewOpportunityComponent implements OnInit {
 
   oppId: any;
   sub: any;
-  res:any;
+  res: any;
   data: any;
   submission: any;
   formReady: boolean = false;
@@ -38,14 +38,14 @@ export class ViewOpportunityComponent implements OnInit {
   applyRoute: any;
 
   applicants;
-  isAlreadyApplied:boolean = false;
-  isWithinDate:boolean = false;
-  userId:string;
+  isAlreadyApplied: boolean = false;
+  isWithinDate: boolean = false;
+  userId: string;
   displayedColumns;
 
-  checkboxCandidates={};
-  isAllCandidates=false;
-  selectedCandidates=[];
+  checkboxCandidates = {};
+  isAllCandidates = false;
+  selectedCandidates = [];
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -53,7 +53,7 @@ export class ViewOpportunityComponent implements OnInit {
       this.applyRoute = '/opportunity/apply/' + this.oppId;
       this.load(this.oppId);
       //if (this.sessionService.isUserInRole('ROLE_BRANCH_ENABLEMENT_SPECIALIST')) {
-        this.getApplicants();
+      this.getApplicants();
       //}
       this.checkIsAlreadyApplied();
     });
@@ -66,7 +66,7 @@ export class ViewOpportunityComponent implements OnInit {
         this.formReady = true;
 
         this.data = {
-          data : {
+          data: {
             "jobTitle": this.res.name,
             "id": this.res.number,
             "city": this.res.city,
@@ -83,7 +83,7 @@ export class ViewOpportunityComponent implements OnInit {
             "certificates": this.res.certificates,
             "requiredExperienceYears": this.res.yearsOfExperience,
             "notes": this.res.notes,
-            "branchId":"_STATIC_EXAMPLE_"
+            "branchId": "_STATIC_EXAMPLE_"
           }
         }
 
@@ -92,70 +92,70 @@ export class ViewOpportunityComponent implements OnInit {
       })
   }
 
-  getApplicants(){
-    this.servicesService.getApplicants(this.oppId).subscribe(res=>{
+  getApplicants() {
+    this.servicesService.getApplicants(this.oppId).subscribe(res => {
       console.log('applicants', res.entries);
       this.applicants = res.entries;
-      this.displayedColumns = ['name','nid','birthdate','mobile','city','title','education','checkbox','actions'];
+      this.displayedColumns = ['name', 'nid', 'birthdate', 'mobile', 'city', 'title', 'education', 'checkbox', 'actions'];
 
       res.entries.forEach(x => {
-        if(x.isContacted == 1){
+        if (x.isContacted == 1) {
           this.checkboxCandidates[x._id] = true
-        }else{
-        this.checkboxCandidates[x._id] = false
+        } else {
+          this.checkboxCandidates[x._id] = false
         }
       });
     })
   }
 
-  async checkIsAlreadyApplied(){
-    
-    this.accountService.getAccount().toPromise().then(res=>{
+  async checkIsAlreadyApplied() {
+
+    this.accountService.getAccount().toPromise().then(res => {
       this.userId = res['login'];
-      }
+    }
     ).then(
-      ()=>{
-        this.servicesService.getApplicantById(this.oppId, this.userId).subscribe(res=>{
-          if(res.entries.length) this.isAlreadyApplied = true;
+      () => {
+        this.servicesService.getApplicantById(this.oppId, this.userId).subscribe(res => {
+          if (res.entries.length) this.isAlreadyApplied = true;
         })
       }
     );
 
   }
 
-  checkIsWithinDate(){
-    let now  =new Date().toString();
-    now = this.datePipe.transform(now,'yyyy-MM-dd');
-    let from = this.datePipe.transform(this.res.from,'yyyy-MM-dd')
-    let to = this.datePipe.transform(this.res.to,'yyyy-MM-dd')
-    if(to >= now && from <= now){
-      console.log('date valdtn true->', from, now, to )
+  checkIsWithinDate() {
+    let now = new Date().toString();
+    now = this.datePipe.transform(now, 'yyyy-MM-dd');
+    let from = this.datePipe.transform(this.res.from, 'yyyy-MM-dd')
+    let to = this.datePipe.transform(this.res.to, 'yyyy-MM-dd')
+    if (to >= now && from <= now) {
+      console.log('date valdtn true->', from, now, to)
       this.isWithinDate = true;
     }
   }
 
-  selectAllCandidates(){
-    if(this.isAllCandidates==false){
-      for (let key in this.checkboxCandidates){
+  selectAllCandidates() {
+    if (this.isAllCandidates == false) {
+      for (let key in this.checkboxCandidates) {
         this.checkboxCandidates[key] = true
       }
-      this.isAllCandidates=true;
-    }else{
-      for (let key in this.checkboxCandidates){
+      this.isAllCandidates = true;
+    } else {
+      for (let key in this.checkboxCandidates) {
         this.checkboxCandidates[key] = false
       }
-      this.isAllCandidates=false;
+      this.isAllCandidates = false;
     }
   }
 
-  sendToCandidates(){
-    this.selectedCandidates =[];
-    for (let key in this.checkboxCandidates){
-      if(this.checkboxCandidates.hasOwnProperty(key) && this.checkboxCandidates[key] == true){
+  sendToCandidates() {
+    this.selectedCandidates = [];
+    for (let key in this.checkboxCandidates) {
+      if (this.checkboxCandidates.hasOwnProperty(key) && this.checkboxCandidates[key] == true) {
         this.selectedCandidates.push(`${key}`);
       }
     }
-    console.log('sendToCandidates',this.selectedCandidates)
+    console.log('sendToCandidates', this.selectedCandidates)
     this.openDialog();
   }
 
@@ -166,7 +166,7 @@ export class ViewOpportunityComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(MessageDialog, {
       width: '60%',
-      data: {candidates: this.selectedCandidates,oppId:this.oppId}
+      data: { candidates: this.selectedCandidates, oppId: this.oppId }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -187,15 +187,15 @@ export class MessageDialog {
     private contactCandidatesService: ContactCandidatesService,
     private router: Router,
     public dialogRef: MatDialogRef<MessageDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  message:string;
+  message: string;
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  sendMessage(){
-    if(this.message.length){
+  sendMessage() {
+    if (this.message.length) {
       // this.contactCandidatesService.contactCandidates(this.data.candidates,this.data.oppId,this.message).toPromise().then(()=>{
       //   setTimeout(()=>{
       //     this.dialogRef.close()
@@ -204,19 +204,24 @@ export class MessageDialog {
       // )
 
       this.data.candidates.forEach(candidateObj => {
-        this.contactCandidatesService.contactCandidates(candidateObj,this.message).toPromise().then(()=>{
-          console.log('isContacted updated for',candidateObj)
-          }
+        this.contactCandidatesService.contactCandidates(candidateObj, this.message).toPromise().then(() => {
+          console.log('isContacted updated for', candidateObj)
+        }
         )
       });
 
       this.dialogRef.close()
       this.router.navigate(['/']);
-      
-      
-    }else{
+
+
+    } else {
       //alert('empty message, please add a message')
     }
   }
+  onSubmit(event) {
 
+  }
+  onCustomEvent(event) {
+
+  }
 }

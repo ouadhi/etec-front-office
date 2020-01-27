@@ -18,7 +18,7 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
     private servicesService: ServicesService,
     private accountService: AccountService,
     public switchLangService: SwitchLangService,
-    
+
   ) { }
 
   id: any;
@@ -26,34 +26,34 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
   sub: any;
 
   data: any;
-  oppData:any;
+  oppData: any;
   submission: any;
   params;
 
   ngOnInit() {
-  
+
     this.sub = this.route.params.subscribe(params => {
-      console.log('applied params url',params)
+      console.log('applied params url', params)
       this.id = params['id'];
 
       this.servicesService.appliedOpportunity(this.id).subscribe(
         (data) => {
-          console.log('view applied'+this.id, data.entries[0])
-          
-          
+          console.log('view applied' + this.id, data.entries[0])
+
+
           this.data = data.entries[0];
           this.formReady = true;
 
-          
+
           // get opp data
-          this.servicesService.getOpportunity(this.data.opportunityId).toPromise().then((opp)=>{
+          this.servicesService.getOpportunity(this.data.opportunityId).toPromise().then((opp) => {
             this.oppData = opp['entries'][0];
 
             let cvAsArray = [];
-            cvAsArray[0]= this.data.cv;
+            cvAsArray[0] = this.data.cv;
 
             this.data = {
-              data : {
+              data: {
                 "currentlyWorking": this.data.isCurrentlyEmployed,
                 //"currentEmployer": ,
                 //"sectorType": ,
@@ -68,14 +68,14 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
                 "englishLevel": this.data.englishLevel,
                 "computerSkillsLevel": this.data.computerSkillsLevel,
                 "cv": cvAsArray,
-                "linkedInProfile": this.data.linkedinProfile ,
-                
+                "linkedInProfile": this.data.linkedinProfile,
+
                 "branchId": this.data.branchId,
                 "candidate": this.data.candidate,
                 "opportunityId": this.data.opportunityId,
                 "panelColumnsId": this.oppData.number,
                 "panelColumnsJobTitle": this.oppData.name
-  
+
               }
             }
 
@@ -83,19 +83,25 @@ export class AppliedOpportunityComponent implements OnInit, OnDestroy {
           })
 
 
-          
-          
+
+
         })
-        
+
     });
 
   }
-  
+
   /**
    * Go Back After Request is sent
    */
   goBack() {
     this.router.navigate(['/']);
+
+  }
+  onSubmit(event) {
+
+  }
+  onCustomEvent(event) {
 
   }
   ngOnDestroy() {

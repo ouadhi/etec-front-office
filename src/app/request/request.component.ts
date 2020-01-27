@@ -53,7 +53,7 @@ export class RequestComponent implements OnInit {
       this.formReady = true;
     });
   }
-  onSubmit() {
+  onSubmit(event) {
     this.toastr.success('', this.translate.instant('SERVICE.SUCCESS'));
     this.goBack();
   }

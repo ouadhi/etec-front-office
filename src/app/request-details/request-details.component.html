@@ -18,8 +18,7 @@
         </div>
       </div>
       <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link"
-        [submissionId]="formData" [readOnly]="true" [viewOnly]="true" (customEvent)="onCustomEvent($event)"
-        (submit)="onSubmit($event)">
+        [submissionId]="formData" [readOnly]="true" [viewOnly]="true">
       </formio>
     </div>
   </div>
@@ -64,8 +63,7 @@
         <div class="container-fluid"
           [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
           <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link"
-            [submissionId]="formData" [readOnly]="true" [viewOnly]="true" (customEvent)="onCustomEvent($event)"
-            (submit)="onSubmit($event)">
+            [submissionId]="formData" [readOnly]="true" [viewOnly]="true">
           </formio>
         </div>
       </div>
