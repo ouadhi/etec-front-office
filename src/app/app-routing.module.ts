@@ -95,9 +95,6 @@ const routes: Routes = [
     path: 'opportunity/all' , component: AllOpportunitiesComponent,
     canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
-<<<<<<< HEAD
-  }
-=======
   },
   {
     path: 'notifications',
@@ -108,7 +105,6 @@ const routes: Routes = [
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' }
 
->>>>>>> feature/notifications
 ];
 
 @NgModule({
