@@ -1,0 +1,51 @@
+:host {
+  height: 100%;
+  position: relative;
+  display:block;
+}
+ion-content {
+  height: calc(100% - 40px);
+}
+div[scrollx="true"],
+div[scrolly="true"] {
+  position: relative;
+  overflow: hidden;
+  max-height: 80vh;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+div[scrollx="true"] {
+  overflow-x: auto;
+}
+
+div[scrolly="true"] {
+  overflow-y: auto;
+}
+ion-toolbar {
+  min-height: 40px;
+  height: 40px;
+  --min-height: 40px;
+  box-shadow: 0px 0px 1px 1px #cbcbcb;
+  ion-title {
+    height: 14px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  ion-button {
+    font-size: 12px;
+    letter-spacing: 0px;
+  }
+}
+
+ion-item-divider {
+  --background: rgba(var(--ion-color-light-rgb), 1);
+  color: #666;
+}
+.no-notification{
+  padding: 20px;
+  text-align: center;
+}

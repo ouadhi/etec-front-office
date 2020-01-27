@@ -1,7 +1,7 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
-
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -19,8 +19,8 @@ import { SlideshowModule } from 'ng-simple-slideshow';
 
 import { StarRatingModule } from 'angular-star-rating';
 
-//material
-//Angular Material Components
+// material
+// Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule, MatNativeDateModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
@@ -100,6 +100,8 @@ import { AppliedOpportunityComponent } from './opportunities/applied-opportunity
 import { CommonModule } from '@angular/common';
 
 import { ToastrModule } from 'ngx-toastr';
+import { NotificationsModule } from './notifications/notifications.module';
+import { NotificationsIndexComponent } from './notifications-index/notifications-index.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -144,7 +146,8 @@ export function getFormioEnv() {
     HasRoleDirective,
     ApplyOpportunityComponent,
     AppliedOpportunityComponent,
-    MessageDialog
+    MessageDialog,
+    NotificationsIndexComponent
   ],
   imports: [
     CommonModule,
@@ -206,7 +209,8 @@ export function getFormioEnv() {
     MatSortModule,
     MatPaginatorModule,
     // Formio implementation Module Import
-    FormioModule
+    FormioModule,
+    NotificationsModule
   ],
   providers: [
     DatePipe,

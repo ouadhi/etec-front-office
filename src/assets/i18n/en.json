@@ -215,5 +215,28 @@
     "CANDIDATE_NAME": "Candidate name",
     "DATE": "Applied Date",
     "DETAILS": "Details"
-  }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAsRead": "Mark As Read",
+    "markAsUnread": "Mark As Unread",
+    "markAllAsRead": "Mark All As Read",
+    "all": "All",
+    "noEntry": "No Notifications",
+    "delete": "Delete Notification",
+    "more": "Loading More..",
+    "new": "New",
+    "earlier": "Earlier"
+  },
+  "a few seconds ago": "a few seconds ago",
+  "a minute ago": "a minute ago",
+  "minutes ago": "{{minutes}} minutes ago",
+  "an hour ago": "an hour ago",
+  "hours ago": "{{hours}} hours ago",
+  "a day ago": "a day ago",
+  "days ago": "{{days}} days ago",
+  "a month ago": "a month ago",
+  "months ago": "{{months}} months ago",
+  "a year ago": "a year ago",
+  "years ago": "{{years}} years ago"
 }

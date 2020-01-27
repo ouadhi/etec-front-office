@@ -71,7 +71,12 @@
     "statisticsApi": {
         "api": "https://eservice.ekhaa.org.sa/api/cms/api/collections/get/segment/"
     },
+<<<<<<< HEAD
     "task": {
         "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/orphansmicroservices/api/"
+=======
+    "notifications": {
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/notification/api/"
+>>>>>>> feature/notifications
     }
 }

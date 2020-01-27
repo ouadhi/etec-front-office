@@ -20,6 +20,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RequestTaskComponent } from './request-task/request-task.component';
 import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
 import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
+import { NotificationsIndexComponent } from './notifications-index/notifications-index.component';
 
 
 const routes: Routes = [
@@ -94,7 +95,20 @@ const routes: Routes = [
     path: 'opportunity/all' , component: AllOpportunitiesComponent,
     canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
+<<<<<<< HEAD
   }
+=======
+  },
+  {
+    path: 'notifications',
+    component: NotificationsIndexComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' }
+
+>>>>>>> feature/notifications
 ];
 
 @NgModule({

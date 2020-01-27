@@ -2186,6 +2186,3 @@ window.cordova = require('cordova');
 require('cordova/init');
 
 })();
-
-;
-//# sourceMappingURL=cordova.js.map

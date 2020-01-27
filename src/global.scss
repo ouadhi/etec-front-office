@@ -134,10 +134,18 @@
   }
 }
 html[dir="rtl"] {
+  --font-family-md-base: "Tajawal", sans-serif;
+  --font-family-ios-base: "Tajawal", sans-serif;
+  --font-family-wp-base: "Tajawal", sans-serif;
+  --ion-font-family: "Tajawal", sans-serif !important;
   .toast-container {
     left: 12px !important;
     right: auto !important;
     direction: rtl;
+    text-align: right;
+  }
+  ion-title,
+  .page-title {
     text-align: right;
   }
   .app-formio {

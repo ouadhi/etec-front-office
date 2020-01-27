@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/desugar/release/2.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="28.0.3"
+        sha1="b3425fda3d89a401555582541a265b6d334db525">
+        <dex dex="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/preDex/release/2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/desugar/release/4.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="28.0.3"
+        sha1="79f08ff2aaf2a622612a79f1f614b8da024038b5">
+        <dex dex="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/preDex/release/4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/desugar/release/5.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="28.0.3"
+        sha1="898806eb5810d08629706b2212043ebe2eb01849">
+        <dex dex="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/preDex/release/5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/desugar/release/3.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="28.0.3"
+        sha1="086e3b80d2ddee6ab32a5620933f4dfd6134a1a2">
+        <dex dex="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/preDex/release/3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/desugar/release/0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="28.0.3"
+        sha1="9a89d8984d104516fb45a31f7d647ce381625033">
+        <dex dex="/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/preDex/release/1.jar" />
+    </item>
+
+</items>

@@ -814,6 +814,29 @@
     "NO_RESULTS": "لا يوجد فرص وظيفية",
     "BIRTH_DATE": "تاريخ الميلاد"
   },
+  "notifications": {
+    "title": "الإشعارات",
+    "markAsRead": "ضع إشارة مقروء",
+    "markAsUnread": "ضع إشارة غير مقروء",
+    "markAllAsRead": "ضع إشارة مقروء للكل",
+    "all": "الكل",
+    "noEntry": "لا يوجد إشعارات",
+    "delete": "قم بإزارة التنبيه",
+    "more": "تحميل المزيد..",
+    "new": "جديد",
+    "earlier": "سابقاً"
+  },
   "CLOSE": "اغلاق",
-  "SEND": "ارسال"
+  "SEND": "ارسال",
+  "a few seconds ago": "منذ بضع ثوان",
+  "a minute ago": "منذ دقيقة",
+  "minutes ago": "منذ {{minutes}} دقائق",
+  "an hour ago": "منذ ساعة",
+  "hours ago": "منذ {{hours}} ساعات",
+  "a day ago": "منذ يوم",
+  "days ago": "منذ {{days}} يوم",
+  "a month ago": "منذ شهر",
+  "months ago": "منذ {{months}} أشهر",
+  "a year ago": "منذ سنة",
+  "years ago": "منذ {{years}} سنوات"
 }

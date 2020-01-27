@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
-@import '~ngx-toastr/toastr';
+@import "~ngx-toastr/toastr";
 
 @import "~@angular/material/theming";
 // Plus imports for other components in your app.
@@ -132,6 +132,7 @@ th {
   font-family: "Tajawal", sans-serif;
 }
 
+
 body {
   margin: 0;
   background: #ebebeb;
@@ -140,6 +141,7 @@ body {
 .mainWrapper {
   &--rtl {
     direction: rtl;
+    text-align:right;
   }
 }
 
@@ -164,9 +166,9 @@ img {
   font-weight: normal;
   border-radius: 0 !important;
   line-height: 15px !important;
-  white-space:normal !important;
+  white-space: normal !important;
   word-wrap: break-word;
-  width:auto; 
+  width: auto;
   height: 56px;
 }
 
@@ -190,10 +192,9 @@ img {
   border-radius: 0 !important;
   margin-bottom: 5px !important;
   line-height: 15px !important;
-  white-space:normal !important;
+  white-space: normal !important;
   word-wrap: break-word;
   height: 40px;
- 
 }
 
 .category.active {
@@ -227,4 +228,16 @@ mat-checkbox .mat-checkbox-inner-container {
 }
 .mat-chip-list--inlineBlock {
   display: inline-block;
+}
+.mat-menu-panel.notifications {
+  height: 50vh !important;
+  min-width: 420px !important;
+  .mat-menu-content {
+    height: 100%;
+    overflow: hidden;
+    padding: 0px;
+  }
+}
+button:focus{
+  outline-width:0px;
 }
