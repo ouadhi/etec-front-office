@@ -19,7 +19,7 @@ export class NotificationsModalComponent implements OnInit {
         return this.notificationsService.notifications;
     }
     // tslint:disable-next-line:variable-name
-    _itemHeight = 96.06;
+    _itemHeight = 76;
     get itemHeight(): number {
         return this._itemHeight;
     }

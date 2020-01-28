@@ -1,3 +1,10 @@
 ion-badge {
-  padding-bottom: 0px;
+  /* border-radius: 100%; */
+  padding: 4px 5px 0px 5px;
+  /* margin: 0px -19px; */
+  /* margin-top: -18px; */
+  background: var(--ion-color-secondary);
+}
+.fa-bell {
+  font-size: 20px;
 }
