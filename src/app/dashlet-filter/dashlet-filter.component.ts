@@ -21,9 +21,9 @@ export class DashletFilterComponent implements OnInit {
     // public departments = [];
     // public statuses = [];
 
-    
+
     public servicesFilterData = [];
-    public statusFilterData = environment.filter.data.status;
+    public statusFilterData;
 
     /**
      * Filter Object
@@ -52,18 +52,20 @@ export class DashletFilterComponent implements OnInit {
         this.filter.next({});
     }
 
+    handleStatus(selection) {
+        if (selection.length === 1) {
+            this.filterData.statuses = [];
+            this.filterService.getStatuses(selection[0].id).subscribe((data => {
+                this.statusFilterData = Object.keys(data).map(item => ({ id: item, name: data[item] }));
+            }));
+        } else {
+            this.filterData.statuses = [];
+            this.statusFilterData = [];
+        }
 
+    }
     ngOnInit() {
-        //this.filterService.getDepartments().subscribe(data => this.departments = data);
-        // this.filterService.getRequestNames().subscribe(data => this.requestNames = data);
-        
+
         this.filterService.getServices().subscribe(data => this.servicesFilterData = data);
-        
-        /*
-        this.filterService.getBranches().subscribe(data => this.branches = data);
-        this.filterService.getCaseTypes().subscribe(data => this.caseTypes = data);
-        this.filterService.getSegmentTypes().subscribe(data => this.segmentTypes = data);
-        this.filterService.getBeneficiaries().subscribe(data => this.beneficiaries = data);
-        */
     }
 }

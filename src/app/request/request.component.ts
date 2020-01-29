@@ -31,8 +31,6 @@ export class RequestComponent implements OnInit {
   params;
 
   ngOnInit() {
-    this.toastr.success('', this.translate.instant('SERVICE.SUCCESS'));
-
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.serviceId = params['serviceId'];

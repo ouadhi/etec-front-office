@@ -9,19 +9,6 @@ import { environment } from '../environments/environment';
 
 export class FilterService {
 
-  private departments = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.deparments}`).pipe(
-    publishReplay(1),
-    refCount()
-  );
-  private requestNames = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.request}`).pipe(
-    publishReplay(1),
-    refCount()
-  );
-  private statuses = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.statuses}`).pipe(
-    publishReplay(1),
-    refCount()
-  );
-
   private services = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.services}`, {
     params: {
       language: 'ar'
@@ -33,14 +20,12 @@ export class FilterService {
 
   constructor(private http: HttpClient) { }
 
-  getDepartments() {
-    return this.departments;
-  }
-  getRequestNames() {
-    return this.requestNames;
-  }
+
   getServices() {
     return this.services;
+  }
+  getStatuses(id) {
+    return this.http.get<any>(`${environment.requestApi.api}${environment.requestApi.rest.statuses}/${id}/statuses`);
   }
 
 

@@ -22,6 +22,7 @@ export function initializer(keycloak: KeycloakService, session: SessionService, 
               environment.statisticsApi.api,
               environment.cms.api.master,
               environment.cms.api.assets,
+              '/api/requests/count'
               // environment.formio.api.requestForm,
               // environment.formio.api.master,
               // environment.filter.api

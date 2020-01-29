@@ -48,17 +48,17 @@ export class ServiceDetailsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
       this.load(this.id);
-      this.getStats(this.id);
     });
   }
 
   load(id) {
-    this.requestsService.getRequestsCount(id).subscribe(data => {
-      this.stats = data;
-    });
+
     this.servicesService.getService(id).subscribe(
       (data) => {
         this.data = data.entries[0];
+        this.requestsService.getRequestsCount(this.data.key).subscribe(count => {
+          this.stats = count;
+        });
         if (this.data.lifeCycle == LifeCycleService.PUBLISHED) {
           this.active = true;
         }
@@ -92,9 +92,6 @@ export class ServiceDetailsComponent implements OnInit {
 
   }
 
-  getStats(id) {
-    // this.servicesService.getStats(id).subscribe(data=>this.stats = data.entries.length);
-  }
 
   ngOnDestroy() {
     this.sub.unsubscribe();

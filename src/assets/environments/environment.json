@@ -25,7 +25,8 @@
             "myRequests": "/api/portal/requests",
             "myBeneficiarySegments": "/api/portal/beneficiary-segments-cms",
             "caseActivity": "/rest/history/case-activity-instance",
-            "count": "/api/requests/count"
+            "count": "/api/requests/count",
+            "statuses": "/api/portal/eservices"
         }
     },
     "beneficiaryApi": {
@@ -40,7 +41,6 @@
         "rest": {
             "deparments": "/api/portal/departments",
             "services": "/api/request/eservices",
-            "statuses": "/departments",
             "request": "/caseNames"
         },
         "data": {

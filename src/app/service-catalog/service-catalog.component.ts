@@ -23,7 +23,7 @@ export class ServiceCatalogComponent implements OnInit {
   categories: object;
 
   segments: any[];
-  segmentType: object;
+  segmentType;
   segmentInput: object;
 
   tags: any[];
@@ -59,7 +59,45 @@ export class ServiceCatalogComponent implements OnInit {
     this.prepareFiltersFetch();  // this.prepareFilters(this.userSegments);
 
   }
+  doFilter = (item) => {
+    let category = true;
+    let department = true;
+    let segment = false;
+    const tags = false;
+    if (this.dataFilters.category._id) {
+      category = this.dataFilters.category._id === item.category._id;
 
+    }
+    if (this.dataFilters.category.department._id) {
+      department = this.dataFilters.category.department._id === item.category.department._id;
+    }
+    if (this.dataFilters.segmentsGroup_inline.length) {
+      const set = this.dataFilters.segmentsGroup_inline[0];
+      item.segmentsGroup_inline.forEach((itemSet) => {
+        const allBools = [];
+        Object.keys(set).forEach((key, index) => {
+          allBools[index] = false;
+          const bool = Object.keys(set[key]).some(v => Object.keys(itemSet).includes(v));
+          if (bool) {
+            allBools[index]
+              = bool;
+            return false;
+          }
+        });
+        if (!allBools.includes(false)) {
+          segment = true;
+          return false;
+        }
+      });
+
+
+    } else {
+      segment = true;
+    }
+    // console.log(this.dataFilters);
+    return department && category && segment;
+
+  }
   loadBanners() {
     this.servicesService.getBanners().subscribe(data => {
 
@@ -85,27 +123,32 @@ export class ServiceCatalogComponent implements OnInit {
   // prepare filter to be displayed
   prepareFilters(userSegments) {
 
-    this.servicesService.getSegments().subscribe(data => {
-      this.segments = data.entries;
 
-      this.segments.forEach((element, i) => {
-        if (element.activation) {
+
+    this.servicesService.getSegmentType().subscribe(data1 => {
+      this.segmentType = data1.entries;
+      this.servicesService.getSegments().subscribe(data => {
+        this.segments = data.entries;
+
+        this.segmentType.forEach((type, j) => {
           const newObj = {};
-          if (userSegments.includes(element._id)) {
-            newObj[element._id] = true;
-          } else {
-            newObj[element._id] = false;
-          }
+          const innerObj = newObj[type._id] = {};
+          this.segments.forEach((element, i) => {
+            if (element.activation && type._id === element.segmentType._id) {
+              if (userSegments.includes(element._id)) {
+                innerObj[element._id] = true;
+              } else {
+                innerObj[element._id] = false;
+              }
+            }
+          });
           this.segmentInput = { ...this.segmentInput, ...newObj };
-        }
+          // console.log(this.segmentInput);
+        });
+
+        this.filterSegment();
+
       });
-
-      this.filterSegment();
-
-    });
-
-    this.servicesService.getSegmentType().subscribe(data => {
-      this.segmentType = data.entries;
     });
 
     this.servicesService.getDepartments().subscribe(data => {
@@ -206,14 +249,24 @@ export class ServiceCatalogComponent implements OnInit {
     // convert to array
     for (const key in this.segmentInput) {
       if (this.segmentInput.hasOwnProperty(key)) {
-        // only if checked
-        if (this.segmentInput[key] === true) {
-          set[key] = true;
+        for (const key1 in this.segmentInput[key]) {
+          if (this.segmentInput[key].hasOwnProperty(key1)) {
+
+            // only if checked
+            if (this.segmentInput[key][key1] === true) {
+              if (!set[key]) {
+                set[key] = {};
+              }
+              set[key][key1] = true;
+            }
+          }
+
         }
       }
+
     }
     this.dataFilters.segmentsGroup_inline.push(set);
-
+    console.log(this.dataFilters);
   }
 
   // action filter for tags

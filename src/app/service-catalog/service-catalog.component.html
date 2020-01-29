@@ -62,7 +62,7 @@
                   <ng-container *ngFor="let b of segments">
                     <div class="filtersList__item">
                       <!-- (change)="filterSegment(b._id)" -->
-                      <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment()" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
+                      <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id && segmentInput && segmentInput[a._id]" [(ngModel)]="segmentInput[a._id][b._id]" (change)="filterSegment()" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
                     </div>
                   </ng-container>
               </div>
@@ -117,7 +117,7 @@
                         <ng-container *ngFor="let b of segments">
                           <div class="filtersList__item">
                             <!-- (change)="filterSegment(b._id)" -->
-                            <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id" [(ngModel)]="segmentInput[b._id]" (change)="filterSegment()" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
+                            <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id && segmentInput && segmentInput[a._id]" [(ngModel)]="segmentInput[a._id][b._id]" (change)="filterSegment()" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
                           </div>
                         </ng-container>
                     </div>
@@ -218,12 +218,12 @@
         </div>
         <div style="margin-top: 20px;">
           <section fxLayout="row wrap" fxLayoutAlign="space-between top">
-            <ng-container *ngFor="let x of data | filterBy: dataFilters">
+            <ng-container *ngFor="let x of data | filterBy: doFilter">
               <app-service-card id="{{x._id}}" cardTitle="{{x[trans._key('serviceName')]}}" text="{{x[trans._key('description')]}}" fxFlex="49" fxFlex.xs="100"></app-service-card>         
             </ng-container>
       
             <div fxLayout="row" fxLayoutAlign="center center">
-              <mat-card *ngIf="(data | filterBy: dataFilters)?.length === 0">
+              <mat-card *ngIf="(data | filterBy: doFilter)?.length === 0">
                     {{'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate}}
                     <br><br>
                   <button mat-stroked-button color="warn" (click)="resetFilters()" [disabled]="userSegments.length>0">{{'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate}}</button>
@@ -231,9 +231,9 @@
             </div>
           </section>
           
-          <small *ngIf="(data | filterBy: dataFilters)?.length != 0">
-            {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(data | filterBy: dataFilters)?.length}} 
-            <ng-container *ngIf="(data | filterBy: dataFilters)?.length !=totalResult">
+          <small *ngIf="(data | filterBy: doFilter)?.length != 0">
+            {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(data | filterBy: doFilter)?.length}} 
+            <ng-container *ngIf="(data | filterBy: doFilter)?.length !=totalResult">
               {{'CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN' | translate }} {{totalResult}}</ng-container> 
               {{'CATALOG.SERVICE' | translate }}
           </small>

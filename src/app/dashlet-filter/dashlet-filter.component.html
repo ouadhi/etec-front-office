@@ -1,51 +1,50 @@
-<div class="container filter" [@slideInOut]="show ? 'in' : 'out'">
-  <div class="row">
-    <div class="col-8">
-        <div class="row">
-            <div class="col-lg">
-                <mat-form-field>
-                    <input matInput [(ngModel)]="filterData.requestDateAfter" [matDatepicker]="fd"
-                        [placeholder]="'From Date' | translate">
-                    <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
-                    <mat-datepicker #fd></mat-datepicker>
-                </mat-form-field>
+<div class="filter" [@slideInOut]="show ? 'in' : 'out'">
+    <div class="row">
+        <div class="col-11">
+            <div class="row">
+                <div class="col-lg-2">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="filterData.requestDateAfter" [matDatepicker]="fd"
+                            [placeholder]="'From Date' | translate">
+                        <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
+                        <mat-datepicker #fd></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-2">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="filterData.requestDateBefore" [matDatepicker]="td"
+                            [placeholder]="'To Date' | translate">
+                        <mat-datepicker-toggle matSuffix [for]="td"></mat-datepicker-toggle>
+                        <mat-datepicker #td></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6">
+                    <app-select [placeholder]="'Service' | translate" [hideLoaded]="true" (select)="handleStatus($event)"
+                        [(ngModel)]="filterData.services" [data]="servicesFilterData" [bindValue]="'id'"
+                        [bindLabel]="'name'" [multiple]="true">
+                    </app-select>
+                </div>
+                <div *ngIf="filterData.services.length == 1" class="col-lg-2">
+                    <app-select [placeholder]="'Status' | translate" [hideLoaded]="true"
+                        [(ngModel)]="filterData.statuses" [data]="statusFilterData" [bindValue]="'id'"
+                        [bindLabel]="'name'" [multiple]="true">
+                    </app-select>
+                </div>
             </div>
-            <div class="col-lg">
-                <mat-form-field>
-                    <input matInput [(ngModel)]="filterData.requestDateBefore" [matDatepicker]="td"
-                        [placeholder]="'To Date' | translate">
-                    <mat-datepicker-toggle matSuffix [for]="td"></mat-datepicker-toggle>
-                    <mat-datepicker #td></mat-datepicker>
-                </mat-form-field>
+        </div>
+
+        <div class="col-1">
+            <div class="row">
+                <div class="col-lg">
+                    <button type="button" class="btn btn-outline-info btn-sm" (click)="applyFilter()"
+                        style="margin-left: 5px; margin-right: 5px;">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-info btn-sm" (click)="reset()">
+                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
-            <div class="col-lg">
-                <app-select [placeholder]="'Status' | translate" [hideLoaded]="true"
-                            [(ngModel)]="filterData.statuses" [data]="statusFilterData" [bindValue]="'val'"
-                            [bindLabel]="'key'" [multiple]="true">
-                </app-select>
-            </div>
-            <div class="col-lg-6">
-                <app-select [placeholder]="'Service' | translate" [hideLoaded]="true"
-                            [(ngModel)]="filterData.services" [data]="servicesFilterData" [bindValue]="'id'"
-                            [bindLabel]="'name'" [multiple]="true">
-                </app-select>
-            </div>
-          </div>
+        </div>
     </div>
-    <div class="col-4">
-        <div class="row">
-            <div class="col-lg">
-               
-            </div>
-            <div class="col-lg">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="applyFilter()" style="margin-left: 5px; margin-right: 5px;">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="reset()">
-                    <i class="fa fa-refresh" aria-hidden="true"></i>
-                </button>
-            </div>
-          </div>
-    </div>
-  </div>
 </div>

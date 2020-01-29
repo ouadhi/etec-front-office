@@ -10,8 +10,8 @@
 
         {{data[trans._key('description')]}}
 
-        <button [routerLink]="['/request', data.link, { serviceId: data.key, name: data[trans._key('serviceName')] }]" skipLocationChange=true target="_blank"
-          mat-raised-button color="primary"
+        <button [routerLink]="['/request', data.link, { serviceId: data.key, name: data[trans._key('serviceName')] }]"
+          skipLocationChange=true target="_blank" mat-raised-button color="primary"
           [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right
           </mat-icon></button>
       </app-section>
@@ -102,14 +102,19 @@
       <app-section sectionTitle="{{'SERVICE.RATING' | translate}}">
 
         <star-rating [starType]="'icon'" [rating]="data.rating" [readOnly]="true" [showHalfStars]="true"
-          labelText="{{data.rating}}/5" labelPosition="bottom"></star-rating>
+          labelText="{{data.rating ? data.rating : 0}} / 5" labelPosition="bottom"></star-rating>
 
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.BENEFICIARIES' | translate}}">
         <ul *ngIf="segments">
-          <ng-container *ngFor="let item of segments">
+          <!--
+            <ng-container *ngFor="let item of segments">
             <li>{{item.segmentType[trans._key('segmentTypeName')]}}: {{item[trans._key('segmentName')]}}</li>
+          </ng-container>
+          -->
+          <ng-container *ngFor="let item of data.beneficiaries">
+            <li>{{item.description}}</li>
           </ng-container>
         </ul>
       </app-section>
@@ -122,9 +127,14 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.GUIDE' | translate}}">
-        <a href="{{assets_url}}/{{data.serviceGuide}}" target="_blank">
-          <img src="http://placehold.it/400x200&text=Guide" alt="">
-        </a>
+        <div class="text-center">
+          <a *ngIf="!data.serviceGuide">
+            <img src="http://placehold.it/400x200&text=Guide" alt="">
+          </a>
+          <a *ngIf="data.serviceGuide" href="{{assets_url}}/{{data.serviceGuide}}" target="_blank">
+            <img src="/assets/pdf.png" width="80" alt="">
+          </a>
+        </div>
       </app-section>
 
 
@@ -146,7 +156,7 @@
       {{'service.No Comments' | translate}}
     </div>
   </app-section>
-  <app-section> 
+  <app-section>
     <p class="note">{{'SERVICE.SERVICES_NOTE' | translate}}</p>
   </app-section>
 

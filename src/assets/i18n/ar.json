@@ -62,7 +62,7 @@
     "VIDEO": "فيديو تعريفي",
     "STATISTICS": "الاحصائيات",
     "RATING": "تقييم الخدمة",
-    "REQUESTED_ON_LAST_30DAYS": "تم طلب الخدمة عدد : {{value}}  مرة خلال اخر ٣٠ يوم عدد",
+    "REQUESTED_ON_LAST_30DAYS": "تم طلب الخدمة عدد : {{value}}  مرة خلال اخر ٣٠ يوم ",
     "BENEFICIARIES": "المستفيدون",
     "CLASSIFICATION": "التصنيف",
     "GUIDE": "دليل الخدمة",
