@@ -80,7 +80,7 @@ export class ServiceCatalogComponent implements OnInit {
     let category = true;
     let department = true;
     let segment = false;
-    const tags = false;
+    let tags = true;
     let keyword = false;
     if (this.dataFilters.category._id) {
       category = this.dataFilters.category._id === item.category._id;
@@ -88,6 +88,16 @@ export class ServiceCatalogComponent implements OnInit {
     }
     if (this.dataFilters.category.department._id) {
       department = (item.category.department) && this.dataFilters.category.department._id === item.category.department._id;
+    }
+    if (this.dataFilters.tags_inline && Object.keys(this.dataFilters.tags_inline).length) {
+      tags = false;
+      Object.keys(this.dataFilters.tags_inline).forEach(key => {
+        if (item.tags_inline[key]) {
+          tags = true;
+          return false;
+        } else {
+        }
+      });
     }
     if (this.dataFilters.$or && this.dataFilters.$or.length) {
       this.dataFilters.$or.forEach(element => {
@@ -124,7 +134,7 @@ export class ServiceCatalogComponent implements OnInit {
       segment = true;
     }
     // console.log(this.dataFilters);
-    return department && category && segment && keyword;
+    return department && category && segment && keyword && tags;
 
   }
   loadBanners() {
@@ -240,7 +250,7 @@ export class ServiceCatalogComponent implements OnInit {
         this.data[i].segmentsGroup_inline = segmentsGroup_inline;
 
         // change tag object to array with new key
-        const tags_inline = [];
+        const tags_inline = {};
         if (element.tag.length > 0) {
           element.tag.forEach(element2 => {
             tags_inline[element2._id] = true;
@@ -316,6 +326,7 @@ export class ServiceCatalogComponent implements OnInit {
         }
       }
     }
+    console.log(this.dataFilters);
 
   }
 
