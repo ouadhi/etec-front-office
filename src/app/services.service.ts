@@ -41,7 +41,8 @@ export class ServicesService {
     return this.http.post<any[]>(
       `${environment.cms.api.master}/api/collections/get/${collection}/`, {
       filter,
-      "populate": 1
+      "populate": 1,
+      "sort": { "_o" : 1 }
     }, {
       headers: this.getCMSheaders()
     });
