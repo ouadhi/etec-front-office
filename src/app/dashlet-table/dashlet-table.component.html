@@ -51,7 +51,7 @@
               
             </ng-container>
             <ng-template #normal>
-              {{element[col]}}
+              {{element[col].length ? (element[col] | translate) : element[col] }} 
             </ng-template>
           </ng-container>
       

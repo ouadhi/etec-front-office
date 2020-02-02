@@ -62,7 +62,7 @@
                   <ng-container *ngFor="let b of segments">
                     <div class="filtersList__item">
                       <!-- (change)="filterSegment(b._id)" -->
-                      <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id && segmentInput && segmentInput[a._id]" [(ngModel)]="segmentInput[a._id][b._id]" (change)="filterSegment()" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
+                      <mat-checkbox [disabled]="isDisabled(a,b)" class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id && segmentInput && segmentInput[a._id]" [(ngModel)]="segmentInput[a._id][b._id]" (change)="filterSegment()" >{{b[trans._key('segmentName')]}}</mat-checkbox>
                     </div>
                   </ng-container>
               </div>
@@ -117,7 +117,7 @@
                         <ng-container *ngFor="let b of segments">
                           <div class="filtersList__item">
                             <!-- (change)="filterSegment(b._id)" -->
-                            <mat-checkbox class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id && segmentInput && segmentInput[a._id]" [(ngModel)]="segmentInput[a._id][b._id]" (change)="filterSegment()" [disabled]="userSegments?.length>0">{{b[trans._key('segmentName')]}}</mat-checkbox>
+                            <mat-checkbox   [disabled]="isDisabled(a,b)" class="filterCheckbox__input" *ngIf="b.segmentType._id == a._id && segmentInput && segmentInput[a._id]" [(ngModel)]="segmentInput[a._id][b._id]" (change)="filterSegment()">{{b[trans._key('segmentName')]}}</mat-checkbox>
                           </div>
                         </ng-container>
                     </div>

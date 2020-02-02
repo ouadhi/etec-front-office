@@ -38,7 +38,7 @@ export class CaseActivitiesComponent implements OnInit {
 
                 this.activities = data;
                 this.activities.filter(activity => {
-                    if (activity.caseActivityName === 'task' && activity.active && !activity.completed) {
+                    if (activity.caseActivityType === 'humanTask' && activity.active && !activity.completed) {
                         this.task.emit(activity);
                     }
                 });

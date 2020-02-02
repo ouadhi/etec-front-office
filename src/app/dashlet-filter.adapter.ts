@@ -14,7 +14,7 @@ export class DashletFilterAdapter {
         const query = Object.assign({}, {
             'requestDate.greaterOrEqualThan': item.requestDateAfter,
             'requestDate.lessOrEqualThan': item.requestDateBefore,
-            'status.in': item.statuses,
+            'cmmnStatus.in': item.statuses,
             'serviceId.in': item.services,
             sort: item.sort,
             page: item.page,

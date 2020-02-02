@@ -19,6 +19,7 @@ export function initializer(keycloak: KeycloakService, session: SessionService, 
             },
             bearerExcludedUrls: [
               '/assets/', // due to call ngx-translate
+              '/localization/submission/',
               environment.statisticsApi.api,
               environment.cms.api.master,
               environment.cms.api.assets,

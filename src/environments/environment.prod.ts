@@ -40,6 +40,7 @@ export const environment = {
       myRequests: '/api/portal/requests',
       myBeneficiarySegments: '/api/portal/beneficiary-segments-cms',
       caseActivity: '/rest/history/case-activity-instance',
+      statuses: '',
       count: ''
     }
   },

@@ -25,11 +25,11 @@ export class ServiceCatalogComponent implements OnInit {
   segments: any[];
   segmentType;
   segmentInput: object;
-
+  disabled = [];
   tags: any[];
   tagsInput: object;
 
-  public keyword: string;
+  public keyword = '';
 
   dataFilters: any = {
     category: { _id: null, department: { _id: null } },
@@ -59,17 +59,46 @@ export class ServiceCatalogComponent implements OnInit {
     this.prepareFiltersFetch();  // this.prepareFilters(this.userSegments);
 
   }
+  isDisabled(a, b) {
+
+    const bool = this.disabled.includes(a._id) || (!this.segmentInput[a._id][b._id] &&
+      this.dataFilters.segmentsGroup_inline[0] &&
+      this.dataFilters.segmentsGroup_inline[0][a._id] &&
+      (Object.keys(this.segmentInput[a._id]).length - 1) ===
+      (Object.keys(this.dataFilters.segmentsGroup_inline[0][a._id]).length));
+    if (
+      this.segmentInput[a._id][b._id] &&
+      this.dataFilters.segmentsGroup_inline[0] &&
+      this.dataFilters.segmentsGroup_inline[0][a._id]
+    ) {
+
+    }
+
+    return bool;
+  }
   doFilter = (item) => {
     let category = true;
     let department = true;
     let segment = false;
     const tags = false;
+    let keyword = false;
     if (this.dataFilters.category._id) {
       category = this.dataFilters.category._id === item.category._id;
 
     }
     if (this.dataFilters.category.department._id) {
-      department = this.dataFilters.category.department._id === item.category.department._id;
+      department = (item.category.department) && this.dataFilters.category.department._id === item.category.department._id;
+    }
+    if (this.dataFilters.$or && this.dataFilters.$or.length) {
+      this.dataFilters.$or.forEach(element => {
+        const key = Object.keys(element)[0];
+        if (!element[key] || item[key].includes(element[key])) {
+          keyword = true;
+          return false;
+        }
+      });
+    } else {
+      keyword = true;
     }
     if (this.dataFilters.segmentsGroup_inline.length) {
       const set = this.dataFilters.segmentsGroup_inline[0];
@@ -95,7 +124,7 @@ export class ServiceCatalogComponent implements OnInit {
       segment = true;
     }
     // console.log(this.dataFilters);
-    return department && category && segment;
+    return department && category && segment && keyword;
 
   }
   loadBanners() {
@@ -121,6 +150,7 @@ export class ServiceCatalogComponent implements OnInit {
 
 
   // prepare filter to be displayed
+
   prepareFilters(userSegments) {
 
 
@@ -129,13 +159,16 @@ export class ServiceCatalogComponent implements OnInit {
       this.segmentType = data1.entries;
       this.servicesService.getSegments().subscribe(data => {
         this.segments = data.entries;
-
+        console.log(userSegments);
+        this.disabled = [];
         this.segmentType.forEach((type, j) => {
           const newObj = {};
           const innerObj = newObj[type._id] = {};
           this.segments.forEach((element, i) => {
             if (element.activation && type._id === element.segmentType._id) {
               if (userSegments.includes(element._id)) {
+                this.disabled.push(type._id);
+                console.log('ok?');
                 innerObj[element._id] = true;
               } else {
                 innerObj[element._id] = false;
@@ -312,6 +345,24 @@ export class ServiceCatalogComponent implements OnInit {
 
     this.tagsInput = [];
     this.segmentInput = [];
+    this.segmentType.forEach((type, j) => {
+      const newObj = {};
+      const innerObj = newObj[type._id] = {};
+      this.segments.forEach((element, i) => {
+        if (element.activation && type._id === element.segmentType._id) {
+          if (this.userSegments.includes(element._id)) {
+            console.log('ok?');
+            innerObj[element._id] = true;
+          } else {
+            innerObj[element._id] = false;
+          }
+        }
+      });
+      this.segmentInput = { ...this.segmentInput, ...newObj };
+      // console.log(this.segmentInput);
+    });
+
+    this.filterSegment();
   }
 
   // apply filter for loggedIn user

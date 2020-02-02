@@ -37,3 +37,6 @@ a {
 .alert-text {
   line-height: 44px;
 }
+.alert-link{
+  cursor: pointer;
+}

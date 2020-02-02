@@ -102,11 +102,35 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationsModule } from './notifications/notifications.module';
 import { NotificationsIndexComponent } from './notifications-index/notifications-index.component';
+import { combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+export class CustomLoader implements TranslateLoader {
+  constructor(private http: HttpClient) {
 
+  }
+  getTranslation(lang: string) {
+    const languages = {
+      ar: '5d70008d303dd27e99fd0ac6',
+      en: '5d7000998e0a143fd56188da'
+    };
+    return combineLatest(
+      this.http.get<any>(
+        `${environment.formio.appUrl}localization/submission/${languages[lang]}`,
+      ),
+      this.http.get<any>(
+        `./assets/i18n/${lang}.json`,
+      )).pipe(
+        map((data) => {
+          return { ...data[1], forms: { ...data[1].forms, ...JSON.parse(data[0].data.textArea).forms } };
+
+        })
+      );
+  }
+}
 export function createExternalService(http: HttpClient) {
   return new ExternalService(http);
 }
@@ -158,7 +182,7 @@ export function getFormioEnv() {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
+        useClass: CustomLoader,
         deps: [HttpClient]
       }
     }),
