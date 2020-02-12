@@ -1,96 +1,213 @@
-<app-page pageTitle="{{'PROFILE.TITLE' | translate}}">
+<app-page>
 
-  <div fxLayout="row" fxLayoutGap="20px" class="profileHero">
+  <div fxLayout="row" fxLayoutGap="5px" class="profileHero">
+    <div fxFlex="100">
+      <ion-item class="user-item" lines="none">
+        <ion-avatar slot="start">
+          <img src="/assets/userplaceholder.png">
+        </ion-avatar>
+        <ion-label no-margin>
+          <div class="first-row">
+            <h2>{{data.name}}</h2>
+          </div>
+          <div fxLayout="row wrap" class="profileHero__secondarySection">
+            <div [fxFlex.xs]="47" fxFlex="20" class="profileHero__meta">
+              <ion-item class="big-chip primary" lines="none">
+                <h6 class="slotted">
+                  <ion-text slot="start">{{'PROFILE.ID' | translate}} </ion-text>
+                  <ion-text slot="end">{{data.id}}</ion-text>
+                </h6>
+              </ion-item>
+            </div>
+            <div [fxFlex.xs]="47" fxFlex="20" class="profileHero__meta">
+              <ion-item class="big-chip primary" lines="none">
+                <h6 class="slotted">
+                  <ion-text slot="start">{{'PROFILE.INTERNAL_ID' | translate }} </ion-text>
+                  <ion-text slot="end"> {{data.ekhaaID}}</ion-text>
+                </h6>
+              </ion-item>
+            </div>
+            <div [fxFlex.xs]="47" fxFlex="20" class="profileHero__meta">
+              <ion-item class="big-chip tertiary" lines="none">
+                <h6 class="slotted">
+                  <ion-text slot="start">{{'PROFILE.BRANCH' | translate}} </ion-text>
+                  <ion-text slot="end">{{data.branchCode ? data.branchCode : ('PROFILE.NOT_SET' | translate)}}
+                  </ion-text>
+                </h6>
+              </ion-item>
+            </div>
+            <div [fxFlex.xs]="47" fxFlex="20" class="profileHero__meta">
+              <ion-item class="big-chip medium" lines="none">
+                <h6 class="slotted">
+                  <ion-text slot="start"> {{'PROFILE.MOBILE' | translate}} </ion-text>
+                  <ion-text slot="end">{{data.mobile
+                    ? data.mobile : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+                </h6>
+              </ion-item>
+            </div>
+            <div [fxFlex.xs]="47" fxFlex="20" class="profileHero__meta">
+              <ion-item class="big-chip medium" lines="none">
+                <h6 class="slotted">
+                  <ion-text slot="start">{{'PROFILE.EMAIL' | translate}} </ion-text>
+                  <ion-text slot="end">{{data.email
+                    ? data.email : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+                </h6>
+              </ion-item>
+            </div>
+          </div>
+        </ion-label>
+      </ion-item>
 
-    <div fxFlex="50">
-      <div class="profileHero__name">{{'PROFILE.NAME' | translate }} : {{data.fullName}}</div>
-      <div class="profileHero__secondarySection">
-        <div class="profileHero__meta"><mat-icon class="profileHero__icon">beenhere</mat-icon> {{'PROFILE.ID' | translate }} : {{data.id}}</div>
-        <div class="profileHero__meta"><mat-icon class="profileHero__icon">phone</mat-icon> {{data.mobile}}</div>
-        <div class="profileHero__meta"><mat-icon class="profileHero__icon">email</mat-icon> {{data.email}}</div>
-      </div>
     </div>
-
-    <div fxFlex="50">
-      
-    </div>
-
   </div>
-  
+
   <div class="profileData">
-    <div fxLayout="row" fxLayoutGap="40px grid">
-      
-      <div fxFlex="33">
-        
-          <app-section sectionTitle="{{'PROFILE.MAININFO' | translate }}">
-            <div>{{'PROFILE.NATIONAL_ID' | translate }} : {{data.nationalId}}</div>
-            <div>{{'PROFILE.BIRTHDATE' | translate }} : {{data.birthDate}}</div>
-            <div>{{'PROFILE.GENDER' | translate }} : {{data.gender}}</div>
-            <div>{{'PROFILE.EDU_STAGE' | translate }} : {{data.eduStage}}</div>
-          </app-section>
 
-          <app-section sectionTitle="{{'PROFILE.IQ' | translate }}">
-              <div>{{'PROFILE.IQ_PARTY' | translate }} : {{data.IQExamParty}}</div>
-              <div>{{'PROFILE.IQ_DATE' | translate }} : {{data.IQExamDate}}</div>
-              <div>{{'PROFILE.IQ_SCORE' | translate }} : {{data.IQExamScore}}</div>
-            </app-section>
+    <app-section sectionTitle="{{'PROFILE.PERSONAL_INFO' | translate }}">
+      <div fxLayout="row wrap" fxLayoutAlign="flex-start">
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.GENDER' | translate }} </ion-text>
+              <ion-text slot="end">{{data.gender | translate}}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.EDU_STAGE' | translate }} </ion-text>
+              <ion-text slot="end"> {{data.educationStage ? data.educationStage : ('PROFILE.NOT_SET' | translate)}}
+              </ion-text>
+            </h6>
+          </ion-item>
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.MARITAL_STATE' | translate }} </ion-text>
+              <ion-text slot="end">
+                {{data.maritalState ? marital[trans._key('segmentName')] : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.NATIONAL_ID' | translate }} </ion-text>
+              <ion-text slot="end">{{data.nationalId}}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.NATIONAL_ID_DATE' | translate }} </ion-text>
+              <ion-text slot="end">
+                {{data.nationalIDIssueDate ? data.nationalIDIssueDate : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
 
-          
 
-          <!-- <app-section sectionTitle="{{'PROFILE.CONTACT' | translate }}"> -->
-            <!-- <div>{{'PROFILE.MOBILE' | translate }} : {{data.mobile}}</div> -->
-            <!-- <div>{{'PROFILE.EMAIL' | translate }} : {{data.email}}</div> -->
-          <!-- </app-section> -->
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.NATIONAL_ORIGIN' | translate }} </ion-text>
+              <ion-text slot="end">
+                {{data.nationalIDIssuePlace ? data.nationalIDIssuePlace : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.BIRTHDATE' | translate }} </ion-text>
+              <ion-text slot="end">{{data.birthDate ? data.birthDate : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.AGE' | translate }} </ion-text>
+              <ion-text slot="end">
+                {{data.age}} {{'PROFILE.YEAR' | translate }}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
+      </div>
+    </app-section>
+    <app-section sectionTitle="{{'PROFILE.MAININFO' | translate }}">
+      <div fxLayout="row wrap" fxLayoutAlign="flex-start">
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.INVESTMENT_BANK_IBAN' | translate }} </ion-text>
+              <ion-text slot="end">{{data.investmentIBAN  ? data.investmentIBAN : ('PROFILE.NOT_SET' | translate)}}
+              </ion-text>
+            </h6>
+          </ion-item>
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.MINISTRY_ID' | translate }} </ion-text>
+              <ion-text slot="end"> {{data.ministryId ? data.ministryId : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.HAS_COMMERCIAL_REGISTRATION' | translate }} </ion-text>
+              <ion-text slot="end">{{data.haveCommercialRegister.toString() | translate}}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.STOPPED_SERVICES' | translate }} </ion-text>
+              <ion-text slot="end">{{data.stoppedServices.toString() | translate}}</ion-text>
+            </h6>
+          </ion-item>
 
-          
+
+        </div>
+        <div [fxFlex.xs]="47" fxFlex="31">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">{{'PROFILE.PRISONED' | translate }}</ion-text>
+              <ion-text slot="end">{{data.prisoned.toString() | translate}}</ion-text>
+            </h6>
+          </ion-item>
+        </div>
+
+
+
 
       </div>
+    </app-section>
 
-      <div fxFlex="33">
 
-        <!-- <app-section sectionTitle="{{'PROFILE.INFO' | translate }}">
-          <div>{{'PROFILE.ACTIVE' | translate }} : {{data.active}}</div>
-          <div>{{'PROFILE.ID' | translate }} : {{data.id}}</div>
-          <div>{{'PROFILE.INTERNAL_ID' | translate }} : {{data.EkhaaId}}</div>
-        </app-section> -->
 
-        <app-section sectionTitle="{{'PROFILE.STATE' | translate }}">
-            <div>{{'PROFILE.MARITAL_STATE' | translate }} : {{data.maritalStatus}}</div>
-            <div>{{'PROFILE.PRISONED' | translate }} : {{data.prisoned}}</div>
-            <div>{{'PROFILE.STOPPED_SERVICES' | translate }} : {{data.stoppedServices}}</div>
-            <div>{{'PROFILE.HAS_COMMERCIAL_REGISTRATION' | translate }} : {{data.hasCommercialRegistration}}</div>
-            <div>{{'PROFILE.STATUS' | translate }} : {{data.status}}</div>
-          </app-section>
+    <app-section sectionTitle="{{'PROFILE.SEGMENTS' | translate }}">
+      <div fxLayout="row wrap" fxLayoutAlign="flex-start">
+        <div [fxFlex.xs]="47" fxFlex="31" *ngFor="let segment of data.segments">
+          <ion-item class="big-chip light" lines="full">
+            <h6 class="slotted">
+              <ion-text slot="start">
+                {{segment.segmentType ? segment.segmentType[trans._key('segmentTypeName')] : segment.typeId}}
+              </ion-text>
+              <ion-text slot="end">
+                {{segment.segment ? segment.segment[trans._key('segmentName')] : (segment.value || ('PROFILE.NOT_SET' | translate))}}
+              </ion-text>
+            </h6>
+          </ion-item>
 
-          <app-section sectionTitle="{{'PROFILE.ORIGIN' | translate }}">
-              <div>{{'PROFILE.NATIONAL_ORIGIN' | translate }} : {{data.nationalIdOrigin}}</div>
-              <div>{{'PROFILE.NATIONAL_ID_DATE' | translate }} : {{data.nationalIdDate}}</div>
-            </app-section>
-
-        
-
-        
-
+        </div>
       </div>
-
-      <div fxFlex="33">
-
-          <app-section sectionTitle="{{'PROFILE.CLASSIFICATION' | translate }}">
-            <div>{{'PROFILE.BRANCH' | translate }} : {{data.branch}}</div>
-            <div>{{'PROFILE.FORMER_ASSOCIATION' | translate }} : {{data.formerAssociation}}</div>
-            <div>{{'PROFILE.INVESTMENT_BANK_IBAN' | translate }} : {{data.investmentBankIBAN}}</div>
-            <div>{{'PROFILE.SEGMENTS' | translate }} : {{data.segments}}</div>
-          </app-section>
-
-          <app-section sectionTitle="{{'PROFILE.RECEIVING' | translate }}">
-              <div>{{'PROFILE.RECEIVING_DATE' | translate }} : {{data.receivingDate}}</div>
-              <div>{{'PROFILE.RECEIVING_PERSON' | translate }} : {{data.receivingPersonInCharge}}</div>
-            </app-section>
-
-          
-
-      </div>
-
-    </div>
+    </app-section>
   </div>
 </app-page>

@@ -138,6 +138,18 @@ html[dir="rtl"] {
   --font-family-ios-base: "Tajawal", sans-serif;
   --font-family-wp-base: "Tajawal", sans-serif;
   --ion-font-family: "Tajawal", sans-serif !important;
+  .slotted {
+    [slot="start"] {
+      float: right;
+      margin: 0px;
+      margin-left: 5px;
+    }
+    [slot="end"] {
+      float: left;
+      margin: 0px;
+      margin-right: 5px;
+    }
+  }
   .toast-container {
     left: 12px !important;
     right: auto !important;
@@ -166,7 +178,7 @@ html[dir="rtl"] {
   }
 }
 @media (max-width: 767px) {
-  .ngx-toastr{
+  .ngx-toastr {
     width: calc(100vw - 25px) !important;
   }
   .formio-component-file {
@@ -206,4 +218,220 @@ html[dir="rtl"] {
 .mat-content > mat-panel-title,
 .mat-content > mat-panel-description {
   flex: 0 0 auto;
+}
+.big-chip {
+  color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  h6 {
+    display: flex;
+    font-size: 13px;
+    [slot="start"] {
+      font-weight: bold;
+    }
+  }
+  ion-icon[slot="start"] {
+    -webkit-margin-end: 16px;
+    margin-inline-end: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  color: rgba(0, 0, 0, 0.64);
+  &.tertiary {
+    //--background: rgba(var(--ion-color-tertiary-rgb), 0.1);
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&0+0,1+100 */
+    --background: -moz-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
+    ); /* FF3.6-15 */
+    --background: -webkit-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    --background: linear-gradient(
+      to right,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    ion-icon {
+      color: var(--ion-color-tertiary);
+    }
+  }
+  &.success {
+    // --background: rgba(var(--ion-color-success-rgb), 0.1);
+    --background: -moz-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-success-rgb), 0.1) 100%
+    ); /* FF3.6-15 */
+    --background: -webkit-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-success-rgb), 0.1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    --background: linear-gradient(
+      to right,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-success-rgb), 0.1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    ion-icon {
+      color: var(--ion-color-success);
+    }
+  }
+  &.warning {
+    //--background: rgba(var(--ion-color-warning-rgb), 0.1);
+    --background: -moz-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-warning-rgb), 0.1) 100%
+    ); /* FF3.6-15 */
+    --background: -webkit-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-warning-rgb), 0.1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    --background: linear-gradient(
+      to right,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-warning-rgb), 0.1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    ion-icon {
+      color: var(--ion-color-warning);
+    }
+  }
+  &.primary {
+    //--background: rgba(var(--ion-color-primary-rgb), 0.1);
+    --background: -moz-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-primary-rgb), 0.1) 100%
+    ); /* FF3.6-15 */
+    --background: -webkit-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-primary-rgb), 0.1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    --background: linear-gradient(
+      to right,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-primary-rgb), 0.1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    ion-icon {
+      color: var(--ion-color-primary);
+    }
+  }
+  &.secondary {
+    //--background: rgba(var(--ion-color-secondary-rgb), 0.1);
+    --background: -moz-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-secondary-rgb), 0.1) 100%
+    ); /* FF3.6-15 */
+    --background: -webkit-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-secondary-rgb), 0.1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    --background: linear-gradient(
+      to right,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-secondary-rgb), 0.1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    ion-icon {
+      color: var(--ion-color-secondary);
+    }
+  }
+  &.danger {
+    //--background: rgba(var(--ion-color-danger-rgb), 0.1);
+    --background: -moz-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-danger-rgb), 0.1) 100%
+    ); /* FF3.6-15 */
+    --background: -webkit-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-danger-rgb), 0.1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    --background: linear-gradient(
+      to right,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-danger-rgb), 0.1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    ion-icon {
+      color: var(--ion-color-danger);
+    }
+  }
+  &.light {
+    //--background: rgba(var(--ion-color-light-rgb), 1);
+    --background: -moz-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-light-rgb), 1) 100%
+    ); /* FF3.6-15 */
+    --background: -webkit-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-light-rgb), 1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    --background: linear-gradient(
+      to right,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-light-rgb), 1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    ion-icon {
+      color: var(--ion-color-medium);
+    }
+  }
+  &.medium {
+    //--background: rgba(var(--ion-color-medium-rgb), 0.1);
+    --background: -moz-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-medium-rgb), 0.1) 100%
+    ); /* FF3.6-15 */
+    --background: -webkit-linear-gradient(
+      left,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-medium-rgb), 0.1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    --background: linear-gradient(
+      to right,
+      rgba(30, 87, 153, 0) 50%,
+      rgba(var(--ion-color-medium-rgb), 0.1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    ion-icon {
+      color: var(--ion-color-medium);
+    }
+  }
+}
+
+.slotted {
+  width: 100%;
+  display: flow-root;
+  padding-top: 10px;
+  position: relative;
+  [slot="start"] {
+    float: left;
+    margin: 0px;
+    margin-right: 5px;
+    flex: 1;
+  }
+  [slot="end"] {
+    float: right;
+    margin: 0px;
+    margin-left: 5px;
+    flex: 1;
+  }
 }
