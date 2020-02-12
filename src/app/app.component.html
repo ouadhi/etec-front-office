@@ -21,6 +21,7 @@
           <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
           <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
         </mat-menu>
+        <button mat-menu-item  routerLink="/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' | translate}}</button>
         <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
         <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
 

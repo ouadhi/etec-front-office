@@ -67,7 +67,7 @@ const routes: Routes = [
     data: { roles: [environment.roles.beneficiary] },
   },
   {
-    path: 'profile/:id', component: ProfileComponent,
+    path: 'profile', component: ProfileComponent,
     canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },

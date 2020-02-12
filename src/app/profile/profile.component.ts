@@ -3,6 +3,7 @@ import { ServicesService } from '../services.service';
 import { SwitchLangService } from '../switch-lang.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,15 +20,14 @@ export class ProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private servicesService: ServicesService,
+    private session: SessionService,
     public trans: SwitchLangService
   ) { }
 
   ngOnInit() {
 
-    this.route.params.subscribe(params => {
-      this.profileId = params.id;
-      this.loadProfile(this.profileId);
-    });
+    this.profileId = this.session.getUsername();
+    this.loadProfile(this.profileId);
   }
 
   loadProfile(id) {
