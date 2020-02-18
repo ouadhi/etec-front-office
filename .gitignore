@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
+/platforms
 /dist
 /tmp
 /out-tsc
@@ -69,7 +70,7 @@ dist/
 node_modules/
 tmp/
 temp/
-platforms/
+platforms
 plugins/
 plugins/android.json
 plugins/ios.json
