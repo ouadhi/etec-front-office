@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Formio } from 'formiojs';
 import { KeycloakService } from 'keycloak-angular';
@@ -6,6 +6,9 @@ import { KeycloakProfile } from 'keycloak-js';
 import { SessionService } from './session.service';
 import { SwitchLangService } from './switch-lang.service';
 import { Platform } from '@ionic/angular';
+import { ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -24,7 +27,10 @@ export class AppComponent implements OnInit {
     public translate: TranslateService,
     public switchLangService: SwitchLangService,
     private sessionService: SessionService,
-    public platform: Platform
+    public platform: Platform,
+    private changeRef: ChangeDetectorRef,
+    private zone: NgZone,
+    private router: Router
   ) {
     console.log('.');
     const DelayPlugin = {
@@ -74,11 +80,30 @@ export class AppComponent implements OnInit {
 
     this.keycloakService.keycloakEvents$.subscribe(async () => {
       if (await this.keycloakService.isLoggedIn()) {
+        // window.location.reload();
+        this.zone.run(async () => {
+          this.userDetails = await this.sessionService.loadUserProfile();
+          this.loggedIn = true;
+        });
+      } else {
+        this.zone.run(() => {
+          this.loggedIn = false;
+          this.router.navigate(['/']).then(() => {
+            //window.location.reload();
+          });
+        });
+
+      }
+      /*  if (await this.keycloakService.isLoggedIn()) {
         this.userDetails = await this.sessionService.loadUserProfile();
         this.loggedIn = true;
+        this.changeRef.detectChanges();
       } else {
         this.loggedIn = false;
+        this.changeRef.detectChanges();
+        this.router.navigate(['/']);
       }
+       */
     });
 
   }

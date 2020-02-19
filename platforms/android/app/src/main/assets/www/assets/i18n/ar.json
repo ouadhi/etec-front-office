@@ -1,9 +1,21 @@
 {
   "formLoadError": "لقد حدث خطأ ما أثناء تحميل الصفحة, يرجى المحاولة لاحقاً",
   "dir": "rtl",
+  "new": "جديد",
+  "recieved": "مستلم",
+  "processing": "قيد المعالجة",
+  "underStudy": "تحت الدراسة",
+  "taskupdate": "إدخال بيانات الفعالية",
+  "taskend": "إكمال بيانات الفعالية",
+  "finishing": "منتهي",
+  "false": "لا",
+  "true": "نعم",
+  "male": "ذكر",
+  "female": "أنثى",
   "LAYOUT": {
     "TITLE": "بوابة المستفيدين",
     "CHANGE_LANGUAGE": "تغيير اللغة",
+    "PROFILE": "الملف الشخصي",
     "WELCOME": "اهلا",
     "LOGOUT": "تسجيل خروج",
     "LOGIN": "تسجيل الدخول"
@@ -39,6 +51,7 @@
     "TITLE": "الاعلانات"
   },
   "SERVICE": {
+    "BENEFICIARY_TASK_SUCCESS": "تم تحديث الطلب بنجاح",
     "SUCCESS": "تم ارسال الطلب بنجاح",
     "REQUEST_NOTE": "في حال عدم توفر الخيار المطلوب يرجى مراجعة المشرف المتابع لحالتك",
     "SERVICES_NOTE": "في حال وجود استفسار يرجى مراجعة المشرف المتابع لحالتك",
@@ -61,13 +74,18 @@
     "VIDEO": "فيديو تعريفي",
     "STATISTICS": "الاحصائيات",
     "RATING": "تقييم الخدمة",
-    "REQUESTED_ON_LAST_30DAYS": "تم طلب الخدمة عدد : {{value}}  مرة خلال اخر ٣٠ يوم عدد",
+    "REQUESTED_ON_LAST_30DAYS": "تم طلب الخدمة عدد : {{value}}  مرة خلال اخر ٣٠ يوم ",
     "BENEFICIARIES": "المستفيدون",
     "CLASSIFICATION": "التصنيف",
     "GUIDE": "دليل الخدمة",
     "COMMENTS": "التعليقات",
+    "COMMENT_ON": "في",
+    "beneficiaryTask": "تحديث البيانات",
+    "required": "مطلوب",
     "NO_ENTRY": "لا يوجد",
-    "COMMENT_ON": "في"
+    "needs": "يحتاج طلبكم إلى",
+    "pleasePress": "الرجاء الضغط",
+    "hereToUpdate": "هنا لتحديث البيانات"
   },
   "BACK": "رجوع",
   "appTitle": "إدارة المهام",
@@ -109,7 +127,7 @@
   "forms": {
     "errors": {
       "tooMany": "الرجاء التأكد من إتمام كافة الحقول المطلوبة بالطريقة الصحيحة",
-      "generic":"لقد حدث خطأ ما, الرجاء التواصل مع المشرف"
+      "generic": "لقد حدث خطأ ما, الرجاء التواصل مع المشرف"
     },
     "common": {
       "Add Comment": "أضف تعليقاً",
@@ -700,7 +718,25 @@
       "salary start with": "الراتب يبدأ من",
       "Education Level": "المؤهل التعليمي المطلوب",
       "Opportunity Educational Qualification": "المؤهل العلمي",
-      "Opportunity Specialization": "التخصص"
+      "Opportunity Specialization": "التخصص",    
+      "Send Back": "Send Back",
+      "fullName": "Full Name",
+      "nationalId": "National ID",
+      "nationalIDIssuePlace": "National Id Issue Place",
+      "birthDate": "Birth Date",
+      "mobile": "Mobile",
+      "email": "Email",
+      "date": "Date",
+      "buildingNo": "Building No",
+      "additionalNo": "Additional No",
+      "postalCode": "Postal Code",
+      "street": "Street",
+      "district": "District",
+      "subject": "Subject",
+      "description": "Description",
+      "agreement": "Agreement",
+      "finalStatement": "Final Statement",
+      "initialOpinion": "Initial Opinion"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",
@@ -734,12 +770,17 @@
     "payed_false": "مجانية"
   },
   "PROFILE": {
+    "YEAR": "عام",
+    "AGE": "العمر",
+    "MINISTRY_ID": "الرقم الوزاري",
+    "PERSONAL_INFO": "البيانات الشخصية",
+    "NOT_SET": "غير معين",
     "TITLE": "عرض الملف الشخصي",
     "MAININFO": "البيانات الاساسية",
     "NAME": "الاسم",
     "NATIONAL_ID": "رقم الهوية",
     "BIRTHDATE": "تاريخ الميلاد",
-    "GENDER": "النوع",
+    "GENDER": "الجنس",
     "EDU_STAGE": "مستوى التعليم",
     "CONTACT": "بيانات التواصل",
     "MOBILE": "الجوال",
@@ -753,7 +794,7 @@
     "INFO": "معلومات",
     "ACTIVE": "فعال",
     "ID": "الرقم التسلسلي",
-    "INTERNAL_ID": "الرقم التسلسلي الداخلي",
+    "INTERNAL_ID": "رقم إخاء",
     "RECEIVING": "بيانات الاستلام",
     "RECEIVING_DATE": "تاريخ الاستلام",
     "RECEIVING_PERSON": "الشخص المستلم المسئول",
@@ -761,7 +802,7 @@
     "BRANCH": "الفرع",
     "FORMER_ASSOCIATION": "المعلومات السابقة",
     "INVESTMENT_BANK_IBAN": "رقم ايبان البنك",
-    "SEGMENTS": "تصنيف المستفيدين",
+    "SEGMENTS": "التصنيف",
     "ORIGIN": "بيانات البلد الاصلية",
     "NATIONAL_ORIGIN": "رقم الهوية الاصلية",
     "NATIONAL_ID_DATE": "تاريخ الهوية الاصلية",
@@ -808,6 +849,29 @@
     "NO_RESULTS": "لا يوجد فرص وظيفية",
     "BIRTH_DATE": "تاريخ الميلاد"
   },
+  "notifications": {
+    "title": "الإشعارات",
+    "markAsRead": "ضع إشارة مقروء",
+    "markAsUnread": "ضع إشارة غير مقروء",
+    "markAllAsRead": "ضع إشارة مقروء للكل",
+    "all": "الكل",
+    "noEntry": "لا يوجد إشعارات",
+    "delete": "قم بإزارة التنبيه",
+    "more": "تحميل المزيد..",
+    "new": "جديد",
+    "earlier": "سابقاً"
+  },
   "CLOSE": "اغلاق",
-  "SEND": "ارسال"
+  "SEND": "ارسال",
+  "a few seconds ago": "منذ بضع ثوان",
+  "a minute ago": "منذ دقيقة",
+  "minutes ago": "منذ {{minutes}} دقائق",
+  "an hour ago": "منذ ساعة",
+  "hours ago": "منذ {{hours}} ساعات",
+  "a day ago": "منذ يوم",
+  "days ago": "منذ {{days}} يوم",
+  "a month ago": "منذ شهر",
+  "months ago": "منذ {{months}} أشهر",
+  "a year ago": "منذ سنة",
+  "years ago": "منذ {{years}} سنوات"
 }

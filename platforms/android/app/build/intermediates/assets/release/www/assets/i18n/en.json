@@ -1,14 +1,27 @@
 {
   "formLoadError": "An unknown error happened while loading the page, please try again later.",
   "dir": "ltr",
+  "new": "New",
+  "recieved": "Received",
+  "processing": "Processing",
+  "underStudy": "Under Study",
+  "taskupdate": "Activity information entry",
+  "taskend": "Activity Informaton Follow up",
+  "finishing": "Finishing",
+  "false": "No",
+  "true": "Yes",
+  "male": "Male",
+  "female": "Female",
   "LAYOUT": {
     "TITLE": "Beneficiary Portal",
     "CHANGE_LANGUAGE": "Change Language",
     "WELCOME": "Welcome",
+    "PROFILE": "Profile",
     "LOGOUT": "Logout",
     "LOGIN": "Login"
   },
   "NAV": {
+    "ALL_OPPORTUNITIES": "All Opportunities",
     "MAIN_PAGE": "Main Page",
     "SERVICES_CATALOG": "Services Catalog",
     "MY_REQUESTS": "My Requests",
@@ -38,6 +51,7 @@
     "TITLE": "Ads"
   },
   "SERVICE": {
+    "BENEFICIARY_TASK_SUCCESS": "Request has been updated successfully",
     "SUCCESS": "Request Has Been sent Successfully",
     "REQUEST_NOTE": "If you can't find the option you need please refer to your supervisor",
     "SERVICES_NOTE": "If you have any questions please refer to your supervisor",
@@ -65,8 +79,47 @@
     "CLASSIFICATION": "Classification",
     "GUIDE": "Guide",
     "COMMENTS": "Comments",
+    "COMMENT_ON": "on",
+    "beneficiaryTask": "Information Update",
+    "required": "Required",
     "NO_ENTRY": "Unspecified",
-    "COMMENT_ON": "on"
+    "needs": "Your request needs",
+    "pleasePress": "Please Press",
+    "hereToUpdate": "here to update request information"
+  },
+  "PROFILE": {
+    "YEAR": "Year",
+    "AGE": "Age",
+    "MINISTRY_ID": "Ministry ID",
+    "PERSONAL_INFO": "Personal Information",
+    "NOT_SET": "Not Set",
+    "MAININFO": "Main Information",
+    "NAME": "Name",
+    "NATIONAL_ID": "National ID Number",
+    "BIRTHDATE": "Birth Date ",
+    "GENDER": "Gender",
+    "EDU_STAGE": "Education Stage",
+    "CONTACT": "Contact Info",
+    "MOBILE": "Mobile",
+    "EMAIL": "Email",
+    "STATE": "Status",
+    "MARITAL_STATE": "Marital Status",
+    "PRISONED": "Prisoned",
+    "STOPPED_SERVICES": "Stopped Services",
+    "HAS_COMMERCIAL_REGISTRATION": "Has Commercial Record",
+    "STATUS": "Status",
+    "INFO": "Info",
+    "ACTIVE": "Active",
+    "ID": "ID",
+    "INTERNAL_ID": "Ekhaa ID",
+    "CLASSIFICATION": "Classification",
+    "BRANCH": "Branch",
+    "FORMER_ASSOCIATION": "Former Association",
+    "INVESTMENT_BANK_IBAN": "Investment Bank IBAN",
+    "SEGMENTS": "Beneficiary Segments",
+    "ORIGIN": "Origin",
+    "NATIONAL_ORIGIN": "National ID Origin",
+    "NATIONAL_ID_DATE": "National ID Issue Date"
   },
   "BACK": "Back",
   "appTitle": "CASE MANAGEMENT",
@@ -105,7 +158,7 @@
   "forms": {
     "errors": {
       "tooMany": "Please Complete all required fields correctly",
-      "generic":"An error occured, please contact your supervisor"
+      "generic": "An error occured, please contact your supervisor"
     },
     "common": {
       "SAVE": "SAVE",
@@ -209,5 +262,28 @@
     "CANDIDATE_NAME": "Candidate name",
     "DATE": "Applied Date",
     "DETAILS": "Details"
-  }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAsRead": "Mark As Read",
+    "markAsUnread": "Mark As Unread",
+    "markAllAsRead": "Mark All As Read",
+    "all": "All",
+    "noEntry": "No Notifications",
+    "delete": "Delete Notification",
+    "more": "Loading More..",
+    "new": "New",
+    "earlier": "Earlier"
+  },
+  "a few seconds ago": "a few seconds ago",
+  "a minute ago": "a minute ago",
+  "minutes ago": "{{minutes}} minutes ago",
+  "an hour ago": "an hour ago",
+  "hours ago": "{{hours}} hours ago",
+  "a day ago": "a day ago",
+  "days ago": "{{days}} days ago",
+  "a month ago": "a month ago",
+  "months ago": "{{months}} months ago",
+  "a year ago": "a year ago",
+  "years ago": "{{years}} years ago"
 }

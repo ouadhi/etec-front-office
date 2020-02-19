@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatPaginator, MatSort, MatTable, MatSortable } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { merge, of as observableOf, Observable } from 'rxjs';
@@ -37,7 +37,12 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
   expandedElement;
   resultsLength = 0;
 
-  constructor(public translate: TranslateService, public loader: FormioLoader, public switchLangService: SwitchLangService, ) {
+  constructor(
+    public translate: TranslateService,
+    public loader: FormioLoader,
+    public switchLangService: SwitchLangService,
+    private changeRef: ChangeDetectorRef
+  ) {
 
   }
 
@@ -93,6 +98,9 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
           this.isRateLimitReached = true;
           return observableOf({});
         })
-      ).subscribe(data => this.data = data.items);
+      ).subscribe(data => {
+        this.data = data.items;
+       // this.changeRef.detectChanges();
+      });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone, OnDestroy } from '@angular/core';
 import { ServicesService } from '../services.service';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { Input, Output, EventEmitter } from '@angular/core';
@@ -13,7 +13,7 @@ import { SwitchLangService } from './../switch-lang.service';
   templateUrl: './service-catalog.component.html',
   styleUrls: ['./service-catalog.component.css']
 })
-export class ServiceCatalogComponent implements OnInit {
+export class ServiceCatalogComponent implements OnInit, OnDestroy {
 
   dataMostUsed: any;
   data: any[];
@@ -39,7 +39,6 @@ export class ServiceCatalogComponent implements OnInit {
 
   public imagesSlider: IImage[];
 
-
   userSegments: string[] = [];
 
   constructor(
@@ -47,17 +46,28 @@ export class ServiceCatalogComponent implements OnInit {
     public filterPipe: FilterPipe,
     private keycloakService: KeycloakService,
     private requestsService: RequestsService,
-    public trans: SwitchLangService
-  ) { }
+    public trans: SwitchLangService,
+    private zone: NgZone,
+    private changeRef: ChangeDetectorRef
+  ) {
+
+  }
 
   ngOnInit() {
-
+    this.keycloakService.keycloakEvents$.subscribe(async () => {
+      this.zone.run(() => {
+        this.ngOnInit();
+      });
+    });
     this.loadBanners();
     this.mostUsed();
 
     this.search();
     this.prepareFiltersFetch();  // this.prepareFilters(this.userSegments);
 
+  }
+  ngOnDestroy() {
+   // this.keycloakService.keycloakEvents$.unsubscribe();
   }
   isDisabled(a, b) {
 
@@ -155,7 +165,9 @@ export class ServiceCatalogComponent implements OnInit {
 
   mostUsed() {
     this.dataMostUsed = [];
-    this.servicesService.getServices().subscribe(data => this.dataMostUsed = data.entries);
+    this.servicesService.getServices().subscribe(data => {
+      this.dataMostUsed = data.entries;
+    });
   }
 
 
@@ -259,7 +271,6 @@ export class ServiceCatalogComponent implements OnInit {
         this.data[i].tags_inline = tags_inline;
 
       });
-
     }
     );
   }

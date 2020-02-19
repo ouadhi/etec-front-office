@@ -1,4 +1,4 @@
-#Thu Jan 23 13:41:14 EET 2020
+#Tue Feb 18 21:56:09 EET 2020
 base.0=/Users/imadbakir/Documents/projects/front-office/platforms/android/app/build/intermediates/transforms/dex/release/0
 path.0=classes.dex
 renamed.0=classes.dex

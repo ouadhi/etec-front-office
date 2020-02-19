@@ -1,6 +1,17 @@
 {
   "formLoadError": "An unknown error happened while loading the page, please try again later.",
   "dir": "ltr",
+  "new": "New",
+  "recieved": "Received",
+  "processing": "Processing",
+  "underStudy": "Under Study",
+  "taskupdate": "Activity information entry",
+  "taskend": "Activity Informaton Follow up",
+  "finishing": "Finishing",
+  "false": "No",
+  "true": "Yes",
+  "male": "Male",
+  "female": "Female",
   "LAYOUT": {
     "TITLE": "Beneficiary Portal",
     "CHANGE_LANGUAGE": "Change Language",
@@ -10,6 +21,7 @@
     "LOGIN": "Login"
   },
   "NAV": {
+    "ALL_OPPORTUNITIES": "All Opportunities",
     "MAIN_PAGE": "Main Page",
     "SERVICES_CATALOG": "Services Catalog",
     "MY_REQUESTS": "My Requests",
@@ -107,7 +119,7 @@
     "SEGMENTS": "Beneficiary Segments",
     "ORIGIN": "Origin",
     "NATIONAL_ORIGIN": "National ID Origin",
-    "NATIONAL_ID_DATE": "National ID Issue Date",
+    "NATIONAL_ID_DATE": "National ID Issue Date"
   },
   "BACK": "Back",
   "appTitle": "CASE MANAGEMENT",

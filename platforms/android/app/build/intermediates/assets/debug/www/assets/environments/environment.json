@@ -21,9 +21,12 @@
     "requestApi": {
         "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/requestmanagement",
         "rest": {
+            "tasks": "/rest/task",
             "myRequests": "/api/portal/requests",
             "myBeneficiarySegments": "/api/portal/beneficiary-segments-cms",
-            "caseActivity": "/rest/history/case-activity-instance"
+            "caseActivity": "/rest/history/case-activity-instance",
+            "count": "/api/requests/count",
+            "statuses": "/api/portal/eservices"
         }
     },
     "beneficiaryApi": {
@@ -59,15 +62,20 @@
         }
     },
     "profile": {
-        "api": "http://3.87.111.211:8120/Ekhaa/beneficiaries",
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/integrationservice/api/beneficiaries",
         "account": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/api/account"
     },
     "roles": {
         "beneficiary": "ROLE_USER",
-        "department_specialist": "ROLE_BRANCH_ENABLEMENT_SPECIALIST",
-        "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST": "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
+        "department_specialist": "ROLE_BRANCH_ENABLEMENT_SPECIALIST"
     },
     "statisticsApi": {
         "api": "https://eservice.ekhaa.org.sa/api/cms/api/collections/get/segment/"
+    },
+    "task": {
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/orphansmicroservices/api/"
+    },
+    "notifications": {
+        "api": "http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/notification/api/"
     }
 }

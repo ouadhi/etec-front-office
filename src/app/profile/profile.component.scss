@@ -1,0 +1,95 @@
+.profileHero {
+  background: #fff;
+  padding: 14px 0;
+  margin: 50px 0 25px;
+  border-radius: 10px;
+}
+
+.profileHero__icon {
+  vertical-align: middle;
+  color: #009688;
+  width: 33px;
+  text-align: right;
+  font-size: 22px;
+}
+.user-item h2 {
+  margin-top: 10px;
+  margin-bottom: -15px;
+}
+.user-item h5 {
+  margin: 0px 10px;
+}
+.profileHero__name {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.profileHero__secondarySection {
+  margin: 20px 0 0;
+  padding: 0 0px;
+}
+
+.profileHero__meta {
+  margin: 6px 0;
+}
+
+.profileData {
+  background: whitesmoke;
+  padding: 32px 14px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+}
+ion-avatar {
+  width: 77px;
+  height: 77px;
+}
+.profile-badge {
+  background: #f5f5f5;
+  border-radius: 7px;
+  padding: 11px;
+  height: 44px;
+  margin: 0 7px;
+  color: #17373e;
+  font-weight: bold;
+}
+.segment-badge {
+  margin: 7px;
+  display: inline-block;
+}
+.profile-item {
+  margin: 9px 0;
+}
+.birthday-badge {
+  width: 75px;
+}
+.first-row {
+  display: flex;
+  justify-content: space-between;
+}
+:host::ng-deep .section__title {
+  margin-bottom: 10px;
+}
+:host::ng-deep .section__container {
+  padding: 27px 15px !important;
+}
+
+.mobile-avatar {
+  display: none;
+}
+@media (max-width: 767px) {
+  .profileData {
+    padding: 32px 0px;
+  }
+  .user-item {
+    ion-avatar {
+      display: none;
+    }
+  }
+  .mobile-avatar {
+    display: block;
+    margin: 20px auto;
+  }
+  .user-item h2 {
+    margin: 0 auto;
+  }
+}

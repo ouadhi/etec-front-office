@@ -182,7 +182,7 @@ export function getFormioEnv() {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useClass: CustomLoader,
+        useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
     }),
@@ -199,7 +199,7 @@ export function getFormioEnv() {
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-      timeOut: 100000
+      timeOut: 5000
     }),
     MatCheckboxModule,
     MatCheckboxModule,

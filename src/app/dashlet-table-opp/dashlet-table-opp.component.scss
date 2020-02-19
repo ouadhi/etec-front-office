@@ -101,7 +101,7 @@ mat-header-cell:first-of-type {
     vertical-align: middle;
   }
 
-  mat-header-row{
+  mat-header-row {
     display: none;
   }
 
@@ -167,5 +167,11 @@ mat-header-cell:first-of-type {
   }
   .mat-table .mat-cell:first-child {
     margin-top: 4%;
+  }
+}
+
+@media (max-width: 767px) {
+  ion-title {
+    padding: 10px;
   }
 }

@@ -180,3 +180,9 @@ mat-header-cell:first-of-type {
     text-align: left;
   } 
 }
+
+@media (max-width: 767px) {
+  ion-title {
+    padding: 10px;
+  }
+}

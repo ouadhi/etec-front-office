@@ -6,7 +6,8 @@
       <span fxFlex>
         <img height="50" src="/assets/logo.png" />
       </span>
-      <app-notifications-button *ngIf="loggedIn"></app-notifications-button>
+      <!-- <app-notifications-button *ngIf="loggedIn"></app-notifications-button> -->
+
       <button mat-button [matMenuTriggerFor]="menu">
         <span class="d-none d-md-inline" *ngIf="loggedIn">{{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}}
           {{userDetails.lastName}})</span>
@@ -21,7 +22,7 @@
           <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
           <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
         </mat-menu>
-        <button mat-menu-item  routerLink="/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' | translate}}</button>
+        <button mat-menu-item routerLink="/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' | translate}}</button>
         <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
         <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
 
@@ -39,8 +40,8 @@
           routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate }}</a>
         <a mat-button *ngIf="loggedIn" routerLink="/my-requests"
           routerLinkActive="active">{{'NAV.MY_REQUESTS' | translate}}</a>
-       <!--  <a mat-button *ngIf="loggedIn" routerLink="/opportunity/all"
-          routerLinkActive="active">{{'NAV.ALL_OPPORTUNITIES' | translate}}</a> -->
+        <a mat-button *ngIf="loggedIn" routerLink="/opportunity/all"
+          routerLinkActive="active">{{'NAV.ALL_OPPORTUNITIES' | translate}}</a>
       </span>
     </mat-toolbar-row>
   </mat-toolbar>

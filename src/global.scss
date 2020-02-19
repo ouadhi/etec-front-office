@@ -178,6 +178,7 @@ html[dir="rtl"] {
   }
 }
 @media (max-width: 767px) {
+  
   .ngx-toastr {
     width: calc(100vw - 25px) !important;
   }
