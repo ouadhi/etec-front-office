@@ -125,6 +125,9 @@ export class NotificationsModalComponent implements OnInit {
     close() {
         this.modalController.dismiss();
     }
+    handleOpen(item) {
+        this.notificationsService.updateStatus(item, true);
+    }
     ngOnInit() {
         this.dir = this.translate.instant('dir');
         this.translate.onLangChange.subscribe((data) => {

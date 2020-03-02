@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 import { map, publishReplay, refCount } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { SessionService } from '../session.service';
-
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'webstomp-client';
+import { KeycloakService } from 'keycloak-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +18,11 @@ export class NotificationsService implements OnInit {
   subscriber = null;
   connection: Promise<any>;
   connectedPromise: any;
-  listener: Observable<any>;
-  listenerObserver: Observer<any>;
+  listenerObserver: EventEmitter<any> = new EventEmitter();
   alreadyConnectedOnce = false;
   pageSize = 15;
+  private subscription: Stomp.Subscription;
+
   // tslint:disable-next-line:variable-name
   private _notifications = [];
   get notifications(): Array<object> {
@@ -30,8 +33,85 @@ export class NotificationsService implements OnInit {
   get notificationsCount(): number {
     return this._notificationsCount;
   }
-  constructor(private http: HttpClient, private sessionService: SessionService, public router: Router) {
+  constructor(
+    private http: HttpClient,
+    private sessionService: SessionService,
+    public router: Router,
+    private keycloak: KeycloakService,
 
+  ) {
+    this.connect();
+    this.connection = this.createConnection();
+    this.subscribe();
+    this.fetchNotifications();
+    this.getCount();
+
+  }
+  getCount() {
+    this.doCountNew(this.sessionService.getUsername()).subscribe((data) => {
+      this._notificationsCount = data;
+    });
+  }
+
+  async connect() {
+    if (this.connectedPromise === null) {
+      this.connection = this.createConnection();
+    }
+    // building absolute path so that websocket doesn't fail when deploying with a context path
+    let url;
+    url = 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8082/websocket/ekhaa';
+    const socket = new SockJS(url);
+    this.stompClient = Stomp.over(socket);
+    const headers = {
+      // Upgrade: 'websocket',
+      // Connection: 'Upgrade',
+      token: `${await this.keycloak.getToken()}`
+    };
+    this.stompClient.connect(
+      headers,
+      () => {
+        this.connectedPromise('success');
+        this.connectedPromise = null;
+        if (!this.alreadyConnectedOnce) {
+          this.alreadyConnectedOnce = true;
+        }
+      }
+    );
+  }
+
+  disconnect() {
+    if (this.stompClient !== null) {
+      this.stompClient.disconnect();
+      this.stompClient = null;
+    }
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null;
+    }
+    this.alreadyConnectedOnce = false;
+  }
+
+
+
+  subscribe() {
+    this.connection.then(() => {
+      this.subscriber = this.stompClient.subscribe('/user/topic/notification', data => {
+        const notification = JSON.parse(data.body);
+        this._notifications.unshift(notification);
+        this.getCount();
+        this.listenerObserver.emit(notification);
+      });
+    });
+  }
+
+  unsubscribe() {
+    if (this.subscriber !== null) {
+      this.subscriber.unsubscribe();
+    }
+  }
+
+  private createConnection(): Promise<any> {
+    return new Promise((resolve, reject) => (this.connectedPromise = resolve));
   }
   ngOnInit() {
     this.doCountNew(this.sessionService.getUsername()).subscribe((data) => {
@@ -64,8 +144,8 @@ export class NotificationsService implements OnInit {
       this._notifications.forEach(item => item.status = 'READ');
     });
   }
-  updateStatus(notification) {
-    const bool = (notification.status === 'UN_READ' || notification.status === 'NEW');
+  updateStatus(notification, onOpen = false) {
+    const bool = (notification.status === 'UN_READ' || notification.status === 'NEW' || onOpen);
     if (bool) {
       this.doMarkAsRead(notification.id).subscribe(() => {
         notification.status = 'READ';
