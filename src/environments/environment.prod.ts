@@ -85,9 +85,9 @@ export const environment = {
     api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal/'
   },
   roles: {
-    beneficiary: 'ROLE_BENEFICIARY',
-    department_specialist: 'specialst',
-    ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST: 'ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST'
+    beneficiary: 'ROLE_USER',
+    branch_specialist: 'ROLE_SERVICE_SPECIALIST_BRANCH',
+    department_specialist: 'ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST'
   },
   notifications: {
     api: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/notifications/v2/api/'

@@ -35,9 +35,9 @@ export class AllOpportunitiesComponent {
   dashletCols = {
     name: { name: 'OPPORTUNITY.NAME', sortable: true },
     _cityName: { name: 'OPPORTUNITY.CITY', sortable: true },
-    employer: { name: 'OPPORTUNITY.EMPLOYER', sortable: true}, 
-    from: { name: 'OPPORTUNITY.FROM', sortable: true,formatDate: true}, 
-    to: { name: 'OPPORTUNITY.TO', sortable: true,formatDate: true}, 
+    employer: { name: 'OPPORTUNITY.EMPLOYER', sortable: true },
+    from: { name: 'OPPORTUNITY.FROM', sortable: true, formatDate: true },
+    to: { name: 'OPPORTUNITY.TO', sortable: true, formatDate: true },
     vacancies: { name: 'OPPORTUNITY.VACANCIES', sortable: true },
     data: { name: 'Details', sortable: false, display: 'detailsButton_oneParam', param1: '_id' }
 
@@ -52,7 +52,7 @@ export class AllOpportunitiesComponent {
         this.accountService.getBranchIfForbeneficiary().subscribe(res => {
           this.branchId = res.branchId;
 
-          if(this.accountAuthorities.indexOf(environment.roles.ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST)>-1){
+          if (this.accountAuthorities.indexOf(environment.roles.department_specialist) > -1) {
             this.unsetBranch();
           }
 
@@ -69,7 +69,7 @@ export class AllOpportunitiesComponent {
         this.accountService.getBranchId(account.login).subscribe(res => {
           this.branchId = res.branchId;
 
-          if(this.accountAuthorities.indexOf(environment.roles.ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST)>-1){
+          if (this.accountAuthorities.indexOf(environment.roles.department_specialist) > -1) {
             this.unsetBranch();
           }
 
@@ -96,7 +96,7 @@ export class AllOpportunitiesComponent {
 
   }
 
-  unsetBranch(){
+  unsetBranch() {
     this.branchId = false;
   }
 
