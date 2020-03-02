@@ -738,7 +738,7 @@ module.exports = "<app-page pageTitle=\"{{data[trans._key('title')]}}\" hasBackB
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mainWrapper\" [class.mainWrapper--rtl]=\"switchLangService.currentLang=='ar'\">\r\n  <mat-toolbar color=\"primary\">\r\n    <mat-toolbar-row>\r\n      <!-- <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span> -->\r\n\r\n      <span fxFlex>\r\n        <img height=\"50\" src=\"/assets/logo.png\" />\r\n      </span>\r\n      <!-- <app-notifications-button *ngIf=\"loggedIn\"></app-notifications-button> -->\r\n\r\n      <button mat-button [matMenuTriggerFor]=\"menu\">\r\n        <span class=\"d-none d-md-inline\" *ngIf=\"loggedIn\">{{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}}\r\n          {{userDetails.lastName}})</span>\r\n        <mat-icon>person</mat-icon>\r\n      </button>\r\n      <mat-menu #menu=\"matMenu\">\r\n\r\n        <button mat-menu-item [matMenuTriggerFor]=\"langDropdown\">\r\n          {{'LAYOUT.CHANGE_LANGUAGE' | translate}}\r\n        </button>\r\n        <mat-menu #langDropdown=\"matMenu\">\r\n          <button mat-menu-item (click)=\"switchLangService.changeLang('ar')\">عربي</button>\r\n          <button mat-menu-item (click)=\"switchLangService.changeLang('en')\">English</button>\r\n        </mat-menu>\r\n        <button mat-menu-item routerLink=\"/profile\" *ngIf=\"loggedIn\">{{'LAYOUT.PROFILE' | translate}}</button>\r\n        <button mat-menu-item (click)=\"doLogout()\" *ngIf=\"loggedIn\">{{'LAYOUT.LOGOUT' | translate}}</button>\r\n        <button mat-menu-item (click)=\"login()\" *ngIf=\"!loggedIn\">{{'LAYOUT.LOGIN' | translate}}</button>\r\n\r\n      </mat-menu>\r\n\r\n\r\n    </mat-toolbar-row>\r\n  </mat-toolbar>\r\n\r\n  <mat-toolbar color=\"\">\r\n    <mat-toolbar-row>\r\n      <span>\r\n        <!-- <a mat-button routerLink=\"/\" routerLinkActive=\"active\">{{'NAV.MAIN_PAGE' | translate }}</a> -->\r\n        <a mat-button routerLink=\"/service-catalog\"\r\n          routerLinkActive=\"active\">{{'NAV.SERVICES_CATALOG' | translate }}</a>\r\n        <a mat-button *ngIf=\"loggedIn\" routerLink=\"/my-requests\"\r\n          routerLinkActive=\"active\">{{'NAV.MY_REQUESTS' | translate}}</a>\r\n        <a mat-button *ngIf=\"loggedIn\" routerLink=\"/opportunity/all\"\r\n          routerLinkActive=\"active\">{{'NAV.ALL_OPPORTUNITIES' | translate}}</a>\r\n      </span>\r\n    </mat-toolbar-row>\r\n  </mat-toolbar>\r\n\r\n  <div class=\"routerOutletContainer\">\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n\r\n  <mat-toolbar color=\"primary\">\r\n    <mat-toolbar-row>\r\n      <span>\r\n        {{'LAYOUT.TITLE' | translate}}\r\n      </span>\r\n    </mat-toolbar-row>\r\n  </mat-toolbar>\r\n</div>"
+module.exports = "<div class=\"mainWrapper\" [class.mainWrapper--rtl]=\"switchLangService.currentLang=='ar'\">\r\n  <mat-toolbar color=\"primary\">\r\n    <mat-toolbar-row>\r\n      <!-- <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span> -->\r\n\r\n      <span fxFlex>\r\n        <img height=\"50\" src=\"/assets/logo.png\" />\r\n      </span>\r\n      <app-notifications-button *ngIf=\"loggedIn\"></app-notifications-button>\r\n\r\n      <button mat-button [matMenuTriggerFor]=\"menu\">\r\n        <span class=\"d-none d-md-inline\" *ngIf=\"loggedIn\">{{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}}\r\n          {{userDetails.lastName}})</span>\r\n        <mat-icon>person</mat-icon>\r\n      </button>\r\n      <mat-menu #menu=\"matMenu\">\r\n\r\n        <button mat-menu-item [matMenuTriggerFor]=\"langDropdown\">\r\n          {{'LAYOUT.CHANGE_LANGUAGE' | translate}}\r\n        </button>\r\n        <mat-menu #langDropdown=\"matMenu\">\r\n          <button mat-menu-item (click)=\"switchLangService.changeLang('ar')\">عربي</button>\r\n          <button mat-menu-item (click)=\"switchLangService.changeLang('en')\">English</button>\r\n        </mat-menu>\r\n        <button mat-menu-item routerLink=\"/profile\" *ngIf=\"loggedIn\">{{'LAYOUT.PROFILE' | translate}}</button>\r\n        <button mat-menu-item (click)=\"doLogout()\" *ngIf=\"loggedIn\">{{'LAYOUT.LOGOUT' | translate}}</button>\r\n        <button mat-menu-item (click)=\"login()\" *ngIf=\"!loggedIn\">{{'LAYOUT.LOGIN' | translate}}</button>\r\n\r\n      </mat-menu>\r\n\r\n\r\n    </mat-toolbar-row>\r\n  </mat-toolbar>\r\n\r\n  <mat-toolbar color=\"\">\r\n    <mat-toolbar-row>\r\n      <span>\r\n        <!-- <a mat-button routerLink=\"/\" routerLinkActive=\"active\">{{'NAV.MAIN_PAGE' | translate }}</a> -->\r\n        <a mat-button routerLink=\"/service-catalog\"\r\n          routerLinkActive=\"active\">{{'NAV.SERVICES_CATALOG' | translate }}</a>\r\n        <a mat-button *ngIf=\"loggedIn\" routerLink=\"/my-requests\"\r\n          routerLinkActive=\"active\">{{'NAV.MY_REQUESTS' | translate}}</a>\r\n        <a mat-button *ngIf=\"loggedIn\" routerLink=\"/opportunity/all\"\r\n          routerLinkActive=\"active\">{{'NAV.ALL_OPPORTUNITIES' | translate}}</a>\r\n      </span>\r\n    </mat-toolbar-row>\r\n  </mat-toolbar>\r\n\r\n  <div class=\"routerOutletContainer\">\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n\r\n  <mat-toolbar color=\"primary\">\r\n    <mat-toolbar-row>\r\n      <span>\r\n        {{'LAYOUT.TITLE' | translate}}\r\n      </span>\r\n    </mat-toolbar-row>\r\n  </mat-toolbar>\r\n</div>"
 
 /***/ }),
 
@@ -793,7 +793,7 @@ module.exports = "<ion-header no-border>\n  <ion-toolbar>\n    <ion-title>\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header no-border>\n  <ion-toolbar>\n    <ion-title>\n      {{title | translate}}\n    </ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-chip (click)=\"toggleFilter()\" color=\"medium\" size=\"medium\" slot=\"end\">\n        <ion-icon [color]=\"showFilter ? 'danger':'tertiary'\" [name]=\"showFilter  ? 'close':'funnel'\"></ion-icon>\n        <ion-label>\n          {{'Filter' | translate}}\n        </ion-label>\n      </ion-chip>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<formio-loader></formio-loader>\n\n\n<div class=\"content\">\n  <app-dashlet-filter [show]=\"showFilter\" (filter)=\"onFilter($event)\"></app-dashlet-filter>\n\n  <mat-table multiTemplateDataRows [dataSource]=\"data\" matSort class=\"width-100\" [ngClass]=\"{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}\">\n    \n    <ng-container *ngFor=\"let col of displayedColumns\" [matColumnDef]=\"col\">\n        <mat-header-cell  mat-sort-header disableClear=\"true\" [disabled]=\"!columns[col].sortable\" *matHeaderCellDef>\n          {{columns[col].name | translate}} \n        </mat-header-cell>\n    \n      <mat-cell [attr.data-label]=\"columns[col].name | translate\" *matCellDef=\"let element\">\n        <ion-badge *ngIf=\"columns[col].display == 'badge'\" [color]=\"columns[col].color\" size=\"medium\" mode=\"ios\">\n          {{element[col]}}\n        </ion-badge>\n        <ion-chip *ngIf=\"columns[col].display == 'chip'\" [color]=\"columns[col].color\" size=\"medium\" slot=\"end\">\n          <ion-icon [name]=\"columns[col].icon\" [color]=\"columns[col].color\"></ion-icon>\n          <ion-label>\n            {{element[col]}}\n          </ion-label>\n        </ion-chip>\n        <ng-container *ngIf=\"columns[col].display == 'detailsButton'\">\n          <button mat-flat-button color=\"primary\"\n            [routerLink]=\"[detailsRouterForEachItem, element[columns[col].param1], element[columns[col].param2], (element[columns[col].param3] || ''),(element[columns[col].param4] || ''),(element[columns[col].param5] || '')]\">{{'Details' | translate}}</button>\n        </ng-container>\n        <ng-container *ngIf=\"columns[col].display == 'detailsButton_oneParam'\">\n          <button mat-flat-button color=\"primary\"\n            [routerLink]=\"[detailsRouterForEachItem, (element[columns[col].param1] || '' )]\">{{'Details' | translate}}</button>\n        </ng-container>\n\n          <ng-container  *ngIf=\"!columns[col].display || columns[col].display == 'text'\">\n            <ng-container *ngIf=\"columns[col]['formatDate'];else normal\">\n              {{element[col].substring(0, 19) | date:'yyyy-MM-dd,hh:mm:ssa'}}\n              \n            </ng-container>\n            <ng-template #normal>\n              {{element[col].length ? (element[col] | translate) : element[col] }} \n            </ng-template>\n          </ng-container>\n      \n      </mat-cell>\n\n\n    </ng-container>\n    <ng-container matColumnDef=\"expandedDetail\" *ngIf=\"expandableColumns.length > 0\">\n      <mat-cell *matCellDef=\"let element\" [attr.colspan]=\"displayedColumns.length\">\n        <div class=\"element-detail\" [@detailExpand]=\"element == expandedElement ? 'expanded' : 'collapsed'\">\n          <p *ngFor=\"let epxandable of expandableColumns\">\n            {{element[epxandable]}}\n          </p>\n        </div>\n      </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"footerMessage\">\n      <mat-footer-cell *matFooterCellDef colspan=\"5\" class=\"footer\">\n        {{'No Entries' | translate}}\n      </mat-footer-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row class=\"mat-elevation-z3\" *matRowDef=\"let row; columns: displayedColumns;\"\n      [class.expanded]=\"expandedElement === row\" (click)=\"expandedElement = expandedElement === row ? null : row\">\n    </mat-row>\n    <ng-container *ngIf=\"expandableColumns.length > 0\">\n      <mat-row class=\"mat-elevation-z3 detail-row\" *matRowDef=\"let row; columns: ['expandedDetail']\"></mat-row>\n    </ng-container>\n    <mat-footer-row *matFooterRowDef=\"['footerMessage']\" [hidden]='data && data.length'>\n    </mat-footer-row>\n\n\n\n  </mat-table>\n  <mat-paginator [length]=\"resultsLength\" [pageSize]=\"pageSize\"></mat-paginator>\n</div>"
+module.exports = "<ion-header no-border>\n  <ion-toolbar>\n    <ion-title>\n      {{title | translate}}\n    </ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-chip (click)=\"toggleFilter()\" color=\"medium\" size=\"medium\" slot=\"end\">\n        <ion-icon [color]=\"showFilter ? 'danger':'tertiary'\" [name]=\"showFilter  ? 'close':'funnel'\"></ion-icon>\n        <ion-label>\n          {{'Filter' | translate}}\n        </ion-label>\n      </ion-chip>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<formio-loader></formio-loader>\n\n\n<div class=\"content\">\n  <app-dashlet-filter [show]=\"showFilter\" (filter)=\"onFilter($event)\"></app-dashlet-filter>\n\n  <mat-table multiTemplateDataRows [dataSource]=\"data\" matSort class=\"width-100\" [ngClass]=\"{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}\">\n    \n    <ng-container *ngFor=\"let col of displayedColumns\" [matColumnDef]=\"col\">\n        <mat-header-cell  mat-sort-header disableClear=\"true\" [disabled]=\"!columns[col].sortable\" *matHeaderCellDef>\n          {{columns[col].name | translate}} \n        </mat-header-cell>\n    \n      <mat-cell [attr.data-label]=\"columns[col].name | translate\" *matCellDef=\"let element\">\n        <ion-badge *ngIf=\"columns[col].display == 'badge'\" [color]=\"columns[col].color\" size=\"medium\" mode=\"ios\">\n          {{element[col]}}\n        </ion-badge>\n        <ion-chip *ngIf=\"columns[col].display == 'chip'\" [color]=\"columns[col].color\" size=\"medium\" slot=\"end\">\n          <ion-icon [name]=\"columns[col].icon\" [color]=\"columns[col].color\"></ion-icon>\n          <ion-label>\n            {{element[col]}}\n          </ion-label>\n        </ion-chip>\n        <ng-container *ngIf=\"columns[col].display == 'detailsButton'\">\n          <button mat-flat-button color=\"primary\"\n            [routerLink]=\"[detailsRouterForEachItem, element[columns[col].param1]]\">{{'Details' | translate}}</button>\n        </ng-container>\n        <ng-container *ngIf=\"columns[col].display == 'detailsButton_oneParam'\">\n          <button mat-flat-button color=\"primary\"\n            [routerLink]=\"[detailsRouterForEachItem, (element[columns[col].param1] || '' )]\">{{'Details' | translate}}</button>\n        </ng-container>\n\n          <ng-container  *ngIf=\"!columns[col].display || columns[col].display == 'text'\">\n            <ng-container *ngIf=\"columns[col]['formatDate'];else normal\">\n              {{element[col].substring(0, 19) | date:'yyyy-MM-dd,hh:mm:ssa'}}\n              \n            </ng-container>\n            <ng-template #normal>\n              {{element[col].length ? (element[col] | translate) : element[col] }} \n            </ng-template>\n          </ng-container>\n      \n      </mat-cell>\n\n\n    </ng-container>\n    <ng-container matColumnDef=\"expandedDetail\" *ngIf=\"expandableColumns.length > 0\">\n      <mat-cell *matCellDef=\"let element\" [attr.colspan]=\"displayedColumns.length\">\n        <div class=\"element-detail\" [@detailExpand]=\"element == expandedElement ? 'expanded' : 'collapsed'\">\n          <p *ngFor=\"let epxandable of expandableColumns\">\n            {{element[epxandable]}}\n          </p>\n        </div>\n      </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"footerMessage\">\n      <mat-footer-cell *matFooterCellDef colspan=\"5\" class=\"footer\">\n        {{'No Entries' | translate}}\n      </mat-footer-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row class=\"mat-elevation-z3\" *matRowDef=\"let row; columns: displayedColumns;\"\n      [class.expanded]=\"expandedElement === row\" (click)=\"expandedElement = expandedElement === row ? null : row\">\n    </mat-row>\n    <ng-container *ngIf=\"expandableColumns.length > 0\">\n      <mat-row class=\"mat-elevation-z3 detail-row\" *matRowDef=\"let row; columns: ['expandedDetail']\"></mat-row>\n    </ng-container>\n    <mat-footer-row *matFooterRowDef=\"['footerMessage']\" [hidden]='data && data.length'>\n    </mat-footer-row>\n\n\n\n  </mat-table>\n  <mat-paginator [length]=\"resultsLength\" [pageSize]=\"pageSize\"></mat-paginator>\n</div>"
 
 /***/ }),
 
@@ -1101,7 +1101,7 @@ module.exports = "<div class=\"d-none d-xl-block\">\r\n  <a class=\"serviceCard\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"carouselExampleControls\" class=\"carousel slide\" data-ride=\"carousel\" *ngIf=\"imagesSlider?.length >0\">\r\n  <div class=\"carousel-inner\">\r\n    <div *ngFor=\"let i of imagesSlider; let x = index\" [class]=\"(x === 0) ? 'carousel-item active' : 'carousel-item'\">\r\n      <img class=\"d-block w-100\" src=\"{{i.url}}\" alt=\"slide\">\r\n    </div>\r\n  </div>\r\n  <a class=\"carousel-control-prev\" href=\"#carouselExampleControls\" role=\"button\" data-slide=\"prev\">\r\n    <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Previous</span>\r\n  </a>\r\n  <a class=\"carousel-control-next\" href=\"#carouselExampleControls\" role=\"button\" data-slide=\"next\">\r\n    <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Next</span>\r\n  </a>\r\n</div>\r\n\r\n  <app-page pageTitle=\"{{'CATALOG.SERVICE_CATALOG_TITLE' | translate}}\">\r\n\r\n  <app-section  class=\"most-used\" sectionTitle=\"{{'CATALOG.MOST_USED_SERVICES' | translate}}\">\r\n    <section fxLayout=\"row wrap\" fxLayoutAlign=\"space-between top\">\r\n\r\n      <ng-container *ngFor=\"let x of dataMostUsed;let i = index\">\r\n          <app-service-card *ngIf=\"i < 6\" id=\"{{x?._id}}\" cardTitle=\"{{x[trans._key('serviceName')]}}\" text=\"{{x[trans._key('description')]}}\"  fxFlex=\"49\" fxFlex.xs=\"100\"></app-service-card><!-- @TODO temp -->\r\n      </ng-container>\r\n        \r\n      </section>\r\n  </app-section>\r\n\r\n\r\n\r\n  <app-section sectionTitle=\"{{'CATALOG.DIRECTORY' | translate}}\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-lg-3\" [ngClass]=\"{'alignSwitchAR': trans.currentLang=='ar', 'alignSwitchEN':trans.currentLang=='en'}\">\r\n        <div class=\"d-none d-xl-block\">\r\n          <div class=\"filtersSection\">\r\n            <div class=\"filtersSection__resetFilters\">\r\n              <mat-list-item>\r\n                  <button mat-button (click)=\"resetFilters()\" [disabled]=\"userSegments?.length>0\"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>\r\n              </mat-list-item>\r\n            </div>\r\n    \r\n            <div class=\"filtersSection__keywordChip\" *ngIf=\"keyword\">\r\n              <mat-chip-list>\r\n                <mat-chip (click)=\"keyword='';filterKeyword()\">{{'CATALOG.SEARCH_FOR' | translate}}: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>\r\n              </mat-chip-list>\r\n            </div>\r\n              \r\n            <div class=\"filtersSection__keyword\">\r\n              <mat-form-field class=\"filtersSection__keywordForm\">\r\n                \r\n                <input matInput class=\"filtersSection__keywordInput\" [(ngModel)]=\"keyword\" (keyup)=\"filterKeyword()\" placeholder=\"{{'CATALOG.SEARCH_KEYWORD' | translate}}\">\r\n                <button mat-button *ngIf=\"keyword\" matSuffix mat-icon-button aria-label=\"Clear\" (click)=\"keyword='';filterKeyword()\">\r\n                    <mat-icon>close</mat-icon>\r\n                  </button>\r\n              </mat-form-field>\r\n            </div>\r\n    \r\n              <ng-container *ngFor=\"let a of segmentType\">\r\n                <div class=\"filtersList\" [style.display]=\"a.visible ? 'block': 'none'\">\r\n                <div class=\"filtersList__head\">{{a[trans._key('segmentTypeName')]}}</div>\r\n                  <ng-container *ngFor=\"let b of segments\">\r\n                    <div class=\"filtersList__item\">\r\n                      <!-- (change)=\"filterSegment(b._id)\" -->\r\n                      <mat-checkbox [disabled]=\"isDisabled(a,b)\" class=\"filterCheckbox__input\" *ngIf=\"b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]\" [(ngModel)]=\"segmentInput[a?._id][b?._id]\" (change)=\"filterSegment()\" >{{b[trans._key('segmentName')]}}</mat-checkbox>\r\n                    </div>\r\n                  </ng-container>\r\n              </div>\r\n              </ng-container>\r\n    \r\n              <mat-list-item *ngIf=\"tags,length\">{{'CATALOG.TAGS' | translate}}</mat-list-item>\r\n    \r\n              <ng-container *ngFor=\"let x of tags\">\r\n                <mat-list-item>\r\n                    <mat-checkbox [(ngModel)]=\"tagsInput[x._id]\" (change)=\"filterTag()\">{{x.tag}}</mat-checkbox>\r\n                </mat-list-item>\r\n              </ng-container> \r\n            </div>\r\n        </div>\r\n        <div class=\"d-xl-none\">\r\n          <div class=\"accordion md-accordion\" id=\"accordionEx\" role=\"tablist\" aria-multiselectable=\"true\">\r\n            <div class=\"card\">\r\n              <nav class=\"navbar navbar-light bg-light card-header\" id=\"headingOne1\">\r\n                <h5 class=\"mb-0 text-dark\">\r\n                  {{'Filter' | translate}}\r\n                </h5>\r\n                <button class=\"navbar-toggler text-dark\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup1\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n                  <i class=\"fa fa-angle-down\" aria-hidden=\"true\" ></i>\r\n                </button>\r\n  \r\n                <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup1\">\r\n                  <div class=\"filtersSection\">\r\n                    <div class=\"filtersSection__resetFilters\">\r\n                      <mat-list-item>\r\n                          <button mat-button (click)=\"resetFilters()\" [disabled]=\"userSegments?.length>0\"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>\r\n                      </mat-list-item>\r\n                    </div>\r\n            \r\n                    <div class=\"filtersSection__keywordChip\" *ngIf=\"keyword\">\r\n                      <mat-chip-list>\r\n                        <mat-chip (click)=\"keyword='';filterKeyword()\">{{'CATALOG.SEARCH_FOR' | translate}}: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>\r\n                      </mat-chip-list>\r\n                    </div>\r\n                      \r\n                    <div class=\"filtersSection__keyword\">\r\n                      <mat-form-field class=\"filtersSection__keywordForm\">\r\n                        <input matInput class=\"filtersSection__keywordInput\"  [(ngModel)]=\"keyword\" (keyup)=\"filterKeyword()\" placeholder=\"{{'CATALOG.SEARCH_KEYWORD' | translate}}\">\r\n                        <button mat-button *ngIf=\"keyword\" matSuffix mat-icon-button aria-label=\"Clear\" (click)=\"keyword='';filterKeyword()\">\r\n                            <mat-icon>close</mat-icon>\r\n                          </button>\r\n                      </mat-form-field>    \r\n                    </div>\r\n            \r\n                    <ng-container *ngFor=\"let a of segmentType\">\r\n                      <div class=\"filtersList\" [style.display]=\"a.visible ? 'block': 'none'\">\r\n                      <div class=\"filtersList__head\">{{a[trans._key('segmentTypeName')]}}</div>\r\n                        <ng-container *ngFor=\"let b of segments\">\r\n                          <div class=\"filtersList__item\">\r\n                            <!-- (change)=\"filterSegment(b._id)\" -->\r\n                            <mat-checkbox   [disabled]=\"isDisabled(a,b)\" class=\"filterCheckbox__input\" *ngIf=\"b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]\" [(ngModel)]=\"segmentInput[a?._id][b?._id]\" (change)=\"filterSegment()\">{{b[trans._key('segmentName')]}}</mat-checkbox>\r\n                          </div>\r\n                        </ng-container>\r\n                    </div>\r\n                    </ng-container>\r\n            \r\n                    <mat-list-item *ngIf=\"tags,length\">{{'CATALOG.TAGS' | translate}}</mat-list-item>\r\n            \r\n                    <ng-container *ngFor=\"let x of tags\">\r\n                      <mat-list-item>\r\n                          <mat-checkbox [(ngModel)]=\"tagsInput[x._id]\" (change)=\"filterTag()\">{{x.tag}}</mat-checkbox>\r\n                      </mat-list-item>\r\n                    </ng-container>       \r\n                  </div>\r\n                </div>\r\n              </nav>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n            \r\n      <div class=\"col-lg-9\" [ngClass]=\"{'alignSwitchAR': trans.currentLang=='ar', 'alignSwitchEN':trans.currentLang=='en'}\">\r\n        <div class=\"d-none d-xl-block\">\r\n          <div fxLayout=\"row\" class=\"department__section\">\r\n            <button fxFlex class=\"department\" [class.active]=\"!dataFilters.category.department._id || dataFilters.category.department._id == null\" mat-button (click)=\"filterDepartment()\">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button>\r\n            <ng-container *ngFor=\"let x of departments\">\r\n                <button fxFlex class=\"department\" [class.active]=\"x._id==dataFilters.category.department._id\" mat-button (click)=\"filterDepartment(x._id)\">{{x[trans._key('departmentName')]}}</button>\r\n            </ng-container>\r\n        </div>\r\n          \r\n          <div class=\"category__section\" id=\"navbarSupportedContent\">\r\n            <ng-container *ngFor=\"let x of departments\">\r\n                <div *ngIf=\"dataFilters.category.department._id == x._id\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n                    <button [class.active]=\"dataFilters.category._id==null\" class=\"category\" mat-button (click)=\"filterCategory(null)\">\r\n                        {{\"CATALOG.ALL_CATEGORIES\" | translate}}\r\n                      </button>\r\n                    <ng-container  *ngFor=\"let y of categories\">\r\n                      <button *ngIf=\"y.department._id == x._id\" [class.active]=\"y._id==dataFilters.category._id\" class=\"category\" mat-button (click)=\"filterCategory(y._id)\">\r\n                        {{y[trans._key('categoryName')]}}\r\n                      </button>\r\n                  </ng-container>\r\n                </div>\r\n            </ng-container>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"d-xl-none\">\r\n        <div class=\"accordion md-accordion\" id=\"accordionEx1\" role=\"tablist\"  aria-multiselectable=\"true\" style=\"margin-top: 20px;\">\r\n          <div class=\"card\">\r\n                <nav class=\"navbar navbar-light bg-light card-header\">\r\n                  <h5 class=\"mb-0 text-dark\">\r\n                    {{'CATALOG.SERVICE_CATALOG_TITLE' | translate}}\r\n                  </h5>\r\n                  <button class=\"navbar-toggler text-dark\" type=\"button\" data-toggle=\"collapse\" data-target=\"#accordionExample\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n                    <i class=\"fa fa-angle-down\" aria-hidden=\"true\" ></i>\r\n                  </button>\r\n                </nav>\r\n                  <div class=\"accordion\" id=\"accordionExample\">\r\n                    <div class=\"card\">\r\n                      <div class=\"card-header\" id=\"headingOne\">\r\n                          <a class=\"text-dark\" href=\"#departments\" data-toggle=\"collapse\"> <button fxFlex class=\"btn department\" [class.active]=\"!dataFilters.category.department._id || dataFilters.category.department._id == null\" mat-button (click)=\"filterDepartment()\">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button></a>\r\n                      </div>\r\n                      <div id=\"departments\" class=\"collapse\" aria-labelledby=\"headingTwo\" data-parent=\"#accordionExample\">\r\n                        \r\n                      </div>\r\n                    </div>\r\n\r\n                  <div *ngFor=\"let x of departments; let i =index\">\r\n                    <div class=\"card\">\r\n                      <div class=\"card-header\" id=\"headingTwo\">\r\n                            <a class=\"text-dark\" href=\"#departments-{{ i }}\" data-toggle=\"collapse\"><button fxFlex class=\"department btn\" [class.active]=\"x._id==dataFilters.category.department._id\" mat-button (click)=\"filterDepartment(x._id)\">{{x[trans._key('departmentName')]}}</button></a>\r\n                      </div>\r\n                      <div id=\"departments-{{ i }}\" class=\"collapse\" aria-labelledby=\"headingTwo\" data-parent=\"#accordionExample\">\r\n                        <div class=\"card-body\">\r\n                          <ul class=\"nav nav-tabs category__section d-flex justify-content-center\">\r\n                            <div *ngFor=\"let x of departments\">\r\n                              <div *ngIf=\"dataFilters.category.department._id == x._id\">\r\n                                  <li  class=\"nav-item\">\r\n                                    <button [class.active]=\"dataFilters.category._id==null\" class=\"btn btn-lg btn-block category\" mat-button (click)=\"filterCategory(null)\">\r\n                                      {{\"CATALOG.ALL_CATEGORIES\" | translate}}\r\n                                    </button>\r\n                                    <div *ngFor=\"let y of categories\">\r\n                                      <button *ngIf=\"y.department._id == x._id\" [class.active]=\"y._id==dataFilters.category._id\" class=\"btn btn-lg btn-block category\" mat-button (click)=\"filterCategory(y._id)\">\r\n                                        {{y[trans._key('categoryName')]}}\r\n                                      </button>\r\n                                    </div>\r\n                                  </li>\r\n                              </div>\r\n                            </div>\r\n                          </ul>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div style=\"margin-top: 20px;\">\r\n          <section fxLayout=\"row wrap\" fxLayoutAlign=\"space-between top\">\r\n            <ng-container *ngFor=\"let x of data | filterBy: doFilter\">\r\n              <app-service-card id=\"{{x?._id}}\" cardTitle=\"{{x[trans._key('serviceName')]}}\" text=\"{{x[trans._key('description')]}}\" fxFlex=\"49\" fxFlex.xs=\"100\"></app-service-card>         \r\n            </ng-container>\r\n      \r\n            <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n              <mat-card *ngIf=\"(data | filterBy: doFilter)?.length === 0\">\r\n                    {{'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate}}\r\n                    <br><br>\r\n                  <button mat-stroked-button color=\"warn\" (click)=\"resetFilters()\" [disabled]=\"userSegments?.length>0\">{{'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate}}</button>\r\n              </mat-card>\r\n            </div>\r\n          </section>\r\n          \r\n          <small *ngIf=\"(data | filterBy: doFilter)?.length != 0\">\r\n            {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(data | filterBy: doFilter)?.length}} \r\n            <ng-container *ngIf=\"(data | filterBy: doFilter)?.length !=totalResult\">\r\n              {{'CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN' | translate }} {{totalResult}}</ng-container> \r\n              {{'CATALOG.SERVICE' | translate }}\r\n          </small>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</app-section>\r\n\r\n\r\n</app-page>"
+module.exports = "<div id=\"carouselExampleControls\" class=\"carousel slide\" data-ride=\"carousel\" *ngIf=\"imagesSlider?.length >0\">\r\n  <div class=\"carousel-inner\">\r\n    <div *ngFor=\"let i of imagesSlider; let x = index\" [class]=\"(x === 0) ? 'carousel-item active' : 'carousel-item'\">\r\n      <img class=\"d-block w-100\" src=\"{{i.url}}\" alt=\"slide\">\r\n    </div>\r\n  </div>\r\n  <a class=\"carousel-control-prev\" href=\"#carouselExampleControls\" role=\"button\" data-slide=\"prev\">\r\n    <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Previous</span>\r\n  </a>\r\n  <a class=\"carousel-control-next\" href=\"#carouselExampleControls\" role=\"button\" data-slide=\"next\">\r\n    <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\r\n    <span class=\"sr-only\">Next</span>\r\n  </a>\r\n</div>\r\n\r\n  <app-page pageTitle=\"{{'CATALOG.SERVICE_CATALOG_TITLE' | translate}}\">\r\n\r\n  <app-section  class=\"most-used\" sectionTitle=\"{{'CATALOG.MOST_USED_SERVICES' | translate}}\">\r\n    <section fxLayout=\"row wrap\" fxLayoutAlign=\"space-between top\">\r\n\r\n      <ng-container *ngFor=\"let x of dataMostUsed;let i = index\">\r\n          <app-service-card *ngIf=\"i < 6\" id=\"{{x?._id}}\" cardTitle=\"{{x[trans._key('serviceName')]}}\" text=\"{{x[trans._key('description')]}}\"  fxFlex=\"49\" fxFlex.xs=\"100\"></app-service-card><!-- @TODO temp -->\r\n      </ng-container>\r\n        \r\n      </section>\r\n  </app-section>\r\n\r\n\r\n\r\n  <app-section sectionTitle=\"{{'CATALOG.DIRECTORY' | translate}}\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-lg-3\" [ngClass]=\"{'alignSwitchAR': trans.currentLang=='ar', 'alignSwitchEN':trans.currentLang=='en'}\">\r\n        <div class=\"d-none d-xl-block\">\r\n          <div class=\"filtersSection\">\r\n            <div class=\"filtersSection__resetFilters\">\r\n              <mat-list-item>\r\n                  <button mat-button (click)=\"resetFilters()\" [disabled]=\"userSegments?.length>0\"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>\r\n              </mat-list-item>\r\n            </div>\r\n    \r\n            <div class=\"filtersSection__keywordChip\" *ngIf=\"keyword\">\r\n              <mat-chip-list>\r\n                <mat-chip (click)=\"keyword='';filterKeyword()\">{{'CATALOG.SEARCH_FOR' | translate}}: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>\r\n              </mat-chip-list>\r\n            </div>\r\n              \r\n            <div class=\"filtersSection__keyword\">\r\n              <mat-form-field class=\"filtersSection__keywordForm\">\r\n                \r\n                <input matInput class=\"filtersSection__keywordInput\" [(ngModel)]=\"keyword\" (keyup)=\"filterKeyword()\" placeholder=\"{{'CATALOG.SEARCH_KEYWORD' | translate}}\">\r\n                <button mat-button *ngIf=\"keyword\" matSuffix mat-icon-button aria-label=\"Clear\" (click)=\"keyword='';filterKeyword()\">\r\n                    <mat-icon>close</mat-icon>\r\n                  </button>\r\n              </mat-form-field>\r\n            </div>\r\n    \r\n              <ng-container *ngFor=\"let a of segmentType\">\r\n                <div class=\"filtersList\" [style.display]=\"a.visible ? 'block': 'none'\">\r\n                <div class=\"filtersList__head\">{{a[trans._key('segmentTypeName')]}}</div>\r\n                  <ng-container *ngFor=\"let b of segments\">\r\n                    <div class=\"filtersList__item\">\r\n                      <!-- (change)=\"filterSegment(b._id)\" -->\r\n                      <mat-checkbox [disabled]=\"isDisabled(a,b)\" class=\"filterCheckbox__input\" *ngIf=\"b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]\" [(ngModel)]=\"segmentInput[a?._id][b?._id]\" (change)=\"filterSegment()\" >{{b[trans._key('segmentName')]}}</mat-checkbox>\r\n                    </div>\r\n                  </ng-container>\r\n              </div>\r\n              </ng-container>\r\n    \r\n              <mat-list-item *ngIf=\"tags,length\">{{'CATALOG.TAGS' | translate}}</mat-list-item>\r\n    \r\n              <ng-container *ngFor=\"let x of tags\">\r\n                <mat-list-item>\r\n                    <mat-checkbox [(ngModel)]=\"tagsInput[x._id]\" (change)=\"filterTag()\">{{x.tag}}</mat-checkbox>\r\n                </mat-list-item>\r\n              </ng-container> \r\n            </div>\r\n        </div>\r\n        <div class=\"d-xl-none\">\r\n          <div class=\"accordion md-accordion\" id=\"accordionEx\" role=\"tablist\" aria-multiselectable=\"true\">\r\n            <div class=\"card\">\r\n              <nav class=\"navbar navbar-light bg-light card-header\" id=\"headingOne1\">\r\n                <h5 class=\"mb-0 text-dark\">\r\n                  {{'Filter' | translate}}\r\n                </h5>\r\n                <button class=\"navbar-toggler text-dark\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup1\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n                  <i class=\"fa fa-angle-down\" aria-hidden=\"true\" ></i>\r\n                </button>\r\n  \r\n                <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup1\">\r\n                  <div class=\"filtersSection\">\r\n                    <div class=\"filtersSection__resetFilters\">\r\n                      <mat-list-item>\r\n                          <button mat-button (click)=\"resetFilters()\" [disabled]=\"userSegments?.length>0\"><mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}</button>\r\n                      </mat-list-item>\r\n                    </div>\r\n            \r\n                    <div class=\"filtersSection__keywordChip\" *ngIf=\"keyword\">\r\n                      <mat-chip-list>\r\n                        <mat-chip (click)=\"keyword='';filterKeyword()\">{{'CATALOG.SEARCH_FOR' | translate}}: <b>{{this.keyword}}</b><mat-icon>close</mat-icon></mat-chip>\r\n                      </mat-chip-list>\r\n                    </div>\r\n                      \r\n                    <div class=\"filtersSection__keyword\">\r\n                      <mat-form-field class=\"filtersSection__keywordForm\">\r\n                        <input matInput class=\"filtersSection__keywordInput\"  [(ngModel)]=\"keyword\" (keyup)=\"filterKeyword()\" placeholder=\"{{'CATALOG.SEARCH_KEYWORD' | translate}}\">\r\n                        <button mat-button *ngIf=\"keyword\" matSuffix mat-icon-button aria-label=\"Clear\" (click)=\"keyword='';filterKeyword()\">\r\n                            <mat-icon>close</mat-icon>\r\n                          </button>\r\n                      </mat-form-field>    \r\n                    </div>\r\n            \r\n                    <ng-container *ngFor=\"let a of segmentType\">\r\n                      <div class=\"filtersList\" [style.display]=\"a.visible ? 'block': 'none'\">\r\n                      <div class=\"filtersList__head\">{{a[trans._key('segmentTypeName')]}}</div>\r\n                        <ng-container *ngFor=\"let b of segments\">\r\n                          <div class=\"filtersList__item\">\r\n                            <!-- (change)=\"filterSegment(b._id)\" -->\r\n                            <mat-checkbox   [disabled]=\"isDisabled(a,b)\" class=\"filterCheckbox__input\" *ngIf=\"b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]\" [(ngModel)]=\"segmentInput[a?._id][b?._id]\" (change)=\"filterSegment()\">{{b[trans._key('segmentName')]}}</mat-checkbox>\r\n                          </div>\r\n                        </ng-container>\r\n                    </div>\r\n                    </ng-container>\r\n            \r\n                    <mat-list-item *ngIf=\"tags,length\">{{'CATALOG.TAGS' | translate}}</mat-list-item>\r\n            \r\n                    <ng-container *ngFor=\"let x of tags\">\r\n                      <mat-list-item>\r\n                          <mat-checkbox [(ngModel)]=\"tagsInput[x._id]\" (change)=\"filterTag()\">{{x.tag}}</mat-checkbox>\r\n                      </mat-list-item>\r\n                    </ng-container>       \r\n                  </div>\r\n                </div>\r\n              </nav>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n            \r\n      <div class=\"col-lg-9\" [ngClass]=\"{'alignSwitchAR': trans.currentLang=='ar', 'alignSwitchEN':trans.currentLang=='en'}\">\r\n        <div class=\"d-none d-xl-block\">\r\n          <div fxLayout=\"row\" class=\"department__section\">\r\n            <button fxFlex class=\"department\" [class.active]=\"!dataFilters.category.department._id || dataFilters.category.department._id == null\" mat-button (click)=\"filterDepartment()\">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button>\r\n            <ng-container *ngFor=\"let x of departments\">\r\n                <button fxFlex class=\"department\" [class.active]=\"x._id==dataFilters.category.department._id\" mat-button (click)=\"filterDepartment(x._id)\">{{x[trans._key('departmentName')]}}</button>\r\n            </ng-container>\r\n        </div>\r\n          \r\n          <div class=\"category__section\" id=\"navbarSupportedContent\">\r\n            <ng-container *ngFor=\"let x of departments\">\r\n                <div *ngIf=\"dataFilters.category.department._id == x._id\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n                    <button [class.active]=\"dataFilters.category._id==null\" class=\"category\" mat-button (click)=\"filterCategory(null)\">\r\n                        {{\"CATALOG.ALL_CATEGORIES\" | translate}}\r\n                      </button>\r\n                    <ng-container  *ngFor=\"let y of categories\">\r\n                      <button *ngIf=\"y.department._id == x._id\" [class.active]=\"y._id==dataFilters.category._id\" class=\"category\" mat-button (click)=\"filterCategory(y._id)\">\r\n                        {{y[trans._key('categoryName')]}}\r\n                      </button>\r\n                  </ng-container>\r\n                </div>\r\n            </ng-container>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"d-xl-none\">\r\n        <div class=\"accordion md-accordion\" id=\"accordionEx1\" role=\"tablist\"  aria-multiselectable=\"true\" style=\"margin-top: 20px;\">\r\n          <div class=\"card\">\r\n                <nav class=\"navbar navbar-light bg-light card-header\">\r\n                  <h5 class=\"mb-0 text-dark\">\r\n                    {{'CATALOG.SERVICE_CATALOG_TITLE' | translate}}\r\n                  </h5>\r\n                  <button class=\"navbar-toggler text-dark\" type=\"button\" data-toggle=\"collapse\" data-target=\"#accordionExample\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n                    <i class=\"fa fa-angle-down\" aria-hidden=\"true\" ></i>\r\n                  </button>\r\n                </nav>\r\n                  <div class=\"accordion\" id=\"accordionExample\">\r\n                    <div class=\"card\">\r\n                      <div class=\"card-header\" id=\"headingOne\">\r\n                          <a class=\"text-dark\" href=\"#departments\" data-toggle=\"collapse\"> <button fxFlex class=\"btn department\" [class.active]=\"!dataFilters.category.department._id || dataFilters.category.department._id == null\" mat-button (click)=\"filterDepartment()\">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button></a>\r\n                      </div>\r\n                      <div id=\"departments\" class=\"collapse\" aria-labelledby=\"headingTwo\" data-parent=\"#accordionExample\">\r\n                        \r\n                      </div>\r\n                    </div>\r\n\r\n                  <div *ngFor=\"let x of departments; let i =index\">\r\n                    <div class=\"card\">\r\n                      <div class=\"card-header\" id=\"headingTwo\">\r\n                            <a class=\"text-dark\" href=\"#departments-{{ i }}\" data-toggle=\"collapse\"><button fxFlex class=\"department btn\" [class.active]=\"x._id==dataFilters.category.department._id\" mat-button (click)=\"filterDepartment(x._id)\">{{x[trans._key('departmentName')]}}</button></a>\r\n                      </div>\r\n                      <div id=\"departments-{{ i }}\" class=\"collapse\" aria-labelledby=\"headingTwo\" data-parent=\"#accordionExample\">\r\n                        <div class=\"card-body\">\r\n                          <ul class=\"nav nav-tabs category__section d-flex justify-content-center\">\r\n                            <div *ngFor=\"let x of departments\">\r\n                              <div *ngIf=\"dataFilters.category.department._id == x._id\">\r\n                                  <li  class=\"nav-item\">\r\n                                    <button [class.active]=\"dataFilters.category._id==null\" class=\"btn btn-lg btn-block category\" mat-button (click)=\"filterCategory(null)\">\r\n                                      {{\"CATALOG.ALL_CATEGORIES\" | translate}}\r\n                                    </button>\r\n                                    <div *ngFor=\"let y of categories\">\r\n                                      <button *ngIf=\"y.department._id == x._id\" [class.active]=\"y._id==dataFilters.category._id\" class=\"btn btn-lg btn-block category\" mat-button (click)=\"filterCategory(y._id)\">\r\n                                        {{y[trans._key('categoryName')]}}\r\n                                      </button>\r\n                                    </div>\r\n                                  </li>\r\n                              </div>\r\n                            </div>\r\n                          </ul>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div style=\"margin-top: 20px;\">\r\n          <section fxLayout=\"row wrap\" fxLayoutAlign=\"space-between top\">\r\n            <ng-container *ngFor=\"let x of filtered;trackBy: trackByFn\">\r\n              <app-service-card id=\"{{x?._id}}\" cardTitle=\"{{x[trans._key('serviceName')]}}\" text=\"{{x[trans._key('description')]}}\" fxFlex=\"49\" fxFlex.xs=\"100\"></app-service-card>         \r\n            </ng-container>\r\n      \r\n            <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n              <mat-card *ngIf=\"(filtered)?.length === 0\">\r\n                    {{'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate}}\r\n                    <br><br>\r\n                  <button mat-stroked-button color=\"warn\" (click)=\"resetFilters()\" [disabled]=\"userSegments?.length>0\">{{'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate}}</button>\r\n              </mat-card>\r\n            </div>\r\n          </section>\r\n          \r\n          <small *ngIf=\"(filtered)?.length != 0\">\r\n            {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(filtered)?.length}} \r\n            <ng-container *ngIf=\"(filtered)?.length !=totalResult\">\r\n              {{'CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN' | translate }} {{totalResult}}</ng-container> \r\n              {{'CATALOG.SERVICE' | translate }}\r\n          </small>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</app-section>\r\n\r\n\r\n</app-page>"
 
 /***/ }),
 
@@ -1380,7 +1380,7 @@ const routes = [
         data: { roles: [_environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].roles.beneficiary] },
     },
     {
-        path: 'request-task/:formKey/:caseDefinitionId/:caseInstanceId/:taskDefinitionKey/:taskId/:caseId/:requestId',
+        path: 'request-task/:formKey/:taskId/:caseId/:requestId',
         component: _request_task_request_task_component__WEBPACK_IMPORTED_MODULE_18__["RequestTaskComponent"], canActivate: [_app_authguard__WEBPACK_IMPORTED_MODULE_3__["AppAuthGuard"]]
     },
     {
@@ -1394,7 +1394,7 @@ const routes = [
         data: { roles: [_environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].roles.beneficiary] },
     },
     {
-        path: 'request-details/:link/:formData/:cmmnId/:caseId/:id', component: _request_details_request_details_component__WEBPACK_IMPORTED_MODULE_7__["RequestDetailsComponent"],
+        path: 'request-details/:id', component: _request_details_request_details_component__WEBPACK_IMPORTED_MODULE_7__["RequestDetailsComponent"],
         canActivate: [_app_authguard__WEBPACK_IMPORTED_MODULE_3__["AppAuthGuard"]],
         data: { roles: [_environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].roles.beneficiary] },
     },
@@ -3313,8 +3313,7 @@ let MyRequestsComponent = class MyRequestsComponent {
             requestDate: { name: 'Request Date', sortable: true, formatDate: true },
             status: { name: 'Status', sortable: true },
             data: {
-                name: 'Details', sortable: false, display: 'detailsButton',
-                param1: 'link', param2: 'data', param3: 'cmmnId', param4: 'caseId', param5: 'id'
+                name: 'Details', sortable: false, display: 'detailsButton', param1: 'id'
             }
         };
         this.dashletService = (params) => {
@@ -3767,6 +3766,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
 /* harmony import */ var _notifications_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../notifications.service */ "./src/app/notifications/notifications.service.ts");
 /* harmony import */ var _notifications_modal_notifications_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../notifications-modal/notifications-modal.component */ "./src/app/notifications/components/notifications-modal/notifications-modal.component.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
 
 
 
@@ -3774,9 +3779,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let NotificationsButtonComponent = class NotificationsButtonComponent {
-    constructor(notificationsService, translate, modalController) {
+    constructor(notificationsService, translate, toastr, router, modalController) {
         this.notificationsService = notificationsService;
         this.translate = translate;
+        this.toastr = toastr;
+        this.router = router;
         this.modalController = modalController;
     }
     get notificationsCount() {
@@ -3795,11 +3802,29 @@ let NotificationsButtonComponent = class NotificationsButtonComponent {
         });
     }
     ngOnInit() {
+        this.subscription = this.notificationsService.listenerObserver.subscribe(activity => {
+            console.log(activity);
+            this.toastr.show(`${this.translate.instant('a few seconds ago')} <i class="fa fa-comments"></i>`, activity.content, {
+                toastClass: 'notification-toast',
+                closeButton: true,
+                enableHtml: true
+            }).onTap
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["take"])(1))
+                .subscribe(() => {
+                this.notificationsService.updateStatus(activity, true);
+                this.router.navigate(['/request-details/' + activity.sourceName]);
+            });
+        });
+    }
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 };
 NotificationsButtonComponent.ctorParameters = () => [
     { type: _notifications_service__WEBPACK_IMPORTED_MODULE_4__["NotificationsService"] },
     { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"] },
+    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_6__["ToastrService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] }
 ];
 NotificationsButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -3810,6 +3835,8 @@ NotificationsButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"](
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_notifications_service__WEBPACK_IMPORTED_MODULE_4__["NotificationsService"],
         _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"],
+        ngx_toastr__WEBPACK_IMPORTED_MODULE_6__["ToastrService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]])
 ], NotificationsButtonComponent);
 
@@ -3955,6 +3982,9 @@ let NotificationsModalComponent = class NotificationsModalComponent {
     }
     close() {
         this.modalController.dismiss();
+    }
+    handleOpen(item) {
+        this.notificationsService.updateStatus(item, true);
     }
     ngOnInit() {
         this.dir = this.translate.instant('dir');
@@ -4164,6 +4194,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _session_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../session.service */ "./src/app/session.service.ts");
+/* harmony import */ var sockjs_client__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sockjs-client */ "./node_modules/sockjs-client/lib/entry.js");
+/* harmony import */ var sockjs_client__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(sockjs_client__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var webstomp_client__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! webstomp-client */ "./node_modules/webstomp-client/dist/webstomp.js");
+/* harmony import */ var webstomp_client__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(webstomp_client__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var keycloak_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! keycloak-angular */ "./node_modules/keycloak-angular/fesm2015/keycloak-angular.js");
+
+
+
 
 
 
@@ -4172,24 +4210,89 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let NotificationsService = class NotificationsService {
-    constructor(http, sessionService, router) {
+    constructor(http, sessionService, router, keycloak) {
         this.http = http;
         this.sessionService = sessionService;
         this.router = router;
+        this.keycloak = keycloak;
         this.stompClient = null;
         this.subscriber = null;
+        this.listenerObserver = new _angular_core__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"]();
         this.alreadyConnectedOnce = false;
         this.pageSize = 15;
         // tslint:disable-next-line:variable-name
         this._notifications = [];
         // tslint:disable-next-line:variable-name
         this._notificationsCount = 0;
+        this.connect();
+        this.connection = this.createConnection();
+        this.subscribe();
+        this.fetchNotifications();
+        this.getCount();
     }
     get notifications() {
         return this._notifications;
     }
     get notificationsCount() {
         return this._notificationsCount;
+    }
+    getCount() {
+        this.doCountNew(this.sessionService.getUsername()).subscribe((data) => {
+            this._notificationsCount = data;
+        });
+    }
+    connect() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            if (this.connectedPromise === null) {
+                this.connection = this.createConnection();
+            }
+            // building absolute path so that websocket doesn't fail when deploying with a context path
+            let url;
+            url = 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8082/websocket/ekhaa';
+            const socket = new sockjs_client__WEBPACK_IMPORTED_MODULE_7__(url);
+            this.stompClient = webstomp_client__WEBPACK_IMPORTED_MODULE_8__["over"](socket);
+            const headers = {
+                // Upgrade: 'websocket',
+                // Connection: 'Upgrade',
+                token: `${yield this.keycloak.getToken()}`
+            };
+            this.stompClient.connect(headers, () => {
+                this.connectedPromise('success');
+                this.connectedPromise = null;
+                if (!this.alreadyConnectedOnce) {
+                    this.alreadyConnectedOnce = true;
+                }
+            });
+        });
+    }
+    disconnect() {
+        if (this.stompClient !== null) {
+            this.stompClient.disconnect();
+            this.stompClient = null;
+        }
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+            this.subscription = null;
+        }
+        this.alreadyConnectedOnce = false;
+    }
+    subscribe() {
+        this.connection.then(() => {
+            this.subscriber = this.stompClient.subscribe('/user/topic/notification', data => {
+                const notification = JSON.parse(data.body);
+                this._notifications.unshift(notification);
+                this.getCount();
+                this.listenerObserver.emit(notification);
+            });
+        });
+    }
+    unsubscribe() {
+        if (this.subscriber !== null) {
+            this.subscriber.unsubscribe();
+        }
+    }
+    createConnection() {
+        return new Promise((resolve, reject) => (this.connectedPromise = resolve));
     }
     ngOnInit() {
         this.doCountNew(this.sessionService.getUsername()).subscribe((data) => {
@@ -4221,8 +4324,8 @@ let NotificationsService = class NotificationsService {
             this._notifications.forEach(item => item.status = 'READ');
         });
     }
-    updateStatus(notification) {
-        const bool = (notification.status === 'UN_READ' || notification.status === 'NEW');
+    updateStatus(notification, onOpen = false) {
+        const bool = (notification.status === 'UN_READ' || notification.status === 'NEW' || onOpen);
         if (bool) {
             this.doMarkAsRead(notification.id).subscribe(() => {
                 notification.status = 'READ';
@@ -4283,13 +4386,17 @@ let NotificationsService = class NotificationsService {
 NotificationsService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] },
     { type: _session_service__WEBPACK_IMPORTED_MODULE_6__["SessionService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: keycloak_angular__WEBPACK_IMPORTED_MODULE_9__["KeycloakService"] }
 ];
 NotificationsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
         providedIn: 'root'
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _session_service__WEBPACK_IMPORTED_MODULE_6__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"],
+        _session_service__WEBPACK_IMPORTED_MODULE_6__["SessionService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        keycloak_angular__WEBPACK_IMPORTED_MODULE_9__["KeycloakService"]])
 ], NotificationsService);
 
 
@@ -4496,7 +4603,7 @@ let AllOpportunitiesComponent = class AllOpportunitiesComponent {
                 if (account.authorities.indexOf('ROLE_USER') >= 0) {
                     this.accountService.getBranchIfForbeneficiary().subscribe(res => {
                         this.branchId = res.branchId;
-                        if (this.accountAuthorities.indexOf(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_7__["environment"].roles.ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST) > -1) {
+                        if (this.accountAuthorities.indexOf(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_7__["environment"].roles.department_specialist) > -1) {
                             this.unsetBranch();
                         }
                         this.servicesService.getAllOpportunitiesAvailForToday(this.branchId, params).subscribe((response) => {
@@ -4508,7 +4615,7 @@ let AllOpportunitiesComponent = class AllOpportunitiesComponent {
                 else {
                     this.accountService.getBranchId(account.login).subscribe(res => {
                         this.branchId = res.branchId;
-                        if (this.accountAuthorities.indexOf(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_7__["environment"].roles.ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST) > -1) {
+                        if (this.accountAuthorities.indexOf(src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_7__["environment"].roles.department_specialist) > -1) {
                             this.unsetBranch();
                         }
                         this.servicesService.getAllOpportunitiesAvailForToday(this.branchId, params).subscribe((response) => {
@@ -5371,8 +5478,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _case_activities_case_activities_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../case-activities/case-activities.service */ "./src/app/case-activities/case-activities.service.ts");
-/* harmony import */ var _switch_lang_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../switch-lang.service */ "./src/app/switch-lang.service.ts");
+/* harmony import */ var _requests_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../requests.service */ "./src/app/requests.service.ts");
+/* harmony import */ var _case_activities_case_activities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../case-activities/case-activities.service */ "./src/app/case-activities/case-activities.service.ts");
+/* harmony import */ var _switch_lang_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../switch-lang.service */ "./src/app/switch-lang.service.ts");
+
 
 
 
@@ -5380,10 +5489,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let RequestDetailsComponent = class RequestDetailsComponent {
-    constructor(route, router, caseActivity, switchLangService) {
+    constructor(route, router, caseActivity, rest, switchLangService) {
         this.route = route;
         this.router = router;
         this.caseActivity = caseActivity;
+        this.rest = rest;
         this.switchLangService = switchLangService;
         this.requestTask = [];
         this.formReady = false;
@@ -5391,19 +5501,12 @@ let RequestDetailsComponent = class RequestDetailsComponent {
     }
     handleAction(event) {
         if (event.type === 'task') {
-            console.log(event);
-            this.caseActivity.getRequestTasks({ caseInstanceId: this.cmmnId }).subscribe((data) => {
-                this.requestTask = data;
-                this.router.navigate(['/request-task',
-                    `${this.link}-task`,
-                    this.requestTask[this.requestTask.length - 1].caseDefinitionId.split(':')[0],
-                    this.requestTask[this.requestTask.length - 1].caseInstanceId,
-                    this.requestTask[this.requestTask.length - 1].taskDefinitionKey,
-                    this.requestTask[this.requestTask.length - 1].id,
-                    this.route.snapshot.params.caseId,
-                    this.route.snapshot.params.id,
-                ]);
-            });
+            this.router.navigate(['/request-task',
+                `${this.link}-task`,
+                event.activity.taskId,
+                this.request.caseId,
+                this.route.snapshot.params.id,
+            ]);
         }
     }
     showTask(event) {
@@ -5411,17 +5514,20 @@ let RequestDetailsComponent = class RequestDetailsComponent {
     }
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
-            this.link = params.link;
-            this.formData = params.formData;
-            this.cmmnId = params.cmmnId;
-            this.params = [
-                {
-                    url: _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].beneficiaryApi.api,
-                    success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
-                    parallel: true
-                }
-            ];
-            this.formReady = true;
+            this.rest.getRequest(this.route.snapshot.params.id).subscribe(data => {
+                this.request = data;
+                this.link = this.request.link;
+                this.formData = this.request.data;
+                this.cmmnId = this.request.cmmnId;
+                this.params = [
+                    {
+                        url: _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].beneficiaryApi.api,
+                        success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
+                        parallel: true
+                    }
+                ];
+                this.formReady = true;
+            });
         });
     }
     ngOnDestroy() {
@@ -5431,8 +5537,9 @@ let RequestDetailsComponent = class RequestDetailsComponent {
 RequestDetailsComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: _case_activities_case_activities_service__WEBPACK_IMPORTED_MODULE_4__["CaseActivityService"] },
-    { type: _switch_lang_service__WEBPACK_IMPORTED_MODULE_5__["SwitchLangService"] }
+    { type: _case_activities_case_activities_service__WEBPACK_IMPORTED_MODULE_5__["CaseActivityService"] },
+    { type: _requests_service__WEBPACK_IMPORTED_MODULE_4__["RequestsService"] },
+    { type: _switch_lang_service__WEBPACK_IMPORTED_MODULE_6__["SwitchLangService"] }
 ];
 RequestDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -5442,8 +5549,9 @@ RequestDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-        _case_activities_case_activities_service__WEBPACK_IMPORTED_MODULE_4__["CaseActivityService"],
-        _switch_lang_service__WEBPACK_IMPORTED_MODULE_5__["SwitchLangService"]])
+        _case_activities_case_activities_service__WEBPACK_IMPORTED_MODULE_5__["CaseActivityService"],
+        _requests_service__WEBPACK_IMPORTED_MODULE_4__["RequestsService"],
+        _switch_lang_service__WEBPACK_IMPORTED_MODULE_6__["SwitchLangService"]])
 ], RequestDetailsComponent);
 
 
@@ -5726,6 +5834,9 @@ let RequestsService = class RequestsService {
         }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(resp => resp), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(resp => {
             return { items: resp.body, totalCount: resp.headers.get('X-Total-Count') };
         }));
+    }
+    getRequest(id, queryParams = {}) {
+        return this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].requestApi.api}${src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].requestApi.rest.myRequests}/${id}`, {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(resp => resp), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(resp => (resp)));
     }
     getRequestsCount(serviceId) {
         const d = new Date(new Date().getFullYear(), 0, 1);
@@ -6100,8 +6211,9 @@ let ServiceCatalogComponent = class ServiceCatalogComponent {
             segmentsGroup_inline: [],
             tags_inline: {}
         };
+        this.filtered = [];
         this.userSegments = [];
-        this.doFilter = (item) => {
+        this.doFilter = (item, index, array) => {
             let category = true;
             let department = true;
             let segment = false;
@@ -6110,19 +6222,14 @@ let ServiceCatalogComponent = class ServiceCatalogComponent {
             if (this.dataFilters.category._id) {
                 category = this.dataFilters.category._id === item.category._id;
             }
+            if (!category) {
+                return false;
+            }
             if (this.dataFilters.category.department._id) {
                 department = (item.category.department) && this.dataFilters.category.department._id === item.category.department._id;
             }
-            if (this.dataFilters.tags_inline && Object.keys(this.dataFilters.tags_inline).length) {
-                tags = false;
-                Object.keys(this.dataFilters.tags_inline).forEach(key => {
-                    if (item.tags_inline[key]) {
-                        tags = true;
-                        return false;
-                    }
-                    else {
-                    }
-                });
+            if (!department) {
+                return false;
             }
             if (this.dataFilters.$or && this.dataFilters.$or.length) {
                 this.dataFilters.$or.forEach(element => {
@@ -6135,6 +6242,23 @@ let ServiceCatalogComponent = class ServiceCatalogComponent {
             }
             else {
                 keyword = true;
+            }
+            if (!keyword) {
+                return false;
+            }
+            if (this.dataFilters.tags_inline && Object.keys(this.dataFilters.tags_inline).length) {
+                tags = false;
+                Object.keys(this.dataFilters.tags_inline).forEach(key => {
+                    if (item.tags_inline[key]) {
+                        tags = true;
+                        return false;
+                    }
+                    else {
+                    }
+                });
+            }
+            if (!tags) {
+                return false;
             }
             if (this.dataFilters.segmentsGroup_inline.length) {
                 const set = this.dataFilters.segmentsGroup_inline[0];
@@ -6158,7 +6282,9 @@ let ServiceCatalogComponent = class ServiceCatalogComponent {
             else {
                 segment = true;
             }
-            // console.log(this.dataFilters);
+            if (!segment) {
+                return false;
+            }
             return department && category && segment && keyword && tags;
         };
     }
@@ -6187,6 +6313,9 @@ let ServiceCatalogComponent = class ServiceCatalogComponent {
             this.dataFilters.segmentsGroup_inline[0][a._id]) {
         }
         return bool;
+    }
+    trackByFn(index, item) {
+        return item._id;
     }
     loadBanners() {
         this.servicesService.getBanners().subscribe(data => {
@@ -6255,7 +6384,7 @@ let ServiceCatalogComponent = class ServiceCatalogComponent {
     // and add two new keys : 1st (segments_inline -> for beneficiaries), 2nd (tags_inline -> for tags)
     search() {
         this.servicesService.getServices().subscribe(data => {
-            this.data = data.entries;
+            this.filtered = this.data = data.entries;
             this.totalResult = data.entries.length;
             // transform data structure
             this.data.forEach((element, i) => {
@@ -6328,7 +6457,7 @@ let ServiceCatalogComponent = class ServiceCatalogComponent {
             }
         }
         this.dataFilters.segmentsGroup_inline.push(set);
-        console.log(this.dataFilters);
+        this.filtered = this.filterPipe.transform(this.data, this.doFilter);
     }
     // action filter for tags
     filterTag() {
@@ -6343,7 +6472,7 @@ let ServiceCatalogComponent = class ServiceCatalogComponent {
                 }
             }
         }
-        console.log(this.dataFilters);
+        this.filtered = this.filterPipe.transform(this.data, this.doFilter);
     }
     // action filter for keyword
     filterKeyword() {
@@ -6360,6 +6489,7 @@ let ServiceCatalogComponent = class ServiceCatalogComponent {
             { requiredDocs_ar: this.keyword },
             { requiredDocs_en: this.keyword }
         ];
+        this.filtered = this.filterPipe.transform(this.data, this.doFilter);
     }
     // reset filters
     resetFilters() {
@@ -7140,9 +7270,9 @@ const environment = {
         api: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:8084/api/portal/'
     },
     roles: {
-        beneficiary: 'ROLE_BENEFICIARY',
-        department_specialist: 'specialst',
-        ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST: 'ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST'
+        beneficiary: 'ROLE_USER',
+        branch_specialist: 'ROLE_SERVICE_SPECIALIST_BRANCH',
+        department_specialist: 'ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST'
     },
     notifications: {
         api: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/notifications/v2/api/'

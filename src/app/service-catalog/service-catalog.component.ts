@@ -36,7 +36,7 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
     segmentsGroup_inline: [],
     tags_inline: {}
   };
-
+  filtered = [];
   public imagesSlider: IImage[];
 
   userSegments: string[] = [];
@@ -48,7 +48,7 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
     private requestsService: RequestsService,
     public trans: SwitchLangService,
     private zone: NgZone,
-    private changeRef: ChangeDetectorRef
+    private changeRef: ChangeDetectorRef,
   ) {
 
   }
@@ -67,7 +67,7 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
 
   }
   ngOnDestroy() {
-   // this.keycloakService.keycloakEvents$.unsubscribe();
+    // this.keycloakService.keycloakEvents$.unsubscribe();
   }
   isDisabled(a, b) {
 
@@ -86,29 +86,30 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
 
     return bool;
   }
-  doFilter = (item) => {
+  trackByFn(index, item) {
+    return item._id;
+  }
+  doFilter = (item, index, array) => {
     let category = true;
     let department = true;
     let segment = false;
     let tags = true;
     let keyword = false;
+
     if (this.dataFilters.category._id) {
       category = this.dataFilters.category._id === item.category._id;
 
     }
+    if (!category) {
+      return false;
+    }
     if (this.dataFilters.category.department._id) {
       department = (item.category.department) && this.dataFilters.category.department._id === item.category.department._id;
     }
-    if (this.dataFilters.tags_inline && Object.keys(this.dataFilters.tags_inline).length) {
-      tags = false;
-      Object.keys(this.dataFilters.tags_inline).forEach(key => {
-        if (item.tags_inline[key]) {
-          tags = true;
-          return false;
-        } else {
-        }
-      });
+    if (!department) {
+      return false;
     }
+
     if (this.dataFilters.$or && this.dataFilters.$or.length) {
       this.dataFilters.$or.forEach(element => {
         const key = Object.keys(element)[0];
@@ -119,6 +120,23 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
       });
     } else {
       keyword = true;
+    }
+    if (!keyword) {
+      return false;
+    }
+
+    if (this.dataFilters.tags_inline && Object.keys(this.dataFilters.tags_inline).length) {
+      tags = false;
+      Object.keys(this.dataFilters.tags_inline).forEach(key => {
+        if (item.tags_inline[key]) {
+          tags = true;
+          return false;
+        } else {
+        }
+      });
+    }
+    if (!tags) {
+      return false;
     }
     if (this.dataFilters.segmentsGroup_inline.length) {
       const set = this.dataFilters.segmentsGroup_inline[0];
@@ -143,7 +161,10 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
     } else {
       segment = true;
     }
-    // console.log(this.dataFilters);
+    if (!segment) {
+      return false;
+    }
+
     return department && category && segment && keyword && tags;
 
   }
@@ -233,7 +254,7 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
   search() {
 
     this.servicesService.getServices().subscribe(data => {
-      this.data = data.entries;
+      this.filtered = this.data = data.entries;
       this.totalResult = data.entries.length;
 
       // transform data structure
@@ -292,6 +313,7 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
     } else {
       this.dataFilters.category._id = null;
     }
+    this.filtered = this.filterPipe.transform(this.data, this.doFilter);
   }
 
   // action filter for segment(beneficiaries)
@@ -320,7 +342,8 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
 
     }
     this.dataFilters.segmentsGroup_inline.push(set);
-    console.log(this.dataFilters);
+    this.filtered = this.filterPipe.transform(this.data, this.doFilter);
+
   }
 
   // action filter for tags
@@ -337,7 +360,7 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
         }
       }
     }
-    console.log(this.dataFilters);
+    this.filtered = this.filterPipe.transform(this.data, this.doFilter);
 
   }
 
@@ -356,6 +379,7 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
       { requiredDocs_ar: this.keyword },
       { requiredDocs_en: this.keyword }
     ];
+    this.filtered = this.filterPipe.transform(this.data, this.doFilter);
   }
 
   // reset filters

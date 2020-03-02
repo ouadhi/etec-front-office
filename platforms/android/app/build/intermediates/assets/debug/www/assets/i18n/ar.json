@@ -8,6 +8,7 @@
   "taskupdate": "إدخال بيانات الفعالية",
   "taskend": "إكمال بيانات الفعالية",
   "finishing": "منتهي",
+  "PlanItem_0onyaj0": "مرسل للدفع",
   "false": "لا",
   "true": "نعم",
   "male": "ذكر",
@@ -130,6 +131,7 @@
       "generic": "لقد حدث خطأ ما, الرجاء التواصل مع المشرف"
     },
     "common": {
+      "Training Id": "رقم الدورة",
       "Add Comment": "أضف تعليقاً",
       "Something went wrong, please try again later.": "لقد حدث خطأ ما, الرجاء المحاولة لاحقاً",
       "SAVE": "حفظ",
@@ -718,7 +720,7 @@
       "salary start with": "الراتب يبدأ من",
       "Education Level": "المؤهل التعليمي المطلوب",
       "Opportunity Educational Qualification": "المؤهل العلمي",
-      "Opportunity Specialization": "التخصص",    
+      "Opportunity Specialization": "التخصص",
       "Send Back": "Send Back",
       "fullName": "Full Name",
       "nationalId": "National ID",

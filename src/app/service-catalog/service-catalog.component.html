@@ -218,12 +218,12 @@
         </div>
         <div style="margin-top: 20px;">
           <section fxLayout="row wrap" fxLayoutAlign="space-between top">
-            <ng-container *ngFor="let x of data | filterBy: doFilter">
+            <ng-container *ngFor="let x of filtered;trackBy: trackByFn">
               <app-service-card id="{{x?._id}}" cardTitle="{{x[trans._key('serviceName')]}}" text="{{x[trans._key('description')]}}" fxFlex="49" fxFlex.xs="100"></app-service-card>         
             </ng-container>
       
             <div fxLayout="row" fxLayoutAlign="center center">
-              <mat-card *ngIf="(data | filterBy: doFilter)?.length === 0">
+              <mat-card *ngIf="(filtered)?.length === 0">
                     {{'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate}}
                     <br><br>
                   <button mat-stroked-button color="warn" (click)="resetFilters()" [disabled]="userSegments?.length>0">{{'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate}}</button>
@@ -231,9 +231,9 @@
             </div>
           </section>
           
-          <small *ngIf="(data | filterBy: doFilter)?.length != 0">
-            {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(data | filterBy: doFilter)?.length}} 
-            <ng-container *ngIf="(data | filterBy: doFilter)?.length !=totalResult">
+          <small *ngIf="(filtered)?.length != 0">
+            {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(filtered)?.length}} 
+            <ng-container *ngIf="(filtered)?.length !=totalResult">
               {{'CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN' | translate }} {{totalResult}}</ng-container> 
               {{'CATALOG.SERVICE' | translate }}
           </small>
