@@ -12,6 +12,7 @@ export class DashletFilterAdapter {
     }
     adapt(item: any) {
         const query = Object.assign({}, {
+            language: 'ar',
             'requestDate.greaterOrEqualThan': item.requestDateAfter,
             'requestDate.lessOrEqualThan': item.requestDateBefore,
             'cmmnStatus.in': item.statuses,

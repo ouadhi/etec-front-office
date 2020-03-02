@@ -34,33 +34,33 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
   async ngOnInit() {
 
 
-    
+
     const userInfo: any = await this.sessionService.loadUserProfile();
-    this.accountService.getBranchId(userInfo.email).subscribe(res=>{
+    this.accountService.getBranchId(userInfo.email).subscribe(res => {
       this.branchId = res.branchId;
-      if(userInfo.authorities.indexOf(environment.roles.ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST) > -1){
+      if (userInfo.authorities.indexOf(environment.roles.department_specialist) > -1) {
         this.branchId = false;
       }
-      console.log('userInfo', userInfo)
-      console.log('getbrachid', res)
-    })
+      console.log('userInfo', userInfo);
+      console.log('getbrachid', res);
+    });
 
-    if(userInfo.authorities.indexOf(environment.roles.ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST) > -1){
-      this.submission={
-        data:{
-          'enableBranch' : true
+    if (userInfo.authorities.indexOf(environment.roles.department_specialist) > -1) {
+      this.submission = {
+        data: {
+          enableBranch: true
         }
-      }
+      };
     }
 
-    if(userInfo.authorities.indexOf(environment.roles.department_specialist) > -1){
-      this.submission={
-        data:{
-          'enableBranch' : false
+    if (userInfo.authorities.indexOf(environment.roles.branch_specialist) > -1) {
+      this.submission = {
+        data: {
+          enableBranch: false
         }
-      }
+      };
     }
-    
+
     this.sub = this.route.params.subscribe(params => {
       // TODO: Get Required params to use them in here, assign form key to this.id etc...
       // this.params = [
@@ -75,22 +75,22 @@ export class AddOpportunityComponent implements OnInit, OnDestroy {
     });
   }
   onSubmit(submission) {
-    //this.data.data
-    
-    if(this.branchId != false){
-      submission.submission.data['branchId'] = this.branchId;
+    // this.data.data
+
+    if (this.branchId !== false) {
+      submission.submission.data.branchId = this.branchId;
     }
 
-    console.log('submission',submission);
+    console.log('submission', submission);
     this.servicesService.postOpportunity(submission.submission.data).subscribe(
       (data) => {
-        console.log('data_cms',data)
-      })
-    
-      setTimeout(()=>{
-        this.goBack();
-      },2000
-    )
+        console.log('data_cms', data);
+      });
+
+    setTimeout(() => {
+      this.goBack();
+    }, 2000
+    );
   }
   /**
    * Go Back After Request is sent

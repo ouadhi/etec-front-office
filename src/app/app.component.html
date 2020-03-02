@@ -6,7 +6,7 @@
       <span fxFlex>
         <img height="50" src="/assets/logo.png" />
       </span>
-      <!-- <app-notifications-button *ngIf="loggedIn"></app-notifications-button> -->
+      <app-notifications-button *ngIf="loggedIn"></app-notifications-button>
 
       <button mat-button [matMenuTriggerFor]="menu">
         <span class="d-none d-md-inline" *ngIf="loggedIn">{{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}}

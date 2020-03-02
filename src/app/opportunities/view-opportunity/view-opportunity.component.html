@@ -23,12 +23,12 @@
     [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
   </formio>
 
-  <div class="applicantsSection" *appHasRole="['department_specialist','ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST']">
-    <h3 class="applicantsSection__title"
+  <div class="applicantsSection" *appHasRole="['department_specialist','branch_specialist']">
+
+    <h4 class="applicantsSection__title"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       {{'OPPORTUNITY.APPLICANTS_LIST' | translate}}
-    </h3>
-
+    </h4>
 
     <div class="content ustify-content-center">
       <!-- [class.isMobile]="isMobile" -->
@@ -100,14 +100,14 @@
         <!-- checkbox Column -->
         <ng-container matColumnDef="checkbox">
           <mat-header-cell *matHeaderCellDef>
-            <span *appHasRole="['department_specialist']">
+            <span *appHasRole="['branch_specialist']">
               <mat-checkbox class="example-margin" (click)="selectAllCandidates()" (ngModel)="isAllCandidates">
                 {{'OPPORTUNITY.CANDIDATE_SELECT' | translate}}
               </mat-checkbox>
             </span>
           </mat-header-cell>
           <mat-cell *matCellDef="let element" [attr.data-label]="'OPPORTUNITY.CANDIDATE_SELECT' | translate">
-            <span *appHasRole="['department_specialist']">
+            <span *appHasRole="['branch_specialist']">
               <mat-checkbox class="example-margin" [(ngModel)]="checkboxCandidates[element._id]"></mat-checkbox>
             </span>
           </mat-cell>
@@ -132,7 +132,7 @@
       </mat-table>
 
     </div>
-    <div *appHasRole="['department_specialist']">
+    <div *appHasRole="['branch_specialist']">
       <a mat-button mat-raised-button color="primary" class="applicantsSection__send" (click)="sendToCandidates()">
         {{"OPPORTUNITY.SEND_TO_CANDIDATES" | translate}}
       </a>

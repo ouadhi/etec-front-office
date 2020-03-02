@@ -45,6 +45,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="localhost/*" />
     <universal-links>
         <host name="ec2-34-226-249-174.compute-1.amazonaws.com:9080" scheme="https">
             <path url="/auth" />
