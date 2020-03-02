@@ -41,6 +41,15 @@ export class RequestsService {
         })
       );
   }
+  getRequest(id, queryParams = {}): Observable<any> {
+    return this.http.get<any>(
+      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}/${id}`,
+      {
+      }).pipe(
+        tap(resp => resp),
+        map(resp => (resp))
+      );
+  }
   getRequestsCount(serviceId) {
     const d = new Date(new Date().getFullYear(), 0, 1);
     return this.http.get<any>(

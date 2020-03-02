@@ -37,7 +37,7 @@ const routes: Routes = [
     data: { roles: [environment.roles.beneficiary] },
   },
   {
-    path: 'request-task/:formKey/:caseDefinitionId/:caseInstanceId/:taskDefinitionKey/:taskId/:caseId/:requestId',
+    path: 'request-task/:formKey/:taskId/:caseId/:requestId',
     component: RequestTaskComponent, canActivate: [AppAuthGuard]
   },
   {
@@ -51,7 +51,7 @@ const routes: Routes = [
     data: { roles: [environment.roles.beneficiary] },
   },
   {
-    path: 'request-details/:link/:formData/:cmmnId/:caseId/:id', component: RequestDetailsComponent,
+    path: 'request-details/:id', component: RequestDetailsComponent,
     canActivate: [AppAuthGuard],
     data: { roles: [environment.roles.beneficiary] },
 
