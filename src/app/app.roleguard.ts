@@ -29,8 +29,8 @@ export class AppRoleGuard extends KeycloakAuthGuard {
             resolve(granted);
 
           } else {
-            // this.router.navigate(['404']);
-            resolve(true);
+            this.router.navigate(['401']);
+            resolve(false);
           }
         }
       } else {

@@ -21,6 +21,7 @@ import { RequestTaskComponent } from './request-task/request-task.component';
 import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/apply-opportunity.component';
 import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
 import { NotificationsIndexComponent } from './notifications-index/notifications-index.component';
+import { NotAllowedComponent } from './not-allowed/not-allowed.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'my-requests', component: MyRequestsComponent,
-    canActivate: [AppAuthGuard],
+    canActivate: [AppAuthGuard, AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
@@ -42,67 +43,71 @@ const routes: Routes = [
   },
   {
     path: 'service-details/:id', component: ServiceDetailsComponent,
-    canActivate: [AppRoleGuard],
+    canActivate: [AppAuthGuard, AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
     path: 'request/:id', component: RequestComponent,
-    canActivate: [AppAuthGuard],
+    canActivate: [AppAuthGuard, AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
     path: 'request-details/:id', component: RequestDetailsComponent,
-    canActivate: [AppAuthGuard],
+    canActivate: [AppAuthGuard, AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
 
   },
   {
     path: 'news-details/:id', component: NewsDetailsComponent,
-    canActivate: [AppRoleGuard],
+    canActivate: [AppAuthGuard, AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
     path: 'ads-details/:id', component: AdsDetailsComponent,
-    canActivate: [AppRoleGuard],
+    canActivate: [AppAuthGuard, AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
     path: 'profile', component: ProfileComponent,
-    canActivate: [AppRoleGuard],
+    canActivate: [AppAuthGuard, AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
     path: 'opportunity/add', component: AddOpportunityComponent,
-    canActivate: [AppRoleGuard],
-    data: { roles: [environment.roles.beneficiary] },
+    canActivate: [AppAuthGuard, AppRoleGuard],
+    data: { roles: [environment.roles.branch_specialist, environment.roles.department_specialist] },
   },
   {
     path: 'opportunity/view/:id', component: ViewOpportunityComponent,
-    canActivate: [AppRoleGuard],
-    data: { roles: [environment.roles.beneficiary] },
+    canActivate: [AppAuthGuard, AppRoleGuard],
+    data: { roles: [environment.roles.branch_specialist, environment.roles.department_specialist, environment.roles.beneficiary] },
   },
   {
     path: 'opportunity/apply/:id', component: ApplyOpportunityComponent,
-    canActivate: [AppRoleGuard],
-    data: { roles: [environment.roles.beneficiary] },
+    canActivate: [AppAuthGuard, AppRoleGuard],
+    data: { roles: [environment.roles.branch_specialist, environment.roles.department_specialist, environment.roles.beneficiary] },
   },
   {
     path: 'opportunity/applied/:id', component: AppliedOpportunityComponent,
-    canActivate: [AppRoleGuard],
-    data: { roles: [environment.roles.beneficiary] },
+    canActivate: [AppAuthGuard, AppRoleGuard],
+    data: { roles: [environment.roles.branch_specialist, environment.roles.department_specialist, environment.roles.beneficiary] },
   },
   {
-    path: 'opportunity/all' , component: AllOpportunitiesComponent,
-    canActivate: [AppRoleGuard],
-    data: { roles: [environment.roles.beneficiary] },
+    path: 'opportunity/all', component: AllOpportunitiesComponent,
+    canActivate: [AppAuthGuard, AppRoleGuard],
+    data: { roles: [environment.roles.branch_specialist, environment.roles.department_specialist, environment.roles.beneficiary] },
   },
   {
     path: 'notifications',
     component: NotificationsIndexComponent,
-    canActivate: [AppRoleGuard],
+    canActivate: [AppAuthGuard, AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   { path: '404', component: NotFoundComponent },
+  {
+    path: '401', component: NotAllowedComponent,
+    canActivate: [AppAuthGuard],
+  },
   { path: '**', redirectTo: '404' }
 
 ];

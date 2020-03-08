@@ -104,6 +104,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { NotificationsIndexComponent } from './notifications-index/notifications-index.component';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { NotAllowedComponent } from './not-allowed/not-allowed.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -171,7 +172,8 @@ export function getFormioEnv() {
     ApplyOpportunityComponent,
     AppliedOpportunityComponent,
     MessageDialog,
-    NotificationsIndexComponent
+    NotificationsIndexComponent,
+    NotAllowedComponent
   ],
   imports: [
     CommonModule,
