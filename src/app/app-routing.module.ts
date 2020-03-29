@@ -43,7 +43,7 @@ const routes: Routes = [
   },
   {
     path: 'service-details/:id', component: ServiceDetailsComponent,
-    canActivate: [AppAuthGuard, AppRoleGuard],
+    canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
