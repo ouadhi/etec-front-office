@@ -128,6 +128,7 @@
   pointer-events: all !important;
   .ngx-toastr {
     padding: 25px !important;
+    background-position: 263px center !important;
     border-radius: 10px !important;
     box-shadow: none !important;
   }
@@ -182,6 +183,9 @@ html[dir="rtl"] {
     right: auto !important;
     direction: rtl;
     text-align: right;
+    .ngx-toastr {
+      background-position: 10px center !important;
+    }
     .toast-close-button {
       float: left;
     }
