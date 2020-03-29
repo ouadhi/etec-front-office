@@ -37,7 +37,7 @@ export class NotificationsButtonComponent implements OnInit, OnDestroy {
     }
     ngOnInit() {
 
-        this.subscription = this.notificationsService.listenerObserver.subscribe(activity => {
+        /*this.subscription = this.notificationsService.listenerObserver.subscribe(activity => {
             console.log(activity);
             this.toastr.show(
                 `${this.translate.instant('a few seconds ago')} <i class="fa fa-comments"></i>`, activity.content, {
@@ -50,7 +50,7 @@ export class NotificationsButtonComponent implements OnInit, OnDestroy {
                     this.notificationsService.updateStatus(activity, true);
                     this.router.navigate(['/request-details/' + activity.sourceName]);
                 });
-        });
+        });*/
 
     }
     ngOnDestroy(): void {
