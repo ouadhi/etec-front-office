@@ -1,9 +1,8 @@
 <app-page>
-    <div class="container-fluid"
-        [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+    <div class="container-fluid">
         <p class="note">{{'SERVICE.REQUEST_NOTE' | translate}}</p>
         <div class="service-title">
-            <h5 class="alignSwitchAR">{{serviceName}}</h5>
+            <h5>{{navParams[switchLangService._key('serviceName')]}}</h5>
         </div>
         <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" (submit)="onSubmit($event)"
             class="container">
