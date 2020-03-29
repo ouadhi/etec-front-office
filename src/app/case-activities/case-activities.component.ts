@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CaseActivityService } from './case-activities.service';
+import { SwitchLangService } from '../switch-lang.service';
 
 @Component({
     selector: 'app-case-activities',
@@ -10,13 +11,17 @@ import { CaseActivityService } from './case-activities.service';
 })
 
 export class CaseActivitiesComponent implements OnInit {
+
     @Input() caseInstanceId;
     @Output() activityAction = new EventEmitter();
     @Output() task = new EventEmitter();
     activities = [];
+    initSlider = false;
+    customOptions;
     constructor(
         private caseActivityService: CaseActivityService,
-        public translate: TranslateService
+        public translate: TranslateService,
+        public trans: SwitchLangService
     ) { }
 
     action(activity) {
@@ -32,7 +37,65 @@ export class CaseActivitiesComponent implements OnInit {
             */
         });
     }
+    doInitSlider() {
+        this.initSlider = false;
+        const rtl = this.translate.currentLang === 'ar';
+        this.customOptions = {
+            loop: false,
+            mouseDrag: true,
+            touchDrag: true,
+            pullDrag: true,
+            dots: false,
+            nav: true,
+            navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+            navSpeed: 700,
+            autoWidth: false,
+            mergeFit: true,
+            center: false,
+            margin: 5,
+            rtl: rtl,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                400: {
+                    items: 1
+                },
+                640: {
+                    items: 2
+                },
+                940: {
+                    items: 4
+                },
+                1200: {
+                    items: 5
+                },
+                1440: {
+                    items: 6
+                },
+                1700: {
+                    items: 7
+                }
+            },
+        };
+        if (rtl) {
+            this.customOptions.navText = this.customOptions.navText.reverse();
+        }
+        setTimeout(() => {
+            this.initSlider = true;
+        }, 0);
+
+    }
+
+    onInit(event, slider) {
+        console.log(slider);
+        slider.to(slider.slidesData[slider.slidesData.length - 1].id);
+    }
     ngOnInit(): void {
+        this.doInitSlider();
+        this.translate.onLangChange.subscribe(() => {
+            this.doInitSlider();
+        });
         this.caseActivityService.getCaseHistoryActivities({ caseInstanceId: this.caseInstanceId })
             .subscribe(data => {
 
