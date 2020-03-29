@@ -10,7 +10,7 @@ export class SwitchLangService {
   currentLang;
   defaultLang = 'ar';
 
-  constructor(public translate: TranslateService, private titleService: Title  ) { }
+  constructor(public translate: TranslateService, private titleService: Title) { }
 
   /**
    * Fix Dom Direction - localization
@@ -30,7 +30,11 @@ export class SwitchLangService {
       this.titleService.setTitle(this.translate.instant('LAYOUT.TITLE'));
     });
   }
-
+  getTranslated(string, source = null) {
+    const sourceString = source ? (source + '.' + string.trim()) : string.trim();
+    const translated = this.translate.instant(sourceString);
+    return translated === sourceString ? string : translated;
+  }
   getSelectedLang() {
     if (localStorage.getItem('lang') == 'ar' || localStorage.getItem('lang') == 'en') {
       return localStorage.getItem('lang');
