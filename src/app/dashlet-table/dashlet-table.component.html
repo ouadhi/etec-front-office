@@ -19,13 +19,14 @@
 <div class="content">
   <app-dashlet-filter [show]="showFilter" (filter)="onFilter($event)"></app-dashlet-filter>
 
-  <mat-table multiTemplateDataRows [dataSource]="data" matSort class="width-100" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
-    
+  <mat-table multiTemplateDataRows [dataSource]="data" matSort class="width-100"
+    [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+
     <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
-        <mat-header-cell  mat-sort-header disableClear="true" [disabled]="!columns[col].sortable" *matHeaderCellDef>
-          {{columns[col].name | translate}} 
-        </mat-header-cell>
-    
+      <mat-header-cell mat-sort-header disableClear="true" [disabled]="!columns[col].sortable" *matHeaderCellDef>
+        {{switchLangService.getTranslated(columns[col].name)}}
+      </mat-header-cell>
+
       <mat-cell [attr.data-label]="columns[col].name | translate" *matCellDef="let element">
         <ion-badge *ngIf="columns[col].display == 'badge'" [color]="columns[col].color" size="medium" mode="ios">
           {{element[col]}}
@@ -45,16 +46,17 @@
             [routerLink]="[detailsRouterForEachItem, (element[columns[col].param1] || '' )]">{{'Details' | translate}}</button>
         </ng-container>
 
-          <ng-container  *ngIf="!columns[col].display || columns[col].display == 'text'">
-            <ng-container *ngIf="columns[col]['formatDate'];else normal">
-              {{element[col].substring(0, 19) | date:'yyyy-MM-dd,hh:mm:ssa'}}
-              
-            </ng-container>
-            <ng-template #normal>
-              {{element[col].length ? (element[col] | translate) : element[col] }} 
-            </ng-template>
+        <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
+          <ng-container *ngIf="columns[col]['formatDate'];else normal">
+            {{element[col].substring(0, 19) | date:'yyyy-MM-dd,hh:mm:ssa'}}
+
           </ng-container>
-      
+          <ng-template #normal>
+
+            {{element[col].length ? switchLangService.getTranslated( element[col],columns[col].translationSource) : element[col] }}
+          </ng-template>
+        </ng-container>
+
       </mat-cell>
 
 

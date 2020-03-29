@@ -73,7 +73,7 @@ export class DashletTableComponent implements OnInit, AfterViewInit {
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-    merge(this.sort.sortChange, this.paginator.page, this.casesFilter.filter)
+    merge(this.sort.sortChange, this.paginator.page, this.casesFilter.filter, this.translate.onLangChange)
       .pipe(
         startWith({}),
         switchMap(() => {
