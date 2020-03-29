@@ -5,6 +5,7 @@ import { LifeCycleService } from '../config';
 import { environment } from '../../environments/environment';
 import { SwitchLangService } from './../switch-lang.service';
 import { RequestsService } from '../requests.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-service-details',
@@ -20,7 +21,8 @@ export class ServiceDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private servicesService: ServicesService,
     private requestsService: RequestsService,
-    public trans: SwitchLangService
+    public trans: SwitchLangService,
+    public translate: TranslateService
   ) { }
 
   id: any;
@@ -45,10 +47,12 @@ export class ServiceDetailsComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
       this.load(this.id);
     });
+
   }
 
   load(id) {

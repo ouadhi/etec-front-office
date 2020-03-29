@@ -1,5 +1,5 @@
 <app-page>
-  <div class="d-none d-xl-block">
+  <!-- <div class="d-none d-xl-block">
     <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
     <div class="container-fluid"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
@@ -21,12 +21,12 @@
         [submissionId]="formData" [readOnly]="true" [viewOnly]="true">
       </formio>
     </div>
-  </div>
+  </div> -->
 
 
 
 
-  <div class="container d-xl-none" style="margin-top: 5px;">
+  <div class="container" style="margin-top: 5px;">
     <nav>
       <div class="nav nav-tabs nav-item d-block p-2 w-100 p-2 d-flex justify-content-center" id="nav-tab"
         role="tablist">
@@ -51,7 +51,7 @@
               </div>
               <div class="col">
                 {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
-                {{'SERVICE.pleasePress' | translate}} <a  (click)="handleAction({type:'task',activity:hasTask})"
+                {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction({type:'task',activity:hasTask})"
                   class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
               </div>
             </div>

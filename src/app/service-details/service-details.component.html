@@ -10,7 +10,7 @@
 
         {{data[trans._key('description')]}}
 
-        <button [routerLink]="['/request', data.link, { serviceId: data.key, name: data[trans._key('serviceName')] }]"
+        <button [routerLink]="['/request', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
           skipLocationChange=true target="_blank" mat-raised-button color="primary"
           [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right
           </mat-icon></button>
@@ -18,14 +18,14 @@
 
       <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
         <!-- {{data[trans._key('conditionsAndRequirements')]}} -->
-        <ul>
+        <ul *ngIf="data[trans._key('conditionsAndRequirements')].length">
           <li *ngFor="let item of data[trans._key('conditionsAndRequirements')]">{{item.value}}</li>
         </ul>
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.FAQ' | translate}}">
 
-        <mat-accordion>
+        <mat-accordion *ngIf="data.FAQ.length">
 
           <mat-expansion-panel *ngFor="let item of data.FAQ">
             <mat-expansion-panel-header>
@@ -38,7 +38,7 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.REQUIRED_DOCS' | translate}}">
-        <ul>
+        <ul *ngIf="data[trans._key('requiredDocs')]">
           <li *ngFor="let doc of data[trans._key('requiredDocs')]">
             {{doc.value}}
           </li>
@@ -46,7 +46,7 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.STEPS' | translate}}">
-        <ol>
+        <ol *ngIf=" data[trans._key('steps')].length">
           <li *ngFor="let step of data[trans._key('steps')]">
             {{step.value}}
           </li>
@@ -61,7 +61,7 @@
         </div> -->
 
         <div class="inlineRowItem">{{'SERVICE.CHANNEL' | translate}}:
-          <mat-chip-list class="mat-chip-list--inlineBlock">
+          <mat-chip-list *ngIf=" data[trans._key('channel')].length" class="mat-chip-list--inlineBlock">
             <mat-chip color="primary" *ngFor="let channel of data[trans._key('channel')]">{{channel.value}}</mat-chip>
           </mat-chip-list>
         </div>
