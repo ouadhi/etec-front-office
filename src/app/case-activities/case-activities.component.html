@@ -1,23 +1,28 @@
-<ion-grid no-padding class="d-none d-xl-block">
-    <ion-row class="milestones" align-items-center>
-        <ng-container *ngFor="let activity of activities">
-            <ion-col class="milestone" *ngIf="activity.completed">
-                <ion-chip [color]="activity.completed ? 'success' : 'medium'">
-                    <ion-label>
-                        {{activity.caseActivityName === 'task' ? ('SERVICE.beneficiaryTask' | translate) : activity.caseActivityName}}
-                        <span class="mdate">
-                            {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
-                        </span>
-                    </ion-label>
-                    <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"></ion-icon>
-                </ion-chip>
-            </ion-col>
-        </ng-container>
-    </ion-row>
-</ion-grid>
+<!-- <div no-padding class="d-none d-xl-block">
+
+    <div class="milestones slider-container" *ngIf="initSlider" align-items-center>
+        <owl-carousel-o #slider (initialized)="onInit($event, slider)" [options]="customOptions">
+            <ng-container *ngFor="let activity of activities let i = index;">
+                <ng-template [width]="300" [id]="'slide-'+i" *ngIf="activity.completed" carouselSlide>
+                    <div class="milestone">
+                        <ion-chip [color]="activity.completed ? 'success' : 'medium'">
+                            <ion-label>
+                                {{activity.caseActivityName === 'task' ? ('SERVICE.beneficiaryTask' | translate) : trans.getTranslated(activity.caseActivityName,'STATUSES')}}
+                                <span class="mdate">
+                                    {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
+                                </span>
+                            </ion-label>
+                            <ion-icon [name]="activity.completed ? 'checkmark-circle-outline' : 'hourglass'"></ion-icon>
+                        </ion-chip>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+</div> -->
 
 
-<div class="container d-xl-none" style="margin-top: 5px;">
+<div style="margin-top: 5px;">
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="milestones" id="tracking">
@@ -32,7 +37,7 @@
                             </div>
                             <ion-chip [color]="activity.completed ? 'success' : 'medium'">
                                 <ion-label>
-                                    {{activity.caseActivityName === 'task' ? ('SERVICE.beneficiaryTask' | translate) : activity.caseActivityName}}
+                                    {{activity.caseActivityName === 'task' ? ('SERVICE.beneficiaryTask' | translate) :  trans.getTranslated(activity.caseActivityName,'STATUSES')}}
                                     <span class="mdate">
                                         {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
                                     </span>
