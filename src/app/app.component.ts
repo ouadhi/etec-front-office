@@ -2,7 +2,6 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Formio } from 'formiojs';
 import { KeycloakService } from 'keycloak-angular';
-import { KeycloakProfile } from 'keycloak-js';
 import { SessionService } from './session.service';
 import { SwitchLangService } from './switch-lang.service';
 import { Platform } from '@ionic/angular';
@@ -20,7 +19,7 @@ export class AppComponent implements OnInit {
 
 
   loggedIn = false;
-  userDetails: KeycloakProfile;
+  userDetails;
 
   constructor(
     private keycloakService: KeycloakService,
@@ -37,8 +36,31 @@ export class AppComponent implements OnInit {
       priority: 100,
       preRequest: (requestArgs) => {
         return new Promise((resolve, reject) => {
-          this.keycloakService.getToken().then(token => {
-            console.log(requestArgs);
+          if (this.loggedIn) {
+            this.keycloakService.getToken().then(token => {
+              console.log(requestArgs);
+              if (!requestArgs.opts) {
+                requestArgs.opts = {};
+              }
+              if (!requestArgs.opts.header) {
+                requestArgs.opts.header = new Headers();
+              }
+              if (requestArgs.type !== 'submission' && requestArgs.type !== 'form') {
+                if (requestArgs.opts.header.has('authorization')) {
+                  // requestArgs.opts.header.append('BE-Authorization', `bearer ${token}`);
+                  requestArgs.opts.header.set('Authorization', `bearer ${token}`);
+                } else {
+                  requestArgs.opts.header.append('Authorization', `bearer ${token}`);
+                }
+              }
+              if (requestArgs.type === 'submission') {
+                requestArgs.opts.header.append('content-type', `application/json`);
+                requestArgs.opts.header.append('Authorization', `bearer ${token}`);
+              }
+              resolve();
+            });
+          } else {
+            const token = this.sessionService.getAnonymousToken();
             if (!requestArgs.opts) {
               requestArgs.opts = {};
             }
@@ -58,7 +80,7 @@ export class AppComponent implements OnInit {
               requestArgs.opts.header.append('Authorization', `bearer ${token}`);
             }
             resolve();
-          });
+          }
         });
       }
     };
@@ -66,7 +88,12 @@ export class AppComponent implements OnInit {
     Formio.registerPlugin(DelayPlugin, 'delay');
   }
 
+  handleAnonymous() {
+    if (!this.loggedIn) {
+      this.sessionService.loginAnonymous();
+    }
 
+  }
   async ngOnInit() {
 
     this.switchLangService.changeLang(this.switchLangService.getSelectedLang());
@@ -77,18 +104,21 @@ export class AppComponent implements OnInit {
     } else {
       this.loggedIn = false;
     }
-
+    this.handleAnonymous();
     this.keycloakService.keycloakEvents$.subscribe(async () => {
       if (await this.keycloakService.isLoggedIn()) {
         // window.location.reload();
         this.zone.run(async () => {
           this.userDetails = await this.sessionService.loadUserProfile();
           this.loggedIn = true;
+
         });
       } else {
         this.zone.run(() => {
           this.loggedIn = false;
           this.router.navigate(['/']).then(() => {
+            this.handleAnonymous();
+
             //window.location.reload();
           });
         });

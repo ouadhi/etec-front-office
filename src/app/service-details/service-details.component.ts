@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment';
 import { SwitchLangService } from './../switch-lang.service';
 import { RequestsService } from '../requests.service';
 import { TranslateService } from '@ngx-translate/core';
+import { KeycloakService } from 'keycloak-angular';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-service-details',
@@ -20,6 +22,7 @@ export class ServiceDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private servicesService: ServicesService,
+    public keycloakService: KeycloakService,
     private requestsService: RequestsService,
     public trans: SwitchLangService,
     public translate: TranslateService
@@ -32,7 +35,7 @@ export class ServiceDetailsComponent implements OnInit {
   comments: any;
   segments: any;
   stats = 0;
-
+  isLoggedIn = false;
   active = false;
   department = {
     'departmentName_ar': '',
@@ -47,7 +50,9 @@ export class ServiceDetailsComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.keycloakService.isLoggedIn().then(data => {
+      this.isLoggedIn = data;
+    })
     this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
       this.load(this.id);

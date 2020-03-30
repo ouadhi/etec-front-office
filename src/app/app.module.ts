@@ -105,6 +105,9 @@ import { NotificationsIndexComponent } from './notifications-index/notifications
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NotAllowedComponent } from './not-allowed/not-allowed.component';
+import { RequestInfoDialogComponent } from './request-info/request-info.dialog';
+import { RequestQueryComponent } from './request-query/request-query.component';
+import { AnonymousInterceptor } from './anonymous.inteceptor';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -173,7 +176,9 @@ export function getFormioEnv() {
     AppliedOpportunityComponent,
     MessageDialog,
     NotificationsIndexComponent,
-    NotAllowedComponent
+    NotAllowedComponent,
+    RequestInfoDialogComponent,
+    RequestQueryComponent
   ],
   imports: [
     CommonModule,
@@ -246,6 +251,11 @@ export function getFormioEnv() {
       multi: true
     },
     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AnonymousInterceptor,
+      multi: true
+    },
+    {
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
@@ -264,7 +274,7 @@ export function getFormioEnv() {
     },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MessageDialog]
+  entryComponents: [MessageDialog, RequestInfoDialogComponent]
 })
 export class AppModule {
 

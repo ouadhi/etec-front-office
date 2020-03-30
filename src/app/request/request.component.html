@@ -4,7 +4,7 @@
         <div class="service-title">
             <h5>{{navParams[switchLangService._key('serviceName')]}}</h5>
         </div>
-        <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" (submit)="onSubmit($event)"
+        <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" [submission]="submission" (submit)="onSubmit($event)"
             class="container">
         </formio>
     </div>

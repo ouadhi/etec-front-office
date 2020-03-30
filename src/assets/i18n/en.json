@@ -36,6 +36,7 @@
     "LOGIN": "Login"
   },
   "NAV": {
+    "QUERY_REQUEST": "Query Request",
     "ALL_OPPORTUNITIES": "All Opportunities",
     "MAIN_PAGE": "Main Page",
     "SERVICES_CATALOG": "Services Catalog",
@@ -66,6 +67,8 @@
     "TITLE": "Ads"
   },
   "SERVICE": {
+    "QUERY": "Query",
+    "REQUEST_INFO": "Request Info",
     "BENEFICIARY_TASK_SUCCESS": "Request has been updated successfully",
     "SUCCESS": "Request Has Been sent Successfully",
     "REQUEST_NOTE": "If you can't find the option you need please refer to your supervisor",

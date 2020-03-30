@@ -17,10 +17,12 @@ export function initializer(keycloak: KeycloakService, session: SessionService, 
               onLoad: 'check-sso',
               checkLoginIframe: false
             },
+            enableBearerInterceptor: true,
             bearerExcludedUrls: [
               '/assets/', // due to call ngx-translate
               '/localization/submission/',
               environment.statisticsApi.api,
+              environment.keycloak.url,
               environment.cms.api.master,
               environment.cms.api.assets,
               '/api/requests/count'
@@ -32,6 +34,9 @@ export function initializer(keycloak: KeycloakService, session: SessionService, 
           });
           if (await keycloak.isLoggedIn()) {
             await session.loadUserProfile();
+          } else {
+            const kc = keycloak.getKeycloakInstance();
+            console.log(kc);
           }
           resolve();
 

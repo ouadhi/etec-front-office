@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { KeycloakProfile } from 'keycloak-js';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -11,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 
 export class NotFoundComponent {
-    userDetails: KeycloakProfile;
+    userDetails;
 
     constructor(
         public translate: TranslateService) {

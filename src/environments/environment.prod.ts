@@ -6,10 +6,11 @@
 import { KeycloakConfig } from 'keycloak-angular';
 
 // Add here your keycloak setup infos
-const keycloakConfig: KeycloakConfig = {
+const keycloakConfig = {
   // url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
   url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
   realm: 'jhipster',
+  secret: '',
   clientId: 'web_app'
   // url: 'http://localhost:9080/auth',
   // realm: 'rms',

@@ -16,6 +16,7 @@
     "keycloak": {
         "url": "http://ec2-34-226-249-174.compute-1.amazonaws.com:9080/auth/",
         "realm": "ekhaa",
+        "secret": "1336d84f-10e3-41c9-8316-4deabd064c78",
         "clientId": "fo-web"
     },
     "requestApi": {

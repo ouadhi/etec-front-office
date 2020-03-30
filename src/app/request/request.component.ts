@@ -1,24 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicesService } from '../services.service';
-import { environment } from '../../environments/environment';
-import { SwitchLangService } from '../switch-lang.service';
-import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../environments/environment';
+import { RequestInfoDialogComponent } from '../request-info/request-info.dialog';
+import { ServicesService } from '../services.service';
+import { SwitchLangService } from '../switch-lang.service';
+import { KeycloakService } from 'keycloak-angular';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent implements OnInit {
+export class RequestComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private servicesService: ServicesService,
+    private keycloakService: KeycloakService,
     private translate: TranslateService,
     public switchLangService: SwitchLangService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public dialog: MatDialog
   ) { }
 
   id: any;
@@ -29,19 +34,28 @@ export class RequestComponent implements OnInit {
 
   data: any;
   params;
+  isLoggedIn = false;
+  submission = { data: {} };
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.serviceId = params['serviceId'];
       this.navParams = params;
-      this.params = [
-        {
-          url: environment.beneficiaryApi.api,
-          parallel: true,
-          success: `submission.data = {serviceId:"${this.serviceId}",entrepreneurshipType:"${this.serviceId}", requesterInfo: {data: response}};`
-        }
-      ];
+      if (this.isLoggedIn) {
+        this.params = [
+          {
+            url: environment.beneficiaryApi.api,
+            parallel: true,
+            success: `submission.data = {serviceId:"${this.serviceId}",
+            entrepreneurshipType:"${this.serviceId}", requesterInfo: {data: response}};`
+          }
+        ];
+      } else {
+        this.submission.data = { serviceId: this.serviceId };
+      }
+
       if (
         !this.serviceId || this.serviceId === null ||
         this.serviceId === undefined || this.serviceId === '' ||
@@ -52,16 +66,46 @@ export class RequestComponent implements OnInit {
     });
   }
   onSubmit(event) {
-    this.toastr.success('', this.translate.instant('SERVICE.SUCCESS'));
+    // this.toastr.success('', this.translate.instant('SERVICE.SUCCESS'));
+    let requestId;
+    let requestDate;
+    Object.keys(event.submission.metadata).forEach((key) => {
+      if (event.submission.metadata[key].hasOwnProperty('requestId')) {
+        requestId = event.submission.metadata[key].requestNumber;
+        requestDate = event.submission.metadata[key].requestDate;
+        return false;
+      }
+    });
+    this.openInfoDialog({
+      requestNumber: requestId,
+      requestDate
+    });
     this.goBack();
   }
   /**
    * Go Back After Request is sent
    */
   goBack() {
-    this.router.navigate(['/my-requests']);
+    if (this.isLoggedIn) {
+      this.router.navigate(['/my-requests']);
+
+    } else {
+      this.router.navigate(['/']);
+
+    }
 
   }
+  openInfoDialog(data): void {
+    const dialogRef = this.dialog.open(RequestInfoDialogComponent, {
+      width: '300px',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

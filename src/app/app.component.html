@@ -1,4 +1,5 @@
-<div class="mainWrapper" [class.mainWrapper--rtl]="switchLangService.currentLang=='ar'" dir="{{switchLangService.currentLang=='ar' ? 'rtl' : 'ltr'}}">
+<div class="mainWrapper" [class.mainWrapper--rtl]="switchLangService.currentLang=='ar'"
+  dir="{{switchLangService.currentLang=='ar' ? 'rtl' : 'ltr'}}">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <!-- <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span> -->
@@ -40,6 +41,8 @@
           routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate }}</a>
         <a mat-button *ngIf="loggedIn" routerLink="/my-requests"
           routerLinkActive="active">{{'NAV.MY_REQUESTS' | translate}}</a>
+        <a mat-button *ngIf="!loggedIn" routerLink="/query-request"
+          routerLinkActive="active">{{'NAV.QUERY_REQUEST' | translate}}</a>
         <a mat-button *ngIf="loggedIn" routerLink="/opportunity/all"
           routerLinkActive="active">{{'NAV.ALL_OPPORTUNITIES' | translate}}</a>
       </span>

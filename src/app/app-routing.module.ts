@@ -22,6 +22,7 @@ import { ApplyOpportunityComponent } from './opportunities/apply-opportunity/app
 import { AppliedOpportunityComponent } from './opportunities/applied-opportunity/applied-opportunity.component';
 import { NotificationsIndexComponent } from './notifications-index/notifications-index.component';
 import { NotAllowedComponent } from './not-allowed/not-allowed.component';
+import { RequestQueryComponent } from './request-query/request-query.component';
 
 
 const routes: Routes = [
@@ -33,16 +34,42 @@ const routes: Routes = [
     data: { roles: [environment.roles.beneficiary] },
   },
   {
+    path: 'query-request',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: RequestQueryComponent,
+        canActivate: [AppRoleGuard],
+        data: {
+          roles: [environment.roles.beneficiary],
+
+        },
+      },
+      {
+        path: 'request-details/:id', component: RequestDetailsComponent,
+        canActivate: [AppRoleGuard],
+        data: { roles: [environment.roles.beneficiary] },
+
+      },
+    ]
+  },
+  {
     path: 'my-requests', component: MyRequestsComponent,
     canActivate: [AppAuthGuard, AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },
   {
     path: 'request-task/:formKey/:taskId/:caseId/:requestId',
-    component: RequestTaskComponent, canActivate: [AppAuthGuard]
+    component: RequestTaskComponent, canActivate: []
   },
   {
     path: 'service-details/:id', component: ServiceDetailsComponent,
+    canActivate: [AppRoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
+    path: 'arequest/:id', component: RequestComponent,
     canActivate: [AppRoleGuard],
     data: { roles: [environment.roles.beneficiary] },
   },

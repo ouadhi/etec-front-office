@@ -36,7 +36,8 @@
     "MinistryEducation": "اعتماد وزارة التعليم",
     "Ministry of Education": "اعتماد وزارة التعليم",
     "Approved": "اعتماد وزارة التعليم",
-    "Rejected": "مرفوض"
+    "Rejected": "مرفوض",
+    "additionalInfo": "الحاجه لمعلومات اضافيه"
   },
   "LAYOUT": {
     "TITLE": "بوابة المستفيدين",
@@ -47,6 +48,7 @@
     "LOGIN": "تسجيل الدخول"
   },
   "NAV": {
+    "QUERY_REQUEST": "استعلام",
     "MAIN_PAGE": "الرئيسية",
     "SERVICES_CATALOG": "دليل الخدمات",
     "MY_REQUESTS": "طلباتي",
@@ -77,6 +79,8 @@
     "TITLE": "الاعلانات"
   },
   "SERVICE": {
+    "QUERY": "استعلام",
+    "REQUEST_INFO": "معلومات الطلب",
     "BENEFICIARY_TASK_SUCCESS": "تم تحديث الطلب بنجاح",
     "SUCCESS": "تم ارسال الطلب بنجاح",
     "REQUEST_NOTE": "في حال عدم توفر الخيار المطلوب يرجى مراجعة المشرف المتابع لحالتك",
@@ -785,7 +789,19 @@
       "Member Id": "رقم العضو",
       "Scholarship Committee Secretary Review": "مرئيات سكرتير اللجنة",
       "Committee Report": "تقرير اللجنة",
-      "University President Review": "مرئيات رئيس الجامعة"
+      "University President Review": "مرئيات رئيس الجامعة",
+      "Complaint Details": "تفاصيل البلاغ",
+      "Center Name": "اسم المركز",
+      "Complaint Type": "نوع البلاغ",
+      "Notice": "البلاغ",
+      "Additional Information": "معلومات إضافية",
+      "Additional Attachments": "مرفقات إضافية",
+      "Complaint Recipient Review": "مرئيات مستلم الحالة",
+      "Approve Complaint": "موافقة على البلاغ",
+      "Needs More Information": "يحتاج لمعلومات إضافية",
+      "Internal Review Manager Review": "مرئيات مدير إدارة المراجعة الداخلية",
+      "Complaint Result": "نتيجة البلاغ",
+      "General Director Review": "مرئيات المدير العام"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",

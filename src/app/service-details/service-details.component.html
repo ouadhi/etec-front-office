@@ -7,13 +7,19 @@
 
     <div fxFlex="70">
       <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
-
         {{data[trans._key('description')]}}
 
-        <button [routerLink]="['/request', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
+        <button *ngIf="(isLoggedIn && data.canAnonymousApply) || !data.canAnonymousApply"
+          [routerLink]="['/request', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
           skipLocationChange=true target="_blank" mat-raised-button color="primary"
           [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right
           </mat-icon></button>
+          <button *ngIf="(!isLoggedIn && data.canAnonymousApply)"
+          [routerLink]="['/arequest', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
+          skipLocationChange=true target="_blank" mat-raised-button color="primary"
+          [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right
+          </mat-icon></button>
+      
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">

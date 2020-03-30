@@ -28,7 +28,7 @@ export class RequestsService {
 
   constructor(private http: HttpClient, private datePipe: DatePipe, private dashletFilterAdapter: DashletFilterAdapter) { }
 
-  getRequests(queryParams: filterData): Observable<any> {
+  getRequests(queryParams): Observable<any> {
     return this.http.get<any>(
       `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,
       {
@@ -39,6 +39,16 @@ export class RequestsService {
         map(resp => {
           return { items: resp.body, totalCount: resp.headers.get('X-Total-Count') };
         })
+      );
+  }
+  queryRequests(queryParams): Observable<any> {
+    return this.http.get<any>(
+      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,
+      {
+        params: queryParams
+      }).pipe(
+        tap(resp => resp),
+        map(resp => resp)
       );
   }
   getRequest(id, queryParams = {}): Observable<any> {

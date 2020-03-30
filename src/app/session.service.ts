@@ -3,6 +3,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { isArray } from 'util';
 import { environment } from '../environments/environment';
 import { AccountService } from './account.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 /**
  *
@@ -15,7 +16,8 @@ export class SessionService {
     // tslint:disable-next-line:variable-name
     private _userProfile = null;
 
-    constructor(private keycloakService: KeycloakService, private accountService: AccountService) {
+    constructor(private keycloakService: KeycloakService, private accountService: AccountService, private http: HttpClient
+    ) {
     }
     getUsername(): string {
         if (!this._userProfile) {
@@ -60,5 +62,30 @@ export class SessionService {
             hasRole = this.keycloakService.isUserInRole(environment.roles[role]);
         }
         return hasRole;
+    }
+    loginAnonymous() {
+        const body = new URLSearchParams();
+        body.set('grant_type', 'password');
+        body.set('client_id', 'request-service');
+        body.set('client_secret', environment.keycloak.secret);
+        body.set('username', '10626');
+        body.set('password', '10626');
+
+        const options = {
+            headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        };
+        this.http.post(`${environment.keycloak.url}realms/${environment.keycloak.realm}/protocol/openid-connect/token`,
+            body.toString(), options).subscribe(data => {
+                localStorage.setItem('anonymous', JSON.stringify(data));
+            });
+    }
+    getAnonymousToken() {
+        const anon = localStorage.getItem('anonymous');
+        try {
+            return JSON.parse(anon).access_token;
+
+        } catch (e) {
+            return false;
+        }
     }
 }
