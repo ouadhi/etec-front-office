@@ -11,6 +11,9 @@ const keycloakConfig = {
   url: 'http://ec2-100-27-19-2.compute-1.amazonaws.com:9080/auth',
   realm: 'jhipster',
   secret: '',
+  secret_client: '',
+  anonymous_user: '',
+  anonymous_password: '',
   clientId: 'web_app'
   // url: 'http://localhost:9080/auth',
   // realm: 'rms',

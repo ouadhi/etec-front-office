@@ -66,10 +66,10 @@ export class SessionService {
     loginAnonymous() {
         const body = new URLSearchParams();
         body.set('grant_type', 'password');
-        body.set('client_id', 'request-service');
+        body.set('client_id', environment.keycloak.secret_client);
         body.set('client_secret', environment.keycloak.secret);
-        body.set('username', '10626');
-        body.set('password', '10626');
+        body.set('username', environment.keycloak.anonymous_user);
+        body.set('password', environment.keycloak.anonymous_password);
 
         const options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')

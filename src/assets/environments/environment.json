@@ -17,6 +17,9 @@
         "url": "http://ec2-34-226-249-174.compute-1.amazonaws.com:9080/auth/",
         "realm": "ekhaa",
         "secret": "1336d84f-10e3-41c9-8316-4deabd064c78",
+        "secret_client": "request-service",
+        "anonymous_user": "10626",
+        "anonymous_password": "10626",
         "clientId": "fo-web"
     },
     "requestApi": {
