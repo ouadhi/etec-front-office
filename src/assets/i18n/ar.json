@@ -37,7 +37,7 @@
     "Ministry of Education": "اعتماد وزارة التعليم",
     "Approved": "اعتماد وزارة التعليم",
     "Rejected": "مرفوض",
-    "additionalInfo": "الحاجه لمعلومات اضافيه"
+    "additionalInfo": "تقديم معلومات إضافية"
   },
   "LAYOUT": {
     "TITLE": "بوابة المستفيدين",
@@ -48,7 +48,7 @@
     "LOGIN": "تسجيل الدخول"
   },
   "NAV": {
-    "QUERY_REQUEST": "استعلام",
+    "QUERY_REQUEST": "استعلام عن طلب",
     "MAIN_PAGE": "الرئيسية",
     "SERVICES_CATALOG": "دليل الخدمات",
     "MY_REQUESTS": "طلباتي",
@@ -79,7 +79,9 @@
     "TITLE": "الاعلانات"
   },
   "SERVICE": {
-    "QUERY": "استعلام",
+    "REQUEST_NOT_FOUND": "لم يتم العثور على الطلب",
+    "QUERY_NOTE": "يتم الاستعلام عن طلب عن طريق ادخال نوع الطلب ورقم الطلب أو رقم الطلب وتاريخ الطلب",
+    "QUERY": "استعلم",
     "REQUEST_INFO": "معلومات الطلب",
     "BENEFICIARY_TASK_SUCCESS": "تم تحديث الطلب بنجاح",
     "SUCCESS": "تم ارسال الطلب بنجاح",
@@ -793,15 +795,22 @@
       "Complaint Details": "تفاصيل البلاغ",
       "Center Name": "اسم المركز",
       "Complaint Type": "نوع البلاغ",
-      "Notice": "البلاغ",
       "Additional Information": "معلومات إضافية",
       "Additional Attachments": "مرفقات إضافية",
       "Complaint Recipient Review": "مرئيات مستلم الحالة",
       "Approve Complaint": "موافقة على البلاغ",
-      "Needs More Information": "يحتاج لمعلومات إضافية",
       "Internal Review Manager Review": "مرئيات مدير إدارة المراجعة الداخلية",
       "Complaint Result": "نتيجة البلاغ",
-      "General Director Review": "مرئيات المدير العام"
+      "General Director Review": "مرئيات المدير العام",
+      "Complaint Sub Type": "نوع البلاغ الفرعي",
+      "I read the terms of receiving complaint": "قرأت شروط وأحكام تقديم بلاغ",
+      "File is the wrong type; it must be .pdf": "يجب أن يكون امتداد الملف PDF",
+      "Suggested action": "الإجراء المقترح",
+      "Take Action": "اتخاذ قرار",
+      "Needs More Information": "طلب معلومات إضافية",
+      "Request Result": "نتيجة الطلب",
+      "Explanation": "الشرح",
+      "Notice": "وصف البلاغ"
     },
     "request-details": {
       "Request Details": "تفاصيل الطلب",
@@ -927,6 +936,7 @@
     "earlier": "سابقاً"
   },
   "CLOSE": "اغلاق",
+  "Print": "طباعة",
   "SEND": "ارسال",
   "a few seconds ago": "منذ بضع ثوان",
   "a minute ago": "منذ دقيقة",

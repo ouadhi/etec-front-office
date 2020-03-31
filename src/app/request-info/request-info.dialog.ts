@@ -18,5 +18,7 @@ export class RequestInfoDialogComponent {
     onNoClick(): void {
         this.dialogRef.close();
     }
-
+    printHtml(html: HTMLInputElement) {
+        window.print();
+    }
 }

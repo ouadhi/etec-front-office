@@ -5,7 +5,7 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { APP_INITIALIZER } from '@angular/core';
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
@@ -108,7 +108,7 @@ import { NotAllowedComponent } from './not-allowed/not-allowed.component';
 import { RequestInfoDialogComponent } from './request-info/request-info.dialog';
 import { RequestQueryComponent } from './request-query/request-query.component';
 import { AnonymousInterceptor } from './anonymous.inteceptor';
-
+import { NgxCaptchaModule } from 'ngx-captcha';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -241,7 +241,9 @@ export function getFormioEnv() {
     MatPaginatorModule,
     // Formio implementation Module Import
     FormioModule,
-    NotificationsModule
+    NotificationsModule,
+    NgxCaptchaModule,
+    ReactiveFormsModule
   ],
   providers: [
     DatePipe,

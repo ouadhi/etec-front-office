@@ -27,7 +27,10 @@ interface filterData {
 export class RequestsService {
 
   constructor(private http: HttpClient, private datePipe: DatePipe, private dashletFilterAdapter: DashletFilterAdapter) { }
-
+  verifyToken(token) {
+    return this.http.get<any>(
+      `${environment.formio.appUrl}/recaptcha?recaptchaToken=${token}`);
+  }
   getRequests(queryParams): Observable<any> {
     return this.http.get<any>(
       `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,

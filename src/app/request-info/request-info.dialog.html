@@ -3,22 +3,26 @@
     <div mat-dialog-content>
         <div class="text-center">
             <mat-icon class="checkmark">checkmark</mat-icon>
-            <ion-item class="big-chip primary" lines="none">
-                <h6 class="slotted">
-                    <ion-text slot="start">{{'Id' | translate }} </ion-text>
-                    <ion-text slot="end"> {{data.requestNumber}}</ion-text>
-                </h6>
-            </ion-item>
-            <ion-item class="big-chip primary" lines="none">
-                <h6 class="slotted">
-                    <ion-text slot="start">{{'Request Date' | translate }} </ion-text>
-                    <ion-text slot="end"> {{data.requestDate | date:'dd/MM/yyyy'}}</ion-text>
-                </h6>
-            </ion-item>
+            <div #print>
+                <ion-item class="big-chip primary" lines="none">
+                    <h6 class="slotted">
+                        <ion-text slot="start">{{'Id' | translate }} </ion-text>
+                        <ion-text slot="end"> {{data.requestNumber}}</ion-text>
+                    </h6>
+                </ion-item>
+                <ion-item class="big-chip primary" lines="none">
+                    <h6 class="slotted">
+                        <ion-text slot="start">{{'Request Date' | translate }} </ion-text>
+                        <ion-text slot="end"> {{data.requestDate | date:'dd/MM/yyyy'}}</ion-text>
+                    </h6>
+                </ion-item>
+            </div>
         </div>
     </div>
     <div class="text-center" mat-dialog-actions>
 
-        <button color="primary" mat-button (click)="onNoClick()">{{'CLOSE' | translate}}</button>
+        <button color="accent" style="margin:10px;" mat-button (click)="onNoClick()">{{'CLOSE' | translate}}</button>
+        <button color="accent" style="margin:10px;" mat-raised-button
+            (click)="printHtml(print)">{{'Print' | translate}}</button>
     </div>
 </div>

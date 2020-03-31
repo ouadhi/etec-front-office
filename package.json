@@ -59,6 +59,7 @@
     "keycloak-angular": "^7.2.0",
     "keycloak-js": "^9.0.2",
     "ng-simple-slideshow": "^1.2.8",
+    "ngx-captcha": "^8.0.1",
     "ngx-filter-pipe": "^2.1.2",
     "ngx-toastr": "^10.1.0",
     "rxjs": "~6.5.1",

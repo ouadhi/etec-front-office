@@ -67,6 +67,8 @@
     "TITLE": "Ads"
   },
   "SERVICE": {
+    "REQUEST_NOT_FOUND": "No Request Was Found",
+    "QUERY_NOTE": "You can Query with request number combined with request date or request type ",
     "QUERY": "Query",
     "REQUEST_INFO": "Request Info",
     "BENEFICIARY_TASK_SUCCESS": "Request has been updated successfully",

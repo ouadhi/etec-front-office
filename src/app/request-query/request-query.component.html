@@ -6,38 +6,50 @@
     <div class="row">
       <div class="col-12">
         <div class='page-container'>
-          <div class="col-12">
-            <div class="row">
-              <div class="col-4">
-                <mat-form-field style="width:100%">
-                  <input matInput [(ngModel)]="query.requestNumber" [placeholder]="'Id' | translate">
-                </mat-form-field>
-              </div>
-              <div class="col-4">
-                <mat-form-field style="width:100%">
-                  <input matInput [(ngModel)]="query.requestDate" [matDatepicker]="fd"
-                    [placeholder]="'Request Date' | translate">
-                  <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
-                  <mat-datepicker #fd></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="col-2">
-                <button type="button" class="btn btn-info btn-sm query-button" (click)="doQuery()"
-                  style="margin-left: 5px; margin-right: 5px;">
-                  {{'SERVICE.QUERY' | translate}} <i class="fa fa-search"></i>
-                </button>
+          <form [formGroup]="query" autocomplete="off">
+
+            <div class="query-form">
+              <div class="col-12 text-center">
+                <p class="note">{{'SERVICE.QUERY_NOTE' | translate}}</p>
+                <div class="row">
+                  <div class="col-6">
+                    <mat-form-field color="accent" style="width:100%">
+                      <input matInput formControlName="requestNumber" [placeholder]="'Id' | translate">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-6">
+                    <mat-form-field color="accent" style="width:100%">
+                      <input matInput formControlName="requestDate" [matDatepicker]="fd"
+                        [placeholder]="'Request Date' | translate">
+                      <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
+                      <mat-datepicker #fd></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-12">
+                    <app-select color="accent" [placeholder]="'Service' | translate" [closeOnSelect]="true"  [hideLoaded]="true" formControlName="requestType"
+                      [data]="services" [bindValue]="'id'" [bindLabel]="'name'">
+                    </app-select>
+                  </div>
+                  <div class="col-12">
+                    <button style="margin:35px auto;display:block;" mat-raised-button color="accent"
+                      [disabled]="query.invalid" (click)="doQuery()">
+                      {{'SERVICE.QUERY' | translate}}
+                      <mat-icon>search</mat-icon>
+                    </button>
+                  </div>
+
+                </div>
               </div>
 
+              <div class="col-12">
+              </div>
             </div>
-          </div>
-
-          <div class="col-12">
-          </div>
+          </form>
         </div>
         <div *ngIf="found" class='page-container test-center'>
           <router-outlet></router-outlet>
         </div>
-        <h6 class="text-center" style="margin:20px;" *ngIf="notFound">لم يتم العثور على الطلب</h6>
+        <h6 class="text-center" style="margin:50px;" *ngIf="notFound">{{'SERVICE.REQUEST_NOT_FOUND' | translate}}</h6>
 
       </div>
     </div>
