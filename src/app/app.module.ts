@@ -119,20 +119,34 @@ export class CustomLoader implements TranslateLoader {
   }
   getTranslation(lang: string) {
     const languages = {
-      ar: '5d70008d303dd27e99fd0ac6',
-      en: '5d7000998e0a143fd56188da'
+      ar: 'frontoffice_ar',
+      en: 'frontoffice_en'
     };
-    return this.http.get<any>(
-        `${environment.formio.appUrl}localization/submission/${languages[lang]}`)
-    .pipe(
-      map((data) => {
-        return JSON.parse(data.data.textArea);
-        //  return  { ...data[1], forms: { ...data[1].forms, ...JSON.parse(data[0].data.textArea).forms } };
+    try {
+      return this.http.get<any>(
+        `${environment.cms.api.master}/api/singletons/get/${languages[lang]}`, {})
+        .pipe(
+          map((data) => {
+            if (data.translations && Object.keys(data.translations).length === 0) {
+              throw new Error('Translations Empty');
+            }
+            return data.translations;
+            //  return  { ...data[1], forms: { ...data[1].forms, ...JSON.parse(data[0].data.textArea).forms } };
 
-      })
-    );
+          })
+        );
+    } catch (e) {
+      console.warn(e);
+      return this.http.get<any>(
+        `./assets/i18n/${lang}.json`,
+      ).pipe(data => {
+        return data;
+      });
+    }
   }
+
 }
+
 export function createExternalService(http: HttpClient) {
   return new ExternalService(http);
 }
