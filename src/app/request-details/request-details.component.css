@@ -16,7 +16,7 @@ a {
 }
 
 .nav-tabs .nav-link.active {
-  background-color: #3d98aa;
+  background-color: var(--primary500);
   color: white;
   font-weight: bolder;
 }

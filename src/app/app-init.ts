@@ -1,11 +1,12 @@
-import { KeycloakService } from 'keycloak-angular';
-
-import { environment } from '../environments/environment';
-import { SessionService } from './session.service';
-import { AccountService } from './account.service';
 import { Platform } from '@ionic/angular';
+import { KeycloakService } from 'keycloak-angular';
+import { environment } from '../environments/environment';
+import { ConfigService } from './config.service';
+import { SessionService } from './session.service';
 
-export function initializer(keycloak: KeycloakService, session: SessionService, platform: Platform): () => Promise<any> {
+
+export function initializer(
+  keycloak: KeycloakService, session: SessionService, platform: Platform, config: ConfigService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       platform.ready().then(async () => {
@@ -32,6 +33,12 @@ export function initializer(keycloak: KeycloakService, session: SessionService, 
               // environment.requestApi.api
             ],
           });
+          try {
+            await config.loadConfig();
+            config.setupEssentials();
+          } catch (e) {
+            console.warn(e);
+          }
           if (await keycloak.isLoggedIn()) {
             await session.loadUserProfile();
           } else {

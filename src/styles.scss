@@ -1,77 +1,99 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~ngx-toastr/toastr";
+@import "../node_modules/bootstrap/scss/functions";
 
 @import "~@angular/material/theming";
+@function mat-color($palette, $hue: default, $opacity: null) {
+  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
+    @return mat-color($palette, default, $hue);
+  }
+
+  $color: map-get($palette, $hue);
+
+  @if (type-of($color) != color) {
+    @if ($opacity == null) {
+      @return $color;
+    }
+
+    // Here is the change from the original function:
+    // If the $color resolved to something different from a color, we assume it is a CSS variable
+    // in the form of rgba(rgba(var(--rgba-css-var), a) and replace the 'a' value.
+    @return #{str-slice($color, 0, str-index($color, ",")) + $opacity + ")"};
+  }
+
+  @return rgba($color, if($opacity == null, opacity($color),  $opacity));
+}
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
+
 @include mat-core();
-$md-accents: (
-  50: #e6f3f0,
-  100: #bfe0da,
-  200: #95ccc2,
-  300: #6bb8aa,
-  400: #4ba897,
-  500: #2b9985,
-  600: #26917d,
-  700: #208672,
-  800: #1a7c68,
-  900: #106b55,
-  A100: #a0ffe6,
-  A200: #6dffd9,
-  A400: #3affcb,
-  A700: #20ffc5,
-  contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #000000,
-    500: #ffffff,
-    600: #ffffff,
-    700: #ffffff,
-    800: #ffffff,
-    900: #ffffff,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #000000
-  )
-);
 $md-ekhaa: (
-  50: #e8f3f5,
-  100: #c5e0e6,
-  200: #9eccd5,
-  300: #77b7c4,
-  400: #5aa7b7,
-  500: #3d98aa,
-  600: #3790a3,
-  700: #2f8599,
-  800: #277b90,
-  900: #1a6a7f,
-  A100: #b8efff,
-  A200: #85e3ff,
-  A400: #52d7ff,
-  A700: #39d1ff,
+  50: rgba(var(--primary50-parts), 1),
+  100: rgba(var(--primary100-parts), 1),
+  200: rgba(var(--primary200-parts), 1),
+  300: rgba(var(--primary300-parts), 1),
+  400: rgba(var(--primary400-parts), 1),
+  500: rgba(var(--primary500-parts), 1),
+  600: rgba(var(--primary600-parts), 1),
+  700: rgba(var(--primary700-parts), 1),
+  800: rgba(var(--primary800-parts), 1),
+  900: rgba(var(--primary900-parts), 1),
+  A100: rgba(var(--primaryA100-parts), 1),
+  A200: rgba(var(--primaryA200-parts), 1),
+  A400: rgba(var(--primaryA400-parts), 1),
+  A700: rgba(var(--primaryA700-parts), 1),
   contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #000000,
-    500: #ffffff,
-    600: #ffffff,
-    700: #ffffff,
-    800: #ffffff,
-    900: #ffffff,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #000000
-  )
+    50: rgba(var(--primaryContrast50-parts), 1),
+    100: rgba(var(--primaryContrast100-parts), 1),
+    200: rgba(var(--primaryContrast200-parts), 1),
+    300: rgba(var(--primaryContrast300-parts), 1),
+    400: rgba(var(--primaryContrast400-parts), 1),
+    500: rgba(var(--primaryContrast500-parts), 1),
+    600: rgba(var(--primaryContrast600-parts), 1),
+    700: rgba(var(--primaryContrast700-parts), 1),
+    800: rgba(var(--primaryContrast800-parts), 1),
+    900: rgba(var(--primaryContrast900-parts), 1),
+    A100: rgba(var(--primaryContrastA100-parts), 1),
+    A200: rgba(var(--primaryContrastA200-parts), 1),
+    A400: rgba(var(--primaryContrastA400-parts), 1),
+    A700: rgba(var(--primaryContrastA700-parts), 1),
+  ),
+);
+$md-accents: (
+  50: rgba(var(--accent50-parts), 1),
+  100: rgba(var(--accent100-parts), 1),
+  200: rgba(var(--accent200-parts), 1),
+  300: rgba(var(--accent300-parts), 1),
+  400: rgba(var(--accent400-parts), 1),
+  500: rgba(var(--accent500-parts), 1),
+  600: rgba(var(--accent600-parts), 1),
+  700: rgba(var(--accent700-parts), 1),
+  800: rgba(var(--accent800-parts), 1),
+  900: rgba(var(--accent900-parts), 1),
+  A100: rgba(var(--accentA100-parts), 1),
+  A200: rgba(var(--accentA200-parts), 1),
+  A400: rgba(var(--accentA400-parts), 1),
+  A700: rgba(var(--accentA700-parts), 1),
+  contrast: (
+    50: rgba(var(--accentContrast50-parts), 1),
+    100: rgba(var(--accentContrast100-parts), 1),
+    200: rgba(var(--accentContrast200-parts), 1),
+    300: rgba(var(--accentContrast300-parts), 1),
+    400: rgba(var(--accentContrast400-parts), 1),
+    500: rgba(var(--accentContrast500-parts), 1),
+    600: rgba(var(--accentContrast600-parts), 1),
+    700: rgba(var(--accentContrast700-parts), 1),
+    800: rgba(var(--accentContrast800-parts), 1),
+    900: rgba(var(--accentContrast900-parts), 1),
+    A100: rgba(var(--accentContrastA100-parts), 1),
+    A200: rgba(var(--accentContrastA200-parts), 1),
+    A400: rgba(var(--accentContrastA400-parts), 1),
+    A700: rgba(var(--accentContrastA700-parts), 1),
+  ),
 );
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -134,7 +156,7 @@ th {
 
 body {
   margin: 0;
-  background: #ebebeb;
+  background: var(--backgroundColor);
 }
 
 .mainWrapper {
@@ -161,7 +183,7 @@ img {
 }
 
 .department {
-  background: #ebebeb;
+  background: var(--backgroundColor);
   font-weight: normal;
   border-radius: 0 !important;
   line-height: 15px !important;

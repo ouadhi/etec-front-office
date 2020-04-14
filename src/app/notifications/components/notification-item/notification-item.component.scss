@@ -14,7 +14,7 @@ ion-item {
   }
   &.unread {
     --background: rgba(54, 127, 142, 0.08);
-    border-right: 4px solid #3d98aa;
+    border-right: 4px solid var(--primary500);
   }
   ion-button {
     --background: transparent;

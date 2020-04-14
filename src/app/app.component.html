@@ -5,7 +5,7 @@
       <!-- <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span> -->
 
       <span fxFlex>
-        <img height="50" src="/assets/logo.png" />
+        <img height="50" [src]="logo" />
       </span>
       <app-notifications-button *ngIf="loggedIn"></app-notifications-button>
 

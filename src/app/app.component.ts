@@ -7,6 +7,8 @@ import { SwitchLangService } from './switch-lang.service';
 import { Platform } from '@ionic/angular';
 import { ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfigService } from './config.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'rms';
 
-
+  logo = '';
   loggedIn = false;
   userDetails;
 
@@ -26,12 +28,19 @@ export class AppComponent implements OnInit {
     public translate: TranslateService,
     public switchLangService: SwitchLangService,
     private sessionService: SessionService,
+    private configService: ConfigService,
     public platform: Platform,
     private changeRef: ChangeDetectorRef,
     private zone: NgZone,
     private router: Router
   ) {
-    console.log('.');
+    this.configService.loadConfig().then(config => {
+      if (config.logo) {
+        this.logo = `${environment.cms.api.master}${config.logo.path}`;
+      } else {
+        this.logo = '/assets/logo.png';
+      }
+    });
     const DelayPlugin = {
       priority: 100,
       preRequest: (requestArgs) => {

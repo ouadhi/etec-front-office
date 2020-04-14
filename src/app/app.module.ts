@@ -109,6 +109,7 @@ import { RequestInfoDialogComponent } from './request-info/request-info.dialog';
 import { RequestQueryComponent } from './request-query/request-query.component';
 import { AnonymousInterceptor } from './anonymous.inteceptor';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { ConfigService } from './config.service';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -121,18 +122,15 @@ export class CustomLoader implements TranslateLoader {
       ar: '5d70008d303dd27e99fd0ac6',
       en: '5d7000998e0a143fd56188da'
     };
-    return combineLatest(
-      this.http.get<any>(
-        `${environment.formio.appUrl}localization/submission/${languages[lang]}`,
-      ),
-      this.http.get<any>(
-        `./assets/i18n/${lang}.json`,
-      )).pipe(
-        map((data) => {
-          return { ...data[1], forms: { ...data[1].forms, ...JSON.parse(data[0].data.textArea).forms } };
+    return this.http.get<any>(
+        `${environment.formio.appUrl}localization/submission/${languages[lang]}`)
+    .pipe(
+      map((data) => {
+        return JSON.parse(data.data.textArea);
+        //  return  { ...data[1], forms: { ...data[1].forms, ...JSON.parse(data[0].data.textArea).forms } };
 
-        })
-      );
+      })
+    );
   }
 }
 export function createExternalService(http: HttpClient) {
@@ -189,7 +187,7 @@ export function getFormioEnv() {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
+        useClass: CustomLoader,
         deps: [HttpClient]
       }
     }),
@@ -261,7 +259,7 @@ export function getFormioEnv() {
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
-      deps: [KeycloakService, SessionService, Platform]
+      deps: [KeycloakService, SessionService, Platform, ConfigService]
     },
     { provide: FormioAppConfig, useFactory: (getFormioEnv) },
     {
