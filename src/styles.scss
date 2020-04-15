@@ -22,7 +22,7 @@
     @return #{str-slice($color, 0, str-index($color, ",")) + $opacity + ")"};
   }
 
-  @return rgba($color, if($opacity == null, opacity($color),  $opacity));
+  @return rgba($color, if($opacity == null, opacity($color), $opacity));
 }
 // Plus imports for other components in your app.
 
@@ -181,7 +181,10 @@ img {
 .department__section {
   border-bottom: 5px #444 solid;
 }
-
+.app-formio .btn-primary {
+  background-color: rgba(var(--primary800-parts), 1);
+  border-color: rgba(var(--primary800-parts), 1);
+}
 .department {
   background: var(--backgroundColor);
   font-weight: normal;
