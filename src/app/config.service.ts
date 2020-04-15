@@ -20,7 +20,7 @@ export class ConfigService {
     }
 
     getAppConfig(queryParams = {}): Observable<any> {
-        const endpoint = `${environment.cms.api.master}${environment.cms.appConfig.endpoint}${environment.cms.appConfig.id}`;
+        const endpoint = `${environment.cms.api.master}${environment.cms.appConfig.endpoint}?filter[_id]=${environment.cms.appConfig.id}`;
         return this.http.post<any>(endpoint,
             {
 
