@@ -102,8 +102,8 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationsModule } from './notifications/notifications.module';
 import { NotificationsIndexComponent } from './notifications-index/notifications-index.component';
-import { combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, from } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 import { NotAllowedComponent } from './not-allowed/not-allowed.component';
 import { RequestInfoDialogComponent } from './request-info/request-info.dialog';
 import { RequestQueryComponent } from './request-query/request-query.component';
@@ -119,30 +119,45 @@ export class CustomLoader implements TranslateLoader {
   }
   getTranslation(lang: string) {
     try {
-      return combineLatest([
+      return combineLatest([ 
         this.http.get<any>(
-          `${environment.cms.api.master}/api/singletons/get/frontoffice_${lang}`, {}),
+          `${environment.cms.api.master}/api/collections/get/i18n?filter[name]=frontoffice_${lang}`, {}).pipe(
+            tap(data => data),
+            catchError((err) => {
+              return from([
+                { entries: [] }
+              ]);
+            })),
         this.http.get<any>(
-          `${environment.cms.api.master}/api/singletons/get/forms_${lang}`, {})
+          `${environment.cms.api.master}/api/collections/get/i18n?filter[name]=forms_${lang}`, {}).pipe(
+            tap(data => data),
+            catchError((err) => {
+              return from([
+                { entries: [] }
+              ]);
+            })),
+        this.http.get<any>(
+          `./assets/i18n/${lang}.json`,
+        ).pipe(data => {
+          return data;
+        })
       ])
         .pipe(
           map((data) => {
-            if (data[0].translations && Object.keys(data[0].translations).length === 0) {
-              throw new Error('Translations Empty');
+            if (data[0] && data[0].entries[0] && data[1] && data[1].entries[0]) {
+              const main = data[0].entries[0].translations;
+              const forms = data[1].entries[0].translations;
+              const translations = { ...main, forms: { ...main.forms, common: forms } };
+              return translations;
+            } else if (data[0] && data[0].entries[0]) {
+              return data[0].entries[0].translations;
+            } else {
+              return data[2];
             }
-            const translations = { ...data[0].translations, forms: { ...data[0].translations.forms, common: data[1].translations } };
-            return translations;
-            //  return  { ...data[1], forms: { ...data[1].forms, ...JSON.parse(data[0].data.textArea).forms } };
-
           })
         );
     } catch (e) {
       console.warn(e);
-      return this.http.get<any>(
-        `./assets/i18n/${lang}.json`,
-      ).pipe(data => {
-        return data;
-      });
     }
   }
 
