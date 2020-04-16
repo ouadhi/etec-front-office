@@ -118,19 +118,20 @@ export class CustomLoader implements TranslateLoader {
 
   }
   getTranslation(lang: string) {
-    const languages = {
-      ar: 'frontoffice_ar',
-      en: 'frontoffice_en'
-    };
     try {
-      return this.http.get<any>(
-        `${environment.cms.api.master}/api/singletons/get/${languages[lang]}`, {})
+      return combineLatest([
+        this.http.get<any>(
+          `${environment.cms.api.master}/api/singletons/get/frontoffice_${lang}`, {}),
+        this.http.get<any>(
+          `${environment.cms.api.master}/api/singletons/get/forms_${lang}`, {})
+      ])
         .pipe(
           map((data) => {
-            if (data.translations && Object.keys(data.translations).length === 0) {
+            if (data[0].translations && Object.keys(data[0].translations).length === 0) {
               throw new Error('Translations Empty');
             }
-            return data.translations;
+            const translations = { ...data[0].translations, forms: { ...data[0].translations.forms, common: data[1].translations } };
+            return translations;
             //  return  { ...data[1], forms: { ...data[1].forms, ...JSON.parse(data[0].data.textArea).forms } };
 
           })
