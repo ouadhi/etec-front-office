@@ -30,6 +30,10 @@ export const environment = {
       master: 'http://localhost:8080',
       assets: 'http://localhost:8080/storage/uploads'
     },
+    appConfig: {
+      endpoint: '',
+      id: ''
+    },
     portalUserToken: 'account-14ce9c9a25353166aee307ef60c25c'
   },
 
