@@ -60,7 +60,7 @@ const routes: Routes = [
     data: { roles: [environment.roles.beneficiary] },
   },
   {
-    path: 'request-task/:formKey/:taskId/:caseId/:requestId',
+    path: 'request-task/:taskId/:caseId/:requestId',
     component: RequestTaskComponent, canActivate: []
   },
   {

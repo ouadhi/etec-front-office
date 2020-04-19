@@ -34,7 +34,6 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
   handleAction(event) {
     if (event.type === 'task') {
       this.router.navigate(['/request-task',
-        `${this.link}-task`,
         event.activity.taskId,
         this.request.caseId,
         this.route.snapshot.params.id,

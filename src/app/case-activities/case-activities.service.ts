@@ -30,5 +30,11 @@ export class CaseActivityService {
             map(data => (data)
             ));
     }
+    getRequestTask(taskId, queryParams = {}) {
+        const endpoint = `${environment.requestApi.api}${environment.requestApi.rest.tasks}/${taskId}`;
+        return this.http.get<any>(endpoint, { params: queryParams }).pipe(
+            map(data => (data)
+            ));
+    }
 
 }

@@ -6,6 +6,7 @@ import { ModalController } from '@ionic/angular';
 import { SwitchLangService } from '../switch-lang.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { CaseActivityService } from '../case-activities/case-activities.service';
 
 /**
  * Main Task Component
@@ -42,6 +43,7 @@ export class RequestTaskComponent implements OnInit {
     public modalController: ModalController,
     public switchLangService: SwitchLangService,
     public toastr: ToastrService,
+    public caseActivity: CaseActivityService,
     private location: Location
 
   ) {
@@ -76,17 +78,22 @@ export class RequestTaskComponent implements OnInit {
    */
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.form.ready = false;
-      this.params = [{
-        url: `${environment.task.api}feasibilityStudySupportCase/${params.caseId}`,
-        parallel: false,
-        success: `submission.data = {...response.data, taskId:"${params.taskId}", requestId:"${params.requestId}"};`
-      }];
-      this.form.formKey = params.formKey;
+      this.caseActivity.getRequestTask(params.taskId).subscribe(data => {
+        if (data.formKey) {
+          this.form.ready = false;
+          this.params = [{
+            url: `${environment.task.api}${data.formKey.replace('{caseId}', params.caseId)}`,
+            parallel: false,
+            success: `submission.data = {...response.data, taskId:"${params.taskId}", requestId:"${params.requestId}"};`
+          }];
+          this.form.formKey = data.formKey.split('/')[2];
 
-      setTimeout(() => {
-        this.form.ready = true;
-      }, 0);
+          setTimeout(() => {
+            this.form.ready = true;
+          }, 0);
+        }
+      });
+
     });
   }
 
