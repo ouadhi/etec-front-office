@@ -9,6 +9,13 @@ export function initializer(
   keycloak: KeycloakService, session: SessionService, platform: Platform, config: ConfigService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
+      try {
+        config.loadConfig().then(() => {
+          config.setupEssentials();
+        });
+      } catch (e) {
+        console.warn(e);
+      }
       platform.ready().then(async () => {
         try {
           await keycloak.init({
@@ -33,12 +40,7 @@ export function initializer(
               // environment.requestApi.api
             ],
           });
-          try {
-            await config.loadConfig();
-            config.setupEssentials();
-          } catch (e) {
-            console.warn(e);
-          }
+
           if (await keycloak.isLoggedIn()) {
             await session.loadUserProfile();
           } else {
