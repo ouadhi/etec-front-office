@@ -119,14 +119,25 @@ export class CustomLoader implements TranslateLoader {
   }
   getTranslation(lang: string) {
     try {
-      return combineLatest([ 
+      return combineLatest([
         this.http.get<any>(
           `${environment.cms.api.master}/api/collections/get/i18n?filter[name]=frontoffice_${lang}`, {}).pipe(
-            tap(data => data),
+            tap(data => {
+              if (data && data.entries[0]) {
+                return data;
+              } else {
+                throw new Error('Translation List empty');
+              }
+            }),
             catchError((err) => {
-              return from([
-                { entries: [] }
-              ]);
+              console.warn(err);
+              return this.http.get<any>(
+                `./assets/i18n/${lang}.json`,
+              ).pipe(
+                map(data => {
+                  return { entries: [{ translations: data }] };
+                }
+                ));
             })),
         this.http.get<any>(
           `${environment.cms.api.master}/api/collections/get/i18n?filter[name]=forms_${lang}`, {}).pipe(
@@ -135,12 +146,8 @@ export class CustomLoader implements TranslateLoader {
               return from([
                 { entries: [] }
               ]);
-            })),
-        this.http.get<any>(
-          `./assets/i18n/${lang}.json`,
-        ).pipe(data => {
-          return data;
-        })
+            }))
+
       ])
         .pipe(
           map((data) => {
@@ -151,8 +158,6 @@ export class CustomLoader implements TranslateLoader {
               return translations;
             } else if (data[0] && data[0].entries[0]) {
               return data[0].entries[0].translations;
-            } else {
-              return data[2];
             }
           })
         );
