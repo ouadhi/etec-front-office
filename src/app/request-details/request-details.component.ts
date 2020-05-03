@@ -22,6 +22,7 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
 
   link: any;
   formData: any;
+  submission: any;
   cmmnId: any;
   sub: any;
   requestTask = [];
@@ -52,14 +53,18 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
         this.link = this.request.link;
         this.formData = this.request.data;
         this.cmmnId = this.request.cmmnId;
-        this.params = [
-          {
-            url: environment.beneficiaryApi.api,
-            success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
-            parallel: true
-          }
-        ];
-        this.formReady = true;
+        this.rest.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`).subscribe(data => {
+          this.submission = data;
+          this.params = [
+            {
+              url: environment.beneficiaryApi.api,
+              success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
+              parallel: true
+            }
+          ];
+          this.formReady = true;
+        })
+
       });
 
     });

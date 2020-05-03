@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DashletFilterAdapter } from './dashlet-filter.adapter';
 
@@ -53,6 +53,15 @@ export class RequestsService {
         tap(resp => resp),
         map(resp => resp)
       );
+  }
+
+  getGeneric(url, queryParams = {}): Observable<any> {
+    const endpoint = `${url}`;
+    return this.http.get<any>(endpoint, { params: queryParams }).pipe(
+      catchError((e) => {
+        throw e;
+      })
+    );
   }
   getRequest(id, queryParams = {}): Observable<any> {
     return this.http.get<any>(
