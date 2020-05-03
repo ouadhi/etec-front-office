@@ -110,6 +110,7 @@ import { RequestQueryComponent } from './request-query/request-query.component';
 import { AnonymousInterceptor } from './anonymous.inteceptor';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ConfigService } from './config.service';
+import { MoreInfoComponent } from './more-info/more-info.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -211,7 +212,8 @@ export function getFormioEnv() {
     NotificationsIndexComponent,
     NotAllowedComponent,
     RequestInfoDialogComponent,
-    RequestQueryComponent
+    RequestQueryComponent,
+    MoreInfoComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,48 @@
+<div class="app-formio">
+  <div style="visibility: visible; position: relative;">
+    <div class="mb-2 card border panel panel-default">
+      <div class="card-header bg-default panel-heading">
+        <h4 class="mb-0 card-title panel-title">{{'forms.common.More Information' | translate}}</h4>
+      </div>
+      <div class="card-body panel-body">
+        <div class="row formio-component formio-component-columns formio-component-panelColumns">
+          <ng-container *ngFor="let item of objectKeys(data)">
+            <div *ngIf="!isObject(data[item])" class="col col-sm-4 col-sm-offset-0 col-sm-push-0 col-sm-pull-0">
+              <!-- <ion-item class="big-chip" lines="full">
+              <h6 class="slotted">
+
+                <ion-text slot="start">{{translateKey(item.key)}}</ion-text>
+                <ion-text slot="end"> {{item.value ? item.value : '-'}}</ion-text>
+              </h6>
+            </ion-item> -->
+              <dl>
+                <dt>{{translateKey(item)}}</dt>
+                <dd>{{data[item] ? data[item] : '-'}}</dd>
+              </dl>
+            </div>
+            <div *ngIf="isObject(data[item])" class="col-12">
+              <h5 class="info-header">{{translateKey(item)}}</h5>
+              <div class="row">
+                <ng-container *ngFor="let innerItem of objectKeys(data[item])">
+                  <div class="col col-sm-4 col-sm-offset-0 col-sm-push-0 col-sm-pull-0">
+                    <!-- <ion-item class="big-chip" lines="full">
+                <h6 class="slotted">
+  
+                  <ion-text slot="start">{{translateKey(item.key)}}</ion-text>
+                  <ion-text slot="end"> {{item.value ? item.value : '-'}}</ion-text>
+                </h6>
+              </ion-item> -->
+                    <dl>
+                      <dt>{{translateKey(innerItem)}}</dt>
+                      <dd>{{data[item][innerItem] ? data[item][innerItem] : '-'}}</dd>
+                    </dl>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

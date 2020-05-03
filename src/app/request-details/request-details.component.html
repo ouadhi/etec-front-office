@@ -65,6 +65,9 @@
           <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link"
             [submission]="submission" [readOnly]="true" [viewOnly]="true">
           </formio>
+          <app-more-info *ngIf="submission && submission.data && submission.data.moreInfo"
+            [data]="submission.data.moreInfo"></app-more-info>
+
         </div>
       </div>
     </div>
