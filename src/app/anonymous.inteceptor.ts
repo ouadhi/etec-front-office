@@ -7,7 +7,7 @@ import {
     HttpResponse,
     HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { SessionService } from './session.service';
@@ -26,6 +26,18 @@ export class AnonymousInterceptor implements HttpInterceptor {
         request: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
+        return from(this.handle(request, next));
+    }
+
+    async handle(
+        request: HttpRequest<any>,
+        next: HttpHandler
+    ) {
+        this.isLoggedIn = await this.keycloakService.isLoggedIn();
+
+
+
+
         // how to update the request Parameters
         let updatedRequest = request;
         const anonToken = this.session.getAnonymousToken();
@@ -56,6 +68,7 @@ export class AnonymousInterceptor implements HttpInterceptor {
                     }
                 }
             )
-        );
+        ).toPromise();
     }
+
 }
