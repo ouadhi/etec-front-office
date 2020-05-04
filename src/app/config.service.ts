@@ -120,6 +120,9 @@ export class ConfigService {
                 document.getElementById('favicon').setAttribute('href', `${environment.cms.api.master}${this._config[key].path}`);
             }
         });
+        if (!this._config.favicon) {
+            document.getElementById('favicon').setAttribute('href', `/assets/favicon.ico`);
+        }
     }
 
 }
