@@ -11,10 +11,20 @@
   background-image: linear-gradient(to left, #ebebeb, #f9f9f9, #f9f9f9);
   /* margin-right: 30px; */
 }
+.acc {
+  border-width: 0;
+  border-color: white;
+  background: #f8f8f8;
+  padding: 0px;
+  background-image: linear-gradient(to left, #ebebeb, #f9f9f9, #f9f9f9);
+}
 [dir="rtl"] {
   .serviceCard__continer {
     border-left: 0px;
     border-right: 4px solid var(--primary500);
+    background-image: linear-gradient(to right, #ebebeb, #f9f9f9, #f9f9f9);
+  }
+  .acc {
     background-image: linear-gradient(to right, #ebebeb, #f9f9f9, #f9f9f9);
   }
 }
@@ -44,13 +54,6 @@
 
 .mat-expansion-panel:not([class*="mat-elevation-z"]) {
   box-shadow: none;
-}
-.acc {
-  border-width: 0;
-  border-color: white;
-  background: #f8f8f8;
-  padding: 0px;
-  background-image: linear-gradient(to right, #ebebeb, #f9f9f9, #f9f9f9);
 }
 
 /* styles for '...' */
