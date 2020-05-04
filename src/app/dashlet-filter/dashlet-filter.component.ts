@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment'
     styleUrls: ['./dashlet-filter.component.scss'],
     animations: [
         trigger('slideInOut', [
-            state('in', style({ 'max-height': '300px', opacity: 1, display: 'block' })),
+            state('in', style({ 'max-height': '350px', opacity: 1, display: 'block' })),
             state('out', style({ 'max-height': '0px', opacity: 0, display: 'none' })),
             transition('*=>in', animate('300ms')),
             transition('*=>out', animate('200ms'))

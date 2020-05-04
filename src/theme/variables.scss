@@ -5,12 +5,12 @@
 :root {
   /** primary **/
   --app-direction: multi;
-  --ion-color-primary: #4d668c;
-  --ion-color-primary-rgb: 77, 102, 140;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #445a7b;
-  --ion-color-primary-tint: #5f7598;
+  --ion-color-primary: var(--primary700);
+  --ion-color-primary-rgb:var(--primary700-parts);
+  --ion-color-primary-contrast:var(--primaryContrast700);
+  --ion-color-primary-contrast-rgb: var(--primaryContrast700-parts);
+  --ion-color-primary-shade: var(--primary500);
+  --ion-color-primary-tint:var(--primary800);
 
   /** secondary **/
   --ion-color-secondary: #e9a668;

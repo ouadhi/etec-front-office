@@ -26,20 +26,18 @@
             </div>
         </div>
         
-        <div class="col-12 col-md-2">
+        <div class="col-12 col-md-2 col-lg-2 filter-actions">
             <div class="row">
                 <div class="col-lg">
-                   
-                </div>
-                <div class="col-lg">
-                    <button type="button" class="btn btn-outline-info btn-sm" (click)="applyFilter()" style="margin-left: 5px; margin-right: 5px;">
+                    <button mat-raised-button color="primary" type="button" (click)="applyFilter()"
+                        style="margin-left: 5px; margin-right: 5px;">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-info btn-sm" (click)="reset()">
+                    <button mat-button color="" type="button" (click)="reset()">
                         <i class="fa fa-refresh" aria-hidden="true"></i>
                     </button>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </div>
