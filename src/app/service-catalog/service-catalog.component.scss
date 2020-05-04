@@ -1,35 +1,37 @@
-.filtersSection{
+.filtersSection {
     background: #f7f7f7;
     padding: 10px;
 }
 
-.filtersSection__keywordForm{
+.filtersSection__keywordForm {
     width: 100%;
-    text-align: right;
 }
-
-.filtersList{
-    margin:15px 0;
+[dir="rtl"] {
+    .filtersSection__keywordForm {
+        text-align: right;
+    }
+}
+.filtersList {
+    margin: 15px 0;
     border-bottom: 1px #ccc solid;
     padding-bottom: 15px;
 }
 
-.filtersList__head{
+.filtersList__head {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .filtersList__item {
-
 }
 
-.filtersList__item .mat-checkbox-inner-container{
+.filtersList__item .mat-checkbox-inner-container {
     margin-left: 10px;
 }
 
-.alignSwitchAR{
+.alignSwitchAR {
     text-align: right;
-  }
-  .alignSwitchEN{
+}
+.alignSwitchEN {
     text-align: left;
-  } 
+}

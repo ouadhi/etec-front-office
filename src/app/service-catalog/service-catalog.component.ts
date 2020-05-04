@@ -11,7 +11,7 @@ import { SwitchLangService } from './../switch-lang.service';
 @Component({
   selector: 'app-service-catalog',
   templateUrl: './service-catalog.component.html',
-  styleUrls: ['./service-catalog.component.css']
+  styleUrls: ['./service-catalog.component.scss']
 })
 export class ServiceCatalogComponent implements OnInit, OnDestroy {
 

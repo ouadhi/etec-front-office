@@ -237,8 +237,10 @@ mat-checkbox .mat-checkbox-inner-container {
   margin-left: 8px;
 }
 
-.mat-form-field {
-  text-align: right !important;
+[dir="rtl"] {
+  .mat-form-field {
+    text-align: right !important;
+  }
 }
 
 .inlineRowItem {

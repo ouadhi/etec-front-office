@@ -222,8 +222,8 @@
               <app-service-card id="{{x?._id}}" cardTitle="{{x[trans._key('serviceName')]}}" text="{{x[trans._key('description')]}}" fxFlex="49" fxFlex.xs="100"></app-service-card>         
             </ng-container>
       
-            <div fxLayout="row" fxLayoutAlign="center center">
-              <mat-card *ngIf="(filtered)?.length === 0">
+            <div *ngIf="(filtered)?.length === 0" fxLayout="row" fxLayoutAlign="center center">
+              <mat-card >
                     {{'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate}}
                     <br><br>
                   <button mat-stroked-button color="warn" (click)="resetFilters()" [disabled]="userSegments?.length>0">{{'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate}}</button>
