@@ -23,6 +23,7 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
   link: any;
   formData: any;
   submission: any;
+  moreInfo: any;
   cmmnId: any;
   sub: any;
   requestTask = [];
@@ -55,6 +56,7 @@ export class RequestDetailsComponent implements OnInit, OnDestroy {
         this.cmmnId = this.request.cmmnId;
         this.rest.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`).subscribe(data => {
           this.submission = data;
+          this.moreInfo = (data.data.moreInfo && Object.keys(data.data.moreInfo).length) ? data.data.moreInfo : null;
           this.params = [
             {
               url: environment.beneficiaryApi.api,
