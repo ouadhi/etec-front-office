@@ -166,6 +166,10 @@ html[dir="rtl"] {
     font-size: 15px;
     font-family: "Tajawal", sans-serif !important;
   }
+  .update {
+    left: 20px;
+    right: auto;
+  }
   .big-chip h6 {
     direction: rtl;
   }
@@ -207,6 +211,14 @@ html[dir="rtl"] {
         text-align: right;
       }
     }
+  }
+
+  .ng-select .ng-has-value .ng-placeholder,
+  .ng-select.ng-select-focused .ng-placeholder,
+  .ng-select.ng-select-opened .ng-placeholder {
+    -webkit-transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px) translateZ(0.001px) !important;
+    transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px) translateZ(0.001px) !important;
+    transform-origin: right;
   }
 }
 @media (max-width: 321px) {
@@ -463,7 +475,7 @@ html[dir="rtl"] {
     }
   }
 }
-[dir="rtl"]{
+[dir="rtl"] {
   .big-chip {
     color: #fff;
     border-radius: 6px;
@@ -501,7 +513,7 @@ html[dir="rtl"] {
         rgba(30, 87, 153, 0) 50%,
         rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  
+
       ion-icon {
         color: var(--ion-color-tertiary);
       }
@@ -523,7 +535,7 @@ html[dir="rtl"] {
         rgba(30, 87, 153, 0) 50%,
         rgba(var(--ion-color-success-rgb), 0.1) 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  
+
       ion-icon {
         color: var(--ion-color-success);
       }
@@ -545,7 +557,7 @@ html[dir="rtl"] {
         rgba(30, 87, 153, 0) 50%,
         rgba(var(--ion-color-warning-rgb), 0.1) 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  
+
       ion-icon {
         color: var(--ion-color-warning);
       }
@@ -567,7 +579,7 @@ html[dir="rtl"] {
         rgba(30, 87, 153, 0) 50%,
         rgba(var(--ion-color-primary-rgb), 0.1) 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  
+
       ion-icon {
         color: var(--ion-color-primary);
       }
@@ -589,7 +601,7 @@ html[dir="rtl"] {
         rgba(30, 87, 153, 0) 50%,
         rgba(var(--ion-color-secondary-rgb), 0.1) 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  
+
       ion-icon {
         color: var(--ion-color-secondary);
       }
@@ -611,7 +623,7 @@ html[dir="rtl"] {
         rgba(30, 87, 153, 0) 50%,
         rgba(var(--ion-color-danger-rgb), 0.1) 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  
+
       ion-icon {
         color: var(--ion-color-danger);
       }
@@ -633,7 +645,7 @@ html[dir="rtl"] {
         rgba(30, 87, 153, 0) 50%,
         rgba(var(--ion-color-light-rgb), 1) 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  
+
       ion-icon {
         color: var(--ion-color-medium);
       }
@@ -655,7 +667,7 @@ html[dir="rtl"] {
         rgba(30, 87, 153, 0) 50%,
         rgba(var(--ion-color-medium-rgb), 0.1) 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  
+
       ion-icon {
         color: var(--ion-color-medium);
       }

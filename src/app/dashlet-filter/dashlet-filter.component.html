@@ -18,16 +18,24 @@
                         <mat-datepicker #td></mat-datepicker>
                     </mat-form-field>
                 </div>
-                <div class="col-lg-6">
+                <div
+                    [ngClass]="{'col-lg-4':filterData.services.length == 1,'col-lg-6':filterData.services.length != 1}">
                     <app-select [placeholder]="'Service' | translate" [hideLoaded]="true"
                         (select)="handleStatus($event)" [(ngModel)]="filterData.services" [data]="servicesFilterData"
                         [bindValue]="'id'" [bindLabel]="'name'" [multiple]="true">
                     </app-select>
                 </div>
+               
                 <div *ngIf="filterData.services.length == 1" class="col-lg-2">
                     <app-select [placeholder]="'Status' | translate" [hideLoaded]="true"
                         [(ngModel)]="filterData.statuses" [data]="statusFilterData" [bindValue]="'id'"
                         [bindLabel]="'name'" [multiple]="true">
+                    </app-select>
+                </div>
+                 <div class="col-lg-2">
+                    <app-select [placeholder]="'SERVICE.NEEDS_UPDATE_SHORT' | translate" [hideLoaded]="true"
+                        [(ngModel)]="filterData.activeTask" [data]="[{id:true,name:'true'},{id:false,name:'false'}]"
+                        [bindValue]="'id'" [bindLabel]="'name'" [multiple]="false">
                     </app-select>
                 </div>
             </div>

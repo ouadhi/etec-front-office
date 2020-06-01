@@ -101,7 +101,7 @@ mat-header-cell:first-of-type {
     vertical-align: middle;
   }
 
-  mat-header-row{
+  mat-header-row {
     display: none;
   }
 
@@ -152,7 +152,7 @@ mat-header-cell:first-of-type {
       margin-top: -7px;
     }
   }
-  
+
   .mat-table .mat-cell:before {
     /*
     * aria-label has no advantage, it won't be read inside a table
@@ -173,16 +173,32 @@ mat-header-cell:first-of-type {
     margin-top: 4%;
   }
 
- .alignSwitchAR{
+  .alignSwitchAR {
     text-align: right;
   }
-  .alignSwitchEN{
+  .alignSwitchEN {
     text-align: left;
-  } 
+  }
 }
 
 @media (max-width: 767px) {
   ion-title {
     padding: 10px;
   }
+}
+.update-required {
+  position: relative;
+}
+.update {
+  position: absolute;
+  font-size: 11px;
+  z-index: 999;
+  /* background: #fff; */
+  color: #efb800;
+  /* padding: 2px 5px; */
+  border-radius: 6px;
+  /* border: 1px solid #ce9f00; */
+  right: 20px;
+  font-size: 32px;
+  bottom: -6px;
 }

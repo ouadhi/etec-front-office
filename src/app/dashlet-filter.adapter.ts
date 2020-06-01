@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { isNumber } from 'util';
+import { isNumber, isBoolean } from 'util';
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -18,11 +18,13 @@ export class DashletFilterAdapter {
             'requestDate.lessOrEqualThan': item.requestDateBefore,
             'cmmnStatus.in': item.statuses,
             'serviceId.in': item.services,
+            'activeTask.equals': item.activeTask,
             sort: item.sort,
             page: item.page,
             size: item.size
         });
-        Object.keys(query).forEach((key) => (query[key] == null || !query[key].length && !isNumber(query[key])) && delete query[key]);
+        Object.keys(query).forEach((key) => (query[key] == null || !query[key].length && !isNumber(query[key]) && 
+        !isBoolean(query[key])) && delete query[key]);
 
         return (query);
     }

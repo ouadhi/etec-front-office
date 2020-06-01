@@ -28,7 +28,7 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
   disabled = [];
   tags: any[];
   tagsInput: object;
-
+  hasTask = false;
   public keyword = '';
 
   dataFilters: any = {
@@ -64,7 +64,15 @@ export class ServiceCatalogComponent implements OnInit, OnDestroy {
 
     this.search();
     this.prepareFiltersFetch();  // this.prepareFilters(this.userSegments);
-
+    this.keycloakService.isLoggedIn().then(loggedIn => {
+      if (loggedIn) {
+        this.requestsService.getRequests({ activeTask: true }).subscribe(data => {
+          if (data.items.length) {
+            this.hasTask = true;
+          }
+        });
+      }
+    });
   }
   ngOnDestroy() {
     // this.keycloakService.keycloakEvents$.unsubscribe();

@@ -1,8 +1,7 @@
-import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Observable } from 'rxjs';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FilterService } from '../filter.service';
-import { environment } from '../../environments/environment'
 
 @Component({
     selector: 'app-dashlet-filter',
@@ -31,13 +30,14 @@ export class DashletFilterComponent implements OnInit {
     filterData = {
         services: [],
         statuses: [],
+        activeTask: null,
         requestDateAfter: '',
         requestDateBefore: ''
 
     };
     @Input() show = false;
     @Output() filter: EventEmitter<any> = new EventEmitter();
-    constructor(private filterService: FilterService) { }
+    constructor(private filterService: FilterService, public route: ActivatedRoute) { }
 
     applyFilter() {
         this.filter.next(this.filterData);
@@ -46,6 +46,7 @@ export class DashletFilterComponent implements OnInit {
         this.filterData = {
             services: [],
             statuses: [],
+            activeTask: null,
             requestDateAfter: '',
             requestDateBefore: ''
         };
@@ -67,5 +68,12 @@ export class DashletFilterComponent implements OnInit {
     ngOnInit() {
 
         this.filterService.getServices().subscribe(data => this.servicesFilterData = data);
+        this.route.params.subscribe(params => {
+            console.log(params);
+            if (params.u === '1') {
+                this.filterData.activeTask = true;
+                this.applyFilter();
+            }
+        });
     }
 }
