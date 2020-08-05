@@ -181,7 +181,8 @@ img {
 .department__section {
   border-bottom: 5px #444 solid;
 }
-.app-formio .btn-primary {
+.app-formio .btn-primary,
+.app-formio .btn-default {
   background-color: rgba(var(--primary800-parts), 1);
   border-color: rgba(var(--primary800-parts), 1);
 }
