@@ -29,7 +29,7 @@ export const environment = {
       // assets: 'http://ec2-100-24-44-125.compute-1.amazonaws.com:8089/storage/uploads'
       master: 'http://localhost:8080',
       assets: 'http://localhost:8080/storage/uploads',
-     
+
     },
     appConfig: {
       endpoint: '',
@@ -100,7 +100,8 @@ export const environment = {
     department_specialist: 'ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST'
   },
   notifications: {
-    api: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8082/notifications/api/'
+    api: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8082/notifications/api/',
+    socket: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8082/websocket/ekhaa'
   }
 };
 

@@ -98,7 +98,8 @@ export const environment = {
     department_specialist: 'ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST'
   },
   notifications: {
-    api: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/notifications/v2/api/'
+    api: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8080/notifications/v2/api/',
+    socket: 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8082/websocket/ekhaa'
   }
 };
 

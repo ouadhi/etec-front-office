@@ -85,6 +85,7 @@
         "api": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8080/orphansmicroservices/api/"
     },
     "notifications": {
-        "api": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8080/notification/api/"
+        "api": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8080/notification/api/",
+        "socket": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8082/websocket/ekhaa"
     }
 }

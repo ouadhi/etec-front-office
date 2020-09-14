@@ -59,7 +59,7 @@ export class NotificationsService implements OnInit {
     }
     // building absolute path so that websocket doesn't fail when deploying with a context path
     let url;
-    url = 'http://ec2-34-226-249-174.compute-1.amazonaws.com:8082/websocket/ekhaa';
+    url = environment.notifications.socket;
     const socket = new SockJS(url);
     this.stompClient = Stomp.over(socket);
     const headers = {
