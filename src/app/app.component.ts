@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
                 requestArgs.opts.header.append('content-type', `application/json`);
                 requestArgs.opts.header.append('Authorization', `bearer ${token}`);
               }
-              resolve();
+              resolve(true);
             });
           } else {
             const token = this.sessionService.getAnonymousToken();
@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
               requestArgs.opts.header.append('content-type', `application/json`);
               requestArgs.opts.header.append('Authorization', `bearer ${token}`);
             }
-            resolve();
+            resolve(true);
           }
         });
       }

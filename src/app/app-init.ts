@@ -47,7 +47,7 @@ export function initializer(
             const kc = keycloak.getKeycloakInstance();
             console.log(kc);
           }
-          resolve();
+          resolve(true);
 
         } catch (error) {
           reject(error);

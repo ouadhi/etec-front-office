@@ -33,23 +33,29 @@
             ],
             "styles": [
               {
-                "input": "src/theme/variables.scss"
+                "input": "src/theme/variables.scss",
+                "inject": true
               },
               {
-                "input": "src/global.scss"
+                "input": "src/global.scss",
+                "inject": true
               },
               {
-                "input": "node_modules/font-awesome/scss/font-awesome.scss"
+                "input": "node_modules/font-awesome/scss/font-awesome.scss",
+                "inject": true
               },
               {
-                "input": "node_modules/formiojs/dist/formio.form.min.css"
+                "input": "node_modules/formiojs/dist/formio.form.min.css",
+                "inject": true
               },
               {
-                "input": "node_modules/@ng-select/ng-select/themes/material.theme.css"
+                "input": "node_modules/@ng-select/ng-select/themes/material.theme.css",
+                "inject": true
               },
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "aot": true
           },
           "configurations": {
             "production": {
@@ -61,8 +67,6 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -73,11 +77,21 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             },
             "ci": {
-              "progress": false
+              "progress": false,
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
             }
           }
         },

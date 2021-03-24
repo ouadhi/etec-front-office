@@ -8,15 +8,18 @@ import { environment } from 'src/environments/environment';
 })
 export class NewsItemUiComponent implements OnInit {
 
-  constructor() { }
-
   @Input() title;
   @Input() date;
   @Input() image;
   @Input() link;
   @Input() description;
-  description_plainText = this.description;
+  description_plainText;
   public assetPath = environment.cms.api.assets;
+  constructor() {
+    this.description_plainText = this.description;
+
+   }
+
 
   maxTitleLength = 90;
   maxDescriptionLength = 160;

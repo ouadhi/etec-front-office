@@ -3,7 +3,6 @@
 // The list of file replacements can be found in `angular.json`.
 
 
-import { KeycloakConfig } from 'keycloak-angular';
 
 // Add here your keycloak setup infos
 const keycloakConfig = {
