@@ -17,6 +17,7 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
     activities = [];
     initSlider = false;
     customOptions;
+
     constructor(public injector: Injector,
         private caseActivityService: CaseActivityService) { super(injector); }
 
@@ -96,7 +97,13 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
             .subscribe(data => {
 
                 this.activities = data;
-                this.activities.filter(activity => {
+                this.activities.forEach(activity => {
+                    if (activity.caseActivityName === 'task') {
+                        activity.caseActivityName = this.switchLangService.getTranslated('SERVICE.beneficiaryTask');
+                    }
+                    else {
+                        activity.caseActivityName = this.switchLangService.getTranslated(activity.caseActivityName, 'STATUSES');
+                    }
                     if (activity.caseActivityType === 'humanTask' && activity.active && !activity.completed) {
                         this.task.emit(activity);
                     }

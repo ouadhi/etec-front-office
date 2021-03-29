@@ -1,11 +1,8 @@
 <app-section sectionTitle="{{'NEWS.TITLE' | translate}}">
     <div fxLayout="row wrap" fxLayoutGap="30px grid" fxLayoutAlign="start space-evenly">
         <div fxFlex="50" *ngFor="let item of news">
-            <app-news-item-ui 
-                [title]="item[switchLangService._key('title')]"
-                [link]="'/news/details/'+item._id"
-                [description]="item[switchLangService._key('description')]"
-                [image]="item.image"
+            <app-news-item-ui [title]="item['title_' + switchLangService.current]" [link]="'/news/details/'+item._id"
+                [description]="item['description_' + switchLangService.current]" [image]="item.image"
                 [date]="item._created">
             </app-news-item-ui>
         </div>

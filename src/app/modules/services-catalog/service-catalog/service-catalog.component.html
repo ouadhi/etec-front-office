@@ -33,8 +33,9 @@
     <section fxLayout="row wrap" fxLayoutAlign="space-between top">
 
       <ng-container *ngFor="let x of dataMostUsed;let i = index">
-        <app-service-card *ngIf="i < 6" id="{{x?._id}}" cardTitle="{{x[switchLangService._key('serviceName')]}}"
-          text="{{x[switchLangService._key('description')]}}" fxFlex="49" fxFlex.xs="100"></app-service-card><!-- @TODO temp -->
+        <app-service-card *ngIf="i < 6" id="{{x?._id}}" cardTitle="{{x['serviceName_' + switchLangService.current]}}"
+          text="{{x['description_' + switchLangService.current]}}" fxFlex="49" fxFlex.xs="100"></app-service-card>
+        <!-- @TODO temp -->
       </ng-container>
 
     </section>
@@ -80,14 +81,14 @@
 
             <ng-container *ngFor="let a of segmentType">
               <div class="filtersList" [style.display]="a.visible ? 'block': 'none'">
-                <div class="filtersList__head">{{a[switchLangService._key('segmentTypeName')]}}</div>
+                <div class="filtersList__head">{{a['segmentTypeName_' + switchLangService.current]}}</div>
                 <ng-container *ngFor="let b of segments">
                   <div class="filtersList__item">
                     <!-- (change)="filterSegment(b._id)" -->
-                    <mat-checkbox [disabled]="isDisabled(a,b)" class="filterCheckbox__input"
+                    <mat-checkbox [disabled]="b.isDisabled" class="filterCheckbox__input"
                       *ngIf="b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]"
                       [(ngModel)]="segmentInput[a?._id][b?._id]" (change)="filterSegment()">
-                      {{b[switchLangService._key('segmentName')]}}</mat-checkbox>
+                      {{b['segmentName_' + switchLangService.current]}}</mat-checkbox>
                   </div>
                 </ng-container>
               </div>
@@ -147,14 +148,14 @@
 
                     <ng-container *ngFor="let a of segmentType">
                       <div class="filtersList" [style.display]="a.visible ? 'block': 'none'">
-                        <div class="filtersList__head">{{a[switchLangService._key('segmentTypeName')]}}</div>
+                        <div class="filtersList__head">{{a['segmentTypeName_' + switchLangService.current]}}</div>
                         <ng-container *ngFor="let b of segments">
                           <div class="filtersList__item">
                             <!-- (change)="filterSegment(b._id)" -->
-                            <mat-checkbox [disabled]="isDisabled(a,b)" class="filterCheckbox__input"
+                            <mat-checkbox [disabled]="b.isDisabled" class="filterCheckbox__input"
                               *ngIf="b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]"
                               [(ngModel)]="segmentInput[a?._id][b?._id]" (change)="filterSegment()">
-                              {{b[switchLangService._key('segmentName')]}}</mat-checkbox>
+                              {{b['segmentName_' + switchLangService.current]}}</mat-checkbox>
                           </div>
                         </ng-container>
                       </div>
@@ -185,7 +186,7 @@
               mat-button (click)="filterDepartment()">{{'CATALOG.ALL_DEPARTMENTS' | translate}}</button>
             <ng-container *ngFor="let x of departments">
               <button fxFlex class="department" [class.active]="x._id==dataFilters.category.department._id" mat-button
-                (click)="filterDepartment(x._id)">{{x[switchLangService._key('departmentName')]}}</button>
+                (click)="filterDepartment(x._id)">{{x['departmentName_' + switchLangService.current]}}</button>
             </ng-container>
           </div>
 
@@ -199,7 +200,7 @@
                 <ng-container *ngFor="let y of categories">
                   <button *ngIf="y.department._id == x._id" [class.active]="y._id==dataFilters.category._id"
                     class="category" mat-button (click)="filterCategory(y._id)">
-                    {{y[switchLangService._key('categoryName')]}}
+                    {{y['categoryName_' + switchLangService.current]}}
                   </button>
                 </ng-container>
               </div>
@@ -239,7 +240,8 @@
                     <div class="card-header" id="headingTwo">
                       <a class="text-dark" href="#departments-{{ i }}" data-toggle="collapse"><button fxFlex
                           class="department btn" [class.active]="x._id==dataFilters.category.department._id" mat-button
-                          (click)="filterDepartment(x._id)">{{x[switchLangService._key('departmentName')]}}</button></a>
+                          (click)="filterDepartment(x._id)">{{x['departmentName_' +
+                          switchLangService.current]}}</button></a>
                     </div>
                     <div id="departments-{{ i }}" class="collapse" aria-labelledby="headingTwo"
                       data-parent="#accordionExample">
@@ -256,7 +258,7 @@
                                   <button *ngIf="y.department._id == x._id"
                                     [class.active]="y._id==dataFilters.category._id"
                                     class="btn btn-lg btn-block category" mat-button (click)="filterCategory(y._id)">
-                                    {{y[switchLangService._key('categoryName')]}}
+                                    {{y['categoryName_' + switchLangService.current]}}
                                   </button>
                                 </div>
                               </li>
@@ -274,8 +276,8 @@
         <div style="margin-top: 20px;">
           <section fxLayout="row wrap" fxLayoutAlign="space-between top">
             <ng-container *ngFor="let x of filtered;trackBy: trackByFn">
-              <app-service-card id="{{x?._id}}" cardTitle="{{x[switchLangService._key('serviceName')]}}"
-                text="{{x[switchLangService._key('description')]}}" fxFlex="49" fxFlex.xs="100"></app-service-card>
+              <app-service-card id="{{x?._id}}" cardTitle="{{x['serviceName_' + switchLangService.current]}}"
+                text="{{x['description_' + switchLangService.current]}}" fxFlex="49" fxFlex.xs="100"></app-service-card>
             </ng-container>
 
             <div *ngIf="(filtered)?.length === 0" fxLayout="row" fxLayoutAlign="center center">

@@ -43,8 +43,11 @@ export class SwitchLangService {
     }
   }
 
+  get current(): string {
+    return this.getSelectedLang();
+  }
+
   _key(key) {
     return key + '_' + this.getSelectedLang();
   }
-
 }

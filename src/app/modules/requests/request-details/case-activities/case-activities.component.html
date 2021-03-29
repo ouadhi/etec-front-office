@@ -37,7 +37,7 @@
                             </div>
                             <ion-chip [color]="activity.completed ? 'success' : 'medium'">
                                 <ion-label>
-                                    {{activity.caseActivityName === 'task' ? ('SERVICE.beneficiaryTask' | translate) :  switchLangService.getTranslated(activity.caseActivityName,'STATUSES')}}
+                                    {{activity.caseActivityName}}
                                     <span class="mdate">
                                         {{activity.endTime | date}} {{ activity.endTime | date:'shortTime' }}
                                     </span>

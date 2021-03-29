@@ -215,6 +215,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
             }
           });
           this.segmentInput = { ...this.segmentInput, ...newObj };
+          this.segments.forEach(element=> element.isDisabled = this.isDisabled(type, element));
           // console.log(this.segmentInput);
         });
 

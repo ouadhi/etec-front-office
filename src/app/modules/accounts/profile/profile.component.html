@@ -90,7 +90,8 @@
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.MARITAL_STATE' | translate }} </ion-text>
               <ion-text slot="end">
-                {{data.maritalState ? data.maritalState[switchLangService._key('segmentName')] : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+                {{data.maritalState ? data.maritalState['segmentName_' + switchLangService.current] : ('PROFILE.NOT_SET'
+                | translate)}}</ion-text>
             </h6>
           </ion-item>
         </div>
@@ -147,7 +148,7 @@
           <ion-item class="big-chip light" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.INVESTMENT_BANK_IBAN' | translate }} </ion-text>
-              <ion-text slot="end">{{data.investmentIBAN  ? data.investmentIBAN : ('PROFILE.NOT_SET' | translate)}}
+              <ion-text slot="end">{{data.investmentIBAN ? data.investmentIBAN : ('PROFILE.NOT_SET' | translate)}}
               </ion-text>
             </h6>
           </ion-item>
@@ -165,7 +166,8 @@
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.HAS_COMMERCIAL_REGISTRATION' | translate }} </ion-text>
               <ion-text slot="end">
-                {{data.haveCommercialRegister ? data.haveCommercialRegister.toString() : 'PROFILE.NOT_SET' | translate}}</ion-text>
+                {{data.haveCommercialRegister ? data.haveCommercialRegister.toString() : 'PROFILE.NOT_SET' | translate}}
+              </ion-text>
             </h6>
           </ion-item>
         </div>
@@ -173,7 +175,8 @@
           <ion-item class="big-chip light" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.STOPPED_SERVICES' | translate }} </ion-text>
-              <ion-text slot="end">{{data.stoppedServices ? data.stoppedServices.toString() : 'PROFILE.NOT_SET' | translate}}
+              <ion-text slot="end">{{data.stoppedServices ? data.stoppedServices.toString() : 'PROFILE.NOT_SET' |
+                translate}}
               </ion-text>
             </h6>
           </ion-item>
@@ -184,7 +187,8 @@
           <ion-item class="big-chip light" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.PRISONED' | translate }}</ion-text>
-              <ion-text slot="end">{{data.prisoned ? data.prisoned.toString() : 'PROFILE.NOT_SET' | translate}}</ion-text>
+              <ion-text slot="end">{{data.prisoned ? data.prisoned.toString() : 'PROFILE.NOT_SET' | translate}}
+              </ion-text>
             </h6>
           </ion-item>
         </div>
@@ -203,10 +207,12 @@
           <ion-item class="big-chip light" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">
-                {{segment.segmentType ? segment.segmentType[switchLangService._key('segmentTypeName')] : segment.typeId}}
+                {{segment.segmentType ? segment.segmentType['segmentTypeName_' + switchLangService.current] :
+                segment.typeId}}
               </ion-text>
               <ion-text slot="end">
-                {{segment.segment ? segment.segment[switchLangService._key('segmentName')] : (segment.value || ('PROFILE.NOT_SET' | translate))}}
+                {{segment.segment ? segment.segment['segmentName_' + switchLangService.current] : (segment.value ||
+                ('PROFILE.NOT_SET' | translate))}}
               </ion-text>
             </h6>
           </ion-item>

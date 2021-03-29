@@ -24,7 +24,7 @@
 
     <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
       <mat-header-cell mat-sort-header disableClear="true" [disabled]="!columns[col].sortable" *matHeaderCellDef>
-        {{switchLangService.getTranslated(columns[col].name)}}
+        {{columns[col].name | translate}}
       </mat-header-cell>
 
       <mat-cell [attr.data-label]="columns[col].name | translate" *matCellDef="let element">
@@ -41,14 +41,15 @@
           <button mat-flat-button color="primary"
             [routerLink]="[detailsRouterForEachItem, element[columns[col].param1]]">{{'Details' | translate}}</button>
           <span *ngIf="element.activeTask" class="update">
-            <ion-icon  [matTooltip]="'SERVICE.NEEDS_UPDATE' | translate"
-            [matTooltipPosition]="'below'" [name]="'alert'" size="large" class="alert-icon"></ion-icon>
+            <ion-icon [matTooltip]="'SERVICE.NEEDS_UPDATE' | translate" [matTooltipPosition]="'below'" [name]="'alert'"
+              size="large" class="alert-icon"></ion-icon>
           </span>
 
         </ng-container>
         <ng-container *ngIf="columns[col].display == 'detailsButton_oneParam'">
           <button mat-flat-button color="primary"
-            [routerLink]="[detailsRouterForEachItem, (element[columns[col].param1] || '' )]">{{'Details' | translate}}</button>
+            [routerLink]="[detailsRouterForEachItem, (element[columns[col].param1] || '' )]">{{'Details' |
+            translate}}</button>
         </ng-container>
 
         <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
@@ -57,8 +58,9 @@
 
           </ng-container>
           <ng-template #normal>
-
-            {{element[col].length ? switchLangService.getTranslated( element[col],columns[col].translationSource) : element[col] }}
+            {{element[col].length && columns[col].translationSource ?
+            ((columns[col].translationSource + '.' + element[col]) | translate) :
+            element[col] }}
           </ng-template>
         </ng-container>
 

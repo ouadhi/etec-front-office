@@ -1,18 +1,16 @@
-<app-page pageTitle="{{data[switchLangService._key('title')]}}" hasBackButton="true">
-  
+<app-page pageTitle="{{data['title_' + switchLangService.current]}}" hasBackButton="true">
+
   <div fxLayout="row">
-    
+
     <div fxFlex="70">
       <small>{{data['_created'] * 1000 | date}}</small>
-      <div [innerHTML]="data[switchLangService._key('description')]"></div>
+      <div [innerHTML]="data['description_' + switchLangService.current]"></div>
     </div>
 
     <div fxFlex="30">
-        <img src="{{assetPath}}/{{data['image'].path}}">
+      <img src="{{assetPath}}/{{data['image'].path}}">
     </div>
 
   </div>
 
 </app-page>
-
- 

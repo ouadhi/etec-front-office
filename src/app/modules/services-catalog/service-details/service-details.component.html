@@ -1,4 +1,5 @@
-<app-page pageTitle="{{'SERVICE.SERVICE' | translate}}: {{data ? data[switchLangService._key('serviceName')]: '' }}">
+<app-page
+  pageTitle="{{'SERVICE.SERVICE' | translate}}: {{data ? data['serviceName_' + switchLangService.current]: '' }}">
 
   <div *ngIf="!active">
     {{'SERVICE.IS_NOT_ACTIVE' | translate}}
@@ -7,7 +8,7 @@
 
     <div fxFlex="70">
       <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
-        {{data[switchLangService._key('description')]}}
+        {{data['description_' + switchLangService.current]}}
 
         <button *ngIf="(isLoggedIn && data.canAnonymousApply) || !data.canAnonymousApply"
           [routerLink]="['/requests/request', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
@@ -24,8 +25,8 @@
 
       <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
         <!-- {{data[switchLangService._key('conditionsAndRequirements')]}} -->
-        <ul *ngIf="data[switchLangService._key('conditionsAndRequirements')].length">
-          <li *ngFor="let item of data[switchLangService._key('conditionsAndRequirements')]">{{item.value}}</li>
+        <ul *ngIf="data['conditionsAndRequirements_' + switchLangService.current].length">
+          <li *ngFor="let item of data['conditionsAndRequirements' + switchLangService.current]">{{item.value}}</li>
         </ul>
       </app-section>
 
@@ -35,25 +36,25 @@
 
           <mat-expansion-panel *ngFor="let item of data.FAQ">
             <mat-expansion-panel-header>
-              {{item[switchLangService._key('question')]}}
+              {{item['question_' + switchLangService.current]}}
             </mat-expansion-panel-header>
-            {{item[switchLangService._key('answer')]}}
+            {{item['answer_' + switchLangService.current]}}
           </mat-expansion-panel>
         </mat-accordion>
 
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.REQUIRED_DOCS' | translate}}">
-        <ul *ngIf="data[switchLangService._key('requiredDocs')]">
-          <li *ngFor="let doc of data[switchLangService._key('requiredDocs')]">
+        <ul *ngIf="data['requiredDocs_' + switchLangService.current]">
+          <li *ngFor="let doc of data['requiredDocs_' + switchLangService.current]">
             {{doc.value}}
           </li>
         </ul>
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.STEPS' | translate}}">
-        <ol *ngIf=" data[switchLangService._key('steps')].length">
-          <li *ngFor="let step of data[switchLangService._key('steps')]">
+        <ol *ngIf=" data['steps_' + switchLangService.current].length">
+          <li *ngFor="let step of data['steps_' + switchLangService.current]">
             {{step.value}}
           </li>
         </ol>
@@ -67,8 +68,10 @@
         </div> -->
 
         <div class="inlineRowItem">{{'SERVICE.CHANNEL' | translate}}:
-          <mat-chip-list *ngIf=" data[switchLangService._key('channel')].length" class="mat-chip-list--inlineBlock">
-            <mat-chip color="primary" *ngFor="let channel of data[switchLangService._key('channel')]">{{channel.value}}
+          <mat-chip-list *ngIf=" data['channel_' + switchLangService.current].length"
+            class="mat-chip-list--inlineBlock">
+            <mat-chip color="primary" *ngFor="let channel of data['channel_' + switchLangService.current]">
+              {{channel.value}}
             </mat-chip>
           </mat-chip-list>
         </div>
@@ -85,15 +88,15 @@
         </div>
 
         <div class="inlineRowItem">{{'SERVICE.PRIMARY_SERVICE' |translate}} :
-          {{data[switchLangService._key('primaryService')]}}
-          <span [hidden]="data[switchLangService._key('primaryService')]">{{'SERVICE.NO_ENTRY' | translate}}</span>
+          {{data['primaryService_' + switchLangService.current]}}
+          <span [hidden]="data['primaryService_' + switchLangService.current]">{{'SERVICE.NO_ENTRY' | translate}}</span>
         </div>
 
       </app-section>
 
     </div>
     <div fxFlex="25">
- 
+
 
       <app-section [hidden]="true" sectionTitle="{{'SERVICE.VIDEO' | translate}}">
         <!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
@@ -129,8 +132,8 @@
 
       <app-section sectionTitle="{{'SERVICE.CLASSIFICATION' | translate}}">
         <ul>
-          <li>{{'service.Category' | translate }}: {{data.category[switchLangService._key('categoryName')]}}</li>
-          <li>{{'service.Department' | translate }}: {{department[switchLangService._key('departmentName')]}}</li>
+          <li>{{'service.Category' | translate }}: {{data.category['categoryName_' + switchLangService.current]}}</li>
+          <li>{{'service.Department' | translate }}: {{department['departmentName_' + switchLangService.current]}}</li>
         </ul>
       </app-section>
 
