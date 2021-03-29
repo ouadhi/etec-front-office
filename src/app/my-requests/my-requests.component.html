@@ -1,6 +1,0 @@
-<app-page>
-
-  <app-dashlet-table [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}" [columns]="dashletCols" title="{{ 'NAV.MY_REQUESTS' | translate}}" [service]="dashletService"
-    [detailsRouterForEachItem]="'/request-details'"></app-dashlet-table>
-
-</app-page>

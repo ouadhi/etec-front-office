@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="section">
+    <h2 class="section__title" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">{{sectionTitle}}</h2>
+    <div fxLayout="row" fxLayoutAlign="center top" fxLayout.xs="column" class="section__container" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+      <div fxFlex="96">
+          <ng-content></ng-content>
+      </div>
+    </div>
+  </div> 
+</div>

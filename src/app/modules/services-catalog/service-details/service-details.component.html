@@ -1,0 +1,171 @@
+<app-page pageTitle="{{'SERVICE.SERVICE' | translate}}: {{data ? data[switchLangService._key('serviceName')]: '' }}">
+
+  <div *ngIf="!active">
+    {{'SERVICE.IS_NOT_ACTIVE' | translate}}
+  </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
+
+    <div fxFlex="70">
+      <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
+        {{data[switchLangService._key('description')]}}
+
+        <button *ngIf="(isLoggedIn && data.canAnonymousApply) || !data.canAnonymousApply"
+          [routerLink]="['/requests/request', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
+          skipLocationChange=true target="_blank" mat-raised-button color="primary"
+          [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right
+          </mat-icon></button>
+        <button *ngIf="(!isLoggedIn && data.canAnonymousApply)"
+          [routerLink]="['/requests/arequest', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
+          skipLocationChange=true target="_blank" mat-raised-button color="primary"
+          [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right
+          </mat-icon></button>
+
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
+        <!-- {{data[switchLangService._key('conditionsAndRequirements')]}} -->
+        <ul *ngIf="data[switchLangService._key('conditionsAndRequirements')].length">
+          <li *ngFor="let item of data[switchLangService._key('conditionsAndRequirements')]">{{item.value}}</li>
+        </ul>
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.FAQ' | translate}}">
+
+        <mat-accordion *ngIf="data.FAQ.length">
+
+          <mat-expansion-panel *ngFor="let item of data.FAQ">
+            <mat-expansion-panel-header>
+              {{item[switchLangService._key('question')]}}
+            </mat-expansion-panel-header>
+            {{item[switchLangService._key('answer')]}}
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.REQUIRED_DOCS' | translate}}">
+        <ul *ngIf="data[switchLangService._key('requiredDocs')]">
+          <li *ngFor="let doc of data[switchLangService._key('requiredDocs')]">
+            {{doc.value}}
+          </li>
+        </ul>
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.STEPS' | translate}}">
+        <ol *ngIf=" data[switchLangService._key('steps')].length">
+          <li *ngFor="let step of data[switchLangService._key('steps')]">
+            {{step.value}}
+          </li>
+        </ol>
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.SERVICE_LEVEL_AGREEMENT' | translate}}">
+
+        <div class="inlineRowItem">{{'SERVICE.EXPECTED_TIME' | translate}}: {{data.expectedTime}}</div>
+
+        <!-- <div class="inlineRowItem">{{'SERVICE.COST_TYPE' |translate }} : {{'SERVICE.PAYED_'+data.payed | translate}}
+        </div> -->
+
+        <div class="inlineRowItem">{{'SERVICE.CHANNEL' | translate}}:
+          <mat-chip-list *ngIf=" data[switchLangService._key('channel')].length" class="mat-chip-list--inlineBlock">
+            <mat-chip color="primary" *ngFor="let channel of data[switchLangService._key('channel')]">{{channel.value}}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+
+      </app-section>
+
+      <app-section>
+
+        <div class="inlineRowItem">{{'SERVICE.TAGS' | translate}} : <span
+            [hidden]="data.tag?.length">{{'SERVICE.NO_ENTRY' | translate}}</span>
+          <mat-chip-list class="mat-chip-list--inlineBlock">
+            <mat-chip color="primary" *ngFor="let tag of data.tag">{{tag.tag}}</mat-chip>
+          </mat-chip-list>
+        </div>
+
+        <div class="inlineRowItem">{{'SERVICE.PRIMARY_SERVICE' |translate}} :
+          {{data[switchLangService._key('primaryService')]}}
+          <span [hidden]="data[switchLangService._key('primaryService')]">{{'SERVICE.NO_ENTRY' | translate}}</span>
+        </div>
+
+      </app-section>
+
+    </div>
+    <div fxFlex="25">
+ 
+
+      <app-section [hidden]="true" sectionTitle="{{'SERVICE.VIDEO' | translate}}">
+        <!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+        <video controls width="324" height="196" src="{{assets_url}}/storage/uploads/{{data.video.path}}"></video>
+
+
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.STATISTICS' | translate}}">
+        <!-- {{'SERVICE.REQUESTED_ON_LAST_30DAYS' | translate}} -->
+        <b [translate]="'SERVICE.REQUESTED_ON_LAST_30DAYS'" [translateParams]="{value: stats}"></b>
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.RATING' | translate}}">
+
+        <star-rating [starType]="'icon'" [rating]="data.rating" [readOnly]="true" [showHalfStars]="true"
+          labelText="{{data.rating ? data.rating : 0}} / 5" labelPosition="bottom"></star-rating>
+
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.BENEFICIARIES' | translate}}">
+        <ul *ngIf="segments">
+          <!--
+            <ng-container *ngFor="let item of segments">
+            <li>{{item.segmentType[switchLangService._key('segmentTypeName')]}}: {{item[switchLangService._key('segmentName')]}}</li>
+          </ng-container>
+          -->
+          <ng-container *ngFor="let item of data.beneficiaries">
+            <li>{{item.description}}</li>
+          </ng-container>
+        </ul>
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.CLASSIFICATION' | translate}}">
+        <ul>
+          <li>{{'service.Category' | translate }}: {{data.category[switchLangService._key('categoryName')]}}</li>
+          <li>{{'service.Department' | translate }}: {{department[switchLangService._key('departmentName')]}}</li>
+        </ul>
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.GUIDE' | translate}}">
+        <div class="text-center">
+          <a *ngIf="!data.serviceGuide">
+            <img src="http://placehold.it/400x200&text=Guide" alt="">
+          </a>
+          <a *ngIf="data.serviceGuide" href="{{assets_url}}/{{data.serviceGuide}}" target="_blank">
+            <img src="/assets/pdf.png" width="80" alt="">
+          </a>
+        </div>
+      </app-section>
+
+
+
+
+
+    </div>
+
+  </div>
+
+  <app-section sectionTitle="{{'SERVICE.COMMENTS' | translate}}">
+    <div *ngFor="let comment of comments">
+      <small>{{'SERVICE.COMMENT_ON' | translate}}: {{comment._created*1000 | date:'yyyy-MM-dd'}}</small>
+      <p>
+        {{comment.commentText}}
+      </p>
+    </div>
+    <div [hidden]="comments?.length">
+      {{'service.No Comments' | translate}}
+    </div>
+  </app-section>
+  <app-section>
+    <p class="note">{{'SERVICE.SERVICES_NOTE' | translate}}</p>
+  </app-section>
+
+</app-page>

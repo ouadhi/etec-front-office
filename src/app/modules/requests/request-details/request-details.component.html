@@ -1,0 +1,75 @@
+<app-page>
+  <!-- <div class="d-none d-xl-block">
+    <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
+    <div class="container-fluid"
+      [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+      <div class="padder" *ngIf="hasTask">
+        <div class="alert alert-warning">
+          <div class="row">
+            <div class="col-auto align-self-start">
+              <ion-icon [name]="'alert'" class="alert-icon"></ion-icon>
+            </div>
+            <div class="col alert-text">
+              {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
+              {{'SERVICE.pleasePress' | translate}} <a  (click)="handleAction({type:'task',activity:hasTask})"
+                class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+      <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link"
+        [submissionId]="formData" [readOnly]="true" [viewOnly]="true">
+      </formio>
+    </div>
+  </div> -->
+
+
+
+
+  <div class="container" style="margin-top: 5px;">
+    <nav>
+      <div class="nav nav-tabs nav-item d-block p-2 w-100 p-2 d-flex justify-content-center" id="nav-tab"
+        role="tablist">
+        <a class="nav-item nav-link active p-2 w-50 d-flex justify-content-center" id="nav-home-tab" data-toggle="tab"
+          href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i
+            style="margin-left: 5px; margin-right: 5px;" class="fa fa-clock-o"
+            aria-hidden="true"></i>{{'Status' | translate}}</a>
+        <a class="nav-item nav-link p-2 w-50 d-flex justify-content-center" id="nav-profile-tab" data-toggle="tab"
+          href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i
+            style="margin-left: 5px; margin-right: 5px;" class="fa fa-id-card-o"
+            aria-hidden="true"></i>{{'Details' | translate}}</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="padder" *ngIf="hasTask"
+          [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+          <div class="alert alert-warning">
+            <div class="row">
+              <div class="col-auto align-self-start">
+                <ion-icon [name]="'alert'" class="alert-icon"></ion-icon>
+              </div>
+              <div class="col">
+                {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
+                {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction({type:'task',activity:hasTask})"
+                  class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="container-fluid"
+          [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+          <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link"
+            [submission]="submission" [readOnly]="true" [viewOnly]="true">
+          </formio>
+          <app-more-info *ngIf="moreInfo"
+            [data]="moreInfo"></app-more-info>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</app-page>

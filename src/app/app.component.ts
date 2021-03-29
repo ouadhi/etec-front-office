@@ -1,39 +1,26 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { Injector } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Formio } from 'formiojs';
-import { KeycloakService } from 'keycloak-angular';
-import { SessionService } from './session.service';
-import { SwitchLangService } from './switch-lang.service';
 import { Platform } from '@ionic/angular';
-import { ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfigService } from './config.service';
 import { environment } from 'src/environments/environment';
-
+import { BaseComponent } from './shared/components/base.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends BaseComponent implements OnInit {
   title = 'rms';
 
   logo = '';
   loggedIn = false;
   userDetails;
 
-  constructor(
-    private keycloakService: KeycloakService,
-    public translate: TranslateService,
-    public switchLangService: SwitchLangService,
-    private sessionService: SessionService,
-    private configService: ConfigService,
-    public platform: Platform,
-    private changeRef: ChangeDetectorRef,
-    private zone: NgZone,
-    private router: Router
-  ) {
+  constructor(public injector: Injector,
+    public platform: Platform) {
+    super(injector);
+
     this.configService.loadConfig().then(config => {
       if (config.logo) {
         this.logo = `${environment.cms.api.master}${config.logo.path}`;

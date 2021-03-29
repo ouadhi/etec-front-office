@@ -1,5 +1,0 @@
-<app-page [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
-    <formio *ngIf="formReady" [formKey]="'jobopportunity-apply'" [submission]="data"  [readOnly]="true" [params]="params" (customEvent)="onCustomEvent($event)"
-        (submit)="onSubmit($event)">
-    </formio>
-</app-page>
