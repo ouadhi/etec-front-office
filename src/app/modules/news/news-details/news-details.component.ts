@@ -16,14 +16,14 @@ export class NewsDetailsComponent extends BaseComponent implements OnInit {
   constructor(public injector: Injector) { super(injector); }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe(params => {
       this.newsId = params['id'];
       this.loadNews(this.newsId);
     });
   }
 
   loadNews(id) {
-    this.servicesService.getSingleNews(id).subscribe(
+    this.sub = this.servicesService.getSingleNews(id).subscribe(
       (data) => {
         this.data = data.entries[0];
       })

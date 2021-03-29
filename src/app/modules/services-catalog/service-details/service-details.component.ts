@@ -16,7 +16,6 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
     private requestsService: RequestsService) { super(injector); }
 
   id: any;
-  sub: any;
 
   data: any;
   comments: any;
@@ -40,7 +39,7 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
     this.keycloakService.isLoggedIn().then(data => {
       this.isLoggedIn = data;
     })
-    this.sub = this.route.params.subscribe(params => {
+    this.sub = this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
       this.load(this.id);
     });
@@ -49,10 +48,10 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 
   load(id) {
 
-    this.servicesService.getService(id).subscribe(
+    this.sub = this.servicesService.getService(id).subscribe(
       (data) => {
         this.data = data.entries[0];
-        this.requestsService.getRequestsCount(this.data.key).subscribe(count => {
+        this.sub = this.requestsService.getRequestsCount(this.data.key).subscribe(count => {
           this.stats = count;
         });
         if (this.data.lifeCycle == LifeCycleService.PUBLISHED) {
@@ -70,10 +69,10 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 
 
 
-        this.servicesService.getSegmentsByIds(ids).subscribe(data => this.segments = data.entries);
-        this.servicesService.getComments(id).subscribe(data => this.comments = data.entries);
+        this.sub = this.servicesService.getSegmentsByIds(ids).subscribe(data => this.segments = data.entries);
+        this.sub = this.servicesService.getComments(id).subscribe(data => this.comments = data.entries);
 
-        this.servicesService.getCollectionEntryById('department', '_id', this.data.category.department._id).subscribe(
+        this.sub = this.servicesService.getCollectionEntryById('department', '_id', this.data.category.department._id).subscribe(
           (data) => {
             console.log('depart', data)
             this.department['departmentName_ar'] = data.entries[0].departmentName_ar;
@@ -86,11 +85,6 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 
       });
 
-  }
-
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
 }

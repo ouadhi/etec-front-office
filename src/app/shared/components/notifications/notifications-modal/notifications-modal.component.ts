@@ -106,7 +106,7 @@ export class NotificationsModalComponent extends BaseComponent implements OnInit
 
 
     fetchMore(event) {
-        this.notificationsService.fetchNotifications().subscribe((data) => {
+        this.sub = this.notificationsService.fetchNotifications().subscribe((data) => {
             event.target.complete();
             if (data.items.length === 0 || data.items.length < this.notificationsService.pageSize) {
                 event.target.disabled = true;
@@ -121,7 +121,7 @@ export class NotificationsModalComponent extends BaseComponent implements OnInit
     }
     ngOnInit() {
         this.dir = this.translateService.instant('dir');
-        this.translateService.onLangChange.subscribe((data) => {
+        this.sub = this.translateService.onLangChange.subscribe((data) => {
             this.dir = this.translateService.instant('dir');
         });
     }

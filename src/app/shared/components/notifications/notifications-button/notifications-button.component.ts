@@ -8,11 +8,10 @@ import { NotificationsService } from 'src/app/modules/notifications/notification
     templateUrl: './notifications-button.component.html',
     styleUrls: ['./notifications-button.component.scss']
 })
-export class NotificationsButtonComponent extends BaseComponent implements OnInit, OnDestroy {
+export class NotificationsButtonComponent extends BaseComponent implements OnInit {
     get notificationsCount() {
         return this.notificationsService.notificationsCount;
     }
-    subscription;
 
     constructor(public injector: Injector,
         private notificationsService: NotificationsService,
@@ -46,9 +45,6 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
                 });
         });*/
 
-    }
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
     }
 
 }

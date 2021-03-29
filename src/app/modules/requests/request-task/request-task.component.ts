@@ -63,8 +63,8 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
    * ngOnInit: on init subscribe to route changes
    */
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.caseActivity.getRequestTask(params.taskId).subscribe(data => {
+    this.sub = this.route.params.subscribe(params => {
+      this.sub = this.caseActivity.getRequestTask(params.taskId).subscribe(data => {
         if (data.formKey) {
           this.form.ready = false;
           this.params = [{

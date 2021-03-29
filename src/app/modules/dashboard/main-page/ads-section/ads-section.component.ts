@@ -16,7 +16,7 @@ export class AdsSecctionComponent extends BaseComponent implements OnInit {
   }
 
   loadNews() {
-    this.servicesService.getAds().subscribe(data => {
+    this.sub = this.servicesService.getAds().subscribe(data => {
       return this.ads = data.entries
     });
   }

@@ -16,14 +16,14 @@ export class AdsDetailsComponent extends BaseComponent implements OnInit {
   constructor(public injector: Injector) { super(injector); }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe(params => {
       this.adsId = params['id'];
       this.loadAds(this.adsId);
     });
   }
 
   loadAds(id) {
-    this.servicesService.getSingleAds(id).subscribe(
+    this.sub = this.servicesService.getSingleAds(id).subscribe(
       (data) => {
         this.data = data.entries[0];
       })

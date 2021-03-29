@@ -15,11 +15,11 @@ export class MainPageComponent extends BaseComponent implements OnInit {
   constructor(public injector: Injector) { super(injector); }
 
   ngOnInit() {
-    this.loadBanners(); 
+    this.loadBanners();
   }
 
   loadBanners() {
-    this.servicesService.getBanners().subscribe(data => {
+    this.sub = this.servicesService.getBanners().subscribe(data => {
 
       this.imagesSlider = [];
       data.entries.forEach(element => {

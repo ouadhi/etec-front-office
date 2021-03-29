@@ -8,7 +8,7 @@ import { BaseComponent } from '../../../shared/components/base.component';
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent extends BaseComponent implements OnInit, OnDestroy {
+export class RequestComponent extends BaseComponent implements OnInit {
 
   constructor(public injector: Injector) { super(injector); }
 
@@ -16,7 +16,6 @@ export class RequestComponent extends BaseComponent implements OnInit, OnDestroy
   serviceId: any;
   navParams: any;
   formReady = false;
-  sub: any;
 
   data: any;
   params;
@@ -87,13 +86,9 @@ export class RequestComponent extends BaseComponent implements OnInit, OnDestroy
       data: data
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    this.sub = dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
 }

@@ -89,10 +89,10 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
     }
     ngOnInit(): void {
         this.doInitSlider();
-        this.translateService.onLangChange.subscribe(() => {
+        this.sub = this.translateService.onLangChange.subscribe(() => {
             this.doInitSlider();
         });
-        this.caseActivityService.getCaseHistoryActivities({ caseInstanceId: this.caseInstanceId })
+        this.sub = this.caseActivityService.getCaseHistoryActivities({ caseInstanceId: this.caseInstanceId })
             .subscribe(data => {
 
                 this.activities = data;

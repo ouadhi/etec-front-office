@@ -65,9 +65,9 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
   }
   ngAfterViewInit() {
     // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.sub = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-    merge(this.sort.sortChange, this.paginator.page, this.casesFilter.filter, this.translateService.onLangChange)
+    this.sub = merge(this.sort.sortChange, this.paginator.page, this.casesFilter.filter, this.translateService.onLangChange)
       .pipe(
         startWith({}),
         switchMap(() => {

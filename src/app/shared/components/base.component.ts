@@ -17,7 +17,9 @@ import { ConfigService } from "src/app/core/services/config.service";
 
 @Component({ template: '' })
 export abstract class BaseComponent implements OnDestroy {
-    private _subs: Subscription[] = [];
+    private subs: Subscription[] = [];
+    set sub(s: Subscription) { this.subs.push(s); }
+
     route: ActivatedRoute;
     router: Router;
     location: Location;
@@ -59,7 +61,7 @@ export abstract class BaseComponent implements OnDestroy {
     }
 
     ngOnDestroy() {
-        this._subs.forEach(s => s.unsubscribe());
-        this._subs = [];
+        this.subs.forEach(s => s.unsubscribe());
+        this.subs = [];
     }
 }

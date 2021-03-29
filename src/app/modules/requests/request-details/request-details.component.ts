@@ -9,7 +9,7 @@ import { RequestsService } from '../requests.service';
   templateUrl: './request-details.component.html',
   styleUrls: ['./request-details.component.css']
 })
-export class RequestDetailsComponent extends BaseComponent implements OnInit, OnDestroy {
+export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
   constructor(public injector: Injector,
     private rest: RequestsService) { super(injector); }
@@ -19,7 +19,6 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit, On
   submission: any;
   moreInfo: any;
   cmmnId: any;
-  sub: any;
   requestTask = [];
   data: any;
   formReady = false;
@@ -43,12 +42,12 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit, On
 
 
     this.sub = this.route.params.subscribe(params => {
-      this.rest.getRequest(this.route.snapshot.params.id).subscribe(data => {
+      this.sub = this.rest.getRequest(this.route.snapshot.params.id).subscribe(data => {
         this.request = data;
         this.link = this.request.link;
         this.formData = this.request.data;
         this.cmmnId = this.request.cmmnId;
-        this.rest.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`).subscribe(data => {
+        this.sub = this.rest.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`).subscribe(data => {
           this.submission = data;
           this.moreInfo = (data.data.moreInfo && Object.keys(data.data.moreInfo).length) ? data.data.moreInfo : null;
           this.params = [
@@ -64,10 +63,6 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit, On
       });
 
     });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
 }

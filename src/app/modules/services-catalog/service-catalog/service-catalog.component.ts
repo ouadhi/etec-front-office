@@ -42,7 +42,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
     private requestsService: RequestsService) { super(injector); }
 
   ngOnInit() {
-    this.keycloakService.keycloakEvents$.subscribe(async () => {
+    this.sub = this.keycloakService.keycloakEvents$.subscribe(async () => {
       this.zone.run(() => {
         this.ngOnInit();
       });
@@ -54,7 +54,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
     this.prepareFiltersFetch();  // this.prepareFilters(this.userSegments);
     this.keycloakService.isLoggedIn().then(loggedIn => {
       if (loggedIn) {
-        this.requestsService.getRequests({ activeTask: true }).subscribe(data => {
+        this.sub = this.requestsService.getRequests({ activeTask: true }).subscribe(data => {
           if (data.items.length) {
             this.hasTask = true;
           }
@@ -165,7 +165,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 
   }
   loadBanners() {
-    this.servicesService.getBanners().subscribe(data => {
+    this.sub = this.servicesService.getBanners().subscribe(data => {
 
       this.imagesSlider = [];
       data.entries.forEach(element => {
@@ -182,7 +182,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 
   mostUsed() {
     this.dataMostUsed = [];
-    this.servicesService.getServices().subscribe(data => {
+    this.sub = this.servicesService.getServices().subscribe(data => {
       this.dataMostUsed = data.entries;
     });
   }
@@ -194,9 +194,9 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 
 
 
-    this.servicesService.getSegmentType().subscribe(data1 => {
+    this.sub = this.servicesService.getSegmentType().subscribe(data1 => {
       this.segmentType = data1.entries;
-      this.servicesService.getSegments().subscribe(data => {
+      this.sub = this.servicesService.getSegments().subscribe(data => {
         this.segments = data.entries;
         console.log(userSegments);
         this.disabled = [];
@@ -223,11 +223,11 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
       });
     });
 
-    this.servicesService.getDepartments().subscribe(data => {
+    this.sub = this.servicesService.getDepartments().subscribe(data => {
       this.departments = data.entries;
     });
 
-    this.servicesService.getTags().subscribe(data => {
+    this.sub = this.servicesService.getTags().subscribe(data => {
       this.tags = data.entries;
 
       this.tags.forEach((element, i) => {
@@ -237,7 +237,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
       });
     });
 
-    this.servicesService.getCategories().subscribe(data => {
+    this.sub = this.servicesService.getCategories().subscribe(data => {
       this.categories = data.entries;
     });
 
@@ -249,7 +249,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
   // and add two new keys : 1st (segments_inline -> for beneficiaries), 2nd (tags_inline -> for tags)
   search() {
 
-    this.servicesService.getServices().subscribe(data => {
+    this.sub = this.servicesService.getServices().subscribe(data => {
       this.filtered = this.data = data.entries;
       this.totalResult = data.entries.length;
 
@@ -411,7 +411,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
   async prepareFiltersFetch() {
 
     if (await this.keycloakService.isLoggedIn()) {
-      this.requestsService.getListOfUserSegments().subscribe(data => {
+      this.sub = this.requestsService.getListOfUserSegments().subscribe(data => {
         this.userSegments = data;
         this.prepareFilters(this.userSegments);
       }, err => {

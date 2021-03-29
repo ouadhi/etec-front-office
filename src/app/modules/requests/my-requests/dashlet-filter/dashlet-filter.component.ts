@@ -58,7 +58,7 @@ export class DashletFilterComponent extends BaseComponent implements OnInit {
     handleStatus(selection) {
         if (selection.length === 1) {
             this.filterData.statuses = [];
-            this.filterService.getStatuses(selection[0].id).subscribe((data => {
+            this.sub = this.filterService.getStatuses(selection[0].id).subscribe((data => {
                 this.statusFilterData = Object.keys(data).map(item => ({ id: item, name: data[item] }));
             }));
         } else {
@@ -69,8 +69,8 @@ export class DashletFilterComponent extends BaseComponent implements OnInit {
     }
     ngOnInit() {
 
-        this.filterService.getServices().subscribe(data => this.servicesFilterData = data);
-        this.route.params.subscribe(params => {
+        this.sub = this.filterService.getServices().subscribe(data => this.servicesFilterData = data);
+        this.sub = this.route.params.subscribe(params => {
             console.log(params);
             if (params.u === '1') {
                 this.filterData.activeTask = true;

@@ -16,7 +16,7 @@ export class NewsSecctionComponent extends BaseComponent implements OnInit {
   }
 
   loadNews() {
-    this.servicesService.getNews().subscribe(data => {
+    this.sub = this.servicesService.getNews().subscribe(data => {
       return this.news = data.entries
     });
   }

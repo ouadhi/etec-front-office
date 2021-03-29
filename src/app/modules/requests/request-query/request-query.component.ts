@@ -33,7 +33,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
       this.found = false;
       this.reCaptchaV3Service.execute('6LejM-UUAAAAAB78NI-6A5O0qmtJWAHm0iF8qnB4', 'queryRequest', (token) => {
         if (token) {
-          this.rest.verifyToken(token).subscribe(data => {
+          this.sub = this.rest.verifyToken(token).subscribe(data => {
             if (data.success) {
               const query = {};
               if (this.query.controls.requestDate.value) {
@@ -45,7 +45,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
               } else if (this.query.controls.requestType.value) {
                 query['serviceId.equals'] = this.query.controls.requestType.value;
               }
-              this.rest.queryRequests({
+              this.sub = this.rest.queryRequests({
                 ...query,
                 'number.equals': this.query.controls.requestNumber.value
 
@@ -75,8 +75,8 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
     }
   }
   ngOnInit(): void {
-    this.filterService.getServices().subscribe(data => this.services = data);
-    this.query.controls.requestType.statusChanges.pipe(debounceTime(200)).subscribe(() => {
+    this.sub = this.filterService.getServices().subscribe(data => this.services = data);
+    this.sub = this.query.controls.requestType.statusChanges.pipe(debounceTime(200)).subscribe(() => {
       console.log(this.query.controls.requestType.valid);
 
       if (!this.query.controls.requestType.valid) {
@@ -87,7 +87,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
       this.query.controls['requestDate'].updateValueAndValidity({ emitEvent: false });
       this.query.controls['requestType'].updateValueAndValidity({ emitEvent: false });
     });
-    this.query.controls.requestDate.statusChanges.pipe(debounceTime(200)).subscribe(() => {
+    this.sub = this.query.controls.requestDate.statusChanges.pipe(debounceTime(200)).subscribe(() => {
       console.log(this.query.controls.requestDate.valid);
       if (!this.query.controls.requestDate.valid) {
         this.query.controls['requestType'].setValidators([Validators.required]);
