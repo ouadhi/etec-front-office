@@ -39,8 +39,8 @@ export class SelectComponent extends BaseComponent implements OnInit, ControlVal
   constructor(public injector: Injector) { super(injector); }
 
   compare = (item, selected) => {
-    console.log(item);
-    console.log(selected);
+    this.loggerService.log(item);
+    this.loggerService.log(selected);
     if (selected.id && item.id) {
       return item.id === selected.id;
     }
@@ -48,7 +48,7 @@ export class SelectComponent extends BaseComponent implements OnInit, ControlVal
   }
 
   emitSelection(event) {
-    console.log(this.selection);
+    this.loggerService.log(this.selection);
     this.propagateChange(this.selection);
     this.select.next(event);
   }

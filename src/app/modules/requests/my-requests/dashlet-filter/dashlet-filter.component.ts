@@ -71,7 +71,7 @@ export class DashletFilterComponent extends BaseComponent implements OnInit {
 
         this.sub = this.filterService.getServices().subscribe(data => this.servicesFilterData = data);
         this.sub = this.route.params.subscribe(params => {
-            console.log(params);
+            this.loggerService.log(params);
             if (params.u === '1') {
                 this.filterData.activeTask = true;
                 this.applyFilter();

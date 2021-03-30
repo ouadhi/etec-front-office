@@ -14,6 +14,7 @@ import { SwitchLangService } from "src/app/core/services/switch-lang.service";
 import { ServicesService } from "src/app/modules/services-catalog/services.service";
 import { FilterPipe } from "ngx-filter-pipe";
 import { ConfigService } from "src/app/core/services/config.service";
+import { LoggerService } from "src/app/core/services/logger.service";
 
 @Component({ template: '' })
 export abstract class BaseComponent implements OnDestroy {
@@ -32,6 +33,7 @@ export abstract class BaseComponent implements OnDestroy {
     formioLoader: FormioLoader;
     servicesService: ServicesService;
     switchLangService: SwitchLangService;
+    loggerService: LoggerService;
     sessionService: SessionService;
     accountService: AccountService;
     configService: ConfigService
@@ -52,6 +54,7 @@ export abstract class BaseComponent implements OnDestroy {
         this.formioLoader = injector.get(FormioLoader);
         this.servicesService = injector.get(ServicesService);
         this.switchLangService = injector.get(SwitchLangService);
+        this.loggerService = injector.get(LoggerService);
         this.sessionService = injector.get(SessionService);
         this.accountService = injector.get(AccountService);
         this.configService = injector.get(ConfigService);

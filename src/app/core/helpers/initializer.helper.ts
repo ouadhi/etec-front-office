@@ -1,3 +1,4 @@
+import { LoggerService } from './../services/logger.service';
 import { Platform } from '@ionic/angular';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
@@ -5,10 +6,11 @@ import { ConfigService } from '../services/config.service';
 import { SessionService } from '../services/session.service';
 
 
-export function Initializer(keycloak: KeycloakService,
+export function initializer(keycloak: KeycloakService,
   session: SessionService,
   platform: Platform,
-  config: ConfigService): () => Promise<any> {
+  config: ConfigService,
+  loggerService: LoggerService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -16,7 +18,7 @@ export function Initializer(keycloak: KeycloakService,
           config.setupEssentials();
         });
       } catch (e) {
-        console.warn(e);
+        loggerService.warn(e);
       }
       platform.ready().then(async () => {
         try {
@@ -47,7 +49,7 @@ export function Initializer(keycloak: KeycloakService,
             await session.loadUserProfile();
           } else {
             const kc = keycloak.getKeycloakInstance();
-            console.log(kc);
+            loggerService.log(kc);
           }
           resolve(true);
 

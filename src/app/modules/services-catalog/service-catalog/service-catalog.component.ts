@@ -199,7 +199,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
         this.segmentType = results[0].entries;
 
         this.segments = results[1].entries;
-        console.log(userSegments);
+        this.loggerService.log(userSegments);
         this.disabled = [];
         this.segmentType.forEach((type, j) => {
           const newObj = {};
@@ -208,7 +208,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
             if (element.activation && type._id === element.segmentType._id) {
               if (userSegments.includes(element._id)) {
                 this.disabled.push(type._id);
-                console.log('ok?');
+                this.loggerService.log('ok?');
                 innerObj[element._id] = true;
               } else {
                 innerObj[element._id] = false;
@@ -217,7 +217,6 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
           });
           this.segmentInput = { ...this.segmentInput, ...newObj };
           this.segments.forEach(element => element.isDisabled = this.isDisabled(type, element));
-          // console.log(this.segmentInput);
         });
 
         this.filterSegment();
@@ -393,7 +392,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
       this.segments.forEach((element, i) => {
         if (element.activation && type._id === element.segmentType._id) {
           if (this.userSegments.includes(element._id)) {
-            console.log('ok?');
+            this.loggerService.log('ok?');
             innerObj[element._id] = true;
           } else {
             innerObj[element._id] = false;
@@ -401,7 +400,6 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
         }
       });
       this.segmentInput = { ...this.segmentInput, ...newObj };
-      // console.log(this.segmentInput);
     });
 
     this.filterSegment();

@@ -7,14 +7,24 @@ export const environmentLoader = new Promise<any>((resolve, reject) => {
         url = './assets/environments/environment.json';
     xmlhttp.open(method, url, true);
     xmlhttp.onload = () => {
+        const production = defaultEnvironment.production;
         if (xmlhttp.status === 200) {
             try {
-                resolve(JSON.parse(xmlhttp.responseText));
+                resolve({
+                    ...JSON.parse(xmlhttp.responseText),
+                    production
+                });
             } catch (e) {
-                resolve(defaultEnvironment);
+                resolve({
+                    ...defaultEnvironment,
+                    production
+                });
             }
         } else {
-            resolve(defaultEnvironment);
+            resolve({
+                ...defaultEnvironment,
+                production
+            });
         }
     };
     xmlhttp.send();

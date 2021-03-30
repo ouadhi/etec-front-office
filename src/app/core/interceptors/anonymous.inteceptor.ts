@@ -1,3 +1,4 @@
+import { LoggerService } from './../services/logger.service';
 import { Injectable } from '@angular/core';
 import {
     HttpRequest,
@@ -14,9 +15,10 @@ import { SessionService } from '../services/session.service';
 @Injectable()
 export class AnonymousInterceptor implements HttpInterceptor {
     isLoggedIn = false;
-    
+
     constructor(private session: SessionService,
-        private keycloakService: KeycloakService) {
+        private keycloakService: KeycloakService,
+        private loggerService: LoggerService) {
         keycloakService.isLoggedIn().then(data => {
             this.isLoggedIn = data;
         });
@@ -49,19 +51,19 @@ export class AnonymousInterceptor implements HttpInterceptor {
         }
 
         // logging the updated Parameters to browser's console
-        console.log('Before making api call : ', updatedRequest);
+        this.loggerService.log('Before making api call : ', updatedRequest);
         return next.handle(updatedRequest).pipe(
             tap(
                 event => {
                     // logging the http response to browser's console in case of a success
                     if (event instanceof HttpResponse) {
-                        console.log('api call success :', event);
+                        this.loggerService.log('api call success :', event);
                     }
                 },
                 error => {
                     // logging the http response to browser's console in case of a failuer
                     if (event instanceof HttpResponse) {
-                        console.log('api call error :', event);
+                        this.loggerService.log('api call error :', event);
                     }
                 }
             )

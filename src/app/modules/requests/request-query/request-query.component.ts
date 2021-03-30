@@ -77,7 +77,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   ngOnInit(): void {
     this.sub = this.filterService.getServices().subscribe(data => this.services = data);
     this.sub = this.query.controls.requestType.statusChanges.pipe(debounceTime(200)).subscribe(() => {
-      console.log(this.query.controls.requestType.valid);
+      this.loggerService.log(this.query.controls.requestType.valid);
 
       if (!this.query.controls.requestType.valid) {
         this.query.controls['requestDate'].setValidators([Validators.required]);
@@ -88,7 +88,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
       this.query.controls['requestType'].updateValueAndValidity({ emitEvent: false });
     });
     this.sub = this.query.controls.requestDate.statusChanges.pipe(debounceTime(200)).subscribe(() => {
-      console.log(this.query.controls.requestDate.valid);
+      this.loggerService.log(this.query.controls.requestDate.valid);
       if (!this.query.controls.requestDate.valid) {
         this.query.controls['requestType'].setValidators([Validators.required]);
       } else {

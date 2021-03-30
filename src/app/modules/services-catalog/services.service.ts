@@ -4,17 +4,15 @@ import { Observable } from 'rxjs';
 import { LifeCycleService } from './life-cycle-service.config';
 import { environment } from '../../../environments/environment';
 import { DatePipe } from '@angular/common';
-import { AccountService } from '../../core/services/account.service';
+import { LoggerService } from 'src/app/core/services/logger.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 
 export class ServicesService {
 
   constructor(
     private http: HttpClient,
-    private accountService: AccountService) { }
+    private loggerService: LoggerService) { }
 
   getCMSheaders() {
     let headers: HttpHeaders = new HttpHeaders();
@@ -34,7 +32,7 @@ export class ServicesService {
 
     let filter = {};
     filter[activeKey] = activeVal;
-    console.log(filter);
+    this.loggerService.log(filter);
 
 
 
@@ -42,7 +40,7 @@ export class ServicesService {
       `${environment.cms.api.master}/api/collections/get/${collection}/`, {
       filter,
       "populate": 1,
-      "sort": { "_o" : 1 }
+      "sort": { "_o": 1 }
     }, {
       headers: this.getCMSheaders()
     });
@@ -137,7 +135,7 @@ export class ServicesService {
           //"sectorType": formData.,
           //"currentTitle": formData.,
           "educationAndMajor": formData.specialization,
-          "major":formData.educationalQualification,
+          "major": formData.educationalQualification,
           "educationPlace": formData.educationalOrganization,
           "graduationYear": formData.graduationYear,
           "graduationScore": formData.gpa,
@@ -173,7 +171,7 @@ export class ServicesService {
       "populate": 1
     }
 
-    if(branchId !== false){
+    if (branchId !== false) {
       sendParams.filter["branchId"] = `${branchId}`
     }
 

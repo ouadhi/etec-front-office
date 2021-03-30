@@ -34,7 +34,7 @@ export class AppComponent extends BaseComponent implements OnInit {
         return new Promise((resolve, reject) => {
           if (this.loggedIn) {
             this.keycloakService.getToken().then(token => {
-              console.log(requestArgs);
+              this.loggerService.log(requestArgs);
               if (!requestArgs.opts) {
                 requestArgs.opts = {};
               }

@@ -87,7 +87,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
     });
 
     this.sub = dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.loggerService.log('The dialog was closed');
     });
   }
 

@@ -20,7 +20,7 @@ const keycloakConfig = {
 };
 
 export const environment = {
-  production: true,
+  production: false,
 
   cms: {
     api: {

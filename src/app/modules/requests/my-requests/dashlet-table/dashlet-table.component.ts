@@ -44,8 +44,8 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
     this.showFilter = !this.showFilter;
   }
   onFilter(filterData) {
-    console.log('filterData');
-    console.log(filterData);
+    this.loggerService.log('filterData');
+    this.loggerService.log(filterData);
     // this.toggleFilter();
   }
 

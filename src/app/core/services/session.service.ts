@@ -4,6 +4,7 @@ import { isArray } from 'util';
 import { AccountService } from './account.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { LoggerService } from './logger.service';
 
 @Injectable({ providedIn: 'root' })
 
@@ -13,7 +14,8 @@ export class SessionService {
 
     constructor(private keycloakService: KeycloakService,
         private accountService: AccountService,
-        private http: HttpClient) { }
+        private http: HttpClient,
+        private loggerService: LoggerService) { }
 
     getUsername(): string {
         if (!this._userProfile) {
@@ -45,7 +47,7 @@ export class SessionService {
     }
     isUserInRole(role: any, resource?: string): boolean {
         let hasRole = false;
-        console.log(this.keycloakService.getUserRoles());
+        this.loggerService.log(this.keycloakService.getUserRoles());
         if (isArray(role)) {
             role.forEach(r => {
                 if (this.keycloakService.isUserInRole(environment.roles[r])) {

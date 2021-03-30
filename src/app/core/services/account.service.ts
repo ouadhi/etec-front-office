@@ -1,3 +1,4 @@
+import { LoggerService } from './logger.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
@@ -8,7 +9,8 @@ import { environment } from 'src/environments/environment';
 
 export class AccountService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private loggerService: LoggerService) { }
 
   getAccount(queryParams = {}): Observable<any> {
     const endpoint = `${environment.profile.account}`;
@@ -19,7 +21,7 @@ export class AccountService {
 
   getBranchId(userid): Observable<any> {
     const endpoint = `${environment.wso2.base}${environment.wso2.api.erp}employee/${encodeURIComponent(userid)}`;
-    console.log(endpoint);
+    this.loggerService.log(endpoint);
     return this.http.get<any>(endpoint);
   }
 

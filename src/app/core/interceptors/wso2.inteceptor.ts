@@ -1,3 +1,4 @@
+import { LoggerService } from './../services/logger.service';
 import { Injectable } from '@angular/core';
 import {
     HttpRequest,
@@ -11,7 +12,9 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class Wso2Interceptor implements HttpInterceptor {
-    constructor() { }
+
+    constructor(private loggerService: LoggerService) { }
+
     // function which will be called for all http calls
     intercept(
         request: HttpRequest<any>,
@@ -21,19 +24,19 @@ export class Wso2Interceptor implements HttpInterceptor {
         let updatedRequest = request;
 
         // logging the updated Parameters to browser's console
-        console.log('Before making api call : ', updatedRequest);
+        this.loggerService.log('Before making api call : ', updatedRequest);
         return next.handle(updatedRequest).pipe(
             tap(
                 event => {
                     // logging the http response to browser's console in case of a success
                     if (event instanceof HttpResponse) {
-                        console.log('api call success :', event);
+                        this.loggerService.log('api call success :', event);
                     }
                 },
                 error => {
                     // logging the http response to browser's console in case of a failuer
                     if (event instanceof HttpResponse) {
-                        console.log('api call error :', event);
+                        this.loggerService.log('api call error :', event);
                     }
                 }
             )

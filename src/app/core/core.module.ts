@@ -1,3 +1,4 @@
+import { LoggerService } from './services/logger.service';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
@@ -13,7 +14,7 @@ import { ConfigService } from './services/config.service';
 import { SessionService } from './services/session.service';
 import { createExternalService } from './helpers/external-service.helper';
 import { getFormioEnvironment } from './helpers/formio-enviroment.helper';
-import { Initializer } from './helpers/initializer.helper';
+import { initializer } from './helpers/initializer.helper';
 import { DatePipe } from '@angular/common';
 
 @NgModule({
@@ -44,9 +45,9 @@ import { DatePipe } from '@angular/common';
         },
         {
             provide: APP_INITIALIZER,
-            useFactory: Initializer,
+            useFactory: initializer,
             multi: true,
-            deps: [KeycloakService, SessionService, Platform, ConfigService]
+            deps: [KeycloakService, SessionService, Platform, ConfigService, LoggerService]
         },
         { provide: FormioAppConfig, useFactory: (getFormioEnvironment) },
         {

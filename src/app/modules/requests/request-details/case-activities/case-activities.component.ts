@@ -22,7 +22,7 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
         private caseActivityService: CaseActivityService) { super(injector); }
 
     action(activity) {
-        console.log(activity);
+        this.loggerService.log(activity);
         this.activityAction.emit({
             type: 'task', activity
             /*
@@ -85,7 +85,7 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
     }
 
     onInit(event, slider) {
-        console.log(slider);
+        this.loggerService.log(slider);
         slider.to(slider.slidesData[slider.slidesData.length - 1].id);
     }
     ngOnInit(): void {
