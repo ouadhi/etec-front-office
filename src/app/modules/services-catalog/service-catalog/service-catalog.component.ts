@@ -1,6 +1,7 @@
 import { Injector } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IImage } from 'ng-simple-slideshow';
+import { combineLatest } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { RequestsService } from '../../requests/requests.service';
@@ -191,13 +192,13 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
   // prepare filter to be displayed
 
   prepareFilters(userSegments) {
+    this.sub = combineLatest([
+      this.servicesService.getSegmentType(),
+      this.servicesService.getSegments()
+    ]) .subscribe(results => {
+        this.segmentType = results[0].entries;
 
-
-
-    this.sub = this.servicesService.getSegmentType().subscribe(data1 => {
-      this.segmentType = data1.entries;
-      this.sub = this.servicesService.getSegments().subscribe(data => {
-        this.segments = data.entries;
+        this.segments = results[1].entries;
         console.log(userSegments);
         this.disabled = [];
         this.segmentType.forEach((type, j) => {
@@ -215,14 +216,12 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
             }
           });
           this.segmentInput = { ...this.segmentInput, ...newObj };
-          this.segments.forEach(element=> element.isDisabled = this.isDisabled(type, element));
+          this.segments.forEach(element => element.isDisabled = this.isDisabled(type, element));
           // console.log(this.segmentInput);
         });
 
         this.filterSegment();
-
       });
-    });
 
     this.sub = this.servicesService.getDepartments().subscribe(data => {
       this.departments = data.entries;
