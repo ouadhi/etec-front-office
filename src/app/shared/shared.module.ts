@@ -10,7 +10,6 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { StarRatingModule } from 'angular-star-rating';
 import { ToastrModule } from 'ngx-toastr';
-import { FormioModule } from 'dp-formio';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { KeycloakAngularModule } from 'keycloak-angular';
 import { TranslateModule } from '@ngx-translate/core';
@@ -25,6 +24,7 @@ import { NotificationItemComponent } from './components/notifications/notificati
 import { NotificationOptionsComponent } from './components/notifications/notification-options/notification-options.component';
 import { NotificationsModalComponent } from './components/notifications/notifications-modal/notifications-modal.component';
 import { RouterModule } from '@angular/router';
+import { FormioModule } from 'src/formio/src/public_api';
 
 
 @NgModule({

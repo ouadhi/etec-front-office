@@ -5,7 +5,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { ExternalService, FormioAppConfig, FormioTranslate } from 'dp-formio';
 import { KeycloakService } from 'keycloak-angular';
 import { SharedModule } from '../shared/shared.module';
 import { AnonymousInterceptor } from './interceptors/anonymous.inteceptor';
@@ -16,6 +15,7 @@ import { createExternalService } from './helpers/external-service.helper';
 import { getFormioEnvironment } from './helpers/formio-enviroment.helper';
 import { initializer } from './helpers/initializer.helper';
 import { DatePipe } from '@angular/common';
+import { FormioAppConfig, FormioTranslate, ExternalService } from 'src/formio/src/public_api';
 
 @NgModule({
     declarations: [

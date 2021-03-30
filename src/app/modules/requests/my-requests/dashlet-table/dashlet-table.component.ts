@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild, Injector } from '@angular/core';
 import { merge, of as observableOf, Observable } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { FormioLoader } from 'dp-formio';
 import { DashletFilterComponent } from '../dashlet-filter/dashlet-filter.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { BaseComponent } from 'src/app/shared/components/base.component';
+import { FormioLoader } from 'src/formio/src/public_api';
 
 
 /**

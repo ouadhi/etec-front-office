@@ -4,7 +4,6 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from '@angular/common';
 import { TranslateService } from "@ngx-translate/core";
-import { FormioLoader } from "dp-formio";
 import { KeycloakService } from "keycloak-angular";
 import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
@@ -15,6 +14,7 @@ import { ServicesService } from "src/app/modules/services-catalog/services.servi
 import { FilterPipe } from "ngx-filter-pipe";
 import { ConfigService } from "src/app/core/services/config.service";
 import { LoggerService } from "src/app/core/services/logger.service";
+import { FormioLoader } from "src/formio/src/public_api";
 
 @Component({ template: '' })
 export abstract class BaseComponent implements OnDestroy {
