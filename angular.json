@@ -37,10 +37,6 @@
                 "inject": true
               },
               {
-                "input": "src/global.scss",
-                "inject": true
-              },
-              {
                 "input": "node_modules/font-awesome/scss/font-awesome.scss",
                 "inject": true
               },

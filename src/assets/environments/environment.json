@@ -9,8 +9,8 @@
     },
     "cms": {
         "api": {
-            "master": "http://50.16.93.185:8089",
-            "assets": "http://50.16.93.185:8089/storage/uploads"
+            "master": "http://100.24.85.92:8089",
+            "assets": "http://100.24.85.92:8089/storage/uploads"
         },
         "appConfig": {
             "endpoint": "/api/collections/get/appConfig/",
@@ -18,7 +18,7 @@
         }        
     },
     "keycloak": {
-        "url": "http://ec2-54-166-255-98.compute-1.amazonaws.com:9080/auth/",
+        "url": "http://ec2-52-206-161-8.compute-1.amazonaws.com:9080/auth/",
         "realm": "ekhaa",
         "secret": "1336d84f-10e3-41c9-8316-4deabd064c78",
         "secret_client": "request-service",
@@ -27,7 +27,7 @@
         "clientId": "fo-web"
     },
     "requestApi": {
-        "api": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8080/requestmanagement",
+        "api": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8080/requestmanagement",
         "rest": {
             "tasks": "/rest/task",
             "myRequests": "/api/portal/requests",
@@ -38,14 +38,14 @@
         }
     },
     "beneficiaryApi": {
-        "api": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8080/orphansmicroservices/api/portal/beneficiaries"
+        "api": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8080/orphansmicroservices/api/portal/beneficiaries"
     },
     "formio": {
         "apiUrl": "https://api.form.io/",
-        "appUrl": "https://aqnkygpwykfzugd.form.io/"
+        "appUrl": "http://ec2-34-234-234-87.compute-1.amazonaws.com:8082/rwzodfyrlzgyaai/"
     },
     "filter": {
-        "api": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8080/referencedata",
+        "api": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8080/referencedata",
         "rest": {
             "deparments": "/api/portal/departments",
             "services": "/api/request/eservices",
@@ -71,7 +71,7 @@
     },
     "profile": {
         "api": "http://3.87.111.211:8120/Ekhaa/beneficiaries",
-        "account": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8080/api/account"
+        "account": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8080/api/account"
     },
     "roles": {
         "beneficiary": "ROLE_USER",
@@ -79,13 +79,13 @@
         "department_specialist": "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
     },
     "statisticsApi": {
-        "api": "https://eservice.ekhaa.org.sa/api/cms/api/collections/get/segment/"
+        "api": "https://100.24.85.92:80/api/cms/api/collections/get/segment/"
     },
     "task": {
-        "api": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8080/orphansmicroservices/api/"
+        "api": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8080/orphansmicroservices/api/"
     },
     "notifications": {
-        "api": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8080/notification/api/",
-        "socket": "http://ec2-54-166-255-98.compute-1.amazonaws.com:8082/websocket/ekhaa"
+        "api": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8080/notification/api/",
+        "socket": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8082/websocket/ekhaa"
     }
 }

@@ -114,6 +114,12 @@ $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn
 @include angular-material-theme($rms-app-theme);
 
 @import "~css-star-rating/scss/star-rating";
+@import "~@ionic/angular/css/core.css";
+@import "~bootswatch/dist/yeti/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/yeti/bootswatch";
+@import "~formiojs/dist/formio.form.min.css";
+@import "~formiojs/dist/formio.builder.min.css";
 
 html,
 body {
