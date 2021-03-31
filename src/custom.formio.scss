@@ -1,0 +1,23 @@
+.card-header:first-child {
+    border: none;
+    background: transparent;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007fc3;
+    padding: 0px 10px;
+}
+
+.card-title::before {
+    content:url('assets/temp.png');
+    // content: " ";
+    // background-image: url('assets/temp.png');
+    // width: 20px;
+    // height: 20px;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    right: 10px;
+}

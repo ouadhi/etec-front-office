@@ -37,6 +37,10 @@
                 "inject": true
               },
               {
+                "input": "src/custom.formio.scss",
+                "inject": true
+              },
+              {
                 "input": "node_modules/font-awesome/scss/font-awesome.scss",
                 "inject": true
               },
