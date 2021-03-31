@@ -1,6 +1,4 @@
-[submodule "formio"]
-	path = formio
-	url = http://bitbucket.edigitpath.com/scm/etec/formio.git
 [submodule "src/formio"]
 	path = src/formio
 	url = http://bitbucket.edigitpath.com/scm/etec/formio.git
+	ignore = all
