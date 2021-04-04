@@ -149,12 +149,12 @@ tbody,
 tr,
 td,
 th {
-  font-family: "Tajawal", "Quicksand", sans-serif;
+  font-family: "Cairo", "Quicksand", sans-serif;
 }
 
 /* // @TODO arabic */
 .lang-ar body {
-  font-family: "Tajawal", sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 
 body {
@@ -579,15 +579,15 @@ a:hover {
 }
 
 html[dir="rtl"] {
-  --font-family-md-base: "Tajawal", sans-serif;
-  --font-family-ios-base: "Tajawal", sans-serif;
-  --font-family-wp-base: "Tajawal", sans-serif;
+  --font-family-md-base: "Cairo", sans-serif;
+  --font-family-ios-base: "Cairo", sans-serif;
+  --font-family-wp-base: "Cairo", sans-serif;
   --ion-font-family: "Tajawal", sans-serif !important;
   .mat-dialog-title {
       direction: rtl;
       text-align: right;
       font-size: 15px;
-      font-family: "Tajawal", sans-serif !important;
+      font-family: "Cairo", sans-serif !important;
   }
   .update {
       left: 20px;
