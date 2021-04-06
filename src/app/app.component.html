@@ -6,7 +6,7 @@
   <mat-toolbar>
     <mat-toolbar-row style="padding: 0;">
       <span fxFlex class="logo-container">
-        <img class="logo" src="assets/images/brand-white.png" routerLink="/"/>
+        <img class="logo" src="assets/images/brand-white.png" routerLink="/" />
         <!-- <img height="50" [src]="logo" /> -->
       </span>
 
@@ -22,32 +22,31 @@
       </span>
 
       <div class="user-actions">
-        <app-notifications-button *ngIf="loggedIn"></app-notifications-button>
-
-        <button mat-button [matMenuTriggerFor]="menu">
-          <span class="d-none d-md-inline" *ngIf="loggedIn">{{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}}
-            {{userDetails.lastName}})</span>
-          <mat-icon>person</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-
-          <button mat-menu-item [matMenuTriggerFor]="langDropdown">
-            {{'LAYOUT.CHANGE_LANGUAGE' | translate}}
+        <div class="pad-h-20">
+          <button mat-button [matMenuTriggerFor]="menu">
+            <span class="d-none d-md-inline" *ngIf="loggedIn">{{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}}
+              {{userDetails.lastName}})</span>
+            <mat-icon>person</mat-icon>
           </button>
-          <mat-menu #langDropdown="matMenu">
-            <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
-            <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
+          <mat-menu #menu="matMenu">
+  
+            <button mat-menu-item [matMenuTriggerFor]="langDropdown">
+              {{'LAYOUT.CHANGE_LANGUAGE' | translate}}
+            </button>
+            <mat-menu #langDropdown="matMenu">
+              <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
+              <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
+            </mat-menu>
+            <button mat-menu-item routerLink="/accounts/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' |
+              translate}}</button>
+            <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
+            <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
+  
           </mat-menu>
-          <button mat-menu-item routerLink="/accounts/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' |
-            translate}}</button>
-          <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
-          <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
+  
+        </div>
 
-        </mat-menu>
-
-        <!-- <div class="notification-btn">
-          <mat-icon>bell</mat-icon>
-        </div> -->
+        <app-notifications-button *ngIf="loggedIn"></app-notifications-button>
       </div>
 
 
