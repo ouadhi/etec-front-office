@@ -10,6 +10,7 @@ import { BaseComponent } from '../base.component';
 export class SectionComponent extends BaseComponent implements OnInit {
 
   @Input() sectionTitle;
+  @Input() sectionCard = true;
 
   constructor(public injector: Injector) { super(injector); }
 

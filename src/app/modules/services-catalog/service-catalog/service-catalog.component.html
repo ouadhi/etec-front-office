@@ -31,7 +31,8 @@
   <app-page>
 
     <br />
-    <app-section class="most-used" sectionTitle="{{'CATALOG.MOST_USED_SERVICES' | translate}}">
+    <br />
+    <app-section class="most-used" sectionTitle="{{'CATALOG.MOST_USED_SERVICES' | translate}}" [sectionCard]="false">
       <section fxLayout="row wrap" fxLayoutAlign="space-between top">
 
         <ng-container *ngFor="let x of dataMostUsed;let i = index">
@@ -50,7 +51,7 @@
     <br />
     <br />
     <div class="services-container">
-      <app-section sectionTitle="{{'CATALOG.DIRECTORY' | translate}}">
+      <app-section sectionTitle="{{'CATALOG.DIRECTORY' | translate}}" [sectionCard]="false">
         <mat-drawer-container hasBackdrop="true">
           <mat-drawer #drawer mode="over">
             <mat-card class="filter-card no-card-shape">

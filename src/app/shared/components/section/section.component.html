@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="section">
+  <div class="section" [class.sectionCard]="sectionCard">
     <h2 class="section__title"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       {{sectionTitle}}</h2>

@@ -18,7 +18,6 @@
         background-repeat: no-repeat;
     }
     &__container {
-        background: #fff;
         padding: 20px 0px;
         white-space: pre-line;
     }
@@ -32,6 +31,17 @@
         border: 3px solid #25aab2;
         border-radius: 5px;
         display: inline-block;
-        width: 250px;
+        width: 200px;
     }
 }
+
+.sectionCard {
+    background-color: #f6f6f6 !important;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 16px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+} 

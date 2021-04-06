@@ -23,6 +23,8 @@
 .logo {
     max-width: 100%;
     height: auto;
+    outline: none;
+    cursor: pointer;
 }
 
 .logo-container {
@@ -36,6 +38,8 @@
 .mat-toolbar-row,
 .mat-toolbar-single-row {
     height: 75px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.22) !important;
+    z-index: 9;
 }
 
 .department {
