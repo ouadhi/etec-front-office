@@ -1,9 +1,12 @@
 .page__title {
-    margin: 20px 0 40px 0;
+    margin: 20px 0 20px 0;
     background-color: #f5f5f5;
     /* text-align: center; */
     vertical-align: middle;
     padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-width: 100%;
 }
 
 .page__back {
@@ -18,8 +21,10 @@
 
 .alignSwitchAR{
     text-align: right;
+    margin: 0;
 }
 .alignSwitchEN{
     text-align: left;
+    margin: 0;
 }
 

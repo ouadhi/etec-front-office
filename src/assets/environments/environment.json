@@ -14,7 +14,7 @@
         },
         "appConfig": {
             "endpoint": "/api/collections/get/appConfig/",
-            "id": "5e97280b66643403e00002a1"
+            "id": "6069bbe7666434004e00012d"
         }        
     },
     "keycloak": {

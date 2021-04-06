@@ -1,126 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~ngx-toastr/toastr";
 @import "../node_modules/bootstrap/scss/functions";
-
 @import "~@angular/material/theming";
 @function mat-color($palette, $hue: default, $opacity: null) {
-  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
-    @return mat-color($palette, default, $hue);
-  }
-
-  $color: map-get($palette, $hue);
-
-  @if (type-of($color) != color) {
-    @if ($opacity == null) {
-      @return $color;
+    @if type-of($hue)==number and $hue>=0 and $hue <=1 {
+        @return mat-color($palette, default, $hue);
     }
-
-    // Here is the change from the original function:
-    // If the $color resolved to something different from a color, we assume it is a CSS variable
-    // in the form of rgba(rgba(var(--rgba-css-var), a) and replace the 'a' value.
-    @return #{str-slice($color, 0, str-index($color, ",")) + $opacity + ")"};
-  }
-
-  @return rgba($color, if($opacity == null, opacity($color), $opacity));
+    $color: map-get($palette, $hue);
+    @if (type-of($color) !=color) {
+        @if ($opacity==null) {
+            @return $color;
+        }
+        // Here is the change from the original function:
+        // If the $color resolved to something different from a color, we assume it is a CSS variable
+        // in the form of rgba(rgba(var(--rgba-css-var), a) and replace the 'a' value.
+        @return #{str-slice($color, 0, str-index($color, ",")) + $opacity + ")"};
+    }
+    @return rgba($color, if($opacity==null, opacity($color), $opacity));
 }
-// Plus imports for other components in your app.
 
+// Plus imports for other components in your app.
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-
 @include mat-core();
-$md-ekhaa: (
-  50: rgba(var(--primary50-parts), 1),
-  100: rgba(var(--primary100-parts), 1),
-  200: rgba(var(--primary200-parts), 1),
-  300: rgba(var(--primary300-parts), 1),
-  400: rgba(var(--primary400-parts), 1),
-  500: rgba(var(--primary500-parts), 1),
-  600: rgba(var(--primary600-parts), 1),
-  700: rgba(var(--primary700-parts), 1),
-  800: rgba(var(--primary800-parts), 1),
-  900: rgba(var(--primary900-parts), 1),
-  A100: rgba(var(--primaryA100-parts), 1),
-  A200: rgba(var(--primaryA200-parts), 1),
-  A400: rgba(var(--primaryA400-parts), 1),
-  A700: rgba(var(--primaryA700-parts), 1),
-  contrast: (
-    50: rgba(var(--primaryContrast50-parts), 1),
-    100: rgba(var(--primaryContrast100-parts), 1),
-    200: rgba(var(--primaryContrast200-parts), 1),
-    300: rgba(var(--primaryContrast300-parts), 1),
-    400: rgba(var(--primaryContrast400-parts), 1),
-    500: rgba(var(--primaryContrast500-parts), 1),
-    600: rgba(var(--primaryContrast600-parts), 1),
-    700: rgba(var(--primaryContrast700-parts), 1),
-    800: rgba(var(--primaryContrast800-parts), 1),
-    900: rgba(var(--primaryContrast900-parts), 1),
-    A100: rgba(var(--primaryContrastA100-parts), 1),
-    A200: rgba(var(--primaryContrastA200-parts), 1),
-    A400: rgba(var(--primaryContrastA400-parts), 1),
-    A700: rgba(var(--primaryContrastA700-parts), 1),
-  ),
-);
-$md-accents: (
-  50: rgba(var(--accent50-parts), 1),
-  100: rgba(var(--accent100-parts), 1),
-  200: rgba(var(--accent200-parts), 1),
-  300: rgba(var(--accent300-parts), 1),
-  400: rgba(var(--accent400-parts), 1),
-  500: rgba(var(--accent500-parts), 1),
-  600: rgba(var(--accent600-parts), 1),
-  700: rgba(var(--accent700-parts), 1),
-  800: rgba(var(--accent800-parts), 1),
-  900: rgba(var(--accent900-parts), 1),
-  A100: rgba(var(--accentA100-parts), 1),
-  A200: rgba(var(--accentA200-parts), 1),
-  A400: rgba(var(--accentA400-parts), 1),
-  A700: rgba(var(--accentA700-parts), 1),
-  contrast: (
-    50: rgba(var(--accentContrast50-parts), 1),
-    100: rgba(var(--accentContrast100-parts), 1),
-    200: rgba(var(--accentContrast200-parts), 1),
-    300: rgba(var(--accentContrast300-parts), 1),
-    400: rgba(var(--accentContrast400-parts), 1),
-    500: rgba(var(--accentContrast500-parts), 1),
-    600: rgba(var(--accentContrast600-parts), 1),
-    700: rgba(var(--accentContrast700-parts), 1),
-    800: rgba(var(--accentContrast800-parts), 1),
-    900: rgba(var(--accentContrast900-parts), 1),
-    A100: rgba(var(--accentContrastA100-parts), 1),
-    A200: rgba(var(--accentContrastA200-parts), 1),
-    A400: rgba(var(--accentContrastA400-parts), 1),
-    A700: rgba(var(--accentContrastA700-parts), 1),
-  ),
-);
-
+$md-ekhaa: ( 50: rgba(var(--primary50-parts), 1), 100: rgba(var(--primary100-parts), 1), 200: rgba(var(--primary200-parts), 1), 300: rgba(var(--primary300-parts), 1), 400: rgba(var(--primary400-parts), 1), 500: rgba(var(--primary500-parts), 1), 600: rgba(var(--primary600-parts), 1), 700: rgba(var(--primary700-parts), 1), 800: rgba(var(--primary800-parts), 1), 900: rgba(var(--primary900-parts), 1), A100: rgba(var(--primaryA100-parts), 1), A200: rgba(var(--primaryA200-parts), 1), A400: rgba(var(--primaryA400-parts), 1), A700: rgba(var(--primaryA700-parts), 1), contrast: ( 50: rgba(var(--primaryContrast50-parts), 1), 100: rgba(var(--primaryContrast100-parts), 1), 200: rgba(var(--primaryContrast200-parts), 1), 300: rgba(var(--primaryContrast300-parts), 1), 400: rgba(var(--primaryContrast400-parts), 1), 500: rgba(var(--primaryContrast500-parts), 1), 600: rgba(var(--primaryContrast600-parts), 1), 700: rgba(var(--primaryContrast700-parts), 1), 800: rgba(var(--primaryContrast800-parts), 1), 900: rgba(var(--primaryContrast900-parts), 1), A100: rgba(var(--primaryContrastA100-parts), 1), A200: rgba(var(--primaryContrastA200-parts), 1), A400: rgba(var(--primaryContrastA400-parts), 1), A700: rgba(var(--primaryContrastA700-parts), 1), ), );
+$md-accents: ( 50: rgba(var(--accent50-parts), 1), 100: rgba(var(--accent100-parts), 1), 200: rgba(var(--accent200-parts), 1), 300: rgba(var(--accent300-parts), 1), 400: rgba(var(--accent400-parts), 1), 500: rgba(var(--accent500-parts), 1), 600: rgba(var(--accent600-parts), 1), 700: rgba(var(--accent700-parts), 1), 800: rgba(var(--accent800-parts), 1), 900: rgba(var(--accent900-parts), 1), A100: rgba(var(--accentA100-parts), 1), A200: rgba(var(--accentA200-parts), 1), A400: rgba(var(--accentA400-parts), 1), A700: rgba(var(--accentA700-parts), 1), contrast: ( 50: rgba(var(--accentContrast50-parts), 1), 100: rgba(var(--accentContrast100-parts), 1), 200: rgba(var(--accentContrast200-parts), 1), 300: rgba(var(--accentContrast300-parts), 1), 400: rgba(var(--accentContrast400-parts), 1), 500: rgba(var(--accentContrast500-parts), 1), 600: rgba(var(--accentContrast600-parts), 1), 700: rgba(var(--accentContrast700-parts), 1), 800: rgba(var(--accentContrast800-parts), 1), 900: rgba(var(--accentContrast900-parts), 1), A100: rgba(var(--accentContrastA100-parts), 1), A200: rgba(var(--accentContrastA200-parts), 1), A400: rgba(var(--accentContrastA400-parts), 1), A700: rgba(var(--accentContrastA700-parts), 1), ), );
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $rms-app-primary: mat-palette($md-ekhaa);
 $rms-app-accent: mat-palette($md-accents, A200, A100, A400);
-
 // The warn palette is optional (defaults to red).
 $rms-app-warn: mat-palette($mat-red);
-
 // Create the theme object (a Sass map containing all of the palettes).
 $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn);
-
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($rms-app-theme);
-
 @import "~css-star-rating/scss/star-rating";
 @import "~@ionic/angular/css/core.css";
 @import "~bootstrap/scss/bootstrap";
-
-
 html,
 body {
-  color: #444;
+    color: #444;
 }
 
 html,
@@ -149,521 +75,583 @@ tbody,
 tr,
 td,
 th {
-  font-family: "Cairo", "Quicksand", sans-serif;
+    font-family: "Cairo", "Quicksand", sans-serif;
 }
 
+
 /* // @TODO arabic */
+
 .lang-ar body {
-  font-family: "Cairo", sans-serif;
+    font-family: "Cairo", sans-serif;
 }
 
 body {
-  margin: 0;
-  background: var(--backgroundColor);
+    margin: 0;
+    background: var(--backgroundColor);
 }
 
 .mainWrapper {
-  &--rtl {
-    direction: rtl;
-    text-align: right;
-  }
+    &--rtl {
+        direction: rtl;
+        text-align: right;
+    }
 }
 
 .routerOutletContainer {
-  position: relative;
-  min-height: 400px;
+    position: relative;
+    min-height: 400px;
 }
 
 img {
-  max-width: 100%;
+    max-width: 100%;
 }
 
-.serviceCard {
-}
+.serviceCard {}
 
 .department__section {
-  border-bottom: 5px #444 solid;
+    border-bottom: 5px #444 solid;
 }
+
 .department {
-  background: var(--backgroundColor);
-  font-weight: normal;
-  border-radius: 0 !important;
-  line-height: 15px !important;
-  white-space: normal !important;
-  word-wrap: break-word;
-  width: auto;
-  height: 56px;
+    background: var(--backgroundColor);
+    font-weight: normal;
+    border-radius: 0 !important;
+    line-height: 15px !important;
+    white-space: normal !important;
+    word-wrap: break-word;
+    width: auto;
+    height: 56px;
 }
 
 .department.active {
-  color: #fff;
-  background: #444;
-  font-weight: bold;
+    color: #fff;
+    background: #444;
+    font-weight: bold;
 }
 
 .category__section {
-  background: #444;
-  color: #fff;
-  margin-bottom: 30px;
-  padding-left: 15px !important;
-  padding-right: 15px !important;
+    background: #444;
+    color: #fff;
+    margin-bottom: 30px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
 }
 
 .category {
-  background: #444;
-  font-weight: normal;
-  border-radius: 0 !important;
-  margin-bottom: 5px !important;
-  line-height: 15px !important;
-  white-space: normal !important;
-  word-wrap: break-word;
-  height: 40px;
+    background: #444;
+    font-weight: normal;
+    border-radius: 0 !important;
+    margin-bottom: 5px !important;
+    line-height: 15px !important;
+    white-space: normal !important;
+    word-wrap: break-word;
+    height: 40px;
 }
 
 .category.active {
-  color: #fff;
-  background: mat-color($rms-app-primary);
-  font-weight: bold;
+    color: #fff;
+    background: mat-color($rms-app-primary);
+    font-weight: bold;
 }
+
 .mat-expansion-panel:not([class*="mat-elevation-z"]),
 mat-expansion-panel.mat-expansion-panel.mat-expanded.mat-expansion-panel-spacing {
-  box-shadow: 0 0;
-  border: 1px rgba(0, 0, 0, 0.06) solid;
-  background: #f7f7f7;
+    box-shadow: 0 0;
+    border: 1px rgba(0, 0, 0, 0.06) solid;
+    background: #f7f7f7;
 }
 
 mat-checkbox .mat-checkbox-inner-container {
-  margin-left: 8px;
+    margin-left: 8px;
 }
 
 [dir="rtl"] {
-  .mat-form-field {
-    text-align: right !important;
-  }
+    .mat-form-field {
+        text-align: right !important;
+    }
 }
 
 .inlineRowItem {
-  margin: 15px 0;
+    margin: 15px 0;
 }
+
 .note {
-  text-align: center;
-  margin: 35px 0px 0px 0px;
-  font-size: 17px;
-  font-weight: 900;
+    text-align: center;
+    margin: 35px 0px 0px 0px;
+    font-size: 17px;
+    font-weight: 900;
 }
+
 .mat-chip-list--inlineBlock {
-  display: inline-block;
+    display: inline-block;
 }
+
 .mat-menu-panel.notifications {
-  height: 50vh !important;
-  min-width: 420px !important;
-  .mat-menu-content {
-    height: 100%;
-    overflow: hidden;
-    padding: 0px;
-  }
+    height: 50vh !important;
+    min-width: 420px !important;
+    .mat-menu-content {
+        height: 100%;
+        overflow: hidden;
+        padding: 0px;
+    }
 }
+
 button:focus {
-  outline-width: 0px;
+    outline-width: 0px;
 }
+
 a:hover {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 .sideButtonContainer {
-  padding: 10px 0 0 0;
-  text-align: left;
+    padding: 10px 0 0 0;
+    text-align: left;
 }
 
 .right-aligned-header>.mat-content {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 
 .mat-content>mat-panel-title,
 .mat-content>mat-panel-description {
-  flex: 0 0 auto;
+    flex: 0 0 auto;
 }
 
 .big-chip {
-  color: #fff;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 10px;
-  h6 {
-      display: flex;
-      font-size: 13px;
-      [slot="start"] {
-          font-weight: bold;
-      }
-  }
-  ion-icon[slot="start"] {
-      -webkit-margin-end: 16px;
-      margin-inline-end: 16px;
-      margin-top: 5px;
-      margin-bottom: 5px;
-  }
-  color: rgba(0, 0, 0, 0.64);
-  &.tertiary {
-      //--background: rgba(var(--ion-color-tertiary-rgb), 0.1);
-      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&0+0,1+100 */
-      --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
-      /* FF3.6-15 */
-      --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      ion-icon {
-          color: var(--ion-color-tertiary);
-      }
-  }
-  &.success {
-      // --background: rgba(var(--ion-color-success-rgb), 0.1);
-      --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
-      /* FF3.6-15 */
-      --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      ion-icon {
-          color: var(--ion-color-success);
-      }
-  }
-  &.warning {
-      //--background: rgba(var(--ion-color-warning-rgb), 0.1);
-      --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
-      /* FF3.6-15 */
-      --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      ion-icon {
-          color: var(--ion-color-warning);
-      }
-  }
-  &.primary {
-      //--background: rgba(var(--ion-color-primary-rgb), 0.1);
-      --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
-      /* FF3.6-15 */
-      --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      ion-icon {
-          color: var(--ion-color-primary);
-      }
-  }
-  &.secondary {
-      //--background: rgba(var(--ion-color-secondary-rgb), 0.1);
-      --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
-      /* FF3.6-15 */
-      --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      ion-icon {
-          color: var(--ion-color-secondary);
-      }
-  }
-  &.danger {
-      //--background: rgba(var(--ion-color-danger-rgb), 0.1);
-      --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
-      /* FF3.6-15 */
-      --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      ion-icon {
-          color: var(--ion-color-danger);
-      }
-  }
-  &.light {
-      //--background: rgba(var(--ion-color-light-rgb), 1);
-      --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
-      /* FF3.6-15 */
-      --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      ion-icon {
-          color: var(--ion-color-medium);
-      }
-  }
-  &.medium {
-      //--background: rgba(var(--ion-color-medium-rgb), 0.1);
-      --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
-      /* FF3.6-15 */
-      --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      ion-icon {
-          color: var(--ion-color-medium);
-      }
-  }
+    color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    h6 {
+        display: flex;
+        font-size: 13px;
+        [slot="start"] {
+            font-weight: bold;
+        }
+    }
+    ion-icon[slot="start"] {
+        -webkit-margin-end: 16px;
+        margin-inline-end: 16px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    color: rgba(0, 0, 0, 0.64);
+    &.tertiary {
+        //--background: rgba(var(--ion-color-tertiary-rgb), 0.1);
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&0+0,1+100 */
+        --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
+        /* FF3.6-15 */
+        --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        ion-icon {
+            color: var(--ion-color-tertiary);
+        }
+    }
+    &.success {
+        // --background: rgba(var(--ion-color-success-rgb), 0.1);
+        --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
+        /* FF3.6-15 */
+        --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        ion-icon {
+            color: var(--ion-color-success);
+        }
+    }
+    &.warning {
+        //--background: rgba(var(--ion-color-warning-rgb), 0.1);
+        --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
+        /* FF3.6-15 */
+        --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        ion-icon {
+            color: var(--ion-color-warning);
+        }
+    }
+    &.primary {
+        //--background: rgba(var(--ion-color-primary-rgb), 0.1);
+        --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
+        /* FF3.6-15 */
+        --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        ion-icon {
+            color: var(--ion-color-primary);
+        }
+    }
+    &.secondary {
+        //--background: rgba(var(--ion-color-secondary-rgb), 0.1);
+        --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
+        /* FF3.6-15 */
+        --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        ion-icon {
+            color: var(--ion-color-secondary);
+        }
+    }
+    &.danger {
+        //--background: rgba(var(--ion-color-danger-rgb), 0.1);
+        --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
+        /* FF3.6-15 */
+        --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        ion-icon {
+            color: var(--ion-color-danger);
+        }
+    }
+    &.light {
+        //--background: rgba(var(--ion-color-light-rgb), 1);
+        --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
+        /* FF3.6-15 */
+        --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        ion-icon {
+            color: var(--ion-color-medium);
+        }
+    }
+    &.medium {
+        //--background: rgba(var(--ion-color-medium-rgb), 0.1);
+        --background: -moz-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
+        /* FF3.6-15 */
+        --background: -webkit-linear-gradient( left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        --background: linear-gradient( to left, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        ion-icon {
+            color: var(--ion-color-medium);
+        }
+    }
 }
 
 [dir="rtl"] {
-  .big-chip {
-      color: #fff;
-      border-radius: 6px;
-      overflow: hidden;
-      margin-bottom: 10px;
-      h6 {
-          display: flex;
-          font-size: 13px;
-          [slot="start"] {
-              font-weight: bold;
-          }
-      }
-      ion-icon[slot="start"] {
-          -webkit-margin-end: 16px;
-          margin-inline-end: 16px;
-          margin-top: 5px;
-          margin-bottom: 5px;
-      }
-      color: rgba(0, 0, 0, 0.64);
-      &.tertiary {
-          //--background: rgba(var(--ion-color-tertiary-rgb), 0.1);
-          /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&0+0,1+100 */
-          --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
-          /* FF3.6-15 */
-          --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
-          /* Chrome10-25,Safari5.1-6 */
-          --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
-          /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          ion-icon {
-              color: var(--ion-color-tertiary);
-          }
-      }
-      &.success {
-          // --background: rgba(var(--ion-color-success-rgb), 0.1);
-          --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
-          /* FF3.6-15 */
-          --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
-          /* Chrome10-25,Safari5.1-6 */
-          --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
-          /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          ion-icon {
-              color: var(--ion-color-success);
-          }
-      }
-      &.warning {
-          //--background: rgba(var(--ion-color-warning-rgb), 0.1);
-          --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
-          /* FF3.6-15 */
-          --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
-          /* Chrome10-25,Safari5.1-6 */
-          --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
-          /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          ion-icon {
-              color: var(--ion-color-warning);
-          }
-      }
-      &.primary {
-          //--background: rgba(var(--ion-color-primary-rgb), 0.1);
-          --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
-          /* FF3.6-15 */
-          --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
-          /* Chrome10-25,Safari5.1-6 */
-          --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
-          /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          ion-icon {
-              color: var(--ion-color-primary);
-          }
-      }
-      &.secondary {
-          //--background: rgba(var(--ion-color-secondary-rgb), 0.1);
-          --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
-          /* FF3.6-15 */
-          --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
-          /* Chrome10-25,Safari5.1-6 */
-          --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
-          /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          ion-icon {
-              color: var(--ion-color-secondary);
-          }
-      }
-      &.danger {
-          //--background: rgba(var(--ion-color-danger-rgb), 0.1);
-          --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
-          /* FF3.6-15 */
-          --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
-          /* Chrome10-25,Safari5.1-6 */
-          --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
-          /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          ion-icon {
-              color: var(--ion-color-danger);
-          }
-      }
-      &.light {
-          //--background: rgba(var(--ion-color-light-rgb), 1);
-          --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
-          /* FF3.6-15 */
-          --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
-          /* Chrome10-25,Safari5.1-6 */
-          --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
-          /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          ion-icon {
-              color: var(--ion-color-medium);
-          }
-      }
-      &.medium {
-          //--background: rgba(var(--ion-color-medium-rgb), 0.1);
-          --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
-          /* FF3.6-15 */
-          --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
-          /* Chrome10-25,Safari5.1-6 */
-          --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
-          /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-          ion-icon {
-              color: var(--ion-color-medium);
-          }
-      }
-  }
+    .big-chip {
+        color: #fff;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        h6 {
+            display: flex;
+            font-size: 13px;
+            [slot="start"] {
+                font-weight: bold;
+            }
+        }
+        ion-icon[slot="start"] {
+            -webkit-margin-end: 16px;
+            margin-inline-end: 16px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        color: rgba(0, 0, 0, 0.64);
+        &.tertiary {
+            //--background: rgba(var(--ion-color-tertiary-rgb), 0.1);
+            /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&0+0,1+100 */
+            --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
+            /* FF3.6-15 */
+            --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            ion-icon {
+                color: var(--ion-color-tertiary);
+            }
+        }
+        &.success {
+            // --background: rgba(var(--ion-color-success-rgb), 0.1);
+            --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
+            /* FF3.6-15 */
+            --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-success-rgb), 0.1) 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            ion-icon {
+                color: var(--ion-color-success);
+            }
+        }
+        &.warning {
+            //--background: rgba(var(--ion-color-warning-rgb), 0.1);
+            --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
+            /* FF3.6-15 */
+            --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-warning-rgb), 0.1) 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            ion-icon {
+                color: var(--ion-color-warning);
+            }
+        }
+        &.primary {
+            //--background: rgba(var(--ion-color-primary-rgb), 0.1);
+            --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
+            /* FF3.6-15 */
+            --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-primary-rgb), 0.1) 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            ion-icon {
+                color: var(--ion-color-primary);
+            }
+        }
+        &.secondary {
+            //--background: rgba(var(--ion-color-secondary-rgb), 0.1);
+            --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
+            /* FF3.6-15 */
+            --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            ion-icon {
+                color: var(--ion-color-secondary);
+            }
+        }
+        &.danger {
+            //--background: rgba(var(--ion-color-danger-rgb), 0.1);
+            --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
+            /* FF3.6-15 */
+            --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-danger-rgb), 0.1) 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            ion-icon {
+                color: var(--ion-color-danger);
+            }
+        }
+        &.light {
+            //--background: rgba(var(--ion-color-light-rgb), 1);
+            --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
+            /* FF3.6-15 */
+            --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-light-rgb), 1) 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            ion-icon {
+                color: var(--ion-color-medium);
+            }
+        }
+        &.medium {
+            //--background: rgba(var(--ion-color-medium-rgb), 0.1);
+            --background: -moz-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
+            /* FF3.6-15 */
+            --background: -webkit-linear-gradient( right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            --background: linear-gradient( to right, rgba(30, 87, 153, 0) 50%, rgba(var(--ion-color-medium-rgb), 0.1) 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            ion-icon {
+                color: var(--ion-color-medium);
+            }
+        }
+    }
 }
 
 .slotted {
-  width: 100%;
-  display: flow-root;
-  padding-top: 10px;
-  position: relative;
-  [slot="start"] {
-      float: left;
-      margin: 0px;
-      margin-right: 5px;
-      flex: 1;
-  }
-  [slot="end"] {
-      float: right;
-      margin: 0px;
-      margin-left: 5px;
-      flex: 1;
-  }
+    width: 100%;
+    display: flow-root;
+    padding-top: 10px;
+    position: relative;
+    [slot="start"] {
+        float: left;
+        margin: 0px;
+        margin-right: 5px;
+        flex: 1;
+    }
+    [slot="end"] {
+        float: right;
+        margin: 0px;
+        margin-left: 5px;
+        flex: 1;
+    }
 }
 
 .service-title {
-  margin: 28px 11px -20px 12px;
-  background-color: #f5f5f5;
-  padding: 24px 16px 14px 16px;
+    margin: 28px 11px -20px 12px;
+    background-color: #f5f5f5;
+    padding: 24px 16px 14px 16px;
 }
 
 @media (max-width: 767px) {
-  #tracking {
-      padding: 0px;
-      margin: -6px -15px;
-  }
-  .mat-dialog-title {}
-  .cdk-overlay-pane {
-      max-width: 100vw !important;
-      width: 93% !important;
-  }
-  .ngx-toastr {
-      width: calc(100vw - 25px) !important;
-  }
-  .formio-component-file {
-      position: relative !important;
-      overflow: hidden;
-  }
-  .alignSwitchAR {
-      padding-left: 0px;
-      padding-right: 0px;
-  }
-
+    #tracking {
+        padding: 0px;
+        margin: -6px -15px;
+    }
+    .mat-dialog-title {}
+    .cdk-overlay-pane {
+        max-width: 100vw !important;
+        width: 93% !important;
+    }
+    .ngx-toastr {
+        width: calc(100vw - 25px) !important;
+    }
+    .formio-component-file {
+        position: relative !important;
+        overflow: hidden;
+    }
+    .alignSwitchAR {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 @media (max-width: 321px) {
-  .mat-button {
-      font-size: 11px !important;
-  }
+    .mat-button {
+        font-size: 11px !important;
+    }
 }
 
 html[dir="rtl"] {
-  --font-family-md-base: "Cairo", sans-serif;
-  --font-family-ios-base: "Cairo", sans-serif;
-  --font-family-wp-base: "Cairo", sans-serif;
-  --ion-font-family: "Tajawal", sans-serif !important;
-  .mat-dialog-title {
-      direction: rtl;
-      text-align: right;
-      font-size: 15px;
-      font-family: "Cairo", sans-serif !important;
-  }
-  .update {
-      left: 20px;
-      right: auto;
-  }
-  .big-chip h6 {
-      direction: rtl;
-  }
-  .slotted {
-      [slot="start"] {
-          float: right;
-          margin: 0px;
-          margin-left: 5px;
-      }
-      [slot="end"] {
-          float: left;
-          margin: 0px;
-          margin-right: 5px;
-      }
-  }
-  .toast-container {
-      left: 12px !important;
-      right: auto !important;
-      direction: rtl;
-      text-align: right;
-      .ngx-toastr {
-          background-position: 10px center !important;
-      }
-      .toast-close-button {
-          float: left;
-      }
-  }
-  ion-title,
-  .page-title {
-      text-align: right;
-  }
-  
-  .ng-select .ng-has-value .ng-placeholder,
-  .ng-select.ng-select-focused .ng-placeholder,
-  .ng-select.ng-select-opened .ng-placeholder {
-      -webkit-transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px) translateZ(0.001px) !important;
-      transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px) translateZ(0.001px) !important;
-      transform-origin: right;
-  }
+    --font-family-md-base: "Cairo", sans-serif;
+    --font-family-ios-base: "Cairo", sans-serif;
+    --font-family-wp-base: "Cairo", sans-serif;
+    --ion-font-family: "Tajawal", sans-serif !important;
+    .mat-dialog-title {
+        direction: rtl;
+        text-align: right;
+        font-size: 15px;
+        font-family: "Cairo", sans-serif !important;
+    }
+    .update {
+        left: 20px;
+        right: auto;
+    }
+    .big-chip h6 {
+        direction: rtl;
+    }
+    .slotted {
+        [slot="start"] {
+            float: right;
+            margin: 0px;
+            margin-left: 5px;
+        }
+        [slot="end"] {
+            float: left;
+            margin: 0px;
+            margin-right: 5px;
+        }
+    }
+    .toast-container {
+        left: 12px !important;
+        right: auto !important;
+        direction: rtl;
+        text-align: right;
+        .ngx-toastr {
+            background-position: 10px center !important;
+        }
+        .toast-close-button {
+            float: left;
+        }
+    }
+    ion-title,
+    .page-title {
+        text-align: right;
+    }
+    .ng-select .ng-has-value .ng-placeholder,
+    .ng-select.ng-select-focused .ng-placeholder,
+    .ng-select.ng-select-opened .ng-placeholder {
+        -webkit-transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px) translateZ(0.001px) !important;
+        transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px) translateZ(0.001px) !important;
+        transform-origin: right;
+    }
 }
 
 .toast-container {
-  right: 12px !important;
-  bottom: 12px !important;
-  pointer-events: all !important;
-  .ngx-toastr {
-      padding: 25px !important;
-      background-position: 263px center !important;
-      border-radius: 10px !important;
-      box-shadow: none !important;
-  }
-  .toast-title {
-      font-weight: normal;
-  }
+    right: 12px !important;
+    bottom: 12px !important;
+    pointer-events: all !important;
+    .ngx-toastr {
+        padding: 25px !important;
+        background-position: 263px center !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+    }
+    .toast-title {
+        font-weight: normal;
+    }
 }
+
 .notification-toast {
-  padding: 15px !important;
-  background: #f9f9f9;
-  font-size: 13px;
-  width: 400px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.23);
-  color: #424242;
-  border: 1px solid rgba(66, 66, 66, 0.18);
-  margin-top: 10px;
-  cursor: pointer;
-  .toast-close-button {
-      color: #333;
-  }
-  .toast-message {
-      font-size: 10px;
-      color: #6d6d6d;
-  }
+    padding: 15px !important;
+    background: #f9f9f9;
+    font-size: 13px;
+    width: 400px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.23);
+    color: #424242;
+    border: 1px solid rgba(66, 66, 66, 0.18);
+    margin-top: 10px;
+    cursor: pointer;
+    .toast-close-button {
+        color: #333;
+    }
+    .toast-message {
+        font-size: 10px;
+        color: #6d6d6d;
+    }
+}
+
+.mat-tab-label-active {
+    background: #25aab2 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+.mat-tab-label-active::after {
+    content: "";
+    display: inline-block;
+    width: 35px;
+    height: 0;
+    position: absolute;
+    bottom: -5px;
+    transform: rotate( 180deg);
+    left: calc(50% - 15px);
+    z-index: 1;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 12px solid #166569;
+}
+
+.mat-ink-bar {
+    background: #166569 !important;
+}
+
+.mat-tab-label-container {
+    background: #fff;
+}
+
+.selected-chip {
+    background: #25aab2 !important;
+    color: #fff;
+}
+
+ ::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(207, 207, 207);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(207, 207, 207);
 }

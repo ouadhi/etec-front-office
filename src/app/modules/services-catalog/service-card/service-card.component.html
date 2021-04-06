@@ -1,30 +1,5 @@
-<div class="d-none d-xl-block">
-  <a class="serviceCard" [routerLink]="['/service-catalog/details/'+id]">
-    <mat-card class="serviceCard__continer" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
-      <div class="serviceCard__title">{{cardTitle}}</div>
-        <p class="serviceCard__desc" [ngClass]="{'block-with-text-ar': switchLangService.currentLang=='ar', 'block-with-text-en':switchLangService.currentLang=='en'}">{{text}}</p>
-    </mat-card>
-  </a>
-</div>
-<div class="d-xl-none">
-  <mat-card class="serviceCard__continer">
-    <mat-accordion>
-      <mat-expansion-panel class="acc" [class.mat-expansion-panel]="false"  hideToggle="flase">
-        <mat-expansion-panel-header>
-            <div class="serviceCard__title2" style="width: 90%;">{{cardTitle}}</div>
-            <div class="" style="width: 10%;">
-              <a [routerLink]="['/service-catalog/details/'+id]" class="text-info" style="font-size: 20px;">
-                <ion-icon [name]="switchLangService.currentLang=='ar' ? 'arrow-dropright-circle' : 'arrow-dropleft-circle'"></ion-icon>
-                
-              </a>
-            </div>
-            
-        </mat-expansion-panel-header>
-        <small class="serviceCard__desc">{{text}}</small>
-      </mat-expansion-panel>
-     
-    </mat-accordion>
-  </mat-card>
-</div>
-
-
+<mat-card class="mat-card" [routerLink]="['/service-catalog/details/'+id]">
+  <img src="assets/images/service-bg.png" class="card-bg" />
+  <h5 class="two-line">{{cardTitle}}</h5>
+  <p class="service-desc two-line"> {{text}}</p>
+</mat-card>

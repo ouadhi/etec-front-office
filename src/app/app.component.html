@@ -1,5 +1,7 @@
 <div class="mainWrapper" [class.mainWrapper--rtl]="switchLangService.currentLang=='ar'"
   dir="{{switchLangService.currentLang=='ar' ? 'rtl' : 'ltr'}}">
+  <div class="footer-pattern"></div>
+  
   <mat-toolbar color="">
     <mat-toolbar-row>
       <!-- <span fxFlex>{{'LAYOUT.TITLE' | translate}}</span> -->
@@ -37,14 +39,14 @@
     <mat-toolbar-row>
       <span>
         <!-- <a mat-button routerLink="/" routerLinkActive="active">{{'NAV.MAIN_PAGE' | translate }}</a> -->
-        <a mat-button routerLink="/service-catalog"
-          routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate }}</a>
-        <a mat-button *ngIf="loggedIn" routerLink="/requests/my"
-          routerLinkActive="active">{{'NAV.MY_REQUESTS' | translate}}</a>
-        <a mat-button *ngIf="!loggedIn" routerLink="/requests/query"
-          routerLinkActive="active">{{'NAV.QUERY_REQUEST' | translate}}</a>
-        <a mat-button *ngIf="loggedIn" routerLink="/opportunity/all"
-          routerLinkActive="active">{{'NAV.ALL_OPPORTUNITIES' | translate}}</a>
+        <a mat-button routerLink="/service-catalog" routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate
+          }}</a>
+        <a mat-button *ngIf="loggedIn" routerLink="/requests/my" routerLinkActive="active">{{'NAV.MY_REQUESTS' |
+          translate}}</a>
+        <a mat-button *ngIf="!loggedIn" routerLink="/requests/query" routerLinkActive="active">{{'NAV.QUERY_REQUEST' |
+          translate}}</a>
+        <a mat-button *ngIf="loggedIn" routerLink="/opportunity/all" routerLinkActive="active">{{'NAV.ALL_OPPORTUNITIES'
+          | translate}}</a>
       </span>
     </mat-toolbar-row>
   </mat-toolbar>

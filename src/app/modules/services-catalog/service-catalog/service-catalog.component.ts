@@ -1,5 +1,7 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Injector } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { IImage } from 'ng-simple-slideshow';
 import { combineLatest } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -12,7 +14,6 @@ import { RequestsService } from '../../requests/requests.service';
   styleUrls: ['./service-catalog.component.scss']
 })
 export class ServiceCatalogComponent extends BaseComponent implements OnInit, OnDestroy {
-
   dataMostUsed: any;
   data: any[];
   totalResult: number;
@@ -195,32 +196,32 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
     this.sub = combineLatest([
       this.servicesService.getSegmentType(),
       this.servicesService.getSegments()
-    ]) .subscribe(results => {
-        this.segmentType = results[0].entries;
+    ]).subscribe(results => {
+      this.segmentType = results[0].entries;
 
-        this.segments = results[1].entries;
-        this.loggerService.log(userSegments);
-        this.disabled = [];
-        this.segmentType.forEach((type, j) => {
-          const newObj = {};
-          const innerObj = newObj[type._id] = {};
-          this.segments.forEach((element, i) => {
-            if (element.activation && type._id === element.segmentType._id) {
-              if (userSegments.includes(element._id)) {
-                this.disabled.push(type._id);
-                this.loggerService.log('ok?');
-                innerObj[element._id] = true;
-              } else {
-                innerObj[element._id] = false;
-              }
+      this.segments = results[1].entries;
+      this.loggerService.log(userSegments);
+      this.disabled = [];
+      this.segmentType.forEach((type, j) => {
+        const newObj = {};
+        const innerObj = newObj[type._id] = {};
+        this.segments.forEach((element, i) => {
+          if (element.activation && type._id === element.segmentType._id) {
+            if (userSegments.includes(element._id)) {
+              this.disabled.push(type._id);
+              this.loggerService.log('ok?');
+              innerObj[element._id] = true;
+            } else {
+              innerObj[element._id] = false;
             }
-          });
-          this.segmentInput = { ...this.segmentInput, ...newObj };
-          this.segments.forEach(element => element.isDisabled = this.isDisabled(type, element));
+          }
         });
-
-        this.filterSegment();
+        this.segmentInput = { ...this.segmentInput, ...newObj };
+        this.segments.forEach(element => element.isDisabled = this.isDisabled(type, element));
       });
+
+      this.filterSegment();
+    });
 
     this.sub = this.servicesService.getDepartments().subscribe(data => {
       this.departments = data.entries;
@@ -292,6 +293,10 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
   }
 
   // action filter for department
+  changeTap(event, data) {
+    const _id = event.index != 0 ? data[event.index - 1]._id : null;
+    this.filterDepartment(_id);
+  }
   filterDepartment(_id?) {
     if (_id) {
       this.dataFilters.category.department._id = _id;
@@ -419,9 +424,6 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
     } else {
       this.prepareFilters(this.userSegments);
     }
-
-
-
   }
 
 }

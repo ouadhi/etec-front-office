@@ -1,19 +1,26 @@
 .filtersSection {
     background: #f7f7f7;
     padding: 10px;
+    width: -webkit-fill-available;
+}
+
+.w-bg {
+    background: #fff !important;
 }
 
 .filtersSection__keywordForm {
     width: 100%;
 }
+
 [dir="rtl"] {
     .filtersSection__keywordForm {
         text-align: right;
     }
 }
+
 .filtersList {
     margin: 15px 0;
-    border-bottom: 1px #ccc solid;
+    border-bottom: 1px #25aab2 solid;
     padding-bottom: 15px;
 }
 
@@ -22,8 +29,7 @@
     margin-bottom: 5px;
 }
 
-.filtersList__item {
-}
+.filtersList__item {}
 
 .filtersList__item .mat-checkbox-inner-container {
     margin-left: 10px;
@@ -32,9 +38,116 @@
 .alignSwitchAR {
     text-align: right;
 }
+
 .alignSwitchEN {
     text-align: left;
 }
+
 .alert-link {
     cursor: pointer;
+}
+
+//////////////////////////////////////////////////////
+.carousel-img {
+    min-height: 300px !important;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax {
+    background-image: url("http://trilogyeducationservices.com/wp-content/uploads/2019/09/trilogyeducationservices_site_codingblog.jpg");
+    background-size: cover;
+    min-height: 550px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.category-filter {
+    padding: 10px;
+    background: #fff;
+}
+
+.category-content {
+    padding: 10px;
+    padding-top: 20px;
+    background: #fff;
+}
+
+.filter-card {
+    height: auto;
+}
+
+.filter-card:hover {
+    transform: none;
+    box-shadow: none !important;
+}
+
+.no-card-shape {
+    background: #fff !important;
+    padding: 10px !important;
+    border: 1px solid #ddd !important;
+}
+
+.sm-filter-card {
+    background: #fff !important;
+    padding: 10px !important;
+    border: 1px solid #ddd !important;
+    margin: 0 !important;
+}
+
+.sm-filter-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.d-lg-none {
+    width: 100%;
+}
+
+.d-lg-block {
+    width: inherit;
+}
+
+.sm-row {
+    padding: 0 !important;
+    margin: 1px !important;
+}
+
+.services-container {
+    background: #fff;
+    margin-top: -220px;
+    padding-top: 30px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
+    border-radius: 10px;
+}
+
+.card-header-no-pad {
+    padding: 0 !important;
+}
+
+.card-header-pad {
+    padding: 0.75rem 1.25rem;
+}
+
+mat-tab-group {
+    overflow: hidden;
+    margin: 1px;
+}
+
+:host ::ng-deep {
+    .mat-form-field-infix {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .clear-filter mat-icon {
+        display: none !important;
+    }
 }
