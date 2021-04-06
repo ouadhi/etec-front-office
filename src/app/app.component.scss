@@ -1,0 +1,113 @@
+.padding-top {
+    padding-top: 40px;
+}
+
+.footer-pattern {
+    height: 150px;
+    background: url('/assets/images/triangle-pattern.png') 0 / 30% repeat-x !important;
+    position: absolute;
+    bottom: 75px;
+    left: 0;
+    right: 0;
+}
+
+.mainWrapper {
+    position: relative;
+}
+
+/////////////////////////
+.mat-toolbar {
+    background: #f7f7f7 !important;
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+}
+
+.logo-container {
+    background: #25aab2;
+    max-width: 250px;
+    padding: 20px;
+    display: inline-block;
+    height: -webkit-fill-available;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    height: 75px;
+}
+
+.department {
+    display: flex;
+    align-items: center;
+    height: -webkit-fill-available;
+}
+
+.department a {
+    padding: 15px 20px;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    height: -webkit-fill-available;
+}
+
+.department a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #25aab2;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.department a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+.active {
+    font-weight: 700;
+    background: #f5f5f5;
+}
+
+.department a.active:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    background: #25aab2;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.department a.active:after {
+    width: 100%;
+    left: 0;
+}
+
+.user-actions {
+    padding: 0 20px;
+    background: #2b5294;
+    height: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    border-bottom-right-radius: 1.3rem;
+    color: #fff;
+}
+
+.notification-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: -webkit-fill-available;
+  background-color: #34357e;
+}
