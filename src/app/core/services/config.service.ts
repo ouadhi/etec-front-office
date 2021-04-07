@@ -114,7 +114,7 @@ export class ConfigService {
                 document.documentElement.style.setProperty(`--${key}-parts`,
                     this._config[key].replace('rgb', '').replace('(', '').replace(')', ''));
             } else if (key.includes('favicon')) {
-                document.getElementById('favicon').setAttribute('href', `${environment.cms.api.master}${this._config[key].path}`);
+                document.getElementById('favicon').setAttribute('href', `${environment.cms.api.master}/${this._config[key].path}`);
             }
         });
         if (!this._config.favicon) {
