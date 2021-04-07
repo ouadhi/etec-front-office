@@ -17,4 +17,11 @@ ion-badge {
     width: 5rem;
     height: 75px;
     background-color: #34357e;
+    cursor: pointer;
 }
+
+@media (max-width: 480px) {
+    .notification-btn {
+        width: 40px;
+    }
+}   

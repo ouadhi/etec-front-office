@@ -305,5 +305,10 @@
   "a month ago": "a month ago",
   "months ago": "{{months}} months ago",
   "a year ago": "a year ago",
-  "years ago": "{{years}} years ago"
+  "years ago": "{{years}} years ago",
+  "HEADER": {
+    "LANGUAGE": "Language",
+    "ENGLISH": "English",
+    "ARABIC": "العربية"
+  }
 }

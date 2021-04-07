@@ -948,5 +948,10 @@
   "a month ago": "منذ شهر",
   "months ago": "منذ {{months}} أشهر",
   "a year ago": "منذ سنة",
-  "years ago": "منذ {{years}} سنوات"
+  "years ago": "منذ {{years}} سنوات",
+  "HEADER": {
+    "LANGUAGE": "اللغة",
+    "ENGLISH": "English",
+    "ARABIC": "العربية"
+  }
 }
