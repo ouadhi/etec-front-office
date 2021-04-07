@@ -76,14 +76,19 @@ tr,
 td,
 th,
 .mat-menu-item {
-    font-family: "Tajawal", "Quicksand", sans-serif;
+    font-family: "Droid Arabic Kufi", "Quicksand", sans-serif;
+}
+
+h5,
+.h5 {
+    padding-bottom: 5px !important;
 }
 
 
 /* // @TODO arabic */
 
 .lang-ar body {
-    font-family: "Tajawal", sans-serif;
+    font-family: "Droid Arabic Kufi", sans-serif;
 }
 
 body {
@@ -513,15 +518,15 @@ a:hover {
 }
 
 html[dir="rtl"] {
-    --font-family-md-base: "Tajawal", sans-serif;
-    --font-family-ios-base: "Tajawal", sans-serif;
-    --font-family-wp-base: "Tajawal", sans-serif;
-    --ion-font-family: "Tajawal", sans-serif !important;
+    --font-family-md-base: "Droid Arabic Kufi", sans-serif;
+    --font-family-ios-base: "Droid Arabic Kufi", sans-serif;
+    --font-family-wp-base: "Droid Arabic Kufi", sans-serif;
+    --ion-font-family: "Droid Arabic Kufi", sans-serif !important;
     .mat-dialog-title {
         direction: rtl;
         text-align: right;
         font-size: 15px;
-        font-family: "Tajawal", sans-serif !important;
+        font-family: "Droid Arabic Kufi", sans-serif !important;
     }
     .update {
         left: 20px;
@@ -664,4 +669,9 @@ html[dir="rtl"] {
 
 .mat-drawer-content {
     background-color: #fff !important;
+}
+
+.section__container div button {
+    display: block !important;
+    margin-top: 5px !important;
 }

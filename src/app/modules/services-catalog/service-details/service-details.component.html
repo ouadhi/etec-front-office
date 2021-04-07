@@ -4,7 +4,7 @@
   <div *ngIf="!active">
     {{'SERVICE.IS_NOT_ACTIVE' | translate}}
   </div>
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
+  <div fxLayout="row" fxLayout.md="column" fxLayoutAlign="space-between top" *ngIf="active">
 
     <div fxFlex="70">
       <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
@@ -95,7 +95,8 @@
       </app-section>
 
     </div>
-    <div fxFlex="25">
+    
+    <div fxFlex="30">
 
 
       <app-section [hidden]="true" sectionTitle="{{'SERVICE.VIDEO' | translate}}">
@@ -167,8 +168,8 @@
       {{'service.No Comments' | translate}}
     </div>
   </app-section>
-  <app-section>
+  <!-- <app-section>
     <p class="note">{{'SERVICE.SERVICES_NOTE' | translate}}</p>
-  </app-section>
+  </app-section> -->
 
 </app-page>
