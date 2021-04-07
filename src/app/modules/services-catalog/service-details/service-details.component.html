@@ -4,7 +4,8 @@
   <div *ngIf="!active">
     {{'SERVICE.IS_NOT_ACTIVE' | translate}}
   </div>
-  <div fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
+  <div fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between top"
+    *ngIf="active">
 
     <div fxFlex="70">
       <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
@@ -87,15 +88,19 @@
           </mat-chip-list>
         </div>
 
-        <div class="inlineRowItem">{{'SERVICE.PRIMARY_SERVICE' |translate}} :
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.PRIMARY_SERVICE' |translate}} :">
+
+
+        <div class="inlineRowItem">
           {{data['primaryService_' + switchLangService.current]}}
           <span [hidden]="data['primaryService_' + switchLangService.current]">{{'SERVICE.NO_ENTRY' | translate}}</span>
         </div>
-
       </app-section>
 
     </div>
-    
+
     <div fxFlex="30">
 
 
