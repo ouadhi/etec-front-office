@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="section" [ngClass]="sectionCard ? 'sectionCard' : 'justSection'">
-    <h2 class="section__title"
+    <h2 class="section__title" *ngIf="sectionTitle"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       {{sectionTitle}}</h2>
-    <div class="divider" *ngIf="sectionTitle"></div>
+    <!-- <div class="divider" *ngIf="sectionTitle"></div> -->
     <div fxLayout="row" fxLayoutAlign="center top" fxLayout.xs="column" class="section__container"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div fxFlex="100">

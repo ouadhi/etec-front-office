@@ -74,7 +74,8 @@ thead,
 tbody,
 tr,
 td,
-th {
+th,
+.mat-menu-item {
     font-family: "Tajawal", "Quicksand", sans-serif;
 }
 
@@ -601,10 +602,16 @@ html[dir="rtl"] {
     }
 }
 
+.mat-tab-label {
+    font-size: 16px !important;
+}
+
 .mat-tab-label-active {
     background: #25aab2 !important;
     color: #fff !important;
     opacity: 1 !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
 }
 
 .mat-tab-label-active::after {
@@ -639,7 +646,6 @@ html[dir="rtl"] {
     width: 10px;
 }
 
-
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -654,4 +660,8 @@ html[dir="rtl"] {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(207, 207, 207);
+}
+
+.mat-drawer-content {
+    background-color: #fff !important;
 }
