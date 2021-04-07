@@ -93,7 +93,8 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
         this.sub = this.translateService.onLangChange.subscribe(() => {
             this.doInitSlider();
         });
-        this.sub = this.caseActivityService.getCaseHistoryActivities({ caseInstanceId: this.caseInstanceId })
+        this.sub = this.caseActivityService.getCaseHistoryActivities({ sortBy: 'endTime',
+        sortOrder: 'asc', caseInstanceId: this.caseInstanceId })
             .subscribe(data => {
 
                 this.activities = data;
