@@ -949,5 +949,9 @@
   "months ago": "منذ {{months}} أشهر",
   "a year ago": "منذ سنة",
   "years ago": "منذ {{years}} سنوات",
-  "GREETING": "مرحباً بك"
+  "HEADER": {
+    "LANGUAGE": "اللغة",
+    "ENGLISH": "English",
+    "ARABIC": "العربية"
+  }
 }

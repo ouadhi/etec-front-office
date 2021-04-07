@@ -306,5 +306,9 @@
   "months ago": "{{months}} months ago",
   "a year ago": "a year ago",
   "years ago": "{{years}} years ago",
-  "GREETING": "Welcome"
+  "HEADER": {
+    "LANGUAGE": "Language",
+    "ENGLISH": "English",
+    "ARABIC": "العربية"
+  }
 }

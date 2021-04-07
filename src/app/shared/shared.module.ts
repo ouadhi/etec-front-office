@@ -25,6 +25,7 @@ import { NotificationOptionsComponent } from './components/notifications/notific
 import { NotificationsModalComponent } from './components/notifications/notifications-modal/notifications-modal.component';
 import { RouterModule } from '@angular/router';
 import { FormioModule } from 'src/formio/src/public_api';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { FormioModule } from 'src/formio/src/public_api';
         NotificationsButtonComponent,
         NotificationItemComponent,
         NotificationOptionsComponent,
+        HeaderComponent,
         TimeAgoPipe,
         HasRoleDirective,
     ],
@@ -89,6 +91,7 @@ import { FormioModule } from 'src/formio/src/public_api';
         NotificationsButtonComponent,
         NotificationItemComponent,
         NotificationOptionsComponent,
+        HeaderComponent,
         TimeAgoPipe,
         HasRoleDirective,
     ],
