@@ -102,11 +102,69 @@
     height: -webkit-fill-available;
     display: flex;
     align-items: center;
-    border-bottom-right-radius: 1.3rem;
+    border-bottom-left-radius: 1.3rem;
     color: #fff;
+    .user-container {
+        display: flex;
+        align-items: center;
+    }
+    .pad-h-20 {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .user-photo {
+        max-width: 3rem;
+        margin: 0 0.8rem 0 0;
+        cursor: pointer;
+        .photo {
+            border-radius: 50%;
+        }
+    }
+    .user-details {
+        text-align: left;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        line-height: 14px;
+        cursor: pointer;
+        .greeting {
+            text-align: start;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .user-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #25aab2;
+            .user-icon {
+                position: relative;
+                top: 3px;
+                right: -3px;
+                font-size: 0.8rem;
+            }
+        }
+    }
 }
 
-.pad-h-20 {
-    padding-left: 20px;
-    padding-right: 20px;
+[dir="rtl"] {
+    .user-actions {
+        padding-left: 0;
+        padding-right: 1.5rem;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 1.3rem;
+        .user-photo {
+            margin: 0 0 0 0.8rem;
+        }
+        .user-details {
+            text-align: right;
+            .user-name {
+                padding-right: 0;
+                padding-left: 0.25rem;
+                .user-icon {
+                    right: auto;
+                    left: -3px;
+                }
+            }
+        }
+    }
 }

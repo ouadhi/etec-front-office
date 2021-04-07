@@ -23,13 +23,23 @@
 
       <div class="user-actions">
         <div class="pad-h-20">
-          <button mat-button [matMenuTriggerFor]="menu">
-            <span class="d-none d-md-inline" *ngIf="loggedIn">{{'LAYOUT.WELCOME' | translate}} ({{userDetails.firstName}}
-              {{userDetails.lastName}})</span>
-            <mat-icon>person</mat-icon>
-          </button>
+          <div class="user-container" mat-button [matMenuTriggerFor]="menu">
+            <span class="user-photo">
+              <img [src]="userDetails?.photo ? userDetails?.photo : 'assets/images/person.png'"
+                [alt]="userDetails?.firstName" class="photo">
+            </span>
+            <span class="user-details">
+              <span class="greeting">{{'LAYOUT.WELCOME' | translate}}</span>
+              <span class="user-name">
+                {{userDetails?.firstName}} {{userDetails?.lastName}}
+                <mat-icon class="user-icon">
+                  expand_more
+                </mat-icon>
+              </span>
+            </span>
+          </div>
+
           <mat-menu #menu="matMenu">
-  
             <button mat-menu-item [matMenuTriggerFor]="langDropdown">
               {{'LAYOUT.CHANGE_LANGUAGE' | translate}}
             </button>
@@ -41,9 +51,9 @@
               translate}}</button>
             <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
             <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
-  
+
           </mat-menu>
-  
+
         </div>
 
         <app-notifications-button *ngIf="loggedIn"></app-notifications-button>
