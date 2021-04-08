@@ -4,6 +4,7 @@
 @import "~ngx-toastr/toastr";
 @import "../node_modules/bootstrap/scss/functions";
 @import "~@angular/material/theming";
+@import "./colors.scss";
 @function mat-color($palette, $hue: default, $opacity: null) {
     @if type-of($hue)==number and $hue>=0 and $hue <=1 {
         @return mat-color($palette, default, $hue);
@@ -45,8 +46,14 @@ $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn
 @import "~@ionic/angular/css/core.css";
 @import "~bootstrap/scss/bootstrap";
 html,
-body {
-    color: #444;
+body,
+.mat-card,
+.mat-tab-label,
+.mat-tab-link,
+ion-chip:not([class*="selected-chip"]) ion-label,
+.mat-chip.mat-standard-chip,
+.mat-expansion-panel {
+    color: $secondary-color !important;
 }
 
 html,
@@ -115,7 +122,7 @@ img {
 .serviceCard {}
 
 .department__section {
-    border-bottom: 5px #444 solid;
+    border-bottom: 5px $secondary-color solid;
 }
 
 .department {
@@ -131,12 +138,12 @@ img {
 
 .department.active {
     color: #fff;
-    background: #444;
+    background: $secondary-color;
     font-weight: bold;
 }
 
 .category__section {
-    background: #444;
+    background: $secondary-color;
     color: #fff;
     margin-bottom: 30px;
     padding-left: 15px !important;
@@ -144,7 +151,7 @@ img {
 }
 
 .category {
-    background: #444;
+    background: $secondary-color;
     font-weight: normal;
     border-radius: 0 !important;
     margin-bottom: 5px !important;
@@ -612,7 +619,7 @@ html[dir="rtl"] {
 }
 
 .mat-tab-label-active {
-    background: #25aab2 !important;
+    background: $primary-color !important;
     color: #fff !important;
     opacity: 1 !important;
     font-weight: bold !important;
@@ -643,7 +650,7 @@ html[dir="rtl"] {
 }
 
 .selected-chip {
-    background: #25aab2 !important;
+    background: $primary-color !important;
     color: #fff;
 }
 
@@ -671,7 +678,6 @@ html[dir="rtl"] {
     background-color: #fff !important;
 }
 
-.section__container div button {
-    display: block !important;
-    margin-top: 5px !important;
+.rating {
+    outline: none;
 }

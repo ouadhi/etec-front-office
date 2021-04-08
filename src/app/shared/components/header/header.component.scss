@@ -1,3 +1,5 @@
+@import '../../../../colors.scss';
+
 .mat-toolbar {
     background: #f7f7f7 !important;
 }
@@ -18,7 +20,7 @@
 }
 
 .logo-container {
-    background: #25aab2;
+    background: $primary-color;
     max-width: 250px;
     padding: 10px;
     display: inline-block;
@@ -54,7 +56,7 @@
     height: 2px;
     left: 50%;
     position: absolute;
-    background: #25aab2;
+    background: $primary-color;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
 }
@@ -67,6 +69,7 @@
 .department .active {
     font-weight: 700;
     background: #f5f5f5;
+    color: $primary-color;
 }
 
 .department a.active:after {
@@ -77,7 +80,7 @@
     height: 4px;
     left: 50%;
     position: absolute;
-    background: #25aab2;
+    background: $primary-color;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
 }
@@ -96,7 +99,7 @@
 .mat-menu-item.cdk-program-focused:not([disabled]),
 .mat-menu-item.cdk-keyboard-focused:not([disabled]),
 .mat-menu-item-highlighted:not([disabled]) {
-    background: #25aab2;
+    background: $primary-color;
     color: #fff;
 }
 
@@ -140,7 +143,7 @@
         .user-name {
             font-size: 0.75rem;
             font-weight: 700;
-            color: #25aab2;
+            color: $primary-color;
             .user-icon {
                 position: relative;
                 top: 3px;
@@ -164,7 +167,7 @@
             font-size: 16px;
         }
         .selected-language {
-            color: #25aab2;
+            color: $primary-color;
         }
     }
     .identity {
@@ -220,15 +223,23 @@
 }
 
 @media (max-width: 992px) {
+    .switcher .lg {
+        display: none;
+    }
+    .user-actions .switcher mat-icon {
+        font-size: 20px;
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (max-width: 767px) {
     .logo-md {
         display: none;
     }
     .logo-container {
         display: none;
     }
-}
-
-@media (max-width: 767px) {
     .toolbar-lg {
         display: none;
     }
@@ -237,13 +248,5 @@
     }
     .user-details.sm {
         display: inline-block;
-    }
-    .switcher .lg {
-        display: none;
-    }
-    .user-actions .switcher mat-icon {
-        font-size: 20px;
-        width: auto;
-        height: auto;
     }
 }

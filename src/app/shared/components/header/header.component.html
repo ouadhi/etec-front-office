@@ -19,7 +19,7 @@
         <div class="user-actions">
             <div class="switcher" [matMenuTriggerFor]="langDropdown">
                 <mat-icon>language</mat-icon>
-                <span class="lang lg">{{'HEADER.LANGUAGE' | translate}}:</span>
+                <span class="lang lg">{{'HEADER.LANGUAGE' | translate}}&nbsp;:&nbsp;</span>
                 <span class="selected-language lg">{{'HEADER.' + currentLang | translate}}</span>
             </div>
             <mat-menu #langDropdown="matMenu">

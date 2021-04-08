@@ -141,10 +141,11 @@ export class HeaderComponent extends BaseComponent {
     }
 
     selectLang(lang): void {
+        this.selectedLang = this.switchLangService.getSelectedLang();
         this.switchLangService.changeLang(lang.value);
     }
     get currentLang() {
-        const lang = this.languages.find(lang => lang.code === this.selectedLang);
+        const lang = this.languages.find(lang => lang.code === this.switchLangService.getSelectedLang());
         return lang ? lang.name.toLocaleUpperCase() : '';
     }
 }

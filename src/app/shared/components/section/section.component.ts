@@ -11,6 +11,7 @@ export class SectionComponent extends BaseComponent implements OnInit {
 
   @Input() sectionTitle;
   @Input() sectionCard = true;
+  @Input() showContainer = true;
 
   constructor(public injector: Injector) { super(injector); }
 

@@ -7,3 +7,8 @@
 .alignSwitchEN{
   text-align: left;
 } 
+
+#control-container {
+  margin-top: 10px;
+  text-align: end;
+}

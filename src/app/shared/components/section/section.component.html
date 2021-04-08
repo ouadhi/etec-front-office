@@ -7,7 +7,7 @@
       </h2>
     </div>
     <!-- <div class="divider" *ngIf="sectionTitle"></div> -->
-    <div fxLayout="row" fxLayoutAlign="center top" fxLayout.xs="column" class="section__container"
+    <div fxLayout="row" fxLayoutAlign="center top" fxLayout.xs="column" class="section__container" *ngIf="showContainer"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div fxFlex="100">
         <ng-content></ng-content>
