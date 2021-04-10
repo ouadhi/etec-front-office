@@ -1,3 +1,5 @@
+@import '../../../../colors.scss';
+
 .filtersSection {
     background: #f7f7f7;
     padding: 10px;
@@ -6,6 +8,11 @@
 
 .w-bg {
     background: #fff !important;
+}
+
+.filtersSection__keyword mat-form-field{
+    background: #fff !important;
+    font-size: 14px !important;
 }
 
 .filtersSection__keywordForm {
@@ -20,7 +27,7 @@
 
 .filtersList {
     margin: 15px 0;
-    border-bottom: 1px #25aab2 solid;
+    border-bottom: 1px $primary-color solid;
     padding-bottom: 15px;
 }
 

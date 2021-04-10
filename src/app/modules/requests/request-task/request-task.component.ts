@@ -1,9 +1,9 @@
 import { Injector } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { CaseActivityService } from 'src/app/modules/requests/request-details/case-activities/case-activities.service';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
+import { CaseActivityService } from '../case-activities.service';
 
 /**
  * Main Task Component

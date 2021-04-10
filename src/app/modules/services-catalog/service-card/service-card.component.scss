@@ -1,3 +1,4 @@
+@import '../../../../colors.scss';
 .card-bg {
     height: 130px;
     top: 10px;
@@ -13,7 +14,7 @@
     opacity: 0.1;
 }
 
-.mat-card:hover {    
+.mat-card:hover {
     transform: translateY(-10px);
     transition: all .5s ease;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
@@ -27,7 +28,6 @@
     border: 1px solid #ddd;
     outline: none;
     margin-bottom: 16px;
-
     display: flex !important;
     flex-direction: column;
     justify-content: center;
@@ -45,9 +45,13 @@
     -webkit-box-orient: vertical;
 }
 
+.title {
+    color: $primary-color;
+}
+
 [dir="rtl"] {
     .mat-card {
-        border-left: 5px solid #25aab2;
+        border-left: 5px solid $primary-color;
     }
     .card-bg {
         left: 10px;
@@ -56,7 +60,7 @@
 
 [dir="ltr"] {
     .mat-card {
-        border-right: 5px solid #25aab2;
+        border-right: 5px solid $primary-color;
     }
     .card-bg {
         right: 10px;

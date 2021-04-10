@@ -1,14 +1,17 @@
 <div class="container-fluid">
   <div class="section" [ngClass]="sectionCard ? 'sectionCard' : 'justSection'">
-    <h2 class="section__title"
-      [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
-      {{sectionTitle}}</h2>
-    <div class="divider" *ngIf="sectionTitle"></div>
-    <div fxLayout="row" fxLayoutAlign="center top" fxLayout.xs="column" class="section__container"
+    <div>
+      <h2 class="section__title" *ngIf="sectionTitle"
+        [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+        <span>{{sectionTitle}}</span>
+      </h2>
+    </div>
+    <!-- <div class="divider" *ngIf="sectionTitle"></div> -->
+    <div fxLayout="row" fxLayoutAlign="center top" fxLayout.xs="column" class="section__container" *ngIf="showContainer"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div fxFlex="100">
         <ng-content></ng-content>
       </div>
     </div>
   </div>
-</div>  
+</div>

@@ -1,42 +1,52 @@
 .nav-tabs {
-  background-color: #fff;
-  color: #6c757d;
+    background-color: #fff;
+    color: #6c757d;
 }
 
 a {
-  color: #6c757d;
+    color: #6c757d;
 }
 
 .tab-content {
-  background-color: #fff;
-  padding: 5px;
+    background-color: #fff;
+    padding: 5px;
 }
-.nav-tabs > li > a {
-  border: medium none;
+
+.nav-tabs>li>a {
+    border: medium none;
 }
 
 .nav-tabs .nav-link.active {
-  background-color: var(--primary500);
-  color: white;
-  font-weight: bolder;
+    background-color: var(--primary500);
+    color: white;
+    font-weight: bolder;
 }
 
 .alignSwitchAR {
-  text-align: right;
+    text-align: right;
 }
+
 .alignSwitchEN {
-  text-align: left;
+    text-align: left;
 }
+
 .padder {
-  padding: 15px 10px 0px 10px;
+    padding: 15px 10px 0px 10px;
 }
+
 .alert-icon {
-  font-size: 40px;
-  margin-bottom: 0px;
+    font-size: 30px;
+    margin-bottom: 0px;
 }
+
 .alert-text {
-  line-height: 44px;
+    line-height: 44px;
 }
-.alert-link{
-  cursor: pointer;
+
+.alert-link {
+    cursor: pointer;
+}
+
+.alert-warning div {
+    align-items: center;
 }

@@ -1,32 +1,37 @@
-<app-page
-  pageTitle="{{'SERVICE.SERVICE' | translate}}: {{data ? data['serviceName_' + switchLangService.current]: '' }}">
+<app-page>
+
+  <app-section [showContainer]="false"
+    sectionTitle="{{'SERVICE.SERVICE' | translate}} {{data ? data['serviceName_' + switchLangService.current]: '' }}">
+  </app-section>
 
   <div *ngIf="!active">
     {{'SERVICE.IS_NOT_ACTIVE' | translate}}
   </div>
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
+  <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
 
-    <div fxFlex="70">
+    <div fxFlex="65">
       <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
         {{data['description_' + switchLangService.current]}}
 
-        <button *ngIf="(isLoggedIn && data.canAnonymousApply) || !data.canAnonymousApply"
-          [routerLink]="['/requests/request', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
-          skipLocationChange=true target="_blank" mat-raised-button color="primary"
-          [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right
-          </mat-icon></button>
-        <button *ngIf="(!isLoggedIn && data.canAnonymousApply)"
-          [routerLink]="['/requests/arequest', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
-          skipLocationChange=true target="_blank" mat-raised-button color="primary"
-          [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>arrow_right
-          </mat-icon></button>
-
+        <div id="control-container">
+          <button *ngIf="(isLoggedIn && data.canAnonymousApply) || !data.canAnonymousApply" class="ctm-btn"
+            [routerLink]="['/requests/request', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
+            skipLocationChange=true target="_blank" mat-raised-button color="primary"
+            [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>
+              arrow_right
+            </mat-icon></button>
+          <button *ngIf="(!isLoggedIn && data.canAnonymousApply) " class="ctm-btn"
+            [routerLink]="['/requests/arequest', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
+            skipLocationChange=true target="_blank" mat-raised-button color="primary"
+            [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>
+              arrow_right
+            </mat-icon></button>
+        </div>
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
-        <!-- {{data[switchLangService._key('conditionsAndRequirements')]}} -->
         <ul *ngIf="data['conditionsAndRequirements_' + switchLangService.current].length">
-          <li *ngFor="let item of data['conditionsAndRequirements' + switchLangService.current]">{{item.value}}</li>
+          <li *ngFor="let item of data['conditionsAndRequirements_' + switchLangService.current]">{{item.value}}</li>
         </ul>
       </app-section>
 
@@ -78,24 +83,29 @@
 
       </app-section>
 
-      <app-section>
+      <app-section sectionTitle="{{'SERVICE.TAGS' | translate}}">
 
-        <div class="inlineRowItem">{{'SERVICE.TAGS' | translate}} : <span
-            [hidden]="data.tag?.length">{{'SERVICE.NO_ENTRY' | translate}}</span>
+        <div class="inlineRowItem">
+          <span [hidden]="data.tag?.length">{{'SERVICE.NO_ENTRY' | translate}}</span>
           <mat-chip-list class="mat-chip-list--inlineBlock">
             <mat-chip color="primary" *ngFor="let tag of data.tag">{{tag.tag}}</mat-chip>
           </mat-chip-list>
         </div>
 
-        <div class="inlineRowItem">{{'SERVICE.PRIMARY_SERVICE' |translate}} :
+      </app-section>
+
+      <app-section sectionTitle="{{'SERVICE.PRIMARY_SERVICE' |translate}}">
+
+
+        <div class="inlineRowItem">
           {{data['primaryService_' + switchLangService.current]}}
           <span [hidden]="data['primaryService_' + switchLangService.current]">{{'SERVICE.NO_ENTRY' | translate}}</span>
         </div>
-
       </app-section>
 
     </div>
-    <div fxFlex="25">
+
+    <div fxFlex="35">
 
 
       <app-section [hidden]="true" sectionTitle="{{'SERVICE.VIDEO' | translate}}">
@@ -166,9 +176,6 @@
     <div [hidden]="comments?.length">
       {{'service.No Comments' | translate}}
     </div>
-  </app-section>
-  <app-section>
-    <p class="note">{{'SERVICE.SERVICES_NOTE' | translate}}</p>
   </app-section>
 
 </app-page>

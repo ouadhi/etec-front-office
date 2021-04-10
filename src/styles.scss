@@ -4,6 +4,7 @@
 @import "~ngx-toastr/toastr";
 @import "../node_modules/bootstrap/scss/functions";
 @import "~@angular/material/theming";
+@import "./colors.scss";
 @function mat-color($palette, $hue: default, $opacity: null) {
     @if type-of($hue)==number and $hue>=0 and $hue <=1 {
         @return mat-color($palette, default, $hue);
@@ -45,8 +46,14 @@ $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn
 @import "~@ionic/angular/css/core.css";
 @import "~bootstrap/scss/bootstrap";
 html,
-body {
-    color: #444;
+body,
+.mat-card,
+.mat-tab-label,
+.mat-tab-link,
+ion-chip:not([class*="selected-chip"]) ion-label,
+.mat-chip.mat-standard-chip,
+.mat-expansion-panel {
+    color: $secondary-color !important;
 }
 
 html,
@@ -74,15 +81,21 @@ thead,
 tbody,
 tr,
 td,
-th {
-    font-family: "Tajawal", "Quicksand", sans-serif;
+th,
+.mat-menu-item {
+    font-family: "Droid Arabic Kufi", "Quicksand", sans-serif;
+}
+
+h5,
+.h5 {
+    padding-bottom: 5px !important;
 }
 
 
 /* // @TODO arabic */
 
 .lang-ar body {
-    font-family: "Tajawal", sans-serif;
+    font-family: "Droid Arabic Kufi", sans-serif;
 }
 
 body {
@@ -109,7 +122,7 @@ img {
 .serviceCard {}
 
 .department__section {
-    border-bottom: 5px #444 solid;
+    border-bottom: 5px $secondary-color solid;
 }
 
 .department {
@@ -125,12 +138,12 @@ img {
 
 .department.active {
     color: #fff;
-    background: #444;
+    background: $secondary-color;
     font-weight: bold;
 }
 
 .category__section {
-    background: #444;
+    background: $secondary-color;
     color: #fff;
     margin-bottom: 30px;
     padding-left: 15px !important;
@@ -138,7 +151,7 @@ img {
 }
 
 .category {
-    background: #444;
+    background: $secondary-color;
     font-weight: normal;
     border-radius: 0 !important;
     margin-bottom: 5px !important;
@@ -512,15 +525,15 @@ a:hover {
 }
 
 html[dir="rtl"] {
-    --font-family-md-base: "Tajawal", sans-serif;
-    --font-family-ios-base: "Tajawal", sans-serif;
-    --font-family-wp-base: "Tajawal", sans-serif;
-    --ion-font-family: "Tajawal", sans-serif !important;
+    --font-family-md-base: "Droid Arabic Kufi", sans-serif;
+    --font-family-ios-base: "Droid Arabic Kufi", sans-serif;
+    --font-family-wp-base: "Droid Arabic Kufi", sans-serif;
+    --ion-font-family: "Droid Arabic Kufi", sans-serif !important;
     .mat-dialog-title {
         direction: rtl;
         text-align: right;
         font-size: 15px;
-        font-family: "Tajawal", sans-serif !important;
+        font-family: "Droid Arabic Kufi", sans-serif !important;
     }
     .update {
         left: 20px;
@@ -601,10 +614,16 @@ html[dir="rtl"] {
     }
 }
 
+.mat-tab-label {
+    font-size: 16px !important;
+}
+
 .mat-tab-label-active {
-    background: #25aab2 !important;
+    background: $primary-color !important;
     color: #fff !important;
     opacity: 1 !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
 }
 
 .mat-tab-label-active::after {
@@ -631,14 +650,13 @@ html[dir="rtl"] {
 }
 
 .selected-chip {
-    background: #25aab2 !important;
+    background: $primary-color !important;
     color: #fff;
 }
 
  ::-webkit-scrollbar {
     width: 10px;
 }
-
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -654,4 +672,12 @@ html[dir="rtl"] {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(207, 207, 207);
+}
+
+.mat-drawer-content {
+    background-color: #fff !important;
+}
+
+.rating {
+    outline: none;
 }

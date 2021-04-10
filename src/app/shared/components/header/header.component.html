@@ -19,7 +19,7 @@
         <div class="user-actions">
             <div class="switcher" [matMenuTriggerFor]="langDropdown">
                 <mat-icon>language</mat-icon>
-                <span class="lang lg">{{'HEADER.LANGUAGE' | translate}}:</span>
+                <span class="lang lg">{{'HEADER.LANGUAGE' | translate}}&nbsp;:&nbsp;</span>
                 <span class="selected-language lg">{{'HEADER.' + currentLang | translate}}</span>
             </div>
             <mat-menu #langDropdown="matMenu">
@@ -29,7 +29,7 @@
 
             <div *ngIf="loggedIn" class="user-container" mat-button [matMenuTriggerFor]="menu">
                 <span class="user-photo">
-                    <img [src]="userDetails?.photo ? userDetails?.photo : 'assets/images/person.png'"
+                    <img [src]="userDetails?.photo ? userDetails?.photo : 'assets/images/avatar.png'"
                         [alt]="userDetails?.firstName" class="photo">
                 </span>
                 <span class="user-details lg">

@@ -3,13 +3,13 @@ import { BaseComponent } from '../../../../shared/components/base.component';
 import { CaseActivityService } from '../../case-activities.service';
 
 @Component({
-    selector: 'app-case-activities',
-    templateUrl: 'case-activities.component.html',
-    styleUrls: ['case-activities.component.scss'],
+    selector: 'app-sm-case-activities',
+    templateUrl: 'sm-case-activities.component.html',
+    styleUrls: ['sm-case-activities.component.scss'],
     providers: [CaseActivityService]
 })
 
-export class CaseActivitiesComponent extends BaseComponent implements OnInit {
+export class SMCaseActivitiesComponent extends BaseComponent implements OnInit {
 
     @Input() caseInstanceId;
     @Output() activityAction = new EventEmitter();
@@ -25,13 +25,6 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
         this.loggerService.log(activity);
         this.activityAction.emit({
             type: 'task', activity
-            /*
-            formKey: this.tasks[this.tasks.length - 1].formKey,
-            caseDefinitionId: this.tasks[this.tasks.length - 1].caseDefinitionId,
-            caseInstanceId: this.tasks[this.tasks.length - 1].caseInstanceId,
-            taskDefinitionKey: this.tasks[this.tasks.length - 1].taskDefinitionKey,
-            taskId: this.tasks[this.tasks.length - 1].taskId
-            */
         });
     }
     doInitSlider() {
@@ -111,6 +104,6 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
                         this.task.emit(activity);
                     }
                 });
-            });
-    }
+            });  
+    } 
 }

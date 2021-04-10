@@ -364,6 +364,12 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 
   }
 
+
+  changeTagStatus(id) {
+    this.tagsInput[id] = !this.tagsInput[id];
+    this.filterTag();
+  }
+
   // action filter for keyword
   filterKeyword() {
     this.dataFilters.$or = [

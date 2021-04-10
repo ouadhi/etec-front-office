@@ -1,9 +1,30 @@
 .note {
-  margin: 0px;
+    margin: 0px;
 }
-.alignSwitchAR{
-  text-align: right;
+
+.alignSwitchAR {
+    text-align: right;
 }
-.alignSwitchEN{
-  text-align: left;
-} 
+
+.alignSwitchEN {
+    text-align: left;
+}
+
+#control-container {
+    margin-top: 10px;
+    text-align: end;
+}
+
+.ctm-btn {
+    display: inline-block;
+    color: #fff;
+    background: #067a84;
+    padding: 5px 16px;
+    border-radius: 12px;
+    transition: all .3s ease;
+}
+
+.ctm-btn:hover {
+    background: #00adc3;
+    box-shadow: 0 5px 30px rgb(0 0 0 / 40%);
+}
