@@ -64,6 +64,7 @@
     "ng-simple-slideshow": "^1.2.9",
     "ngx-captcha": "^9.0.1",
     "ngx-filter-pipe": "^2.1.2",
+    "ngx-owl-carousel-o": "^5.0.0",
     "ngx-toastr": "^13.2.1",
     "ngx-webstorage-service": "^4.1.0",
     "node-sass": "^4.14.1",

@@ -12,6 +12,7 @@ import { RequestQueryComponent } from "./request-query/request-query.component";
 import { RequestTaskComponent } from "./request-task/request-task.component";
 import { RequestComponent } from "./request/request.component";
 import { RequestsRouterModule } from "./requests.router.module";
+import {CarouselModule} from 'ngx-owl-carousel-o';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { RequestsRouterModule } from "./requests.router.module";
         CommonModule,
         SharedModule,
         RequestsRouterModule,
+        CarouselModule,
     ],
     entryComponents: [
         RequestInfoDialogComponent,

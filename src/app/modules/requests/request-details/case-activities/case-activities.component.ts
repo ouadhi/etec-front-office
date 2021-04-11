@@ -25,13 +25,6 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
         this.loggerService.log(activity);
         this.activityAction.emit({
             type: 'task', activity
-            /*
-            formKey: this.tasks[this.tasks.length - 1].formKey,
-            caseDefinitionId: this.tasks[this.tasks.length - 1].caseDefinitionId,
-            caseInstanceId: this.tasks[this.tasks.length - 1].caseInstanceId,
-            taskDefinitionKey: this.tasks[this.tasks.length - 1].taskDefinitionKey,
-            taskId: this.tasks[this.tasks.length - 1].taskId
-            */
         });
     }
     doInitSlider() {
