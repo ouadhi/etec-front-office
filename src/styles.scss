@@ -468,6 +468,18 @@ a:hover {
             }
         }
     }
+    
+    .section {
+        border-right: none !important;
+        border-left: 5px solid $primary-color;
+        &__title span {
+            padding-left: 20px !important;
+        }
+        &__title::after {
+            left: 0 !important;
+            right: -5px !important;
+        }
+    }
 }
 
 .slotted {

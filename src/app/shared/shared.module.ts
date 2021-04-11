@@ -26,6 +26,7 @@ import { NotificationsModalComponent } from './components/notifications/notifica
 import { RouterModule } from '@angular/router';
 import { FormioModule } from 'src/formio/src/public_api';
 import { HeaderComponent } from './components/header/header.component';
+import { PageTitleComponent } from './components/page-title/page-title.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { HeaderComponent } from './components/header/header.component';
         NotFoundComponent,
         PageComponent,
         SectionComponent,
+        PageTitleComponent,
         SelectComponent,
         NotificationsModalComponent,
         NotificationsButtonComponent,
@@ -86,6 +88,7 @@ import { HeaderComponent } from './components/header/header.component';
         NotFoundComponent,
         PageComponent,
         SectionComponent,
+        PageTitleComponent,
         SelectComponent,
         NotificationsModalComponent,
         NotificationsButtonComponent,

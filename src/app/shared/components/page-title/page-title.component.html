@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="section justSection">
+    <div>
+      <h2 class="section__title" *ngIf="title"
+        [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+        <span>{{title}}</span>
+      </h2>
+    </div>
+  </div>
+</div>

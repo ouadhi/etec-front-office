@@ -1,8 +1,8 @@
 <app-page>
 
-  <app-section [showContainer]="false"
-    sectionTitle="{{'SERVICE.SERVICE' | translate}} {{data ? data['serviceName_' + switchLangService.current]: '' }}">
-  </app-section>
+  
+  <app-page-title title="{{'SERVICE.SERVICE' | translate}} {{data ? data['serviceName_' + switchLangService.current]: '' }}">
+  </app-page-title>
 
   <div *ngIf="!active">
     {{'SERVICE.IS_NOT_ACTIVE' | translate}}
