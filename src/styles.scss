@@ -468,7 +468,7 @@ a:hover {
             }
         }
     }
-    .section {
+    .justSection {
         border-right: none !important;
         border-left: 5px solid $primary-color;
         &__title span {
@@ -695,4 +695,44 @@ html[dir="rtl"] {
 
 .mat-form-field-appearance-outline .mat-form-field-outline {
     background: #fff !important;
+}
+
+.app-outline-btn {
+    color: $primary-color;
+    border: 2px solid $primary-color !important;
+    font-weight: 700;
+}
+
+.mat-sort-header-arrow {
+    color: #fff !important;
+}
+
+.cdk-overlay-pane {
+    direction: initial !important;
+}
+
+.pad-5 {
+    padding: 5px !important;
+}
+
+.margin-5 {
+    margin: 5px !important;
+}
+
+.mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+}
+
+.mat-calendar-body-selected {
+    background: $primary-color !important;
+    color: #fff;
+}
+
+.mat-paginator-range-label{
+    position: absolute;
+    left: 0;
+}
+
+[dir="rtl"] .mat-paginator-range-label{
+    right: 0;
 }

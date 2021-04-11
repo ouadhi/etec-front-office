@@ -27,6 +27,13 @@ import { RouterModule } from '@angular/router';
 import { FormioModule } from 'src/formio/src/public_api';
 import { HeaderComponent } from './components/header/header.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
+import { LocalizedDatePipe } from './pipes/localized-date.pipe';
+
+import { registerLocaleData } from '@angular/common';
+import localeEn from '@angular/common/locales/en';
+import localeAr from '@angular/common/locales/ar';
+registerLocaleData(localeEn, 'en');
+registerLocaleData(localeAr, 'ar');
 
 
 @NgModule({
@@ -43,6 +50,7 @@ import { PageTitleComponent } from './components/page-title/page-title.component
         NotificationOptionsComponent,
         HeaderComponent,
         TimeAgoPipe,
+        LocalizedDatePipe,
         HasRoleDirective,
     ],
     imports: [
@@ -96,12 +104,14 @@ import { PageTitleComponent } from './components/page-title/page-title.component
         NotificationOptionsComponent,
         HeaderComponent,
         TimeAgoPipe,
+        LocalizedDatePipe,
         HasRoleDirective,
     ],
     entryComponents: [
         NotificationsModalComponent,
         NotificationOptionsComponent,
     ],
-    providers: [],
+    providers: [
+    ],
 })
 export class SharedModule { }

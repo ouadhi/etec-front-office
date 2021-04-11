@@ -1,22 +1,27 @@
+@import "../../../../colors.scss";
+
 :host::ng-deep {
-  .ng-select {
-    padding-bottom: 0.5em;
-  }
-  .ng-select-container {
-    overflow: visible !important;
-  }
-  .ng-option {
-    font-size: 14px;
-  }
-  .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
-    font-size: 14px;
-  }
-  .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
-    background-color: var(--ion-color-success) !important;
-  }
-  &.ng-invalid.ng-dirty {
-    .ng-select .ng-select-container:after {
-      border-color: var(--ion-color-danger);
+    .ng-select {
+        padding-bottom: 0.5em;
     }
-  }
+    .ng-select-container {
+        overflow: visible !important;
+    }
+    .ng-option {
+        font-size: 14px;
+    }
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
+        font-size: 14px;
+    }
+    .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+        background-color: var(--ion-color-success) !important;
+    }
+    &.ng-invalid.ng-dirty {
+        .ng-select .ng-select-container:after {
+            border-color: var(--ion-color-danger);
+        }
+    }
+    .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+      background: $primary-color !important;
+    }
 }

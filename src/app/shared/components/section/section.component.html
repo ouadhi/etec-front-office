@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" [ngClass]="hasPadding ? 'has-padding' : 'no-padding'">
   <div class="section" [ngClass]="sectionCard ? 'sectionCard' : 'justSection'">
     <div>
       <h2 class="section__title" *ngIf="sectionTitle"

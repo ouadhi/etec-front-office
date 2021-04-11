@@ -19,12 +19,12 @@ export class MyRequestsComponent extends BaseComponent {
   };
 
   dashletCols = {
-    id: { name: 'Id', sortable: true },
-    requestName: { name: 'Request Name', sortable: false },
-    requestDate: { name: 'Request Date', sortable: true, formatDate: true },
-    status: { name: 'Status', translationSource: 'STATUSES', sortable: true },
+    id: { name: 'Id', sortable: true, width: '10%' },
+    requestName: { name: 'Request Name', sortable: false, width: '35%' },
+    requestDate: { name: 'Request Date', sortable: true, formatDate: true, width: '25%' },
+    status: { name: 'Status', translationSource: 'STATUSES', sortable: true, width: '10%' },
     data: {
-      name: 'Details', sortable: false, display: 'detailsButton', param1: 'id'
+      name: 'Details', sortable: false, display: 'detailsButton', param1: 'id', width: '20%'
     }
 
   };

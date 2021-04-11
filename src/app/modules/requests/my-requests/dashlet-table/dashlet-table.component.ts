@@ -29,7 +29,7 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
   @Input() detailsRouterForEachItem?;
   @Input() service: (param) => Observable<any>;
   data = [];
-  pageSize = 7;
+  pageSize = 10;
   showFilter = false;
   isLoadingResults = false;
   isRateLimitReached = false;

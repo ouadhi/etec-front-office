@@ -1,4 +1,4 @@
-<ng-select [notFoundText]="'selectNotFoundText' | translate"
+<ng-select [notFoundText]="'selectNotFoundText' | translate"  appearance="outline"
   [items]="isAsync && attachSource ? (source$ | async) : buffer" [groupBy]="groupBy" [hideSelected]="hideSelectedItems"
   [closeOnSelect]="closeOnSelect" [multiple]="multiple" [(ngModel)]="selection" (change)="emitSelection($event)"
   [virtualScroll]="true" [loading]="loading" [bindLabel]="bindLabel" [bindValue]="bindValue"
