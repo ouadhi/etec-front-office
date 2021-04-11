@@ -728,11 +728,18 @@ html[dir="rtl"] {
     color: #fff;
 }
 
-.mat-paginator-range-label{
+.mat-paginator-range-label {
     position: absolute;
     left: 0;
 }
 
-[dir="rtl"] .mat-paginator-range-label{
+[dir="rtl"] .mat-paginator-range-label {
     right: 0;
+}
+
+.mat-calendar-controls {
+    direction: rtl;
+}
+[dir="ltr"] .mat-calendar-controls {
+    direction: ltr !important;
 }

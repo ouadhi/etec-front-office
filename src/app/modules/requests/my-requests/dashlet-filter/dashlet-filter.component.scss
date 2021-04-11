@@ -67,3 +67,8 @@ ion-content {
     padding-top: 10px;
     padding-left: 8px;
 }
+
+mat-form-field {
+    max-width: 300px;
+    display: block;
+}

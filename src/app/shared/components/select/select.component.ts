@@ -20,6 +20,7 @@ export class SelectComponent extends BaseComponent implements OnInit, ControlVal
   @Input() data = [];
   @Input() hideLoaded = false;
   @Input() placeholder;
+  @Input() maxWidth;
   @Input() multiple = false;
   @Input() isAsync = false;
   @Input() groupBy;

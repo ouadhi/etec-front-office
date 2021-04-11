@@ -1,94 +1,100 @@
-<formio-loader></formio-loader>
+<app-section sectionTitle="{{'NAV.MY_REQUESTS' | translate}}" [hasPadding]="false">
 
 
-<div class="content">
-  <app-dashlet-filter [show]="showFilter" (filter)="onFilter($event)"></app-dashlet-filter>
+  <div class="content">
+    <app-dashlet-filter [show]="showFilter" (filter)="onFilter($event)"></app-dashlet-filter>
 
-  <mat-table multiTemplateDataRows [dataSource]="data" matSort class="width-100"
-    [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+    <br />
+    <div style="position: relative;">
+      <formio-loader></formio-loader>
+      <mat-table multiTemplateDataRows [dataSource]="data" matSort class="width-100"
+        [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
 
-    <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
-      <mat-header-cell mat-sort-header disableClear="true" [disabled]="!columns[col].sortable" *matHeaderCellDef
-        [ngStyle]="{'flex': columns[col].width ? 'inherit' : '1','width': columns[col].width ? columns[col].width : '100%'}">
-        {{columns[col].name | translate}}
-      </mat-header-cell>
+        <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
+          <mat-header-cell mat-sort-header disableClear="true" [disabled]="!columns[col].sortable" *matHeaderCellDef
+            [ngStyle]="{'flex': columns[col].width ? 'inherit' : '1','width': columns[col].width ? columns[col].width : '100%'}">
+            {{columns[col].name | translate}}
+          </mat-header-cell>
 
-      <mat-cell [attr.data-label]="columns[col].name | translate" *matCellDef="let element"
-        [ngStyle]="{'flex': columns[col].width ? 'inherit' : '1','width': columns[col].width ? columns[col].width : '100%'}">
-        <ion-badge *ngIf="columns[col].display == 'badge'" [color]="columns[col].color" size="medium" mode="ios">
-          {{element[col]}}
-        </ion-badge>
-        <ion-chip *ngIf="columns[col].display == 'chip'" [color]="columns[col].color" size="medium" slot="end">
-          <ion-icon [name]="columns[col].icon" [color]="columns[col].color"></ion-icon>
-          <ion-label>
-            {{element[col]}}
-          </ion-label>
-        </ion-chip>
-        <ng-container *ngIf="columns[col].display == 'detailsButton'">
-          <button mat-stroked-button class="app-outline-btn"
-            [routerLink]="[detailsRouterForEachItem, element[columns[col].param1]]">{{'Details' | translate}}</button>
-          <span *ngIf="element.activeTask" class="update">
-            <ion-icon [matTooltip]="'SERVICE.NEEDS_UPDATE' | translate" [matTooltipPosition]="'below'" [name]="'alert'"
-              size="large" class="alert-icon"></ion-icon>
-          </span>
+          <mat-cell [attr.data-label]="columns[col].name | translate" *matCellDef="let element"
+            [ngStyle]="{'flex': columns[col].width ? 'inherit' : '1','width': columns[col].width ? columns[col].width : '100%'}">
+            <ion-badge *ngIf="columns[col].display == 'badge'" [color]="columns[col].color" size="medium" mode="ios">
+              {{element[col]}}
+            </ion-badge>
+            <ion-chip *ngIf="columns[col].display == 'chip'" [color]="columns[col].color" size="medium" slot="end">
+              <ion-icon [name]="columns[col].icon" [color]="columns[col].color"></ion-icon>
+              <ion-label>
+                {{element[col]}}
+              </ion-label>
+            </ion-chip>
+            <ng-container *ngIf="columns[col].display == 'detailsButton'">
+              <button mat-stroked-button class="app-outline-btn"
+                [routerLink]="[detailsRouterForEachItem, element[columns[col].param1]]">{{'Details' |
+                translate}}</button>
+              <span *ngIf="element.activeTask" class="update">
+                <ion-icon [matTooltip]="'SERVICE.NEEDS_UPDATE' | translate" [matTooltipPosition]="'below'"
+                  [name]="'alert'" size="large" class="alert-icon"></ion-icon>
+              </span>
+
+            </ng-container>
+            <ng-container *ngIf="columns[col].display == 'detailsButton_oneParam'">
+              <button mat-stroked-button class="app-outline-btn"
+                [routerLink]="[detailsRouterForEachItem, (element[columns[col].param1] || '' )]">{{'Details' |
+                translate}}</button>
+            </ng-container>
+
+            <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
+              <ng-container *ngIf="columns[col]['formatDate'];else normal">
+                {{element[col].substring(0, 19) | localizedDate : 'yyyy-MM-dd EEEE hh:mm:ssa'}}
+
+              </ng-container>
+              <ng-template #normal>
+                {{element[col].length && columns[col].translationSource ?
+                ((columns[col].translationSource + '.' + element[col]) | translate) :
+                element[col] }}
+              </ng-template>
+            </ng-container>
+
+          </mat-cell>
+
 
         </ng-container>
-        <ng-container *ngIf="columns[col].display == 'detailsButton_oneParam'">
-          <button mat-stroked-button class="app-outline-btn"
-            [routerLink]="[detailsRouterForEachItem, (element[columns[col].param1] || '' )]">{{'Details' |
-            translate}}</button>
+        <ng-container matColumnDef="expandedDetail" *ngIf="expandableColumns.length > 0">
+          <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <p *ngFor="let epxandable of expandableColumns">
+                {{element[epxandable]}}
+              </p>
+            </div>
+          </mat-cell>
         </ng-container>
 
-        <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
-          <ng-container *ngIf="columns[col]['formatDate'];else normal">
-            {{element[col].substring(0, 19) | localizedDate : 'yyyy-MM-dd EEEE hh:mm:ssa'}}
-
-          </ng-container>
-          <ng-template #normal>
-            {{element[col].length && columns[col].translationSource ?
-            ((columns[col].translationSource + '.' + element[col]) | translate) :
-            element[col] }}
-          </ng-template>
+        <ng-container matColumnDef="footerMessage">
+          <mat-footer-cell *matFooterCellDef colspan="5" class="footer">
+            {{'No Entries' | translate}}
+          </mat-footer-cell>
         </ng-container>
 
-      </mat-cell>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row class="mat-elevation-z3" [ngClass]="{'update-required': row.activeTask}"
+          *matRowDef="let row; columns: displayedColumns;" [class.expanded]="expandedElement === row"
+          (click)="expandedElement = expandedElement === row ? null : row">
 
-
-    </ng-container>
-    <ng-container matColumnDef="expandedDetail" *ngIf="expandableColumns.length > 0">
-      <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-        <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-          <p *ngFor="let epxandable of expandableColumns">
-            {{element[epxandable]}}
-          </p>
-        </div>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="footerMessage">
-      <mat-footer-cell *matFooterCellDef colspan="5" class="footer">
-        {{'No Entries' | translate}}
-      </mat-footer-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row class="mat-elevation-z3" [ngClass]="{'update-required': row.activeTask}"
-      *matRowDef="let row; columns: displayedColumns;" [class.expanded]="expandedElement === row"
-      (click)="expandedElement = expandedElement === row ? null : row">
-
-    </mat-row>
-    <ng-container *ngIf="expandableColumns.length > 0">
-      <mat-row class="mat-elevation-z3 detail-row" *matRowDef="let row; columns: ['expandedDetail']"></mat-row>
-    </ng-container>
-    <mat-footer-row *matFooterRowDef="['footerMessage']" [hidden]='data && data.length'>
-    </mat-footer-row>
+        </mat-row>
+        <ng-container *ngIf="expandableColumns.length > 0">
+          <mat-row class="mat-elevation-z3 detail-row" *matRowDef="let row; columns: ['expandedDetail']"></mat-row>
+        </ng-container>
+        <mat-footer-row *matFooterRowDef="['footerMessage']" [hidden]='data && data.length'>
+        </mat-footer-row>
 
 
 
-  </mat-table>
+      </mat-table>
 
 
-  <div class="paginator-container">
-    <mat-paginator showFirstLastButtons [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+      <div class="paginator-container">
+        <mat-paginator showFirstLastButtons [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+      </div>
+    </div>
   </div>
-</div>
+</app-section>

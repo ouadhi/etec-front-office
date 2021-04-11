@@ -1,5 +1,4 @@
 @import "../../../../colors.scss";
-
 :host::ng-deep {
     .ng-select {
         padding-bottom: 0.5em;
@@ -22,6 +21,12 @@
         }
     }
     .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
-      background: $primary-color !important;
+        background: $primary-color !important;
+    }
+    .ng-select .ng-select-container .ng-value-container .ng-placeholder {
+        background: transparent;
+    }
+    .ng-select-opened .ng-appearance-outline .ng-value-container .ng-placeholder{
+        color: transparent;
     }
 }

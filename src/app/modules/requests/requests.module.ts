@@ -7,7 +7,6 @@ import { MyRequestsComponent } from "./my-requests/my-requests.component";
 import { CaseActivitiesComponent } from "./request-details/case-activities/case-activities.component";
 import { MoreInfoComponent } from "./request-details/more-info/more-info.component";
 import { RequestDetailsComponent } from "./request-details/request-details.component";
-import { SMCaseActivitiesComponent } from "./request-details/sm-case-activities/sm-case-activities.component";
 import { RequestInfoDialogComponent } from "./request-info/request-info.dialog";
 import { RequestQueryComponent } from "./request-query/request-query.component";
 import { RequestTaskComponent } from "./request-task/request-task.component";
@@ -23,7 +22,6 @@ import { RequestsRouterModule } from "./requests.router.module";
         RequestDetailsComponent,
         MoreInfoComponent,
         CaseActivitiesComponent,
-        SMCaseActivitiesComponent,
         RequestQueryComponent,
         RequestTaskComponent,
 

@@ -1,35 +1,6 @@
 <app-page>
-  <!-- <div class="lg">
-    <app-section sectionTitle="{{'Status' | translate}}">
-      <div *ngIf="hasTask"
-        [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
-        <div class="alert alert-warning">
-          <div class="row">
-            <div class="col-auto align-self-start">
-              <ion-icon [name]="'alert'" class="alert-icon"></ion-icon>
-            </div>
-            <div class="col">
-              {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
-              {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction({type:'task',activity:hasTask})"
-                class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="inlineRowItem">
-        Status
-        <app-sm-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-sm-case-activities>
-      </div>
-    </app-section>
-
-    <app-section sectionTitle="{{'Details' | translate}}">
-      <div class="inlineRowItem">
-        Details
-      </div>
-    </app-section>
-  </div>
-  <div class="sm"></div> -->
+  <app-page-title title="{{'REQUESTS.DETAILS' | translate}}">
+  </app-page-title>
 
 
   <div class="container" style="margin-top: 5px;">

@@ -953,5 +953,9 @@
     "LANGUAGE": "اللغة",
     "ENGLISH": "English",
     "ARABIC": "العربية"
+  },
+  "REQUESTS":{
+    "DETAILS": "تفاصيل الطلب",
+    "SELECT_REQUEST_DATE": "أختر تاريخ الطلب"
   }
 }

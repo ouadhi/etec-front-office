@@ -310,5 +310,9 @@
     "LANGUAGE": "Language",
     "ENGLISH": "English",
     "ARABIC": "العربية"
+  },
+  "REQUESTS": {
+    "DETAILS": "Request Details",
+    "SELECT_REQUEST_DATE": "Select Request Date"
   }
 }

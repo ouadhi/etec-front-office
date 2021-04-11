@@ -1,8 +1,9 @@
-<ng-select [notFoundText]="'selectNotFoundText' | translate"  appearance="outline"
+<ng-select [notFoundText]="'selectNotFoundText' | translate" appearance="outline"
   [items]="isAsync && attachSource ? (source$ | async) : buffer" [groupBy]="groupBy" [hideSelected]="hideSelectedItems"
   [closeOnSelect]="closeOnSelect" [multiple]="multiple" [(ngModel)]="selection" (change)="emitSelection($event)"
   [virtualScroll]="true" [loading]="loading" [bindLabel]="bindLabel" [bindValue]="bindValue"
-  [placeholder]="placeholder | translate" (scroll)="onScroll($event)" (scrollToEnd)="onScrollToEnd()">
+  [placeholder]="placeholder | translate" (scroll)="onScroll($event)" (scrollToEnd)="onScrollToEnd()"
+  [ngStyle]="{'width' : maxWidth ? maxWidth : '100%'}">
   <ng-template ng-header-tmp *ngIf="!hideLoaded">
     <small class="form-text text-muted">{{'selectDataCount' | translate:{buffer: buffer.length || 0, data: data.length
       || 0} }}</small>
@@ -14,7 +15,7 @@
     <input id="item-{{index}}" type="checkbox" *ngIf="multiple" [ngModel]="item$.selected" />
     {{(bindLabel ? item[bindLabel] : item) | translate}}
   </ng-template>
-  <ng-template ng-multi-label-tmp let-items="items" let-clear="clear"> 
+  <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
     <div class="ng-value" *ngFor="let item of (items ? items : [])">
       <span class="ng-value-label">
         {{(bindLabel ? item[bindLabel] : item) | translate}}
