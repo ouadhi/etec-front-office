@@ -1,17 +1,29 @@
 .page-container {
-  background-color: #fff;
-  color: #6c757d;
-  padding: 5px;
-  margin: 28px 11px 28px 12px;
+    background-color: #fff;
+    color: #6c757d;
+    padding: 5px;
+    margin: 28px 11px 28px 12px;
 }
+
 .query-button {
-  margin: 14px;
+    margin: 14px;
 }
+
 .query-form {
-  width: 545px;
-  margin: 20px auto;
+    max-width: 545px;
+    margin: 20px auto;
 }
+
 .note {
-  font-size: 13px;
-  margin: 30px 0px;
+    font-size: 13px;
+    margin: 30px 0px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.query-btn {
+    width: 150px;
+    height: 45px;
 }

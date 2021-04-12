@@ -20,21 +20,21 @@
     <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
         <label>{{'Service' | translate}}</label>
         <app-select [hideLoaded]="true" (select)="handleStatus($event)" [(ngModel)]="filterData.services"
-            placeholder="{{'notifications.all' | translate}}" [data]="servicesFilterData" [bindValue]="'id'"
+             [data]="servicesFilterData" [bindValue]="'id'"
             [bindLabel]="'name'" [multiple]="true" maxWidth="300px">
         </app-select>
     </div>
     <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" *ngIf="filterData.services.length == 1" class="pad-5">
         <label>{{'Status' | translate}}</label>
         <app-select [hideLoaded]="true" [(ngModel)]="filterData.statuses" [data]="statusFilterData" [bindValue]="'id'"
-            placeholder="{{'notifications.all' | translate}}" [bindLabel]="'name'" [multiple]="true" maxWidth="250px">
+             [bindLabel]="'name'" [multiple]="true" maxWidth="250px">
         </app-select>
     </div>
     <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
         <label>{{'SERVICE.NEEDS_UPDATE_SHORT' | translate}}</label>
-        <app-select [hideLoaded]="true" [(ngModel)]="filterData.activeTask"
+        <app-select [hideLoaded]="true" [(ngModel)]="filterData.activeTask" [closeOnSelect]="true"
             [data]="[{id:true,name:'true'},{id:false,name:'false'}]" [bindValue]="'id'" [bindLabel]="'name'"
-            placeholder="{{'notifications.all' | translate}}" [multiple]="false" maxWidth="250px">
+             [multiple]="false" maxWidth="250px">
         </app-select>
     </div>
 </div>

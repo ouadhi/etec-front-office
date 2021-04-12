@@ -1,47 +1,46 @@
 <app-page>
-  <div class="container-fluid">
-    <div class="service-title">
-      <h5>{{'NAV.QUERY_REQUEST' | translate}}</h5>
-    </div>
-    <div class="row">
-      <div class="col-12">
+  <app-section sectionTitle="{{'NAV.QUERY_REQUEST' | translate}}">
+
+    <div fxLayout="row wrap">
+      <div fxFlex="100" class="pad-5">
         <div class='page-container'>
           <form [formGroup]="query" autocomplete="off">
 
             <div class="query-form">
-              <div class="col-12 text-center">
-                <p class="note">{{'SERVICE.QUERY_NOTE' | translate}}</p>
-                <div class="row">
-                  <div class="col-6">
-                    <mat-form-field color="primary" style="width:100%">
-                      <input matInput formControlName="requestNumber" [placeholder]="'Id' | translate">
-                    </mat-form-field>
-                  </div>
-                  <div class="col-6">
-                    <mat-form-field color="primary" style="width:100%">
-                      <input matInput formControlName="requestDate" [matDatepicker]="fd"
-                        [placeholder]="'Request Date' | translate">
-                      <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
-                      <mat-datepicker #fd></mat-datepicker>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-12">
-                    <app-select color="primary" [placeholder]="'Service' | translate" [closeOnSelect]="true"  [hideLoaded]="true" formControlName="requestType"
-                      [data]="services" [bindValue]="'id'" [bindLabel]="'name'">
-                    </app-select>
-                  </div>
-                  <div class="col-12">
-                    <button style="margin:35px auto;display:block;" mat-raised-button color="primary"
-                      [disabled]="query.invalid" (click)="doQuery()">
-                      {{'SERVICE.QUERY' | translate}}
-                      <mat-icon>search</mat-icon>
-                    </button>
-                  </div>
 
+              <div fxLayout="row wrap">
+                <div fxFlex="100" class="pad-5">
+                  <p class="note">{{'SERVICE.QUERY_NOTE' | translate}}</p>
                 </div>
-              </div>
 
-              <div class="col-12">
+                <div [fxFlex.xs]="100" fxFlex="50" class="pad-5">
+                  <label>{{'Id' | translate}}</label>
+                  <mat-form-field floatLabel="never" appearance="outline" class="full-width">
+                    <input matInput formControlName="requestNumber">
+                  </mat-form-field>
+                </div>
+
+                <div [fxFlex.xs]="100" fxFlex="50" class="pad-5">
+                  <label>{{'Request Date' | translate}}</label>
+                  <mat-form-field floatLabel="never" appearance="outline" class="full-width">
+                    <input matInput formControlName="requestDate" [matDatepicker]="fd">
+                    <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
+                    <mat-datepicker #fd></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div fxFlex="100" class="pad-5">
+                  <label>{{'Service' | translate}}</label>
+                  <app-select color="primary" [closeOnSelect]="true" [hideLoaded]="true" formControlName="requestType"
+                    [data]="services" [bindValue]="'id'" [bindLabel]="'name'">
+                  </app-select>
+                </div>
+
+                <div fxFlex="100" class="pad-5 text-center">
+                  <button class="ctm-btn query-btn" [disabled]="query.invalid" (click)="doQuery()">
+                    {{'SERVICE.QUERY' | translate}}
+                  </button>
+                </div>
               </div>
             </div>
           </form>
@@ -53,5 +52,6 @@
 
       </div>
     </div>
-  </div>
+
+  </app-section>
 </app-page>

@@ -740,6 +740,29 @@ html[dir="rtl"] {
 .mat-calendar-controls {
     direction: rtl;
 }
+
 [dir="ltr"] .mat-calendar-controls {
     direction: ltr !important;
+}
+
+.ctm-btn {
+    display: inline-block;
+    color: #fff;
+    background: #067a84;
+    padding: 5px 16px;
+    border-radius: 12px;
+    transition: all .3s ease;
+    border: none;
+}
+
+.ctm-btn:hover:enabled {
+    background: #00adc3;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+}
+
+.ctm-btn:disabled,
+.ctm-btn[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
 }
