@@ -38,7 +38,7 @@ export const appRoutes: Routes = [
         data: { roles: [environment.roles.beneficiary] },
     },
     {
-      path: 'task/:taskId/:caseId/:requestId',
+      path: 'task/:taskDefinitionKey/:taskId/:caseId/:requestId',
       component: RequestTaskComponent, canActivate: []
     },
     {

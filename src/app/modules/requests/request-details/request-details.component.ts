@@ -2,6 +2,7 @@ import { Injector } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
+import { CaseActivityService } from '../case-activities.service';
 import { RequestsService } from '../requests.service';
 
 @Component({
@@ -12,7 +13,8 @@ import { RequestsService } from '../requests.service';
 export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
   constructor(public injector: Injector,
-    private rest: RequestsService) { super(injector); }
+    private rest: RequestsService,
+    public caseActivity: CaseActivityService) { super(injector); }
 
   link: any;
   formData: any;
@@ -22,13 +24,16 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   requestTask = [];
   data: any;
   formReady = false;
-  hasTask = false;
+  hasTask: any;
   params;
   request;
+
+  currentRequestTask: any;
 
   handleAction(event) {
     if (event.type === 'task') {
       this.router.navigate(['/requests/task',
+        this.currentRequestTask.taskDefinitionKey,
         event.activity.taskId,
         this.request.caseId,
         this.route.snapshot.params.id,
@@ -37,6 +42,9 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   }
   showTask(event) {
     this.hasTask = event;
+    this.sub = this.caseActivity.getRequestTask(this.hasTask.taskId).subscribe(data => {
+      this.currentRequestTask = data;
+    });
   }
   ngOnInit() {
 
@@ -47,6 +55,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
         this.link = this.request.link;
         this.formData = this.request.data;
         this.cmmnId = this.request.cmmnId;
+
         this.sub = this.rest.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`).subscribe(data => {
           this.submission = data;
           this.moreInfo = (data.data.moreInfo && Object.keys(data.data.moreInfo).length) ? data.data.moreInfo : null;

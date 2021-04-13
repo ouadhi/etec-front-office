@@ -1,50 +1,61 @@
+@import '../../../../../colors.scss';
 ion-item {
-  --background: #f7f7f7;
-  font-size: 11px;
-  ion-label {
-    p {
-      font-size: 12px;
-    }
-  }
-  --min-height: 75px;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  ion-label {
-    margin: 0px;
-  }
-  &.unread {
-    --background: rgba(54, 127, 142, 0.08);
-    border-right: 4px solid var(--primary500);
-  }
-  ion-button {
-    --background: transparent;
-  }
-  ion-chip {
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    --background: #f7f7f7;
+    font-size: 11px;
     ion-label {
-      p {
-        font-size: 12px;
-        color: var(--ion-color-medium);
-      }
+        p {
+            font-size: 12px;
+        }
     }
-  }
-  .options {
-    opacity: 0;
-    transition: 0.3s;
+    --min-height: 75px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    ion-label {
+        margin: 0px;
+    }
+    &.unread {
+        --background: rgba(54, 127, 142, 0.08);
+        border-right: 4px solid $primary-color;
+    }
     ion-button {
-      margin: 0px !important;
+        --background: transparent;
     }
-    &:focus {
-      opacity: 1;
+    ion-chip {
+        ion-label {
+            p {
+                font-size: 12px;
+            }
+        }
     }
-  }
-  &:hover {
     .options {
-      opacity: 1;
+        opacity: 0;
+        transition: 0.3s;
+        ion-button {
+            margin: 0px !important;
+        }
+        &:focus {
+            opacity: 1;
+        }
     }
-  }
+    &:hover {
+        .options {
+            opacity: 1;
+        }
+    }
 }
+
 .type {
-  padding: 2px;
-  margin: 0px;
-  height: 18px;
+    padding: 2px;
+    margin: 0px;
+    height: 18px;
+}
+
+.time {
+    opacity: 0.6 !important;
+}
+
+ion-item-divider {
+    background: #ddd;
 }
