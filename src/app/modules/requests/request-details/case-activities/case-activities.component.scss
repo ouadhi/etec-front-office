@@ -124,10 +124,10 @@ ion-label {
 :host::ng-deep {
     .owl-stage {
         .owl-item {
-            opacity: 0.7;
+            // opacity: 0.7;
             position: relative;
             &:last-child {
-                opacity: 1;
+                // opacity: 1;
             }
         }
     }
