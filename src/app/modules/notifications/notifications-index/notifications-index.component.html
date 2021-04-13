@@ -1,13 +1,15 @@
 <app-page>
-    <div class="section__container alignSwitchAR">
-        <div class="container-fluid">
-            <div class="page-title">
-                <h5 class="alignSwitchAR">{{'notifications.title' | translate}}</h5>
-            </div>
-            <div class="list-container">
-                <app-notifications-modal></app-notifications-modal>
-            </div>
-
+    <app-section sectionTitle="{{'notifications.title' | translate}}">
+        <div class="list-container">
+            <app-notifications-modal></app-notifications-modal>
         </div>
-    </div>
+        <!-- <div fxLayout="row wrap">
+            <div fxFlex="20" class="pad-5 hid-sm"></div>
+            <div [fxFlex.sm]="100" fxFlex="60" class="pad-5">
+                
+            </div>
+            <div fxFlex="20" class="pad-5 hid-sm"></div>
+        </div> -->
+
+    </app-section>
 </app-page>

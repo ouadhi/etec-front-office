@@ -25,7 +25,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   services = [];
 
   cmmnId: string;
-  requestId = 217;
+  requestId: number;
   get requestDetailsUrl() {
     return `/requests/details/${this.requestId}`;
   }
@@ -37,48 +37,52 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
 
   doQuery() {
     if (this.query.valid) {
+      this.cmmnId = '';
       this.notFound = false;
       this.found = false;
-      this.reCaptchaV3Service.execute('6LejM-UUAAAAAB78NI-6A5O0qmtJWAHm0iF8qnB4', 'queryRequest', (token) => {
-        if (token) {
-          this.sub = this.rest.verifyToken(token).subscribe(data => {
-            if (data.success) {
-              const query = {};
-              if (this.query.controls.requestDate.value) {
-                const tomorrow = new Date();
-                tomorrow.setDate(this.query.controls.requestDate.value.getDate() + 1);
-                query['requestDate.greaterOrEqualThan'] =
-                  `${this.datePipe.transform(this.query.controls.requestDate.value, 'yyyy-MM-ddT00:00:00')}` + "Z";
-                query['requestDate.lessThan'] = `${this.datePipe.transform(tomorrow, 'yyyy-MM-ddT00:00:00')}` + "Z";
-              } else if (this.query.controls.requestType.value) {
-                query['serviceId.equals'] = this.query.controls.requestType.value;
-              }
-              this.sub = this.rest.queryRequests({
-                ...query,
-                'number.equals': this.query.controls.requestNumber.value
+      // this.reCaptchaV3Service.execute('6LejM-UUAAAAAB78NI-6A5O0qmtJWAHm0iF8qnB4', 'queryRequest', (token) => {
+      //   if (token) {
+      //     this.sub = this.rest.verifyToken(token).subscribe(data => {
+      //       if (data.success) {
+      const query = {};
+      if (this.query.controls.requestDate.value) {
+        const tomorrow = new Date();
+        tomorrow.setDate(this.query.controls.requestDate.value.getDate() + 1);
+        query['requestDate.greaterOrEqualThan'] =
+          `${this.datePipe.transform(this.query.controls.requestDate.value, 'yyyy-MM-ddT00:00:00')}` + "Z";
+        query['requestDate.lessThan'] = `${this.datePipe.transform(tomorrow, 'yyyy-MM-ddT00:00:00')}` + "Z";
+      } else if (this.query.controls.requestType.value) {
+        query['serviceId.equals'] = this.query.controls.requestType.value;
+      }
+      this.sub = this.rest.queryRequests({
+        ...query,
+        'number.equals': this.query.controls.requestNumber.value
 
-              }).subscribe((data) => {
-                if (data.length) {
-                  this.notFound = false;
-                  this.found = true;
-                  this.router.navigate(['requests/details', data[0].id], { relativeTo: this.route });
+      }).subscribe((data) => {
+        if (data.length) {
+          this.notFound = false;
+          this.found = true;
+          // this.router.navigate(['requests/details', data[0].id], { relativeTo: this.route });
 
-                } else {
-                  this.notFound = true;
-                  this.found = false;
-                }
+          this.cmmnId = data[0].cmmnId;
+          this.requestId = data[0].caseId;
 
-
-              }, () => {
-                this.notFound = true;
-                this.found = false;
-              });
-            }
-          });
+        } else {
+          this.notFound = true;
+          this.found = false;
         }
-      }, {
-        useGlobalDomain: false
+
+
+      }, () => {
+        this.notFound = true;
+        this.found = false;
       });
+      //   }
+      // });
+      //   }
+      // }, {
+      //   useGlobalDomain: false
+      // });
 
     }
   }

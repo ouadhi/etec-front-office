@@ -52,4 +52,6 @@
 :host::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
     white-space: inherit !important;
     line-height: normal !important;
+    display: flex;
+    align-items: center;
 }

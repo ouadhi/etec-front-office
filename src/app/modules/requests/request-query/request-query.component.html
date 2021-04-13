@@ -1,8 +1,6 @@
 <app-page>
   <app-section sectionTitle="{{'NAV.QUERY_REQUEST' | translate}}">
 
-    <!-- <button (click)='cmmnId= cmmnId ? "" : "f62134eb-9bb1-11eb-874e-0242ac12000b"'>test</button> -->
-
     <div fxLayout="row wrap">
       <div fxFlex="100" class="pad-5">
         <div class='page-container'>
@@ -57,7 +55,6 @@
         <h6 class="text-center" style="margin:50px;" *ngIf="notFound">{{'SERVICE.REQUEST_NOT_FOUND' | translate}}</h6>
       </div>
     </div>
-
     <div fxLayout="row wrap">
       <div fxFlex="100" [@inOutAnimation] *ngIf="cmmnId">
         <app-case-activities [caseInstanceId]="cmmnId"></app-case-activities>

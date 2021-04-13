@@ -100,7 +100,7 @@
                   </div>
                 </ng-container>
 
-                <mat-list-item class="filtersList__head" *ngIf="tags.length">{{'CATALOG.TAGS' | translate}}
+                <mat-list-item class="filtersList__head" *ngIf="tags?.length">{{'CATALOG.TAGS' | translate}}
                 </mat-list-item>
 
                 <ng-container *ngFor="let x of tags">
@@ -171,7 +171,7 @@
                       </ng-container>
 
 
-                      <mat-list-item class="filtersList__head" *ngIf="tags.length">{{'CATALOG.TAGS' | translate}}
+                      <mat-list-item class="filtersList__head" *ngIf="tags?.length">{{'CATALOG.TAGS' | translate}}
                       </mat-list-item>
 
                       <ng-container *ngFor="let x of tags">
