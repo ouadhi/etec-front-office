@@ -27,7 +27,8 @@ export function initializer(keycloak: KeycloakService,
             loadUserProfileAtStartUp: false,
             initOptions: {
               onLoad: 'check-sso',
-              checkLoginIframe: false
+              checkLoginIframe: false,
+              redirectUri: window.location.origin
             },
             enableBearerInterceptor: true,
             bearerExcludedUrls: [
