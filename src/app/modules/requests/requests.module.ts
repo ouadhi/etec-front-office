@@ -7,12 +7,12 @@ import { MyRequestsComponent } from "./my-requests/my-requests.component";
 import { CaseActivitiesComponent } from "./request-details/case-activities/case-activities.component";
 import { MoreInfoComponent } from "./request-details/more-info/more-info.component";
 import { RequestDetailsComponent } from "./request-details/request-details.component";
-import { RequestInfoDialogComponent } from "./request-info/request-info.dialog";
 import { RequestQueryComponent } from "./request-query/request-query.component";
 import { RequestTaskComponent } from "./request-task/request-task.component";
 import { RequestComponent } from "./request/request.component";
 import { RequestsRouterModule } from "./requests.router.module";
 import {CarouselModule} from 'ngx-owl-carousel-o';
+import { ResultInfoComponent } from "./request/result-info/result-info.component";
 
 @NgModule({
     declarations: [
@@ -25,8 +25,7 @@ import {CarouselModule} from 'ngx-owl-carousel-o';
         CaseActivitiesComponent,
         RequestQueryComponent,
         RequestTaskComponent,
-
-        RequestInfoDialogComponent,
+        ResultInfoComponent,
     ],
     imports: [
         CommonModule,
@@ -35,7 +34,6 @@ import {CarouselModule} from 'ngx-owl-carousel-o';
         CarouselModule,
     ],
     entryComponents: [
-        RequestInfoDialogComponent,
     ]
 })
 export class RequestsModule { }

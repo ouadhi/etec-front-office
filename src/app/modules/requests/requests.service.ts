@@ -67,6 +67,7 @@ export class RequestsService {
     return this.http.get<any>(
       `${environment.requestApi.api}${environment.requestApi.rest.myRequests}/${id}`,
       {
+        params: this.dashletFilterAdapter.adapt(queryParams)
       }).pipe(
         tap(resp => resp),
         map(resp => (resp))

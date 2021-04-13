@@ -1,0 +1,38 @@
+@import '../../../../colors.scss';
+
+formio {
+    padding: 10px;
+}
+
+.alignSwitchAR {
+    text-align: right;
+}
+
+.alignSwitchEN {
+    text-align: left;
+}
+
+.service-title {
+    margin: 28px 11px -20px 12px;
+    background-color: #f5f5f5;
+    padding: 24px 16px 14px 16px;
+}
+
+.result-title {
+    font-weight: 900;
+    font-size: 22px;
+    margin-bottom: 18px;
+    color: $green-color;
+}
+
+.result-sub-title {
+    margin-bottom: 10px;
+}
+
+.info-pair {
+    font-size: 14px;
+}
+
+.info-pair span:first-child {
+  font-weight: 900;
+}

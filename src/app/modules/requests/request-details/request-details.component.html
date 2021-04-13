@@ -1,8 +1,5 @@
 <app-page>
-  <app-page-title title="{{'REQUESTS.DETAILS' | translate}}">
-  </app-page-title>
-
-  <app-section sectionTitle="{{'Status' | translate}}">
+  <app-section sectionTitle="{{'Steps' | translate}} {{request?.requestName}}">
     <div class="padder" *ngIf="hasTask"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div class="alert alert-warning">

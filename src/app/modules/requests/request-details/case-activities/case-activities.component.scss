@@ -66,6 +66,7 @@ ion-label {
     display: flex;
     align-items: center;
     border-radius: 8px;
+    // max-width: 250px;
 }
 
 .tracking-list {
@@ -137,6 +138,7 @@ ion-label {
         display: table-cell;
         float: none;
         vertical-align: middle;
+        width: 250px !important;
         div {
             text-align: center;
         }

@@ -8,6 +8,7 @@ import { RequestDetailsComponent } from './request-details/request-details.compo
 import { RequestQueryComponent } from './request-query/request-query.component';
 import { RequestTaskComponent } from './request-task/request-task.component';
 import { RequestComponent } from './request/request.component';
+import { ResultInfoComponent } from './request/result-info/result-info.component';
 
 export const appRoutes: Routes = [
     {

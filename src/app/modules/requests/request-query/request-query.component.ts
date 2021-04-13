@@ -6,11 +6,13 @@ import { RequestsService } from '../requests.service';
 import { debounceTime } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { FilterService } from '../filter.service';
+import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 
 @Component({
   selector: 'app-request-query',
   templateUrl: './request-query.component.html',
-  styleUrls: ['./request-query.component.css']
+  styleUrls: ['./request-query.component.scss'],
+  animations: [InOutAnimation]
 })
 export class RequestQueryComponent extends BaseComponent implements OnInit, OnDestroy {
   query: FormGroup = new FormGroup({
@@ -21,6 +23,12 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   notFound = false;
   found = false;
   services = [];
+
+  cmmnId: string;
+  requestId = 217;
+  get requestDetailsUrl() {
+    return `/requests/details/${this.requestId}`;
+  }
 
   constructor(public injector: Injector,
     private rest: RequestsService,

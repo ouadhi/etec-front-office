@@ -4,7 +4,7 @@
     <div class="milestones slider-container" *ngIf="initSlider" align-items-center>
         <owl-carousel-o #slider (initialized)="onInit($event, slider)" [options]="customOptions">
             <ng-container *ngFor="let activity of activities let i = index;">
-                <ng-template [width]="300" [id]="'slide-'+i" *ngIf="activity.completed" carouselSlide>
+                <ng-template [width]="250" [id]="'slide-'+i" *ngIf="activity.completed" carouselSlide>
                     <div class="milestone">
                         <ion-chip
                             [ngClass]="activity.completed ? 'green' : (activity.caseActivityType == 'humanTask' ?'blue' : 'gray')">

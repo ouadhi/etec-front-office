@@ -16,13 +16,13 @@
         <div id="control-container">
           <button *ngIf="(isLoggedIn && data.canAnonymousApply) || !data.canAnonymousApply" class="ctm-btn"
             [routerLink]="['/requests/request', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
-            skipLocationChange=true target="_blank" mat-raised-button color="primary"
+            skipLocationChange=true target="_blank" 
             [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>
               arrow_right
             </mat-icon></button>
           <button *ngIf="(!isLoggedIn && data.canAnonymousApply) " class="ctm-btn"
             [routerLink]="['/requests/arequest', data.link, { serviceId: data.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
-            skipLocationChange=true target="_blank" mat-raised-button color="primary"
+            skipLocationChange=true target="_blank" 
             [disabled]="data.isApplyActive == false ? true : false">{{'SERVICE.APPLY' | translate}} <mat-icon>
               arrow_right
             </mat-icon></button>

@@ -746,13 +746,17 @@ html[dir="rtl"] {
 }
 
 .ctm-btn {
-    display: inline-block;
     color: #fff;
     background: #067a84;
     padding: 5px 16px;
     border-radius: 12px;
     transition: all .3s ease;
     border: none;
+    
+    display: flex;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
 }
 
 .ctm-btn:hover:enabled {
@@ -765,4 +769,16 @@ html[dir="rtl"] {
     border: 1px solid #999999;
     background-color: #cccccc;
     color: #666666;
+}
+
+.mat-form-field-infix {
+    border-top: 10px solid transparent;
+}
+
+[dir="rtl"] .align-dir {
+    text-align: -webkit-left; 
+}
+
+[dir="ltr"] .align-dir {
+    text-align: -webkit-right;
 }

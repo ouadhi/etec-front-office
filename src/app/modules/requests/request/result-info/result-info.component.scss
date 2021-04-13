@@ -1,0 +1,21 @@
+.page-container {
+    max-width: 545px;
+    margin: 20px auto;
+    text-align: center;
+    background: #fff;
+    display: block !important;
+}
+
+img {
+    display: inline-block;
+    width: 200px;
+}
+.action-btn {
+    width: 150px;
+    height: 45px;
+}
+
+.action-container {
+    display: flex;
+    justify-content: center;
+}

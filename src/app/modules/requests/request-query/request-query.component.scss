@@ -1,0 +1,55 @@
+.page-container {
+    background-color: #fff;
+    color: #6c757d;
+    padding: 5px;
+    margin: 28px 11px 28px 12px;
+}
+
+.query-button {
+    margin: 14px;
+}
+
+.query-form {
+    max-width: 545px;
+    margin: 20px auto;
+}
+
+.note {
+    font-size: 13px;
+    margin: 30px 0px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.query-btn {
+    width: 150px;
+    height: 45px;
+}
+
+.query-container {
+    display: flex;
+    justify-content: center;
+}
+
+.center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-flex span {
+    margin-top: 32px;
+}
+
+@media (max-width: 599px) {
+    .center-flex {
+        display: none;
+    }
+}
+
+:host::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    white-space: inherit !important;
+    line-height: normal !important;
+}

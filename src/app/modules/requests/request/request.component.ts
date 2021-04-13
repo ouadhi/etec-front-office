@@ -1,16 +1,19 @@
 import { Injector } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { RequestInfoDialogComponent } from '../request-info/request-info.dialog';
 import { BaseComponent } from '../../../shared/components/base.component';
+import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
-  styleUrls: ['./request.component.css']
+  styleUrls: ['./request.component.scss'],
+  animations: [InOutAnimation]
 })
 export class RequestComponent extends BaseComponent implements OnInit {
 
-  constructor(public injector: Injector) { super(injector); }
+  constructor(public injector: Injector) {
+    super(injector);
+  }
 
   id: any;
   serviceId: any;
@@ -21,6 +24,10 @@ export class RequestComponent extends BaseComponent implements OnInit {
   params;
   isLoggedIn = false;
   submission = { data: {} };
+
+  hasResult = false;
+  requestNumber: string;
+  requestDate: Date;
 
   async ngOnInit() {
     this.isLoggedIn = await this.keycloakService.isLoggedIn();
@@ -61,11 +68,10 @@ export class RequestComponent extends BaseComponent implements OnInit {
         return false;
       }
     });
-    this.openInfoDialog({
-      requestNumber: requestId,
-      requestDate
-    });
-    this.goBack();
+
+    this.requestNumber = requestId;
+    this.requestDate = requestDate;
+    this.hasResult = true;
   }
   /**
    * Go Back After Request is sent
@@ -79,16 +85,6 @@ export class RequestComponent extends BaseComponent implements OnInit {
 
     }
 
-  }
-  openInfoDialog(data): void {
-    const dialogRef = this.matDialog.open(RequestInfoDialogComponent, {
-      width: '300px',
-      data: data
-    });
-
-    this.sub = dialogRef.afterClosed().subscribe(result => {
-      this.loggerService.log('The dialog was closed');
-    });
   }
 
 }

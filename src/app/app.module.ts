@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateLoaderHelper } from './core/helpers/translate-loader.helper';
+import { KeycloakAngularModule } from 'keycloak-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +16,7 @@ import { TranslateLoaderHelper } from './core/helpers/translate-loader.helper';
     CoreModule,
     SharedModule,
     AppRoutingModule,
+    KeycloakAngularModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -27,8 +27,8 @@ import { RouterModule } from '@angular/router';
 import { FormioModule } from 'src/formio/src/public_api';
 import { HeaderComponent } from './components/header/header.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
-import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 
+import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import localeAr from '@angular/common/locales/ar';
@@ -61,7 +61,6 @@ registerLocaleData(localeAr, 'ar');
         FlexLayoutModule,
         MaterialModule,
         NgSelectModule,
-        KeycloakAngularModule,
         IonicModule.forRoot(),
         FilterPipeModule,
         SlideshowModule,
@@ -82,7 +81,6 @@ registerLocaleData(localeAr, 'ar');
         FlexLayoutModule,
         MaterialModule,
         NgSelectModule,
-        KeycloakAngularModule,
         IonicModule,
         FilterPipeModule,
         SlideshowModule,

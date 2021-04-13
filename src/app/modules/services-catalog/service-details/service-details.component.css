@@ -12,5 +12,12 @@
 
 #control-container {
     margin-top: 10px;
-    text-align: end;
+}
+
+[dir="rtl"] :host::ng-deep #control-container {
+    text-align: -webkit-left;
+}
+
+[dir="ltr"] :host::ng-deep #control-container {
+    text-align: -webkit-right;
 }
