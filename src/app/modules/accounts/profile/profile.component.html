@@ -1,83 +1,85 @@
 <app-page>
 
-  <div fxLayout="row" fxLayoutGap="5px" class="profileHero">
-    <div fxFlex="100">
-      <ion-avatar class="mobile-avatar">
-        <img src="/assets/userplaceholder.png">
-      </ion-avatar>
-      <ion-item class="user-item" lines="none">
-        <ion-avatar slot="start">
+  <app-section>
+    <div fxLayout="row" fxLayoutGap="5px" class="profileHero">
+      <div fxFlex="100">
+        <ion-avatar class="mobile-avatar">
           <img src="/assets/userplaceholder.png">
         </ion-avatar>
-        <ion-label *ngIf="data" no-margin>
-          <div class="first-row">
-            <h2>{{data.name}}</h2>
-          </div>
-          <div fxLayout="row wrap" class="profileHero__secondarySection">
-            <div [fxFlex.xs]="100" fxFlex="20" class="profileHero__meta">
-              <ion-item class="big-chip primary" lines="none">
-                <h6 class="slotted">
-                  <ion-text slot="start">{{'PROFILE.ID' | translate}} </ion-text>
-                  <ion-text slot="end">{{data.id}}</ion-text>
-                </h6>
-              </ion-item>
+        <ion-item class="user-item" lines="none">
+          <ion-avatar slot="start">
+            <img src="/assets/userplaceholder.png">
+          </ion-avatar>
+          <ion-label *ngIf="data" no-margin>
+            <div class="first-row">
+              <h2>{{data.name}}</h2>
             </div>
-            <div [fxFlex.xs]="100" fxFlex="20" class="profileHero__meta">
-              <ion-item class="big-chip primary" lines="none">
-                <h6 class="slotted">
-                  <ion-text slot="start">{{'PROFILE.INTERNAL_ID' | translate }} </ion-text>
-                  <ion-text slot="end"> {{data.ekhaaID}}</ion-text>
-                </h6>
-              </ion-item>
+            <div fxLayout="row wrap" class="profileHero__secondarySection">
+              <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+                <ion-item class="big-chip primary data-border flex-item" lines="none">
+                  <h6 class="slotted">
+                    <ion-text slot="start">{{'PROFILE.ID' | translate}} </ion-text>
+                    <ion-text slot="end">{{data.id}}</ion-text>
+                  </h6>
+                </ion-item>
+              </div>
+              <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+                <ion-item class="big-chip primary data-border flex-item" lines="none">
+                  <h6 class="slotted">
+                    <ion-text slot="start">{{'PROFILE.INTERNAL_ID' | translate }} </ion-text>
+                    <ion-text slot="end"> {{data.ekhaaID}}</ion-text>
+                  </h6>
+                </ion-item>
+              </div>
+              <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+                <ion-item class="big-chip tertiary data-border flex-item" lines="none">
+                  <h6 class="slotted">
+                    <ion-text slot="start">{{'PROFILE.BRANCH' | translate}} </ion-text>
+                    <ion-text slot="end">{{data.branchCode ? data.branchCode : ('PROFILE.NOT_SET' | translate)}}
+                    </ion-text>
+                  </h6>
+                </ion-item>
+              </div>
+              <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+                <ion-item class="big-chip medium data-border flex-item" lines="none">
+                  <h6 class="slotted">
+                    <ion-text slot="start"> {{'PROFILE.MOBILE' | translate}} </ion-text>
+                    <ion-text slot="end">{{data.mobile
+                      ? data.mobile : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+                  </h6>
+                </ion-item>
+              </div>
+              <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+                <ion-item class="big-chip medium data-border flex-item" lines="none">
+                  <h6 class="slotted">
+                    <ion-text slot="start">{{'PROFILE.EMAIL' | translate}} </ion-text>
+                    <ion-text slot="end">{{data.email
+                      ? data.email : ('PROFILE.NOT_SET' | translate)}}</ion-text>
+                  </h6>
+                </ion-item>
+              </div>
             </div>
-            <div [fxFlex.xs]="100" fxFlex="20" class="profileHero__meta">
-              <ion-item class="big-chip tertiary" lines="none">
-                <h6 class="slotted">
-                  <ion-text slot="start">{{'PROFILE.BRANCH' | translate}} </ion-text>
-                  <ion-text slot="end">{{data.branchCode ? data.branchCode : ('PROFILE.NOT_SET' | translate)}}
-                  </ion-text>
-                </h6>
-              </ion-item>
-            </div>
-            <div [fxFlex.xs]="100" fxFlex="20" class="profileHero__meta">
-              <ion-item class="big-chip medium" lines="none">
-                <h6 class="slotted">
-                  <ion-text slot="start"> {{'PROFILE.MOBILE' | translate}} </ion-text>
-                  <ion-text slot="end">{{data.mobile
-                    ? data.mobile : ('PROFILE.NOT_SET' | translate)}}</ion-text>
-                </h6>
-              </ion-item>
-            </div>
-            <div [fxFlex.xs]="100" fxFlex="20" class="profileHero__meta">
-              <ion-item class="big-chip medium" lines="none">
-                <h6 class="slotted">
-                  <ion-text slot="start">{{'PROFILE.EMAIL' | translate}} </ion-text>
-                  <ion-text slot="end">{{data.email
-                    ? data.email : ('PROFILE.NOT_SET' | translate)}}</ion-text>
-                </h6>
-              </ion-item>
-            </div>
-          </div>
-        </ion-label>
-      </ion-item>
+          </ion-label>
+        </ion-item>
 
+      </div>
     </div>
-  </div>
+  </app-section>
 
-  <div *ngIf="data" class="profileData">
+  <div *ngIf="data">
 
     <app-section sectionTitle="{{'PROFILE.PERSONAL_INFO' | translate }}">
       <div fxLayout="row wrap" fxLayoutAlign="flex-start">
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="none">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.GENDER' | translate }} </ion-text>
               <ion-text slot="end">{{data.gender | translate}}</ion-text>
             </h6>
           </ion-item>
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.EDU_STAGE' | translate }} </ion-text>
               <ion-text slot="end"> {{data.educationStage ? data.educationStage : ('PROFILE.NOT_SET' | translate)}}
@@ -85,8 +87,8 @@
             </h6>
           </ion-item>
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.MARITAL_STATE' | translate }} </ion-text>
               <ion-text slot="end">
@@ -95,16 +97,16 @@
             </h6>
           </ion-item>
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.NATIONAL_ID' | translate }} </ion-text>
               <ion-text slot="end">{{data.nationalId}}</ion-text>
             </h6>
           </ion-item>
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.NATIONAL_ID_DATE' | translate }} </ion-text>
               <ion-text slot="end">
@@ -114,8 +116,8 @@
         </div>
 
 
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.NATIONAL_ORIGIN' | translate }} </ion-text>
               <ion-text slot="end">
@@ -123,16 +125,16 @@
             </h6>
           </ion-item>
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.BIRTHDATE' | translate }} </ion-text>
               <ion-text slot="end">{{data.birthDate ? data.birthDate : ('PROFILE.NOT_SET' | translate)}}</ion-text>
             </h6>
           </ion-item>
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.AGE' | translate }} </ion-text>
               <ion-text slot="end">
@@ -142,10 +144,11 @@
         </div>
       </div>
     </app-section>
+
     <app-section sectionTitle="{{'PROFILE.MAININFO' | translate }}">
       <div fxLayout="row wrap" fxLayoutAlign="flex-start">
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.INVESTMENT_BANK_IBAN' | translate }} </ion-text>
               <ion-text slot="end">{{data.investmentIBAN ? data.investmentIBAN : ('PROFILE.NOT_SET' | translate)}}
@@ -153,16 +156,16 @@
             </h6>
           </ion-item>
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.MINISTRY_ID' | translate }} </ion-text>
               <ion-text slot="end"> {{data.ministryId ? data.ministryId : ('PROFILE.NOT_SET' | translate)}}</ion-text>
             </h6>
           </ion-item>
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.HAS_COMMERCIAL_REGISTRATION' | translate }} </ion-text>
               <ion-text slot="end">
@@ -171,8 +174,8 @@
             </h6>
           </ion-item>
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.STOPPED_SERVICES' | translate }} </ion-text>
               <ion-text slot="end">{{data.stoppedServices ? data.stoppedServices.toString() : 'PROFILE.NOT_SET' |
@@ -183,8 +186,8 @@
 
 
         </div>
-        <div [fxFlex.xs]="100" fxFlex="31">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.PRISONED' | translate }}</ion-text>
               <ion-text slot="end">{{data.prisoned ? data.prisoned.toString() : 'PROFILE.NOT_SET' | translate}}
@@ -199,12 +202,11 @@
       </div>
     </app-section>
 
-
-
-    <app-section *ngIf="data && data.segments" sectionTitle="{{'PROFILE.SEGMENTS' | translate }}">
+    <app-section *ngIf="data && data.segments && data.segments.length"
+      sectionTitle="{{'PROFILE.SEGMENTS' | translate }}">
       <div fxLayout="row wrap" fxLayoutAlign="flex-start">
-        <div [fxFlex.xs]="100" fxFlex="31" *ngFor="let segment of data.segments">
-          <ion-item class="big-chip light" lines="full">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" *ngFor="let segment of data.segments" class="profileHero__meta">
+          <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">
                 {{segment.segmentType ? segment.segmentType['segmentTypeName_' + switchLangService.current] :
@@ -216,7 +218,6 @@
               </ion-text>
             </h6>
           </ion-item>
-
         </div>
       </div>
     </app-section>
