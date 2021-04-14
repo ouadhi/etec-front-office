@@ -12,7 +12,7 @@ ion-chip {
         text-align: center;
         font-family: inherit;
         line-height: 10px;
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 
@@ -165,7 +165,7 @@ ion-label {
 
 .green {
     background: $green-color;
-    border-left: 7px solid $green-color;
+    border-left: 7px solid $green-color !important;
     background: linear-gradient(90deg, rgba(58, 173, 109, 0.24) 0%, rgba(58, 173, 109, 0.13) 35%, rgba(58, 173, 109, 0.09) 100%);
 }
 
@@ -175,7 +175,7 @@ ion-label {
 
 .blue {
     background: $primary-color;
-    border-left: 7px solid $primary-color;
+    border-left: 7px solid $primary-color !important;
     background: linear-gradient(90deg, rgba(0, 173, 195, 0.24) 0%, rgba(0, 173, 195, 0.13) 35%, rgba(0, 173, 195, 0.09) 100%);
 }
 
@@ -189,5 +189,38 @@ ion-icon {
 }
 
 .gray {
-    border-left: 7px solid #5d5c5c;
+    border-left: 7px solid #5d5c5c !important;
+}
+
+.carousel-container {
+    position: relative;
+    .carousel-control {
+        position: absolute;
+        top: 22px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        direction: rtl;
+        .arrow-control {
+            display: inline-block;
+            font-size: 25px;
+        }
+    }
+    .scrolling-wrapper {
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 20px;
+        scroll-behavior: smooth;
+        .status-card {
+            display: inline-block;
+            margin: 0 5px;
+            width: 300px;
+            height: 80px;
+            margin-bottom: 5px;
+            ion-chip {
+                border: 1px solid #ddd;
+                box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.20), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+            }
+        }
+    }
 }

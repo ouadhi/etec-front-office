@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output, AfterViewInit } from '@angular/core';
 import { BaseComponent } from '../../../../shared/components/base.component';
 import { CaseActivityService } from '../../case-activities.service';
 
@@ -9,7 +9,9 @@ import { CaseActivityService } from '../../case-activities.service';
     providers: [CaseActivityService]
 })
 
-export class CaseActivitiesComponent extends BaseComponent implements OnInit {
+export class CaseActivitiesComponent extends BaseComponent implements OnInit, AfterViewInit {
+    horizontalScrollMenu = null;
+    showScrollBtns = false;
 
     @Input() caseInstanceId;
     @Output() activityAction = new EventEmitter();
@@ -39,7 +41,7 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
             nav: true,
             navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
             navSpeed: 700,
-            autoWidth: false,
+            autoWidth: true,
             mergeFit: true,
             center: false,
             margin: 5,
@@ -93,6 +95,16 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
             .subscribe(data => {
 
                 this.activities = data;
+
+                const listWidth = (300 * this.activities.filter(q => q.completed).length) + 10;
+                setTimeout(() => {
+                    this.horizontalScrollMenu = document.getElementsByClassName('horizontalScrollMenu')[0];
+                    this.showScrollBtns = this.horizontalScrollMenu.offsetWidth < listWidth;
+                    if (this.translateService.currentLang == "ar")
+                        this.next(listWidth);
+                    else this.prev(listWidth);
+                }, 250);
+
                 this.activities.forEach(activity => {
                     if (activity.caseActivityName === 'task') {
                         activity.caseActivityName = this.switchLangService.getTranslated('SERVICE.beneficiaryTask');
@@ -105,5 +117,16 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
                     }
                 });
             });
+    }
+    ngAfterViewInit(): void {
+        this.horizontalScrollMenu = document.getElementsByClassName('horizontalScrollMenu')[0];
+    }
+
+    next(step: number = 500): void {
+        this.horizontalScrollMenu.scrollLeft = this.horizontalScrollMenu.scrollLeft - step;
+    }
+
+    prev(step: number = 500): void {
+        this.horizontalScrollMenu.scrollLeft = this.horizontalScrollMenu.scrollLeft + step;
     }
 }
