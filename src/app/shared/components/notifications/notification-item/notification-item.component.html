@@ -1,10 +1,10 @@
-<ion-item lines="full" [ngClass]="{'unread': notification.status != 'READ'}">
+<ion-item lines="full" [ngClass]="{'unread': notification.status != 'READ','read': notification.status == 'READ'}">
     <ion-label no-margin text-wrap>
-        <p>{{notification.content}}</p>
-        <ion-chip [matTooltip]="notification.sendDate | localizedDate : 'yyyy-MM-dd EEEE hh:mm:ssa'" [matTooltipPosition]="'after'" [ngClass]="'type'"
+        <p class="notification-content">{{notification.content}}</p>
+        <ion-chip [matTooltip]="notification.sendDate | date" [matTooltipPosition]="'after'" [ngClass]="'type'"
             [color]="'transparent'">
             <ion-label>
-                <p class="time">{{notification.sendDate | timeAgo}}</p>
+                <p>{{notification.sendDate | timeAgo}}</p>
             </ion-label>
             <ion-icon size="small" color="medium" [name]="'chatboxes'"></ion-icon>
         </ion-chip>
@@ -13,7 +13,7 @@
         <ion-row>
             <ion-col no-padding>
                 <ion-button size="small" fill="none" (click)="showOptions($event)">
-                    <ion-icon size="small" color="medium" slot="icon-only" name="close-circle-outline"></ion-icon>
+                    <ion-icon size="small" color="medium" slot="icon-only" name="ellipsis-vertical"></ion-icon>
                 </ion-button>
             </ion-col>
         </ion-row>
@@ -22,11 +22,8 @@
                 <ion-button (click)="toggleRead($event)"
                     [matTooltip]="(notification.status === 'READ' ? 'notifications.markAsUnread' : 'notifications.markAsRead') | translate"
                     [matTooltipPosition]="'before'" aria-label="" size="small" fill="none">
-                    <ion-icon *ngIf="notification.status != 'READ'" size="small" color="success" slot="icon-only"
-                        name="checkmark">
-                    </ion-icon>
-                    <ion-icon *ngIf="notification.status === 'READ'" size="small" color="success" slot="icon-only"
-                        name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="notification.status !== 'READ'" class="unread-icon pi pi-check" name="checkmark-outline"></ion-icon>
+                    <ion-icon *ngIf="notification.status === 'READ'" class="read-icon pi pi-check-circle" name="checkmark-circle-outline"></ion-icon>
                 </ion-button>
             </ion-col>
         </ion-row>

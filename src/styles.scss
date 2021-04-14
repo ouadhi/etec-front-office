@@ -752,7 +752,6 @@ html[dir="rtl"] {
     border-radius: 12px;
     transition: all .3s ease;
     border: none;
-    
     display: flex;
     height: 45px;
     align-items: center;
@@ -776,9 +775,41 @@ html[dir="rtl"] {
 }
 
 [dir="rtl"] .align-dir {
-    text-align: -webkit-left; 
+    text-align: -webkit-left;
 }
 
 [dir="ltr"] .align-dir {
     text-align: -webkit-right;
+}
+
+[dir="rtl"] {
+    ion-item {
+        &.unread {
+            border-right: 4px solid $primary-color;
+        }
+        &.read {
+            border-right: 4px solid #ddd;
+        }
+    }
+    .mat-menu-panel.notifications {
+        .mat-menu-content {
+            direction: rtl;
+        }
+    }
+}
+
+[dir="ltr"] {
+    ion-item {
+        &.unread {
+            border-left: 4px solid $primary-color;
+        }
+        &.read {
+            border-left: 4px solid #ddd;
+        }
+    }
+    .mat-menu-panel.notifications {
+        .mat-menu-content {
+            direction: ltr;
+        }
+    }
 }

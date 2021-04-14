@@ -1,128 +1,137 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Injector } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { DatePipe } from '@angular/common';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
-import { BaseComponent } from 'src/app/shared/components/base.component';
+import { BaseComponent } from '../../base.component';
 
 /**
  * Notifications Modal Component
  */
+
 @Component({
-    selector: 'app-notifications-modal',
-    templateUrl: './notifications-modal.component.html',
-    styleUrls: ['./notifications-modal.component.scss']
+  selector: 'app-notifications-modal',
+  templateUrl: './notifications-modal.component.html',
+  styleUrls: ['./notifications-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
-export class NotificationsModalComponent extends BaseComponent implements OnInit {
-    dir = 'rtl';
-    get notifications() {
-        return this.notificationsService.notifications;
-    }
-    // tslint:disable-next-line:variable-name
-    _itemHeight = 76;
-    get itemHeight(): number {
-        return this._itemHeight;
-    }
-    set itemHeight(value: number) {
-        this._itemHeight = value;
-    }
-    // tslint:disable-next-line:variable-name
-    _divider = true;
-    get divider(): boolean {
-        return this._divider;
-    }
-    set divider(value: boolean) {
-        this._divider = value;
-    }
-    // tslint:disable-next-line:variable-name
-    _all = true;
-    get all(): boolean {
-        return this._all;
-    }
-    set all(value: boolean) {
-        this._all = value;
-    }
-    // tslint:disable-next-line:variable-name
-    _title = 'notifications.title';
-    get title(): string {
-        return this._title;
-    }
-    set title(value: string) {
-        this._title = value;
-    }
-    constructor(public injector: Injector,
-        private modalController: ModalController,
-        private notificationsService: NotificationsService) { super(injector); }
+export class NotificationsModalComponent extends BaseComponent {
 
-    markAllAsRead() {
-        this.notificationsService.markAllAsRead();
-    }
-    onUpdate(data) {
-        if (data.notification) {
-            switch (data.action) {
-                case 'delete':
-                    this.notificationsService.deleteNotification(data.notification);
-                    break;
-                case 'status':
-                    this.notificationsService.updateStatus(data.notification);
-                    break;
+  get notifications() {
+    return this.notificationsService.notifications;
+  }
 
-            }
-        }
-    }
-    trackBy(index, item) {
-        return item.id;
-    }
+  _itemHeight = 79;
+  get itemHeight(): number {
+    return this._itemHeight;
+  }
 
-    compareDate = (item, itemIndex, items) => {
-        if (!this.divider) {
-            return null;
-        }
-        const today = new Date();
-        const itemDate = new Date(item.sendDate);
-        const isToday = itemDate.getDate() === today.getDate() &&
-            itemDate.getMonth() === today.getMonth() &&
-            itemDate.getFullYear() === today.getFullYear();
-        const prevItem = items[itemIndex - 1];
-        let isPrevToday = 0;
-        if (prevItem) {
-            const NextItemDate = new Date(prevItem.sendDate);
-            isPrevToday = NextItemDate.getDate() === today.getDate() &&
-                NextItemDate.getMonth() === today.getMonth() &&
-                NextItemDate.getFullYear() === today.getFullYear() ? 2 : 1;
-        }
-        if (!isToday && (isPrevToday === 0 || isPrevToday === 2)) {
-            return 'notifications.earlier';
-        }
-        if (isToday && (isPrevToday === 0 || isPrevToday === 1)) {
-            return 'notifications.new';
-        }
-        return null;
+  set itemHeight(value: number) {
+    this._itemHeight = value;
+  }
 
-    }
+  _divider = true;
+  get divider(): boolean {
+    return this._divider;
+  }
 
-    getItemHeight = () => {
-        return this.itemHeight;
-    }
+  set divider(value: boolean) {
+    this._divider = value;
+  }
 
+  _all = true;
+  get all(): boolean {
+    return this._all;
+  }
 
-    fetchMore(event) {
-        this.sub = this.notificationsService.fetchNotifications().subscribe((data) => {
-            event.target.complete();
-            if (data.items.length === 0 || data.items.length < this.notificationsService.pageSize) {
-                event.target.disabled = true;
-            }
-        });
+  set all(value: boolean) {
+    this._all = value;
+  }
+
+  _title = 'notifications.title';
+  get title(): string {
+    return this._title;
+  }
+
+  set title(value: string) {
+    this._title = value;
+  }
+
+  constructor(public injector: Injector,
+    private modalController: ModalController,
+    private notificationsService: NotificationsService,
+    public datePipe: DatePipe) {
+    super(injector);
+  }
+
+  markAllAsRead() {
+    this.notificationsService.markAllAsRead();
+  }
+
+  onNotificationAction(data) {
+    if (data.notification) {
+      switch (data.action) {
+        case 'delete':
+          this.notificationsService.deleteNotification(data.notification);
+          break;
+        case 'status':
+          this.notificationsService.updateStatus(data.notification);
+          break;
+      }
     }
-    close() {
-        // this.modalController.dismiss();
+  }
+
+  trackBy(index, item) {
+    return item.id;
+  }
+
+  handleOpen(item) {
+    this.modalController.dismiss();
+    this.notificationsService.updateStatus(item, true);
+  }
+
+  compareDate = (item, itemIndex, items) => {
+    if (!this.divider) {
+      return null;
     }
-    handleOpen(item) {
-        this.notificationsService.updateStatus(item, true);
+    const today = new Date();
+    const itemDate = new Date(item.sendDate);
+    const isToday = itemDate.getDate() === today.getDate() &&
+      itemDate.getMonth() === today.getMonth() &&
+      itemDate.getFullYear() === today.getFullYear();
+    const prevItem = items[itemIndex - 1];
+    let isPrevToday = 0;
+    if (prevItem) {
+      const NextItemDate = new Date(prevItem.sendDate);
+      isPrevToday = NextItemDate.getDate() === today.getDate() &&
+        NextItemDate.getMonth() === today.getMonth() &&
+        NextItemDate.getFullYear() === today.getFullYear() ? 2 : 1;
     }
-    ngOnInit() {
-        this.dir = this.translateService.instant('dir');
-        this.sub = this.translateService.onLangChange.subscribe((data) => {
-            this.dir = this.translateService.instant('dir');
-        });
+    if (!isToday && (isPrevToday === 0 || isPrevToday === 2)) {
+      return 'notifications.earlier';
     }
+    if (isToday && (isPrevToday === 0 || isPrevToday === 1)) {
+      return 'notifications.new';
+    }
+    return null;
+  }
+
+  getItemHeight = () => {
+    return this.itemHeight;
+  }
+
+  /* Get More Notifications Based On Based Size */
+  fetchMore(event) {
+    this.sub = this.notificationsService.fetchNotifications().subscribe((data) => {
+      event.target.complete();
+      if (data.items.length === 0 || data.items.length < this.notificationsService.pageSize) {
+        event.target.disabled = true;
+      }
+    });
+  }
+
+  close() {
+    this.modalController.dismiss();
+  }
 }

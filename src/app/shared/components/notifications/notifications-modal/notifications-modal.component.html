@@ -1,4 +1,4 @@
-<ion-toolbar [dir]='dir'>
+<ion-toolbar>
     <ion-title>
         <ion-note>
             {{title | translate}}
@@ -10,30 +10,32 @@
             <ion-icon name="list" slot="start"></ion-icon>
             {{'notifications.all' | translate}}
         </ion-button>
-        <ion-button (click)="markAllAsRead()" [matTooltip]="'notifications.markAllAsRead' | translate"
-            [matTooltipPosition]="'before'" size="small" fill="none">
-            <ion-icon size="small" color="success" slot="icon-only" name="checkmark-circle-outline"></ion-icon>
-        </ion-button>
+
+        <ion-icon class="read-all" (click)="markAllAsRead()" [matTooltip]="'notifications.markAllAsRead' | translate"
+            [matTooltipPosition]="'before'" name="checkmark-outline"></ion-icon>
     </ion-buttons>
 </ion-toolbar>
 
-<div [dir]='dir' class="no-notification" [hidden]="notifications?.length > 0">
+<div text-center padding [hidden]="notifications?.length > 0">
     <ion-text>
         <h6 padding [ngStyle]="{ 'opacity': 0.5}">{{"notifications.noEntry" | translate}}</h6>
     </ion-text>
 </div>
-<ion-content [dir]='dir'>
-    <ion-virtual-scroll [itemHeight]="getItemHeight" [headerFn]="compareDate" [trackBy]="trackBy"
-        [items]="notifications">
+<ion-content [className]="'ion-content'" appScrollbarTheme>
+    <ion-virtual-scroll [itemHeight]="getItemHeight" [className]="'scroll-area'" [headerFn]="compareDate"
+        [trackBy]="trackBy" [items]="notifications">
         <ion-item-divider *virtualHeader="let header">
             {{ header | translate}}
         </ion-item-divider>
-        <app-notification-item *virtualItem="let notification" [notification]="notification"
-            (update)="onUpdate($event)">
-        </app-notification-item>
+        <ng-container *ngFor="let notification of notifications">
+            <app-notification-item (click)="handleOpen(notification)"
+                [routerLink]="['/dashboard/filter/' + notification.sourceName]" [notification]="notification"
+                (notificationAction)="onNotificationAction($event)">
+            </app-notification-item>
+        </ng-container>
     </ion-virtual-scroll>
 
-    <ion-infinite-scroll dir="ltr" margin-top (ionInfinite)="fetchMore($event)" threshold="90px">
+    <ion-infinite-scroll dir="ltr" margin-top (ionInfinite)="fetchMore($event)" threshold="4.5rem">
         <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="'notifications.more' | translate">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>

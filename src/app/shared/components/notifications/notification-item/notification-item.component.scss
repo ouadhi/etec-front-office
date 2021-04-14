@@ -1,23 +1,22 @@
 @import '../../../../../colors.scss';
 ion-item {
-    margin: 0 5px;
-    border: 1px solid #ddd;
-    --background: #f7f7f7;
+    margin: 0;
+    --background: transparent;
     font-size: 11px;
     ion-label {
-        p {
-            font-size: 12px;
+        .notification-content {
+            font-size: 14px;
         }
     }
-    --min-height: 75px;
-    --padding-top: 0px;
-    --padding-bottom: 0px;
-    ion-label {
-        margin: 0px;
-    }
+    --min-height: 64px;
+    --padding-top: 7px;
+    --padding-bottom: 7px;
     &.unread {
-        --background: rgba(54, 127, 142, 0.08);
-        border-right: 4px solid $primary-color;
+        --background: #f7f7f7;
+        // border-right: 4px solid $primary-color;
+    }
+    &.read {
+        // border-right: 4px solid #ddd;
     }
     ion-button {
         --background: transparent;
@@ -26,14 +25,22 @@ ion-item {
         ion-label {
             p {
                 font-size: 12px;
+                color: #989aa2;
             }
         }
     }
     .options {
         opacity: 0;
         transition: 0.3s;
+        margin: 0;
         ion-button {
             margin: 0px !important;
+            .unread-icon {
+                color: #595a59;
+            }
+            .read-icon {
+                color: $primary-color;
+            }
         }
         &:focus {
             opacity: 1;
@@ -50,12 +57,4 @@ ion-item {
     padding: 2px;
     margin: 0px;
     height: 18px;
-}
-
-.time {
-    opacity: 0.6 !important;
-}
-
-ion-item-divider {
-    background: #ddd;
 }

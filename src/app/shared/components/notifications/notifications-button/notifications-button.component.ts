@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { NotificationsModalComponent } from '../notifications-modal/notifications-modal.component';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
+import { NotificationsModalComponent } from '../notifications-modal/notifications-modal.component';
+import { take } from 'rxjs/operators';
 @Component({
     selector: 'app-notifications-button',
     templateUrl: './notifications-button.component.html',
@@ -29,11 +30,10 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
         });
     }
     ngOnInit() {
-
-        /*this.subscription = this.notificationsService.listenerObserver.subscribe(activity => {
+        this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
             console.log(activity);
-            this.toastr.show(
-                `${this.translate.instant('a few seconds ago')} <i class="fa fa-comments"></i>`, activity.content, {
+            this.toastrService.show(
+                `${this.translateService.instant('a few seconds ago')} <i class="fa fa-comments"></i>`, activity.content, {
                 toastClass: 'notification-toast',
                 closeButton: true,
                 enableHtml: true
@@ -41,9 +41,9 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
                 .pipe(take(1))
                 .subscribe(() => {
                     this.notificationsService.updateStatus(activity, true);
-                    this.router.navigate(['/request-details/' + activity.sourceName]);
+                    this.router.navigate(['/requests/details/' + activity.sourceName]);
                 });
-        });*/
+        });
 
     }
 

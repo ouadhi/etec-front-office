@@ -11,7 +11,6 @@ import { SlideshowModule } from 'ng-simple-slideshow';
 import { StarRatingModule } from 'angular-star-rating';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxCaptchaModule } from 'ngx-captcha';
-import { KeycloakAngularModule } from 'keycloak-angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { NotAllowedComponent } from './components/not-allowed/not-allowed.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
