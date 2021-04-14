@@ -116,4 +116,10 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   ngOnDestroy() {
   }
 
+  get serviceName() {
+    if (!this.cmmnId) return "";
+    const service = this.services.find(q=> q.id == this.query.controls.requestType.value);
+    return service.name;
+  }
+
 }

@@ -8,7 +8,7 @@ import { RequestsService } from '../requests.service';
 @Component({
   selector: 'app-request-details',
   templateUrl: './request-details.component.html',
-  styleUrls: ['./request-details.component.css']
+  styleUrls: ['./request-details.component.scss']
 })
 export class RequestDetailsComponent extends BaseComponent implements OnInit {
 

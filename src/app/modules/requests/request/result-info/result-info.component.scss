@@ -10,6 +10,7 @@ img {
     display: inline-block;
     width: 200px;
 }
+
 .action-btn {
     width: 150px;
     height: 45px;
@@ -18,4 +19,11 @@ img {
 .action-container {
     display: flex;
     justify-content: center;
+}
+
+.center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
 }

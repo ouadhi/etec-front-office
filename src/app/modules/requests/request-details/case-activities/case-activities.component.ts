@@ -44,29 +44,29 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit {
             center: false,
             margin: 5,
             rtl: rtl,
-            // responsive: {
-            //     0: {
-            //         items: 1
-            //     },
-            //     400: {
-            //         items: 1
-            //     },
-            //     640: {
-            //         items: 2
-            //     },
-            //     940: {
-            //         items: 4
-            //     },
-            //     1200: {
-            //         items: 5
-            //     },
-            //     1440: {
-            //         items: 6
-            //     },
-            //     1700: {
-            //         items: 7
-            //     }
-            // },
+            responsive: {
+                0: {
+                    items: 1
+                },
+                400: {
+                    items: 1
+                },
+                640: {
+                    items: 2
+                },
+                940: {
+                    items: 4
+                },
+                1200: {
+                    items: 5
+                },
+                1440: {
+                    items: 6
+                },
+                1700: {
+                    items: 7
+                }
+            },
         };
         if (rtl) {
             this.customOptions.navText = this.customOptions.navText.reverse();

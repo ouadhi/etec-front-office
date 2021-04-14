@@ -3,29 +3,48 @@
         <p class="notification-content">{{notification.content}}</p>
         <ion-chip [matTooltip]="notification.sendDate | date" [matTooltipPosition]="'after'" [ngClass]="'type'"
             [color]="'transparent'">
-            <ion-label>
+
+            <div class="time-container">
+                <p> <i class="fa fa-comments"></i> {{notification.sendDate | timeAgo}}</p>
+                <div class="options">
+                    <ion-button size="small" fill="none" (click)="showOptions($event)">
+                        <ion-icon size="small" color="medium" slot="icon-only" name="ellipsis-vertical"></ion-icon>
+                    </ion-button>
+
+                    <ion-button (click)="toggleRead($event)"
+                        [matTooltip]="(notification.status === 'READ' ? 'notifications.markAsUnread' : 'notifications.markAsRead') | translate"
+                        [matTooltipPosition]="'before'" aria-label="" size="small" fill="none">
+                        <ion-icon *ngIf="notification.status !== 'READ'" class="unread-icon pi pi-check"
+                            name="checkmark-outline"></ion-icon>
+                        <ion-icon *ngIf="notification.status === 'READ'" class="read-icon pi pi-check-circle"
+                            name="checkmark-circle-outline"></ion-icon>
+                    </ion-button>
+                </div>
+            </div>
+
+            <!-- <ion-label>
                 <p>{{notification.sendDate | timeAgo}}</p>
-            </ion-label>
+            </ion-label> -->
             <ion-icon size="small" color="medium" [name]="'chatboxes'"></ion-icon>
         </ion-chip>
     </ion-label>
-    <div slot="end" class="options">
+    <!-- <div slot="end" class="options">
         <ion-row>
             <ion-col no-padding>
                 <ion-button size="small" fill="none" (click)="showOptions($event)">
                     <ion-icon size="small" color="medium" slot="icon-only" name="ellipsis-vertical"></ion-icon>
                 </ion-button>
             </ion-col>
-        </ion-row>
-        <ion-row>
             <ion-col no-padding>
                 <ion-button (click)="toggleRead($event)"
                     [matTooltip]="(notification.status === 'READ' ? 'notifications.markAsUnread' : 'notifications.markAsRead') | translate"
                     [matTooltipPosition]="'before'" aria-label="" size="small" fill="none">
-                    <ion-icon *ngIf="notification.status !== 'READ'" class="unread-icon pi pi-check" name="checkmark-outline"></ion-icon>
-                    <ion-icon *ngIf="notification.status === 'READ'" class="read-icon pi pi-check-circle" name="checkmark-circle-outline"></ion-icon>
+                    <ion-icon *ngIf="notification.status !== 'READ'" class="unread-icon pi pi-check"
+                        name="checkmark-outline"></ion-icon>
+                    <ion-icon *ngIf="notification.status === 'READ'" class="read-icon pi pi-check-circle"
+                        name="checkmark-circle-outline"></ion-icon>
                 </ion-button>
             </ion-col>
         </ion-row>
-    </div>
+    </div> -->
 </ion-item>

@@ -77,3 +77,16 @@ mat-form-field {
     display: flex;
     align-items: center;
 }
+
+.btn-control-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+@media (max-width: 599px) {
+    mat-form-field,
+     :host::ng-deep .ng-select {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
