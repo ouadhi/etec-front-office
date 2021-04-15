@@ -60,7 +60,9 @@ registerLocaleData(localeAr, 'ar');
         FlexLayoutModule,
         MaterialModule,
         NgSelectModule,
-        IonicModule.forRoot(),
+        IonicModule.forRoot({
+            menuType: 'push'
+        }),
         FilterPipeModule,
         SlideshowModule,
         StarRatingModule.forRoot(),

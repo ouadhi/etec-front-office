@@ -18,7 +18,7 @@
 
 <div text-center padding [hidden]="notifications?.length > 0">
     <ion-text>
-        <h6 padding [ngStyle]="{ 'opacity': 0.5}">{{"notifications.noEntry" | translate}}</h6>
+        <h6 padding class="no-data">{{"notifications.noEntry" | translate}}</h6>
     </ion-text>
 </div>
 <ion-content [className]="'ion-content'" appScrollbarTheme>

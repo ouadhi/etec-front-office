@@ -1,11 +1,12 @@
-import {Component, Input, EventEmitter, Output} from '@angular/core';
-import {PopoverController} from '@ionic/angular';
-import {NotificationOptionsComponent} from '../notification-options/notification-options.component';
+import { Component, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+import { NotificationOptionsComponent } from '../notification-options/notification-options.component';
 
 @Component({
   selector: 'app-notification-item',
   styleUrls: ['./notification-item.component.scss'],
-  templateUrl: './notification-item.component.html'
+  templateUrl: './notification-item.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class NotificationItemComponent {
@@ -18,7 +19,7 @@ export class NotificationItemComponent {
 
   toggleRead(event) {
     event.stopPropagation();
-    this.notificationAction.emit({action: 'status', notification: this.notification});
+    this.notificationAction.emit({ action: 'status', notification: this.notification });
   }
 
   async showOptions(event) {
@@ -30,13 +31,13 @@ export class NotificationItemComponent {
       showBackdrop: false,
     });
     await popover.present();
-    const {data} = await popover.onDidDismiss();
+    const { data } = await popover.onDidDismiss();
     if (data && this.notification) {
       this.updateNotification(data);
     }
   }
 
   updateNotification(data) {
-    this.notificationAction.emit({action: data, notification: this.notification});
+    this.notificationAction.emit({ action: data, notification: this.notification });
   }
 }

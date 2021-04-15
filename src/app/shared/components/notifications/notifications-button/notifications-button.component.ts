@@ -18,8 +18,8 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
         private notificationsService: NotificationsService,
         public modalController: ModalController) { super(injector); }
 
-    async openNotifications(event) {
-        const notificationsModal = await this.modalController.create({
+    async openNotifications() {
+        const notificationsModal = await this.modalController.create({ 
             cssClass: 'side-modal notifications',
             component: NotificationsModalComponent,
             showBackdrop: false
