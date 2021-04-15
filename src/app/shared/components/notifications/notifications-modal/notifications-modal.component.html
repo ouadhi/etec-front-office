@@ -31,8 +31,7 @@
             {{ header | translate}}
         </ion-item-divider>
         <ng-container *ngFor="let notification of notifications">
-            <app-notification-item (click)="handleOpen(notification)"
-                [routerLink]="['/dashboard/filter/' + notification.sourceName]" [notification]="notification"
+            <app-notification-item (click)="handleOpen(notification)" [notification]="notification"
                 (notificationAction)="onNotificationAction($event)">
             </app-notification-item>
         </ng-container>
