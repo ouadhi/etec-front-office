@@ -12,6 +12,9 @@ import { CaseActivityService } from '../../case-activities.service';
 export class CaseActivitiesComponent extends BaseComponent implements OnInit, AfterViewInit {
     horizontalScrollMenu = null;
     showScrollBtns = false;
+    cardWidth = 300;
+    cardMargin = 10; // 5 from left + 5 from right
+    listWidth = 0;
 
     @Input() caseInstanceId;
     @Output() activityAction = new EventEmitter();
@@ -96,13 +99,13 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
 
                 this.activities = data;
 
-                const listWidth = (300 * this.activities.filter(q => q.completed).length) + 10;
+                this.listWidth = (this.cardWidth * this.activities.filter(q => q.completed).length) + this.cardMargin;
                 setTimeout(() => {
                     this.horizontalScrollMenu = document.getElementsByClassName('horizontalScrollMenu')[0];
-                    this.showScrollBtns = this.horizontalScrollMenu.offsetWidth < listWidth;
+                    this.showScrollBtns = this.horizontalScrollMenu.offsetWidth < this.listWidth;
                     if (this.translateService.currentLang == "ar")
-                        this.next(listWidth);
-                    else this.prev(listWidth);
+                        this.next(this.listWidth);
+                    else this.prev(this.listWidth);
                 }, 250);
 
                 this.activities.forEach(activity => {
@@ -128,5 +131,6 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
 
     prev(step: number = 500): void {
         this.horizontalScrollMenu.scrollLeft = this.horizontalScrollMenu.scrollLeft + step;
+
     }
 }
