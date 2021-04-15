@@ -1,11 +1,11 @@
 <ion-item lines="full" [ngClass]="{'unread': notification.status != 'READ','read': notification.status == 'READ'}">
     <ion-label no-margin text-wrap>
         <p class="notification-content">{{notification.content}}</p>
-        <ion-chip [matTooltip]="notification.sendDate | date" [matTooltipPosition]="'after'" [ngClass]="'type'"
-            [color]="'transparent'">
+        <ion-chip [ngClass]="'type'" [color]="'transparent'">
 
             <div class="time-container">
-                <p> <i class="fa fa-comments"></i> {{notification.sendDate | timeAgo}}</p>
+                <p [matTooltip]="notification.sendDate | date" [matTooltipPosition]="'after'"> <i
+                        class="fa fa-comments"></i> {{notification.sendDate | timeAgo}}</p>
                 <div class="options">
                     <ion-button size="small" fill="none" (click)="showOptions($event)">
                         <ion-icon size="small" color="medium" slot="icon-only" name="ellipsis-vertical"></ion-icon>

@@ -11,8 +11,11 @@
             {{'notifications.all' | translate}}
         </ion-button>
 
-        <ion-icon class="read-all" (click)="markAllAsRead()" [matTooltip]="'notifications.markAllAsRead' | translate"
-            [matTooltipPosition]="'before'" name="checkmark-outline"></ion-icon>
+        <ion-button>
+            <ion-icon class="read-all" (click)="markAllAsRead()"
+                [matTooltip]="'notifications.markAllAsRead' | translate" [matTooltipPosition]="'before'"
+                name="checkmark-outline"></ion-icon>
+        </ion-button>
     </ion-buttons>
 </ion-toolbar>
 
