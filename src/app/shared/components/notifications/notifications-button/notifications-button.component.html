@@ -1,4 +1,4 @@
-<div class="notification-btn" mat-button [matMenuTriggerFor]="notifications">
+<div class="notification-btn" (click)="resetCount()" mat-button [matMenuTriggerFor]="notifications">
     <mat-icon matBadge="{{notificationsCount ? notificationsCount : null}}" matBadgePosition="before"
         matBadgeColor="accent">notifications_none</mat-icon>
 </div>

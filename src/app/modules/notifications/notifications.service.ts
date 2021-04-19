@@ -145,12 +145,12 @@ export class NotificationsService implements OnInit {
     if (bool) {
       this.doMarkAsRead(notification.id).subscribe(() => {
         notification.status = 'READ';
-
+        this.getCount();
       });
     } else {
       this.doMarkAsUnread(notification.id).subscribe(() => {
         notification.status = 'UN_READ';
-
+        this.getCount();
       });
     }
   }

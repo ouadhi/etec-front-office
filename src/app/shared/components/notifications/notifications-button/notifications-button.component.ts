@@ -18,16 +18,10 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
         private notificationsService: NotificationsService,
         public modalController: ModalController) { super(injector); }
 
-    async openNotifications() {
-        const notificationsModal = await this.modalController.create({ 
-            cssClass: 'side-modal notifications',
-            component: NotificationsModalComponent,
-            showBackdrop: false
-        });
-        return await notificationsModal.present().then(() => {
-            this.notificationsService.resetCount();
+    resetCount() {
 
-        });
+        this.notificationsService.resetCount();
+
     }
     ngOnInit() {
         this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
