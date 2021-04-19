@@ -39,7 +39,6 @@ export class NotificationsService implements OnInit {
     this.connect();
     this.connection = this.createConnection();
     this.subscribe();
-    this.fetchNotifications();
     this.getCount();
 
   }

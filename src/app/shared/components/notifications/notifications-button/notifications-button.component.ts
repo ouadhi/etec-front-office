@@ -19,8 +19,10 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
         public modalController: ModalController) { super(injector); }
 
     resetCount() {
-
         this.notificationsService.resetCount();
+        if (!this.notificationsService.notifications.length) {
+            this.notificationsService.fetchNotifications();
+        }
 
     }
     ngOnInit() {
