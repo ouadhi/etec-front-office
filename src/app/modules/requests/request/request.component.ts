@@ -35,7 +35,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
       this.id = params['id'];
       this.serviceId = params['serviceId'];
       this.navParams = params;
-      if (this.isLoggedIn) {
+      /*if (this.isLoggedIn) {
         this.params = [
           {
             url: environment.beneficiaryApi.api,
@@ -44,9 +44,9 @@ export class RequestComponent extends BaseComponent implements OnInit {
             entrepreneurshipType:"${this.serviceId}", requesterInfo: {data: response}};`
           }
         ];
-      } else {
-        this.submission.data = { serviceId: this.serviceId };
-      }
+      } else {*/
+      this.submission.data = { serviceId: this.serviceId };
+      // }
 
       if (
         !this.serviceId || this.serviceId === null ||

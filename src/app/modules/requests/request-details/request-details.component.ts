@@ -59,13 +59,13 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
         this.sub = this.rest.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`).subscribe(data => {
           this.submission = data;
           this.moreInfo = (data.data.moreInfo && Object.keys(data.data.moreInfo).length) ? data.data.moreInfo : null;
-          this.params = [
+          /*this.params = [
             {
               url: environment.beneficiaryApi.api,
               success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
               parallel: true
             }
-          ];
+          ];*/
           this.formReady = true;
         })
 
