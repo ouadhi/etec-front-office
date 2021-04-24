@@ -65,7 +65,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
           // this.router.navigate(['requests/details', data[0].id], { relativeTo: this.route });
 
           this.cmmnId = data[0].cmmnId;
-          this.requestId = data[0].caseId;
+          this.requestId = data[0].id;
 
         } else {
           this.notFound = true;

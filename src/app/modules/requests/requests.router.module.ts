@@ -53,7 +53,7 @@ export const appRoutes: Routes = [
     },
     {
       path: 'details/:id', component: RequestDetailsComponent,
-      canActivate: [AuthGuard, RoleGuard],
+     // canActivate: [AuthGuard, RoleGuard],
       data: { roles: [environment.roles.beneficiary] },
   
     },

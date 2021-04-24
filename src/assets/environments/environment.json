@@ -20,7 +20,7 @@
     "keycloak": {
         "url": "http://ec2-52-206-161-8.compute-1.amazonaws.com:9080/auth/",
         "realm": "ekhaa",
-        "secret": "63f8773c-ee4c-42b3-a150-aefd132b5f33",
+        "secret": "b743c4b2-817b-41f6-91c2-8315e67d08df",
         "secret_client": "request-service",
         "anonymous_user": "13780",
         "anonymous_password": "p@ss123",
@@ -45,12 +45,13 @@
         "appUrl": "http://ec2-34-234-234-87.compute-1.amazonaws.com:8082/rwzodfyrlzgyaai/"
     },
     "filter": {
-        "api": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8080/referencedata",
+        "api": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8080",
         "rest": {
-            "deparments": "/api/portal/departments",
-            "services": "/api/request/eservices",
-            "statuses": "/departments",
-            "request": "/caseNames"
+            "deparments": "/referencedata/api/portal/departments",
+            "services": "/referencedata/api/request/eservices",
+            "servicesNew": "/requestmanagement/api/portal/eservices",
+            "statuses": "/referencedata/departments",
+            "request": "/referencedata/caseNames"
         },
         "data": {
             "status": [

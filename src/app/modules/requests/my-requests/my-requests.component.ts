@@ -19,7 +19,7 @@ export class MyRequestsComponent extends BaseComponent {
   };
 
   dashletCols = {
-    id: { name: 'Id', sortable: true, width: '15%' },
+    number: { name: 'Id', sortable: true, width: '15%' },
     requestName: { name: 'Request Name', sortable: false, width: '30%' },
     requestDate: { name: 'Request Date', sortable: true, formatDate: true, width: '25%' },
     status: { name: 'Status', translationSource: 'STATUSES', sortable: true, width: '10%' },

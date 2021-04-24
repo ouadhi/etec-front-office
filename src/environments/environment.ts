@@ -78,6 +78,7 @@ export const environment = {
     rest: {
       deparments: '/api/portal/departments',
       services: '/api/request/eservices',
+      servicesNew: '/api/request/eservices',
       statuses: '/departments',
       request: '/caseNames'
     },

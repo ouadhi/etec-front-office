@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 
 export class FilterService {
 
-  private services = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.services}`, {
+  private services = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.servicesNew}`, {
     params: {
       language: 'ar'
     } 
