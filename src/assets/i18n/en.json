@@ -178,7 +178,7 @@
   "forms": {
     "errors": {
       "tooMany": "Please Complete all required fields correctly",
-      "generic": "An error occured, please contact your supervisor"
+      "generic": "An error occured, please contact system administrator"
     },
     "common": {
       "SAVE": "SAVE",
