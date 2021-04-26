@@ -24,6 +24,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   found = false;
   services = [];
 
+  requestName = '';
   cmmnId: string;
   requestId: number;
   get requestDetailsUrl() {
@@ -64,6 +65,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
           this.found = true;
           // this.router.navigate(['requests/details', data[0].id], { relativeTo: this.route });
 
+          this.requestName = data[0].requestName;
           this.cmmnId = data[0].cmmnId;
           this.requestId = data[0].id;
 
@@ -119,7 +121,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   get serviceName() {
     if (!this.cmmnId) return "";
     const service = this.services.find(q=> q.id == this.query.controls.requestType.value);
-    return service.name;
+    return service ? service.name : '';
   }
 
 }

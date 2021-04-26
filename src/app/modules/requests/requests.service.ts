@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -26,7 +27,11 @@ interface filterData {
 
 export class RequestsService {
 
-  constructor(private http: HttpClient, private datePipe: DatePipe, private dashletFilterAdapter: DashletFilterAdapter) { }
+  constructor(private http: HttpClient,
+    private datePipe: DatePipe,
+    private dashletFilterAdapter: DashletFilterAdapter,
+    private translate: TranslateService) { }
+
   verifyToken(token) {
     return this.http.get<any>(
       `${environment.formio.appUrl}/recaptcha?recaptchaToken=${token}`);
@@ -48,7 +53,10 @@ export class RequestsService {
     return this.http.get<any>(
       `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,
       {
-        params: queryParams
+        params: {
+          ...queryParams,
+          language: this.translate.currentLang
+        }
       }).pipe(
         tap(resp => resp),
         map(resp => resp)

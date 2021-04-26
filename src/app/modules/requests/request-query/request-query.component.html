@@ -59,7 +59,7 @@
   </app-section>
 
   <div [@inOutAnimation] *ngIf="cmmnId">
-    <app-section sectionTitle="{{'Steps' | translate}} {{serviceName}}">
+    <app-section sectionTitle="{{'Steps' | translate}} {{requestName | translate}}">
       <div fxLayout="row wrap">
         <div fxFlex="100">
           <app-case-activities [caseInstanceId]="cmmnId"></app-case-activities>
