@@ -813,3 +813,8 @@ html[dir="rtl"] {
         }
     }
 }
+    
+.mat-badge-accent .mat-badge-content {
+    background: rgba(var(--accentA200-parts), 1) !important;
+    color: rgba(var(--accentContrastA200-parts), 1) !important;
+}
