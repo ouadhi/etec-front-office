@@ -91,10 +91,12 @@
                     <div class="filtersList__head">{{a['segmentTypeName_' + switchLangService.current]}}</div>
                     <ng-container *ngFor="let b of segments">
                       <div class="filtersList__item">
-                        <mat-checkbox [disabled]="b.isDisabled" class="filterCheckbox__input"
-                          *ngIf="b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]"
-                          [(ngModel)]="segmentInput[a?._id][b?._id]" (change)="filterSegment()">
-                          {{b['segmentName_' + switchLangService.current]}}</mat-checkbox>
+                        <label class="label" for="{{a?._id}}_{{b?._id}}">
+                          <input type="checkbox" [disabled]="b.isDisabled" class="filterCheckbox__input"
+                            id="{{a?._id}}_{{b?._id}}" [(ngModel)]="segmentInput[a?._id][b?._id]"
+                            (change)="filterSegment()" />
+                          {{b['segmentName_' + switchLangService.current]}}
+                        </label>
                       </div>
                     </ng-container>
                   </div>
@@ -166,15 +168,9 @@
                                 <input type="checkbox" [disabled]="b.isDisabled" class="filterCheckbox__input"
                                   id="{{a?._id}}_{{b?._id}}" [(ngModel)]="segmentInput[a?._id][b?._id]"
                                   (change)="filterSegment()" />
-                                {{b['segmentName_' + switchLangService.current]}}</label>
+                                {{b['segmentName_' + switchLangService.current]}}
+                              </label>
                             </div>
-
-                            <!-- <div class="filtersList__item">
-                              <mat-checkbox [disabled]="b.isDisabled" class="filterCheckbox__input"
-                                *ngIf="b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]"
-                                [(ngModel)]="segmentInput[a?._id][b?._id]" (change)="filterSegment()">
-                                {{b['segmentName_' + switchLangService.current]}}</mat-checkbox>
-                            </div> -->
                           </ng-container>
                         </div>
                       </ng-container>
