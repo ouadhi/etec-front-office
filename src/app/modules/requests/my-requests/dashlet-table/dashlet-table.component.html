@@ -31,11 +31,10 @@
               <button mat-stroked-button class="app-outline-btn"
                 [routerLink]="[detailsRouterForEachItem, element[columns[col].param1]]">{{'Details' |
                 translate}}</button>
-              <span *ngIf="element.activeTask" class="update">
-                <ion-icon [matTooltip]="'SERVICE.NEEDS_UPDATE' | translate" [matTooltipPosition]="'below'"
-                  [name]="'alert-circle-outline'" size="large" class="alert-icon"></ion-icon>
-              </span>
-
+              <ion-button size="small" fill="none" *ngIf="element.activeTask" class="update"
+                [matTooltip]="'SERVICE.NEEDS_UPDATE' | translate" [matTooltipPosition]="'below'">
+                <ion-icon [name]="'alert-circle-outline'" size="large" class="alert-icon"></ion-icon>
+              </ion-button>
             </ng-container>
             <ng-container *ngIf="columns[col].display == 'detailsButton_oneParam'">
               <button mat-stroked-button class="app-outline-btn"

@@ -8,6 +8,13 @@
     }
     .ng-option {
         font-size: 14px;
+        display: flex !important;
+        align-items: center !important;
+    }
+    .ng-option div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
         font-size: 14px;
@@ -22,5 +29,6 @@
     }
     .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
         background: $primary-color !important;
+        border-radius: 3px;
     }
 }

@@ -18,12 +18,14 @@
         </mat-form-field>
     </div>
     <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5 input-container">
-        <label class="pad-5">{{'SERVICE.NEEDS_UPDATE_SHORT' | translate}}</label>
-        <mat-slide-toggle [(ngModel)]="filterData.activeTask"></mat-slide-toggle>
+        <div style="display: flex;align-items: center;">
+            <label class="pad-5">{{'SERVICE.NEEDS_UPDATE_SHORT' | translate}} </label>
+            <input type="checkbox" class="switch" [(ngModel)]="filterData.activeTask"/>
+        </div>
     </div>
     <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
         <label>{{'Service' | translate}}</label>
-        <app-select [hideLoaded]="true" (select)="handleStatus($event)" [(ngModel)]="filterData.services"
+        <app-select [hideLoaded]="true" (select)="handleStatus($event)" [(ngModel)]="filterData.services" [closeOnSelect]='true'
             [data]="servicesFilterData" [bindValue]="'id'" [bindLabel]="'name'" [multiple]="false" maxWidth="300px">
         </app-select>
     </div>

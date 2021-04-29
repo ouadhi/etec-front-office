@@ -13,7 +13,7 @@
   </ng-template>
   <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
     <input id="item-{{index}}" type="checkbox" *ngIf="multiple" [ngModel]="item$.selected" />
-    {{(bindLabel ? item[bindLabel] : item) | translate}}
+    <div>{{(bindLabel ? item[bindLabel] : item) | translate}}</div>
   </ng-template>
   <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
     <div class="ng-value" *ngFor="let item of (items ? items : [])">
