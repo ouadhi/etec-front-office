@@ -63,24 +63,14 @@ export class HeaderComponent extends BaseComponent {
                             resolve(true);
                         });
                     } else {
-                        const token = this.sessionService.getAnonymousToken();
                         if (!requestArgs.opts) {
                             requestArgs.opts = {};
                         }
                         if (!requestArgs.opts.header) {
                             requestArgs.opts.header = new Headers();
                         }
-                        if (requestArgs.type !== 'submission' && requestArgs.type !== 'form') {
-                            if (requestArgs.opts.header.has('authorization')) {
-                                // requestArgs.opts.header.append('BE-Authorization', `bearer ${token}`);
-                                requestArgs.opts.header.set('Authorization', `bearer ${token}`);
-                            } else {
-                                requestArgs.opts.header.append('Authorization', `bearer ${token}`);
-                            }
-                        }
                         if (requestArgs.type === 'submission') {
                             requestArgs.opts.header.append('content-type', `application/json`);
-                            requestArgs.opts.header.append('Authorization', `bearer ${token}`);
                         }
                         resolve(true);
                     }
@@ -89,13 +79,6 @@ export class HeaderComponent extends BaseComponent {
         };
 
         Formio.registerPlugin(DelayPlugin, 'delay');
-    }
-
-    handleAnonymous() {
-        if (!this.loggedIn) {
-            this.sessionService.loginAnonymous();
-        }
-
     }
     async ngOnInit() {
 
@@ -107,7 +90,6 @@ export class HeaderComponent extends BaseComponent {
         } else {
             this.loggedIn = false;
         }
-        this.handleAnonymous();
         this.keycloakService.keycloakEvents$.subscribe(async () => {
             if (await this.keycloakService.isLoggedIn()) {
                 // window.location.reload();
@@ -116,14 +98,6 @@ export class HeaderComponent extends BaseComponent {
                     this.loggedIn = true;
 
                 });
-            } else {
-                this.zone.run(() => {
-                    this.loggedIn = false;
-                    this.router.navigate(['/']).then(() => {
-                        this.handleAnonymous();
-                    });
-                });
-
             }
         });
 

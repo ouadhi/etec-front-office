@@ -7,7 +7,6 @@ import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { KeycloakService } from 'keycloak-angular';
 import { SharedModule } from '../shared/shared.module';
-import { AnonymousInterceptor } from './interceptors/anonymous.inteceptor';
 import { Wso2Interceptor } from './interceptors/wso2.inteceptor';
 import { ConfigService } from './services/config.service';
 import { SessionService } from './services/session.service';
@@ -38,11 +37,6 @@ import { PaginatorI18n } from './paginator-i18n';
         {
             provide: HTTP_INTERCEPTORS,
             useClass: Wso2Interceptor,
-            multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AnonymousInterceptor,
             multi: true
         },
         {

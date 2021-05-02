@@ -60,29 +60,4 @@ export class SessionService {
         }
         return hasRole;
     }
-    loginAnonymous() {
-        const body = new URLSearchParams();
-        body.set('grant_type', 'password');
-        body.set('client_id', environment.keycloak.secret_client);
-        body.set('client_secret', environment.keycloak.secret);
-        body.set('username', environment.keycloak.anonymous_user);
-        body.set('password', environment.keycloak.anonymous_password);
-
-        const options = {
-            headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-        };
-        this.http.post(`${environment.keycloak.url}realms/${environment.keycloak.realm}/protocol/openid-connect/token`,
-            body.toString(), options).subscribe(data => {
-                localStorage.setItem('anonymous', JSON.stringify(data));
-            });
-    }
-    getAnonymousToken() {
-        const anon = localStorage.getItem('anonymous');
-        try {
-            return JSON.parse(anon).access_token;
-
-        } catch (e) {
-            return false;
-        }
-    }
 }
