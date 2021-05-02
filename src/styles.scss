@@ -983,6 +983,14 @@ html[dir="rtl"] {
     left: auto;
 }
 
+[dir="rtl"] .mat-badge-medium.mat-badge-overlap.mat-badge-before .mat-badge-content{
+    left: 13px;
+}
+
+[dir="ltr"] .mat-badge-medium.mat-badge-overlap.mat-badge-before .mat-badge-content{
+    left: 13px;
+}
+
 .rating.color-positive .star-container .star i {
     color: $primary-color !important;
 }
