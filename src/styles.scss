@@ -547,10 +547,6 @@ html[dir="rtl"] {
         font-size: 15px;
         font-family: "Droid Arabic Kufi", sans-serif !important;
     }
-    .update {
-        left: 20px;
-        right: auto;
-    }
     .big-chip h6 {
         direction: rtl;
     }
@@ -975,4 +971,18 @@ html[dir="rtl"] {
 
 [dir="ltr"] .ng-option input {
     margin-right: 10px;
+}
+
+[dir="rtl"] .update {
+    left: 20px;
+    right: auto;
+}
+
+[dir="ltr"] .update {
+    right: 20px;
+    left: auto;
+}
+
+.rating.color-positive .star-container .star i {
+    color: $primary-color !important;
 }
