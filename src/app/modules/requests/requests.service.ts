@@ -62,6 +62,18 @@ export class RequestsService {
         map(resp => resp)
       );
   }
+  queryAnonymousRequests(id): Observable<any> {
+    return this.http.get<any>(
+      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}/anonymous/${id}`,
+      {
+        params: {
+          language: this.translate.currentLang
+        }
+      }).pipe(
+        tap(resp => resp),
+        map(resp => resp)
+      );
+  }
 
   getGeneric(url, queryParams = {}): Observable<any> {
     const endpoint = `${url}`;

@@ -13,6 +13,7 @@ import { RequestComponent } from "./request/request.component";
 import { RequestsRouterModule } from "./requests.router.module";
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import { ResultInfoComponent } from "./request/result-info/result-info.component";
+import { AnonymousRequestDetailsComponent } from "./request-details/anonymous/anonymous-request-details.component";
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { ResultInfoComponent } from "./request/result-info/result-info.component
         DashletFilterComponent,
         RequestComponent,
         RequestDetailsComponent,
+        AnonymousRequestDetailsComponent,
         MoreInfoComponent,
         CaseActivitiesComponent,
         RequestQueryComponent,

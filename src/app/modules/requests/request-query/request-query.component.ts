@@ -28,7 +28,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   cmmnId: string;
   requestId: number;
   get requestDetailsUrl() {
-    return `/requests/details/${this.requestId}`;
+    return `/requests/details/${this.requestId}/anonymous`;
   }
 
   constructor(public injector: Injector,
@@ -89,7 +89,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
     }
   }
   ngOnInit(): void {
-    this.sub = this.filterService.getServices().subscribe(data => this.services = data);
+    this.sub = this.filterService.getPublishedServices().subscribe(data => this.services = data);
     this.sub = this.query.controls.requestType.statusChanges.pipe(debounceTime(200)).subscribe(() => {
       this.loggerService.log(this.query.controls.requestType.valid);
 
@@ -120,7 +120,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
 
   get serviceName() {
     if (!this.cmmnId) return "";
-    const service = this.services.find(q=> q.id == this.query.controls.requestType.value);
+    const service = this.services.find(q => q.id == this.query.controls.requestType.value);
     return service ? service.name : '';
   }
 
