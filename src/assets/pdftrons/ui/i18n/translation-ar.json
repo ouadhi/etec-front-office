@@ -1,0 +1,551 @@
+{
+  "action": {
+    "apply": "تطبيق",
+    "applyAll": "تطبيق الكل",
+    "calibrate": "معايرة",
+    "cancel": "إلغاء",
+    "clear": "مسح",
+    "close": "إغلاق",
+    "undo": "تراجع",
+    "redo": "إعادة",
+    "comment": "تعليق",
+    "reply": "رد",
+    "copy": "نسخ",
+    "delete": "حذف",
+    "group": "تجميع",
+    "ungroup": "فك التجميع",
+    "download": "تحميل",
+    "edit": "تحرير",
+    "extract": "استخراج",
+    "enterFullscreen": "ملئ الشاشة",
+    "exitFullscreen": "الخروج من وضع ملئ للشاشة",
+    "fit": "ملائمة",
+    "fitToPage": "تناسب مع الصفحة",
+    "fitToWidth": "تناسب مع العرض",
+    "more": "المزيد",
+    "openFile": "فتح ملف",
+    "pagePrev": "الصفحة السابقة",
+    "pageNext": "الصفحة التالية",
+    "pageSet": "تعيين الصفحة",
+    "print": "طباعة",
+    "name": "الاسم",
+    "ok": "تم",
+    "rotate": "اتجاه الصفحة",
+    "rotateClockwise": "استدارة في اتجاه عقارب الساعة",
+    "rotateCounterClockwise": "تدوير عكس اتجاه عقارب الساعة",
+    "save": "حفظ",
+    "post": "تحرير",
+    "create": "إنشاء",
+    "showMoreResults": "عرض المزيد من النتائج",
+    "sign": "إشارة",
+    "style": "شكل",
+    "submit": "إرسال",
+    "zoom": "تكبير",
+    "zoomIn": "تكبير",
+    "zoomOut": "تصغير",
+    "zoomSet": "ضبط التكبير",
+    "zoomControls": "ضوابط التكبير",
+    "draw": "رسم",
+    "type": "نمط",
+    "upload": "تحميل",
+    "link": "لينك",
+    "darkMode": "الوضع الداكن",
+    "lightMode": "الوضع الساطع",
+    "fileAttachmentDownload": "تحميل الملف المرفق",
+    "prevResult": "النتيجة السابقة",
+    "nextResult": "النتيجة التالية",
+    "prev": "السابق",
+    "next": "التالي",
+    "startFormEditing": "ابدأ تحرير النموذج",
+    "exitFormEditing": "الخروج من وضع تحرير النموذج",
+    "exit": "الخروج",
+    "markAllRead": "اشر عليها بانها قرات"
+  },
+  "annotation": {
+    "areaMeasurement": "مساحة",
+    "arrow": "سهم",
+    "callout": "إشارة إلى",
+    "crop": "صفحة القص",
+    "caret": "علامة الإقحام",
+    "distanceMeasurement": "مسافة",
+    "countMeasurement": "قياس العد",
+    "ellipse": "الشكل البيضاوي",
+    "eraser": "ممحاة",
+    "fileattachment": "ملف مرفق",
+    "freehand": "يد",
+    "freetext": "نص",
+    "highlight": "العناوين الرئسية",
+    "line": "خط",
+    "perimeterMeasurement": "محيط",
+    "polygon": "مضلع",
+    "polygonCloud": "سحابي",
+    "polyline": "متعدد الخطوط",
+    "rectangle": "مستطيل",
+    "redact": "تنقيح",
+    "signature": "التوقيع",
+    "squiggly": "متعرج",
+    "stamp": "ختم",
+    "stickyNote": "ملحوظة",
+    "strikeout": "شطب",
+    "underline": "تسطير",
+    "custom": "تخصيص",
+    "rubberStamp": "ختم الممحاة",
+    "note": "ملاحظة",
+    "link": "لينك",
+    "other": "اخرى"
+  },
+  "rubberStamp": {
+    "Approved": "موافقة",
+    "AsIs": "كـ",
+    "Completed": "مكتملة",
+    "Confidential": "خصوصي",
+    "Departmental": "إداري",
+    "Draft": "مسودة",
+    "Experimental": "تجريبي",
+    "Expired": "منتهي الصلاحية",
+    "Final": "نهائي",
+    "ForComment": "للتعليق",
+    "ForPublicRelease": "للنشر العام",
+    "InformationOnly": "المعلومات فقط",
+    "NotApproved": "غير مقبول",
+    "NotForPublicRelease": "ليس للنشر العام",
+    "PreliminaryResults": "نتائج اولية",
+    "Sold": "مباع",
+    "TopSecret": "سري للغاية",
+    "Void": "فارغ",
+    "SHSignHere": "وقع هنا",
+    "SHWitness": "الشاهد",
+    "SHInitialHere": "المبدئي هنا",
+    "SHAccepted": "مقبول",
+    "SBRejected": "مرفوض"
+  },
+  "component": {
+    "leftPanel": "جدول",
+    "toolsHeader": "أدوات",
+    "searchOverlay": "بحث",
+    "searchPanel": "بحث",
+    "menuOverlay": "قائمة",
+    "notesPanel": "تعليقات",
+    "outlinesPanel": "حدود",
+    "bookmarksPanel": "إشارات مرجعية",
+    "newBookmark": "إشارة مرجعية جديدة",
+    "bookmarkPage": "صفحة",
+    "layersPanel": "طبقات",
+    "thumbnailsPanel": "المصغرات",
+    "toolsButton": "أدوات",
+    "redaction": "تنقيح",
+    "viewControlsOverlay": "ضوابط العرض",
+    "calibration": "معايرة",
+    "zoomOverlay": "تكبير تراكب",
+    "textPopup": "نص منبثق",
+    "createStampButton": "إنشاء طابع جديد",
+    "filter": "مرشح"
+  },
+  "message": {
+    "toolsOverlayNoPresets": "لا توجد إعدادات مسبقة",
+    "badDocument": "فشل تحميل المستند. المستند تالف أو غير صالح.",
+    "customPrintPlaceholder": "على سبيل المثا 3, 4-10",
+    "encryptedAttemptsExceeded": "فشل تحميل المستند المشفر. محاولات كثيرة.",
+    "encryptedUserCancelled": "فشل تحميل المستند المشفر. تم إلغاء إدخال كلمة المرور.",
+    "enterPassword": "هذا المستند محمي بكلمة مرور. الرجاء إدخال كلمة المرور",
+    "incorrectPassword": "كلمة مرور غير صحيحة ، المحاولات المتبقية: {{selectedAttempts}}",
+    "noAnnotations": "ابدأ في عمل التعليقات التوضيحية لترك تعليق.",
+    "noAnnotationsFilter": "ستظهر هنا بدء عمل التعليقات التوضيحية والفلاتر.",
+    "noOutlines": "هذا المستند ليس له مخطط تفصيلي.",
+    "noResults": "لم يتم العثور على نتائج.",
+    "numResultsFound": "العثور على نتائج",
+    "notSupported": "صيغة الملف غير مدعومة.",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "preparingToPrint": "جاري التحضير للطباعة ...",
+    "annotationReplyCount": "{{count}} رد",
+    "annotationReplyCount_plural": "{{count}} الردود",
+    "printTotalPageCount": "الإجمالي: {{count}} صفحة",
+    "printTotalPageCount_plural": "الإجمالي: {{count}} صفحة",
+    "processing": "معالجة...",
+    "searching": "بحث...",
+    "searchCommentsPlaceholder": "بحث في التعليقات",
+    "searchDocumentPlaceholder": "بحث في الوثيقة",
+    "signHere": "وقع هنا",
+    "insertTextHere": "أدخل النص هنا",
+    "imageSignatureAcceptedFileTypes": "يتم قبول {{AcceptFileTypes}} فقط",
+    "enterMeasurement": "أدخل القياس بين النقطتين",
+    "errorEnterMeasurement": "الرقم الذي أدخلته غير صالح ، يمكنك إدخال قيم مثل 7.5 أو 7 1/2",
+    "linkURLorPage": "لينك أو صفحة",
+    "enterReplacementText": "أدخل النص الذي تريد استبداله",
+    "sortBy": "ترتيب حسب",
+    "emptyCustomStampInput": "لا يمكن أن يكون نص الطابع فارغًا",
+    "unpostedComment": "تعليق غير منشور"
+  },
+  "option": {
+    "notesOrder": {
+      "dropdownLabel": "قائمة ترتيب الفرز",
+      "position": "الموضع",
+      "time": "الوقت",
+      "status": "الحالة",
+      "author": "المؤلف",
+      "type": "النوع"
+    },
+    "toolbarGroup": {
+      "dropdownLabel": "مجموعات شريط الأدوات",
+      "toolbarGroup-View": "عرض",
+      "toolbarGroup-Annotate": "كتب الحواشي",
+      "toolbarGroup-Shapes": "اشكال",
+      "toolbarGroup-Insert": "إدراج",
+      "toolbarGroup-Measure": "قياس",
+      "toolbarGroup-Edit": "تعديل"
+    },
+    "annotationColor": {
+      "StrokeColor": "الاطار",
+      "FillColor": "ملء",
+      "TextColor": "نص"
+    },
+    "colorPalette": {
+      "colorLabel": "اللون"
+    },
+    "displayMode": {
+      "layout": "تخطيط الصفحة",
+      "pageTransition": "انتقال الصفحة"
+    },
+    "documentControls": {
+      "placeholder": "صفحات للتحديد على سبيل المثال 2 ، 5-9"
+    },
+    "layout": {
+      "cover": "الصفحة التي تواجه الغلاف",
+      "double": "صفحة مزدوجة",
+      "single": "صفحة واحدة"
+    },
+    "notesPanel": {
+      "separator": {
+        "today": "اليوم",
+        "yesterday": "البارحة"
+      }
+    },
+    "pageTransition": {
+      "continuous": "الصفحة المستمرة",
+      "default": "صفحة بصفحة",
+      "reader": "قارئ"
+    },
+    "print": {
+      "all": "الكل",
+      "current": "الصفحه الحاليه",
+      "pages": "صفحات للطباعة",
+      "view": "العرض الحالي",
+      "pageQuality": "جودة الطباعة",
+      "qualityNormal": "طبيعي",
+      "qualityHigh": "عالية",
+      "includeAnnotations": "قم بتضمين التعليقات التوضيحية",
+      "includeComments": "قم بتضمين التعليقات",
+      "addWatermarkSettings": "أضف علامة مائية"
+    },
+    "printInfo": {
+      "author": "المؤلف",
+      "subject": "الموضوع",
+      "date": "التاريخ"
+    },
+    "redaction": {
+      "markForRedaction": "وضع علامة للتنقيح"
+    },
+    "searchPanel": {
+      "caseSensitive": "حساسية الاحرف",
+      "wholeWordOnly": "الكلمة بالكامل",
+      "wildcard": "البدل"
+    },
+    "toolsOverlay": {
+      "currentStamp": "الختم الحالي",
+      "currentSignature": "التوقيع الحالي",
+      "signatureAltText": "التوقيع"
+    },
+    "stampOverlay": {
+      "addStamp": "إضافة طابع جديد"
+    },
+    "signatureOverlay": {
+      "addSignature": "أضف توقيع جديد"
+    },
+    "signatureModal": {
+      "saveSignature": "حفظ التوقيع",
+      "dragAndDrop": "قم بسحب وإسقاط صورتك هنا",
+      "or": "أو",
+      "pickImage": "اختر توقيعًا"
+    },
+    "filterAnnotModal": {
+      "commentBy": "تعليق بواسطة",
+      "types": "أنواع"
+    },
+    "status": {
+      "status": "الحالة"
+    },
+    "state": {
+      "accepted": "موافقة",
+      "rejected": "رفض",
+      "completed": "مكتملة",
+      "cancelled": "ملغاة",
+      "set": "تعيين الحالة:",
+      "setBy": "التي وضعتها",
+      "none": "لا أحد",
+      "marked": "مميز",
+      "unmarked": "غير مميز"
+    },
+    "measurementOverlay": {
+      "scale": "نسبة المقياس",
+      "angle": "زاوية",
+      "distance": "مسافة",
+      "perimeter": "حدود",
+      "area": "مساحة",
+      "distanceMeasurement": "قياس المسافة",
+      "perimeterMeasurement": "قياس المحيط",
+      "areaMeasurement": "قياس المساحة",
+      "countMeasurement": "قياس العد",
+      "radius": "نصف القطر",
+      "count": "عدد"
+    },
+    "measurementOption": {
+      "scale": "مقياس"
+    },
+    "styleOption": {
+      "style": "شكل",
+      "solid": "مصمت",
+      "cloudy": "معتم"
+    },
+    "slider": {
+      "opacity": "الشفافية",
+      "thickness": "الاطار",
+      "text": "حجم النص"
+    },
+    "shared": {
+      "page": "صفحة",
+      "precision": "دقة",
+      "enableSnapping": "تفعيل الانجذاب لأدوات القياس"
+    },
+    "watermark": {
+      "size": "الحجم",
+      "location": "اختر موقعًا لتحرير العلامات المائية",
+      "text": "نص",
+      "style": "شكل",
+      "resetAllSettings": "امسح كل الاعدادت",
+      "font": "خط",
+      "locations": {
+        "center": "وسط",
+        "topLeft": "أعلى اليسار",
+        "topRight": "أعلى اليمين",
+        "topCenter": "أعلى الوسط",
+        "bottomLeft": "أسفل اليسار",
+        "bottomRight": "أسفل اليمين",
+        "bottomCenter": "أسفل الوسط"
+      }
+    },
+    "thumbnailPanel": {
+      "delete": "حذف",
+      "rotateClockwise": "في اتجاه عقارب الساعة",
+      "rotateCounterClockwise": "عكس عقارب الساعه"
+    },
+    "richText": {
+      "bold": "عريض",
+      "italic": "مائل",
+      "underline": "تسطير",
+      "strikeout": "شطب"
+    },
+    "customStampModal": {
+      "stampText": "نص الختم:",
+      "timestampText": "نص الختم الزمني:",
+      "stampColor": "لون الختم:",
+      "Username": "اسم المستخدم",
+      "Date": "التاريخ",
+      "Time": "الوقت"
+    }
+  },
+  "warning": {
+    "deletePage": {
+      "deleteTitle": "حذف الصفحة",
+      "deleteMessage": "هل أنت متأكد أنك تريد حذف الصفحة (s) المحددة. لا يمكن التراجع عن هذا",
+      "deleteLastPageMessage": "هذا من شأنه أن يؤدي إلى عدم وجود صفحات متبقية. يرجى ترك صفحة واحدة على الأقل"
+    },
+    "redaction": {
+      "applyTile": "تطبيق التنقيح",
+      "applyMessage": "سيؤدي هذا الإجراء إلى إزالة جميع العناصر المحددة للتنقيح بشكل دائم. لا يمكن التراجع."
+    },
+    "selectPage": {
+      "selectTitle": "لم يتم تحديد صفحات",
+      "selectMessage": "الرجاء تحديد الصفحات وحاول مرة أخرى."
+    },
+    "colorPicker": {
+      "deleteTitle": "احذف اللون المخصص",
+      "deleteMessage": "هل تريد حذف اللون المخصص المحدد؟ ستتم إزالته من لوحة الألوان الخاصة بك."
+    }
+  },
+  "shortcut": {
+    "arrow": "(A)",
+    "callout": "(C)",
+    "copy": "(Ctrl C)",
+    "delete": "(Del)",
+    "ellipse": "(O)",
+    "eraser": "(E)",
+    "freehand": "(F)",
+    "freetext": "(T)",
+    "highlight": "(H)",
+    "line": "(L)",
+    "pan": "(P)",
+    "rectangle": "(R)",
+    "rotateClockwise": "(Ctrl Shift +)",
+    "rotateCounterClockwise": "(Ctrl Shift -)",
+    "select": "(Esc)",
+    "signature": "(S)",
+    "squiggly": "(G)",
+    "stamp": "(I)",
+    "redo": "(Ctrl Shift Z)",
+    "redo_windows": "(Ctrl Y)",
+    "undo": "(Ctrl Z)",
+    "stickyNote": "(N)",
+    "strikeout": "(K)",
+    "underline": "(U)",
+    "zoomIn": "(Ctrl +)",
+    "zoomOut": "(Ctrl -)",
+    "richText": {
+      "bold": "(Ctrl B)",
+      "italic": "(Ctrl I)",
+      "underline": "(Ctrl U)",
+      "strikeout": "(Ctrl K)"
+    }
+  },
+  "tool": {
+    "pan": "اليد",
+    "select": "تحديد",
+    "Marquee": "تكبير ماركيو",
+    "Link": "لينك أو صفحة",
+    "Standard": "اساسي",
+    "Custom": "تخصيص"
+  },
+  "link": {
+    "url": "رابط",
+    "page": "صفحة",
+    "enterurl": "أدخل عنوان URL الذي تريد الارتباط به",
+    "enterpage": "حدد رقم الصفحة التي تريد الارتباط بها"
+  },
+  "datePicker": {
+    "previousMonth": "الشهر السابق",
+    "nextMonth": "الشهر التالي",
+    "months": [
+      "كانون الثاني",
+      "شباط",
+      "اذار",
+      "نيسان",
+      "ايار",
+      "حزيران",
+      "تموز",
+      "اب",
+      "ايلول",
+      "تشرين اول",
+      "تشرين ثاني",
+      "كانون اول"
+    ],
+    "weekdays": [
+      "احد",
+      "اثنين",
+      "ثلاثاء",
+      "اربعاء",
+      "خميس",
+      "جمعة",
+      "سبت"
+    ],
+    "weekdaysShort": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ]
+  },
+  "digitalSignatureModal": {
+    "certification": "شهادة",
+    "Certification": "شهادة",
+    "signature": "التوقيع",
+    "Signature": "التوقيع",
+    "valid": "صالح",
+    "invalid": "غير صالح",
+    "unknown": "غير معروف",
+    "title": "{{type}} خصائص",
+    "header": {
+      "documentIntegrity": "سلامة الوثيقة",
+      "identitiesTrust": "الهويات والثقة",
+      "generalErrors": "أخطاء عامة",
+      "digestStatus": "حالة الملخص"
+    },
+    "digestAlgorithm": {
+      "preamble": "خوارزمية الملخص التي تم استخدامها لتوقيع التوقيع:",
+      "unknown": "خوارزمية الملخص التي تم استخدامها لتوقيع التوقيع غير معروفة."
+    },
+    "trustVerification": {
+      "none": "لا توجد نتيجة مفصلة للتحقق من الثقة المتاحة.",
+      "current": "تمت محاولة التحقق من الثقة فيما يتعلق بالوقت الحالي",
+      "signing": "تمت محاولة التحقق من الثقة فيما يتعلق بوقت التوقيع: {{trustVerificationTime}}",
+      "timestamp": "تمت محاولة التحقق من الثقة فيما يتعلق بالطابع الزمني الآمن المضمن: {{trustVerificationTime}}"
+    },
+    "signerIdentity": {
+      "preamble": "هوية الموقع هي",
+      "valid": "صالح.",
+      "unknown": "غير معروف."
+    },
+    "summaryBox": {
+      "summary": "رقمي {{type}} هو {{status}}",
+      "signedBy": "، موقعة من {{name}}"
+    }
+  },
+  "digitalSignatureVerification": {
+    "certifier": "مصدّق",
+    "certified": "معتمد",
+    "Certified": "معتمد",
+    "signer": "الموقع",
+    "signed": "وقعت",
+    "Signed": "وقعت",
+    "by": "ل",
+    "on": "على",
+    "disallowedChange": "التغيير غير المسموح به: {{type}} ، الكائن: {{objnum}}",
+    "trustVerification": {
+      "current": "وقت التحقق المستخدم هو الوقت الحالي",
+      "signing": "وقت التحقق يبدأ من الساعة على كمبيوتر الموقّع",
+      "timestamp": "وقت التحقق من الطابع الزمني الآمن المضمن في المستند",
+      "verifiedTrust": "نتيجة التحقق من الثقة: تم التحقق منه",
+      "noTrustVerification": "لا توجد نتيجة مفصلة للتحقق من الثقة المتاحة."
+    },
+    "permissionStatus": {
+      "noPermissionsStatus": "لا توجد حالة أذونات للإبلاغ.",
+      "permissionsVerificationDisabled": "تم تعطيل التحقق من الأذونات.",
+      "hasAllowedChanges": "يحتوي المستند على التغييرات التي تسمح بها إعدادات أذونات التواقيع.",
+      "invalidatedByDisallowedChanges": "يحتوي المستند على تغييرات لا تسمح بها إعدادات أذونات التواقيع.",
+      "unmodified": "لم يتم تعديل المستند منذ أن كان"
+    },
+    "trustStatus": {
+      "trustVerified": "تم بناء الثقة في {{verificationType}} بنجاح.",
+      "untrusted": "لا يمكن تأسيس الثقة.",
+      "trustVerificationDisabled": "تم تعطيل التحقق من الثقة.",
+      "noTrustStatus": "لا توجد حالة ثقة للإبلاغ عنها."
+    },
+    "digestStatus": {
+      "digestInvalid": "الملخص غير صحيح.",
+      "digestVerified": "الملخص صحيح.",
+      "digestVerificationDisabled": "تم تعطيل التحقق من الملخص.",
+      "weakDigestAlgorithmButDigestVerifiable": "الملخص صحيح ، لكن خوارزمية الملخص ضعيفة وغير آمنة.",
+      "noDigestStatus": "لا توجد حالة ملخص للإبلاغ عنها.",
+      "unsupportedEncoding": "لم يتمكن أي من SignatureHandler المثبتة من التعرف على ترميز التوقيع"
+    },
+    "documentStatus": {
+      "noError": "لا يوجد خطأ عام للإبلاغ عنه.",
+      "corruptFile": "أبلغ SignatureHandler عن تلف الملف.",
+      "unsigned": "لم يتم التوقيع بشكل مشفر.",
+      "badByteRanges": "أبلغ SignatureHandler عن وجود تلف في ByteRanges في التوقيع الرقمي.",
+      "corruptCryptographicContents": "أبلغ SignatureHandler عن وجود تلف في محتويات التوقيع الرقمي."
+    },
+    "signatureDetails": {
+      "signatureDetails": "تفاصيل التوقيع",
+      "contactInformation": "معلومات للتواصل",
+      "location": "الموقع",
+      "reason": "السبب",
+      "signingTime": "وقت التوقيع",
+      "noContactInformation": "لم يتم تقديم معلومات الاتصال",
+      "noLocation": "لم يتم تقديم موقع",
+      "noReason": "لم يتم تقديم سبب",
+      "noSigningTime": "لم يتم العثور على وقت توقيع"
+    }
+  }
+}
