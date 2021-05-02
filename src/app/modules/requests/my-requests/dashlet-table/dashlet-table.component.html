@@ -44,7 +44,7 @@
 
             <ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
               <ng-container *ngIf="columns[col]['formatDate'];else normal">
-                {{element[col].substring(0, 19) | localizedDate : 'yyyy-MM-dd EEEE hh:mm:ssa'}}
+                {{element[col].substring(0, 19) | localizedDate : 'EEE, d/MM/yyyy hh:mma'}}
 
               </ng-container>
               <ng-template #normal>
