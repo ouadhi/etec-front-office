@@ -33,7 +33,7 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
             console.log(activity);
 
             this.toastrService.show(
-                `${this.translateService.instant('a few seconds ago')} <i class="fa fa-comments"></i>`, activity.content, {
+                `${this.translateService.instant('a few seconds ago')} <i class="fa fa-comments"></i>`, activity.content ? activity.content.trim() : '', {
                 toastClass: 'notification-toast',
                 closeButton: true,
                 enableHtml: true,

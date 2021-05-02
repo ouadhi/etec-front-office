@@ -13,18 +13,12 @@ import { Toast, ToastPackage, ToastrService } from 'ngx-toastr';
           <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
             {{ title }}
           </div>
-          <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
-            [class]="options.messageClass" [innerHTML]="message">
-          </div>
           <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
             [class]="options.messageClass" [attr.aria-label]="message">
             {{ message }}
           </div>
         </div>
         <div class="col-1 m-vertical text-end">
-          <a *ngIf="!options.closeButton" class="btn btn-pink btn-sm" (click)="action($event)">
-            {{ undoString }}
-          </a>
           <i *ngIf="options.closeButton" (click)="remove()" class="fa fa-close"></i>
         </div>
       </div>

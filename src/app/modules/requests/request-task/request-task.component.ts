@@ -1,7 +1,9 @@
+
 import { Injector } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BaseComponent } from 'src/app/shared/components/base.component';
+import { SuccessToast } from 'src/app/shared/components/toasts/success-toast/success-toast.component';
 import { environment } from 'src/environments/environment';
 import { CaseActivityService } from '../case-activities.service';
 
@@ -53,7 +55,15 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
    *  Submission Object
    */
   onSubmit(submission) {
-    this.toastrService.success('', this.translateService.instant('SERVICE.BENEFICIARY_TASK_SUCCESS'));
+    this.toastrService.show(``,
+      this.translateService.instant('SERVICE.BENEFICIARY_TASK_SUCCESS'),
+      {
+        toastClass: 'notification-toast',
+        closeButton: true,
+        enableHtml: true,
+        timeOut: 1000000,
+        toastComponent: SuccessToast
+      });
     this.goBack();
   }
 
