@@ -1,0 +1,41 @@
+:host {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    border-radius: 5px;
+    pointer-events: all;
+    cursor: pointer;
+    padding: 0px !important;
+    background: #fff;
+}
+
+.toast-content {
+    margin: 0 !important;
+}
+
+.m-vertical {
+    padding: 6px 10px;
+}
+
+.toast-prefix{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-end {
+    text-align: end;
+}
+
+.fa-close:hover {
+    color: red;
+}
+
+.toast-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.toast-message {
+    font-size: 12px;
+}

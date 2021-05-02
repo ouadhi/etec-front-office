@@ -1,0 +1,12 @@
+@import '../../../../../colors.scss';
+.toast-title {
+    color: $red-color;
+}
+
+.notification-prefix {
+    background: $red-color;
+    color: white;
+    i {
+        font-size: 36px;
+    }
+}
