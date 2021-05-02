@@ -48,7 +48,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         }
         return item;
       });
-      this.marital = this.segments.filter(itemFull => (this.data.maritalState.toUpperCase() === itemFull.key));
+      this.marital = this.segments.filter(itemFull => (this.data.maritalState && this.data.maritalState.toUpperCase() === itemFull.key));
       if (this.marital.length) {
         this.marital = this.marital[0];
       }

@@ -24,23 +24,6 @@
                 </ion-item>
               </div>
               <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
-                <ion-item class="big-chip primary data-border flex-item" lines="none">
-                  <h6 class="slotted">
-                    <ion-text slot="start">{{'PROFILE.INTERNAL_ID' | translate }} </ion-text>
-                    <ion-text slot="end"> {{data.ekhaaID}}</ion-text>
-                  </h6>
-                </ion-item>
-              </div>
-              <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
-                <ion-item class="big-chip tertiary data-border flex-item" lines="none">
-                  <h6 class="slotted">
-                    <ion-text slot="start">{{'PROFILE.BRANCH' | translate}} </ion-text>
-                    <ion-text slot="end">{{data.branchCode ? data.branchCode : ('PROFILE.NOT_SET' | translate)}}
-                    </ion-text>
-                  </h6>
-                </ion-item>
-              </div>
-              <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="profileHero__meta">
                 <ion-item class="big-chip medium data-border flex-item" lines="none">
                   <h6 class="slotted">
                     <ion-text slot="start"> {{'PROFILE.MOBILE' | translate}} </ion-text>
@@ -178,7 +161,7 @@
           <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.STOPPED_SERVICES' | translate }} </ion-text>
-              <ion-text slot="end">{{data.stoppedServices ? data.stoppedServices.toString() : 'PROFILE.NOT_SET' |
+              <ion-text slot="end">{{(data.stoppedServices ? data.stoppedServices.toString() : 'PROFILE.NOT_SET') |
                 translate}}
               </ion-text>
             </h6>
@@ -190,7 +173,7 @@
           <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">{{'PROFILE.PRISONED' | translate }}</ion-text>
-              <ion-text slot="end">{{data.prisoned ? data.prisoned.toString() : 'PROFILE.NOT_SET' | translate}}
+              <ion-text slot="end">{{(data.prisoned ? data.prisoned.toString() : 'PROFILE.NOT_SET') | translate}}
               </ion-text>
             </h6>
           </ion-item>
@@ -205,7 +188,8 @@
     <app-section *ngIf="data && data.segments && data.segments.length"
       sectionTitle="{{'PROFILE.SEGMENTS' | translate }}">
       <div fxLayout="row wrap" fxLayoutAlign="flex-start">
-        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" *ngFor="let segment of data.segments" class="profileHero__meta">
+        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" *ngFor="let segment of data.segments"
+          class="profileHero__meta">
           <ion-item class="big-chip medium data-border" lines="full">
             <h6 class="slotted">
               <ion-text slot="start">
