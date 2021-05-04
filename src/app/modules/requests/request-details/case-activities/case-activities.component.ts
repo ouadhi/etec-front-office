@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Injector, Input, OnInit, Output, AfterViewInit } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output, AfterViewInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { BaseComponent } from '../../../../shared/components/base.component';
 import { CaseActivityService } from '../../case-activities.service';
 
@@ -9,7 +9,7 @@ import { CaseActivityService } from '../../case-activities.service';
     providers: [CaseActivityService]
 })
 
-export class CaseActivitiesComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class CaseActivitiesComponent extends BaseComponent implements OnInit, AfterViewInit, OnChanges {
     horizontalScrollMenu = null;
     showScrollBtns = false;
     cardWidth = 300;
@@ -91,6 +91,26 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
         this.sub = this.translateService.onLangChange.subscribe(() => {
             this.doInitSlider();
         });
+        this.getData();
+    }
+    ngAfterViewInit(): void {
+        this.horizontalScrollMenu = document.getElementsByClassName('horizontalScrollMenu')[0];
+    }
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes.caseInstanceId.previousValue != changes.caseInstanceId.currentValue)
+            this.getData();
+    }
+
+    next(step: number = 500): void {
+        this.horizontalScrollMenu.scrollLeft = this.horizontalScrollMenu.scrollLeft - step;
+    }
+
+    prev(step: number = 500): void {
+        this.horizontalScrollMenu.scrollLeft = this.horizontalScrollMenu.scrollLeft + step;
+
+    }
+
+    private getData() {
         this.sub = this.caseActivityService.getCaseHistoryActivities({
             sortBy: 'endTime',
             sortOrder: 'asc', caseInstanceId: this.caseInstanceId
@@ -120,17 +140,5 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
                     }
                 });
             });
-    }
-    ngAfterViewInit(): void {
-        this.horizontalScrollMenu = document.getElementsByClassName('horizontalScrollMenu')[0];
-    }
-
-    next(step: number = 500): void {
-        this.horizontalScrollMenu.scrollLeft = this.horizontalScrollMenu.scrollLeft - step;
-    }
-
-    prev(step: number = 500): void {
-        this.horizontalScrollMenu.scrollLeft = this.horizontalScrollMenu.scrollLeft + step;
-
     }
 }

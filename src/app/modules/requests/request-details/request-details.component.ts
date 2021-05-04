@@ -50,7 +50,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
 
     this.sub = this.route.params.subscribe(params => {
-      this.sub = this.rest.getRequest(this.route.snapshot.params.id).subscribe(data => {
+      this.sub = this.rest.getRequest(params.id).subscribe(data => {
         this.request = data;
         this.link = this.request.link;
         this.formData = this.request.data;
