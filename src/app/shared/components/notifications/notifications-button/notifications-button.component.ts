@@ -4,9 +4,7 @@ import { BaseComponent } from 'src/app/shared/components/base.component';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import { NotificationsModalComponent } from '../notifications-modal/notifications-modal.component';
 import { take } from 'rxjs/operators';
-import { NotificationToast } from '../../toasts/notification-toast/notification-toast.component';
-import { ErrorToast } from '../../toasts/error-toast/error-toast.component';
-import { SuccessToast } from '../../toasts/success-toast/success-toast.component';
+import { NotificationToast } from 'src/formio/src/lib/modules/toast/notification-toast/notification-toast.component';
 @Component({
     selector: 'app-notifications-button',
     templateUrl: './notifications-button.component.html',
@@ -48,16 +46,16 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
 
     }
 
-    // test() {
-    //     this.toastrService.show(`${this.translateService.instant('a few seconds ago')} <i class="fa fa-comments"></i>`,
-    //         'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ',
-    //         {
-    //             toastClass: 'notification-toast',
-    //             closeButton: true,
-    //             enableHtml: true,
-    //             timeOut: 1000000,
-    //             toastComponent: NotificationToast
-    //         });
-    // }
+    test() {
+        this.toastrService.show(`${this.translateService.instant('a few seconds ago')} <i class="fa fa-comments"></i>`,
+            'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ',
+            {
+                toastClass: 'notification-toast',
+                closeButton: true,
+                enableHtml: true,
+                timeOut: 1000000,
+                toastComponent: NotificationToast
+            });
+    }
 
 }

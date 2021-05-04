@@ -3,8 +3,8 @@ import { Injector } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BaseComponent } from 'src/app/shared/components/base.component';
-import { SuccessToast } from 'src/app/shared/components/toasts/success-toast/success-toast.component';
 import { environment } from 'src/environments/environment';
+import { SuccessToast } from 'src/formio/src/lib/modules/toast/success-toast/success-toast.component';
 import { CaseActivityService } from '../case-activities.service';
 
 /**

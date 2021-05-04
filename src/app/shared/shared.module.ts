@@ -31,9 +31,6 @@ import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import localeAr from '@angular/common/locales/ar';
-import { NotificationToast } from './components/toasts/notification-toast/notification-toast.component';
-import { SuccessToast } from './components/toasts/success-toast/success-toast.component';
-import { ErrorToast } from './components/toasts/error-toast/error-toast.component';
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeAr, 'ar');
 
@@ -51,9 +48,6 @@ registerLocaleData(localeAr, 'ar');
         NotificationItemComponent,
         NotificationOptionsComponent,
         HeaderComponent,
-        NotificationToast,
-        SuccessToast,
-        ErrorToast,
         TimeAgoPipe,
         LocalizedDatePipe,
         HasRoleDirective,
@@ -108,9 +102,6 @@ registerLocaleData(localeAr, 'ar');
         NotificationItemComponent,
         NotificationOptionsComponent,
         HeaderComponent,
-        NotificationToast,
-        SuccessToast,
-        ErrorToast,
         TimeAgoPipe,
         LocalizedDatePipe,
         HasRoleDirective,
@@ -118,9 +109,6 @@ registerLocaleData(localeAr, 'ar');
     entryComponents: [
         NotificationsModalComponent,
         NotificationOptionsComponent,
-        NotificationToast,
-        SuccessToast,
-        ErrorToast,
     ],
     providers: [
     ],
