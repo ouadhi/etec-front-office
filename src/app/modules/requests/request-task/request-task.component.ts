@@ -55,8 +55,9 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
    *  Submission Object
    */
   onSubmit(submission) {
-    this.toastrService.show(``,
+    this.toastrService.show(
       this.translateService.instant('SERVICE.BENEFICIARY_TASK_SUCCESS'),
+      this.translateService.instant('OperationDone'),
       {
         toastClass: 'notification-toast',
         closeButton: true,
