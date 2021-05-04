@@ -5,6 +5,8 @@ import { NotificationsService } from 'src/app/modules/notifications/notification
 import { NotificationsModalComponent } from '../notifications-modal/notifications-modal.component';
 import { take } from 'rxjs/operators';
 import { NotificationToast } from 'src/formio/src/lib/modules/toast/notification-toast/notification-toast.component';
+import { ErrorToast } from 'src/formio/src/lib/modules/toast/error-toast/error-toast.component';
+import { SuccessToast } from 'src/formio/src/lib/modules/toast/success-toast/success-toast.component';
 @Component({
     selector: 'app-notifications-button',
     templateUrl: './notifications-button.component.html',
@@ -47,15 +49,35 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
     }
 
     test() {
-        this.toastrService.show(`${this.translateService.instant('a few seconds ago')} <i class="fa fa-comments"></i>`,
-            'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ',
-            {
-                toastClass: 'notification-toast',
-                closeButton: true,
-                enableHtml: true,
-                timeOut: 1000000,
-                toastComponent: NotificationToast
-            });
+        // this.toastrService.show(`${this.translateService.instant('a few seconds ago')} <i class="fa fa-comments"></i>`,
+        //     'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ',
+        //     {
+        //         toastClass: 'notification-toast',
+        //         closeButton: true,
+        //         enableHtml: true,
+        //         timeOut: 1000000,
+        //         toastComponent: NotificationToast
+        //     });
+
+        // this.toastrService.show('هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ',
+        //     'تمت العملية بنجاح',
+        //     {
+        //         toastClass: 'notification-toast',
+        //         closeButton: true,
+        //         enableHtml: true,
+        //         timeOut: 1000000,
+        //         toastComponent: SuccessToast
+        //     });
+
+        // this.toastrService.show('هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ',
+        //     'حدث خطأ ما',
+        //     {
+        //         toastClass: 'notification-toast',
+        //         closeButton: true,
+        //         enableHtml: true,
+        //         timeOut: 1000000,
+        //         toastComponent: ErrorToast
+        //     });
     }
 
 }
