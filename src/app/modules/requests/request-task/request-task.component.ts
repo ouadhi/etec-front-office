@@ -62,7 +62,6 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
         toastClass: 'notification-toast',
         closeButton: true,
         enableHtml: true,
-        timeOut: 1000000,
         toastComponent: SuccessToast
       });
     this.goBack();
