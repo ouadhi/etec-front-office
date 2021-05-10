@@ -25,17 +25,17 @@
     </ion-text>
 </div>
 <ion-content [className]="'ion-content'" appScrollbarTheme>
-    <ion-virtual-scroll [itemHeight]="getItemHeight" [className]="'scroll-area'" [headerFn]="compareDate"
-        [trackBy]="trackBy" [items]="notifications">
+    <ion-virtual-scroll [className]="'scroll-area'" [headerFn]="compareDate" [trackBy]="trackBy"
+        [items]="notifications">
         <ion-item-divider *virtualHeader="let header">
             {{ header | translate}}
         </ion-item-divider>
-        <ng-container *ngFor="let notification of notifications">
-            <app-notification-item (click)="handleOpen(notification)" [notification]="notification"
-                [routerLink]="['/requests/details/' + notification.sourceId]"
+        <div *virtualItem="let notification;">
+            <app-notification-item (click)="handleOpen(notification)"
+                [routerLink]="['/dashboard/filter/' + notification.sourceName]" [notification]="notification"
                 (notificationAction)="onNotificationAction($event)">
             </app-notification-item>
-        </ng-container>
+        </div>
     </ion-virtual-scroll>
 
     <ion-infinite-scroll dir="ltr" margin-top (ionInfinite)="fetchMore($event)" threshold="4.5rem">
