@@ -42,7 +42,7 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
                 .pipe(take(1))
                 .subscribe(() => {
                     this.notificationsService.updateStatus(activity, true);
-                    // this.router.navigate(['/requests/details/' + activity.sourceName]);
+                    this.router.navigate(['/requests/details/' + activity.sourceId]);
                 });
         });
 

@@ -32,7 +32,7 @@
         </ion-item-divider>
         <div *virtualItem="let notification;">
             <app-notification-item (click)="handleOpen(notification)"
-                [routerLink]="['/dashboard/filter/' + notification.sourceName]" [notification]="notification"
+                [routerLink]="['/requests/details/' + notification.sourceId]" [notification]="notification"
                 (notificationAction)="onNotificationAction($event)">
             </app-notification-item>
         </div>
