@@ -15,7 +15,7 @@ import { getFormioEnvironment } from './helpers/formio-enviroment.helper';
 import { initializer } from './helpers/initializer.helper';
 import { DatePipe } from '@angular/common';
 import { FormioAppConfig, FormioTranslate, ExternalService } from 'src/formio/src/public_api';
-import {MatPaginatorIntl} from '@angular/material/paginator';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorI18n } from './paginator-i18n';
 
 @NgModule({
@@ -57,8 +57,8 @@ import { PaginatorI18n } from './paginator-i18n';
 
         },
         {
-            provide: MatPaginatorIntl, deps: [TranslateService],
-            useFactory: (translateService: TranslateService) => new PaginatorI18n(translateService).getPaginatorIntl()
+            provide: MatPaginatorIntl,
+            useClass: PaginatorI18n
         },
     ],
 })
