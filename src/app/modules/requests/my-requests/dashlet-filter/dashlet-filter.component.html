@@ -3,7 +3,7 @@
         <label>{{'From Date' | translate}}</label>
         <mat-form-field floatLabel="never" appearance="outline">
             <input matInput [(ngModel)]="filterData.requestDateAfter" [matDatepicker]="fd"
-                placeholder="{{'REQUESTS.SELECT_REQUEST_DATE' | translate}}">
+                placeholder="{{'REQUESTS.SELECT_REQUEST_DATE' | translate}}" style="height:20px">
             <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
             <mat-datepicker #fd></mat-datepicker>
         </mat-form-field>
@@ -12,7 +12,7 @@
         <label>{{'To Date' | translate}}</label>
         <mat-form-field floatLabel="never" appearance="outline">
             <input matInput [(ngModel)]="filterData.requestDateBefore" [matDatepicker]="td"
-                placeholder="{{'REQUESTS.SELECT_REQUEST_DATE'  | translate}}">
+                placeholder="{{'REQUESTS.SELECT_REQUEST_DATE'  | translate}}" style="height:20px">
             <mat-datepicker-toggle matSuffix [for]="td"></mat-datepicker-toggle>
             <mat-datepicker #td></mat-datepicker>
         </mat-form-field>

@@ -77,7 +77,7 @@
                 <div class="filtersSection__keyword">
                   <mat-form-field class="filtersSection__keywordForm" appearance="outline">
                     <mat-label>{{'CATALOG.SEARCH_KEYWORD' | translate}}</mat-label>
-                    <input matInput [(ngModel)]="keyword" (keyup)="filterKeyword()"
+                    <input matInput [(ngModel)]="keyword" (keyup)="filterKeyword()" style="height:15px"
                       placeholder="{{'CATALOG.SEARCH_KEYWORD' | translate}}">
                     <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear"
                       (click)="keyword='';filterKeyword()">
@@ -149,7 +149,7 @@
                       <div class="filtersSection__keyword">
                         <mat-form-field class="filtersSection__keywordForm" appearance="outline">
                           <mat-label>{{'CATALOG.SEARCH_KEYWORD' | translate}}</mat-label>
-                          <input matInput [(ngModel)]="keyword" (keyup)="filterKeyword()"
+                          <input matInput [(ngModel)]="keyword" (keyup)="filterKeyword()" style="height:15px"
                             placeholder="{{'CATALOG.SEARCH_KEYWORD' | translate}}">
                           <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear"
                             (click)="keyword='';filterKeyword()">
