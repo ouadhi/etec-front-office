@@ -14,9 +14,9 @@ import { ServicesService } from "src/app/modules/services-catalog/services.servi
 import { FilterPipe } from "ngx-filter-pipe";
 import { ConfigService } from "src/app/core/services/config.service";
 import { LoggerService } from "src/app/core/services/logger.service";
-import { FormioLoader } from "src/formio/src/public_api";
+import { FormioLoader } from "src/formio/src/public_api"; 
 
-@Component({ template: '' })
+// @Component({ })
 export abstract class BaseComponent implements OnDestroy {
     private subs: Subscription[] = [];
     set sub(s: Subscription) { this.subs.push(s); }

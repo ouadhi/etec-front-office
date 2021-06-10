@@ -17,7 +17,17 @@ import { DatePipe } from '@angular/common';
 import { FormioAppConfig, FormioTranslate, ExternalService } from 'src/formio/src/public_api';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorI18n } from './paginator-i18n';
+import { FormioAuthConfig, FormioAuthService } from 'src/formio/src/lib/modules/resources/pages/formio/auth';
 
+
+export const FormAuthConfig: FormioAuthConfig = {
+    login: {
+      form: 'user/login'
+    },
+    register: {
+      form: 'user/register'
+    }
+  };
 @NgModule({
     declarations: [
     ],
@@ -60,6 +70,9 @@ import { PaginatorI18n } from './paginator-i18n';
             provide: MatPaginatorIntl,
             useClass: PaginatorI18n
         },
+        FormioAuthService,
+        { provide: FormioAuthConfig, useValue: FormAuthConfig },
     ],
 })
 export class CoreModule { }
+  

@@ -14,9 +14,10 @@ export function initializer(keycloak: KeycloakService,
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
-        config.loadConfig().then(() => {
-          config.setupEssentials();
-        });
+        if (config)
+          config.loadConfig().then(() => {
+            config.setupEssentials();
+          });
       } catch (e) {
         loggerService.warn(e);
       }

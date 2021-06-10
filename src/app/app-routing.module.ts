@@ -43,6 +43,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/notifications/notifications.module').then(m => m.NotificationsModule),
     data: { roles: [environment.roles.beneficiary] },
   },
+  {
+    path: 'resources',
+    loadChildren: () => import('../formio/src/lib/modules/resources/resources.module').then(m => m.ResourcesModule),
+  },
   { path: '404', component: NotFoundComponent },
   {
     path: '401', component: NotAllowedComponent,
