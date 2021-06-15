@@ -2,6 +2,7 @@ import { Injector } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
+import { NotificationsService } from '../../notifications/notifications.service';
 import { CaseActivityService } from '../case-activities.service';
 import { RequestsService } from '../requests.service';
 
@@ -14,8 +15,9 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
   constructor(public injector: Injector,
     private rest: RequestsService,
-    public caseActivity: CaseActivityService) { super(injector); }
-
+    public caseActivity: CaseActivityService,
+    private notificationsService: NotificationsService) { super(injector); }
+  id: string;
   link: any;
   formData: any;
   submission: any;
@@ -47,29 +49,38 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
     });
   }
   ngOnInit() {
-
-
     this.sub = this.route.params.subscribe(params => {
-      this.sub = this.rest.getRequest(params.id).subscribe(data => {
-        this.request = data;
-        this.link = this.request.link;
-        this.formData = this.request.data;
-        this.cmmnId = this.request.cmmnId;
+      this.id = params.id;
+      this.getData();
+    });
 
-        this.sub = this.rest.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`).subscribe(data => {
-          this.submission = data;
-          this.moreInfo = (data.data.moreInfo && Object.keys(data.data.moreInfo).length) ? data.data.moreInfo : null;
-          /*this.params = [
-            {
-              url: environment.beneficiaryApi.api,
-              success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
-              parallel: true
-            }
-          ];*/
-          this.formReady = true;
-        })
+    // this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
+    //   console.log(activity);
+    //   if(this.id == activity.data.id){
+    //     this.getData();
+    //   }
+    // });
+  }
 
-      });
+  private getData() {
+    this.sub = this.rest.getRequest(this.id).subscribe(data => {
+      this.request = data;
+      this.link = this.request.link;
+      this.formData = this.request.data;
+      this.cmmnId = this.request.cmmnId;
+
+      this.sub = this.rest.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`).subscribe(data => {
+        this.submission = data;
+        this.moreInfo = (data.data.moreInfo && Object.keys(data.data.moreInfo).length) ? data.data.moreInfo : null;
+        /*this.params = [
+          {
+            url: environment.beneficiaryApi.api,
+            success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
+            parallel: true
+          }
+        ];*/
+        this.formReady = true;
+      })
 
     });
   }

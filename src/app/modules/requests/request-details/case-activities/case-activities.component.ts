@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Injector, Input, OnInit, Output, AfterViewInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import { BaseComponent } from '../../../../shared/components/base.component';
 import { CaseActivityService } from '../../case-activities.service';
 
@@ -17,6 +18,7 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
     listWidth = 0;
 
     @Input() caseInstanceId;
+    @Input() requestId;
     @Output() activityAction = new EventEmitter();
     @Output() task = new EventEmitter();
     activities = [];
@@ -24,7 +26,8 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
     customOptions;
 
     constructor(public injector: Injector,
-        private caseActivityService: CaseActivityService) { super(injector); }
+        private caseActivityService: CaseActivityService,
+        private notificationsService: NotificationsService) { super(injector); }
 
     action(activity) {
         this.loggerService.log(activity);
@@ -91,6 +94,12 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
         this.sub = this.translateService.onLangChange.subscribe(() => {
             this.doInitSlider();
         });
+        // this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
+        //     console.log(activity);
+        //     if (this.requestId == activity.data.id) {
+        //         this.getData();
+        //     }
+        // });
         this.getData();
     }
     ngAfterViewInit(): void {

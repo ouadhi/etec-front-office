@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId"></app-case-activities>
+    <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId" [requestId]="id"></app-case-activities>
   </app-section>
 
   <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link" [submission]="submission"
