@@ -54,6 +54,10 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
       this.getData();
     });
 
+    this.translateService.onLangChange.subscribe(() => {
+      this.getData();
+    });
+
     // this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
     //   console.log(activity);
     //   if(this.id == activity.data.id){
