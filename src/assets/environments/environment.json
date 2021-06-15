@@ -75,9 +75,7 @@
         "account": "http://ec2-52-206-161-8.compute-1.amazonaws.com:8080/api/account"
     },
     "roles": {
-        "beneficiary": "ROLE_USER",
-        "branch_specialist": "ROLE_SERVICE_SPECIALIST_BRANCH",
-        "department_specialist": "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
+        "beneficiary": "ROLE_USER"
     },
     "statisticsApi": {
         "api": "https://100.24.85.92:80/api/cms/api/collections/get/segment/"
