@@ -30,7 +30,7 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.CONDITIONS' | translate}}">
-        <ul *ngIf="data['conditionsAndRequirements_' + switchLangService.current].length">
+        <ul *ngIf="data['conditionsAndRequirements_' + switchLangService.current]?.length">
           <li *ngFor="let item of data['conditionsAndRequirements_' + switchLangService.current]">{{item.value}}</li>
         </ul>
       </app-section>
@@ -58,7 +58,7 @@
       </app-section>
 
       <app-section sectionTitle="{{'SERVICE.STEPS' | translate}}">
-        <ol *ngIf=" data['steps_' + switchLangService.current].length">
+        <ol *ngIf=" data['steps_' + switchLangService.current]?.length">
           <li *ngFor="let step of data['steps_' + switchLangService.current]">
             {{step.value}}
           </li>
@@ -73,7 +73,7 @@
         </div> -->
 
         <div class="inlineRowItem">{{'SERVICE.CHANNEL' | translate}}:
-          <mat-chip-list *ngIf=" data['channel_' + switchLangService.current].length"
+          <mat-chip-list *ngIf=" data['channel_' + switchLangService.current]?.length"
             class="mat-chip-list--inlineBlock">
             <mat-chip color="primary" *ngFor="let channel of data['channel_' + switchLangService.current]">
               {{channel.value}}

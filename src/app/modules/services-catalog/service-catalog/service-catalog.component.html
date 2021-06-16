@@ -1,5 +1,5 @@
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" *ngIf="imagesSlider?.length >0">
-  <div class="carousel-inner">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner" *ngIf="imagesSlider?.length >0">
     <div *ngFor="let i of imagesSlider; let x = index" [class]="(x === 0) ? 'carousel-item active' : 'carousel-item'">
       <img class="d-block w-100" src="{{i.url}}" alt="slide">
     </div>

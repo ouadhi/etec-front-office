@@ -138,22 +138,23 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
     }
     if (this.dataFilters.segmentsGroup_inline.length) {
       const set = this.dataFilters.segmentsGroup_inline[0];
-      item.segmentsGroup_inline.forEach((itemSet) => {
-        const allBools = [];
-        Object.keys(set).forEach((key, index) => {
-          allBools[index] = false;
-          const bool = Object.keys(set[key]).some(v => Object.keys(itemSet).includes(v));
-          if (bool) {
-            allBools[index]
-              = bool;
+      if (item.segmentsGroup_inline)
+        item.segmentsGroup_inline.forEach((itemSet) => {
+          const allBools = [];
+          Object.keys(set).forEach((key, index) => {
+            allBools[index] = false;
+            const bool = Object.keys(set[key]).some(v => Object.keys(itemSet).includes(v));
+            if (bool) {
+              allBools[index]
+                = bool;
+              return false;
+            }
+          });
+          if (!allBools.includes(false)) {
+            segment = true;
             return false;
           }
         });
-        if (!allBools.includes(false)) {
-          segment = true;
-          return false;
-        }
-      });
 
 
     } else {
@@ -280,7 +281,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 
         // change tag object to array with new key
         const tags_inline = {};
-        if (element.tag.length > 0) {
+        if (element.tag && element.tag.length > 0) {
           element.tag.forEach(element2 => {
             tags_inline[element2._id] = true;
           });
