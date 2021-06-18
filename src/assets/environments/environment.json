@@ -9,19 +9,10 @@
     "keycloak": {
         "url": "http://ec2-54-167-210-145.compute-1.amazonaws.com:9080/auth/",
         "realm": "etec",
-        "secret": "etec@2030-orchestra",
-        "secret_client": "request-service",
-        "anonymous_user": "13780",
-        "anonymous_password": "p@ss123",
         "clientId": "fo-web"
     },
     "formio": {
         "apiUrl": "http://api.ec2-54-158-193-221.compute-1.amazonaws.com:8082/",
         "appUrl": "http://ec2-54-158-193-221.compute-1.amazonaws.com:8082/ksekuzmfmkerfvg/"
-    },
-    "roles": {
-        "beneficiary": "ROLE_USER",
-        "branch_specialist": "ROLE_SERVICE_SPECIALIST_BRANCH",
-        "department_specialist": "ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST"
     }
 }

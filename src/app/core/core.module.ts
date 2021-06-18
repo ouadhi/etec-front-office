@@ -17,6 +17,7 @@ import { FormioAppConfig, FormioTranslate, ExternalService } from 'src/formio/sr
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorI18n } from './paginator-i18n';
 import { FormioAuthConfig, FormioAuthService } from 'src/formio/src/lib/modules/resources/pages/formio/auth';
+import { LicenseInterceptor } from './interceptors/license.interceptor';
 
 
 export const FormAuthConfig: FormioAuthConfig = {
@@ -66,6 +67,7 @@ export const FormAuthConfig: FormioAuthConfig = {
             useClass: PaginatorI18n
         },
         FormioAuthService,
+        { provide: HTTP_INTERCEPTORS, useClass: LicenseInterceptor, multi: true },
         { provide: FormioAuthConfig, useValue: FormAuthConfig },
     ],
 })

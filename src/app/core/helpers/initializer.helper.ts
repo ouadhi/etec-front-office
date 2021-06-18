@@ -47,6 +47,7 @@ export function initializer(keycloak: KeycloakService,
           });
 
           if (await keycloak.isLoggedIn()) {
+            await session.checkLicense();
             await session.loadUserProfile();
           } else {
             const kc = keycloak.getKeycloakInstance();

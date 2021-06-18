@@ -1,4 +1,4 @@
-@import '../../../../colors.scss';
+@import "../../../../colors.scss";
 .filtersSection {
     background: #f7f7f7;
     padding: 10px;
@@ -34,7 +34,8 @@
     margin-bottom: 5px;
 }
 
-.filtersList__item {}
+.filtersList__item {
+}
 
 .filtersList__item .mat-checkbox-inner-container {
     margin-left: 10px;
@@ -161,6 +162,10 @@ mat-tab-group {
     background-color: $primary-color;
     border-radius: 0;
     display: flex;
+    &-orange {
+        background-color: $warning-color;
+        padding: 0.75rem 1.25rem 0rem;
+    }
 }
 
 .alert-link {
