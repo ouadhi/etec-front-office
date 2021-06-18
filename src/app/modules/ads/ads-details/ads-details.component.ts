@@ -11,7 +11,7 @@ export class AdsDetailsComponent extends BaseComponent implements OnInit {
 
   adsId: string;
   data: any;
-  assetPath = environment.cms.api.assets;
+  assetPath = `${environment.cms}/storage/uploads`;
 
   constructor(public injector: Injector) { super(injector); }
 

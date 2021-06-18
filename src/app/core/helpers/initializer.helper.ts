@@ -35,15 +35,14 @@ export function initializer(keycloak: KeycloakService,
             bearerExcludedUrls: [
               '/assets/', // due to call ngx-translate
               '/localization/submission/',
-              environment.statisticsApi.api,
+              // environment.statisticsApi.api,
               environment.keycloak.url,
-              environment.cms.api.master,
-              environment.cms.api.assets,
+              environment.cms,
               '/api/requests/count'
               // environment.formio.api.requestForm,
               // environment.formio.api.master,
-              // environment.filter.api
-              // environment.requestApi.api
+              // environment.gateway
+              // environment.gateway
             ],
           });
 

@@ -30,7 +30,7 @@ export class HeaderComponent extends BaseComponent {
 
         this.configService.loadConfig().then(config => {
             if (config.logo) {
-                this.logo = `${environment.cms.api.master}${config.logo.path}`;
+                this.logo = `${environment.cms}${config.logo.path}`;
             } else {
                 this.logo = '/assets/logo.png';
             }

@@ -16,7 +16,7 @@ export class TranslateLoaderHelper implements TranslateLoader {
         try {
             return combineLatest([
                 this.http.get<any>(
-                    `${environment.cms.api.master}/api/collections/get/i18n?filter[name]=frontoffice_${lang}`, {}).pipe(
+                    `${environment.cms}/api/collections/get/i18n?filter[name]=frontoffice_${lang}`, {}).pipe(
                         tap(data => {
                             if (data && data.entries[0]) {
                                 return data;
@@ -35,7 +35,7 @@ export class TranslateLoaderHelper implements TranslateLoader {
                                 ));
                         })),
                 this.http.get<any>(
-                    `${environment.cms.api.master}/api/collections/get/i18n?filter[name]=forms_${lang}`, {}).pipe(
+                    `${environment.cms}/api/collections/get/i18n?filter[name]=forms_${lang}`, {}).pipe(
                         tap(data => data),
                         catchError((err) => {
                             return from([

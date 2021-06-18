@@ -78,7 +78,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
         if (data.formKey) {
           this.form.ready = false;
           this.params = [{
-            url: `${environment.task.api}${data.formKey.replace('{caseId}', params.caseId)}`,
+            url: `${environment.gateway}${environment.endpoints.humanTask}${data.formKey.replace('{caseId}', params.caseId)}`,
             parallel: false,
             success: `submission.data = {...response.data, taskId:"${params.taskId}", requestId:"${params.requestId}"};`
           }];

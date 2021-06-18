@@ -173,7 +173,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
       this.imagesSlider = [];
       data.entries.forEach(element => {
         const item = {
-          url: `${environment.cms.api.assets}${element.url.path}`,
+          url: `${environment.cms}/storage/uploads/${element.url.path}`,
           href: element.href
         };
 

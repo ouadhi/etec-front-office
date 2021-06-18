@@ -11,7 +11,7 @@ export class NewsDetailsComponent extends BaseComponent implements OnInit {
 
   newsId: string;
   data: any;
-  assetPath = environment.cms.api.assets;
+  assetPath = `${environment.cms}/storage/uploads`;
 
   constructor(public injector: Injector) { super(injector); }
 

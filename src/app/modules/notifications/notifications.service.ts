@@ -54,7 +54,7 @@ export class NotificationsService implements OnInit {
     }
     // building absolute path so that websocket doesn't fail when deploying with a context path
     let url;
-    url = environment.notifications.socket;
+    url = `${environment.gateway}${environment.endpoints.socket}`;
     const socket = new SockJS(url);
     this.stompClient = Stomp.over(socket);
     const headers = {
@@ -165,7 +165,7 @@ export class NotificationsService implements OnInit {
   }
 
   doGetNotifications(userId, queryParams = {}) {
-    const endpoint = `${environment.notifications.api}system-notifications/all/backOffice/${userId}`;
+    const endpoint = `${environment.gateway}${environment.endpoints.notifications}system-notifications/all/backOffice/${userId}`;
     return this.http.get<any>(endpoint, { observe: 'response', params: queryParams }).pipe(
       map(resp => ({
         totalCount: resp.headers.get('x-total-count'),
@@ -176,37 +176,37 @@ export class NotificationsService implements OnInit {
     );
   }
   doCountNew(userId, queryParams = {}) {
-    const endpoint = `${environment.notifications.api}system-notifications/countNew/${userId}`;
+    const endpoint = `${environment.gateway}${environment.endpoints.notifications}system-notifications/countNew/${userId}`;
     return this.http.get<any>(endpoint, { params: queryParams }).pipe(
     );
   }
   doResetCountNew(userId, queryParams = {}) {
-    const endpoint = `${environment.notifications.api}system-notifications/resetCount/${userId}`;
+    const endpoint = `${environment.gateway}${environment.endpoints.notifications}system-notifications/resetCount/${userId}`;
     return this.http.put<any>(endpoint, { params: queryParams }).pipe(
     );
   }
   doCountUnread(userId, queryParams = {}) {
-    const endpoint = `${environment.notifications.api}system-notifications/countUnRead/${userId}`;
+    const endpoint = `${environment.gateway}${environment.endpoints.notifications}system-notifications/countUnRead/${userId}`;
     return this.http.get<any>(endpoint, { params: queryParams }).pipe(
     );
   }
   doMarkAllAsRead(userId, queryParams = {}) {
-    const endpoint = `${environment.notifications.api}system-notifications/markAllAsRead/${userId}`;
+    const endpoint = `${environment.gateway}${environment.endpoints.notifications}system-notifications/markAllAsRead/${userId}`;
     return this.http.put<any>(endpoint, { params: queryParams }).pipe(
     );
   }
   doMarkAsRead(notificationId, queryParams = {}) {
-    const endpoint = `${environment.notifications.api}system-notifications/markAsRead/${notificationId}`;
+    const endpoint = `${environment.gateway}${environment.endpoints.notifications}system-notifications/markAsRead/${notificationId}`;
     return this.http.put<any>(endpoint, { params: queryParams }).pipe(
     );
   }
   doMarkAsUnread(notificationId, queryParams = {}) {
-    const endpoint = `${environment.notifications.api}system-notifications/markAsUnRead/${notificationId}`;
+    const endpoint = `${environment.gateway}${environment.endpoints.notifications}system-notifications/markAsUnRead/${notificationId}`;
     return this.http.put<any>(endpoint, { params: queryParams }).pipe(
     );
   }
   doDeleteNotification(notificationId, queryParams = {}) {
-    const endpoint = `${environment.notifications.api}system-notifications/${notificationId}`;
+    const endpoint = `${environment.gateway}${environment.endpoints.notifications}system-notifications/${notificationId}`;
     return this.http.delete<any>(endpoint, { params: queryParams }).pipe(
     );
   }

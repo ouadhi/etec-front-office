@@ -23,7 +23,7 @@ export class ServicesService {
 
   getCollectionAll(collection: string): Observable<any> {
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/${collection}/`, { "populate": 1 }, {
+      `${environment.cms}/api/collections/get/${collection}/`, { "populate": 1 }, {
       headers: this.getCMSheaders()
     });
   }
@@ -37,7 +37,7 @@ export class ServicesService {
 
 
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/${collection}/`, {
+      `${environment.cms}/api/collections/get/${collection}/`, {
       filter,
       "populate": 1,
       "sort": { "_o": 1 }
@@ -48,7 +48,7 @@ export class ServicesService {
 
   getCollectionEntryById(collection: string, filterKey: string, id: any): Observable<any> {
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/${collection}/`,
+      `${environment.cms}/api/collections/get/${collection}/`,
       {
         "filter": {
           "_id": `${id}`
@@ -97,7 +97,7 @@ export class ServicesService {
 
   postOpportunity(formData): Observable<any> {
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/save/opportunity/`,
+      `${environment.cms}/api/collections/save/opportunity/`,
       {
         "data": {
           "name": formData.jobTitle,
@@ -127,7 +127,7 @@ export class ServicesService {
 
   applyOpportunity(formData): Observable<any> {
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/save/opportunitySubmit/`,
+      `${environment.cms}/api/collections/save/opportunitySubmit/`,
       {
         "data": {
           "isCurrentlyEmployed": formData.currentlyWorking,
@@ -192,7 +192,7 @@ export class ServicesService {
     }
 
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/opportunity/`,
+      `${environment.cms}/api/collections/get/opportunity/`,
       sendParams, {
       headers: this.getCMSheaders()
     });
@@ -201,7 +201,7 @@ export class ServicesService {
   getApplicants(opportunityId): Observable<any> {
 
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/opportunitySubmit/`,
+      `${environment.cms}/api/collections/get/opportunitySubmit/`,
       {
         "filter": {
           "opportunityId": `${opportunityId}`
@@ -214,7 +214,7 @@ export class ServicesService {
   getApplicantById(opportunityId, userId): Observable<any> {
 
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/opportunitySubmit/`,
+      `${environment.cms}/api/collections/get/opportunitySubmit/`,
       {
         "filter": {
           "opportunityId": `${opportunityId}`,
@@ -230,7 +230,7 @@ export class ServicesService {
 
   getComments(serviceId) {
     return this.http.post<any>(
-      `${environment.cms.api.master}/api/collections/get/comments/`,
+      `${environment.cms}/api/collections/get/comments/`,
       {
         "filter": {
           "serviceName._id": `${serviceId}`
@@ -248,7 +248,7 @@ export class ServicesService {
     });
 
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/segment/`,
+      `${environment.cms}/api/collections/get/segment/`,
       {
         "filter": {
           "$or": body
@@ -286,7 +286,7 @@ export class ServicesService {
 
 
     return this.http.post<any[]>(
-      `${environment.cms.api.master}/api/collections/get/Service/`, body, {
+      `${environment.cms}/api/collections/get/Service/`, body, {
       headers: this.getCMSheaders()
     });
   }
@@ -296,15 +296,15 @@ export class ServicesService {
 
   getRequest(id: string): Observable<any[]> {
     return this.http.get<any[]>(
-      `${environment.cms.api.master}/api/collections/get/${id}/`, {
+      `${environment.cms}/api/collections/get/${id}/`, {
       headers: this.getCMSheaders()
     });
   }
 
-  getStats(id: string): Observable<any[]> {
-    return this.http.get<any[]>(
-      `${environment.statisticsApi.api}#${id}`);
-  }
+  // getStats(id: string): Observable<any[]> {
+  //   return this.http.get<any[]>(
+  //     `${environment.statisticsApi.api}#${id}`);
+  // }
 
   getNews() {
     return this.getCollectionAllActive('news', 'disable', false)
@@ -322,11 +322,11 @@ export class ServicesService {
     return this.getCollectionEntryById('ads', '_id', id);
   }
 
-  getProfile(id): Observable<any[]> {
-    return this.http.get<any[]>(
-      `${environment.profile.api}/${id}`, {
-      headers: this.getCMSheaders()
-    });
-  }
+  // getProfile(id): Observable<any[]> {
+  //   return this.http.get<any[]>(
+  //     `${environment.profile.api}/${id}`, {
+  //     headers: this.getCMSheaders()
+  //   });
+  // }
 
 }

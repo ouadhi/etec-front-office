@@ -13,7 +13,7 @@ export class FilterService {
   constructor(private http: HttpClient,
     private translateService: TranslateService) { }
 
-  private services = this.http.get<any>(`${environment.filter.api}${environment.filter.rest.servicesNew}`, {
+  private services = this.http.get<any>(`${environment.gateway}${environment.endpoints.servicesNew}`, {
     params: {
       language: this.translateService.currentLang
     }
@@ -28,7 +28,7 @@ export class FilterService {
   }
 
   getPublishedServices() {
-    return this.http.get<any>(`${environment.filter.api}${environment.filter.rest.servicesNew}`, {
+    return this.http.get<any>(`${environment.gateway}${environment.endpoints.servicesNew}`, {
       params: {
         language: this.translateService.currentLang,
         status: 'PUBLISHED'
@@ -39,7 +39,7 @@ export class FilterService {
     );
   }
   getStatuses(id) {
-    return this.http.get<any>(`${environment.requestApi.api}${environment.requestApi.rest.statuses}/${id}/statuses`);
+    return this.http.get<any>(`${environment.gateway}${environment.endpoints.statuses}/${id}/statuses`);
   }
 
 

@@ -7,7 +7,6 @@ import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { KeycloakService } from 'keycloak-angular';
 import { SharedModule } from '../shared/shared.module';
-import { Wso2Interceptor } from './interceptors/wso2.inteceptor';
 import { ConfigService } from './services/config.service';
 import { SessionService } from './services/session.service';
 import { createExternalService } from './helpers/external-service.helper';
@@ -22,12 +21,12 @@ import { FormioAuthConfig, FormioAuthService } from 'src/formio/src/lib/modules/
 
 export const FormAuthConfig: FormioAuthConfig = {
     login: {
-      form: 'user/login'
+        form: 'user/login'
     },
     register: {
-      form: 'user/register'
+        form: 'user/register'
     }
-  };
+};
 @NgModule({
     declarations: [
     ],
@@ -44,11 +43,7 @@ export const FormAuthConfig: FormioAuthConfig = {
     ],
     providers: [
         DatePipe,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: Wso2Interceptor,
-            multi: true
-        },
+
         {
             provide: APP_INITIALIZER,
             useFactory: initializer,
@@ -75,4 +70,3 @@ export const FormAuthConfig: FormioAuthConfig = {
     ],
 })
 export class CoreModule { }
-  

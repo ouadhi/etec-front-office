@@ -75,7 +75,7 @@ export class ConfigService {
     }
 
     getAppConfig(queryParams = {}): Observable<any> {
-        const endpoint = `${environment.cms.api.master}${environment.cms.appConfig.endpoint}?filter[_id]=${environment.cms.appConfig.id}`;
+        const endpoint = `${environment.cms}${environment.appConfig.endpoint}?filter[_id]=${environment.appConfig.id}`;
         return this.http.post<any>(endpoint,
             {
 
@@ -114,7 +114,7 @@ export class ConfigService {
                 document.documentElement.style.setProperty(`--${key}-parts`,
                     this._config[key].replace('rgb', '').replace('(', '').replace(')', ''));
             } else if (key.includes('favicon')) {
-                document.getElementById('favicon').setAttribute('href', `${environment.cms.api.master}/${this._config[key].path}`);
+                document.getElementById('favicon').setAttribute('href', `${environment.cms}/${this._config[key].path}`);
             }
         });
         if (!this._config.favicon) {

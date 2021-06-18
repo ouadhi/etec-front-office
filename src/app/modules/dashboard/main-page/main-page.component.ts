@@ -24,7 +24,7 @@ export class MainPageComponent extends BaseComponent implements OnInit {
       this.imagesSlider = [];
       data.entries.forEach(element => {
         let item = {
-          url: `${environment.cms.api.assets}${element.url.path}`,
+          url: `${environment.cms}/storage/uploads/${element.url.path}`,
           href: element.href
         }
 

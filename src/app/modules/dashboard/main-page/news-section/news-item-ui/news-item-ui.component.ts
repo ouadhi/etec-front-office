@@ -14,7 +14,7 @@ export class NewsItemUiComponent implements OnInit {
   @Input() link;
   @Input() description;
   description_plainText;
-  public assetPath = environment.cms.api.assets;
+  public assetPath = `${environment.cms}/storage/uploads`;
   
   constructor() {
     this.description_plainText = this.description;

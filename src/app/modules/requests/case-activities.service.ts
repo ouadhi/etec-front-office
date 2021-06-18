@@ -17,7 +17,7 @@ export class CaseActivityService {
 
     }
     getCaseHistoryActivities(queryParams = {}) {
-        const endpoint = `${environment.requestApi.api}${environment.requestApi.rest.caseActivity}`;
+        const endpoint = `${environment.gateway}${environment.endpoints.caseActivity}`;
         return this.http.get<any[]>(endpoint, { params: queryParams }).pipe(
             map(data => (
                 data.map(item => this.activityInstanceAdapter.adapt(item))
@@ -25,13 +25,13 @@ export class CaseActivityService {
             ));
     }
     getRequestTasks(queryParams = {}) {
-        const endpoint = `${environment.requestApi.api}${environment.requestApi.rest.tasks}`;
+        const endpoint = `${environment.gateway}${environment.endpoints.tasks}`;
         return this.http.get<any[]>(endpoint, { params: queryParams }).pipe(
             map(data => (data)
             ));
     }
     getRequestTask(taskId, queryParams = {}) {
-        const endpoint = `${environment.requestApi.api}${environment.requestApi.rest.tasks}/${taskId}`;
+        const endpoint = `${environment.gateway}${environment.endpoints.tasks}/${taskId}`;
         return this.http.get<any>(endpoint, { params: queryParams }).pipe(
             map(data => (data)
             ));

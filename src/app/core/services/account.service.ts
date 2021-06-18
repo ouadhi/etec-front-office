@@ -13,22 +13,22 @@ export class AccountService {
     private loggerService: LoggerService) { }
 
   getAccount(queryParams = {}): Observable<any> {
-    const endpoint = `${environment.profile.account}`;
+    const endpoint = `${environment.gateway}${environment.endpoints.account}`;
     return this.http.get<any>(endpoint, { params: queryParams }).pipe(
       catchError(this.handleError('getAccount', []))
     );
   }
 
-  getBranchId(userid): Observable<any> {
-    const endpoint = `${environment.wso2.base}${environment.wso2.api.erp}employee/${encodeURIComponent(userid)}`;
-    this.loggerService.log(endpoint);
-    return this.http.get<any>(endpoint);
-  }
+  // getBranchId(userid): Observable<any> {
+  //   const endpoint = `${environment.wso2.base}${environment.wso2.api.erp}employee/${encodeURIComponent(userid)}`;
+  //   this.loggerService.log(endpoint);
+  //   return this.http.get<any>(endpoint);
+  // }
 
-  getBranchIfForbeneficiary(): Observable<any> {
-    const endpoint = `${environment.beneficiaryApi.api}`;
-    return this.http.get<any>(endpoint)
-  }
+  // getBranchIfForbeneficiary(): Observable<any> {
+  //   const endpoint = `${environment.beneficiaryApi.api}`;
+  //   return this.http.get<any>(endpoint)
+  // }
 
   private handleError<T>(operation = 'operation', result?) {
     return (error: any): Observable<T> => {

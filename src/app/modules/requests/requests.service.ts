@@ -38,7 +38,7 @@ export class RequestsService {
   }
   getRequests(queryParams): Observable<any> {
     return this.http.get<any>(
-      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,
+      `${environment.gateway}${environment.endpoints.myRequests}`,
       {
         observe: 'response',
         params: this.dashletFilterAdapter.adapt(queryParams)
@@ -51,7 +51,7 @@ export class RequestsService {
   }
   queryRequests(queryParams): Observable<any> {
     return this.http.get<any>(
-      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}`,
+      `${environment.gateway}${environment.endpoints.myRequests}`,
       {
         params: {
           ...queryParams,
@@ -64,7 +64,7 @@ export class RequestsService {
   }
   queryAnonymousRequests(id): Observable<any> {
     return this.http.get<any>(
-      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}/anonymous/${id}`,
+      `${environment.gateway}${environment.endpoints.myRequests}/anonymous/${id}`,
       {
         params: {
           language: this.translate.currentLang
@@ -85,7 +85,7 @@ export class RequestsService {
   }
   getRequest(id, queryParams = {}): Observable<any> {
     return this.http.get<any>(
-      `${environment.requestApi.api}${environment.requestApi.rest.myRequests}/${id}`,
+      `${environment.gateway}${environment.endpoints.myRequests}/${id}`,
       {
         params: this.dashletFilterAdapter.adapt(queryParams)
       }).pipe(
@@ -96,7 +96,7 @@ export class RequestsService {
   getRequestsCount(serviceId) {
     const d = new Date(new Date().getFullYear(), 0, 1);
     return this.http.get<any>(
-      `${environment.requestApi.api}${environment.requestApi.rest.count}`,
+      `${environment.gateway}${environment.endpoints.count}`,
       {
         params: {
           'requestDate.greaterOrEqualThan': this.datePipe.transform(d, 'yyyy-MM-ddTHH:mm:ss') + 'z',
@@ -113,7 +113,7 @@ export class RequestsService {
 
   getListOfUserSegments(): Observable<any> {
     return this.http.get<any[]>(
-      `${environment.requestApi.api}${environment.requestApi.rest.myBeneficiarySegments}`);
+      `${environment.gateway}${environment.endpoints.myBeneficiarySegments}`);
   }
 
 }

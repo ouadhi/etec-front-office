@@ -25,13 +25,13 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
   loadProfile(id) {
     this.sub = combineLatest([
-      this.servicesService.getProfile(id),
+      // this.servicesService.getProfile(id),
       this.servicesService.getSegmentType(),
       this.servicesService.getSegments()
     ]).subscribe(results => {
-      this.data = results[0];
+      this.data = {}; // TODO: get user info here
 
-      this.segmentType = results[1].entries;
+      this.segmentType = results[0].entries;
       this.data.segments.map(item => {
         const items = this.segmentType.filter(itemFull => (item.typeId === itemFull.key));
         if (items.length) {
@@ -40,7 +40,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         return item;
       });
 
-      this.segments = results[2].entries;
+      this.segments = results[1].entries;
       this.data.segments.map(item => {
         const items = this.segments.filter(itemFull => (item.value === itemFull.key));
         if (items.length) {
