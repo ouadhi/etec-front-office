@@ -113,7 +113,7 @@ export class ConfigService {
                 document.documentElement.style.setProperty(`--${key}`, this._config[key]);
                 document.documentElement.style.setProperty(`--${key}-parts`,
                     this._config[key].replace('rgb', '').replace('(', '').replace(')', ''));
-            } else if (key.includes('favicon')) {
+            } else if (key.includes('favicon') && this._config[key]) {
                 document.getElementById('favicon').setAttribute('href', `${environment.cms}/${this._config[key].path}`);
             }
         });

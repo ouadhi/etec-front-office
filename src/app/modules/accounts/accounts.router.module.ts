@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { RoleGuard } from 'src/app/core/guards/role.guard';
 import { environment } from 'src/environments/environment';
 import { AccountsComponent } from './accounts.component';
+import { EntityProfileComponent } from './entity-profile/entity-profile.component';
 import { ProfileComponent } from './profile/profile.component';
 
 export const appRoutes: Routes = [
@@ -13,8 +14,13 @@ export const appRoutes: Routes = [
         redirectTo: `profile`,
         data: { roles: [environment.roles.beneficiary] },
     },
+    // {
+    //     path: 'profile', component: ProfileComponent,
+    //     canActivate: [AuthGuard, RoleGuard],
+    //     data: { roles: [environment.roles.beneficiary] },
+    // },
     {
-        path: 'profile', component: ProfileComponent,
+        path: 'entity/profile', component: EntityProfileComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: [environment.roles.beneficiary] },
     },
