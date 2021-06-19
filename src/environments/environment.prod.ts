@@ -24,7 +24,7 @@ export const environment = {
   endpoints: {
     tasks: '/requestmanagement/rest/task',
     myRequests: '/requestmanagement/api/portal/requests',
-    myBeneficiarySegments: '/requestmanagement/api/portal/beneficiary-segments-cms',
+    myBeneficiarySegments: '/referencedata/api/portal/beneficiary-segments-cms',
     caseActivity: '/requestmanagement/rest/history/case-activity-instance',
     count: '/requestmanagement/api/requests/count',
     statuses: '/requestmanagement/api/portal/eservices',

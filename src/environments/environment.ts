@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   cms: 'http://54.158.193.221:8083',
   appConfig: {
     endpoint: '/api/collections/get/appConfig/',

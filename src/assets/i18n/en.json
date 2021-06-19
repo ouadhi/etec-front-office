@@ -1,4 +1,8 @@
 {
+  "LICENSE": {
+    "ERROR": "An error occurred in the system, please contact system administrator.",
+    "INVALID": "An error occurred in the system, please contact system administrator."
+  },
   "formLoadError": "An unknown error happened while loading the page, please try again later.",
   "dir": "ltr",
   "false": "No",
