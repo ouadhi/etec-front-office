@@ -20,7 +20,7 @@ export const environment = {
   },
   formio: {
     apiUrl: 'http://api.ec2-54-158-193-221.compute-1.amazonaws.com:8082/',
-    appUrl: 'http://ec2-54-158-193-221.compute-1.amazonaws.com:8082/ksekuzmfmkerfvg/'
+    appUrl: 'http://ec2-54-158-193-221.compute-1.amazonaws.com:8082/ksuqnygnhgztelf/'
   },
   gateway: 'http://ec2-54-90-214-64.compute-1.amazonaws.com:80',
   endpoints: {

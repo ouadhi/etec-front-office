@@ -94,12 +94,12 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
         this.sub = this.translateService.onLangChange.subscribe(() => {
             this.doInitSlider();
         });
-        // this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
-        //     console.log(activity);
-        //     if (this.requestId == activity.data.id) {
-        //         this.getData();
-        //     }
-        // });
+        this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
+            console.log(activity);
+            if (this.requestId == activity.data.id) {
+                this.getData();
+            }
+        });
         this.getData();
     }
     ngAfterViewInit(): void {

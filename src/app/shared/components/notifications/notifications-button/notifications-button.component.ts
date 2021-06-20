@@ -45,7 +45,6 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
                     this.router.navigate(['/requests/details/' + activity.sourceId]);
                 });
         });
-
     }
 
     test() {

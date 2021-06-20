@@ -58,12 +58,12 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
       this.getData();
     });
 
-    // this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
-    //   console.log(activity);
-    //   if(this.id == activity.data.id){
-    //     this.getData();
-    //   }
-    // });
+    this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
+      console.log(activity);
+      if(this.id == activity.data.id){
+        this.getData();
+      }
+    });
   }
 
   private getData() {
