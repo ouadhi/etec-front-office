@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild, Injector } from '@angular/core';
-import { merge, of as observableOf, Observable } from 'rxjs';
+import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
+import { AfterViewInit, Component, Input, OnInit, ViewChild, Injector, OnDestroy } from '@angular/core';
+import { merge, Observable, Subscription } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { DashletFilterComponent } from '../dashlet-filter/dashlet-filter.component';
 import { MatPaginator } from '@angular/material/paginator';
@@ -18,7 +19,7 @@ import { FormioLoader } from 'src/formio/src/public_api';
   styleUrls: ['./dashlet-table.component.scss'],
   providers: [FormioLoader],
 })
-export class DashletTableComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class DashletTableComponent extends BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
@@ -37,8 +38,10 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
   expandableColumns: string[] = [];
   expandedElement;
   resultsLength = 0;
+  subscription: Subscription;
 
-  constructor(public injector: Injector) { super(injector); }
+  constructor(public injector: Injector,
+    private notificationService: NotificationsService) { super(injector); }
 
   toggleFilter() {
     this.showFilter = !this.showFilter;
@@ -62,12 +65,24 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
     this.expandableColumns.forEach((item) => {
       this.displayedColumns.splice(this.displayedColumns.indexOf(item), 1);
     });
+
+    this.sub = this.notificationService.listenerObserver.subscribe(data => {
+      this.getData();
+    });
   }
   ngAfterViewInit() {
     // If the user changes the sort order, reset back to the first page.
     this.sub = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.getData();
+  }
 
-    this.sub = merge(this.sort.sortChange, this.paginator.page, this.casesFilter.filter, this.translateService.onLangChange)
+  ngOnDestroy() {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
+
+  private getData() {
+    if (this.subscription) this.subscription.unsubscribe();
+    this.subscription = merge(this.sort.sortChange, this.paginator.page, this.casesFilter.filter, this.translateService.onLangChange)
       .pipe(
         startWith({}),
         switchMap(() => {
