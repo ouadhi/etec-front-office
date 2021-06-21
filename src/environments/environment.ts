@@ -4,25 +4,20 @@
 
 export const environment = {
   production: false,
-  cms: 'http://54.158.193.221:8083',
+  gateway: 'http://ec2-52-206-161-8.compute-1.amazonaws.com:8080',
+  cms: 'http://100.24.85.92:8089',
   appConfig: {
     endpoint: '/api/collections/get/appConfig/',
     id: '6069bbe7666434004e00012d'
   },
   keycloak: {
-    url: 'http://ec2-54-167-210-145.compute-1.amazonaws.com:9080/auth/',
-    realm: 'etec',
-    secret: 'etec@2030-orchestra',
-    secret_client: 'request-service',
-    anonymous_user: '13780',
-    anonymous_password: 'p@ss123',
+    url: 'http://ec2-52-206-161-8.compute-1.amazonaws.com:9080/auth/',
+    realm: 'ekhaa',
     clientId: 'fo-web'
   },
   formio: {
-    apiUrl: 'http://api.ec2-54-158-193-221.compute-1.amazonaws.com:8082/',
-    appUrl: 'http://ec2-54-158-193-221.compute-1.amazonaws.com:8082/ksuqnygnhgztelf/'
+    formio: 'http://ec2-34-234-234-87.compute-1.amazonaws.com:8083/rwzodfyrlzgyaai/'
   },
-  gateway: 'http://ec2-54-90-214-64.compute-1.amazonaws.com:80',
   endpoints: {
     tasks: '/requestmanagement/rest/task',
     myRequests: '/requestmanagement/api/portal/requests',
@@ -40,22 +35,6 @@ export const environment = {
     humanTask: '/dataservice/api/',
     notifications: '/notification/api/',
     socket: '/notification/websocket/orchestra'
-  },
-  filter: {
-    status: [
-      {
-        key: 'NEW',
-        val: 'NEW'
-      },
-      {
-        key: 'In_PROGRESS',
-        val: 'In_PROGRESS'
-      },
-      {
-        key: 'COMPLETED',
-        val: 'COMPLETED'
-      }
-    ]
   },
   roles: {
     beneficiary: 'ROLE_USER',
