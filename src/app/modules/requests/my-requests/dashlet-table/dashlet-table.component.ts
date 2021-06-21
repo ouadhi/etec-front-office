@@ -1,6 +1,6 @@
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import { AfterViewInit, Component, Input, OnInit, ViewChild, Injector, OnDestroy } from '@angular/core';
-import { merge, Observable, Subscription } from 'rxjs';
+import { merge, Observable, of, Subscription } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { DashletFilterComponent } from '../dashlet-filter/dashlet-filter.component';
 import { MatPaginator } from '@angular/material/paginator';
@@ -105,7 +105,7 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
         catchError(() => {
           // Catch if the API has reached its rate limit. Return empty data.
           this.isRateLimitReached = true;
-          return observableOf({});
+          return of({});
         })
       ).subscribe(data => {
         this.data = data.items;
