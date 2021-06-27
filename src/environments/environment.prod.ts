@@ -14,7 +14,8 @@ export const environment = {
     clientId: 'fo-web'
   },
   formio: {
-    formio: 'http://ec2-34-234-234-87.compute-1.amazonaws.com:8083/rwzodfyrlzgyaai/'
+    apiUrl: "https://api.form.io/",
+    appUrl: 'http://ec2-34-234-234-87.compute-1.amazonaws.com:8083/rwzodfyrlzgyaai/'
   },
   endpoints: {
     tasks: '/requestmanagement/rest/task',
