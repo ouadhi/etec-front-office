@@ -126,7 +126,7 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
         })
             .subscribe(data => {
 
-                this.activities = data;
+                this.activities = data.filter(q => q.caseActivityType != 'stage');
 
                 this.listWidth = (this.cardWidth * this.activities.filter(q => q.completed).length) + this.cardMargin;
                 setTimeout(() => {

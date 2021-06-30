@@ -30,6 +30,7 @@ export class SwitchLangService {
   }
 
   getTranslated(string, source = null) {
+    if (!string) return '';
     const sourceString = source ? (source + '.' + string.trim()) : string.trim();
     const translated = this.translate.instant(sourceString);
     return translated === sourceString ? string : translated;
