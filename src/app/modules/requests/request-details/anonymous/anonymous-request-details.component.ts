@@ -17,7 +17,7 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
     public caseActivity: CaseActivityService) { super(injector); }
 
   processInstanceId: string;
-  hasProcessTask = false;
+  tasks = [];
   link: any;
   formData: any;
   submission: any;
@@ -34,12 +34,21 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
 
   handleAction(event) {
     if (event.type === 'task') {
-      this.router.navigate(['/requests/task',
-        this.currentRequestTask.taskDefinitionKey,
-        event.activity.taskId,
-        this.request.caseId,
-        this.route.snapshot.params.id,
-      ]);
+      if (this.tasks && this.tasks.length) {
+        this.router.navigate(['/requests/task',
+          this.tasks[0].taskDefinitionKey,
+          this.tasks[0].id,
+          this.request.caseId,
+          this.route.snapshot.params.id,
+        ]);
+      } else {
+        this.router.navigate(['/requests/task',
+          this.currentRequestTask.taskDefinitionKey,
+          event.activity.taskId,
+          this.request.caseId,
+          this.route.snapshot.params.id,
+        ]);
+      }
     }
   }
   showTask(event) {
@@ -53,12 +62,12 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
 
     this.sub = this.route.params.subscribe(params => {
       this.processInstanceId = params.processInstanceId;
-      
+
       if (this.processInstanceId)
-      this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
-        .subscribe(data => {
-          if (data && data.length) this.hasProcessTask = true;
-        });
+        this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
+          .subscribe(data => {
+            this.tasks = data;
+          });
 
       this.sub = this.rest.queryAnonymousRequests(this.route.snapshot.params.id).subscribe(data => {
         this.request = data;

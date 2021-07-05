@@ -19,7 +19,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
     private notificationsService: NotificationsService) { super(injector); }
   id: string;
   processInstanceId: string;
-  hasProcessTask = false;
+  tasks = [];
   link: any;
   formData: any;
   submission: any;
@@ -36,12 +36,21 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
   handleAction(event) {
     if (event.type === 'task') {
-      this.router.navigate(['/requests/task',
-        this.currentRequestTask.taskDefinitionKey,
-        event.activity.taskId,
-        this.request.caseId,
-        this.route.snapshot.params.id,
-      ]);
+      if (this.tasks && this.tasks.length) {
+        this.router.navigate(['/requests/task',
+          this.tasks[0].taskDefinitionKey,
+          this.tasks[0].id,
+          this.request.caseId,
+          this.route.snapshot.params.id,
+        ]);
+      } else {
+        this.router.navigate(['/requests/task',
+          this.currentRequestTask.taskDefinitionKey,
+          event.activity.taskId,
+          this.request.caseId,
+          this.route.snapshot.params.id,
+        ]);
+      }
     }
   }
   showTask(event) {
@@ -73,7 +82,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
     if (this.processInstanceId)
       this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
         .subscribe(data => {
-          if (data && data.length) this.hasProcessTask = true;
+          this.tasks = data;
         });
 
     this.sub = this.rest.getRequest(this.id).subscribe(data => {
