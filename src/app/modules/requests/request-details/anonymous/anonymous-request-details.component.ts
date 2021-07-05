@@ -61,15 +61,14 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
 
 
     this.sub = this.route.params.subscribe(params => {
-      this.processInstanceId = params.processInstanceId;
-
-      if (this.processInstanceId)
+      this.sub = this.rest.queryAnonymousRequests(this.route.snapshot.params.id).subscribe(data => {
+        this.processInstanceId = data.procInstID;
+        if (this.processInstanceId)
         this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
           .subscribe(data => {
             this.tasks = data;
           });
 
-      this.sub = this.rest.queryAnonymousRequests(this.route.snapshot.params.id).subscribe(data => {
         this.request = data;
         this.link = this.request.link;
         this.formData = this.request.data;

@@ -62,7 +62,6 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
-      this.processInstanceId = params.processInstanceId;
       this.getData();
     });
 
@@ -79,13 +78,15 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   }
 
   private getData() {
-    if (this.processInstanceId)
-      this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
-        .subscribe(data => {
-          this.tasks = data;
-        });
 
     this.sub = this.rest.getRequest(this.id).subscribe(data => {
+      this.processInstanceId = data.procInstID;
+      if (this.processInstanceId)
+        this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
+          .subscribe(data => {
+            this.tasks = data;
+          });
+
       this.request = data;
       this.link = this.request.link;
       this.formData = this.request.data;

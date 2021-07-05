@@ -53,13 +53,13 @@ export const appRoutes: Routes = [
     data: { roles: [environment.roles.beneficiary] },
   },
   {
-    path: 'details/:id/:processInstanceId', component: RequestDetailsComponent,
+    path: 'details/:id', component: RequestDetailsComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: { roles: [environment.roles.beneficiary] },
 
   },
   {
-    path: 'details/:id/anonymous/:processInstanceId', component: AnonymousRequestDetailsComponent,
+    path: 'details/:id/anonymous', component: AnonymousRequestDetailsComponent,
     data: { roles: [environment.roles.beneficiary] },
 
   },
