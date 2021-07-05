@@ -83,6 +83,19 @@ export class RequestsService {
       })
     );
   }
+  getTaskByProcessInstanceId(queryParams = {}): Observable<any> {
+    return this.http.get<any>(
+      `${environment.gateway}${environment.endpoints.tasks}`,
+      {
+        params: {
+          ...queryParams,
+          ...this.dashletFilterAdapter.adapt(queryParams)
+        }
+      }).pipe(
+        tap(resp => resp),
+        map(resp => (resp))
+      );
+  }
   getRequest(id, queryParams = {}): Observable<any> {
     return this.http.get<any>(
       `${environment.gateway}${environment.endpoints.myRequests}/${id}`,

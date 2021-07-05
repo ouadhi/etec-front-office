@@ -1,6 +1,6 @@
 <app-page>
   <app-section sectionTitle="{{'Steps' | translate}} {{request?.requestName}}">
-    <div class="padder" *ngIf="hasTask"
+    <div class="padder" *ngIf="hasTask || hasProcessTask"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div class="alert alert-warning">
         <div class="row">
@@ -9,7 +9,7 @@
           </div>
           <div class="col">
             {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
-            {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction({type:'task',activity:hasTask})"
+            {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction({type:'task',activity:(hasTask || hasProcessTask)})"
               class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
           </div>
         </div>

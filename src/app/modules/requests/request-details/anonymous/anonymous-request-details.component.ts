@@ -16,6 +16,8 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
     private rest: RequestsService,
     public caseActivity: CaseActivityService) { super(injector); }
 
+  processInstanceId: string;
+  hasProcessTask = false;
   link: any;
   formData: any;
   submission: any;
@@ -50,6 +52,14 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
 
 
     this.sub = this.route.params.subscribe(params => {
+      this.processInstanceId = params.processInstanceId;
+      
+      if (this.processInstanceId)
+      this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
+        .subscribe(data => {
+          if (data && data.length) this.hasProcessTask = true;
+        });
+
       this.sub = this.rest.queryAnonymousRequests(this.route.snapshot.params.id).subscribe(data => {
         this.request = data;
         this.link = this.request.link;

@@ -18,6 +18,8 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
     public caseActivity: CaseActivityService,
     private notificationsService: NotificationsService) { super(injector); }
   id: string;
+  processInstanceId: string;
+  hasProcessTask = false;
   link: any;
   formData: any;
   submission: any;
@@ -51,6 +53,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
+      this.processInstanceId = params.processInstanceId;
       this.getData();
     });
 
@@ -60,13 +63,19 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
     this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
       console.log(activity);
-      if(this.id == activity.data.id){
+      if (this.id == activity.data.id) {
         this.getData();
       }
     });
   }
 
   private getData() {
+    if (this.processInstanceId)
+      this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
+        .subscribe(data => {
+          if (data && data.length) this.hasProcessTask = true;
+        });
+
     this.sub = this.rest.getRequest(this.id).subscribe(data => {
       this.request = data;
       this.link = this.request.link;
