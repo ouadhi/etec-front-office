@@ -55,7 +55,11 @@
                 "input": "node_modules/@ng-select/ng-select/themes/material.theme.css",
                 "inject": true
               },
-              "src/styles.scss"
+              {
+                "input": "src/styles.scss",
+                "inject": false,
+                "bundleName": "locale-style"
+              }
             ],
             "scripts": [],
             "aot": true
