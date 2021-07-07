@@ -22,6 +22,7 @@ export const environment = {
     myRequests: '/requestmanagement/api/portal/requests',
     myBeneficiarySegments: '/requestmanagement/api/portal/beneficiary-segments-cms',
     caseActivity: '/requestmanagement/rest/history/case-activity-instance',
+    caseActivityDetails: '/requestmanagement/rest/history/detail',
     count: '/requestmanagement/api/requests/count',
     statuses: '/requestmanagement/api/portal/eservices',
     beneficiaryApi: '/dataservice/api/portal/beneficiaries',
