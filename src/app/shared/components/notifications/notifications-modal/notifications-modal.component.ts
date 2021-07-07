@@ -12,7 +12,7 @@ import { BaseComponent } from '../../base.component';
 @Component({
   selector: 'app-notifications-modal',
   templateUrl: './notifications-modal.component.html',
-  styleUrls: ['./notifications-modal.component.scss'],
+  // styleUrls: ['./notifications-modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 

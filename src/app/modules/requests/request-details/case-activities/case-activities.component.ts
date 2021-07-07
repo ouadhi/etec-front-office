@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Injector, Input, OnInit, Output, AfterViewInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output, AfterViewInit, OnChanges, SimpleChange, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import { BaseComponent } from '../../../../shared/components/base.component';
 import { CaseActivityService } from '../../case-activities.service';
@@ -6,7 +6,8 @@ import { CaseActivityService } from '../../case-activities.service';
 @Component({
     selector: 'app-case-activities',
     templateUrl: 'case-activities.component.html',
-    styleUrls: ['case-activities.component.scss'],
+    // styleUrls: ['case-activities.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CaseActivityService]
 })
 

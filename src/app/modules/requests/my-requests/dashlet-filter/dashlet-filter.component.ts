@@ -1,12 +1,13 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FilterService } from '../../filter.service';
 import { BaseComponent } from '../../../../shared/components/base.component';
 
 @Component({
     selector: 'app-dashlet-filter',
     templateUrl: './dashlet-filter.component.html',
-    styleUrls: ['./dashlet-filter.component.scss'],
+    // styleUrls: ['./dashlet-filter.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     animations: [
         trigger('slideInOut', [
             state('in', style({ 'max-height': '350px', opacity: 1, display: 'block' })),

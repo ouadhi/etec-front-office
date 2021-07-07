@@ -1,21 +1,23 @@
-<app-page>
+<app-page class="app-request-details">
   <app-section sectionTitle="{{'Steps' | translate}} {{request?.requestName}}">
     <div class="padder" *ngIf="hasTask || tasks?.length"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div class="alert alert-warning">
         <div class="row">
-          <div class="col-auto align-self-start">
+          <div class="col-auto align-self-start auto-width">
             <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
           </div>
-          <div class="col">
+          <div class="col auto-width">
             {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
-            {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction({type:'task',activity:(hasTask || tasks?.length)})"
+            {{'SERVICE.pleasePress' | translate}} <a
+              (click)="handleAction({type:'task',activity:(hasTask || tasks?.length)})"
               class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
           </div>
         </div>
       </div>
     </div>
-    <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId" [requestId]="id"></app-case-activities>
+    <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId" [requestId]="id">
+    </app-case-activities>
   </app-section>
 
   <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link" [submission]="submission"

@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { IImage } from 'ng-simple-slideshow';
@@ -11,7 +11,8 @@ import { RequestsService } from '../../requests/requests.service';
 @Component({
   selector: 'app-service-catalog',
   templateUrl: './service-catalog.component.html',
-  styleUrls: ['./service-catalog.component.scss']
+  // styleUrls: ['./service-catalog.component.scss']
+  encapsulation: ViewEncapsulation.None
 })
 export class ServiceCatalogComponent extends BaseComponent implements OnInit, OnDestroy {
   dataMostUsed: any;

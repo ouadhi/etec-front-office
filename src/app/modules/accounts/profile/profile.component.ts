@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { BaseComponent } from '../../../shared/components/base.component';
@@ -6,7 +6,8 @@ import { BaseComponent } from '../../../shared/components/base.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  // styleUrls: ['./profile.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
 

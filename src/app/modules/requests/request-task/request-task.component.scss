@@ -1,37 +1,35 @@
-formio {
-    padding: 10px;
-}
-
-.alignSwitchAR {
-    text-align: right;
-}
-
-.alignSwitchEN {
-    text-align: left;
-}
-
-:host::ng-deep {
-
-  .app-formio {
-      margin-top: -50px;
-      padding-left: 15px;
-      padding-right: 15px;
-  }
-    .disable-in-task {
-        pointer-events: none;
-        touch-action: none;
-        input,
-        textarea,
-        .form-control {
-            background: #fff !important;
-            outline: none !important;
-            border: none !important;
-            box-shadow: none !important;
+.app-request-task {
+    formio {
+        padding: 10px;
+    }
+    .alignSwitchAR {
+        text-align: right;
+    }
+    .alignSwitchEN {
+        text-align: left;
+    }
+    :host::ng-deep {
+        .app-formio {
+            margin-top: -50px;
+            padding-left: 15px;
+            padding-right: 15px;
         }
-        .choices__button,
-        .choices[data-type*=select-one][dir=rtl]:after,
-        .fileSelector {
-            display: none;
+        .disable-in-task {
+            pointer-events: none;
+            touch-action: none;
+            input,
+            textarea,
+            .form-control {
+                background: #fff !important;
+                outline: none !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .choices__button,
+            .choices[data-type*=select-one][dir=rtl]:after,
+            .fileSelector {
+                display: none;
+            }
         }
     }
 }

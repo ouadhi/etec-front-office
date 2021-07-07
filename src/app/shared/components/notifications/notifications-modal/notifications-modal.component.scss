@@ -1,71 +1,66 @@
-@import '../../../../../colors.scss';
-:host {
-    height: 100%;
-    position: relative;
-}
-
-.page-wrapper {
-    app-notifications-modal {
-        .ion-content {
-            .scroll-area {
-                width: 70%;
-                margin: 5rem auto 0;
+@import 'colors.scss';
+.app-notifications-modal {
+    :host {
+        height: 100%;
+        position: relative;
+    }
+    .page-wrapper {
+        app-notifications-modal {
+            .ion-content {
+                .scroll-area {
+                    width: 70%;
+                    margin: 5rem auto 0;
+                }
             }
         }
     }
-}
-
-div[scrollx="true"],
-div[scrolly="true"] {
-    position: relative;
-    overflow: hidden;
-    max-height: 80vh;
-     ::-webkit-scrollbar {
-        display: none;
-    }
-}
-
-div[scrollx="true"] {
-    overflow-x: auto;
-}
-
-div[scrolly="true"] {
-    overflow-y: auto;
-}
-
-ion-toolbar {
-    min-height: 40px;
-    height: 40px;
-    --min-height: 40px;
-    box-shadow: 0 0 1px 1px #cbcbcb;
-    ion-title {
-        height: 14px;
-        font-size: 13px;
-        font-weight: bold;
-    }
-    .read-all {
-        display: inline-block;
-        padding: 0.5rem;
-        .read-all-icon {
-            color: #2185b8;
+    div[scrollx="true"],
+    div[scrolly="true"] {
+        position: relative;
+        overflow: hidden;
+        max-height: 80vh;
+         ::-webkit-scrollbar {
+            display: none;
         }
-        &:hover {
-            cursor: pointer;
-            background-color: #f7f7f7;
+    }
+    div[scrollx="true"] {
+        overflow-x: auto;
+    }
+    div[scrolly="true"] {
+        overflow-y: auto;
+    }
+    ion-toolbar {
+        min-height: 40px;
+        height: 40px;
+        --min-height: 40px;
+        box-shadow: 0 0 1px 1px #cbcbcb;
+        ion-title {
+            height: 14px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .read-all {
+            display: inline-block;
+            padding: 0.5rem;
             .read-all-icon {
-                color: $primary-color;
+                color: #2185b8;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: #f7f7f7;
+                .read-all-icon {
+                    color: $primary-color;
+                }
             }
         }
     }
-}
-
-ion-item-divider {
-    --background: rgba(249, 249, 249, 1);
-    color: #666;
-}
-
-.no-data {
-    opacity: 0.5;
-    text-align: center;
-    margin: 20px;
+    ion-item-divider {
+        --background: rgba(249, 249, 249, 1);
+        color: #666;
+    }
+    .no-data {
+        opacity: 0.5;
+        text-align: center;
+        margin: 20px;
+    }
 }

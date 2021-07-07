@@ -1,27 +1,26 @@
-ion-badge {
-    /* border-radius: 100%; */
-    padding: 4px 5px 0px 5px;
-    /* margin: 0px -19px; */
-    /* margin-top: -18px; */
-    background: #e9a668;
-}
-
-.fa-bell {
-    font-size: 20px;
-}
-
-.notification-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 5rem;
-    height: 60px;
-    background-color: #34357e;
-    cursor: pointer;
-}
-
-@media (max-width: 480px) {
+.app-notifications-button {
+    ion-badge {
+        /* border-radius: 100%; */
+        padding: 4px 5px 0px 5px;
+        /* margin: 0px -19px; */
+        /* margin-top: -18px; */
+        background: #e9a668;
+    }
+    .fa-bell {
+        font-size: 20px;
+    }
     .notification-btn {
-        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5rem;
+        height: 60px;
+        background-color: #34357e;
+        cursor: pointer;
+    }
+    @media (max-width: 480px) {
+        .notification-btn {
+            width: 40px;
+        }
     }
 }

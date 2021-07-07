@@ -1,11 +1,12 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { isObject } from 'util';
 import { BaseComponent } from '../../../../shared/components/base.component';
 
 @Component({
   selector: 'app-more-info',
   templateUrl: 'more-info.component.html',
-  styleUrls: ['more-info.component.scss'],
+  // styleUrls: ['more-info.component.scss'],
+  encapsulation: ViewEncapsulation.None
 }
 )
 

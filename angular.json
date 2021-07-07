@@ -44,10 +44,6 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
               {
-                "input": "src/theme/variables.scss",
-                "inject": true
-              },
-              {
                 "input": "node_modules/font-awesome/scss/font-awesome.scss",
                 "inject": true
               },
@@ -61,6 +57,11 @@
                 "bundleName": "locale-style"
               }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/"
+              ]
+            },
             "scripts": [],
             "aot": true
           },

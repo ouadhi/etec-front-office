@@ -3,7 +3,7 @@ import { BaseComponent } from '../../../shared/components/base.component';
 @Component({
   selector: 'app-service-card',
   templateUrl: './service-card.component.html',
-  styleUrls: ['./service-card.component.scss'],
+  // styleUrls: ['./service-card.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ServiceCardComponent extends BaseComponent implements OnInit {

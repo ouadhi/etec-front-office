@@ -1,4 +1,4 @@
-import { Injector, OnInit } from '@angular/core';
+import { Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { BaseComponent } from './shared/components/base.component';
@@ -6,7 +6,8 @@ import { BaseComponent } from './shared/components/base.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  // styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent extends BaseComponent implements OnInit {
   style = 'locale-style';

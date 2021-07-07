@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
+import { Component, OnInit, OnDestroy, Injector, ViewEncapsulation } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
@@ -10,7 +10,8 @@ import { SuccessToast } from 'src/formio/src/lib/modules/toast/success-toast/suc
 @Component({
     selector: 'app-notifications-button',
     templateUrl: './notifications-button.component.html',
-    styleUrls: ['./notifications-button.component.scss']
+    // styleUrls: ['./notifications-button.component.scss']
+    encapsulation: ViewEncapsulation.None
 })
 export class NotificationsButtonComponent extends BaseComponent implements OnInit {
     get notificationsCount() {

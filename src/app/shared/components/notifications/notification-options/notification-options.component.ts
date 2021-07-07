@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {PopoverController} from '@ionic/angular';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 
 /**
  * Sorting Options Popovermenu
@@ -8,7 +8,8 @@ import {PopoverController} from '@ionic/angular';
 @Component({
   selector: 'app-notification-options',
   templateUrl: './notification-options.component.html',
-  styleUrls: ['./notification-options.component.scss']
+  // styleUrls: ['./notification-options.component.scss']
+  encapsulation: ViewEncapsulation.None
 })
 
 export class NotificationOptionsComponent {

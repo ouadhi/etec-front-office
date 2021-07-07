@@ -1,5 +1,5 @@
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
-import { AfterViewInit, Component, Input, OnInit, ViewChild, Injector, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild, Injector, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { merge, Observable, of, Subscription } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { DashletFilterComponent } from '../dashlet-filter/dashlet-filter.component';
@@ -16,7 +16,8 @@ import { FormioLoader } from 'src/formio/src/public_api';
 @Component({
   selector: 'app-dashlet-table',
   templateUrl: './dashlet-table.component.html',
-  styleUrls: ['./dashlet-table.component.scss'],
+  // styleUrls: ['./dashlet-table.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [FormioLoader],
 })
 export class DashletTableComponent extends BaseComponent implements OnInit, AfterViewInit, OnDestroy {

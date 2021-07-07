@@ -1,5 +1,5 @@
 
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BaseComponent } from 'src/app/shared/components/base.component';
@@ -13,7 +13,8 @@ import { CaseActivityService } from '../case-activities.service';
 @Component({
   selector: 'app-request-task',
   templateUrl: './request-task.component.html',
-  styleUrls: ['./request-task.component.scss'],
+  // styleUrls: ['./request-task.component.scss'],
+  encapsulation: ViewEncapsulation.None
 
 })
 export class RequestTaskComponent extends BaseComponent implements OnInit {

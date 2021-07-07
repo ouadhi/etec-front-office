@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
@@ -9,7 +9,8 @@ import { RequestsService } from '../requests.service';
 @Component({
   selector: 'app-request-details',
   templateUrl: './request-details.component.html',
-  styleUrls: ['./request-details.component.scss']
+  // styleUrls: ['./request-details.component.scss']
+  encapsulation: ViewEncapsulation.None
 })
 export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
