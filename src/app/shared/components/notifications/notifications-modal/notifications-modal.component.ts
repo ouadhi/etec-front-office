@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, Input, OnInit } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
@@ -16,7 +16,8 @@ import { BaseComponent } from '../../base.component';
   encapsulation: ViewEncapsulation.None
 })
 
-export class NotificationsModalComponent extends BaseComponent {
+export class NotificationsModalComponent extends BaseComponent implements OnInit {
+  @Input() hasToolbar = true;
 
   get notifications() {
     return this.notificationsService.notifications;
@@ -63,6 +64,12 @@ export class NotificationsModalComponent extends BaseComponent {
     private notificationsService: NotificationsService,
     public datePipe: DatePipe) {
     super(injector);
+  }
+
+  ngOnInit() {
+    if (!this.notificationsService.notifications.length) {
+      this.notificationsService.fetchNotifications();
+    }
   }
 
   markAllAsRead() {

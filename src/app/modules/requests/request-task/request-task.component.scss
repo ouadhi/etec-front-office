@@ -1,3 +1,15 @@
+[dir=rtl] {
+    .app-request-task {
+         :host::ng-deep {
+            .disable-in-task {
+                .choices[data-type*=select-one]:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
 .app-request-task {
     formio {
         padding: 10px;
@@ -8,7 +20,7 @@
     .alignSwitchEN {
         text-align: left;
     }
-    :host::ng-deep {
+     :host::ng-deep {
         .app-formio {
             margin-top: -50px;
             padding-left: 15px;
@@ -26,7 +38,6 @@
                 box-shadow: none !important;
             }
             .choices__button,
-            .choices[data-type*=select-one][dir=rtl]:after,
             .fileSelector {
                 display: none;
             }

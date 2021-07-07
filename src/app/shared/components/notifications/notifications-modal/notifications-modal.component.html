@@ -1,48 +1,45 @@
-<div class="app-notifications-modal">
-    <ion-toolbar>
-        <ion-title>
-            <ion-note>
-                {{title | translate}}
-            </ion-note>
+<ion-toolbar *ngIf="hasToolbar">
+    <ion-title>
+        <ion-note>
+            {{title | translate}}
+        </ion-note>
 
-        </ion-title>
-        <ion-buttons slot="end">
-            <ion-button *ngIf="all" (click)="close()" [routerLink]="['/notifications']" size="small"
-                color="transparent">
-                <ion-icon name="list" slot="start"></ion-icon>
-                {{'notifications.all' | translate}}
-            </ion-button>
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-button *ngIf="all" (click)="close()" [routerLink]="['/notifications']" size="small" color="transparent">
+            <ion-icon name="list" slot="start"></ion-icon>
+            {{'notifications.all' | translate}}
+        </ion-button>
 
-            <ion-button>
-                <ion-icon class="read-all" (click)="markAllAsRead()"
-                    [matTooltip]="'notifications.markAllAsRead' | translate" [matTooltipPosition]="'before'"
-                    name="checkmark-outline"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
+        <ion-button>
+            <ion-icon class="read-all" (click)="markAllAsRead()"
+                [matTooltip]="'notifications.markAllAsRead' | translate" [matTooltipPosition]="'before'"
+                name="checkmark-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
 
-    <div text-center padding [hidden]="notifications?.length > 0">
-        <ion-text>
-            <h6 padding class="no-data">{{"notifications.noEntry" | translate}}</h6>
-        </ion-text>
-    </div>
-    <ion-content [className]="'ion-content'" appScrollbarTheme>
-        <ion-virtual-scroll [className]="'scroll-area'" [headerFn]="compareDate" [trackBy]="trackBy"
-            [items]="notifications">
-            <ion-item-divider *virtualHeader="let header">
-                {{ header | translate}}
-            </ion-item-divider>
-            <div *virtualItem="let notification;">
-                <app-notification-item (click)="handleOpen(notification)"
-                    [routerLink]="['/requests/details/' + notification.sourceId]" [notification]="notification"
-                    (notificationAction)="onNotificationAction($event)">
-                </app-notification-item>
-            </div>
-        </ion-virtual-scroll>
-
-        <ion-infinite-scroll dir="ltr" margin-top (ionInfinite)="fetchMore($event)" threshold="4.5rem">
-            <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="'notifications.more' | translate">
-            </ion-infinite-scroll-content>
-        </ion-infinite-scroll>
-    </ion-content>
+<div text-center padding [hidden]="notifications?.length > 0">
+    <ion-text>
+        <h6 padding class="no-data">{{"notifications.noEntry" | translate}}</h6>
+    </ion-text>
 </div>
+<ion-content [className]="'ion-content'" appScrollbarTheme>
+    <ion-virtual-scroll [className]="'scroll-area'" [headerFn]="compareDate" [trackBy]="trackBy"
+        [items]="notifications">
+        <ion-item-divider *virtualHeader="let header">
+            {{ header | translate}}
+        </ion-item-divider>
+        <div *virtualItem="let notification;">
+            <app-notification-item (click)="handleOpen(notification)"
+                [routerLink]="['/requests/details/' + notification.sourceId]" [notification]="notification"
+                (notificationAction)="onNotificationAction($event)">
+            </app-notification-item>
+        </div>
+    </ion-virtual-scroll>
+
+    <ion-infinite-scroll dir="ltr" margin-top (ionInfinite)="fetchMore($event)" threshold="4.5rem">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="'notifications.more' | translate">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

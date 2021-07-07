@@ -171,6 +171,7 @@ $rms-app-warn);
 @import "~css-star-rating/scss/star-rating";
 @import "~@ionic/angular/css/core.css";
 @import "~bootstrap/scss/bootstrap";
+
 html,
 body,
 .mat-card,
@@ -1622,6 +1623,11 @@ html[dir="rtl"] {
 
 .auto-width {
     width: auto !important;
+}
+input:not([class*="switch"]),
+select,
+.form-control {
+    border-radius: 4px !important;
 }
 
 @import './app/app.component.scss';

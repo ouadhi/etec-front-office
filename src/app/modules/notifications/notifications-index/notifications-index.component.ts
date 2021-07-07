@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ViewEncapsulation, Input } from '@angular/core';
 import { NotificationsModalComponent } from 'src/app/shared/components/notifications/notifications-modal/notifications-modal.component';
 
 @Component({

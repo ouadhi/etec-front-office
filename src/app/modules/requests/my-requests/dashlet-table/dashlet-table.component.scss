@@ -1,3 +1,13 @@
+[dir="rtl"] {
+    .app-dashlet-table {
+        @media screen and (max-width: 767px) {
+            .update {
+                right: 100px;
+            }
+        }
+    }
+}
+
 .app-dashlet-table {
     ion-toolbar {
         --background: transparent;
@@ -15,11 +25,11 @@
         width: 100%;
         padding: 10px;
     }
-    :host {
+     :host {
         display: block;
         padding: 5px;
     }
-    :host::ng-deep {
+     :host::ng-deep {
         .mat-paginator-page-size {
             display: none;
         }
@@ -197,11 +207,6 @@
         .update {
             bottom: 26px !important;
             left: 100px !important;
-        }
-        [dir="rtl"] {
-            .update {
-                right: 100px;
-            }
         }
     }
     .update-required {

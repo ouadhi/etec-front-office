@@ -1,4 +1,11 @@
 @import "colors.scss";
+[dir="rtl"] {
+    .app-service-catalog {
+        .filtersSection__keywordForm {
+            text-align: right;
+        }
+    }
+}
 
 .app-service-catalog {
     .filtersSection {
@@ -14,11 +21,6 @@
     }
     .filtersSection__keywordForm {
         width: 100%;
-    }
-    [dir="rtl"] {
-        .filtersSection__keywordForm {
-            text-align: right;
-        }
     }
     .filtersList {
         margin: 15px 0;
@@ -103,7 +105,7 @@
         overflow: hidden;
         margin: 1px;
     }
-    :host ::ng-deep {
+     :host ::ng-deep {
         .mat-form-field-infix {
             width: 100% !important;
         }

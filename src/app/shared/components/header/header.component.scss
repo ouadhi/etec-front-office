@@ -1,4 +1,32 @@
 @import 'colors.scss';
+[dir="rtl"] {
+   .app-header{
+    .user-actions {
+        padding-left: 0;
+        padding-right: 1.5rem;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 1.3rem;
+        .user-photo {
+            margin: 0 0 0 0.8rem;
+        }
+        .user-details {
+            text-align: right;
+            .user-name {
+                padding-right: 0;
+                padding-left: 0.25rem;
+                .user-icon {
+                    right: auto;
+                    left: -3px;
+                }
+            }
+        }
+        .switcher {
+            margin-left: 1rem;
+            margin-right: 0;
+        }
+    }
+   }
+}
 .app-header {
     .mat-toolbar {
         background: #f7f7f7 !important;
@@ -78,17 +106,6 @@
         width: 100%;
         left: 0;
     }
-    .mat-menu-content {
-        padding: 0 !important;
-        min-width: 150px !important;
-    }
-    .mat-menu-item:hover:not([disabled]),
-    .mat-menu-item.cdk-program-focused:not([disabled]),
-    .mat-menu-item.cdk-keyboard-focused:not([disabled]),
-    .mat-menu-item-highlighted:not([disabled]) {
-        background: $primary-color;
-        color: #fff;
-    }
     .user-actions {
         background: #2b5294;
         height: inherit;
@@ -166,32 +183,7 @@
             background-color: #34357e;
         }
     }
-    [dir="rtl"] {
-        .user-actions {
-            padding-left: 0;
-            padding-right: 1.5rem;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 1.3rem;
-            .user-photo {
-                margin: 0 0 0 0.8rem;
-            }
-            .user-details {
-                text-align: right;
-                .user-name {
-                    padding-right: 0;
-                    padding-left: 0.25rem;
-                    .user-icon {
-                        right: auto;
-                        left: -3px;
-                    }
-                }
-            }
-            .switcher {
-                margin-left: 1rem;
-                margin-right: 0;
-            }
-        }
-    }
+
     @media screen and (max-width: 1080px) {
         .logo-lg {
             display: none;
@@ -235,4 +227,16 @@
     app-notifications-button {
         height: inherit;
     }
+}
+
+.mat-menu-item:hover:not([disabled]),
+.mat-menu-item.cdk-program-focused:not([disabled]),
+.mat-menu-item.cdk-keyboard-focused:not([disabled]),
+.mat-menu-item-highlighted:not([disabled]) {
+    background: $primary-color;
+    color: #fff;
+}
+.mat-menu-content {
+    padding: 0 !important;
+    min-width: 150px !important;
 }
