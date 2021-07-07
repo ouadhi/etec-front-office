@@ -24,6 +24,14 @@ export class CaseActivityService {
             )
             ));
     }
+    getCaseHistoryActivitiesDetails(queryParams = {}) {
+        const endpoint = `${environment.gateway}${environment.endpoints.caseActivityDetails}`;
+        return this.http.get<any[]>(endpoint, { params: queryParams }).pipe(
+            map(data => (
+                data.map(item => this.activityInstanceAdapter.adapt(item))
+            )
+            ));
+    }
     getRequestTasks(queryParams = {}) {
         const endpoint = `${environment.gateway}${environment.endpoints.tasks}`;
         return this.http.get<any[]>(endpoint, { params: queryParams }).pipe(

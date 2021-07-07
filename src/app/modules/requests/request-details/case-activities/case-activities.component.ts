@@ -1,3 +1,4 @@
+import { forkJoin } from 'rxjs';
 import { Component, EventEmitter, Injector, Input, OnInit, Output, AfterViewInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import { BaseComponent } from '../../../../shared/components/base.component';
@@ -120,34 +121,47 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
     }
 
     private getData() {
-        this.sub = this.caseActivityService.getCaseHistoryActivities({
-            sortBy: 'endTime',
-            sortOrder: 'asc', caseInstanceId: this.caseInstanceId
-        })
-            .subscribe(data => {
-
-                this.activities = data.filter(q => q.caseActivityType != 'stage');
-
-                this.listWidth = (this.cardWidth * this.activities.filter(q => q.completed).length) + this.cardMargin;
-                setTimeout(() => {
-                    this.horizontalScrollMenu = document.getElementsByClassName('horizontalScrollMenu')[0];
-                    this.showScrollBtns = this.horizontalScrollMenu.offsetWidth < this.listWidth;
-                    if (this.translateService.currentLang == "ar")
-                        this.next(this.listWidth);
-                    else this.prev(this.listWidth);
-                }, 250);
-
-                this.activities.forEach(activity => {
-                    if (activity.caseActivityName === 'task') {
-                        activity.caseActivityName = this.switchLangService.getTranslated('SERVICE.beneficiaryTask');
-                    }
-                    else {
-                        activity.caseActivityName = this.switchLangService.getTranslated(activity.caseActivityName, 'STATUSES');
-                    }
-                    if (activity.caseActivityType === 'humanTask' && activity.active && !activity.completed) {
-                        this.task.emit(activity);
+        this.sub = forkJoin([
+            this.caseActivityService.getCaseHistoryActivities({
+                sortBy: 'endTime',
+                sortOrder: 'asc', caseInstanceId: this.caseInstanceId
+            }),
+            this.caseActivityService.getCaseHistoryActivitiesDetails({
+                sortBy: 'time',
+                sortOrder: 'asc', caseInstanceId: this.caseInstanceId
+            })
+        ]).subscribe(result => {
+            this.activities = result[1].filter(q => q.caseActivityType != 'stage' && q.revision)
+                .map(q => {
+                    const namesParts = q.variableName.split('to_');
+                    let name = result[0].find(q=> q.caseActivityId == namesParts[namesParts.length - 1]).caseActivityName;
+                    return {
+                        ...q,
+                        completed: true,
+                        caseActivityName: name
                     }
                 });
+
+            this.listWidth = (this.cardWidth * this.activities.filter(q => q.completed).length) + this.cardMargin;
+            setTimeout(() => {
+                this.horizontalScrollMenu = document.getElementsByClassName('horizontalScrollMenu')[0];
+                this.showScrollBtns = this.horizontalScrollMenu.offsetWidth < this.listWidth;
+                if (this.translateService.currentLang == "ar")
+                    this.next(this.listWidth);
+                else this.prev(this.listWidth);
+            }, 250);
+
+            this.activities.forEach(activity => {
+                if (activity.caseActivityName === 'task') {
+                    activity.caseActivityName = this.switchLangService.getTranslated('SERVICE.beneficiaryTask');
+                }
+                else {
+                    activity.caseActivityName = this.switchLangService.getTranslated(activity.caseActivityName, 'STATUSES');
+                }
+                if (activity.caseActivityType === 'humanTask' && activity.active && !activity.completed) {
+                    this.task.emit(activity);
+                }
             });
+        });
     }
 }

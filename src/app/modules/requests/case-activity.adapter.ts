@@ -22,7 +22,7 @@ export class CaseActivityAdapter {
             calledCaseInstanceId: item.calledCaseInstanceId,
             tenantId: item.tenantId,
             createTime: item.createTime,
-            endTime: item.endTime,
+            time: item.time,
             durationInMillis: item.durationInMillis,
             required: item.required,
             available: item.available,
@@ -30,7 +30,9 @@ export class CaseActivityAdapter {
             disabled: item.disabled,
             active: item.active,
             completed: item.completed,
-            terminated: item.terminated
+            terminated: item.terminated,
+            revision: item.revision,
+            variableName: item.variableName,
         });
     }
 }

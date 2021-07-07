@@ -12,13 +12,13 @@
         </div>
         <div class="scrolling-wrapper horizontalScrollMenu">
             <ng-container *ngFor="let activity of activities let i = index;">
-                <div class="milestone status-card" *ngIf="activity.completed">
+                <div class="milestone status-card">
                     <ion-chip
                         [ngClass]="activity.completed ? 'green' : (activity.caseActivityType == 'humanTask' ?'blue' : 'gray')">
                         <ion-label>
                             {{activity.caseActivityName}}
                             <span class="mdate">
-                                {{activity.endTime?.substring(0, 19) | localizedDate : 'EEE, d/MM/yyyy hh:mma'}}
+                                {{activity.time?.substring(0, 19) | localizedDate : 'EEE, d/MM/yyyy hh:mma'}}
                             </span>
                         </ion-label>
                         <ion-icon
