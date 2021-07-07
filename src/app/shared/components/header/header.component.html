@@ -2,8 +2,11 @@
     <mat-toolbar id="toolbar-lg">
         <mat-toolbar-row style="padding: 0;">
             <span fxFlex class="logo-container">
-                <img class="logo logo-lg" src="assets/images/brand-white.png" routerLink="/" />
-                <img class="logo logo-md" src="assets/images/logo.png" routerLink="/" />
+                <img class="logo logo-lg"
+                    src="{{configService.logo? configService.logo: 'assets/images/brand-white.png'}}" routerLink="/" />
+                <img class="logo logo-md"
+                    src="{{configService.smallLogo? configService.smallLogo:'assets/images/logo.png'}}"
+                    routerLink="/" />
                 <!-- <img height="50" [src]="logo" /> -->
             </span>
 
@@ -32,7 +35,7 @@
 
                 <div *ngIf="loggedIn" class="user-container" mat-button [matMenuTriggerFor]="menu">
                     <span class="user-photo">
-                        <img [src]="userDetails?.photo ? userDetails?.photo : 'assets/images/avatar.png'"
+                        <img [src]="userDetails?.photo ? userDetails?.photo : (configService.userAvatar? configService.userAvatar: 'assets/images/avatar.png')"
                             [alt]="userDetails?.firstName" class="photo">
                     </span>
                     <span class="user-details lg">

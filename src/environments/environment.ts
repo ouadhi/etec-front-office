@@ -7,8 +7,10 @@ export const environment = {
   gateway: 'http://ec2-52-206-161-8.compute-1.amazonaws.com:8080',
   cms: 'http://100.24.85.92:8089',
   appConfig: {
-    endpoint: '/api/collections/get/appConfig/',
-    id: '6069bbe7666434004e00012d'
+    endpoint: '/api/collections/get/AppConfig1/',
+    id: '6069bbe7666434004e00012d',
+    customStyle: '/api/collections/get/customStyleFiles/',
+    customStyleId: '60e5af36666434039800013d',
   },
   keycloak: {
     url: 'http://ec2-52-206-161-8.compute-1.amazonaws.com:9080/auth/',

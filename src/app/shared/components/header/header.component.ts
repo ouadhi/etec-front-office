@@ -29,11 +29,6 @@ export class HeaderComponent extends BaseComponent {
         super(injector);
 
         this.configService.loadConfig().then(config => {
-            if (config.logo) {
-                this.logo = `${environment.cms}${config.logo.path}`;
-            } else {
-                this.logo = '/assets/logo.png';
-            }
         });
         const DelayPlugin = {
             priority: 100,

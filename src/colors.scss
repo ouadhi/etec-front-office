@@ -1,13 +1,6 @@
-$primary-color: #00adc3;
-$warning-color: #f0b432;
-$accent-color: #0c7782;
-$secondary-color: #666;
-$green-color: #3aad6d;
-$red-color: red;
-
-// $primary-color: var(--primary-color);
-// $warning-color: var(--warning-color);
-// $accent-color: var(--accent-color); 
-// $secondary-color: var(--secondary-color);
-// $green-color: var(--green-color);
-// $red-color: var(--red-color);
+$primary-color: var(--primaryColor);
+$warning-color: var(--warningColor);
+$accent-color: var(--accentColor); 
+$secondary-color: var(--secondaryColor);
+$green-color: var(--greenColor);
+$red-color: var(--redColor);
