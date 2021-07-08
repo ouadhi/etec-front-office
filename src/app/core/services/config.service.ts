@@ -102,13 +102,18 @@ export class ConfigService {
         const cssVariable = localStorage.getItem(this.storageCssKey);
         if (cssVariable) {
             const cachedData = JSON.parse(cssVariable);
+
+            // //just for test
+            // return  this.getUpdatedConfig();
+
             const endpoint = `${environment.cms}/${environment.appConfig.frontOfficeSettings}`;
             try {
                 const result = await this.http.post<any>(endpoint, {}).toPromise();
-                if (result.revisionsNumber == cachedData.entries[0].revisionsNumber) this.getDefaultCachedData(cachedData);
+                if (result.revisionsNumber == cachedData.entries[0].revisionsNumber)
+                    return this.getDefaultCachedData(cachedData);
                 else return this.getUpdatedConfig();
             } catch (e) {
-                this.getDefaultCachedData(cachedData);
+                return this.getDefaultCachedData(cachedData);
             }
         } else {
             return this.getUpdatedConfig();
@@ -116,10 +121,10 @@ export class ConfigService {
     }
 
     private getDefaultCachedData(cachedData) {
-        return new Promise((resolve, _) => { 
+        return new Promise((resolve, _) => {
             this.config = cachedData.entries[0];
             resolve(this.config);
-         });
+        });
     }
 
     private getUpdatedConfig() {
