@@ -147,12 +147,12 @@
         }
     }
     .green {
-        background: $green-color;
-        border-left: 7px solid $green-color !important;
+        background: $success-color;
+        border-left: 7px solid $success-color !important;
         background: linear-gradient(90deg, rgba(58, 173, 109, 0.24) 0%, rgba(58, 173, 109, 0.13) 35%, rgba(58, 173, 109, 0.09) 100%);
     }
     .icon-green {
-        color: $green-color;
+        color: $success-color;
     }
     .blue {
         background: $primary-color;

@@ -768,11 +768,11 @@ html[dir="rtl"] {
     z-index: 1;
     border-left: 18px solid transparent;
     border-right: 18px solid transparent;
-    border-top: 12px solid #166569;
+    border-top: 12px solid var(--accentColor);
 }
 
 .mat-ink-bar {
-    background: #166569 !important;
+    background: var(--accentColor) !important;
 }
 
 .mat-tab-label-container {
@@ -866,7 +866,7 @@ html[dir="rtl"] {
 
 .ctm-btn {
     color: #fff;
-    background: #067a84;
+    background: var(--primaryColor);
     padding: 5px 16px;
     border-radius: 12px;
     transition: all .3s ease;
@@ -878,7 +878,7 @@ html[dir="rtl"] {
 }
 
 .ctm-btn:hover:enabled {
-    background: #00adc3;
+    background: var(--primaryColor);
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -886,7 +886,7 @@ html[dir="rtl"] {
 .ctm-btn[disabled] {
     border: 1px solid #999999;
     background-color: #cccccc;
-    color: #666666;
+    color: var(--secondaryColor);
 }
 
 .mat-form-field-infix {
@@ -948,17 +948,17 @@ html[dir="rtl"] {
 }
 
 .radio-selected label {
-    color: #2185b8;
+    color: var(--primaryColor);
 }
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
     input[type="checkbox"],
     input[type="radio"] {
-        --active: #2185b8;
+        --active: var(--primaryColor);
         --active-inner: #fff;
-        --focus: 2px rgba(39, 94, 254, 0.3);
+        --focus: 2px var(--primaryColor);
         --border: #bbc1e1;
-        --border-hover: #2185b8;
+        --border-hover: var(--primaryColor);
         --background: #fff;
         --disabled: #f6f8ff;
         --disabled-inner: #e1e6f9;
@@ -1575,11 +1575,11 @@ html[dir="rtl"] {
     .p-tooltip {
         &.p-tooltip-top {
             .p-tooltip-arrow {
-                border-top-color: #2185b8 !important;
+                border-top-color: var(--primaryColor) !important;
             }
         }
         .p-tooltip-text {
-            background: #2185b8 !important;
+            background: var(--primaryColor) !important;
         }
     }
 }

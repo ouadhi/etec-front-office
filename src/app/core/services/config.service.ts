@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 declare let FontFace: any;
@@ -10,12 +10,13 @@ declare let FontFace: any;
 @Injectable({ providedIn: 'root' })
 
 export class ConfigService {
-    style = 'locale-style';
+    private storageCssKey = "_css_variable"
+    private style = 'locale-style';
 
     // tslint:disable-next-line:variable-name
     private config = null;
-    fontFamily = '"customFont", "Quicksand", sans-serif';
-    customFont = `html, body, h1, h2, h3, h4, h5, h6, p, span, div, section, b, strong, small, ul, ol, li, button, a, table, thead, tbody, tr, td, th, .mat-menu-item{font-family:"customFont", "Quicksand", sans-serif;}`;
+    private fontFamily = '"customFont", "Quicksand", sans-serif';
+    private customFont = `html, body, h1, h2, h3, h4, h5, h6, p, span, div, section, b, strong, small, ul, ol, li, button, a, table, thead, tbody, tr, td, th, .mat-menu-item{font-family:"customFont", "Quicksand", sans-serif;}`;
     private defaults = [{
         backgroundColor: 'rgb(235, 235, 235)',
         primary50: 'rgb(232, 243, 245)',
@@ -78,8 +79,7 @@ export class ConfigService {
         warningColor: '#f0b432',
         accentColor: '#0c7782',
         secondaryColor: '#666',
-        greenColor: '#3aad6d',
-        redColor: '#ff0000'
+        successColor: '#3aad6d'
     }];
 
     constructor(private http: HttpClient, private translate: TranslateService) {
@@ -87,22 +87,42 @@ export class ConfigService {
 
     getAppConfig(queryParams = {}): Observable<any> {
         const endpoint = `${environment.cms}${environment.appConfig.endpoint}?filter[_id]=${environment.appConfig.id}`;
-        return this.http.post<any>(endpoint,
-            {
-
-            }).pipe(
-                map(resp => (resp)),
-                catchError((e) => {
-                    return from(
-                        [{
-                            entries: this.defaults
-                        }]
-                    );
-                }));
-
+        return this.http.post<any>(endpoint, {}).pipe(
+            map(resp => (resp)),
+            catchError((e) => {
+                return from(
+                    [{
+                        entries: this.defaults
+                    }]
+                );
+            }));
     }
 
     async loadConfig(): Promise<any> {
+        const cssVariable = localStorage.getItem(this.storageCssKey);
+        if (cssVariable) {
+            const cachedData = JSON.parse(cssVariable);
+            const endpoint = `${environment.cms}/${environment.appConfig.frontOfficeSettings}`;
+            try {
+                const result = await this.http.post<any>(endpoint, {}).toPromise();
+                if (result.revisionsNumber == cachedData.entries[0].revisionsNumber) this.getDefaultCachedData(cachedData);
+                else return this.getUpdatedConfig();
+            } catch (e) {
+                this.getDefaultCachedData(cachedData);
+            }
+        } else {
+            return this.getUpdatedConfig();
+        }
+    }
+
+    private getDefaultCachedData(cachedData) {
+        return new Promise((resolve, _) => { 
+            this.config = cachedData.entries[0];
+            resolve(this.config);
+         });
+    }
+
+    private getUpdatedConfig() {
         return new Promise(async (resolve, reject) => {
             if (this.config) {
                 resolve(this.config);
@@ -111,6 +131,7 @@ export class ConfigService {
 
             this.getAppConfig().toPromise()
                 .then(async (result) => {
+                    localStorage.setItem(this.storageCssKey, JSON.stringify(result));
                     this.config = result.entries[0];
                     resolve(this.config);
                 },
@@ -167,25 +188,19 @@ export class ConfigService {
         stylesheet.href = this.style + '.css';
         document.getElementsByTagName('head')[0].appendChild(stylesheet);
 
-        const endpoint = `${environment.cms}${environment.appConfig.customStyle}?filter[_id]=${environment.appConfig.customStyleId}`;
-        this.http.post<any>(endpoint, {}).pipe(
-            catchError((e) => { console.log(e); return null; }))
-            .subscribe(data => {
-                if (!data || !data.entries) return;
-                const css = data.entries[0].frontOffice;
-                var head = document.head || document.getElementsByTagName('head')[0],
-                    style = document.createElement('style') as any;
+        const css = this.config.frontOfficeCss;
+        var head = document.head || document.getElementsByTagName('head')[0],
+            style = document.createElement('style') as any;
 
-                head.appendChild(style);
+        head.appendChild(style);
 
-                style.type = 'text/css';
-                if (style.styleSheet) {
-                    // This is required for IE8 and below.
-                    style.styleSheet.cssText = css;
-                } else {
-                    style.appendChild(document.createTextNode(css));
-                }
-            });
+        style.type = 'text/css';
+        if (style.styleSheet) {
+            // This is required for IE8 and below.
+            style.styleSheet.cssText = css;
+        } else {
+            style.appendChild(document.createTextNode(css));
+        }
     }
 
     get logo() {
@@ -201,5 +216,10 @@ export class ConfigService {
     get userAvatar() {
         if (!this.config || !this.config.userAvatar) return null;
         return `${environment.cms}${this.config.userAvatar.path}`;
+    }
+
+    get sectionsIcon() {
+        if (!this.config || !this.config.sectionsIcon) return null;
+        return `${environment.cms}${this.config.sectionsIcon.path}`;
     }
 }

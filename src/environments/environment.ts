@@ -9,8 +9,7 @@ export const environment = {
   appConfig: {
     endpoint: '/api/collections/get/AppConfig1/',
     id: '6069bbe7666434004e00012d',
-    customStyle: '/api/collections/get/customStyleFiles/',
-    customStyleId: '60e5af36666434039800013d',
+    frontOfficeSettings: 'api/singletons/get/frontOfficeSettings'
   },
   keycloak: {
     url: 'http://ec2-52-206-161-8.compute-1.amazonaws.com:9080/auth/',

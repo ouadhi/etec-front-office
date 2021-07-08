@@ -1,5 +1,6 @@
-import { Injector, ViewEncapsulation } from '@angular/core';
+import { HostBinding, Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { BaseComponent } from '../base.component';
 
 @Component({
@@ -16,5 +17,5 @@ export class PageTitleComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
 }

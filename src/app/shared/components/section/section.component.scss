@@ -19,14 +19,15 @@
             text-transform: capitalize;
             position: relative;
             font-weight: 700;
-            color: #666;
+            color: $secondary-color;
             border-bottom: 4px #777 solid;
             height: 21px;
             margin-bottom: 20px;
         }
         &__title:before {
             content: "";
-            background-image: url('/assets/images/theme-icon.png');
+            // background-image: url('/assets/images/theme-icon.png');
+            background-image: var(--customImage);
             width: 20px;
             height: 15px;
             display: inline-block;
@@ -38,7 +39,7 @@
             display: inline-block;
             padding: 5px;
             padding-right: 20px;
-            color: #00adc3;
+            color: $primary-color;
             background: #fff;
             position: relative;
             z-index: 1;
@@ -49,7 +50,7 @@
             display: inline-block;
             width: 30%;
             height: 4px;
-            background: #00adc3;
+            background: $primary-color;
             transform: skewX( -30deg);
             position: relative;
             left: -5px;
@@ -59,7 +60,7 @@
         }
         &__wptitle {
             text-align: right;
-            color: #666;
+            color: $secondary-color;
             border-bottom: 4px #777 solid;
             height: 29px;
             margin-bottom: 20px;
