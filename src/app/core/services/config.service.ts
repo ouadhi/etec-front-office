@@ -5,16 +5,17 @@ import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
+declare let FontFace: any;
 
 @Injectable({ providedIn: 'root' })
 
 export class ConfigService {
     style = 'locale-style';
-    isStylesLoaded = false;
-    isFontsLoaded = false;
 
     // tslint:disable-next-line:variable-name
     private config = null;
+    fontFamily = '"customFont", "Quicksand", sans-serif';
+    customFont = `html, body, h1, h2, h3, h4, h5, h6, p, span, div, section, b, strong, small, ul, ol, li, button, a, table, thead, tbody, tr, td, th, .mat-menu-item{font-family:"customFont", "Quicksand", sans-serif;}`;
     private defaults = [{
         backgroundColor: 'rgb(235, 235, 235)',
         primary50: 'rgb(232, 243, 245)',
@@ -117,6 +118,7 @@ export class ConfigService {
                 );
         });
     }
+
     setupEssentials() {
         Object.keys(this.config).forEach(key => {
             if (key.includes('primary') || key.includes('accent') || key.includes('background') || key.includes('Color')) {
@@ -127,47 +129,48 @@ export class ConfigService {
                 document.getElementById('favicon').setAttribute('href', `${environment.cms}/${this.config[key].path}`);
             }
         });
-        if (!this.config.favicon) {
+        if (!this.config.favicon)
             document.getElementById('favicon').setAttribute('href', `/assets/favicon.ico`);
-        }
-        if (this.config.name) {
+
+        if (this.config.name)
             document.title = this.config.name;
-        }
+
+        this.changeFont();
+        this.loadOverrideCss();
+    }
+
+    private changeFont() {
         if (this.config.fontFamily) {
             var customfont = new FontFace('customFont', `url(${this.config.fontFamily})`);
             customfont.load().then(loaded_face => {
                 (document as any).fonts.add(loaded_face);
-                document.body.style.fontFamily = '"customFont", "Quicksand", sans-serif';
+                document.body.style.fontFamily = this.fontFamily;
 
                 var head = document.head || document.getElementsByTagName('head')[0],
                     style = document.createElement('style') as any;
                 head.appendChild(style);
-                const customFont = `html, body, h1, h2, h3, h4, h5, h6, p, span, div, section, b, strong, small, ul, ol, li, button, a, table, thead, tbody, tr, td, th, .mat-menu-item{font-family:"customFont", "Quicksand", sans-serif;}`;
                 if (style.styleSheet) {
-                    style.styleSheet.cssText = customFont;
+                    style.styleSheet.cssText = this.customFont;
                 } else {
-                    style.appendChild(document.createTextNode(customFont));
+                    style.appendChild(document.createTextNode(this.customFont));
                 }
             }).catch(error => {
                 console.log(error);
             });
         }
+    }
 
+    private loadOverrideCss() {
         const stylesheet = document.createElement('link');
-
-        stylesheet.addEventListener('load', () => {
-            this.isStylesLoaded = true;
-        });
+        stylesheet.addEventListener('load', () => { });
         stylesheet.rel = 'stylesheet';
         stylesheet.href = this.style + '.css';
         document.getElementsByTagName('head')[0].appendChild(stylesheet);
 
         const endpoint = `${environment.cms}${environment.appConfig.customStyle}?filter[_id]=${environment.appConfig.customStyleId}`;
         this.http.post<any>(endpoint, {}).pipe(
-            catchError((e) => {
-                console.log(e);
-                return null;
-            })).subscribe(data => {
+            catchError((e) => { console.log(e); return null; }))
+            .subscribe(data => {
                 if (!data || !data.entries) return;
                 const css = data.entries[0].frontOffice;
                 var head = document.head || document.getElementsByTagName('head')[0],
