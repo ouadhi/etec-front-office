@@ -10,7 +10,7 @@ declare let FontFace: any;
 @Injectable({ providedIn: 'root' })
 
 export class ConfigService {
-    private storageCssKey = "_css_variable"
+    private storageCssKey = "_fo_css_variable"
     private style = 'locale-style';
 
     // tslint:disable-next-line:variable-name

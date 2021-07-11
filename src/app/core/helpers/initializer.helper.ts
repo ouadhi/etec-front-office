@@ -9,14 +9,14 @@ import { SessionService } from '../services/session.service';
 export function initializer(keycloak: KeycloakService,
   session: SessionService,
   platform: Platform,
-  config: ConfigService,
+  configService: ConfigService,
   loggerService: LoggerService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
-        if (config)
-          config.loadConfig().then(() => {
-            config.setupEssentials();
+        if (configService)
+          configService.loadConfig().then(() => {
+            configService.setupEssentials();
           });
       } catch (e) {
         loggerService.warn(e);
