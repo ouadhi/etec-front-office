@@ -10,9 +10,9 @@ export const environment = {
     endpoint: '/api/collections/get/AppConfig1/',
     id: '6069bbe7666434004e00012d',
     frontOfficeSettings: 'api/singletons/get/frontOfficeSettings',
-    'formioEndpoint': '/api/collections/get/formioConfig/',
-    'formioId': '60efd16b666434046e0003ac',
-    'formioSettings': 'api/singletons/get/formioSettings'
+    formioEndpoint: '/api/collections/get/formioConfig/',
+    formioId: '60efd16b666434046e0003ac',
+    formioSettings: 'api/singletons/get/formioSettings'
   },
   keycloak: {
     url: 'http://ec2-52-206-161-8.compute-1.amazonaws.com:9080/auth/',

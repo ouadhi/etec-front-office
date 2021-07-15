@@ -76,14 +76,25 @@ export class ConfigService {
         warningColor: '#f0b432',
         accentColor: '#0c7782',
         secondaryColor: '#666',
-        successColor: '#3aad6d'
+        successColor: '#3aad6d',
+        accentColor200: '#2185b8',
+        redColor: 'rgb(255, 0, 0)',
+        accentColor50: '#1c719b',
+        customCss: ''
     }];
 
     constructor(private http: HttpClient, private translate: TranslateService, private formConfigService: FormConfigService) {
     }
 
     getAppConfig(queryParams = {}): Observable<any> {
-        const endpoint = `${environment.cms}${environment.appConfig.endpoint}?filter[_id]=${environment.appConfig.id}`;
+        if (!environment.appConfig['endpoint'] || !environment.appConfig['id'])
+            return from(
+                [{
+                    entries: this.defaults
+                }]
+            );
+
+        const endpoint = `${environment.cms}${environment.appConfig['endpoint']}?filter[_id]=${environment.appConfig['id']}`;
         return this.http.post<any>(endpoint, {}).pipe(
             map(resp => (resp)),
             catchError((e) => {
@@ -103,7 +114,8 @@ export class ConfigService {
             // //just for test
             // return  this.getUpdatedConfig();
 
-            const endpoint = `${environment.cms}/${environment.appConfig.frontOfficeSettings}`;
+            if (!environment.appConfig['frontOfficeSettings']) this.getUpdatedConfig();
+            const endpoint = `${environment.cms}/${environment.appConfig['frontOfficeSettings']}`;
             try {
                 const result = await this.http.post<any>(endpoint, {}).toPromise();
                 if (result.revisionsNumber == cachedData.entries[0].revisionsNumber)
@@ -143,6 +155,7 @@ export class ConfigService {
     }
 
     setupEssentials() {
+        if (!this.config) return;
         this.formConfigService.config$.next(this.config);
         Object.keys(this.config).forEach(key => {
             if ((key.includes('primary') || key.includes('accent') || key.includes('background') || key.includes('Color')) && this.config[key]) {
@@ -158,6 +171,9 @@ export class ConfigService {
                 document.documentElement.style.setProperty(`--font`, 'font');
             }
         });
+        if (!this.config.fontFamily)
+            document.documentElement.style.setProperty(`--font`, 'Din-Next-Lt-Arabic_Regular');
+
         if (!this.config.favicon)
             document.getElementById('favicon').setAttribute('href', `/assets/favicon.ico`);
 
