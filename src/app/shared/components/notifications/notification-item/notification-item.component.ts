@@ -1,11 +1,12 @@
-import { Component, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { NotificationOptionsComponent } from '../notification-options/notification-options.component';
 
 @Component({
   selector: 'app-notification-item',
-  styleUrls: ['./notification-item.component.scss'],
+  // styleUrls: ['./notification-item.component.scss'],
   templateUrl: './notification-item.component.html',
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

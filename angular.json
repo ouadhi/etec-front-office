@@ -44,10 +44,6 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
               {
-                "input": "src/theme/variables.scss",
-                "inject": true
-              },
-              {
                 "input": "node_modules/font-awesome/scss/font-awesome.scss",
                 "inject": true
               },
@@ -55,8 +51,22 @@
                 "input": "node_modules/@ng-select/ng-select/themes/material.theme.css",
                 "inject": true
               },
-              "src/styles.scss"
+              {
+                "input": "src/styles.scss",
+                "inject": false,
+                "bundleName": "locale-style"
+              },
+              {
+                "input": "src/formio/src/lib/formio.lib.scss",
+                "inject": false,
+                "bundleName": "formio-locale-style"
+              }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/"
+              ]
+            },
             "scripts": [],
             "aot": true
           },

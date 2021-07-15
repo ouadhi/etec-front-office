@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { LifeCycleService } from '../life-cycle-service.config';
 import { BaseComponent } from '../../../shared/components/base.component';
@@ -8,7 +8,8 @@ import { RequestsService } from '../../requests/requests.service';
 @Component({
   selector: 'app-service-details',
   templateUrl: './service-details.component.html',
-  styleUrls: ['./service-details.component.css']
+  // styleUrls: ['./service-details.component.css']
+  encapsulation: ViewEncapsulation.None
 })
 export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 

@@ -1,0 +1,28 @@
+.app-page {
+    .page__title {
+        margin: 20px 0 20px 0;
+        background-color: #f5f5f5;
+        /* text-align: center; */
+        vertical-align: middle;
+        padding: 1em;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        max-width: 100%;
+    }
+    .page__back {
+        font-size: 11px;
+        line-height: 18px;
+        margin-top: 20px;
+    }
+    .page__title--narrow {
+        margin: 10px 0 5px;
+    }
+    .alignSwitchAR {
+        text-align: right;
+        margin: 0;
+    }
+    .alignSwitchEN {
+        text-align: left;
+        margin: 0;
+    }
+}

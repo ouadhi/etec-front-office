@@ -70,11 +70,11 @@
     "ngx-webstorage-service": "^4.1.0",
     "node-sass": "^4.14.1",
     "pdfjs-dist": "^2.5.207",
+    "primeicons": "^4.1.0",
     "primeng": "^11.3.1",
     "rxjs": "~6.6.6",
     "stomp": "^0.1.1",
     "tslib": "^2.0.0",
-    "primeicons": "^4.1.0",
     "webstomp-client": "^1.2.6",
     "zone.js": "~0.11.3"
   },

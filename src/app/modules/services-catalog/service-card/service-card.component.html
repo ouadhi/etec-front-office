@@ -1,5 +1,7 @@
-<mat-card class="mat-card" [routerLink]="['/service-catalog/details/'+id]">
-  <img src="assets/images/service-bg.png" class="card-bg" />
-  <h5 class="title two-line">{{cardTitle}}</h5>
-  <p class="service-desc two-line"> {{text}}</p>
-</mat-card>
+<div class="app-service-card">
+  <mat-card class="mat-card" [routerLink]="['/service-catalog/details/'+id]">
+    <img src="assets/images/service-bg.png" class="card-bg" />
+    <h5 class="title two-line">{{cardTitle}}</h5>
+    <p class="service-desc two-line"> {{text}}</p>
+  </mat-card>
+</div>

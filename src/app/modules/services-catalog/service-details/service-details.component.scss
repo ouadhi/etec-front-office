@@ -1,0 +1,24 @@
+[dir="rtl"] #control-container {
+    text-align: -webkit-left;
+    text-align: -moz-left;
+}
+
+[dir="ltr"] #control-container {
+    text-align: -webkit-right;
+    text-align: -moz-right;
+}
+
+.app-service-details {
+    .note {
+        margin: 0px;
+    }
+    .alignSwitchAR {
+        text-align: right;
+    }
+    .alignSwitchEN {
+        text-align: left;
+    }
+    #control-container {
+        margin-top: 10px;
+    }
+}

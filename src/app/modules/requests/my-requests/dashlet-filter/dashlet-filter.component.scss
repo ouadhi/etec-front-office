@@ -1,92 +1,81 @@
-@import "../../../../../colors.scss";
-.filter {
-    position: relative;
-    top: 0px;
-    margin: 0px;
-    left: 0px;
-    opacity: 0;
-    z-index: 9;
-    width: 100%;
-    height: auto;
-    margin-bottom: 30px;
-    &-actions {
-        align-self: flex-start;
-        margin-top: 10px;
-        margin-bottom: 10px;
+@import "colors.scss";
+.app-dashlet-filter {
+    .filter {
+        position: relative;
+        top: 0px;
+        margin: 0px;
+        left: 0px;
+        opacity: 0;
+        z-index: 9;
+        width: 100%;
+        height: auto;
+        margin-bottom: 30px;
+        &-actions {
+            align-self: flex-start;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
     }
-}
-
-:host ::ng-deep {
-    .mat-form-field-appearance-legacy .mat-form-field-infix {
-        padding: 0.6475em 0;
+    :host ::ng-deep {
+        .mat-form-field-appearance-legacy .mat-form-field-infix {
+            padding: 0.6475em 0;
+        }
+        .mat-form-field-infix {
+            width: 100%;
+        }
     }
-    .mat-form-field-infix {
+    mat-form-field {
         width: 100%;
     }
-}
-
-mat-form-field {
-    width: 100%;
-}
-
-ion-label {
-    color: var(--ion-color-medium) !important;
-    font-size: 14px !important;
-}
-
-ion-content {
-    height: calc(100% - 103px);
-}
-
-.control {
-    text-align: end;
-}
-
-.btn {
-    min-width: 100px;
-}
-
-.search {
-    padding-right: 45px;
-    background: $primary-color !important;
-    color: #fff !important;
-}
-
-.reset {
-    padding-right: 45px;
-    background: $accent-color !important;
-    color: #fff !important;
-}
-
-.btn-icon {
-    position: absolute;
-    right: 10px;
-    border-left: 1px solid #dddddd69;
-    height: 35px;
-    width: 25px;
-    padding-top: 10px;
-    padding-left: 8px;
-}
-
-mat-form-field {
-    max-width: 300px;
-    display: block;
-}
-
-.input-container {
-    display: flex;
-    align-items: center;
-}
-
-.btn-control-container {
-    text-align: center;
-    margin-top: 50px;
-}
-
-@media (max-width: 599px) {
-    mat-form-field,
-     :host::ng-deep .ng-select {
-        width: 100% !important;
-        max-width: 100% !important;
+    ion-label {
+        color: var(--ion-color-medium) !important;
+        font-size: 14px !important;
+    }
+    ion-content {
+        height: calc(100% - 103px);
+    }
+    .control {
+        text-align: end;
+    }
+    .btn {
+        min-width: 100px;
+    }
+    .search {
+        padding-right: 45px;
+        background: $primary-color !important;
+        color: #fff !important;
+    }
+    .reset {
+        padding-right: 45px;
+        background: $accent-color !important;
+        color: #fff !important;
+    }
+    .btn-icon {
+        position: absolute;
+        right: 10px;
+        border-left: 1px solid #dddddd69;
+        height: 35px;
+        width: 25px;
+        padding-top: 10px;
+        padding-left: 8px;
+    }
+    mat-form-field {
+        max-width: 300px;
+        display: block;
+    }
+    .input-container {
+        display: flex;
+        align-items: center;
+    }
+    .btn-control-container {
+        text-align: center;
+        margin-top: 50px;
+    }
+    @media (max-width: 599px) {
+        mat-form-field,
+         :host::ng-deep .ng-select {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
     }
 }

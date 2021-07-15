@@ -1,11 +1,12 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, ViewEncapsulation } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { BaseComponent } from '../../../shared/components/base.component';
 
 @Component({
   selector: 'app-my-requests',
   templateUrl: './my-requests.component.html',
-  styleUrls: ['./my-requests.component.css']
+  // styleUrls: ['./my-requests.component.css']
+  encapsulation: ViewEncapsulation.None
 })
 export class MyRequestsComponent extends BaseComponent {
 

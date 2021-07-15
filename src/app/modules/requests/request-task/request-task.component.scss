@@ -1,37 +1,46 @@
-formio {
-    padding: 10px;
-}
-
-.alignSwitchAR {
-    text-align: right;
-}
-
-.alignSwitchEN {
-    text-align: left;
-}
-
-:host::ng-deep {
-
-  .app-formio {
-      margin-top: -50px;
-      padding-left: 15px;
-      padding-right: 15px;
-  }
-    .disable-in-task {
-        pointer-events: none;
-        touch-action: none;
-        input,
-        textarea,
-        .form-control {
-            background: #fff !important;
-            outline: none !important;
-            border: none !important;
-            box-shadow: none !important;
+[dir=rtl] {
+    .app-request-task {
+         :host::ng-deep {
+            .disable-in-task {
+                .choices[data-type*=select-one]:after {
+                    display: none;
+                }
+            }
         }
-        .choices__button,
-        .choices[data-type*=select-one][dir=rtl]:after,
-        .fileSelector {
-            display: none;
+    }
+}
+
+.app-request-task {
+    formio {
+        padding: 10px;
+    }
+    .alignSwitchAR {
+        text-align: right;
+    }
+    .alignSwitchEN {
+        text-align: left;
+    }
+     :host::ng-deep {
+        .app-formio {
+            margin-top: -50px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .disable-in-task {
+            pointer-events: none;
+            touch-action: none;
+            input,
+            textarea,
+            .form-control {
+                background: #fff !important;
+                outline: none !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .choices__button,
+            .fileSelector {
+                display: none;
+            }
         }
     }
 }

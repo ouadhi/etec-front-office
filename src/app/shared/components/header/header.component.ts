@@ -8,7 +8,7 @@ import { Formio } from 'formiojs';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss'],
+    // styleUrls: ['./header.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent extends BaseComponent {
@@ -29,11 +29,6 @@ export class HeaderComponent extends BaseComponent {
         super(injector);
 
         this.configService.loadConfig().then(config => {
-            if (config.logo) {
-                this.logo = `${environment.cms}${config.logo.path}`;
-            } else {
-                this.logo = '/assets/logo.png';
-            }
         });
         const DelayPlugin = {
             priority: 100,

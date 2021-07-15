@@ -1,69 +1,77 @@
-<mat-toolbar id="toolbar-lg">
-    <mat-toolbar-row style="padding: 0;">
-        <span fxFlex class="logo-container">
-            <img class="logo logo-lg" src="assets/images/brand-white.png" routerLink="/" />
-            <img class="logo logo-md" src="assets/images/logo.png" routerLink="/" />
-            <!-- <img height="50" [src]="logo" /> -->
-        </span>
+<div class="app-header">
+    <mat-toolbar id="toolbar-lg">
+        <mat-toolbar-row style="padding: 0;">
+            <span fxFlex class="logo-container">
+                <img class="logo logo-lg"
+                    src="{{configService.logo? configService.logo: 'assets/images/brand-white.png'}}" routerLink="/" />
+                <img class="logo logo-md"
+                    src="{{configService.smallLogo? configService.smallLogo:'assets/images/logo.png'}}"
+                    routerLink="/" />
+                <!-- <img height="50" [src]="logo" /> -->
+            </span>
 
-        <span fxFlex class="department">
-            <a mat-button routerLink="/service-catalog" routerLinkActive="active">{{'NAV.SERVICES_CATALOG' | translate
-                }}</a>
-            <a mat-button *ngIf="loggedIn" routerLink="/requests/my" routerLinkActive="active">{{'NAV.MY_REQUESTS' |
-                translate}}</a>
-            <a mat-button *ngIf="!loggedIn" routerLink="/requests/query" routerLinkActive="active">{{'NAV.QUERY_REQUEST'
-                |
-                translate}}</a>
-        </span>
+            <span fxFlex class="department">
+                <a mat-button routerLink="/service-catalog" routerLinkActive="active">{{'NAV.SERVICES_CATALOG' |
+                    translate
+                    }}</a>
+                <a mat-button *ngIf="loggedIn" routerLink="/requests/my" routerLinkActive="active">{{'NAV.MY_REQUESTS' |
+                    translate}}</a>
+                <a mat-button *ngIf="!loggedIn" routerLink="/requests/query"
+                    routerLinkActive="active">{{'NAV.QUERY_REQUEST'
+                    |
+                    translate}}</a>
+            </span>
 
-        <div class="user-actions">
-            <div class="switcher" [matMenuTriggerFor]="langDropdown">
-                <mat-icon>language</mat-icon>
-                <span class="lang lg">{{'HEADER.LANGUAGE' | translate}}&nbsp;:&nbsp;</span>
-                <span class="selected-language lg">{{'HEADER.' + currentLang | translate}}</span>
-            </div>
-            <mat-menu #langDropdown="matMenu">
-                <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
-                <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
-            </mat-menu>
+            <div class="user-actions">
+                <div class="switcher" [matMenuTriggerFor]="langDropdown">
+                    <mat-icon>language</mat-icon>
+                    <span class="lang lg">{{'HEADER.LANGUAGE' | translate}}&nbsp;:&nbsp;</span>
+                    <span class="selected-language lg">{{'HEADER.' + currentLang | translate}}</span>
+                </div>
+                <mat-menu #langDropdown="matMenu">
+                    <button mat-menu-item (click)="switchLangService.changeLang('ar')">عربي</button>
+                    <button mat-menu-item (click)="switchLangService.changeLang('en')">English</button>
+                </mat-menu>
 
-            <div *ngIf="loggedIn" class="user-container" mat-button [matMenuTriggerFor]="menu">
-                <span class="user-photo">
-                    <img [src]="userDetails?.photo ? userDetails?.photo : 'assets/images/avatar.png'"
-                        [alt]="userDetails?.firstName" class="photo">
-                </span>
-                <span class="user-details lg">
-                    <span class="greeting">{{'LAYOUT.WELCOME' | translate}}</span>
-                    <span class="user-name">
-                        {{userDetails?.firstName}} {{userDetails?.lastName}}
-                        <mat-icon class="user-icon">
-                            expand_more
-                        </mat-icon>
+                <div *ngIf="loggedIn" class="user-container" mat-button [matMenuTriggerFor]="menu">
+                    <span class="user-photo">
+                        <img [src]="userDetails?.photo ? userDetails?.photo : (configService.userAvatar? configService.userAvatar: 'assets/images/avatar.png')"
+                            [alt]="userDetails?.firstName" class="photo">
                     </span>
-                </span>
+                    <span class="user-details lg">
+                        <span class="greeting">{{'LAYOUT.WELCOME' | translate}}</span>
+                        <span class="user-name">
+                            {{userDetails?.firstName}} {{userDetails?.lastName}}
+                            <mat-icon class="user-icon">
+                                expand_more
+                            </mat-icon>
+                        </span>
+                    </span>
+                </div>
+                <div *ngIf="!loggedIn" (click)="login()" class="identity">
+                    <mat-icon matTooltip="{{'LAYOUT.LOGIN' | translate}}">perm_identity</mat-icon>
+                </div>
+
+                <mat-menu #menu="matMenu">
+                    <!-- <button class="user-details sm" mat-menu-item routerLink="/accounts/entity/profile"
+                        *ngIf="loggedIn">
+                        <span>{{'LAYOUT.WELCOME' | translate}}</span>
+                        <span>
+                            {{userDetails?.firstName}} {{userDetails?.lastName}}
+                        </span>
+                    </button> -->
+                    <button mat-menu-item routerLink="/accounts/entity/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' |
+                        translate}}</button>
+                    <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
+                    <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
+
+                </mat-menu>
+
+
+                <app-notifications-button *ngIf="loggedIn"></app-notifications-button>
             </div>
-            <div *ngIf="!loggedIn" (click)="login()" class="identity">
-                <mat-icon matTooltip="{{'LAYOUT.LOGIN' | translate}}">perm_identity</mat-icon>
-            </div>
-
-            <mat-menu #menu="matMenu">
-                <button class="user-details sm" mat-menu-item routerLink="/accounts/entity/profile" *ngIf="loggedIn">
-                    <span>{{'LAYOUT.WELCOME' | translate}}</span>
-                    <span>
-                        {{userDetails?.firstName}} {{userDetails?.lastName}}
-                    </span> 
-                </button>
-                <button mat-menu-item routerLink="/accounts/entity/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' |
-                    translate}}</button>
-                <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
-                <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
-
-            </mat-menu>
 
 
-            <app-notifications-button *ngIf="loggedIn"></app-notifications-button>
-        </div>
-
-
-    </mat-toolbar-row>
-</mat-toolbar>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

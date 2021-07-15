@@ -1,8 +1,10 @@
-ion-item {
-    cursor: pointer;
-    font-size: 11px;
-    --min-height: 30px;
-    ion-label {
-        margin: 2px 0px;
+.app-notification-options {
+    ion-item {
+        cursor: pointer;
+        font-size: 11px;
+        --min-height: 30px;
+        ion-label {
+            margin: 2px 0px;
+        }
     }
 }

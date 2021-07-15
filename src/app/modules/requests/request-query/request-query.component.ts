@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReCaptchaV3Service } from 'ngx-captcha';
@@ -11,7 +11,8 @@ import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 @Component({
   selector: 'app-request-query',
   templateUrl: './request-query.component.html',
-  styleUrls: ['./request-query.component.scss'],
+  // styleUrls: ['./request-query.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [InOutAnimation]
 })
 export class RequestQueryComponent extends BaseComponent implements OnInit, OnDestroy {

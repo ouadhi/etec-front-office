@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
@@ -6,7 +6,8 @@ import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
-  styleUrls: ['./request.component.scss'],
+  // styleUrls: ['./request.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [InOutAnimation]
 })
 export class RequestComponent extends BaseComponent implements OnInit {

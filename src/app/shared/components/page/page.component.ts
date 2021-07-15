@@ -1,11 +1,12 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, Input } from '@angular/core';
 import { BaseComponent } from '../base.component';
 
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
-  styleUrls: ['./page.component.css']
+  // styleUrls: ['./page.component.css']
+  encapsulation: ViewEncapsulation.None
 })
 export class PageComponent extends BaseComponent implements OnInit {
 

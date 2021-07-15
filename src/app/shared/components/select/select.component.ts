@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, forwardRef, Input, OnInit, Output, OnChanges } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
@@ -9,13 +9,14 @@ import { BaseComponent } from '../base.component';
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
+  // styleUrls: ['./select.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [
     { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => SelectComponent), multi: true },
   ]
 })
 export class SelectComponent extends BaseComponent implements OnInit, ControlValueAccessor, OnChanges {
-  @Input() bindValue; 
+  @Input() bindValue;
   @Input() bindLabel;
   @Input() data = [];
   @Input() hideLoaded = false;
@@ -36,7 +37,7 @@ export class SelectComponent extends BaseComponent implements OnInit, ControlVal
   loading = false;
   propagateChange: any = () => { };
   validateFn: any = () => { };
-  
+
   constructor(public injector: Injector) { super(injector); }
 
   compare = (item, selected) => {

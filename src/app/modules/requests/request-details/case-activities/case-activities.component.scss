@@ -1,231 +1,209 @@
-@import '../../../../../colors.scss';
-ion-chip {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border-radius: 8px;
-    font-family: inherit;
-    cursor: auto;
-    ion-label {
+@import 'colors.scss';
+.app-case-activities {
+    ion-chip {
         width: 100%;
-        font-weight: bold;
-        text-align: center;
+        height: 100%;
+        margin: 0;
+        border-radius: 8px;
         font-family: inherit;
-        line-height: 10px;
+        cursor: auto;
+        ion-label {
+            width: 100%;
+            font-weight: bold;
+            text-align: center;
+            font-family: inherit;
+            line-height: 10px;
+            font-size: 12px;
+        }
+    }
+    ion-label {
+        font-weight: 900;
+    }
+    .mdate {
         font-size: 12px;
+        display: block;
+        clear: both;
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+        font-weight: 500;
     }
-}
-
-ion-label {
-    font-weight: 900;
-}
-
-.mdate {
-    font-size: 12px;
-    display: block;
-    clear: both;
-    text-align: center;
-    width: 100%;
-    margin-top: 10px;
-    font-weight: 500;
-}
-
-@keyframes glowing {
-    0% {
-        box-shadow: 0 0 -10px #c4a300;
+    @keyframes glowing {
+        0% {
+            box-shadow: 0 0 -10px #c4a300;
+        }
+        40% {
+            box-shadow: 0 0 10px #c4a300;
+        }
+        60% {
+            box-shadow: 0 0 10px #c4a300;
+        }
+        100% {
+            box-shadow: 0 0 -10px #c4a300;
+        }
     }
-    40% {
-        box-shadow: 0 0 10px #c4a300;
+    .glowing {
+        animation: glowing 5000ms infinite;
     }
-    60% {
-        box-shadow: 0 0 10px #c4a300;
+    #tracking {
+        margin-bottom: 1rem;
     }
-    100% {
-        box-shadow: 0 0 -10px #c4a300;
+    .milestones {
+        padding: 10px 20px 0px 24px;
+        height: 100px;
     }
-}
-
-.glowing {
-    animation: glowing 5000ms infinite;
-}
-
-#tracking {
-    margin-bottom: 1rem;
-}
-
-.milestones {
-    padding: 10px 20px 0px 24px;
-    height: 100px;
-}
-
-:host::ng-deep .owl-item div {
-    text-align: center;
-    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.20), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-    margin: 8px 4px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    border-radius: 8px;
-    // max-width: 250px;
-}
-
-.tracking-list {
-    border: 1px solid #e5e5e5;
-}
-
-.tracking-item {
-    position: relative;
-    padding: 2rem 2rem 2rem 0rem;
-    font-size: 0.9rem;
-    margin-left: 3rem;
-}
-
-.tracking-item:last-child {
-    padding-bottom: 2rem;
-}
-
-.tracking-item .tracking-icon {
-    line-height: 2.6rem;
-    position: absolute;
-    left: -1.3rem;
-    width: 2.6rem;
-    height: 2.6rem;
-    text-align: center;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    background-color: #fff;
-    color: #fff;
-}
-
-.greenBorder {
-    border-left: 3px solid #4bb543;
-}
-
-.lightBorder {
-    border-left: 3px solid #6c757d;
-}
-
-.warningBorder {
-    border-left: 3px solid var(--ion-color-warning);
-}
-
-@media (min-width: 992px) {
+    :host::ng-deep .owl-item div {
+        text-align: center;
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.20), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+        margin: 8px 4px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        border-radius: 8px;
+        // max-width: 250px;
+    }
+    .tracking-list {
+        border: 1px solid #e5e5e5;
+    }
     .tracking-item {
-        margin-left: 10rem;
-        margin-right: 10rem;
+        position: relative;
+        padding: 2rem 2rem 2rem 0rem;
+        font-size: 0.9rem;
+        margin-left: 3rem;
     }
-}
-
-.slider-container {
-    overflow: hidden;
-    position: relative;
-}
-
-:host::ng-deep {
-    .owl-stage {
-        .owl-item {
-            // opacity: 0.7;
-            position: relative;
-            &:last-child {
-                // opacity: 1;
+    .tracking-item:last-child {
+        padding-bottom: 2rem;
+    }
+    .tracking-item .tracking-icon {
+        line-height: 2.6rem;
+        position: absolute;
+        left: -1.3rem;
+        width: 2.6rem;
+        height: 2.6rem;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        background-color: #fff;
+        color: #fff;
+    }
+    .greenBorder {
+        border-left: 3px solid #4bb543;
+    }
+    .lightBorder {
+        border-left: 3px solid #6c757d;
+    }
+    .warningBorder {
+        border-left: 3px solid var(--ion-color-warning);
+    }
+    @media (min-width: 992px) {
+        .tracking-item {
+            margin-left: 10rem;
+            margin-right: 10rem;
+        }
+    }
+    .slider-container {
+        overflow: hidden;
+        position: relative;
+    }
+    :host::ng-deep {
+        .owl-stage {
+            .owl-item {
+                // opacity: 0.7;
+                position: relative;
+                &:last-child {
+                    // opacity: 1;
+                }
             }
         }
-    }
-    .owl-wrapper {
-        display: table !important;
-    }
-    .owl-item {
-        display: table-cell;
-        float: none;
-        vertical-align: middle;
-        // max-width: 250px !important;
-        div {
-            text-align: center;
+        .owl-wrapper {
+            display: table !important;
+        }
+        .owl-item {
+            display: table-cell;
+            float: none;
+            vertical-align: middle;
+            // max-width: 250px !important;
+            div {
+                text-align: center;
+            }
+        }
+        .owl-nav {
+            display: flex;
+            align-content: space-between;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            position: absolute;
+            width: calc(100% + 48px);
+            left: -23px;
+            top: 50%;
+            margin-top: -19px;
+        }
+        .owl-prev,
+        .owl-next {
+            padding: 0px !important;
+            font-size: 23px !important;
+            background: transparent !important;
+            color: #4d668c !important;
         }
     }
-    .owl-nav {
-        display: flex;
-        align-content: space-between;
-        -webkit-box-pack: justify;
-        justify-content: space-between;
-        position: absolute;
-        width: calc(100% + 48px);
-        left: -23px;
-        top: 50%;
-        margin-top: -19px;
+    .green {
+        background: $success-color;
+        border-left: 7px solid $success-color !important;
+        background: linear-gradient(90deg, rgba(58, 173, 109, 0.24) 0%, rgba(58, 173, 109, 0.13) 35%, rgba(58, 173, 109, 0.09) 100%);
     }
-    .owl-prev,
-    .owl-next {
-        padding: 0px !important;
-        font-size: 23px !important;
-        background: transparent !important;
-        color: #4d668c !important;
+    .icon-green {
+        color: $success-color;
     }
-}
-
-.green {
-    background: $green-color;
-    border-left: 7px solid $green-color !important;
-    background: linear-gradient(90deg, rgba(58, 173, 109, 0.24) 0%, rgba(58, 173, 109, 0.13) 35%, rgba(58, 173, 109, 0.09) 100%);
-}
-
-.icon-green {
-    color: $green-color;
-}
-
-.blue {
-    background: $primary-color;
-    border-left: 7px solid $primary-color !important;
-    background: linear-gradient(90deg, rgba(0, 173, 195, 0.24) 0%, rgba(0, 173, 195, 0.13) 35%, rgba(0, 173, 195, 0.09) 100%);
-}
-
-.icon-blue {
-    color: $primary-color;
-}
-
-ion-icon {
-    width: 35px;
-    height: 35px;
-}
-
-.gray {
-    border-left: 7px solid #5d5c5c !important;
-}
-
-.carousel-container {
-    position: relative;
-    .carousel-control {
-        position: absolute;
-        top: 22px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        direction: rtl;
-        .arrow-control {
-            display: inline-block;
-            font-size: 25px;
-            cursor: pointer;
+    .blue {
+        background: $primary-color;
+        border-left: 7px solid $primary-color !important;
+        background: linear-gradient(90deg, rgba(0, 173, 195, 0.24) 0%, rgba(0, 173, 195, 0.13) 35%, rgba(0, 173, 195, 0.09) 100%);
+    }
+    .icon-blue {
+        color: $primary-color;
+    }
+    ion-icon {
+        width: 35px;
+        height: 35px;
+    }
+    .gray {
+        border-left: 7px solid #5d5c5c !important;
+    }
+    .carousel-container {
+        position: relative;
+        .carousel-control {
+            position: absolute;
+            top: 22px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            direction: rtl;
+            .arrow-control {
+                display: inline-block;
+                font-size: 25px;
+                cursor: pointer;
+            }
+            .disabled {
+                pointer-events: none;
+                cursor: none;
+                opacity: 0.4;
+            }
         }
-        .disabled {
-            pointer-events: none;
-            cursor: none;
-            opacity: 0.4;
-        }
-    }
-    .scrolling-wrapper {
-        overflow: hidden;
-        white-space: nowrap;
-        margin: 0 20px;
-        scroll-behavior: smooth;
-        .status-card {
-            display: inline-block;
-            margin: 0 5px;
-            width: 300px;
-            height: 80px;
-            margin-bottom: 5px;
-            ion-chip {
-                border: 1px solid #ddd;
-                box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.20), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+        .scrolling-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 20px;
+            scroll-behavior: smooth;
+            .status-card {
+                display: inline-block;
+                margin: 0 5px;
+                width: 300px;
+                height: 80px;
+                margin-bottom: 5px;
+                ion-chip {
+                    border: 1px solid #ddd;
+                    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.20), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+                }
             }
         }
     }

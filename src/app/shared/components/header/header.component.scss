@@ -1,188 +1,6 @@
-@import '../../../../colors.scss';
-
-.mat-toolbar {
-    background: #f7f7f7 !important;
-}
-
-.logo {
-    max-width: 100%;
-    height: auto;
-    outline: none;
-    cursor: pointer;
-}
-
-.logo-md {
-    display: none;
-}
-
-.user-details.sm {
-    display: none;
-}
-
-.logo-container {
-    text-align: center;
-    background: $primary-color;
-    max-width: 250px;
-    padding: 10px;
-    display: inline-block;
-    height: 100%;
-}
-
-.mat-toolbar-row,
-.mat-toolbar-single-row {
-    height: 60px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.22) !important;
-    z-index: 9;
-}
-
-.department {
-    display: flex;
-    align-items: center;
-    height: -webkit-fill-available;
-}
-
-.department a {
-    padding: 15px 20px;
-    display: inline-block;
-    display: flex;
-    align-items: center;
-    height: -webkit-fill-available;
-}
-
-.department a:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    background: $primary-color;
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-}
-
-.department a:hover:after {
-    width: 100%;
-    left: 0;
-}
-
-.department .active {
-    font-weight: 700;
-    background: #f5f5f5;
-    color: $primary-color;
-}
-
-.department a.active:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 4px;
-    left: 50%;
-    position: absolute;
-    background: $primary-color;
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-}
-
-.department a.active:after {
-    width: 100%;
-    left: 0;
-}
-
-.mat-menu-content {
-    padding: 0 !important;
-    min-width: 150px !important;
-}
-
-.mat-menu-item:hover:not([disabled]),
-.mat-menu-item.cdk-program-focused:not([disabled]),
-.mat-menu-item.cdk-keyboard-focused:not([disabled]),
-.mat-menu-item-highlighted:not([disabled]) {
-    background: $primary-color;
-    color: #fff;
-}
-
-.user-actions {
-    background: #2b5294;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    padding-left: 1.5rem;
-    border-bottom-left-radius: 1.3rem;
-    color: #fff;
-    .user-container {
-        display: flex;
-        align-items: center;
-    }
-    .pad-h-20 {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    .user-photo {
-        max-width: 3rem;
-        margin: 0 0.8rem 0 0;
-        min-width: 40px;
-        cursor: pointer;
-        .photo {
-            border-radius: 50%;
-        }
-    }
-    .user-details {
-        text-align: left;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        line-height: 14px;
-        cursor: pointer;
-        .greeting {
-            text-align: start;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-        .user-name {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: $primary-color;
-            .user-icon {
-                position: relative;
-                top: 3px;
-                right: -3px;
-                font-size: 0.8rem;
-            }
-        }
-    }
-    .switcher {
-        font-size: 0.75rem;
-        font-weight: 700;
-        margin-right: 1rem;
-        cursor: pointer;
-        background-color: rgba(255, 255, 255, 0.1);
-        border: none;
-        border-radius: 5px;
-        padding: 8px;
-        display: flex;
-        align-items: flex-end;
-        mat-icon {
-            font-size: 16px;
-        }
-        .selected-language {
-            color: $primary-color;
-        }
-    }
-    .identity {
-        cursor: pointer;
-        min-width: 5rem;
-        height: inherit;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #34357e;
-    }
-}
-
+@import 'colors.scss';
 [dir="rtl"] {
+   .app-header{
     .user-actions {
         padding-left: 0;
         padding-right: 1.5rem;
@@ -207,47 +25,218 @@
             margin-right: 0;
         }
     }
+   }
 }
-
-@media screen and (max-width: 1080px) {
-    .logo-lg {
-        display: none;
+.app-header {
+    .mat-toolbar {
+        background: #f7f7f7 !important;
     }
-    .logo-md {
-        display: inline-block;
-    }
-    .logo-container {
-        background: transparent;
-        width: 70px !important;
-        max-width: 70px;
-    }
-}
-
-@media (max-width: 992px) {
-    .switcher .lg {
-        display: none;
-    }
-    .user-actions .switcher mat-icon {
-        font-size: 20px;
-        width: auto;
+    .logo {
+        max-width: 100%;
         height: auto;
+        outline: none;
+        cursor: pointer;
     }
-}
-
-@media (max-width: 767px) {
     .logo-md {
-        display: none;
-    }
-    .logo-container {
-        display: none;
-    }
-    .toolbar-lg {
-        display: none;
-    }
-    .user-details.lg {
         display: none;
     }
     .user-details.sm {
-        display: inline-block;
+        display: none;
     }
+    .logo-container {
+        text-align: center;
+        background: $primary-color;
+        max-width: 250px;
+        padding: 10px;
+        display: inline-block;
+        height: 100%;
+    }
+    .mat-toolbar-row,
+    .mat-toolbar-single-row {
+        height: 60px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.22) !important;
+        z-index: 9;
+    }
+    .department {
+        display: flex;
+        align-items: center;
+        height: -webkit-fill-available;
+    }
+    .department a {
+        padding: 15px 20px;
+        display: inline-block;
+        display: flex;
+        align-items: center;
+        height: -webkit-fill-available;
+    }
+    .department a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: $primary-color;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    .department a:hover:after {
+        width: 100%;
+        left: 0;
+    }
+    .department .active {
+        font-weight: 700;
+        background: #f5f5f5;
+        color: $primary-color;
+    }
+    .department a.active:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 4px;
+        left: 50%;
+        position: absolute;
+        background: $primary-color;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    .department a.active:after {
+        width: 100%;
+        left: 0;
+    }
+    .user-actions {
+        background: #2b5294;
+        height: inherit;
+        display: flex;
+        align-items: center;
+        padding-left: 1.5rem;
+        border-bottom-left-radius: 1.3rem;
+        color: #fff;
+        .user-container {
+            display: flex;
+            align-items: center;
+        }
+        .pad-h-20 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .user-photo {
+            max-width: 3rem;
+            margin: 0 0.8rem 0 0;
+            min-width: 40px;
+            cursor: pointer;
+            .photo {
+                border-radius: 50%;
+            }
+        }
+        .user-details {
+            text-align: left;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            line-height: 14px;
+            cursor: pointer;
+            .greeting {
+                text-align: start;
+                font-size: 0.75rem;
+                font-weight: 700;
+            }
+            .user-name {
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: $primary-color;
+                .user-icon {
+                    position: relative;
+                    top: 3px;
+                    right: -3px;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+        .switcher {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-right: 1rem;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            padding: 8px;
+            display: flex;
+            align-items: flex-end;
+            mat-icon {
+                font-size: 16px;
+            }
+            .selected-language {
+                color: $primary-color;
+            }
+        }
+        .identity {
+            cursor: pointer;
+            min-width: 5rem;
+            height: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #34357e;
+        }
+    }
+
+    @media screen and (max-width: 1080px) {
+        .logo-lg {
+            display: none;
+        }
+        .logo-md {
+            display: inline-block;
+        }
+        .logo-container {
+            background: transparent;
+            width: 70px !important;
+            max-width: 70px;
+        }
+    }
+    @media (max-width: 992px) {
+        .switcher .lg {
+            display: none;
+        }
+        .user-actions .switcher mat-icon {
+            font-size: 20px;
+            width: auto;
+            height: auto;
+        }
+    }
+    @media (max-width: 767px) {
+        .logo-md {
+            display: none;
+        }
+        .logo-container {
+            display: none;
+        }
+        .toolbar-lg {
+            display: none;
+        }
+        .user-details.lg {
+            display: none;
+        }
+        .user-details.sm {
+            display: inline-block;
+        }
+    }
+    app-notifications-button {
+        height: inherit;
+    }
+}
+
+.mat-menu-item:hover:not([disabled]),
+.mat-menu-item.cdk-program-focused:not([disabled]),
+.mat-menu-item.cdk-keyboard-focused:not([disabled]),
+.mat-menu-item-highlighted:not([disabled]) {
+    background: $primary-color;
+    color: #fff;
+}
+.mat-menu-content {
+    padding: 0 !important;
+    min-width: 150px !important;
 }

@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
+import { FormConfigService } from 'src/formio/src/lib/form-config.service';
+declare let FontFace: any;
 
 @Injectable({ providedIn: 'root' })
 
 export class ConfigService {
-    // tslint:disable-next-line:variable-name
-    private _config = null;
+    private storageCssKey = "_fo_css_variable"
+    private style = 'locale-style';
+    private config = null;
     private defaults = [{
         backgroundColor: 'rgb(235, 235, 235)',
         primary50: 'rgb(232, 243, 245)',
@@ -69,57 +72,166 @@ export class ConfigService {
         accentContrastA200: 'rgb(0, 0, 0)',
         accentContrastA400: 'rgb(0, 0, 0)',
         accentContrastA700: 'rgb(0, 0, 0)',
+        primaryColor: '#00adc3',
+        warningColor: '#f0b432',
+        accentColor: '#0c7782',
+        secondaryColor: '#666',
+        successColor: '#3aad6d',
+        accentColor200: '#2185b8',
+        redColor: 'rgb(255, 0, 0)',
+        accentColor50: '#1c719b',
+        customCss: `
+        .app-formio .btn:not(.editgrid-add-btn){
+            border-radius: 12px!important;
+        }`
     }];
 
-    constructor(private http: HttpClient, private translate: TranslateService) {
+    constructor(private http: HttpClient, private translate: TranslateService, private formConfigService: FormConfigService) {
     }
 
     getAppConfig(queryParams = {}): Observable<any> {
-        const endpoint = `${environment.cms}${environment.appConfig.endpoint}?filter[_id]=${environment.appConfig.id}`;
-        return this.http.post<any>(endpoint,
-            {
+        if (!environment.appConfig['endpoint'] || !environment.appConfig['id'])
+            return from(
+                [{
+                    entries: this.defaults
+                }]
+            );
 
-            }).pipe(
-                map(resp => (resp)),
-                catchError((e) => {
-                    return from(
-                        [{
-                            entries: this.defaults
-                        }]
-                    );
-                }));
-
+        const endpoint = `${environment.cms}${environment.appConfig['endpoint']}?filter[_id]=${environment.appConfig['id']}`;
+        return this.http.post<any>(endpoint, {}).pipe(
+            map(resp => (resp)),
+            catchError((e) => {
+                return from(
+                    [{
+                        entries: this.defaults
+                    }]
+                );
+            }));
     }
-    
+
     async loadConfig(): Promise<any> {
+        const cssVariable = localStorage.getItem(this.storageCssKey);
+        if (cssVariable) {
+            const cachedData = JSON.parse(cssVariable);
+
+            // //just for test
+            // return  this.getUpdatedConfig();
+
+            if (!environment.appConfig['frontOfficeSettings']) this.getUpdatedConfig();
+            const endpoint = `${environment.cms}/${environment.appConfig['frontOfficeSettings']}`;
+            try {
+                const result = await this.http.post<any>(endpoint, {}).toPromise();
+                if (result.revisionsNumber == cachedData.entries[0].revisionsNumber)
+                    return this.getDefaultCachedData(cachedData);
+                else return this.getUpdatedConfig();
+            } catch (e) {
+                return this.getDefaultCachedData(cachedData);
+            }
+        } else {
+            return this.getUpdatedConfig();
+        }
+    }
+
+    private getDefaultCachedData(cachedData) {
+        return new Promise((resolve, _) => {
+            this.config = cachedData.entries[0];
+            resolve(this.config);
+        });
+    }
+
+    private getUpdatedConfig() {
         return new Promise(async (resolve, reject) => {
-            if (this._config) {
-                resolve(this._config);
+            if (this.config) {
+                resolve(this.config);
                 return;
             }
 
             this.getAppConfig().toPromise()
                 .then(async (result) => {
-                    this._config = result.entries[0];
-                    resolve(this._config);
+                    localStorage.setItem(this.storageCssKey, JSON.stringify(result));
+                    this.config = result.entries[0];
+                    resolve(this.config);
                 },
                     () => reject('App Config could not be loaded.')
                 );
         });
     }
+
     setupEssentials() {
-        Object.keys(this._config).forEach(key => {
-            if (key.includes('primary') || key.includes('accent') || key.includes('background')) {
-                document.documentElement.style.setProperty(`--${key}`, this._config[key]);
+        if (!this.config) return;
+        this.formConfigService.config$.next(this.config);
+        Object.keys(this.config).forEach(key => {
+            if ((key.includes('primary') || key.includes('accent') || key.includes('background') || key.includes('Color')) && this.config[key]) {
+                document.documentElement.style.setProperty(`--${key}`, this.config[key]);
                 document.documentElement.style.setProperty(`--${key}-parts`,
-                    this._config[key].replace('rgb', '').replace('(', '').replace(')', ''));
-            } else if (key.includes('favicon') && this._config[key]) {
-                document.getElementById('favicon').setAttribute('href', `${environment.cms}/${this._config[key].path}`);
+                    this.config[key].replace('rgb', '').replace('(', '').replace(')', ''));
+            } else if (key.includes('favicon') && this.config[key] && document.getElementById('favicon')) {
+                document.getElementById('favicon').setAttribute('href', `${environment.cms}/${this.config[key].path}`);
+            } else if ((key.includes('logo') || key.includes('smallLogo') || key.includes('userAvatar') || key.includes('sectionsIcon')) && this.config[key] && this.config[key].path) {
+                const path = `url("${environment.cms}${this.config[key].path}")`;
+                document.documentElement.style.setProperty(`--${key}`, path);
+            } else if (key.includes('fontFamily') && this.config[key]) {
+                document.documentElement.style.setProperty(`--font`, 'font');
             }
         });
-        if (!this._config.favicon) {
+        if (!this.config.fontFamily)
+            document.documentElement.style.setProperty(`--font`, 'Din-Next-Lt-Arabic_Regular');
+
+        if (!this.config.favicon)
             document.getElementById('favicon').setAttribute('href', `/assets/favicon.ico`);
+
+        if (this.config.name)
+            document.title = this.config.name;
+
+        this.changeFont();
+        this.loadOverrideCss();
+    }
+
+    private changeFont() {
+        if (this.config.fontFamily) {
+            var customfont = new FontFace('font', `url(${this.config.fontFamily})`);
+            customfont.load().then(loaded_face => {
+                (document as any).fonts.add(loaded_face);
+            }).catch(error => {
+                console.log(error);
+            });
         }
     }
 
+    private loadOverrideCss() {
+        const stylesheet = document.createElement('link');
+        stylesheet.addEventListener('load', () => { });
+        stylesheet.rel = 'stylesheet';
+        stylesheet.href = this.style + '.css';
+        document.getElementsByTagName('head')[0].appendChild(stylesheet);
+
+        const css = this.config.customCss;
+        var head = document.head || document.getElementsByTagName('head')[0],
+            style = document.createElement('style') as any;
+
+        head.appendChild(style);
+
+        style.type = 'text/css';
+        if (style.styleSheet) {
+            // This is required for IE8 and below.
+            style.styleSheet.cssText = css;
+        } else {
+            style.appendChild(document.createTextNode(css));
+        }
+    }
+
+    get logo() {
+        if (!this.config || !this.config.logo) return null;
+        return `${environment.cms}${this.config.logo.path}`;
+    }
+
+    get smallLogo() {
+        if (!this.config || !this.config.smallLogo) return null;
+        return `${environment.cms}${this.config.smallLogo.path}`;
+    }
+
+    get userAvatar() {
+        if (!this.config || !this.config.userAvatar) return null;
+        return `${environment.cms}${this.config.userAvatar.path}`;
+    }
 }

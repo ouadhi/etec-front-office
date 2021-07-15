@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
@@ -8,7 +8,8 @@ import { RequestsService } from '../../requests.service';
 @Component({
   selector: 'app-anonymous-request-details',
   templateUrl: './anonymous-request-details.component.html',
-  styleUrls: ['./anonymous-request-details.component.scss']
+  // styleUrls: ['./anonymous-request-details.component.scss']
+  encapsulation: ViewEncapsulation.None
 })
 export class AnonymousRequestDetailsComponent extends BaseComponent implements OnInit {
 
@@ -64,10 +65,10 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
       this.sub = this.rest.queryAnonymousRequests(this.route.snapshot.params.id).subscribe(data => {
         this.processInstanceId = data.procInstID;
         if (this.processInstanceId)
-        this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
-          .subscribe(data => {
-            this.tasks = data;
-          });
+          this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
+            .subscribe(data => {
+              this.tasks = data;
+            });
 
         this.request = data;
         this.link = this.request.link;

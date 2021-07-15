@@ -4,7 +4,8 @@
 @import "~ngx-toastr/toastr";
 @import "../node_modules/bootstrap/scss/functions";
 @import "~@angular/material/theming";
-@import "./colors.scss";
+@import "colors.scss";
+@import "./theme/variables.scss";
 @function mat-color($palette, $hue: default, $opacity: null) {
     @if type-of($hue)==number and $hue>=0 and $hue <=1 {
         @return mat-color($palette, default, $hue);
@@ -20,6 +21,13 @@
         @return #{str-slice($color, 0, str-index($color, ",")) + $opacity + ")"};
     }
     @return rgba($color, if($opacity==null, opacity($color), $opacity));
+}
+
+@function empty($value) {
+    @if not $value or $value=="" or $value==0 or $value==() or length($value)==0 {
+        @return true;
+    }
+    @return false;
 }
 
 @font-face {
@@ -208,7 +216,12 @@ tr,
 td,
 th,
 .mat-menu-item {
-    font-family: "Droid Arabic Kufi", "Quicksand", sans-serif;
+    @if empty(var(--font)) {
+        font-family: "Droid Arabic Kufi", "Quicksand", sans-serif;
+    }
+    @else {
+        font-family: var(--font), "Quicksand", sans-serif;
+    }
 }
 
 h5,
@@ -220,7 +233,12 @@ h5,
 /* // @TODO arabic */
 
 .lang-ar body {
-    font-family: "Droid Arabic Kufi", sans-serif;
+    @if empty(var(--font)) {
+        font-family: "Droid Arabic Kufi", sans-serif;
+    }
+    @else {
+        font-family: var(--font), sans-serif;
+    }
 }
 
 body {
@@ -259,7 +277,7 @@ img {
     white-space: normal !important;
     word-wrap: break-word;
     width: auto;
-    height: 56px;
+    height: auto;
 }
 
 .department.active {
@@ -668,15 +686,28 @@ a:hover {
 }
 
 html[dir="rtl"] {
-    --font-family-md-base: "Droid Arabic Kufi", sans-serif;
-    --font-family-ios-base: "Droid Arabic Kufi", sans-serif;
-    --font-family-wp-base: "Droid Arabic Kufi", sans-serif;
-    --ion-font-family: "Droid Arabic Kufi", sans-serif !important;
+    @if empty(var(--font)) {
+        --font-family-md-base: "Droid Arabic Kufi", sans-serif;
+        --font-family-ios-base: "Droid Arabic Kufi", sans-serif;
+        --font-family-wp-base: "Droid Arabic Kufi", sans-serif;
+        --ion-font-family: "Droid Arabic Kufi", sans-serif !important;
+    }
+    @else {
+        --font-family-md-base: var(--font), sans-serif;
+        --font-family-ios-base: var(--font), sans-serif;
+        --font-family-wp-base: var(--font), sans-serif;
+        --ion-font-family: var(--font), sans-serif !important;
+    }
     .mat-dialog-title {
         direction: rtl;
         text-align: right;
         font-size: 15px;
-        font-family: "Droid Arabic Kufi", sans-serif !important;
+        @if empty(var(--font)) {
+            font-family: "Droid Arabic Kufi", sans-serif;
+        }
+        @else {
+            font-family: var(--font), sans-serif;
+        }
     }
     .big-chip h6 {
         direction: rtl;
@@ -766,11 +797,11 @@ html[dir="rtl"] {
     z-index: 1;
     border-left: 18px solid transparent;
     border-right: 18px solid transparent;
-    border-top: 12px solid #166569;
+    border-top: 12px solid var(--accentColor);
 }
 
 .mat-ink-bar {
-    background: #166569 !important;
+    background: var(--accentColor) !important;
 }
 
 .mat-tab-label-container {
@@ -864,7 +895,7 @@ html[dir="rtl"] {
 
 .ctm-btn {
     color: #fff;
-    background: #067a84;
+    background: var(--primaryColor);
     padding: 5px 16px;
     border-radius: 12px;
     transition: all .3s ease;
@@ -876,7 +907,7 @@ html[dir="rtl"] {
 }
 
 .ctm-btn:hover:enabled {
-    background: #00adc3;
+    background: var(--primaryColor);
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -884,7 +915,7 @@ html[dir="rtl"] {
 .ctm-btn[disabled] {
     border: 1px solid #999999;
     background-color: #cccccc;
-    color: #666666;
+    color: var(--secondaryColor);
 }
 
 .mat-form-field-infix {
@@ -946,17 +977,17 @@ html[dir="rtl"] {
 }
 
 .radio-selected label {
-    color: #2185b8;
+    color: var(--primaryColor);
 }
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
     input[type="checkbox"],
     input[type="radio"] {
-        --active: #2185b8;
+        --active: var(--primaryColor);
         --active-inner: #fff;
-        --focus: 2px rgba(39, 94, 254, 0.3);
+        --focus: 2px var(--primaryColor);
         --border: #bbc1e1;
-        --border-hover: #2185b8;
+        --border-hover: var(--primaryColor);
         --background: #fff;
         --disabled: #f6f8ff;
         --disabled-inner: #e1e6f9;
@@ -1573,11 +1604,11 @@ html[dir="rtl"] {
     .p-tooltip {
         &.p-tooltip-top {
             .p-tooltip-arrow {
-                border-top-color: #2185b8 !important;
+                border-top-color: var(--primaryColor) !important;
             }
         }
         .p-tooltip-text {
-            background: #2185b8 !important;
+            background: var(--primaryColor) !important;
         }
     }
 }
@@ -1618,3 +1649,20 @@ html[dir="rtl"] {
         left: 2rem !important;
     }
 }
+
+.auto-width {
+    width: auto !important;
+}
+
+input:not([class*="switch"]),
+select,
+.form-control {
+    border-radius: 4px !important;
+}
+
+@import './app/app.component.scss';
+@import './app/modules/accounts/accounts.scss';
+@import './app/modules/services-catalog/services-catalog.scss';
+@import './app/modules/requests/requests.scss';
+@import './app/modules/notifications/notifications.scss';
+@import './app/shared/components/components.scss';

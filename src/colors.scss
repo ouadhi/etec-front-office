@@ -1,6 +1,5 @@
-$primary-color: #00adc3;
-$warning-color: #f0b432;
-$accent-color: #0c7782;
-$secondary-color: #666;
-$green-color: #3aad6d;
-$red-color: red;
+$primary-color: var(--primaryColor);
+$warning-color: var(--warningColor);
+$accent-color: var(--accentColor); 
+$secondary-color: var(--secondaryColor);
+$success-color: var(--successColor);
