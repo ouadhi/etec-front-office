@@ -80,7 +80,10 @@ export class ConfigService {
         accentColor200: '#2185b8',
         redColor: 'rgb(255, 0, 0)',
         accentColor50: '#1c719b',
-        customCss: ''
+        customCss: `
+        .app-formio .btn:not(.editgrid-add-btn){
+            border-radius: 12px!important;
+        }`
     }];
 
     constructor(private http: HttpClient, private translate: TranslateService, private formConfigService: FormConfigService) {
