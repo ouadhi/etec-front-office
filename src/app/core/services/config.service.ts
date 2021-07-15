@@ -5,6 +5,7 @@ import { map } from 'rxjs/internal/operators/map';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
+import { FormConfigService } from 'src/formio/src/lib/form-config.service';
 declare let FontFace: any;
 
 @Injectable({ providedIn: 'root' })
@@ -12,11 +13,7 @@ declare let FontFace: any;
 export class ConfigService {
     private storageCssKey = "_fo_css_variable"
     private style = 'locale-style';
-
-    // tslint:disable-next-line:variable-name
     private config = null;
-    private fontFamily = '"customFont", "Quicksand", sans-serif';
-    private customFont = `html, body, h1, h2, h3, h4, h5, h6, p, span, div, section, b, strong, small, ul, ol, li, button, a, table, thead, tbody, tr, td, th, .mat-menu-item{font-family:"customFont", "Quicksand", sans-serif;}`;
     private defaults = [{
         backgroundColor: 'rgb(235, 235, 235)',
         primary50: 'rgb(232, 243, 245)',
@@ -82,7 +79,7 @@ export class ConfigService {
         successColor: '#3aad6d'
     }];
 
-    constructor(private http: HttpClient, private translate: TranslateService) {
+    constructor(private http: HttpClient, private translate: TranslateService, private formConfigService: FormConfigService) {
     }
 
     getAppConfig(queryParams = {}): Observable<any> {
@@ -146,13 +143,19 @@ export class ConfigService {
     }
 
     setupEssentials() {
+        this.formConfigService.config$.next(this.config);
         Object.keys(this.config).forEach(key => {
-            if (key.includes('primary') || key.includes('accent') || key.includes('background') || key.includes('Color')) {
+            if ((key.includes('primary') || key.includes('accent') || key.includes('background') || key.includes('Color')) && this.config[key]) {
                 document.documentElement.style.setProperty(`--${key}`, this.config[key]);
                 document.documentElement.style.setProperty(`--${key}-parts`,
                     this.config[key].replace('rgb', '').replace('(', '').replace(')', ''));
-            } else if (key.includes('favicon') && this.config[key]) {
+            } else if (key.includes('favicon') && this.config[key] && document.getElementById('favicon')) {
                 document.getElementById('favicon').setAttribute('href', `${environment.cms}/${this.config[key].path}`);
+            } else if ((key.includes('logo') || key.includes('smallLogo') || key.includes('userAvatar') || key.includes('sectionsIcon')) && this.config[key] && this.config[key].path) {
+                const path = `url("${environment.cms}${this.config[key].path}")`;
+                document.documentElement.style.setProperty(`--${key}`, path);
+            } else if (key.includes('fontFamily') && this.config[key]) {
+                document.documentElement.style.setProperty(`--font`, 'font');
             }
         });
         if (!this.config.favicon)
@@ -167,19 +170,9 @@ export class ConfigService {
 
     private changeFont() {
         if (this.config.fontFamily) {
-            var customfont = new FontFace('customFont', `url(${this.config.fontFamily})`);
+            var customfont = new FontFace('font', `url(${this.config.fontFamily})`);
             customfont.load().then(loaded_face => {
                 (document as any).fonts.add(loaded_face);
-                document.body.style.fontFamily = this.fontFamily;
-
-                var head = document.head || document.getElementsByTagName('head')[0],
-                    style = document.createElement('style') as any;
-                head.appendChild(style);
-                if (style.styleSheet) {
-                    style.styleSheet.cssText = this.customFont;
-                } else {
-                    style.appendChild(document.createTextNode(this.customFont));
-                }
             }).catch(error => {
                 console.log(error);
             });
@@ -193,7 +186,7 @@ export class ConfigService {
         stylesheet.href = this.style + '.css';
         document.getElementsByTagName('head')[0].appendChild(stylesheet);
 
-        const css = this.config.frontOfficeCss;
+        const css = this.config.customCss;
         var head = document.head || document.getElementsByTagName('head')[0],
             style = document.createElement('style') as any;
 
@@ -221,10 +214,5 @@ export class ConfigService {
     get userAvatar() {
         if (!this.config || !this.config.userAvatar) return null;
         return `${environment.cms}${this.config.userAvatar.path}`;
-    }
-
-    get sectionsIcon() {
-        if (!this.config || !this.config.sectionsIcon) return null;
-        return `${environment.cms}${this.config.sectionsIcon.path}`;
     }
 }

@@ -2,9 +2,7 @@
   <div class="container-fluid" [ngClass]="hasPadding ? 'has-padding' : 'no-padding'">
     <div class="section" [ngClass]="sectionCard ? 'sectionCard' : 'justSection'">
       <div>
-        <h2 class="section__title" *ngIf="sectionTitle" bindCssVariable="customImage"
-        bindCssVariableValue="url({{configService.sectionsIcon ? configService.sectionsIcon : '/assets/images/theme-icon.png'}})"
-          [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+        <h2 class="section__title" *ngIf="sectionTitle" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
           <span>{{sectionTitle}}</span>
         </h2>
       </div>

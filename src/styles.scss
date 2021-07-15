@@ -23,6 +23,13 @@
     @return rgba($color, if($opacity==null, opacity($color), $opacity));
 }
 
+@function empty($value) {
+    @if not $value or $value=="" or $value==0 or $value==() or length($value)==0 {
+        @return true;
+    }
+    @return false;
+}
+
 @font-face {
     font-family: 'Din-Next-Lt-Arabic_Regular';
     src: url('./assets/fonts/DinNextLtArabic/regular/Din-Next-Lt-Arabic_Regular.eot');
@@ -171,7 +178,6 @@ $rms-app-warn);
 @import "~css-star-rating/scss/star-rating";
 @import "~@ionic/angular/css/core.css";
 @import "~bootstrap/scss/bootstrap";
-
 html,
 body,
 .mat-card,
@@ -210,7 +216,12 @@ tr,
 td,
 th,
 .mat-menu-item {
-    font-family: "Droid Arabic Kufi", "Quicksand", sans-serif;
+    @if empty(var(--font)) {
+        font-family: "Droid Arabic Kufi", "Quicksand", sans-serif;
+    }
+    @else {
+        font-family: var(--font), "Quicksand", sans-serif;
+    }
 }
 
 h5,
@@ -222,7 +233,12 @@ h5,
 /* // @TODO arabic */
 
 .lang-ar body {
-    font-family: "Droid Arabic Kufi", sans-serif;
+    @if empty(var(--font)) {
+        font-family: "Droid Arabic Kufi", sans-serif;
+    }
+    @else {
+        font-family: var(--font), sans-serif;
+    }
 }
 
 body {
@@ -670,15 +686,28 @@ a:hover {
 }
 
 html[dir="rtl"] {
-    --font-family-md-base: "Droid Arabic Kufi", sans-serif;
-    --font-family-ios-base: "Droid Arabic Kufi", sans-serif;
-    --font-family-wp-base: "Droid Arabic Kufi", sans-serif;
-    --ion-font-family: "Droid Arabic Kufi", sans-serif !important;
+    @if empty(var(--font)) {
+        --font-family-md-base: "Droid Arabic Kufi", sans-serif;
+        --font-family-ios-base: "Droid Arabic Kufi", sans-serif;
+        --font-family-wp-base: "Droid Arabic Kufi", sans-serif;
+        --ion-font-family: "Droid Arabic Kufi", sans-serif !important;
+    }
+    @else {
+        --font-family-md-base: var(--font), sans-serif;
+        --font-family-ios-base: var(--font), sans-serif;
+        --font-family-wp-base: var(--font), sans-serif;
+        --ion-font-family: var(--font), sans-serif !important;
+    }
     .mat-dialog-title {
         direction: rtl;
         text-align: right;
         font-size: 15px;
-        font-family: "Droid Arabic Kufi", sans-serif !important;
+        @if empty(var(--font)) {
+            font-family: "Droid Arabic Kufi", sans-serif;
+        }
+        @else {
+            font-family: var(--font), sans-serif;
+        }
     }
     .big-chip h6 {
         direction: rtl;
@@ -1624,6 +1653,7 @@ html[dir="rtl"] {
 .auto-width {
     width: auto !important;
 }
+
 input:not([class*="switch"]),
 select,
 .form-control {

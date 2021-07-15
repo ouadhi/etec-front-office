@@ -20,8 +20,13 @@
         }
         &__title:before {
             content: "";
-            // background-image: url('/assets/images/theme-icon.png');
-            background-image: var(--customImage);
+            @if empty(var(--sectionsIcon)) {
+                background-image: url('/assets/images/theme-icon.png');
+            }
+            @else {
+                $image: var(--sectionsIcon);
+                background-image: $image;
+            }
             width: 20px;
             height: 15px;
             display: inline-block;

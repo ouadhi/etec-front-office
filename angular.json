@@ -55,6 +55,11 @@
                 "input": "src/styles.scss",
                 "inject": false,
                 "bundleName": "locale-style"
+              },
+              {
+                "input": "src/formio/src/lib/formio.lib.scss",
+                "inject": false,
+                "bundleName": "formio-locale-style"
               }
             ],
             "stylePreprocessorOptions": {
