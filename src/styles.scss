@@ -1660,6 +1660,10 @@ select,
     border-radius: 4px !important;
 }
 
+input[type*="radio"] {
+    border-radius: 100% !important;
+}
+
 @import './app/app.component.scss';
 @import './app/modules/accounts/accounts.scss';
 @import './app/modules/services-catalog/services-catalog.scss';

@@ -1,9 +1,10 @@
 
-import { Injector, ViewEncapsulation } from '@angular/core';
+import { Injector, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
+import { FormioComponent } from 'src/formio/src/lib/components/formio/formio.component';
 import { SuccessToast } from 'src/formio/src/lib/modules/toast/success-toast/success-toast.component';
 import { CaseActivityService } from '../case-activities.service';
 
@@ -18,6 +19,8 @@ import { CaseActivityService } from '../case-activities.service';
 
 })
 export class RequestTaskComponent extends BaseComponent implements OnInit {
+  @ViewChild(FormioComponent) formComponent: FormioComponent;
+
   task: any = {};
   public max = 65;
   public mainWidth = 65;
@@ -66,6 +69,21 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
         toastComponent: SuccessToast
       });
     this.goBack();
+  }
+
+  customSubmit(submission) {
+    const send = Object.assign({}, this.formComponent.submission);
+    send.data.saveAndSend = true;
+    this.formComponent.submitForm(send);
+  }
+
+  formLoad(formSettings) {
+    setTimeout(() => {
+      if (formSettings.properties && eval(formSettings.properties.hideSubmit)) {
+        document.getElementsByName('data[submit]')[0].style.display = 'none';
+        document.getElementById('custom-actions').style.display = 'block';
+      }
+    })
   }
 
 

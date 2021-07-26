@@ -2,5 +2,15 @@
     <app-section sectionTitle="{{'SERVICE.beneficiaryTask' | translate}}" [showContainer]="false">
     </app-section>
     <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
-        [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (submit)="onSubmit($event)"></formio>
+        [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (onSubmit)="onSubmit($event)" (submit)="onSubmit($event)"
+        (formLoad)="formLoad($event)"></formio>
+
+    <div id="custom-actions" class="form-group has-feedback formio-component formio-component-button formio-component-submit  form-group">
+        <button class="submit-task btn btn-primary btn-md" href="javascript:" (click)="customSubmit(formComponent.submission)"
+            [disabled]="formComponent?.formio?.invalid == true">
+            {{'forms.common.Submit' | translate}}
+        </button>
+        <br />
+        <br />
+    </div>
 </app-page>
