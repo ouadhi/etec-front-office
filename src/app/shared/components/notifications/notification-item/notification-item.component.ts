@@ -1,5 +1,7 @@
-import { Component, Input, EventEmitter, Output, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ChangeDetectionStrategy, ViewEncapsulation, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { NotificationOptionsComponent } from '../notification-options/notification-options.component';
 
 @Component({
@@ -10,14 +12,34 @@ import { NotificationOptionsComponent } from '../notification-options/notificati
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class NotificationItemComponent {
+export class NotificationItemComponent implements OnChanges, OnDestroy {
 
   @Input() notification;
   @Output() notificationAction: EventEmitter<any> = new EventEmitter();
+  
+  notificationContent = '';
+  isArabic;
+  sub: Subscription;
 
-  constructor(private popoverCtrl: PopoverController) {
+  constructor(private popoverCtrl: PopoverController,
+    private translateService: TranslateService) {
+    this.isArabic = this.translateService.currentLang == 'ar';
+    this.sub = this.translateService.onLangChange.subscribe(data => {
+      this.isArabic = data.lang == 'ar';
+    });
+  }
+  
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.notification && changes.notification.currentValue && changes.notification.currentValue.notificationContents.length) {
+      if (this.isArabic)
+        this.notificationContent = changes.notification.currentValue.notificationContents.find(q => q.lang == 'AR').message;
+      else this.notificationContent = changes.notification.currentValue.notificationContents.find(q => q.lang == 'EN').message;
+    }
   }
 
+  ngOnDestroy() {
+    if (this.sub) this.sub.unsubscribe();
+  }
   toggleRead(event) {
     event.stopPropagation();
     this.notificationAction.emit({ action: 'status', notification: this.notification });
