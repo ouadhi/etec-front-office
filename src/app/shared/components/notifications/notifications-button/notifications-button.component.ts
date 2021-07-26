@@ -55,7 +55,7 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
         //         toastClass: 'notification-toast',
         //         closeButton: true,
         //         enableHtml: true,
-        //         timeOut: 1000000,
+        //         timeOut: 10000000,
         //         toastComponent: NotificationToast
         //     });
 
@@ -65,7 +65,7 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
         //         toastClass: 'notification-toast',
         //         closeButton: true,
         //         enableHtml: true,
-        //         timeOut: 1000000,
+        //         timeOut: 10000000,
         //         toastComponent: SuccessToast
         //     });
 
@@ -75,7 +75,7 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
         //         toastClass: 'notification-toast',
         //         closeButton: true,
         //         enableHtml: true,
-        //         timeOut: 1000000,
+        //         timeOut: 10000000,
         //         toastComponent: ErrorToast
         //     });
     }
