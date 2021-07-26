@@ -37,7 +37,7 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
             if (activity.notificationContents.length) {
                 if (this.translateService.currentLang == 'ar')
                     content = activity.notificationContents.find(q => q.lang == 'AR').message;
-                else content = activity.notificationContents.find(q => q.lang == 'AR').message;
+                else content = activity.notificationContents.find(q => q.lang == 'EN').message;
             }
 
             this.toastrService.show(
