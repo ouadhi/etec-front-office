@@ -1664,6 +1664,14 @@ input[type*="radio"] {
     border-radius: 100% !important;
 }
 
+.mat-menu-item:hover:not([disabled]),
+.mat-menu-item.cdk-program-focused:not([disabled]),
+.mat-menu-item.cdk-keyboard-focused:not([disabled]),
+.mat-menu-item-highlighted:not([disabled]) {
+    background: var(--primaryColor) !important;
+    color: #fff !important;
+}
+
 @import './app/app.component.scss';
 @import './app/modules/accounts/accounts.scss';
 @import './app/modules/services-catalog/services-catalog.scss';
