@@ -33,8 +33,15 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
         this.sub = this.notificationsService.listenerObserver.subscribe(activity => {
             console.log(activity);
 
+            let content = '';
+            if (activity.notificationContents.length) {
+                if (this.translateService.currentLang == 'ar')
+                    content = activity.notificationContents.find(q => q.lang == 'AR').message;
+                else content = activity.notificationContents.find(q => q.lang == 'AR').message;
+            }
+
             this.toastrService.show(
-                `${this.translateService.instant('a few seconds ago')} <i class="fa fa-comments"></i>`, activity.content ? activity.content.trim() : '', {
+                `${this.translateService.instant('a few seconds ago')} <i class="fa fa-comments"></i>`, content ? content.trim() : '', {
                 toastClass: 'notification-toast',
                 closeButton: true,
                 enableHtml: true,
