@@ -16,7 +16,7 @@ export class NotificationItemComponent implements OnChanges, OnDestroy {
 
   @Input() notification;
   @Output() notificationAction: EventEmitter<any> = new EventEmitter();
-  
+
   notificationContent = '';
   isArabic;
   sub: Subscription;
@@ -26,9 +26,15 @@ export class NotificationItemComponent implements OnChanges, OnDestroy {
     this.isArabic = this.translateService.currentLang == 'ar';
     this.sub = this.translateService.onLangChange.subscribe(data => {
       this.isArabic = data.lang == 'ar';
+
+      if (this.notification.notificationContents.length) {
+        if (this.isArabic)
+          this.notificationContent = this.notification.notificationContents.find(q => q.lang == 'AR').message;
+        else this.notificationContent = this.notification.notificationContents.find(q => q.lang == 'EN').message;
+      }
     });
   }
-  
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.notification && changes.notification.currentValue && changes.notification.currentValue.notificationContents.length) {
       if (this.isArabic)
