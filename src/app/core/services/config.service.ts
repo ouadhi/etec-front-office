@@ -85,8 +85,10 @@ export class ConfigService {
             border-radius: 12px!important;
         }`
     }];
+    static http: HttpClient;
 
     constructor(private http: HttpClient, private translate: TranslateService, private formConfigService: FormConfigService) {
+        ConfigService.http = this.http;
     }
 
     getAppConfig(queryParams = {}): Observable<any> {
