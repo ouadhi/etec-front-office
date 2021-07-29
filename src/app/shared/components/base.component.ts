@@ -14,7 +14,7 @@ import { ServicesService } from "src/app/modules/services-catalog/services.servi
 import { FilterPipe } from "ngx-filter-pipe";
 import { ConfigService } from "src/app/core/services/config.service";
 import { LoggerService } from "src/app/core/services/logger.service";
-import { FormioLoader } from "src/formio/src/public_api"; 
+import { FormioLoader } from "src/formio/src/public_api";
 
 // @Component({ })
 export abstract class BaseComponent implements OnDestroy {
@@ -66,5 +66,29 @@ export abstract class BaseComponent implements OnDestroy {
     ngOnDestroy() {
         this.subs.forEach(s => s.unsubscribe());
         this.subs = [];
+    }
+
+    replaceUrl(queryString: string) {
+        window.history.replaceState(null,
+            null,
+            `${window.location.protocol}//${window.location.host}${window.location.pathname}?${queryString}`);
+    }
+
+    toQueryString(obj: any) {
+        const str = [];
+        for (const p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + '=' + (!!`${obj[p]}` && obj[p] != null ? encodeURIComponent(obj[p]) : ''));
+            }
+        return str.join('&');
+    }
+
+    fromQueryString(query: string = null): any {
+        if (!location.search) return null;
+        if (query == null) query = location.search.replace('?', '');
+        const result = JSON.parse('{"' + decodeURI(query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+        for (const p in result)
+            if (result[p].includes(',')) result[p] = result[p].split(',');
+        return result;
     }
 }

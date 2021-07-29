@@ -46,6 +46,8 @@ export class MyRequestsComponent extends BaseComponent {
     } else {
       params.requestDateBefore = '';
     }
+
+    this.replaceUrl(this.toQueryString(params));
     return this.requestsService.getRequests(params);
   }
 

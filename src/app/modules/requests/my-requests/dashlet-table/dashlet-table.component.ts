@@ -54,10 +54,18 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
   }
 
   ngOnInit() {
-    this.sort.sort({
-      id: 'requestDate',
-      start: 'desc'
-    } as MatSortable);
+    const data = this.fromQueryString() || {};
+    if (data.page) {
+      this.paginator.pageIndex = +data.page;
+    }
+    if (data.size) {
+      this.paginator.pageSize = +data.size;
+    }
+    if (data.sort) {
+      const segments = decodeURIComponent(data.sort).split(',');
+      this.sort.sort({ id: segments[0], start: segments[1] } as MatSortable);
+    } else
+      this.sort.sort({ id: 'requestDate', start: 'desc' } as MatSortable);
 
     this.displayedColumns = Object.keys(this.columns);
     this.expandableColumns = this.displayedColumns.filter((item) => {
@@ -88,9 +96,11 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
         startWith({}),
         switchMap(() => {
           this.formioLoader.loading = true;
+          const data = this.fromQueryString();
           return this.service({
             ...this.casesFilter.filterData,
-            sortBy: this.sort.active, sortDirection: this.sort.direction,
+            sortBy: this.sort.active,
+            sortDirection: this.sort.direction,
             page: this.paginator.pageIndex,
             size: this.paginator.pageSize
           });

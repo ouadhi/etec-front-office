@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Injector, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FilterService } from '../../filter.service';
@@ -28,7 +29,7 @@ export class DashletFilterComponent extends BaseComponent implements OnInit {
     /**
      * Filter Object
      */
-    filterData = {
+    filterData: any = {
         services: [],
         statuses: [],
         activeTask: null,
@@ -56,16 +57,26 @@ export class DashletFilterComponent extends BaseComponent implements OnInit {
         this.filter.next({});
     }
 
-    handleStatus(selection) {
-        this.filterData.statuses = [];
+    handleStatus(selection, clearFilterStatus = true) {
+        if (clearFilterStatus) this.filterData.statuses = [];
         this.statusFilterData = [];
         this.sub = this.filterService.getStatuses(selection.id).subscribe((data => {
             this.statusFilterData = Object.keys(data).map(item => ({ id: item, name: data[item] }));
         }));
     }
     ngOnInit() {
-
         this.sub = this.filterService.getServices().subscribe(data => this.servicesFilterData = data);
+
+        const data = { ...this.filterData, ...this.fromQueryString() };
+        for (let p in this.filterData) {
+            if (data[p.toString()]) {
+                this.filterData[p.toString()] = data[p.toString()];
+            }
+        }
+        if (this.filterData.requestDateAfter) this.filterData.requestDateAfter = new Date(this.filterData.requestDateAfter);
+        if (this.filterData.requestDateBefore) this.filterData.requestDateBefore = new Date(this.filterData.requestDateBefore);
+        if (this.filterData.services) this.handleStatus({ id: this.filterData.services }, false);
+
         this.sub = this.route.params.subscribe(params => {
             this.loggerService.log(params);
             if (params.u === '1') {
