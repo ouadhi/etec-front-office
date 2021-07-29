@@ -1,10 +1,11 @@
 <div class="app-notifications-button">
-    <div class="notification-btn" (click)="resetCount()" mat-button [matMenuTriggerFor]="notifications">
+    <div class="notification-btn" (click)="resetCount()" mat-button [matMenuTriggerFor]="notifications"
+        (menuClosed)="toggleMenu(false)" (menuOpened)="toggleMenu(true)">
         <mat-icon matBadge="{{notificationsCount ? notificationsCount : null}}" matBadgePosition="before"
             matBadgeColor="accent">notifications_none</mat-icon>
     </div>
     <mat-menu class="notifications" #notifications="matMenu">
-        <app-notifications-modal></app-notifications-modal>
+        <app-notifications-modal *ngIf="notificationsData?.length && isMenuOppened"></app-notifications-modal>
     </mat-menu>
 
     <!-- <button (click)="test()">test</button> -->

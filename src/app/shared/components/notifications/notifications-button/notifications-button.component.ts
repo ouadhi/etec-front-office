@@ -17,6 +17,10 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
     get notificationsCount() {
         return this.notificationsService.notificationsCount;
     }
+    get notificationsData() {
+        return this.notificationsService.notifications;
+    }
+    isMenuOppened = false;
 
     constructor(public injector: Injector,
         private notificationsService: NotificationsService,
@@ -53,6 +57,10 @@ export class NotificationsButtonComponent extends BaseComponent implements OnIni
                     this.router.navigate(['/requests/details/' + activity.sourceId]);
                 });
         });
+    }
+
+    toggleMenu(isOppen) {
+        this.isMenuOppened = isOppen;
     }
 
     test() {

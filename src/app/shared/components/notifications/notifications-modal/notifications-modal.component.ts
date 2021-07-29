@@ -1,9 +1,11 @@
+import { SwitchLangService } from 'src/app/core/services/switch-lang.service';
 import { Injector, Input, OnInit } from '@angular/core';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import { BaseComponent } from '../../base.component';
+import { distinctUntilChanged, debounceTime, first, take, tap, filter, distinctUntilKeyChanged } from 'rxjs/operators';
 
 /**
  * Notifications Modal Component
@@ -94,7 +96,7 @@ export class NotificationsModalComponent extends BaseComponent implements OnInit
   }
 
   handleOpen(item) {
-    this.modalController.dismiss();
+    // this.modalController.dismiss();
     this.notificationsService.updateStatus(item, true);
   }
 
@@ -139,6 +141,6 @@ export class NotificationsModalComponent extends BaseComponent implements OnInit
   }
 
   close() {
-    this.modalController.dismiss();
+    // this.modalController.dismiss();
   }
 }

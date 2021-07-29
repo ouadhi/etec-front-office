@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
@@ -34,13 +35,17 @@ export class NotificationsService implements OnInit {
     private sessionService: SessionService,
     public router: Router,
     private keycloak: KeycloakService,
+    private translateService: TranslateService,
 
   ) {
     this.connect();
     this.connection = this.createConnection();
     this.subscribe();
     this.getCount();
-
+    this.translateService.onLangChange
+      .subscribe(data => {
+        this.fetchNotifications(true);
+      });
   }
   getCount() {
     this.doCountNew(this.sessionService.getUsername()).subscribe((data) => {
@@ -113,13 +118,18 @@ export class NotificationsService implements OnInit {
       this._notificationsCount = data;
     });
   }
-  fetchNotifications() {
+  fetchNotifications(withReset = false) {
+    if (withReset) {
+      this._notifications = [];
+    }
+
     const observable = this.doGetNotifications(this.sessionService.getUsername(), {
       page: this._notifications.length > 0 ? Math.ceil(this._notifications.length / this.pageSize) : 0,
       size: this.pageSize,
       paged: true,
       sort: 'sendDate,desc',
-      sorted: true
+      sorted: true,
+      lang: this.translateService.currentLang.toUpperCase()
     });
     observable.subscribe((notifications) => {
       this._notifications = this._notifications.concat(notifications.items);
