@@ -99,6 +99,7 @@ export class HeaderComponent extends BaseComponent {
     }
 
     async doLogout() {
+        localStorage.setItem('needLogin', 'true');
         await this.keycloakService.logout();
     }
 

@@ -16,6 +16,7 @@ export class AuthGuard extends KeycloakAuthGuard {
           this.router.navigate(['/']);
 
         } else {
+          localStorage.setItem('needLogin', 'true');
           this.keycloakAngular.login();
         }
         return;

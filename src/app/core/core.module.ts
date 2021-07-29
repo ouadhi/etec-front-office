@@ -1,3 +1,4 @@
+import { SwitchLangService } from 'src/app/core/services/switch-lang.service';
 import { LoggerService } from './services/logger.service';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from "@angular/core";
@@ -49,7 +50,7 @@ export const FormAuthConfig: FormioAuthConfig = {
             provide: APP_INITIALIZER,
             useFactory: initializer,
             multi: true,
-            deps: [KeycloakService, SessionService, Platform, ConfigService, LoggerService]
+            deps: [KeycloakService, SessionService, Platform, ConfigService, LoggerService, SwitchLangService]
         },
         { provide: FormioAppConfig, useFactory: (getFormioEnvironment) },
         {
