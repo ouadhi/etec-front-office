@@ -36,7 +36,7 @@ export const environment = {
     filterStatuses: '/referencedata/departments',
     request: '/referencedata/caseNames',
     account: '/api/account',
-    humanTask: '/dataservice/api/',
+    humanTask: '/dataservice/api/tasks/case/',
     notifications: '/notification/api/',
     socket: '/notification/websocket/orchestra'
   },
