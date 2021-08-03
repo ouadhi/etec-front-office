@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import { FormioComponent } from 'src/formio/src/lib/components/formio/formio.component';
 import { SuccessToast } from 'src/formio/src/lib/modules/toast/success-toast/success-toast.component';
 import { CaseActivityService } from '../case-activities.service';
-
+declare var $: any;
 /**
  * Main Task Component
  */
@@ -83,6 +83,8 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
         document.getElementsByName('data[submit]')[0].style.display = 'none';
         document.getElementById('custom-actions').style.display = 'block';
       }
+      
+      $('.input-group:has(.input-group-addon.input-group-prepend)').css('display', 'block');
     })
   }
 
@@ -103,9 +105,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
           }];
           this.form.formKey = data.formKey.split('/')[2];
 
-          setTimeout(() => {
-            this.form.ready = true;
-          }, 0);
+          setTimeout(() => { this.form.ready = true; }, 0);
         }
       });
 
