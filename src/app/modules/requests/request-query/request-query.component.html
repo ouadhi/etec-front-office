@@ -62,8 +62,22 @@
     <app-section sectionTitle="{{'Steps' | translate}} {{requestName | translate}}">
       <div fxLayout="row wrap">
         <div fxFlex="100">
-          <app-case-activities [caseInstanceId]="cmmnId"></app-case-activities>
 
+          <div class="alert alert-warning" *ngIf="activeTask">
+            <div class="row">
+              <div class="col-auto align-self-start auto-width">
+                <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
+              </div>
+              <div class="col auto-width">
+                {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
+                {{'SERVICE.pleasePress' | translate}} <a
+                  (click)="handleAction()"
+                  class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
+              </div>
+            </div>
+          </div>
+
+          <app-case-activities [caseInstanceId]="cmmnId"></app-case-activities>
           <br />
           <div class="align-dir">
             <button class="ctm-btn query-btn" routerLink="{{requestDetailsUrl}}">

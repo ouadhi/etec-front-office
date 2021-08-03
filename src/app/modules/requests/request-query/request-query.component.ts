@@ -29,6 +29,10 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   cmmnId: string;
   requestId: number;
   queryData: any = {};
+  activeTask = false;
+
+  data: any;
+  tasks: any[];
 
   get requestDetailsUrl() {
     return `/requests/details/${this.requestId}/anonymous`;
@@ -71,10 +75,16 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
           this.found = true;
           // this.router.navigate(['requests/details', data[0].id], { relativeTo: this.route });
 
+          this.data = data[0];
           this.requestName = data[0].requestName;
           this.cmmnId = data[0].cmmnId;
           this.requestId = data[0].id;
+          this.activeTask = data[0].activeTask;
 
+          this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.data.procInstID })
+            .subscribe(data => {
+              this.tasks = data;
+            });
         } else {
           this.notFound = true;
           this.found = false;
@@ -131,6 +141,15 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
 
 
   ngOnDestroy() {
+  }
+
+  handleAction() {
+    this.router.navigate(['/requests/task',
+      this.tasks[0].taskDefinitionKey,
+      this.tasks[0].id,
+      this.data.caseId,
+      this.data.id,
+    ]);
   }
 
   get serviceName() {
