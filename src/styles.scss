@@ -1024,8 +1024,10 @@ html[dir="rtl"] {
             cursor: not-allowed;
             opacity: 0.9;
             &:checked {
-                --b: var(--disabled-inner);
-                --bc: var(--border);
+                // --b: var(--disabled-inner);
+                // --bc: var(--border);
+                --b: #033038;
+                --bc: #273db3;
             }
             &+label {
                 cursor: not-allowed;
@@ -1672,7 +1674,6 @@ input[type*="radio"] {
     background: var(--primaryColor) !important;
     color: #fff !important;
 }
-
 
 @import './app/app.component.scss';
 @import './app/modules/accounts/accounts.scss';
