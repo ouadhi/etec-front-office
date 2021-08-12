@@ -1675,6 +1675,10 @@ input[type*="radio"] {
     color: #fff !important;
 }
 
+.page-wrapper {
+    padding: 2.5rem 2rem;
+}
+
 @import './app/app.component.scss';
 @import './app/modules/accounts/accounts.scss';
 @import './app/modules/services-catalog/services-catalog.scss';
