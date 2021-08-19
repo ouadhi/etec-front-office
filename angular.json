@@ -58,7 +58,7 @@
                 "bundleName": "locale-style"
               },
               {
-                "input": "src/formio/src/lib/formio.lib.scss",
+                "input": "node_modules/dp-formio/src/lib/formio.lib.scss",
                 "inject": false,
                 "bundleName": "formio-locale-style"
               }
