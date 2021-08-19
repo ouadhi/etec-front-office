@@ -19,6 +19,7 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorI18n } from './paginator-i18n';
 import { FormioAuthConfig, FormioAuthService } from 'src/formio/src/lib/modules/resources/pages/formio/auth';
 import { LicenseInterceptor } from './interceptors/license.interceptor';
+import { ETECService } from './services/etec.service';
 
 
 export const FormAuthConfig: FormioAuthConfig = {
@@ -50,7 +51,7 @@ export const FormAuthConfig: FormioAuthConfig = {
             provide: APP_INITIALIZER,
             useFactory: initializer,
             multi: true,
-            deps: [KeycloakService, SessionService, Platform, ConfigService, LoggerService, SwitchLangService]
+            deps: [KeycloakService, SessionService, Platform, ConfigService, LoggerService, SwitchLangService, ETECService]
         },
         { provide: FormioAppConfig, useFactory: (getFormioEnvironment) },
         {
