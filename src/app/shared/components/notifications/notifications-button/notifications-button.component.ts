@@ -1,12 +1,9 @@
-import { Component, OnInit, OnDestroy, Injector, ViewEncapsulation } from '@angular/core';
+import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { BaseComponent } from 'src/app/shared/components/base.component';
-import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
-import { NotificationsModalComponent } from '../notifications-modal/notifications-modal.component';
 import { take } from 'rxjs/operators';
-import { NotificationToast } from 'src/formio/src/lib/modules/toast/notification-toast/notification-toast.component';
-import { ErrorToast } from 'src/formio/src/lib/modules/toast/error-toast/error-toast.component';
-import { SuccessToast } from 'src/formio/src/lib/modules/toast/success-toast/success-toast.component';
+import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
+import { BaseComponent } from 'src/app/shared/components/base.component';
+import { NotificationToast } from 'dp-formio';
 @Component({
     selector: 'app-notifications-button',
     templateUrl: './notifications-button.component.html',

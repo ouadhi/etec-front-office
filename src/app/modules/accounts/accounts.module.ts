@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { SharedModule } from "src/app/shared/shared.module";
-import { ResourcesModule } from "src/formio/src/lib/modules/resources/resources.module";
+import { ResourcesModule } from 'dp-formio';
 import { AccountsComponent } from "./accounts.component";
 import { AccountsRouterModule } from "./accounts.router.module";
 import { EntityProfileComponent } from "./entity-profile/entity-profile.component";

@@ -45,7 +45,7 @@ const routes: Routes = [
   },
   {
     path: 'resources',
-    loadChildren: () => import('../formio/src/lib/modules/resources/resources.module').then(m => m.ResourcesModule),
+    loadChildren: () => import('./resource-wrapper.module').then(m => m.ResourceWrapperModule),
   },
   { path: '404', component: NotFoundComponent },
   {
