@@ -14,7 +14,7 @@ import { ServicesService } from "src/app/modules/services-catalog/services.servi
 import { FilterPipe } from "ngx-filter-pipe";
 import { ConfigService } from "src/app/core/services/config.service";
 import { LoggerService } from "src/app/core/services/logger.service";
-import { FormioLoader } from 'dp-formio';
+import { FormioLoader } from 'src/formio/src/public_api';
 
 // @Component({ })
 export abstract class BaseComponent implements OnDestroy {

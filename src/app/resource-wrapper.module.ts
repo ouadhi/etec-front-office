@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ResourcesModule } from 'dp-formio';
+import { ResourcesModule } from 'src/formio/src/public_api';
 
 @NgModule({
   declarations: [],

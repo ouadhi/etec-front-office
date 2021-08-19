@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
-import { FormioComponent } from 'dp-formio';
-import { SuccessToast } from 'dp-formio';
+import { FormioComponent } from 'src/formio/src/public_api';
+import { SuccessToast } from 'src/formio/src/public_api';
 import { CaseActivityService } from '../case-activities.service';
 declare var $: any;
 /**

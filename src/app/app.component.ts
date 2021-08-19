@@ -1,11 +1,11 @@
-import { registerRatingComponent } from 'dp-formio';
+import { registerRatingComponent } from 'src/formio/src/public_api';
 import { Injector, OnInit, ViewEncapsulation, Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { BaseComponent } from './shared/components/base.component';
 
-import { registerTemplateComponent } from 'dp-formio';
-import { registerTableTreeComponent } from 'dp-formio';
-import { registerAssessmentComponent } from 'dp-formio';
+import { registerTemplateComponent } from 'src/formio/src/public_api';
+import { registerTableTreeComponent } from 'src/formio/src/public_api';
+import { registerAssessmentComponent } from 'src/formio/src/public_api';
 
 @Component({
   selector: 'app-root',

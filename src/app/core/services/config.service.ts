@@ -5,7 +5,7 @@ import { map } from 'rxjs/internal/operators/map';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
-import { FormConfigService } from 'dp-formio';
+import { FormConfigService } from 'src/formio/src/public_api';
 declare let FontFace: any;
 
 @Injectable({ providedIn: 'root' })
