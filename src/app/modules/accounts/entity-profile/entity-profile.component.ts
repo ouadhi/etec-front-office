@@ -11,12 +11,16 @@ import { BaseComponent } from '../../../shared/components/base.component';
 })
 export class EntityProfileComponent extends BaseComponent implements OnInit {
 
+  type: string;
   profileId: string;
 
   constructor(public injector: Injector) { super(injector); }
 
   ngOnInit() {
-    this.profileId = this.sessionService.getUsername();
+    this.type = localStorage.getItem('_type');
+    if (this.type == 'entityprofilemodel') {
+      this.profileId = this.sessionService.getUsername();
+    }
   }
 
 }
