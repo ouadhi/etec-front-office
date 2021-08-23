@@ -1,0 +1,1156 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rms documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">rms documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >ConfigService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/services/config.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#config" >config</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#defaults" >defaults</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#storageCssKey" >storageCssKey</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#style" >style</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#changeFont" >changeFont</a>
+                            </li>
+                            <li>
+                                <a href="#getAppConfig" >getAppConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getDefaultCachedData" >getDefaultCachedData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getUpdatedConfig" >getUpdatedConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#loadConfig" >loadConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadOverrideCss" >loadOverrideCss</a>
+                            </li>
+                            <li>
+                                <a href="#setupEssentials" >setupEssentials</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#logo" >logo</a>
+                                </li>
+                                <li>
+                                    <a href="#smallLogo" >smallLogo</a>
+                                </li>
+                                <li>
+                                    <a href="#userAvatar" >userAvatar</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, translate: TranslateService, formConfigService: <a href="../injectables/ConfigService.html" target="_self">FormConfigService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/core/services/config.service.ts:87</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>formConfigService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConfigService.html" target="_self" >FormConfigService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeFont"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>changeFont</b></span>
+                        <a href="#changeFont"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>changeFont()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">src/app/core/services/config.service.ts:190</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAppConfig"></a>
+                    <span class="name">
+                        <span ><b>getAppConfig</b></span>
+                        <a href="#getAppConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAppConfig(queryParams: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/app/core/services/config.service.ts:92</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryParams</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>{}</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDefaultCachedData"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getDefaultCachedData</b></span>
+                        <a href="#getDefaultCachedData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDefaultCachedData(cachedData)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/app/core/services/config.service.ts:135</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cachedData</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUpdatedConfig"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getUpdatedConfig</b></span>
+                        <a href="#getUpdatedConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUpdatedConfig()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">src/app/core/services/config.service.ts:142</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadConfig"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>loadConfig</b></span>
+                        <a href="#loadConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadConfig()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/app/core/services/config.service.ts:112</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadOverrideCss"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>loadOverrideCss</b></span>
+                        <a href="#loadOverrideCss"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadOverrideCss()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="201"
+                            class="link-to-prism">src/app/core/services/config.service.ts:201</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupEssentials"></a>
+                    <span class="name">
+                        <span ><b>setupEssentials</b></span>
+                        <a href="#setupEssentials"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setupEssentials()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/app/core/services/config.service.ts:160</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="config"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>config</b></span>
+                        <a href="#config"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/services/config.service.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="defaults"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>defaults</b></span>
+                        <a href="#defaults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[{
+        backgroundColor: &#x27;rgb(235, 235, 235)&#x27;,
+        primary50: &#x27;rgb(232, 243, 245)&#x27;,
+        primary100: &#x27;rgb(197, 224, 230)&#x27;,
+        primary200: &#x27;rgb(158, 204, 213)&#x27;,
+        primary300: &#x27;rgb(119, 183, 196)&#x27;,
+        primary400: &#x27;rgb(90, 167, 183)&#x27;,
+        primary500: &#x27;rgb(61, 152, 170)&#x27;,
+        primary600: &#x27;rgb(55, 144, 163)&#x27;,
+        primary700: &#x27;rgb(47, 133, 153)&#x27;,
+        primary800: &#x27;rgb(39, 123, 144)&#x27;,
+        primary900: &#x27;rgb(26, 106, 127)&#x27;,
+        primaryA100: &#x27;rgb(184, 239, 255)&#x27;,
+        primaryA200: &#x27;#85e3ff&#x27;,
+        primaryA400: &#x27;rgb(82, 215, 255)&#x27;,
+        primaryA700: &#x27;rgb(57, 209, 255)&#x27;,
+        primaryContrast50: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast100: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast200: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast300: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast400: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast500: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrast600: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrast700: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrast800: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrast900: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrastA100: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrastA200: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrastA400: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrastA700: &#x27;rgb(0, 0, 0)&#x27;,
+        accent50: &#x27;rgb(230, 243, 240)&#x27;,
+        accent100: &#x27;rgb(191, 224, 218)&#x27;,
+        accent200: &#x27;rgb(149, 204, 194)&#x27;,
+        accent300: &#x27;rgb(107, 184, 170)&#x27;,
+        accent400: &#x27;rgb(75, 168, 151)&#x27;,
+        accent500: &#x27;rgb(43, 153, 133)&#x27;,
+        accent600: &#x27;rgb(38, 145, 125)&#x27;,
+        accent700: &#x27;rgb(32, 134, 114)&#x27;,
+        accent800: &#x27;rgb(26, 124, 104)&#x27;,
+        accent900: &#x27;rgb(16, 107, 85)&#x27;,
+        accentA100: &#x27;rgb(160, 255, 230)&#x27;,
+        accentA200: &#x27;rgb(109, 255, 217)&#x27;,
+        accentA400: &#x27;rgb(58, 255, 203)&#x27;,
+        accentA700: &#x27;rgb(32, 255, 197)&#x27;,
+        accentContrast50: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast100: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast200: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast300: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast400: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast500: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrast600: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrast700: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrast800: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrast900: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrastA100: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrastA200: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrastA400: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrastA700: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryColor: &#x27;#00adc3&#x27;,
+        warningColor: &#x27;#f0b432&#x27;,
+        accentColor: &#x27;#0c7782&#x27;,
+        secondaryColor: &#x27;#666&#x27;,
+        successColor: &#x27;#3aad6d&#x27;,
+        accentColor200: &#x27;#2185b8&#x27;,
+        redColor: &#x27;rgb(255, 0, 0)&#x27;,
+        accentColor50: &#x27;#1c719b&#x27;,
+        customCss: &#x60;
+        .app-formio .btn:not(.editgrid-add-btn){
+            border-radius: 12px!important;
+        }&#x60;
+    }]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/services/config.service.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="storageCssKey"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>storageCssKey</b></span>
+                        <a href="#storageCssKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;_fo_css_variable&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/core/services/config.service.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="style"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>style</b></span>
+                        <a href="#style"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;locale-style&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/core/services/config.service.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logo"></a>
+                        <span class="name"><b>logo</b><a href="#logo"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>logo()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/app/core/services/config.service.ts:223</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="smallLogo"></a>
+                        <span class="name"><b>smallLogo</b><a href="#smallLogo"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>smallLogo()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/core/services/config.service.ts:228</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userAvatar"></a>
+                        <span class="name"><b>userAvatar</b><a href="#userAvatar"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>userAvatar()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/app/core/services/config.service.ts:233</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+import { from, Observable, of } from &#x27;rxjs&#x27;;
+import { map } from &#x27;rxjs/internal/operators/map&#x27;;
+import { catchError, tap } from &#x27;rxjs/operators&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { FormConfigService } from &#x27;src/formio/src/lib/form-config.service&#x27;;
+declare let FontFace: any;
+
+@Injectable({ providedIn: &#x27;root&#x27; })
+
+export class ConfigService {
+    private storageCssKey &#x3D; &quot;_fo_css_variable&quot;
+    private style &#x3D; &#x27;locale-style&#x27;;
+    private config &#x3D; null;
+    private defaults &#x3D; [{
+        backgroundColor: &#x27;rgb(235, 235, 235)&#x27;,
+        primary50: &#x27;rgb(232, 243, 245)&#x27;,
+        primary100: &#x27;rgb(197, 224, 230)&#x27;,
+        primary200: &#x27;rgb(158, 204, 213)&#x27;,
+        primary300: &#x27;rgb(119, 183, 196)&#x27;,
+        primary400: &#x27;rgb(90, 167, 183)&#x27;,
+        primary500: &#x27;rgb(61, 152, 170)&#x27;,
+        primary600: &#x27;rgb(55, 144, 163)&#x27;,
+        primary700: &#x27;rgb(47, 133, 153)&#x27;,
+        primary800: &#x27;rgb(39, 123, 144)&#x27;,
+        primary900: &#x27;rgb(26, 106, 127)&#x27;,
+        primaryA100: &#x27;rgb(184, 239, 255)&#x27;,
+        primaryA200: &#x27;#85e3ff&#x27;,
+        primaryA400: &#x27;rgb(82, 215, 255)&#x27;,
+        primaryA700: &#x27;rgb(57, 209, 255)&#x27;,
+        primaryContrast50: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast100: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast200: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast300: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast400: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrast500: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrast600: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrast700: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrast800: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrast900: &#x27;rgb(255, 255, 255)&#x27;,
+        primaryContrastA100: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrastA200: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrastA400: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryContrastA700: &#x27;rgb(0, 0, 0)&#x27;,
+        accent50: &#x27;rgb(230, 243, 240)&#x27;,
+        accent100: &#x27;rgb(191, 224, 218)&#x27;,
+        accent200: &#x27;rgb(149, 204, 194)&#x27;,
+        accent300: &#x27;rgb(107, 184, 170)&#x27;,
+        accent400: &#x27;rgb(75, 168, 151)&#x27;,
+        accent500: &#x27;rgb(43, 153, 133)&#x27;,
+        accent600: &#x27;rgb(38, 145, 125)&#x27;,
+        accent700: &#x27;rgb(32, 134, 114)&#x27;,
+        accent800: &#x27;rgb(26, 124, 104)&#x27;,
+        accent900: &#x27;rgb(16, 107, 85)&#x27;,
+        accentA100: &#x27;rgb(160, 255, 230)&#x27;,
+        accentA200: &#x27;rgb(109, 255, 217)&#x27;,
+        accentA400: &#x27;rgb(58, 255, 203)&#x27;,
+        accentA700: &#x27;rgb(32, 255, 197)&#x27;,
+        accentContrast50: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast100: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast200: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast300: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast400: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrast500: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrast600: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrast700: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrast800: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrast900: &#x27;rgb(255, 255, 255)&#x27;,
+        accentContrastA100: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrastA200: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrastA400: &#x27;rgb(0, 0, 0)&#x27;,
+        accentContrastA700: &#x27;rgb(0, 0, 0)&#x27;,
+        primaryColor: &#x27;#00adc3&#x27;,
+        warningColor: &#x27;#f0b432&#x27;,
+        accentColor: &#x27;#0c7782&#x27;,
+        secondaryColor: &#x27;#666&#x27;,
+        successColor: &#x27;#3aad6d&#x27;,
+        accentColor200: &#x27;#2185b8&#x27;,
+        redColor: &#x27;rgb(255, 0, 0)&#x27;,
+        accentColor50: &#x27;#1c719b&#x27;,
+        customCss: &#x60;
+        .app-formio .btn:not(.editgrid-add-btn){
+            border-radius: 12px!important;
+        }&#x60;
+    }];
+
+    constructor(private http: HttpClient, private translate: TranslateService, private formConfigService: FormConfigService) {
+    }
+
+    getAppConfig(queryParams &#x3D; {}): Observable&lt;any&gt; {
+        if (!environment.appConfig[&#x27;endpoint&#x27;] || !environment.appConfig[&#x27;id&#x27;])
+            return from(
+                [{
+                    entries: this.defaults
+                }]
+            );
+
+        const endpoint &#x3D; &#x60;${environment.cms}${environment.appConfig[&#x27;endpoint&#x27;]}?filter[_id]&#x3D;${environment.appConfig[&#x27;id&#x27;]}&#x60;;
+        return this.http.post&lt;any&gt;(endpoint, {}).pipe(
+            map(resp &#x3D;&gt; (resp)),
+            catchError((e) &#x3D;&gt; {
+                return from(
+                    [{
+                        entries: this.defaults
+                    }]
+                );
+            }));
+    }
+
+    async loadConfig(): Promise&lt;any&gt; {
+        const cssVariable &#x3D; localStorage.getItem(this.storageCssKey);
+        if (cssVariable) {
+            const cachedData &#x3D; JSON.parse(cssVariable);
+
+            // //just for test
+            // return  this.getUpdatedConfig();
+
+            if (!environment.appConfig[&#x27;frontOfficeSettings&#x27;]) this.getUpdatedConfig();
+            const endpoint &#x3D; &#x60;${environment.cms}/${environment.appConfig[&#x27;frontOfficeSettings&#x27;]}&#x60;;
+            try {
+                const result &#x3D; await this.http.post&lt;any&gt;(endpoint, {}).toPromise();
+                if (result.revisionsNumber &#x3D;&#x3D; cachedData.entries[0].revisionsNumber)
+                    return this.getDefaultCachedData(cachedData);
+                else return this.getUpdatedConfig();
+            } catch (e) {
+                return this.getDefaultCachedData(cachedData);
+            }
+        } else {
+            return this.getUpdatedConfig();
+        }
+    }
+
+    private getDefaultCachedData(cachedData) {
+        return new Promise((resolve, _) &#x3D;&gt; {
+            this.config &#x3D; cachedData.entries[0];
+            resolve(this.config);
+        });
+    }
+
+    private getUpdatedConfig() {
+        return new Promise(async (resolve, reject) &#x3D;&gt; {
+            if (this.config) {
+                resolve(this.config);
+                return;
+            }
+
+            this.getAppConfig().toPromise()
+                .then(async (result) &#x3D;&gt; {
+                    localStorage.setItem(this.storageCssKey, JSON.stringify(result));
+                    this.config &#x3D; result.entries[0];
+                    resolve(this.config);
+                },
+                    () &#x3D;&gt; reject(&#x27;App Config could not be loaded.&#x27;)
+                );
+        });
+    }
+
+    setupEssentials() {
+        if (!this.config) return;
+        this.formConfigService.config$.next(this.config);
+        Object.keys(this.config).forEach(key &#x3D;&gt; {
+            if ((key.includes(&#x27;primary&#x27;) || key.includes(&#x27;accent&#x27;) || key.includes(&#x27;background&#x27;) || key.includes(&#x27;Color&#x27;)) &amp;&amp; this.config[key]) {
+                document.documentElement.style.setProperty(&#x60;--${key}&#x60;, this.config[key]);
+                document.documentElement.style.setProperty(&#x60;--${key}-parts&#x60;,
+                    this.config[key].replace(&#x27;rgb&#x27;, &#x27;&#x27;).replace(&#x27;(&#x27;, &#x27;&#x27;).replace(&#x27;)&#x27;, &#x27;&#x27;));
+            } else if (key.includes(&#x27;favicon&#x27;) &amp;&amp; this.config[key] &amp;&amp; document.getElementById(&#x27;favicon&#x27;)) {
+                document.getElementById(&#x27;favicon&#x27;).setAttribute(&#x27;href&#x27;, &#x60;${environment.cms}/${this.config[key].path}&#x60;);
+            } else if ((key.includes(&#x27;logo&#x27;) || key.includes(&#x27;smallLogo&#x27;) || key.includes(&#x27;userAvatar&#x27;) || key.includes(&#x27;sectionsIcon&#x27;)) &amp;&amp; this.config[key] &amp;&amp; this.config[key].path) {
+                const path &#x3D; &#x60;url(&quot;${environment.cms}${this.config[key].path}&quot;)&#x60;;
+                document.documentElement.style.setProperty(&#x60;--${key}&#x60;, path);
+            } else if (key.includes(&#x27;fontFamily&#x27;) &amp;&amp; this.config[key]) {
+                document.documentElement.style.setProperty(&#x60;--font&#x60;, &#x27;font&#x27;);
+            }
+        });
+        if (!this.config.fontFamily)
+            document.documentElement.style.setProperty(&#x60;--font&#x60;, &#x27;Din-Next-Lt-Arabic_Regular&#x27;);
+
+        if (!this.config.favicon)
+            document.getElementById(&#x27;favicon&#x27;).setAttribute(&#x27;href&#x27;, &#x60;/assets/favicon.ico&#x60;);
+
+        if (this.config.name)
+            document.title &#x3D; this.config.name;
+
+        this.changeFont();
+        this.loadOverrideCss();
+    }
+
+    private changeFont() {
+        if (this.config.fontFamily) {
+            var customfont &#x3D; new FontFace(&#x27;font&#x27;, &#x60;url(${this.config.fontFamily})&#x60;);
+            customfont.load().then(loaded_face &#x3D;&gt; {
+                (document as any).fonts.add(loaded_face);
+            }).catch(error &#x3D;&gt; {
+                console.log(error);
+            });
+        }
+    }
+
+    private loadOverrideCss() {
+        const stylesheet &#x3D; document.createElement(&#x27;link&#x27;);
+        stylesheet.addEventListener(&#x27;load&#x27;, () &#x3D;&gt; { });
+        stylesheet.rel &#x3D; &#x27;stylesheet&#x27;;
+        stylesheet.href &#x3D; this.style + &#x27;.css&#x27;;
+        document.getElementsByTagName(&#x27;head&#x27;)[0].appendChild(stylesheet);
+
+        const css &#x3D; this.config.customCss;
+        var head &#x3D; document.head || document.getElementsByTagName(&#x27;head&#x27;)[0],
+            style &#x3D; document.createElement(&#x27;style&#x27;) as any;
+
+        head.appendChild(style);
+
+        style.type &#x3D; &#x27;text/css&#x27;;
+        if (style.styleSheet) {
+            // This is required for IE8 and below.
+            style.styleSheet.cssText &#x3D; css;
+        } else {
+            style.appendChild(document.createTextNode(css));
+        }
+    }
+
+    get logo() {
+        if (!this.config || !this.config.logo) return null;
+        return &#x60;${environment.cms}${this.config.logo.path}&#x60;;
+    }
+
+    get smallLogo() {
+        if (!this.config || !this.config.smallLogo) return null;
+        return &#x60;${environment.cms}${this.config.smallLogo.path}&#x60;;
+    }
+
+    get userAvatar() {
+        if (!this.config || !this.config.userAvatar) return null;
+        return &#x60;${environment.cms}${this.config.userAvatar.path}&#x60;;
+    }
+}</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConfigService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
