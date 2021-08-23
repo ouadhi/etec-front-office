@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ConfigService } from '../services/config.service';
 import { SessionService } from '../services/session.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { ETECService } from '../services/etec.service';
 
 
 export function initializer(keycloak: KeycloakService,
@@ -13,7 +14,8 @@ export function initializer(keycloak: KeycloakService,
   platform: Platform,
   configService: ConfigService,
   loggerService: LoggerService,
-  switchLangService: SwitchLangService): () => Promise<any> {
+  switchLangService: SwitchLangService,
+  etecService: ETECService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -56,6 +58,10 @@ export function initializer(keycloak: KeycloakService,
               const decodedToken = helper.decodeToken(await keycloak.getToken());
               switchLangService.changeLang(decodedToken.locale.toLowerCase());
               localStorage.setItem('needLogin', 'false');
+
+              etecService.getEtecData().subscribe(data => {
+                localStorage.setItem('_etec_data', JSON.stringify(data));
+              });
             }
             await session.checkLicense();
             await session.loadUserProfile();
