@@ -1,7 +1,14 @@
 <app-page>
-  <div *ngIf="profileId && type == 'entityprofilemodel'">
+  <div>
     <app-section>
-      <lib-entity-profile-model-view [userName]="profileId"></lib-entity-profile-model-view>
+      <lib-entity-profile-model-view *ngIf="(profileId && type == ProfileTypes.entityProfileModel) || !type"
+        [userName]="profileId"></lib-entity-profile-model-view>
+      
+        <lib-individual-profile-model-view *ngIf="profileId && type == ProfileTypes.individualProfileModel"
+        [userName]="profileId"></lib-individual-profile-model-view>
+
+      <lib-educational-institution-information-view *ngIf="generatedId && type == ProfileTypes.educationalInstitutionInformation"
+        [generatedId]="generatedId"></lib-educational-institution-information-view>
     </app-section>
   </div>
 </app-page>

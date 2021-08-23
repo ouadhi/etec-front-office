@@ -100,9 +100,9 @@ export class HeaderComponent extends BaseComponent {
 
     async doLogout() {
         localStorage.setItem('needLogin', 'true');
-        localStorage.setItem('_etec_data', null);
-        localStorage.setItem('_type', null);
-        localStorage.setItem('_groups', null);
+        localStorage.removeItem('_etec_data');
+        localStorage.removeItem('_type');
+        localStorage.removeItem('_groups');
         await this.keycloakService.logout();
     }
 

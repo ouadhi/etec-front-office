@@ -57,8 +57,8 @@ export function initializer(keycloak: KeycloakService,
               const helper = new JwtHelperService();
               const decodedToken = helper.decodeToken(await keycloak.getToken());
               switchLangService.changeLang(decodedToken.locale.toLowerCase());
-              localStorage.setItem('_type', decodedToken.type);
-              localStorage.setItem('_groups', decodedToken.groups.join(','));
+              if (decodedToken.type) localStorage.setItem('_type', decodedToken.type);
+              if (decodedToken.groups) localStorage.setItem('_groups', decodedToken.groups.join(','));
               localStorage.setItem('needLogin', 'false');
 
               etecService.getEtecData().subscribe(data => {
