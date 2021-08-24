@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
+import { ETECService } from 'src/app/core/services/etec.service';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -12,7 +13,8 @@ import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 })
 export class RequestComponent extends BaseComponent implements OnInit {
 
-  constructor(public injector: Injector) {
+  constructor(public injector: Injector,
+    private etecService: ETECService) {
     super(injector);
   }
 
@@ -32,23 +34,12 @@ export class RequestComponent extends BaseComponent implements OnInit {
 
   async ngOnInit() {
     this.isLoggedIn = await this.keycloakService.isLoggedIn();
-    this.sub = this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe(async params => {
       this.id = params['id'];
       this.serviceId = params['serviceId'];
       this.navParams = params;
-      /*if (this.isLoggedIn) {
-        this.params = [
-          {
-            url: environment.beneficiaryApi.api,
-            parallel: true,
-            success: `submission.data = {serviceId:"${this.serviceId}",
-            entrepreneurshipType:"${this.serviceId}", requesterInfo: {data: response}};`
-          }
-        ];
-      } else {*/
-      const etecData = localStorage.getItem('_etec_data') ? JSON.parse(localStorage.getItem('_etec_data')) : {};
-      this.submission.data = { serviceId: this.serviceId, ...etecData};
-      // }
+      const etecData = await this.etecService.getEtecData();
+      this.submission.data = { serviceId: this.serviceId, ...etecData };
 
       if (
         !this.serviceId || this.serviceId === null ||

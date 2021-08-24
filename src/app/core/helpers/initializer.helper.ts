@@ -14,8 +14,7 @@ export function initializer(keycloak: KeycloakService,
   platform: Platform,
   configService: ConfigService,
   loggerService: LoggerService,
-  switchLangService: SwitchLangService,
-  etecService: ETECService): () => Promise<any> {
+  switchLangService: SwitchLangService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -57,13 +56,7 @@ export function initializer(keycloak: KeycloakService,
               const helper = new JwtHelperService();
               const decodedToken = helper.decodeToken(await keycloak.getToken());
               switchLangService.changeLang(decodedToken.locale.toLowerCase());
-              if (decodedToken.type) localStorage.setItem('_type', decodedToken.type);
-              if (decodedToken.groups) localStorage.setItem('_groups', decodedToken.groups.join(','));
               localStorage.setItem('needLogin', 'false');
-
-              etecService.getEtecData().subscribe(data => {
-                localStorage.setItem('_etec_data', JSON.stringify(data));
-              });
             }
             await session.checkLicense();
             await session.loadUserProfile();

@@ -1,6 +1,7 @@
 import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
+import { ETECService } from 'src/app/core/services/etec.service';
 import { BaseComponent } from '../../../shared/components/base.component';
 
 @Component({
@@ -21,15 +22,17 @@ export class EntityProfileComponent extends BaseComponent implements OnInit {
   profileId: string;
   generatedId: string;
 
-  constructor(public injector: Injector) { super(injector); }
+  constructor(public injector: Injector,
+    private etecService: ETECService) { super(injector); }
 
-  ngOnInit() {
-    this.type = localStorage.getItem('_type');
+  async ngOnInit() {
+    const etecData = await this.etecService.getEtecData();
+    this.type = etecData.type;
     if (this.type == this.ProfileTypes.entityProfileModel || this.type == this.ProfileTypes.individualProfileModel) {
       this.profileId = this.sessionService.getUsername();
     }
     else if (this.type == this.ProfileTypes.educationalInstitutionInformation) {
-      const group = localStorage.getItem('_groups').split(',')[0];
+      const group = etecData.groups[0];
       this.generatedId = group.split('_')[0];
     }
   }
