@@ -46,7 +46,8 @@ export class RequestComponent extends BaseComponent implements OnInit {
           }
         ];
       } else {*/
-      this.submission.data = { serviceId: this.serviceId };
+      const etecData = localStorage.getItem('_etec_data') ? JSON.parse(localStorage.getItem('_etec_data')) : {};
+      this.submission.data = { serviceId: this.serviceId, ...etecData};
       // }
 
       if (

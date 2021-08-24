@@ -7,7 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { BaseComponent } from 'src/app/shared/components/base.component';
-import { FormioLoader } from 'dp-formio';
+import { FormioLoader } from 'src/formio/src/public_api';
 
 
 /**

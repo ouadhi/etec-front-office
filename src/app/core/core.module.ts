@@ -14,11 +14,12 @@ import { createExternalService } from './helpers/external-service.helper';
 import { getFormioEnvironment } from './helpers/formio-enviroment.helper';
 import { initializer } from './helpers/initializer.helper';
 import { DatePipe } from '@angular/common';
-import { FormioAppConfig, FormioTranslate, ExternalService } from 'dp-formio';
+import { FormioAppConfig, FormioTranslate, ExternalService } from 'src/formio/src/public_api';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorI18n } from './paginator-i18n';
-import { FormioAuthConfig, FormioAuthService } from 'dp-formio';
+import { FormioAuthConfig, FormioAuthService } from 'src/formio/src/public_api';
 import { LicenseInterceptor } from './interceptors/license.interceptor';
+import { ETECService } from './services/etec.service';
 
 
 export const FormAuthConfig: FormioAuthConfig = {
@@ -50,7 +51,7 @@ export const FormAuthConfig: FormioAuthConfig = {
             provide: APP_INITIALIZER,
             useFactory: initializer,
             multi: true,
-            deps: [KeycloakService, SessionService, Platform, ConfigService, LoggerService, SwitchLangService]
+            deps: [KeycloakService, SessionService, Platform, ConfigService, LoggerService, SwitchLangService, ETECService]
         },
         { provide: FormioAppConfig, useFactory: (getFormioEnvironment) },
         {

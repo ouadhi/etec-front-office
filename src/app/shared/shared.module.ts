@@ -23,7 +23,7 @@ import { NotificationItemComponent } from './components/notifications/notificati
 import { NotificationOptionsComponent } from './components/notifications/notification-options/notification-options.component';
 import { NotificationsModalComponent } from './components/notifications/notifications-modal/notifications-modal.component';
 import { RouterModule } from '@angular/router';
-import { FormioModule } from 'dp-formio';
+import { FormioModule } from 'src/formio/src/public_api';
 import { HeaderComponent } from './components/header/header.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 
