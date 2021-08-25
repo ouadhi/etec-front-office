@@ -16,15 +16,15 @@ export class ETECService {
             const decodedToken = helper.decodeToken(await this.keycloak.getToken());
             const generatedId = decodedToken.groups && decodedToken.groups.length ? decodedToken.groups[0].split('_')[0] : '';
             const etecData = {
-                name: decodedToken.name,
-                roles: decodedToken.roles,
-                groups: decodedToken.groups,
-                preferred_username: decodedToken.preferred_username,
-                type: decodedToken.type,
-                locale: decodedToken.locale,
-                given_name: decodedToken.given_name,
-                family_name: decodedToken.family_name,
-                email: decodedToken.email,
+                user_name: decodedToken.name,
+                user_roles: decodedToken.roles,
+                user_groups: decodedToken.groups,
+                user_preferred_username: decodedToken.preferred_username,
+                user_type: decodedToken.type,
+                user_locale: decodedToken.locale,
+                user_given_name: decodedToken.given_name,
+                user_family_name: decodedToken.family_name,
+                user_email: decodedToken.email,
                 generatedId: generatedId
             };
             return etecData;

@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
 import { ConfigService } from '../services/config.service';
 import { SessionService } from '../services/session.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { ETECService } from '../services/etec.service';
 
 
 export function initializer(keycloak: KeycloakService,
