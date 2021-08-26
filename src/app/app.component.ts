@@ -6,6 +6,8 @@ import { BaseComponent } from './shared/components/base.component';
 import { registerTemplateComponent } from 'src/formio/src/public_api';
 import { registerTableTreeComponent } from 'src/formio/src/public_api';
 import { registerAssessmentComponent } from 'src/formio/src/public_api';
+import { registerProccessRequirmentsComponent } from 'src/formio/src/lib/custom-component/components/proccess-requirments-wrapper/proccess-requirments-wrapper.formio';
+// import { registerProccessRequirmentsComponent } from 'src/formio/src/public_api';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +24,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     registerTableTreeComponent(injector);
     registerAssessmentComponent(injector);
     registerTemplateComponent(injector);
+    registerProccessRequirmentsComponent(injector);
   }
 
   ngOnInit() {
