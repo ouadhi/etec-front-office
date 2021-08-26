@@ -16,7 +16,7 @@
                     <ion-chip
                         [ngClass]="activity.completed ? 'green' : (activity.caseActivityType == 'humanTask' ?'blue' : 'gray')">
                         <ion-label>
-                            {{activity.caseActivityName}}
+                            <div class="case-name"> {{activity.caseActivityName}} </div>
                             <span class="mdate">
                                 {{activity.time?.substring(0, 19) | localizedDate : 'EEE, d/MM/yyyy hh:mma'}}
                             </span>
