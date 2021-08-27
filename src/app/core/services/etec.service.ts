@@ -14,7 +14,10 @@ export class ETECService {
         try {
             const helper = new JwtHelperService();
             const decodedToken = helper.decodeToken(await this.keycloak.getToken());
-            const generatedId = decodedToken.groups && decodedToken.groups.length ? decodedToken.groups[0].split('_')[0] : '';
+            let generatedId = null;
+            if (decodedToken.type)
+                generatedId = decodedToken.groups && decodedToken.groups.length ? decodedToken.groups[0].split('_')[0] : '';
+
             const etecData = {
                 user_name: decodedToken.name,
                 user_roles: decodedToken.roles,
