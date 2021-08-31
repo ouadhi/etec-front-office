@@ -1,5 +1,5 @@
-<ng-container *ngIf="type;else noProfile">
-  <lib-profile-resource *ngIf="(profileId && type == ProfileTypes.entityProfileModel) || !type"
+<ng-container *ngIf="type && profileId;else noProfile">
+  <lib-profile-resource *ngIf="profileId && type == ProfileTypes.entityProfileModel"
     query="data.userName={{profileId}}" defaultResource="entityprofilemodel"></lib-profile-resource>
 
   <lib-profile-resource *ngIf="profileId && type == ProfileTypes.individualProfileModel"
