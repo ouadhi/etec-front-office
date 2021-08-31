@@ -44,9 +44,12 @@
         }
     }
     .app-formio .input-group-prepend span,
-    .app-formio .input-group-prepend+textarea {
+    .app-formio .input-group-prepend+textarea[disabled="disabled"] {
         background: transparent !important;
         border: none !important;
+    }
+    .app-formio textarea {
+        width: 100% !important;
     }
     .app-formio .input-group-prepend span::before {
         content: "";
@@ -73,6 +76,7 @@
     margin-left: 5px;
     margin-right: 0;
 }
+
 .submit-task {
     min-width: 80px;
     margin: 5px;
