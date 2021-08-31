@@ -1,21 +1,21 @@
-<app-page>
-  <div>
-    <app-section>
-      <ng-container *ngIf="type;else noProfile">
-        <lib-entity-profile-model-view *ngIf="(profileId && type == ProfileTypes.entityProfileModel) || !type"
-          [userName]="profileId"></lib-entity-profile-model-view>
+<ng-container *ngIf="type;else noProfile">
+  <lib-profile-resource *ngIf="(profileId && type == ProfileTypes.entityProfileModel) || !type"
+    query="data.userName={{profileId}}" defaultResource="entityprofilemodel"></lib-profile-resource>
 
-        <lib-individual-profile-model-view *ngIf="profileId && type == ProfileTypes.individualProfileModel"
-          [userName]="profileId"></lib-individual-profile-model-view>
+  <lib-profile-resource *ngIf="profileId && type == ProfileTypes.individualProfileModel"
+    query="data.userName={{profileId}}" defaultResource="individualprofilemodel"></lib-profile-resource>
 
-        <lib-educational-institution-information-view
-          *ngIf="generatedId && type == ProfileTypes.educationalInstitutionInformation" [generatedId]="generatedId">
-        </lib-educational-institution-information-view>
-      </ng-container>
+  <lib-profile-resource *ngIf="generatedId && type == ProfileTypes.educationalInstitutionInformation"
+    query="data.generatedId={{generatedId}}" defaultResource="educationalinstitutioninformation">
+  </lib-profile-resource>
+</ng-container>
 
-      <ng-template #noProfile>
+<ng-template #noProfile>
+  <app-page>
+    <div>
+      <app-section>
         <div class="form-custom-warning">{{'Your profile not completed' | translate}} ...</div>
-      </ng-template>
-    </app-section>
-  </div>
-</app-page>
+      </app-section>
+    </div>
+  </app-page>
+</ng-template>
