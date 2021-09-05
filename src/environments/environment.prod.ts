@@ -2,24 +2,24 @@
 
 export const environment = {
   production: true,
-  gateway: 'http://ec2-52-206-161-8.compute-1.amazonaws.com:8080',
-  cms: 'http://100.24.85.92:8089',
+  gateway: 'http://etec-bo.comptechco.com:80',
+  cms: 'http://etec-fo.comptechco.com:8089',
   appConfig: {
     endpoint: '/api/collections/get/AppConfig1/',
     id: '6069bbe7666434004e00012d',
     frontOfficeSettings: 'api/singletons/get/frontOfficeSettings',
     formioEndpoint: '/api/collections/get/formioConfig/',
-    formioId: '60efd16b666434046e0003ac',
+    formioId: '612bc06a5d4cda7713720b52',
     formioSettings: 'api/singletons/get/formioSettings'
   },
   keycloak: {
-    url: 'http://ec2-52-206-161-8.compute-1.amazonaws.com:9080/auth/',
-    realm: 'ekhaa',
+    url: 'http://etec-bo.comptechco.com:9080/auth/',
+    realm: 'etec',
     clientId: 'fo-web'
   },
   formio: {
     apiUrl: "https://api.form.io/",
-    appUrl: 'http://ec2-34-234-234-87.compute-1.amazonaws.com:8083/rwzodfyrlzgyaai/'
+    appUrl: 'http://etec-fo.comptechco.com:8084/ksuqnygnhgztelf/'
   },
   endpoints: {
     tasks: '/requestmanagement/rest/task',
