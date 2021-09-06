@@ -8,7 +8,7 @@
             <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
           </div>
           <div class="col auto-width">
-            {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
+            {{'SERVICE.needs' | translate}} <strong *ngIf="taskName">{{taskName}}</strong>
             {{'SERVICE.pleasePress' | translate}} <a
               (click)="handleAction({type:'task',activity:(hasTask || tasks?.length)})"
               class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.

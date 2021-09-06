@@ -21,6 +21,9 @@ declare var $: any;
 export class RequestTaskComponent extends BaseComponent implements OnInit {
   @ViewChild(FormioComponent) formComponent: FormioComponent;
 
+  updateTask = 'SERVICE.beneficiaryTask'
+  proccessName = '';
+
   task: any = {};
   public max = 65;
   public mainWidth = 65;
@@ -83,7 +86,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
         document.getElementsByName('data[submit]')[0].style.display = 'none';
         document.getElementById('custom-actions').style.display = 'block';
       }
-      
+
       $('.input-group:has(.input-group-addon.input-group-prepend)').css('display', 'block');
     })
   }
@@ -97,6 +100,18 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.sub = this.caseActivity.getRequestTask(params.taskId).subscribe(data => {
         if (data.formKey) {
+          const processDefinitionId = data.processDefinitionId.split(':')[0];
+          const requestName = `${processDefinitionId}`;
+          const taskName = `taskTitle.${data.taskDefinitionKey}`;
+          this.sub = this.translateService.get([requestName, taskName, this.updateTask])
+            .subscribe(keys => {
+              if (keys[requestName] != requestName && keys[taskName] != taskName) {
+                this.proccessName = `${keys[requestName]}-${keys[taskName]}`;
+              } else {
+                this.proccessName = keys[this.updateTask];
+              }
+            });
+
           this.form.ready = false;
           this.params = [{
             url: `${environment.gateway}${environment.endpoints.humanTask}${data.formKey.replace('{caseId}', params.caseId)}`,

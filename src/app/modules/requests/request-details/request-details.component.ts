@@ -33,6 +33,9 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   params;
   request;
 
+  updateTask = 'SERVICE.beneficiaryTask'
+  taskName = '';
+
   currentRequestTask: any;
 
   handleAction(event) {
@@ -86,6 +89,18 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
         this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
           .subscribe(data => {
             this.tasks = data;
+
+            if (data.length) {
+              const taskName = `taskTitle.${data[0].taskDefinitionKey}`;
+              this.sub = this.translateService.get([taskName, this.updateTask])
+                .subscribe(keys => {
+                  if (keys[taskName] != taskName) {
+                    this.taskName = `${keys[taskName]}`;
+                  } else {
+                    this.taskName = keys[this.updateTask];
+                  }
+                });
+            }
           });
 
       this.request = data;
