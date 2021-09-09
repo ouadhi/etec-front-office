@@ -8,6 +8,8 @@ import { registerTableTreeComponent } from 'src/formio/src/public_api';
 import { registerAssessmentComponent } from 'src/formio/src/public_api';
 import { registerProccessRequirmentsComponent } from 'src/formio/src/lib/custom-component/components/proccess-requirments-wrapper/proccess-requirments-wrapper.formio';
 // import { registerProccessRequirmentsComponent } from 'src/formio/src/public_api';
+import { registerMapComponent } from 'src/formio/src/lib/custom-component/components/map-wrapper/map-wrapper.formio';
+// import { registerMapComponent } from 'src/formio/src/public_api';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +27,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     registerAssessmentComponent(injector);
     registerTemplateComponent(injector);
     registerProccessRequirmentsComponent(injector);
+    registerMapComponent(injector);
   }
 
   ngOnInit() {
