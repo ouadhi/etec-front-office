@@ -8,9 +8,11 @@ import { CoreModule } from './core/core.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateLoaderHelper } from './core/helpers/translate-loader.helper';
 import { KeycloakAngularModule } from 'keycloak-angular';
+import { FormioDemoComponent } from './modules/formio-demo/formio-demo.component';
 @NgModule({
   declarations: [
     AppComponent,
+    FormioDemoComponent
   ],
   imports: [
     CoreModule,

@@ -5,6 +5,7 @@ import { NotAllowedComponent } from './shared/components/not-allowed/not-allowed
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { FormioDemoComponent } from './modules/formio-demo/formio-demo.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
     path: 'resources',
     loadChildren: () => import('./resource-wrapper.module').then(m => m.ResourceWrapperModule),
   },
+  { path: 'formio/:formKey', component: FormioDemoComponent },
   { path: '404', component: NotFoundComponent },
   {
     path: '401', component: NotAllowedComponent,

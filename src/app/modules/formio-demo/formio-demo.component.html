@@ -1,0 +1,5 @@
+<app-page *ngIf="formReady">
+    <app-section sectionTitle="Formio Demo" [hasPadding]="false">
+        <formio [formKey]="formKey" [submission]="submission"></formio>
+    </app-section>
+</app-page>
