@@ -1,5 +1,9 @@
 @import 'colors.scss';
 .app-section {
+    a:not([href]):hover {
+        color: #fff;
+        text-decoration: underline;
+    }
     .section>div {
         width: 100%;
     }

@@ -31,6 +31,10 @@
     .mat-toolbar {
         background: #f7f7f7 !important;
     }
+    a:hover {
+        color: inherit !important;
+        text-decoration: none !important;
+    }
     .logo {
         max-width: 100%;
         height: auto;
