@@ -1,7 +1,7 @@
 <app-page class="app-request">
     <!-- <button (click)="hasResult = !hasResult">test</button> -->
     <div class="container-fluid" *ngIf="!hasResult" [@inOutAnimation]>
-        <app-section sectionTitle="{{navParams['serviceName_' + switchLangService.current]}}" [hasPadding]="false">
+        <app-section sectionTitle="{{request ? request.requestName : navParams['serviceName_' + switchLangService.current]}}" [hasPadding]="false">
 
             <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" [submission]="submission"
                 (submit)="onSubmit($event)" class="container">

@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 import { ETECService } from 'src/app/core/services/etec.service';
+import { RequestsService } from '../requests.service';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -14,14 +15,17 @@ import { ETECService } from 'src/app/core/services/etec.service';
 export class RequestComponent extends BaseComponent implements OnInit {
 
   constructor(public injector: Injector,
-    private etecService: ETECService) {
+    private etecService: ETECService,
+    private rest: RequestsService) {
     super(injector);
   }
 
   id: any;
   serviceId: any;
+  caseId: any;
   navParams: any;
   formReady = false;
+  request: any;
 
   data: any;
   params;
@@ -37,6 +41,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
     this.sub = this.route.params.subscribe(async params => {
       this.id = params['id'];
       this.serviceId = params['serviceId'];
+      this.caseId = params['caseId'];
       this.navParams = params;
       const etecData = await this.etecService.getEtecData();
       this.submission.data = { serviceId: this.serviceId, ...etecData };
@@ -47,7 +52,27 @@ export class RequestComponent extends BaseComponent implements OnInit {
         this.serviceId === 'undefined') {
         this.params[0].success = `submission.data = {requesterInfo: {data: response}};`;
       }
-      this.formReady = true;
+
+      if (this.caseId) this.getData();
+      else this.formReady = true;
+    });
+  }
+
+  getData() {
+    this.sub = this.rest.getRequest(this.caseId).subscribe(data => {
+      this.request = data;
+      const link = this.request.link;
+      const formData = this.request.data;
+
+      this.sub = this.rest.getGeneric(`${environment.formio.appUrl}${link}/submission/${formData}`).subscribe(data => {
+        this.submission.data = {
+          ...this.submission.data,
+          ...data.data,
+          requestId: formData
+        };
+        this.formReady = true;
+      })
+
     });
   }
   onSubmit(event) {

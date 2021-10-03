@@ -53,6 +53,11 @@ export const appRoutes: Routes = [
     data: { roles: [environment.roles.beneficiary] },
   },
   {
+    path: 'request/:id/:serviceId/:caseId', component: RequestComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
     path: 'details/:id', component: RequestDetailsComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: { roles: [environment.roles.beneficiary] },
