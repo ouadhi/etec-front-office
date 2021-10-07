@@ -26,7 +26,7 @@ export const appRoutes: Routes = [
         data: { roles: [environment.roles.beneficiary] },
     },
     {
-        path: 'reset-password', component: ManagePasswordComponent,
+        path: 'reset-password/:userId', component: ManagePasswordComponent,
         data: { roles: [environment.roles.beneficiary] },
     },
 ];

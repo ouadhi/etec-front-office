@@ -1,7 +1,7 @@
 <header class="login-pf-header">
   <h1 id="kc-page-title">{{'ManagePassword.OTP Verification' | translate}}</h1>
 </header>
-
+<formio-loader></formio-loader>
 <form [formGroup]="formGroup">
   <!-- <div class="form-group">
     <div class="input-icon-wrap">
@@ -24,7 +24,7 @@
     <div>
       <a class="f-12" href="javascript: void(0);" (click)='resendVerification($event)'
         [class.disabled]="counter != 0">{{'ManagePassword.Resend Verification' | translate}}</a>
-      <span *ngIf="counter"> ({{counter}})</span>
+      <span *ngIf="counter" class="counter"> ({{counter}})</span>
     </div>
   </div>
   <br />

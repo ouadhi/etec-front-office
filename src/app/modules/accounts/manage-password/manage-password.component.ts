@@ -12,18 +12,34 @@ import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 })
 export class ManagePasswordComponent extends BaseComponent implements OnInit {
   verify = false;
+  userId: string;
+  token: string;
   languages = [
     { name: 'ENGLISH', code: 'en' },
     { name: 'ARABIC', code: 'ar' }
-];
+  ];
 
   constructor(public injector: Injector) { super(injector); }
 
-  ngOnInit() {
+  async ngOnInit() {
+    //logout if user logged in
+    if (await this.keycloakService.isLoggedIn()) {
+      localStorage.setItem('needLogin', 'true');
+      await this.keycloakService.logout();
+    }
+
+    this.sub = this.route.params.subscribe(params => {
+      this.userId = params.userId;
+    });
+  }
+
+  verifiedOTP(token: string) {
+    this.verify = true;
+    this.token = token;
   }
 
   get currentLang() {
     const lang = this.languages.find(lang => lang.code === this.switchLangService.getSelectedLang());
     return lang ? lang.name.toLocaleUpperCase() : '';
-}
+  }
 }

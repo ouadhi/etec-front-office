@@ -40,7 +40,8 @@ export const environment = {
     account: '/api/account',
     humanTask: '/dataservice/api/tasks/case/',
     notifications: '/notification/api/',
-    socket: '/notification/websocket/orchestra'
+    socket: '/notification/websocket/orchestra',
+    dataservice:"/dataservice/api/"
   },
   roles: {
     beneficiary: 'ROLE_USER',
