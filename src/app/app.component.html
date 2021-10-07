@@ -1,20 +1,12 @@
 <div class="app-root">
   <div class="mainWrapper" [class.mainWrapper--rtl]="switchLangService.currentLang=='ar'"
     dir="{{switchLangService.currentLang=='ar' ? 'rtl' : 'ltr'}}">
-    <div class="footer-pattern"></div>
+    <div class="footer-pattern" *ngIf="!fullPage"></div>
 
-    <app-header></app-header>
+    <app-header *ngIf="!fullPage"></app-header>
 
     <div class="routerOutletContainer">
       <router-outlet></router-outlet>
     </div>
-
-    <!-- <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>
-        {{'LAYOUT.TITLE' | translate}}
-      </span>
-    </mat-toolbar-row>
-  </mat-toolbar> -->
   </div>
 </div>

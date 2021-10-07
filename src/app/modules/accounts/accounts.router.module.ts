@@ -1,3 +1,4 @@
+import { ManagePasswordComponent } from './manage-password/manage-password.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
@@ -22,6 +23,10 @@ export const appRoutes: Routes = [
     {
         path: 'entity/profile', component: EntityProfileComponent,
         canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [environment.roles.beneficiary] },
+    },
+    {
+        path: 'reset-password', component: ManagePasswordComponent,
         data: { roles: [environment.roles.beneficiary] },
     },
 ];

@@ -1,0 +1,33 @@
+<header class="login-pf-header">
+  <h1 id="kc-page-title">{{'ManagePassword.OTP Verification' | translate}}</h1>
+</header>
+
+<form [formGroup]="formGroup">
+  <!-- <div class="form-group">
+    <div class="input-icon-wrap">
+      <span class="input-icon"><span class="fa fa-phone"></span></span>
+      <input tabindex="1" placeholder="Phone" id="phone" class="input-with-icon" name="phone" value="" type="text"
+        autofocus="" autocomplete="off" formControlName="phone">
+    </div>
+  </div> -->
+
+  <div class="form-group">
+    <div class="input-icon-wrap">
+      <span class="input-icon"><span class="fa fa-code"></span></span>
+      <input tabindex="1" placeholder="{{'ManagePassword.Code' | translate}}" id="code" class="input-with-icon" name="code" value="" type="text"
+        autofocus="" autocomplete="off" formControlName="code">
+    </div>
+  </div>
+
+  <div class="flex-space">
+    <p class="f-12">{{'ManagePassword.Didnt you receive the verification number?' | translate}}</p>
+    <div>
+      <a class="f-12" href="javascript: void(0);" (click)='resendVerification($event)'
+        [class.disabled]="counter != 0">{{'ManagePassword.Resend Verification' | translate}}</a>
+      <span *ngIf="counter"> ({{counter}})</span>
+    </div>
+  </div>
+  <br />
+
+  <button type="button" [disabled]="!formGroup.valid" (click)="checkVerify()">{{'ManagePassword.Verify' | translate}}</button>
+</form>
