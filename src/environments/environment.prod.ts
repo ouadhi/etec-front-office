@@ -39,7 +39,7 @@ export const environment = {
     humanTask: '/dataservice/api/tasks/case/',
     notifications: '/notification/api/',
     socket: '/notification/websocket/orchestra',
-    dataservice:"dataservice/api/"
+    dataservice:"/dataservice/api/"
   },
   roles: {
     beneficiary: 'ROLE_USER',
