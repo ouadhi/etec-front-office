@@ -1,12 +1,12 @@
 <ng-container *ngIf="type && (profileId || generatedId);else noProfile">
   <lib-profile-resource *ngIf="profileId && type == ProfileTypes.entityProfileModel"
-    query="data.userName={{profileId}}" defaultResource="entityprofilemodel"></lib-profile-resource>
+    query="data.userName={{profileId}}" [submission]="submission" defaultResource="entityprofilemodel"></lib-profile-resource>
 
   <lib-profile-resource *ngIf="profileId && type == ProfileTypes.individualProfileModel"
-    query="data.userName={{profileId}}" defaultResource="individualprofilemodel"></lib-profile-resource>
+    query="data.userName={{profileId}}" [submission]="submission" defaultResource="individualprofilemodel"></lib-profile-resource>
 
   <lib-profile-resource *ngIf="generatedId && type == ProfileTypes.educationalInstitutionInformation"
-    query="data.generatedId={{generatedId}}" defaultResource="educationalinstitutioninformation">
+    query="data.generatedId={{generatedId}}" [submission]="submission" defaultResource="educationalinstitutioninformation">
   </lib-profile-resource>
 </ng-container>
 

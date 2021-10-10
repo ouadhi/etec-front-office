@@ -21,18 +21,21 @@ export class EntityProfileComponent extends BaseComponent implements OnInit {
   type: string;
   profileId: string;
   generatedId: string;
+  etecData: any;
+  submission: any;
 
   constructor(public injector: Injector,
     private etecService: ETECService) { super(injector); }
 
   async ngOnInit() {
-    const etecData = await this.etecService.getEtecData();
-    this.type = etecData.user_type;
+    this.etecData = await this.etecService.getEtecData();
+    this.submission = { data: this.etecData };
+    this.type = this.etecData.user_type;
     if (this.type == this.ProfileTypes.entityProfileModel || this.type == this.ProfileTypes.individualProfileModel) {
       this.profileId = this.sessionService.getUsername();
     }
     else if (this.type == this.ProfileTypes.educationalInstitutionInformation) {
-      const group = etecData.user_groups[0];
+      const group = this.etecData.user_groups[0];
       this.generatedId = group.split('_')[0];
     }
   }
