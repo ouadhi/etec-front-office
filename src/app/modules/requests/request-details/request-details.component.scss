@@ -41,8 +41,9 @@
     .alert-warning div {
         align-items: center;
     }
-    .alert-warning {
-        color: #fff;
+    .alert-warning,
+    .alert-warning .alert-link {
+        color: #fff !important;
         background-color: $primary-color;
         border-radius: 8px;
     }
