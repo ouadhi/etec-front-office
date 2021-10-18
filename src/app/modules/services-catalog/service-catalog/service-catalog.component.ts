@@ -29,6 +29,9 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
   tags: any[];
   tagsInput: object;
   hasTask = false;
+
+  env = environment;
+
   public keyword = '';
 
   dataFilters: any = {

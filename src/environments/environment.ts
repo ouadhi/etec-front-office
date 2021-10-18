@@ -47,6 +47,12 @@ export const environment = {
     beneficiary: 'ROLE_USER',
     branch_specialist: 'ROLE_SERVICE_SPECIALIST_BRANCH',
     department_specialist: 'ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST'
+  },
+  serviceCatalogControl:{
+    showCarousel : false,
+    showHasTask : true,
+    showMostUsedService : true,
+    showCatalog : false
   }
 };
 

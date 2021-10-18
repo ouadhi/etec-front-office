@@ -18,5 +18,11 @@
   "formio": {
     "apiUrl": "https://api.form.io/",
     "appUrl": "http://etec-fo.comptechco.com:8084/ksuqnygnhgztelf/"
+  },
+  "serviceCatalogControl":{
+    "showCarousel" : false,
+    "showHasTask" : true,
+    "showMostUsedService" : true,
+    "showCatalog" : false
   }
 }
