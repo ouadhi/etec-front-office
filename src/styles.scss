@@ -1679,6 +1679,18 @@ input[type*="radio"] {
     padding: 2.5rem 2rem;
 }
 
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    font-size: 14px;
+    padding: 5px 16px!important;
+    white-space: break-spaces !important;
+    line-height: 1.5em !important;
+    padding-bottom: 8px !important;
+}
+
+.ng-select-container .ng-value {
+    white-space: break-spaces !important;
+}
+
 @import './app/app.component.scss';
 @import './app/modules/accounts/accounts.scss';
 @import './app/modules/services-catalog/services-catalog.scss';
