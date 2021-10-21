@@ -8,8 +8,10 @@ import { registerAssessmentComponent } from 'src/formio/src/public_api';
 import { registerProccessRequirmentsComponent } from 'src/formio/src/lib/features/formio/custom-component/components/proccess-requirments-wrapper/proccess-requirments-wrapper.formio';
 // import { registerProccessRequirmentsComponent } from 'src/formio/src/public_api';
 import { registerMapComponent } from 'src/formio/src/lib/features/formio/custom-component/components/map-wrapper/map-wrapper.formio';
-import { NavigationStart } from '@angular/router';
 // import { registerMapComponent } from 'src/formio/src/public_api';
+import { registerIndicatorsComponent } from 'src/formio/src/lib/features/formio/custom-component/components/indicators-wrapper/indicators-wrappe.formio';
+// import { registerIndicatorsComponent } from 'src/formio/src/public_api';
+import { NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +30,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     registerTemplateComponent(injector);
     registerProccessRequirmentsComponent(injector);
     registerMapComponent(injector);
+    registerIndicatorsComponent(injector);
     this.sub = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.fullPage = event.url.includes('reset-password');
