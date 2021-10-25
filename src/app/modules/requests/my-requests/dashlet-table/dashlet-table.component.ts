@@ -40,6 +40,7 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
   expandedElement;
   resultsLength = 0;
   subscription: Subscription;
+  currentLanguage: any;
 
   constructor(public injector: Injector,
     private notificationService: NotificationsService) { super(injector); }
@@ -78,6 +79,10 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
     this.sub = this.notificationService.listenerObserver.subscribe(data => {
       this.getData();
     });
+    this.translateService.onLangChange.subscribe((chn) => {
+      this.currentLanguage = chn.lang;
+    });
+
   }
   ngAfterViewInit() {
     // If the user changes the sort order, reset back to the first page.
@@ -91,6 +96,7 @@ export class DashletTableComponent extends BaseComponent implements OnInit, Afte
 
   private getData() {
     if (this.subscription) this.subscription.unsubscribe();
+
     this.subscription = merge(this.sort.sortChange, this.paginator.page, this.casesFilter.filter, this.translateService.onLangChange)
       .pipe(
         startWith({}),

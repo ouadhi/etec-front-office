@@ -1,6 +1,15 @@
 import { Location } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Injector, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Injector,
+    Input,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewEncapsulation
+} from '@angular/core';
 import { FilterService } from '../../filter.service';
 import { BaseComponent } from '../../../../shared/components/base.component';
 
@@ -39,6 +48,7 @@ export class DashletFilterComponent extends BaseComponent implements OnInit {
     };
     @Input() show = false;
     @Output() filter: EventEmitter<any> = new EventEmitter();
+    @Input() currentLang: string;
 
     constructor(public injector: Injector,
         private filterService: FilterService) { super(injector); }
@@ -85,4 +95,13 @@ export class DashletFilterComponent extends BaseComponent implements OnInit {
             }
         });
     }
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['currentLang'].currentValue) {
+            if (this.sub) {
+                this.sub.unsubscribe();
+            }
+            this.filterService.getServices(changes['currentLang'].currentValue).subscribe(dataRes => this.servicesFilterData = [...dataRes]);
+        }
+    }
+
 }

@@ -105,7 +105,9 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
     }
   }
   ngOnInit(): void {
-    this.sub = this.filterService.getPublishedServices().subscribe(data => this.services = data);
+    this.translateService.onLangChange.subscribe((res)=>{
+      this.filterService.getPublishedServices().subscribe(data => this.services = data);
+    });
     this.sub = this.query.controls.requestType.statusChanges.pipe(debounceTime(200)).subscribe(() => {
       this.loggerService.log(this.query.controls.requestType.valid);
 
