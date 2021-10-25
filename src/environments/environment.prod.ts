@@ -28,7 +28,6 @@ export const environment = {
     caseActivity: '/requestmanagement/rest/history/case-activity-instance',
     caseActivityDetails: '/requestmanagement/rest/history/detail',
     count: '/requestmanagement/api/requests/count',
-    requests: '/requestmanagement/api/requests',
     statuses: '/requestmanagement/api/portal/eservices',
     beneficiaryApi: '/dataservice/api/portal/beneficiaries',
     deparments: '/referencedata/api/portal/departments',
