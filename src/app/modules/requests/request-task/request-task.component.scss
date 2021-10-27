@@ -14,10 +14,6 @@
     formio {
         padding: 10px;
     }
-    .formio-button-add-row, .btn-primary:not([class*="btn-wizard"]):not([class*="editgrid-add-btn"]):not(:disabled) {
-        position: absolute;
-        z-index: 999;
-    }
     .alignSwitchAR {
         text-align: right;
     }
