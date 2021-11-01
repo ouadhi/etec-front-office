@@ -20,9 +20,9 @@
     "appUrl": "http://etec-fo.comptechco.com:8084/ksuqnygnhgztelf/"
   },
   "serviceCatalogControl":{
-    "showCarousel" : false,
+    "showCarousel" : true,
     "showHasTask" : true,
     "showMostUsedService" : true,
-    "showCatalog" : false
+    "showCatalog" : true
   }
 }
