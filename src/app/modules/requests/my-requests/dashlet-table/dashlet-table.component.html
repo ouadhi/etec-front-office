@@ -43,7 +43,10 @@
                     {{'Details' | translate}}
                   </button>
                   <ion-button size="small" fill="none" *ngIf="element.activeTask" class="update"
-                    [matTooltip]="'SERVICE.NEEDS_UPDATE' | translate" [matTooltipPosition]="'below'">
+                    [matTooltip]="element?.tasks.length > 0 ? (
+                    (('STATUSES.' + element?.tasks[0]?.taskDefinitionKey) | translate)!=('STATUSES.' + element?.tasks[0]?.taskDefinitionKey)?
+                    (('STATUSES.' + element?.tasks[0]?.taskDefinitionKey) | translate):('SERVICE.NEEDS_UPDATE'|translate))
+                  :('SERVICE.NEEDS_UPDATE'|translate)" [matTooltipPosition]="'below'">
                     <ion-icon [name]="'alert-circle-outline'" size="large" class="alert-icon"></ion-icon>
                   </ion-button>
                 </ng-template>
