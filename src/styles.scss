@@ -1184,11 +1184,11 @@ html[dir="rtl"] {
   }
     input[type="checkbox"] {
         &:checked {
-            --b: var(--border);
+            --b: var(--active);
         }
         &:disabled {
             &:checked {
-                --b: var(--disabled-inner);
+                --b: var(--active);
             }
         }
     }
