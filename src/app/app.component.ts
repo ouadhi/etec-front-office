@@ -2,7 +2,7 @@ import { Injector, OnInit, ViewEncapsulation, Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { BaseComponent } from './shared/components/base.component';
 
-import { registerTemplateComponent } from 'src/formio/src/public_api';
+import {registerStepperComponent, registerTemplateComponent} from 'src/formio/src/public_api';
 import { registerTableTreeComponent } from 'src/formio/src/public_api';
 import { registerAssessmentComponent } from 'src/formio/src/public_api';
 import { registerProccessRequirmentsComponent } from 'src/formio/src/lib/features/formio/custom-component/components/proccess-requirments-wrapper/proccess-requirments-wrapper.formio';
@@ -31,6 +31,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     registerProccessRequirmentsComponent(injector);
     registerMapComponent(injector);
     registerIndicatorsComponent(injector);
+    registerStepperComponent(injector);
     this.sub = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.fullPage = event.url.includes('reset-password');
