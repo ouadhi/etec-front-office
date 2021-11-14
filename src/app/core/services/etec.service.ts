@@ -5,7 +5,7 @@ import { KeycloakService } from "keycloak-angular";
 
 @Injectable({ providedIn: "root" })
 export class ETECService {
-  constructor(private http: HttpClient, private keycloak: KeycloakService) {}
+  constructor(private http: HttpClient, private keycloak: KeycloakService) { }
 
   async getEtecData(): Promise<any> {
     // return this.http.get('https://611e17387d273a0017e2fa4c.mockapi.io/cretical-data/1');
@@ -30,9 +30,45 @@ export class ETECService {
         user_family_name: decodedToken.family_name,
         user_email: decodedToken.email,
         generatedId: generatedId,
+        ...decodedToken.attributes
       };
 
-      return { ...etecData, ...decodedToken.attributes };
+      return { ...etecData };
+    } catch (e) {
+      return {};
+    }
+  }
+  async getTaskData(): Promise<any> {
+    // return this.http.get('https://611e17387d273a0017e2fa4c.mockapi.io/cretical-data/1');
+    try {
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(await this.keycloak.getToken());
+      let generatedId = null;
+      if (decodedToken.type)
+        generatedId =
+          decodedToken.groups && decodedToken.groups.length
+            ? decodedToken.groups[0].split("_")[0]
+            : "";
+
+      const etecData = {
+        task_name: decodedToken.name,
+        task_roles: decodedToken.roles,
+        task_groups: decodedToken.groups,
+        task_preferred_username: decodedToken.preferred_username,
+        task_type: decodedToken.type,
+        task_locale: decodedToken.locale,
+        task_given_name: decodedToken.given_name,
+        task_family_name: decodedToken.family_name,
+        task_email: decodedToken.email,
+        task_generatedId: generatedId,
+      };
+
+      if (decodedToken.attributes)
+        for (const [key, value] of Object.entries(decodedToken.attributes)) {
+          etecData[`task_${key}`] = value
+        }
+
+      return { ...etecData };
     } catch (e) {
       return {};
     }

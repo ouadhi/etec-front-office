@@ -1,7 +1,7 @@
 <app-page class="app-request-task">
     <app-section *ngIf="proccessName" sectionTitle="{{proccessName}}" [showContainer]="false">
     </app-section>
-    <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
+    <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}" [submission]="submission"
         [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (onSubmit)="onSubmit($event)" (submit)="onSubmit($event)"
         (formLoad)="formLoad($event)"></formio>
 

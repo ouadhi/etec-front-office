@@ -1,3 +1,4 @@
+import { ETECService } from 'src/app/core/services/etec.service';
 
 import { Injector, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -25,6 +26,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
   proccessName = '';
 
   task: any = {};
+  submission: any = {};
   public max = 65;
   public mainWidth = 65;
   public seperator = true;
@@ -44,6 +46,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 
   constructor(public injector: Injector,
     public modalController: ModalController,
+    public etecService: ETECService,
     public caseActivity: CaseActivityService) { super(injector); }
 
   /**
@@ -98,7 +101,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
    */
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.sub = this.caseActivity.getRequestTask(params.taskId).subscribe(data => {
+      this.sub = this.caseActivity.getRequestTask(params.taskId).subscribe(async data => {
         if (data.formKey) {
           const processDefinitionId = data.processDefinitionId.split(':')[0];
           const requestName = `${processDefinitionId}`;
@@ -113,10 +116,13 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
             });
 
           this.form.ready = false;
+
+          const etecData = await this.etecService.getTaskData();
+          this.submission.data = { ...etecData };
           this.params = [{
             url: `${environment.gateway}${environment.endpoints.humanTask}${data.formKey.replace('{caseId}', params.caseId)}`,
             parallel: false,
-            success: `submission.data = {...response.data, taskId:"${params.taskId}", requestId:"${params.requestId}"};`
+            success: `submission.data = {...response.data,...submission.data, taskId:"${params.taskId}", requestId:"${params.requestId}"};`
           }];
           this.form.formKey = data.formKey.split('/')[2];
 

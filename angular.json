@@ -69,7 +69,8 @@
               ]
             },
             "scripts": [
-              "node_modules/@webcomponents/custom-elements/src/native-shim.js"
+              "node_modules/@webcomponents/custom-elements/src/native-shim.js",
+              "node_modules/chart.js/dist/Chart.js"
             ],
             "aot": true
           },
