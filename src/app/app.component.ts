@@ -13,6 +13,8 @@ import { registerIndicatorsComponent } from 'src/formio/src/lib/features/formio/
 // import { registerIndicatorsComponent } from 'src/formio/src/public_api';
 import { registerHijriDateComponent } from 'src/formio/src/lib/features/formio/custom-component/components/hijri-date-wrapper/hijri-date-wrapper.formio';
 // import { registerHijriDateComponent } from 'src/formio/src/public_api';
+import { registerFormKeyWrapperComponent } from 'src/formio/src/lib/features/formio/custom-component/components/form-key-wrapper/form-key-wrapper.formio';
+// import { registerFormKeyWrapperComponent } from 'src/formio/src/public_api';
 
 import { NavigationStart } from '@angular/router';
 
@@ -35,6 +37,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     registerMapComponent(injector);
     registerIndicatorsComponent(injector);
     registerHijriDateComponent(injector);
+    registerFormKeyWrapperComponent(injector);
     this.sub = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.fullPage = event.url.includes('reset-password');
