@@ -68,7 +68,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
         this.submission.data = {
           ...this.submission.data,
           ...data.data,
-          requestId: formData
+          requestId: this.request.id
         };
         this.formReady = true;
       })
