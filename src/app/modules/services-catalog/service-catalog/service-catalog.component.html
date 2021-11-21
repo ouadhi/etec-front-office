@@ -109,7 +109,7 @@
                     <ng-container *ngFor="let b of segments">
                       <div class="filtersList__item">
                         <label class="label" for="{{a?._id}}_{{b?._id}}">
-                          <input type="checkbox" [disabled]="b.isDisabled" class="filterCheckbox__input"
+                          <input type="checkbox" [disabled]="isDisabled(a,b)" class="filterCheckbox__input"
                             id="{{a?._id}}_{{b?._id}}" [(ngModel)]="segmentInput[a?._id][b?._id]"
                             (change)="filterSegment()" />
                           {{b['segmentName_' + switchLangService.current]}}
@@ -182,7 +182,7 @@
 
                             <div *ngIf="b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]">
                               <label class="label" for="{{a?._id}}_{{b?._id}}">
-                                <input type="checkbox" [disabled]="b.isDisabled" class="filterCheckbox__input"
+                                <input type="checkbox" [disabled]="isDisabled(a,b)" class="filterCheckbox__input"
                                   id="{{a?._id}}_{{b?._id}}" [(ngModel)]="segmentInput[a?._id][b?._id]"
                                   (change)="filterSegment()" />
                                 {{b['segmentName_' + switchLangService.current]}}

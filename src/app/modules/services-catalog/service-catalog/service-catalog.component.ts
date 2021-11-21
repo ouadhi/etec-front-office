@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { IImage } from 'ng-simple-slideshow';
 import { combineLatest } from 'rxjs';
+import { ETECService } from 'src/app/core/services/etec.service';
 import { environment } from 'src/environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { RequestsService } from '../../requests/requests.service';
@@ -45,7 +46,8 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
   userSegments: string[] = [];
 
   constructor(public injector: Injector,
-    private requestsService: RequestsService) { super(injector); }
+    private requestsService: RequestsService,
+    private etecService: ETECService) { super(injector); }
 
   ngOnInit() {
     this.sub = this.keycloakService.keycloakEvents$.subscribe(async () => {
@@ -212,7 +214,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
         const innerObj = newObj[type._id] = {};
         this.segments.forEach((element, i) => {
           if (element.activation && type._id === element.segmentType._id) {
-            if (userSegments.includes(element._id)) {
+            if (userSegments.includes(element._id) || userSegments.includes(element.key)) {
               this.disabled.push(type._id);
               this.loggerService.log('ok?');
               innerObj[element._id] = true;
@@ -222,7 +224,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
           }
         });
         this.segmentInput = { ...this.segmentInput, ...newObj };
-        this.segments.forEach(element => element.isDisabled = this.isDisabled(type, element));
+        // this.segments.forEach(element => element.isDisabled = this.isDisabled(type, element));
       });
 
       this.filterSegment();
@@ -428,8 +430,9 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
       this.sub = this.requestsService.getListOfUserSegments().subscribe(data => {
         this.userSegments = data;
         this.prepareFilters(this.userSegments);
-      }, err => {
-        this.prepareFilters(this.userSegments);
+      }, async err => {
+        const data = await this.etecService.getTokenData();
+        this.prepareFilters(data.groups || this.userSegments);
       });
 
     } else {

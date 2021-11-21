@@ -73,4 +73,9 @@ export class ETECService {
       return {};
     }
   }
+
+  async getTokenData() {
+    const helper = new JwtHelperService();
+    return helper.decodeToken(await this.keycloak.getToken());
+  }
 }
