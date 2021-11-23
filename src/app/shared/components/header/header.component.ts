@@ -36,7 +36,6 @@ export class HeaderComponent extends BaseComponent {
                 return new Promise((resolve, reject) => {
                     if (this.loggedIn) {
                         this.keycloakService.getToken().then(token => {
-                            this.loggerService.log(requestArgs);
                             if (!requestArgs.opts) {
                                 requestArgs.opts = {};
                             }
