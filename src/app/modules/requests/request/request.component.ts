@@ -23,7 +23,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
   id: any;
   serviceId: any;
   caseId: any;
-  navParams: any;
+  navParams: any = {};
   formReady = false;
   request: any;
 
