@@ -35,6 +35,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
   hasResult = false;
   requestNumber: string;
   requestDate: Date;
+  isDraft: false;
 
   async ngOnInit() {
     this.isLoggedIn = await this.keycloakService.isLoggedIn();
@@ -80,16 +81,19 @@ export class RequestComponent extends BaseComponent implements OnInit {
     // this.toastr.success('', this.translate.instant('SERVICE.SUCCESS'));
     let requestId;
     let requestDate;
+    let isDraft;
     Object.keys(event.submission.metadata).forEach((key) => {
       if (event.submission.metadata[key].hasOwnProperty('requestId')) {
         requestId = event.submission.metadata[key].requestNumber;
         requestDate = event.submission.metadata[key].requestDate;
+        isDraft = event.submission.metadata[key].state == 'draft';
         return false;
       }
     });
 
     this.requestNumber = requestId;
     this.requestDate = requestDate;
+    this.isDraft = isDraft;
     this.hasResult = true;
   }
   /**
