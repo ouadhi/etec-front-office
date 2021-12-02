@@ -43,15 +43,15 @@
             }
         }
     }
-    .app-formio .input-group-prepend span,
-    .app-formio .input-group-prepend+textarea[disabled="disabled"] {
+    .app-formio .input-group-prepend:not([class*="tree-group"]) span,
+    .app-formio .input-group-prepend:not([class*="tree-group"])+textarea[disabled="disabled"] {
         background: transparent !important;
         border: none !important;
     }
     .app-formio textarea {
         width: 100% !important;
     }
-    .app-formio .input-group-prepend span::before {
+    .app-formio .input-group-prepend:not([class*="tree-group"]) span::before {
         content: "";
         width: 25px;
         height: 25px;
@@ -67,12 +67,12 @@
             background-image: $image;
         }
     }
-    .app-formio .input-group-prepend+textarea {
+    .app-formio .input-group-prepend:not([class*="tree-group"])+textarea {
         width: inherit;
     }
 }
 
-[dir="rtl"] .app-formio .input-group-prepend span::before {
+[dir="rtl"] .app-formio .input-group-prepend:not([class*="tree-group"]) span::before {
     margin-left: 5px;
     margin-right: 0;
 }
