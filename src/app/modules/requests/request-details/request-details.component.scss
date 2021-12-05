@@ -1,5 +1,8 @@
 @import 'colors.scss';
 .app-request-details {
+    .mat-expansion-panel-spacing{
+        overflow: inherit !important;
+    }
     .nav-tabs {
         background-color: #fff;
         color: #6c757d;

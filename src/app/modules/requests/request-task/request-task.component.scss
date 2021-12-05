@@ -11,6 +11,9 @@
 }
 
 .app-request-task {
+    .mat-expansion-panel-spacing{
+        overflow: inherit !important;
+    }
     formio {
         padding: 10px;
     }

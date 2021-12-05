@@ -1,5 +1,8 @@
 @import 'colors.scss';
 .app-request {
+    .mat-expansion-panel-spacing{
+        overflow: inherit !important;
+    }
     formio {
         padding: 10px;
     }
