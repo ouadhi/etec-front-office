@@ -1,5 +1,6 @@
 import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
 import { NotificationsService } from '../../notifications/notifications.service';
@@ -17,6 +18,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   constructor(public injector: Injector,
     private rest: RequestsService,
     public caseActivity: CaseActivityService,
+    private keycloakService: KeycloakService,
     private notificationsService: NotificationsService) { super(injector); }
   id: string;
   processInstanceId: string;
@@ -37,6 +39,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   taskName = '';
 
   currentRequestTask: any;
+  isLoggedIn = false;
 
   handleAction(event) {
     if (event.type === 'task') {
@@ -63,7 +66,8 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
       this.currentRequestTask = data;
     });
   }
-  ngOnInit() {
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
     this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
       this.getData();

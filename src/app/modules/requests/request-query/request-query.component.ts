@@ -1,3 +1,4 @@
+import { KeycloakService } from 'keycloak-angular';
 import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -34,6 +35,8 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   data: any;
   tasks: any[];
 
+  isLoggedIn = false;
+
   get requestDetailsUrl() {
     return `/requests/details/${this.requestId}/anonymous`;
   }
@@ -41,6 +44,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   constructor(public injector: Injector,
     private rest: RequestsService,
     private filterService: FilterService,
+    private keycloakService: KeycloakService,
     private reCaptchaV3Service: ReCaptchaV3Service) { super(injector); }
 
   doQuery() {
@@ -104,7 +108,8 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
 
     }
   }
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
     this.translateService.onLangChange.subscribe((res)=>{
       this.filterService.getPublishedServices().subscribe(data => this.services = data);
     });

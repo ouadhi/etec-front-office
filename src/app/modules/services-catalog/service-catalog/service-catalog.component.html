@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="padder" *ngIf="hasTask && env.serviceCatalogControl.showHasTask">
+  <div class="padder" *ngIf="isLoggedIn && hasTask && env.serviceCatalogControl.showHasTask">
     <div class="alert alert-warning">
       <div class="row">
         <div class="col-auto align-self-start">

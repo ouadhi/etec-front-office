@@ -44,6 +44,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
   public imagesSlider: IImage[];
 
   userSegments: string[] = [];
+  isLoggedIn = false;
 
   constructor(public injector: Injector,
     private requestsService: RequestsService,
@@ -62,6 +63,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
     this.prepareFiltersFetch();  // this.prepareFilters(this.userSegments);
     this.keycloakService.isLoggedIn().then(loggedIn => {
       if (loggedIn) {
+        this.isLoggedIn = true;
         this.sub = this.requestsService.getRequests({ activeTask: true }).subscribe(data => {
           if (data.items.length) {
             this.hasTask = true;
