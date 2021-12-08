@@ -16,7 +16,6 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
 
   constructor(public injector: Injector,
     private rest: RequestsService,
-    private keycloakService: KeycloakService,
     public caseActivity: CaseActivityService) { super(injector); }
 
   processInstanceId: string;

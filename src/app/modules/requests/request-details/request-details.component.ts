@@ -18,7 +18,6 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   constructor(public injector: Injector,
     private rest: RequestsService,
     public caseActivity: CaseActivityService,
-    private keycloakService: KeycloakService,
     private notificationsService: NotificationsService) { super(injector); }
   id: string;
   processInstanceId: string;

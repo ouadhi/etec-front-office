@@ -44,7 +44,6 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
   constructor(public injector: Injector,
     private rest: RequestsService,
     private filterService: FilterService,
-    private keycloakService: KeycloakService,
     private reCaptchaV3Service: ReCaptchaV3Service) { super(injector); }
 
   doQuery() {
