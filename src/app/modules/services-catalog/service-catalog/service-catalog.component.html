@@ -1,82 +1,101 @@
 <!-- <formio formKey="testimadservice"></formio>-->
 
 <div class="app-service-catalog">
-
-  <div c  lass="padder" *ngIf="!sessionService.isLicenseValid">
-    <div class="alert alert-warning-orange">
-      <div class="row">
-        <div class="col-auto align-self-start">
-          <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
+    <div c lass="padder padder-margin" *ngIf="!sessionService.isLicenseValid">
+        <div class="alert alert-warning-orange">
+            <div class="row">
+                <div class="col-auto align-self-start">
+                    <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
+                </div>
+                <div class="col">
+                    {{ "LICENSE.ERROR" | translate }}
+                </div>
+            </div>
         </div>
-        <div class="col">
-          {{'LICENSE.ERROR' | translate}}
+    </div>
+    <div *ngIf="env.serviceCatalogControl.showCarousel && imagesSlider?.length > 0" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div *ngFor="let i of imagesSlider; let x = index" [class]="x === 0 ? 'carousel-item active' : 'carousel-item'">
+                <img class="d-block w-100" src="{{ i.url }}" alt="slide" />
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="padder padder-margin" *ngIf="hasTask && env.serviceCatalogControl.showHasTask">
+        <div class="alert alert-warning">
+            <div class="row">
+                <div class="col-auto align-self-start">
+                    <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
+                </div>
+                <div class="col">
+                    {{ "CATALOG.needs" | translate }}
+                    <strong>{{ "CATALOG.beneficiaryTask" | translate }}</strong> {{ "CATALOG.pleasePress" | translate }}
+                    <a [routerLink]="['/requests/my', { u: 1 }]" class="alert-link">{{
+            "CATALOG.hereToUpdate" | translate
+          }}</a
+          >.
         </div>
       </div>
     </div>
   </div>
-  <div *ngIf="env.serviceCatalogControl.showCarousel && imagesSlider?.length >0" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div *ngFor="let i of imagesSlider; let x = index" [class]="(x === 0) ? 'carousel-item active' : 'carousel-item'">
-        <img class="d-block w-100" src="{{i.url}}" alt="slide">
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="padder" *ngIf="hasTask && env.serviceCatalogControl.showHasTask">
-    <div class="alert alert-warning">
-      <div class="row">
-        <div class="col-auto align-self-start">
-          <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
-        </div>
-        <div class="col">
-          {{'CATALOG.needs' | translate}} <strong>{{'CATALOG.beneficiaryTask' | translate}}</strong>
-          {{'CATALOG.pleasePress' | translate}}
-          <a [routerLink]="[ '/requests/my',{ u:1} ]" class="alert-link">{{'CATALOG.hereToUpdate' | translate}}</a>.
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   <app-page *ngIf="env.serviceCatalogControl.showMostUsedService">
-
     <br />
     <br />
-    <app-section class="most-used" sectionTitle="{{'CATALOG.MOST_USED_SERVICES' | translate}}" [sectionCard]="false">
+    <app-section
+      class="most-used"
+      sectionTitle="{{ 'CATALOG.MOST_USED_SERVICES' | translate }}"
+      [sectionCard]="false"
+    >
       <section fxLayout="row wrap" fxLayoutAlign="space-between top">
-
-        <ng-container *ngFor="let x of dataMostUsed;let i = index">
-          <app-service-card *ngIf="i < 6" id="{{x?._id}}" cardTitle="{{x['serviceName_' + switchLangService.current]}}"
-            text="{{x['description_' + switchLangService.current]}}" fxFlex="49" fxFlex.xs="100"></app-service-card>
+        <ng-container *ngFor="let x of dataMostUsed; let i = index">
+          <app-service-card
+            *ngIf="i < 6"
+            id="{{ x?._id }}"
+            cardTitle="{{ x['serviceName_' + switchLangService.current] }}"
+            text="{{ x['description_' + switchLangService.current] }}"
+            fxFlex="49"
+            fxFlex.xs="100"
+          ></app-service-card>
           <!-- @TODO temp -->
         </ng-container>
-
       </section>
     </app-section>
   </app-page>
 
   <app-page *ngIf="env.serviceCatalogControl.showCatalog">
     <div class="services-container">
-      <app-section sectionTitle="{{'CATALOG.DIRECTORY' | translate}}" [sectionCard]="false">
+      <app-section
+        sectionTitle="{{ 'CATALOG.DIRECTORY' | translate }}"
+        [sectionCard]="false"
+      >
         <mat-drawer-container hasBackdrop="true">
           <mat-drawer #drawer mode="over">
             <mat-card class="filter-card no-card-shape">
               <div class="filtersSection w-bg">
-                <img src="assets/images/brand.png" style="width: 200px;margin-bottom: 10px;" />
+                <img
+                  src="assets/images/brand.png"
+                  style="width: 200px; margin-bottom: 10px"
+                />
 
                 <div class="filtersSection__resetFilters">
                   <mat-list-item>
-                    <button mat-button class="clear-filter" (click)="resetFilters()"
-                      [disabled]="userSegments?.length>0">
-                      <mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}
+                    <button
+                      mat-button
+                      class="clear-filter"
+                      (click)="resetFilters()"
+                      [disabled]="userSegments?.length > 0"
+                    >
+                      <mat-icon>close</mat-icon>
+                      {{ "CATALOG.REMOVE_FILTERS" | translate }}
                     </button>
                   </mat-list-item>
                 </div>
@@ -92,45 +111,75 @@
 
                 <br />
                 <div class="filtersSection__keyword">
-                  <mat-form-field class="filtersSection__keywordForm" appearance="outline">
-                    <mat-label>{{'CATALOG.SEARCH_KEYWORD' | translate}}</mat-label>
-                    <input matInput [(ngModel)]="keyword" (keyup)="filterKeyword()" style="height:15px"
-                      placeholder="{{'CATALOG.SEARCH_KEYWORD' | translate}}">
-                    <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear"
-                      (click)="keyword='';filterKeyword()">
+                  <mat-form-field
+                    class="filtersSection__keywordForm"
+                    appearance="outline"
+                  >
+                    <mat-label>{{
+                      "CATALOG.SEARCH_KEYWORD" | translate
+                    }}</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="keyword"
+                      (keyup)="filterKeyword()"
+                      style="height: 15px"
+                      placeholder="{{ 'CATALOG.SEARCH_KEYWORD' | translate }}"
+                    />
+                    <button
+                      mat-button
+                      *ngIf="keyword"
+                      matSuffix
+                      mat-icon-button
+                      aria-label="Clear"
+                      (click)="keyword = ''; filterKeyword()"
+                    >
                       <mat-icon>close</mat-icon>
                     </button>
                   </mat-form-field>
                 </div>
 
                 <ng-container *ngFor="let a of segmentType">
-                  <div class="filtersList" [style.display]="a.visible ? 'block': 'none'">
-                    <div class="filtersList__head">{{a['segmentTypeName_' + switchLangService.current]}}</div>
+                  <div
+                    class="filtersList"
+                    [style.display]="a.visible ? 'block' : 'none'"
+                  >
+                    <div class="filtersList__head">
+                      {{ a["segmentTypeName_" + switchLangService.current] }}
+                    </div>
                     <ng-container *ngFor="let b of segments">
                       <div class="filtersList__item">
-                        <label class="label" for="{{a?._id}}_{{b?._id}}">
-                          <input type="checkbox" [disabled]="isDisabled(a,b)" class="filterCheckbox__input"
-                            id="{{a?._id}}_{{b?._id}}" [(ngModel)]="segmentInput[a?._id][b?._id]"
-                            (change)="filterSegment()" />
-                          {{b['segmentName_' + switchLangService.current]}}
+                        <label class="label" for="{{ a?._id }}_{{ b?._id }}">
+                          <input
+                            type="checkbox"
+                            [disabled]="isDisabled(a, b)"
+                            class="filterCheckbox__input"
+                            id="{{ a?._id }}_{{ b?._id }}"
+                            [(ngModel)]="segmentInput[a?._id][b?._id]"
+                            (change)="filterSegment()"
+                          />
+                          {{ b["segmentName_" + switchLangService.current] }}
                         </label>
                       </div>
                     </ng-container>
                   </div>
                 </ng-container>
 
-                <mat-list-item class="filtersList__head" *ngIf="tags?.length">{{'CATALOG.TAGS' | translate}}
+                <mat-list-item class="filtersList__head" *ngIf="tags?.length"
+                  >{{ "CATALOG.TAGS" | translate }}
                 </mat-list-item>
 
                 <ng-container *ngFor="let x of tags">
-                  <ion-chip (click)="changeTagStatus(x._id)" [class.selected-chip]="tagsInput[x._id]">
-                    <ion-label>{{x.tag}}</ion-label>
+                  <ion-chip
+                    (click)="changeTagStatus(x._id)"
+                    [class.selected-chip]="tagsInput[x._id]"
+                  >
+                    <ion-label>{{ x.tag }}</ion-label>
                   </ion-chip>
                 </ng-container>
 
                 <mat-list-item>
                   <button mat-button class="w-100" (click)="drawer.toggle()">
-                    {{'CLOSE' | translate}}
+                    {{ "CLOSE" | translate }}
                   </button>
                 </mat-list-item>
               </div>
@@ -139,16 +188,26 @@
 
           <mat-drawer-content>
             <div class="row sm-row">
-              <div class="col-lg-3 "
-                [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+              <div
+                class="col-lg-3"
+                [ngClass]="{
+                  alignSwitchAR: switchLangService.currentLang == 'ar',
+                  alignSwitchEN: switchLangService.currentLang == 'en'
+                }"
+              >
                 <div class="d-none d-lg-block">
                   <mat-card class="filter-card">
                     <div class="filtersSection">
                       <div class="filtersSection__resetFilters">
                         <mat-list-item>
-                          <button mat-button class="clear-filter" (click)="resetFilters()"
-                            [disabled]="userSegments?.length>0">
-                            <mat-icon>close</mat-icon> {{'CATALOG.REMOVE_FILTERS' | translate}}
+                          <button
+                            mat-button
+                            class="clear-filter"
+                            (click)="resetFilters()"
+                            [disabled]="userSegments?.length > 0"
+                          >
+                            <mat-icon>close</mat-icon>
+                            {{ "CATALOG.REMOVE_FILTERS" | translate }}
                           </button>
                         </mat-list-item>
                       </div>
@@ -164,135 +223,281 @@
 
                       <br />
                       <div class="filtersSection__keyword">
-                        <mat-form-field class="filtersSection__keywordForm" appearance="outline">
-                          <mat-label>{{'CATALOG.SEARCH_KEYWORD' | translate}}</mat-label>
-                          <input matInput [(ngModel)]="keyword" (keyup)="filterKeyword()" style="height:15px"
-                            placeholder="{{'CATALOG.SEARCH_KEYWORD' | translate}}">
-                          <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear"
-                            (click)="keyword='';filterKeyword()">
+                        <mat-form-field
+                          class="filtersSection__keywordForm"
+                          appearance="outline"
+                        >
+                          <mat-label>{{
+                            "CATALOG.SEARCH_KEYWORD" | translate
+                          }}</mat-label>
+                          <input
+                            matInput
+                            [(ngModel)]="keyword"
+                            (keyup)="filterKeyword()"
+                            style="height: 15px"
+                            placeholder="{{
+                              'CATALOG.SEARCH_KEYWORD' | translate
+                            }}"
+                          />
+                          <button
+                            mat-button
+                            *ngIf="keyword"
+                            matSuffix
+                            mat-icon-button
+                            aria-label="Clear"
+                            (click)="keyword = ''; filterKeyword()"
+                          >
                             <mat-icon>close</mat-icon>
                           </button>
                         </mat-form-field>
                       </div>
 
                       <ng-container *ngFor="let a of segmentType">
-                        <div class="filtersList" [style.display]="a.visible ? 'block': 'none'">
-                          <div class="filtersList__head">{{a['segmentTypeName_' + switchLangService.current]}}</div>
+                        <div
+                          class="filtersList"
+                          [style.display]="a.visible ? 'block' : 'none'"
+                        >
+                          <div class="filtersList__head">
+                            {{
+                              a["segmentTypeName_" + switchLangService.current]
+                            }}
+                          </div>
                           <ng-container *ngFor="let b of segments">
-
-                            <div *ngIf="b.segmentType?._id == a?._id && segmentInput && segmentInput[a?._id]">
-                              <label class="label" for="{{a?._id}}_{{b?._id}}">
-                                <input type="checkbox" [disabled]="isDisabled(a,b)" class="filterCheckbox__input"
-                                  id="{{a?._id}}_{{b?._id}}" [(ngModel)]="segmentInput[a?._id][b?._id]"
-                                  (change)="filterSegment()" />
-                                {{b['segmentName_' + switchLangService.current]}}
+                            <div
+                              *ngIf="
+                                b.segmentType?._id == a?._id &&
+                                segmentInput &&
+                                segmentInput[a?._id]
+                              "
+                            >
+                              <label
+                                class="label"
+                                for="{{ a?._id }}_{{ b?._id }}"
+                              >
+                                <input
+                                  type="checkbox"
+                                  [disabled]="isDisabled(a, b)"
+                                  class="filterCheckbox__input"
+                                  id="{{ a?._id }}_{{ b?._id }}"
+                                  [(ngModel)]="segmentInput[a?._id][b?._id]"
+                                  (change)="filterSegment()"
+                                />
+                                {{
+                                  b["segmentName_" + switchLangService.current]
+                                }}
                               </label>
                             </div>
                           </ng-container>
                         </div>
                       </ng-container>
 
-
-                      <mat-list-item class="filtersList__head" *ngIf="tags?.length">{{'CATALOG.TAGS' | translate}}
+                      <mat-list-item
+                        class="filtersList__head"
+                        *ngIf="tags?.length"
+                        >{{ "CATALOG.TAGS" | translate }}
                       </mat-list-item>
 
                       <ng-container *ngFor="let x of tags">
-                        <ion-chip (click)="changeTagStatus(x._id)" [class.selected-chip]="tagsInput[x._id]">
-                          <ion-label>{{x.tag}}</ion-label>
+                        <ion-chip
+                          (click)="changeTagStatus(x._id)"
+                          [class.selected-chip]="tagsInput[x._id]"
+                        >
+                          <ion-label>{{ x.tag }}</ion-label>
                         </ion-chip>
                       </ng-container>
                     </div>
                   </mat-card>
                 </div>
                 <div class="d-lg-none">
-
-                  <mat-card class="filter-card sm-filter-card" (click)="drawer.toggle()">
+                  <mat-card
+                    class="filter-card sm-filter-card"
+                    (click)="drawer.toggle()"
+                  >
                     <div class="sm-filter-container">
                       <h5 class="mb-0 text-dark">
-                        {{'Filter' | translate}}
+                        {{ "Filter" | translate }}
                       </h5>
                       <mat-icon>search</mat-icon>
                     </div>
                   </mat-card>
                 </div>
-
               </div>
 
-              <div class="col-lg-9 "
-                [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
-
-                <mat-tab-group mat-stretch-tabs (selectedTabChange)='changeTap($event,departments)'
-                  class="example-stretched-tabs mat-elevation-z4">
-                  <mat-tab label="{{'CATALOG.ALL_DEPARTMENTS' | translate}}">
+              <div
+                class="col-lg-9"
+                [ngClass]="{
+                  alignSwitchAR: switchLangService.currentLang == 'ar',
+                  alignSwitchEN: switchLangService.currentLang == 'en'
+                }"
+              >
+                <mat-tab-group
+                  mat-stretch-tabs
+                  (selectedTabChange)="changeTap($event, departments)"
+                  class="example-stretched-tabs mat-elevation-z4"
+                >
+                  <mat-tab label="{{ 'CATALOG.ALL_DEPARTMENTS' | translate }}">
                     <div class="category-content">
-                      <section fxLayout="row wrap" fxLayoutAlign="space-between top">
-                        <ng-container *ngFor="let x of filtered;trackBy: trackByFn">
-                          <app-service-card id="{{x?._id}}"
-                            cardTitle="{{x['serviceName_' + switchLangService.current]}}"
-                            text="{{x['description_' + switchLangService.current]}}" fxFlex="49" fxFlex.xs="100">
+                      <section
+                        fxLayout="row wrap"
+                        fxLayoutAlign="space-between top"
+                      >
+                        <ng-container
+                          *ngFor="let x of filtered; trackBy: trackByFn"
+                        >
+                          <app-service-card
+                            id="{{ x?._id }}"
+                            cardTitle="{{
+                              x['serviceName_' + switchLangService.current]
+                            }}"
+                            text="{{
+                              x['description_' + switchLangService.current]
+                            }}"
+                            fxFlex="49"
+                            fxFlex.xs="100"
+                          >
                           </app-service-card>
                         </ng-container>
 
-                        <div *ngIf="(filtered)?.length === 0" fxLayout="row" fxLayoutAlign="center center">
+                        <div
+                          *ngIf="filtered?.length === 0"
+                          fxLayout="row"
+                          fxLayoutAlign="center center"
+                        >
                           <mat-card>
-                            <h5>{{'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate}}</h5>
-                            <br>
-                            <button mat-stroked-button color="warn" (click)="resetFilters()"
-                              [disabled]="userSegments?.length>0">{{'CATALOG.REMOVE_ALL_SEARCH_PARAMS' |
-                              translate}}</button>
+                            <h5>
+                              {{
+                                "CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS"
+                                  | translate
+                              }}
+                            </h5>
+                            <br />
+                            <button
+                              mat-stroked-button
+                              color="warn"
+                              (click)="resetFilters()"
+                              [disabled]="userSegments?.length > 0"
+                            >
+                              {{
+                                "CATALOG.REMOVE_ALL_SEARCH_PARAMS" | translate
+                              }}
+                            </button>
                           </mat-card>
                         </div>
                       </section>
 
-                      <small *ngIf="(filtered)?.length != 0">
-                        {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(filtered)?.length}}
-                        <ng-container *ngIf="(filtered)?.length !=totalResult">
-                          {{'CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN' | translate }} {{totalResult}}</ng-container>
-                        {{'CATALOG.SERVICE' | translate }}
+                      <small *ngIf="filtered?.length != 0">
+                        {{ "CATALOG.DISPLAY_RESULTS_COUNT" | translate }}
+                        {{ filtered?.length }}
+                        <ng-container *ngIf="filtered?.length != totalResult">
+                          {{
+                            "CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN"
+                              | translate
+                          }}
+                          {{ totalResult }}</ng-container
+                        >
+                        {{ "CATALOG.SERVICE" | translate }}
                       </small>
                     </div>
                   </mat-tab>
-                  <mat-tab *ngFor="let x of departments" label="{{x['departmentName_' + switchLangService.current]}}">
-                    <ng-container *ngIf="dataFilters.category.department._id == x._id">
+                  <mat-tab
+                    *ngFor="let x of departments"
+                    label="{{
+                      x['departmentName_' + switchLangService.current]
+                    }}"
+                  >
+                    <ng-container
+                      *ngIf="dataFilters.category.department._id == x._id"
+                    >
                       <div class="category-filter">
-                        <ion-chip (click)="filterCategory(null)" [class.selected-chip]="dataFilters.category._id==null">
-                          <ion-label>{{"CATALOG.ALL_CATEGORIES" | translate}}</ion-label>
+                        <ion-chip
+                          (click)="filterCategory(null)"
+                          [class.selected-chip]="
+                            dataFilters.category._id == null
+                          "
+                        >
+                          <ion-label>{{
+                            "CATALOG.ALL_CATEGORIES" | translate
+                          }}</ion-label>
                         </ion-chip>
 
                         <ng-container *ngFor="let y of categories">
-                          <ion-chip (click)="filterCategory(y._id)" *ngIf="y.department._id == x._id"
-                            [class.selected-chip]="y._id==dataFilters.category._id">
-                            <ion-label> {{y['categoryName_' + switchLangService.current]}}</ion-label>
+                          <ion-chip
+                            (click)="filterCategory(y._id)"
+                            *ngIf="y.department._id == x._id"
+                            [class.selected-chip]="
+                              y._id == dataFilters.category._id
+                            "
+                          >
+                            <ion-label>
+                              {{
+                                y["categoryName_" + switchLangService.current]
+                              }}</ion-label
+                            >
                           </ion-chip>
                         </ng-container>
                       </div>
                     </ng-container>
 
                     <div class="category-content">
-                      <section fxLayout="row wrap" fxLayoutAlign="space-between top">
-                        <ng-container *ngFor="let x of filtered;trackBy: trackByFn">
-                          <app-service-card id="{{x?._id}}"
-                            cardTitle="{{x['serviceName_' + switchLangService.current]}}"
-                            text="{{x['description_' + switchLangService.current]}}" fxFlex="49" fxFlex.xs="100">
+                      <section
+                        fxLayout="row wrap"
+                        fxLayoutAlign="space-between top"
+                      >
+                        <ng-container
+                          *ngFor="let x of filtered; trackBy: trackByFn"
+                        >
+                          <app-service-card
+                            id="{{ x?._id }}"
+                            cardTitle="{{
+                              x['serviceName_' + switchLangService.current]
+                            }}"
+                            text="{{
+                              x['description_' + switchLangService.current]
+                            }}"
+                            fxFlex="49"
+                            fxFlex.xs="100"
+                          >
                           </app-service-card>
                         </ng-container>
 
-                        <div *ngIf="(filtered)?.length === 0" fxLayout="row" fxLayoutAlign="center center">
+                        <div
+                          *ngIf="filtered?.length === 0"
+                          fxLayout="row"
+                          fxLayoutAlign="center center"
+                        >
                           <mat-card>
-                            <h5>{{'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate}}</h5>
-                            <br>
-                            <button mat-stroked-button color="warn" (click)="resetFilters()"
-                              [disabled]="userSegments?.length>0">{{'CATALOG.REMOVE_ALL_SEARCH_PARAMS' |
-                              translate}}</button>
+                            <h5>
+                              {{
+                                "CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS"
+                                  | translate
+                              }}
+                            </h5>
+                            <br />
+                            <button
+                              mat-stroked-button
+                              color="warn"
+                              (click)="resetFilters()"
+                              [disabled]="userSegments?.length > 0"
+                            >
+                              {{
+                                "CATALOG.REMOVE_ALL_SEARCH_PARAMS" | translate
+                              }}
+                            </button>
                           </mat-card>
                         </div>
                       </section>
 
-                      <small *ngIf="(filtered)?.length != 0">
-                        {{'CATALOG.DISPLAY_RESULTS_COUNT' | translate }} {{(filtered)?.length}}
-                        <ng-container *ngIf="(filtered)?.length !=totalResult">
-                          {{'CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN' | translate }} {{totalResult}}</ng-container>
-                        {{'CATALOG.SERVICE' | translate }}
+                      <small *ngIf="filtered?.length != 0">
+                        {{ "CATALOG.DISPLAY_RESULTS_COUNT" | translate }}
+                        {{ filtered?.length }}
+                        <ng-container *ngIf="filtered?.length != totalResult">
+                          {{
+                            "CATALOG.SERVICE_MATCHED_SEARCH_FROM_ORIGIN"
+                              | translate
+                          }}
+                          {{ totalResult }}</ng-container
+                        >
+                        {{ "CATALOG.SERVICE" | translate }}
                       </small>
                     </div>
                   </mat-tab>
@@ -304,6 +509,5 @@
         </mat-drawer-container>
       </app-section>
     </div>
-
   </app-page>
 </div>
