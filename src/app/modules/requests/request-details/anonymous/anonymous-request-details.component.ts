@@ -35,6 +35,7 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
   taskName = '';
 
   currentRequestTask: any;
+  isLoggedIn = false;
 
   handleAction(event) {
     if (event.type === 'task') {
@@ -61,9 +62,8 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
       this.currentRequestTask = data;
     });
   }
-  ngOnInit() {
-
-
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
     this.sub = this.route.params.subscribe(params => {
       this.sub = this.rest.queryAnonymousRequests(this.route.snapshot.params.id).subscribe(data => {
         this.processInstanceId = data.procInstID;

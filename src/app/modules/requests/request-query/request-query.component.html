@@ -63,7 +63,7 @@
       <div fxLayout="row wrap">
         <div fxFlex="100">
 
-          <div class="alert alert-warning" *ngIf="activeTask">
+          <div class="alert alert-warning" *ngIf="isLoggedIn && activeTask">
             <div class="row">
               <div class="col-auto align-self-start auto-width">
                 <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>

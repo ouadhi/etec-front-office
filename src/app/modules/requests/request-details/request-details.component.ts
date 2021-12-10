@@ -37,6 +37,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   taskName = '';
 
   currentRequestTask: any;
+  isLoggedIn = false;
 
   handleAction(event) {
     if (event.type === 'task') {
@@ -63,7 +64,8 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
       this.currentRequestTask = data;
     });
   }
-  ngOnInit() {
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
     this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
       this.getData();
