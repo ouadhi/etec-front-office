@@ -39,7 +39,6 @@ export class RequestComponent extends BaseComponent implements OnInit {
 
   async ngOnInit() {
     this.isLoggedIn = await this.keycloakService.isLoggedIn();
-    this.sub = this.translateService.onLangChange.subscribe(() => this.getData());
     this.sub = this.route.params.subscribe(async params => {
       this.id = params['id'];
       this.serviceId = params['serviceId'];

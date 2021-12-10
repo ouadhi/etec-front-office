@@ -1,4 +1,3 @@
-import { KeycloakService } from 'keycloak-angular';
 import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -34,8 +33,6 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
 
   data: any;
   tasks: any[];
-
-  isLoggedIn = false;
 
   get requestDetailsUrl() {
     return `/requests/details/${this.requestId}/anonymous`;
@@ -107,8 +104,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
 
     }
   }
-  async ngOnInit(): Promise<void> {
-    this.isLoggedIn = await this.keycloakService.isLoggedIn();
+  ngOnInit(): void {
     this.translateService.onLangChange.subscribe((res)=>{
       this.filterService.getPublishedServices().subscribe(data => this.services = data);
     });

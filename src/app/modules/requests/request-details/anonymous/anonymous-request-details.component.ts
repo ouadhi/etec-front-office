@@ -1,6 +1,5 @@
 import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { KeycloakService } from 'keycloak-angular';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
 import { CaseActivityService } from '../../case-activities.service';
@@ -37,8 +36,6 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
 
   currentRequestTask: any;
 
-  isLoggedIn = false;
-
   handleAction(event) {
     if (event.type === 'task') {
       if (this.tasks && this.tasks.length) {
@@ -64,8 +61,9 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
       this.currentRequestTask = data;
     });
   }
-  async ngOnInit() {
-    this.isLoggedIn = await this.keycloakService.isLoggedIn();
+  ngOnInit() {
+
+
     this.sub = this.route.params.subscribe(params => {
       this.sub = this.rest.queryAnonymousRequests(this.route.snapshot.params.id).subscribe(data => {
         this.processInstanceId = data.procInstID;

@@ -94,7 +94,6 @@ export class CaseActivitiesComponent extends BaseComponent implements OnInit, Af
     ngOnInit(): void {
         this.doInitSlider();
         this.sub = this.translateService.onLangChange.subscribe(() => {
-            this.getData();
             this.doInitSlider();
         });
         this.sub = this.notificationsService.listenerObserver.subscribe(activity => {

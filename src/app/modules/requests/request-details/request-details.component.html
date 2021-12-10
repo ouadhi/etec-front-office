@@ -1,6 +1,6 @@
 <app-page class="app-request-details">
   <app-section sectionTitle="{{'Steps' | translate}} {{request?.requestName}}">
-    <div class="padder" *ngIf="isLoggedIn && (hasTask || tasks?.length)"
+    <div class="padder" *ngIf="hasTask || tasks?.length"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div class="alert alert-warning">
         <div class="row">

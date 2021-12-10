@@ -1,2 +1,26 @@
-@import 'colors.scss';
+@import "colors.scss";
 .otp-verification {}
+
+.alert {
+    margin-bottom: 0px !important;
+    font-size: medium;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 10px !important;
+}
+
+.custom-alert-info {
+    color: #055160 !important;
+    background-color: #cff4fc !important;
+    border-color: #b6effb !important;
+}
+
+mat-icon.hint {
+    margin: 21px 5px 5px 5px !important;
+    cursor: default !important;
+    color: var(--primaryColor) !important;
+}
+
+.otp-hint {
+    display: flex;
+    justify-content: center;
+}
