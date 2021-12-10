@@ -2,7 +2,7 @@
 
 <div class="app-service-catalog">
 
-  <div c  lass="padder" *ngIf="!sessionService.isLicenseValid">
+  <div class="padder padder-margin" *ngIf="!sessionService.isLicenseValid">
     <div class="alert alert-warning-orange">
       <div class="row">
         <div class="col-auto align-self-start">
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="padder" *ngIf="isLoggedIn && hasTask && env.serviceCatalogControl.showHasTask">
+  <div class="padder padder-margin" *ngIf="isLoggedIn && hasTask && env.serviceCatalogControl.showHasTask">
     <div class="alert alert-warning">
       <div class="row">
         <div class="col-auto align-self-start">
