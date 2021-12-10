@@ -65,7 +65,6 @@ export class ChangePasswordComponent extends BaseComponent implements OnInit {
 
   mustMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
-      debugger;
       const control = formGroup.controls[controlName];
       const matchingControl = formGroup.controls[matchingControlName];
 
