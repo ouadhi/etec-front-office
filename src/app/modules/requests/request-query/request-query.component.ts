@@ -105,10 +105,14 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
 
     }
   }
+  getServices(){
+    this.filterService.getPublishedServices().subscribe(data => this.services = data);
+  }
   async ngOnInit(): Promise<void> {
     this.isLoggedIn = await this.keycloakService.isLoggedIn();
+    this.getServices();
     this.translateService.onLangChange.subscribe((res)=>{
-      this.filterService.getPublishedServices().subscribe(data => this.services = data);
+      this.getServices();
     });
     this.sub = this.query.controls.requestType.statusChanges.pipe(debounceTime(200)).subscribe(() => {
       this.loggerService.log(this.query.controls.requestType.valid);
