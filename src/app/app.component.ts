@@ -14,6 +14,7 @@ import {
   registerTableTreeComponent,
   registerTemplateComponent,
   registerGroupedTableComponent,
+  registerStepperComponent,
 } from "src/formio/src/public_api";
 
 import { NavigationStart } from "@angular/router";
@@ -40,6 +41,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     registerFormKeyWrapperComponent(injector);
     registerEditgridResourceComponent(injector);
     registerGroupedTableComponent(injector);
+    registerStepperComponent(injector);
     this.sub = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.fullPage = event.url.includes("reset-password");
