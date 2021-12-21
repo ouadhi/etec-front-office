@@ -21,6 +21,7 @@ export class RequestQueryComponent extends BaseComponent implements OnInit, OnDe
     requestDate: new FormControl(null, [Validators.required]),
     requestType: new FormControl(null, [Validators.required]),
   });
+  maxDate = new Date();
   notFound = false;
   found = false;
   services = [];

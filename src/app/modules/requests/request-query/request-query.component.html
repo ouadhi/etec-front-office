@@ -23,7 +23,7 @@
                 <div [fxFlex.xs]="100" fxFlex="45" class="pad-5">
                   <label>{{'Request Date' | translate}}</label>
                   <mat-form-field floatLabel="never" appearance="outline" class="full-width">
-                    <input matInput formControlName="requestDate" [matDatepicker]="fd">
+                    <input matInput formControlName="requestDate" [matDatepicker]="fd" [max]="maxDate">
                     <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
                     <mat-datepicker #fd></mat-datepicker>
                   </mat-form-field>

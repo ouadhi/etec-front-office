@@ -40,7 +40,7 @@
             display: none;
         }
     }
-    :host::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+     :host::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
         white-space: inherit !important;
         line-height: normal !important;
         display: flex;
@@ -64,4 +64,18 @@
         background-color: $primary-color;
         border-radius: 8px;
     }
+}
+
+.mat-calendar-table-header {
+    background-color: transparent !important;
+    color: initial !important;
+}
+
+.mat-calendar-body-label {
+    color: transparent;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 0.55em !important;
 }
