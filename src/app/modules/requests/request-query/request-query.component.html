@@ -1,92 +1,98 @@
-<app-page class="app-request-query">
-  <app-section sectionTitle="{{'NAV.QUERY_REQUEST' | translate}}">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-8">
+            <div class="app-request-query">
+                <div class="app-request-query-content">
+                    <div class="section-title">
+                        <span>
+              {{'NAV.QUERY_REQUEST' | translate}}
+            </span>
+                    </div>
+                    <div fxLayout="row wrap">
+                        <div fxFlex="100" class="">
+                            <div class='page-container'>
+                                <form [formGroup]="query" autocomplete="off">
 
-    <div fxLayout="row wrap">
-      <div fxFlex="100" class="pad-5">
-        <div class='page-container'>
-          <form [formGroup]="query" autocomplete="off">
+                                    <div class="query-form">
 
-            <div class="query-form">
+                                        <div fxLayout="row wrap">
+                                            <div fxFlex="100" class="">
+                                                <h6 class="note">{{'SERVICE.QUERY_NOTE' | translate}}</h6>
+                                            </div>
 
-              <div fxLayout="row wrap">
-                <div fxFlex="100" class="pad-5">
-                  <h6 class="note">{{'SERVICE.QUERY_NOTE' | translate}}</h6>
+                                            <div [fxFlex.xs]="100" fxFlex="100" class="">
+                                                <label>{{'Id' | translate}}</label>
+                                                <mat-form-field floatLabel="never" appearance="outline" class="full-width">
+                                                    <input matInput formControlName="requestNumber" style="text-align: center;">
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div [fxFlex.xs]="100" fxFlex="45" class="">
+                                                <label>{{'Request Date' | translate}}</label>
+                                                <mat-form-field floatLabel="never" appearance="outline" class="full-width">
+                                                    <input matInput formControlName="requestDate" [matDatepicker]="fd" [max]="maxDate">
+                                                    <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
+                                                    <mat-datepicker #fd></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div [fxFlex.xs]="100" fxFlex="10" class=" center-flex">
+                                                <span>{{'Or' | translate}}</span>
+                                            </div>
+
+                                            <div [fxFlex.xs]="100" fxFlex="45" class="">
+                                                <label>{{'Service' | translate}}</label>
+                                                <app-select color="primary" [closeOnSelect]="true" [hideLoaded]="true" formControlName="requestType" [data]="services" [bindValue]="'id'" [bindLabel]="'name'">
+                                                </app-select>
+                                            </div>
+
+                                            <div fxFlex="100" class="query-container  text-center">
+                                                <button class="ctm-btn query-btn" [disabled]="query.invalid" (click)="doQuery()">
+                          {{'SERVICE.QUERY' | translate}}
+                        </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <h6 class="text-center" style="margin:30px 0px;" *ngIf="notFound">{{'SERVICE.REQUEST_NOT_FOUND' | translate}}
+                                </h6>
+                            </div>
+                            <div *ngIf="found" class='page-container test-center'>
+                                <router-outlet></router-outlet>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div [@inOutAnimation] *ngIf="cmmnId">
+                        <app-section sectionTitle="{{'Steps' | translate}} {{requestName | translate}}">
+                            <div fxLayout="row wrap">
+                                <div fxFlex="100">
+
+                                    <div class="alert alert-warning" *ngIf="activeTask">
+                                        <div class="row">
+                                            <div class="col-auto align-self-start auto-width">
+                                                <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
+                                            </div>
+                                            <div class="col auto-width">
+                                                {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong> {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction()" class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <app-case-activities [caseInstanceId]="cmmnId"></app-case-activities>
+                                    <br />
+                                    <div class="align-dir">
+                                        <button class="ctm-btn query-btn" routerLink="{{requestDetailsUrl}}">
+                      {{'Details' | translate}}
+                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </app-section>
+                    </div>
+
                 </div>
-
-                <div [fxFlex.xs]="100" fxFlex="100" class="pad-5">
-                  <label>{{'Id' | translate}}</label>
-                  <mat-form-field floatLabel="never" appearance="outline" class="full-width">
-                    <input matInput formControlName="requestNumber" style="text-align: center;">
-                  </mat-form-field>
-                </div>
-
-                <div [fxFlex.xs]="100" fxFlex="45" class="pad-5">
-                  <label>{{'Request Date' | translate}}</label>
-                  <mat-form-field floatLabel="never" appearance="outline" class="full-width">
-                    <input matInput formControlName="requestDate" [matDatepicker]="fd" [max]="maxDate">
-                    <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
-                    <mat-datepicker #fd></mat-datepicker>
-                  </mat-form-field>
-                </div>
-
-                <div [fxFlex.xs]="100" fxFlex="10" class="pad-5 center-flex">
-                  <span>{{'Or' | translate}}</span>
-                </div>
-
-                <div [fxFlex.xs]="100" fxFlex="45" class="pad-5">
-                  <label>{{'Service' | translate}}</label>
-                  <app-select color="primary" [closeOnSelect]="true" [hideLoaded]="true" formControlName="requestType"
-                    [data]="services" [bindValue]="'id'" [bindLabel]="'name'">
-                  </app-select>
-                </div>
-
-                <div fxFlex="100" class="query-container pad-5 text-center">
-                  <button class="ctm-btn query-btn" [disabled]="query.invalid" (click)="doQuery()">
-                    {{'SERVICE.QUERY' | translate}}
-                  </button>
-                </div>
-              </div>
             </div>
-          </form>
         </div>
-        <div *ngIf="found" class='page-container test-center'>
-          <router-outlet></router-outlet>
-        </div>
-        <h6 class="text-center" style="margin:50px;" *ngIf="notFound">{{'SERVICE.REQUEST_NOT_FOUND' | translate}}</h6>
-      </div>
     </div>
-
-  </app-section>
-
-  <div [@inOutAnimation] *ngIf="cmmnId">
-    <app-section sectionTitle="{{'Steps' | translate}} {{requestName | translate}}">
-      <div fxLayout="row wrap">
-        <div fxFlex="100">
-
-          <div class="alert alert-warning" *ngIf="isLoggedIn && activeTask">
-            <div class="row">
-              <div class="col-auto align-self-start auto-width">
-                <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
-              </div>
-              <div class="col auto-width">
-                {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong>
-                {{'SERVICE.pleasePress' | translate}} <a
-                  (click)="handleAction()"
-                  class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
-              </div>
-            </div>
-          </div>
-
-          <app-case-activities [caseInstanceId]="cmmnId"></app-case-activities>
-          <br />
-          <div class="align-dir">
-            <button class="ctm-btn query-btn" routerLink="{{requestDetailsUrl}}">
-              {{'Details' | translate}}
-            </button>
-          </div>
-        </div>
-      </div>
-    </app-section>
-  </div>
-
-</app-page>
+</div>

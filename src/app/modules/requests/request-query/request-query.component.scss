@@ -1,27 +1,54 @@
 .app-request-query {
-    .page-container {
-        background-color: #fff;
-        color: #6c757d;
-        padding: 5px;
-        margin: 28px 11px 28px 12px;
-    }
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .query-button {
         margin: 14px;
     }
-    .query-form {
-        max-width: 800px;
-        margin: 20px auto;
+    .page-container {
+        padding: 45px 50px 60px;
     }
     .note {
-        font-size: 13px;
-        margin: 30px 0px;
+        font-size: 15px;
+        margin: 0px;
+        margin-bottom: 28px;
+        color: $dark-gray;
+        font-weight: 500;
+    }
+    label {
+        font-size: 14px;
+        color: #595a59;
     }
     .full-width {
         width: 100%;
     }
+    mat-form-field {
+        margin-bottom: 28px;
+    }
+    .mat-form-field-flex {
+        &:hover {}
+    }
     .query-btn {
-        width: 150px;
-        height: 45px;
+        margin-top: 36px;
+        width: 100%;
+        border-radius: 3px;
+        background-color: $primary-color;
+        color: $white !important;
+        padding: 15px;
+        height: 50px;
+        font-size: 15px;
+        &:hover {
+            background-color: $primary-color;
+            color: $white !important;
+        }
+    }
+    mat-datepicker-toggle {
+        .mat-button-wrapper {
+            svg {
+                fill: #25aab2;
+            }
+        }
     }
     .query-container {
         display: flex;
@@ -40,7 +67,7 @@
             display: none;
         }
     }
-     :host::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    :host::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
         white-space: inherit !important;
         line-height: normal !important;
         display: flex;
@@ -66,16 +93,42 @@
     }
 }
 
-.mat-calendar-table-header {
-    background-color: transparent !important;
-    color: initial !important;
+.app-request-query-content {
+    width: 100%;
+    background: $white;
+    box-shadow: 0px 0px 6px $box-shadow;
+    margin: 3rem 0px;
+    border-radius: 40px 40px 0px 0px;
+    overflow: hidden;
+    .section-title {
+        background-color: $primary-color;
+        color: $white;
+        font-size: 20px;
+        font-weight: 700;
+        span {
+            background-color: $primary-color-shadow;
+            display: flex;
+            padding: 18px 14px;
+        }
+    }
 }
 
-.mat-calendar-body-label {
-    color: transparent;
+.mat-datepicker-input {
+    min-height: 28px;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-prefix,
-.mat-form-field-appearance-outline .mat-form-field-suffix {
-    top: 0.55em !important;
+[dir='rtl'] .app-request-query-content {
+    .section-title {
+        span {
+            margin-right: 50px;
+        }
+    }
+}
+
+[dir='ltr'] .app-request-query-content {
+    .section-title {
+        span {
+            margin-left: 50px;
+        }
+    }
 }

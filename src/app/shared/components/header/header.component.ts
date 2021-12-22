@@ -1,14 +1,18 @@
 import { Component, Injector, ViewEncapsulation } from "@angular/core";
 import { Platform } from "@ionic/angular";
+import HijriDate, { toHijri } from 'hijri-date/lib/safe';
 import { environment } from "src/environments/environment";
 import { BaseComponent } from "../base.component";
 import { Formio } from 'formiojs';
+import { DatePipe, formatDate } from '@angular/common';
+import myLocaleAr from '@angular/common/locales/Ar';
 
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     // styleUrls: ['./header.component.scss'],
+    providers: [DatePipe],
     encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent extends BaseComponent {
@@ -16,18 +20,25 @@ export class HeaderComponent extends BaseComponent {
     logo = '';
     loggedIn = false;
     userDetails;
-
-
+    myDate = new Date();
+    newDate;
+    time;
+    todaysDataTime;
+    today = new HijriDate().format('dd mmmm yyyy');
+    ;
+    hijriDate;
     languages = [
         { name: 'ENGLISH', code: 'en' },
         { name: 'ARABIC', code: 'ar' }
     ];
     selectedLang = this.translateService.currentLang;
-
-    constructor(public injector: Injector,
+    constructor(public injector: Injector, public datePipe: DatePipe,
         public platform: Platform) {
         super(injector);
-
+        this.newDate = this.datePipe.transform(this.myDate, ' d MMMM y');
+        this.time = this.myDate.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+        this.todaysDataTime = formatDate(this.myDate, ' hh:mm a', 'en-US', '+3');
+        // this.hijriDate = this.today.toHijri();
         this.configService.loadConfig().then(config => {
         });
         const DelayPlugin = {
@@ -36,6 +47,7 @@ export class HeaderComponent extends BaseComponent {
                 return new Promise((resolve, reject) => {
                     if (this.loggedIn) {
                         this.keycloakService.getToken().then(token => {
+                            this.loggerService.log(requestArgs);
                             if (!requestArgs.opts) {
                                 requestArgs.opts = {};
                             }
@@ -99,6 +111,7 @@ export class HeaderComponent extends BaseComponent {
 
     async doLogout() {
         localStorage.setItem('needLogin', 'true');
+        localStorage.setItem('_etec_data', null);
         await this.keycloakService.logout();
     }
 
@@ -108,7 +121,9 @@ export class HeaderComponent extends BaseComponent {
         this.keycloakService.login();
 
     }
-
+    goToLink() {
+        window.open('https://www.etec.gov.sa/ar/Pages/default.aspx', '_blank');
+    }
     selectLang(lang): void {
         this.selectedLang = this.switchLangService.getSelectedLang();
         this.switchLangService.changeLang(lang.value);
@@ -117,4 +132,5 @@ export class HeaderComponent extends BaseComponent {
         const lang = this.languages.find(lang => lang.code === this.switchLangService.getSelectedLang());
         return lang ? lang.name.toLocaleUpperCase() : '';
     }
+
 }

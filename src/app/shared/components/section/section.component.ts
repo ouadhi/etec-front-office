@@ -14,6 +14,8 @@ export class SectionComponent extends BaseComponent implements OnInit {
   @Input() sectionCard = true;
   @Input() showContainer = true;
   @Input() hasPadding = true;
+  @Input() TypeB = false;
+  @Input() NoBack = false;
 
   constructor(public injector: Injector) { super(injector); }
 

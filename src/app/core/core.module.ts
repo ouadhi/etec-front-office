@@ -14,10 +14,9 @@ import { createExternalService } from './helpers/external-service.helper';
 import { getFormioEnvironment } from './helpers/formio-enviroment.helper';
 import { initializer } from './helpers/initializer.helper';
 import { DatePipe } from '@angular/common';
-import { FormioAppConfig, FormioTranslate, ExternalService } from 'src/formio/src/public_api';
+import { FormioAppConfig, FormioTranslate, ExternalService, FormioAuthConfig, FormioAuthService } from 'src/formio/src/public_api';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorI18n } from './paginator-i18n';
-import { FormioAuthConfig, FormioAuthService } from 'src/formio/src/public_api';
 import { LicenseInterceptor } from './interceptors/license.interceptor';
 
 

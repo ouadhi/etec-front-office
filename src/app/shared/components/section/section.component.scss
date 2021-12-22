@@ -1,9 +1,5 @@
 @import 'colors.scss';
 .app-section {
-    a:not([href]):hover {
-        color: #fff;
-        text-decoration: underline;
-    }
     .section>div {
         width: 100%;
     }
@@ -14,69 +10,113 @@
         width: 200px;
     }
     .section {
-        background: #fff;
-        margin-top: 10px;
-        margin-bottom: 40px;
+        background: $white;
+        margin-top: 33px;
+        margin-bottom: 33px;
+        padding: 0px;
+        ul.my-list {
+            list-style: none;
+            padding: 0px;
+            li {
+                position: relative;
+                margin-bottom: 19px;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 19px;
+                    height: 16px;
+                    background-image: url('../../../../assets/images/icons/li-icon.svg');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    right: 0px;
+                    top: 50%;
+                    transform: translateY(-35%);
+                }
+            }
+        }
         &__title {
-            margin: 0;
+            padding: 15px 26px;
+            margin-bottom: 7px;
             font-size: 22px;
             text-transform: capitalize;
-            position: relative;
             font-weight: 700;
-            color: $secondary-color;
-            border-bottom: 4px #777 solid;
-            height: 21px;
-            margin-bottom: 20px;
-        }
-        &__title:before {
-            content: "";
-            @if empty(var(--sectionsIcon)) {
-                background-image: url('/assets/images/theme-icon.png');
-            }
-            @else {
-                $image: var(--sectionsIcon);
-                background-image: $image;
-            }
-            width: 20px;
-            height: 15px;
-            display: inline-block;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-color: #fff;
-        }
-        &__title span {
-            display: inline-block;
-            padding: 5px;
-            padding-right: 20px;
-            color: $primary-color;
-            background: #fff;
+            color: $light-blue;
             position: relative;
-            z-index: 1;
-            top: 0;
-        }
-        &__title::after {
-            content: '';
-            display: inline-block;
-            width: 30%;
-            height: 4px;
-            background: $primary-color;
-            transform: skewX( -30deg);
-            position: relative;
-            left: -5px;
-            right: 0;
-            z-index: 0;
-            top: -7px;
+            @media (min-width: 1920px) {
+                font-size: 25px;
+            }
+            .sperator {
+                padding: 0px 5px;
+            }
+            &:before {
+                content: '';
+                position: absolute;
+                height: 100%;
+                width: 8px;
+                top: 0px;
+                background: $light-blue;
+                border-radius: 5px 0px 0px 5px;
+            }
         }
         &__wptitle {
-            text-align: right;
             color: $secondary-color;
             border-bottom: 4px #777 solid;
             height: 29px;
             margin-bottom: 20px;
         }
+        mat-chip {
+            border-radius: 3px;
+            color: $my-secondary-color !important;
+            padding: 12px 27px;
+            border: 2px solid;
+            background-color: rgba(255, 255, 255, 0.42);
+            height: auto;
+            margin-bottom: 15px;
+        }
+        mat-accordion.mat-accordion {
+            .mat-expansion-panel {
+                margin-bottom: 10px;
+                border-radius: 5px;
+                border: 0px;
+                &.mat-expansion-panel-spacing {
+                    margin-bottom: 32px;
+                }
+                .mat-expansion-panel-header {
+                    font-size: 17px;
+                    padding: 17px 20px;
+                    height: auto;
+                    &[aria-expanded='true'] {
+                        position: relative;
+                        color: $my-secondary-color;
+                        font-weight: 700;
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            height: 100%;
+                            top: 0px;
+                            background-color: $my-secondary-color;
+                            width: 5px;
+                        }
+                        .mat-expansion-indicator {
+                            transform: rotate(180deg) translateY(-25%);
+                        }
+                    }
+                }
+                .mat-expansion-panel-body {
+                    padding: 16px 20px;
+                    background: $white;
+                    font-size: 15px;
+                    color: $dark-gray;
+                }
+            }
+        }
+        .channels {
+            display: flex;
+            align-items: center;
+        }
         &__container {
-            padding: 20px 0px;
-            // white-space: pre-line;
+            font-size: 15px;
         }
         .alignSwitchAR {
             text-align: right;
@@ -85,27 +125,150 @@
             text-align: left;
         }
     }
-    .sectionCard {
-        // background-color: #f6f6f6 !important;
-        padding: 20px;
-        border: 1px solid #ddd;
-        margin-bottom: 16px;
+    .sectionCard,
+    .TypeB {
         display: flex !important;
         flex-direction: column;
         justify-content: center;
         align-items: baseline;
-        border-radius: 4px;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0px 0px 6px $box-shadow;
+    }
+    .TypeB {
+        padding: 0px !important;
+        .section__title {
+            background: $primary-color;
+            margin-bottom: 0px;
+            padding: 16px 22px;
+            color: $white;
+            &::before {
+                content: none;
+            }
+        }
+        .section__container {
+            padding: 30px 30px 40px;
+        }
+    }
+    .NoBack {
+        background-color: transparent;
+        box-shadow: none;
+        .section__title {
+            padding: 0px !important;
+            margin-bottom: 20px;
+            background-color: transparent;
+            color: $light-blue;
+            &::before {
+                content: none;
+            }
+        }
+        .section__container {
+            padding: 0px !important;
+        }
     }
     .justSection {
-        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.20), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
         padding: 10px;
     }
     .no-padding {
         padding-right: 0px;
         padding-left: 0px;
+        .sectionCard,
+        .TypeB {
+            padding: 0px !important;
+        }
     }
     .has-padding {
         padding-right: 15px;
         padding-left: 15px;
+    }
+}
+
+[dir='rtl'] .app-section {
+    .section {
+        ul.my-list {
+            li {
+                padding-right: 27px;
+                &::before {
+                    right: 0px;
+                }
+            }
+        }
+        &__title {
+            &:before {
+                right: 0px;
+                border-radius: 5px 0px 0px 5px;
+            }
+        }
+        &__wptitle {
+            text-align: right;
+        }
+        mat-chip {
+            margin-left: 15px;
+        }
+        mat-accordion.mat-accordion {
+            .mat-expansion-panel {
+                .mat-expansion-panel-header {
+                    &[aria-expanded='true'] {
+                        &::before {
+                            right: 0px;
+                            border-radius: 5px 0px 0px 5px;
+                        }
+                    }
+                }
+            }
+        }
+        &__container {
+            padding-right: 26px;
+        }
+    }
+    .sectionCard,
+    .TypeB {
+        padding: 20px 0px 40px 45px;
+    }
+}
+
+[dir='ltr'] .app-section {
+    .section {
+        ul.my-list {
+            li {
+                padding-left: 27px;
+                &::before {
+                    left: 0px;
+                    transform: scaleX(-1) translateY(-35%);
+                }
+            }
+        }
+        &__title {
+            &:before {
+                left: 0px;
+                border-radius: 0px 5px 5px 0px;
+            }
+        }
+        &__wptitle {
+            text-align: left;
+        }
+        mat-chip {
+            margin-right: 15px;
+        }
+        mat-accordion.mat-accordion {
+            .mat-expansion-panel {
+                .mat-expansion-panel-header {
+                    &[aria-expanded='true'] {
+                        &::before {
+                            left: 0px;
+                            border-radius: 0px 5px 5px 0px;
+                        }
+                    }
+                }
+            }
+        }
+        &__container {
+            padding-left: 26px;
+        }
+    }
+    .sectionCard,
+    .TypeB {
+        padding: 20px 45px 40px 0px;
     }
 }

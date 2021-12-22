@@ -1,4 +1,3 @@
-
 @import './header/header.component.scss';
 @import './not-allowed/not-allowed.component.scss';
 @import './not-found/not-found.component.scss';
@@ -10,3 +9,6 @@
 @import './notifications/notification-options/notification-options.component.scss';
 @import './notifications/notifications-button/notifications-button.component.scss';
 @import './notifications/notifications-modal/notifications-modal.component.scss';
+.mat-drawer-container {
+    background-color: transparent;
+}

@@ -19,10 +19,9 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
   dataMostUsed: any;
   data: any[];
   totalResult: number;
-
   departments: object;
   categories: object;
-
+  isList: boolean;
   segments: any[];
   segmentType;
   segmentInput: object;
@@ -51,6 +50,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
     private etecService: ETECService) { super(injector); }
 
   ngOnInit() {
+    this.isList = false;
     this.sub = this.keycloakService.keycloakEvents$.subscribe(async () => {
       this.zone.run(() => {
         this.ngOnInit();

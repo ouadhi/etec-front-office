@@ -26,7 +26,7 @@ import { RouterModule } from '@angular/router';
 import { FormioModule } from 'src/formio/src/public_api';
 import { HeaderComponent } from './components/header/header.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
-
+import { FooterComponent } from './components/footer/footer.component';
 import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
@@ -51,6 +51,7 @@ registerLocaleData(localeAr, 'ar');
         TimeAgoPipe,
         LocalizedDatePipe,
         HasRoleDirective,
+        FooterComponent,
     ],
     imports: [
         CommonModule,
@@ -86,6 +87,7 @@ registerLocaleData(localeAr, 'ar');
         FilterPipeModule,
         SlideshowModule,
         StarRatingModule,
+        FooterComponent,
         ToastrModule,
         FormioModule,
         NgxCaptchaModule,
