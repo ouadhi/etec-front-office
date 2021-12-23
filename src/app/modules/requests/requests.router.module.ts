@@ -64,9 +64,12 @@ export const appRoutes: Routes = [
 
   },
   {
+    path: 'details/:id/anonymous/:timestamp', component: AnonymousRequestDetailsComponent,
+    data: { roles: [environment.roles.beneficiary] },
+  },
+  {
     path: 'details/:id/anonymous', component: AnonymousRequestDetailsComponent,
     data: { roles: [environment.roles.beneficiary] },
-
   },
 ];
 
