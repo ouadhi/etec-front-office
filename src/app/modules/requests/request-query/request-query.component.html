@@ -5,8 +5,8 @@
                 <div class="app-request-query-content">
                     <div class="section-title">
                         <span>
-              {{'NAV.QUERY_REQUEST' | translate}}
-            </span>
+                            {{'NAV.QUERY_REQUEST' | translate}}
+                        </span>
                     </div>
                     <div fxLayout="row wrap">
                         <div fxFlex="100" class="">
@@ -22,15 +22,19 @@
 
                                             <div [fxFlex.xs]="100" fxFlex="100" class="">
                                                 <label>{{'Id' | translate}}</label>
-                                                <mat-form-field floatLabel="never" appearance="outline" class="full-width">
-                                                    <input matInput formControlName="requestNumber" style="text-align: center;">
+                                                <mat-form-field floatLabel="never" appearance="outline"
+                                                    class="full-width">
+                                                    <input matInput formControlName="requestNumber"
+                                                        style="text-align: center;">
                                                 </mat-form-field>
                                             </div>
 
                                             <div [fxFlex.xs]="100" fxFlex="45" class="">
                                                 <label>{{'Request Date' | translate}}</label>
-                                                <mat-form-field floatLabel="never" appearance="outline" class="full-width">
-                                                    <input matInput formControlName="requestDate" [matDatepicker]="fd" [max]="maxDate">
+                                                <mat-form-field floatLabel="never" appearance="outline"
+                                                    class="full-width">
+                                                    <input matInput formControlName="requestDate" [matDatepicker]="fd"
+                                                        [max]="maxDate">
                                                     <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
                                                     <mat-datepicker #fd></mat-datepicker>
                                                 </mat-form-field>
@@ -42,19 +46,23 @@
 
                                             <div [fxFlex.xs]="100" fxFlex="45" class="">
                                                 <label>{{'Service' | translate}}</label>
-                                                <app-select color="primary" [closeOnSelect]="true" [hideLoaded]="true" formControlName="requestType" [data]="services" [bindValue]="'id'" [bindLabel]="'name'">
+                                                <app-select color="primary" [closeOnSelect]="true" [hideLoaded]="true"
+                                                    formControlName="requestType" [data]="services" [bindValue]="'id'"
+                                                    [bindLabel]="'name'">
                                                 </app-select>
                                             </div>
 
                                             <div fxFlex="100" class="query-container  text-center">
-                                                <button class="ctm-btn query-btn" [disabled]="query.invalid" (click)="doQuery()">
-                          {{'SERVICE.QUERY' | translate}}
-                        </button>
+                                                <button class="ctm-btn query-btn" [disabled]="query.invalid"
+                                                    (click)="doQuery()">
+                                                    {{'SERVICE.QUERY' | translate}}
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-                                <h6 class="text-center" style="margin:30px 0px;" *ngIf="notFound">{{'SERVICE.REQUEST_NOT_FOUND' | translate}}
+                                <h6 class="text-center" style="margin:30px 0px;" *ngIf="notFound">
+                                    {{'SERVICE.REQUEST_NOT_FOUND' | translate}}
                                 </h6>
                             </div>
                             <div *ngIf="found" class='page-container test-center'>
@@ -68,13 +76,16 @@
                             <div fxLayout="row wrap">
                                 <div fxFlex="100">
 
-                                    <div class="alert alert-warning" *ngIf="activeTask">
+                                    <div class="alert alert-warning" *ngIf="isLoggedIn && activeTask">
                                         <div class="row">
                                             <div class="col-auto align-self-start auto-width">
                                                 <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
                                             </div>
                                             <div class="col auto-width">
-                                                {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' | translate}}</strong> {{'SERVICE.pleasePress' | translate}} <a (click)="handleAction()" class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
+                                                {{'SERVICE.needs' | translate}} <strong>{{'SERVICE.beneficiaryTask' |
+                                                    translate}}</strong> {{'SERVICE.pleasePress' | translate}} <a
+                                                    (click)="handleAction()" class="alert-link">{{'SERVICE.hereToUpdate'
+                                                    | translate}}</a>.
                                             </div>
                                         </div>
                                     </div>
@@ -83,8 +94,8 @@
                                     <br />
                                     <div class="align-dir">
                                         <button class="ctm-btn query-btn" routerLink="{{requestDetailsUrl}}">
-                      {{'Details' | translate}}
-                    </button>
+                                            {{'Details' | translate}}
+                                        </button>
                                     </div>
                                 </div>
                             </div>

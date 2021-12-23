@@ -93,7 +93,7 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
 
         this.sub = this.rest.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`).subscribe(data => {
           this.submission = data;
-          this.showEditTask = this.route.snapshot.params.timestamp == data.data.timestamp;
+          this.showEditTask = this.route.snapshot.params.timestamp == data.data.timestamp && data.data.timestamp;
           this.moreInfo = (data.data.moreInfo && Object.keys(data.data.moreInfo).length) ? data.data.moreInfo : null;
           /*this.params = [
             {
