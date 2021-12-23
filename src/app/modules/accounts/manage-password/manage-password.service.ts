@@ -7,8 +7,10 @@ export class ManagePasswordService {
 
     constructor(private http: HttpClient) { }
 
-    generateOTP(userId: string) {
-        return this.http.post<any>(`${environment.gateway}${environment.endpoints.notifications}otp/generate/changepassword`, { user: userId });
+    generateOTP(userId: string, otpchannel?: string) {
+        const data: any = { user: userId };
+        if (otpchannel) data.otpchannel = otpchannel;
+        return this.http.post<any>(`${environment.gateway}${environment.endpoints.notifications}otp/generate/changepassword`, data);
     }
 
     verify(userId: string, otp: string) {
@@ -18,5 +20,8 @@ export class ManagePasswordService {
     resetPassword(userId: string, token: string, password: string) {
         return this.http.put<any>(`${environment.gateway}${environment.endpoints.dataservice}v1/keycloak/users/${userId}/resetPassword`,
             { password: password, token: token });
+    }
+    getFormConfig() {
+        return this.http.get<any>(`${environment.formio.appUrl}config.json`);
     }
 }

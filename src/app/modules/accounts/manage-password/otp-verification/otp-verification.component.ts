@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { interval, Subscription } from "rxjs";
+import { forkJoin, interval, Subscription } from "rxjs";
 import { BaseComponent } from "src/app/shared/components/base.component";
 import {
   ErrorToast,
@@ -39,6 +39,7 @@ export class OtpVerificationComponent extends BaseComponent implements OnInit {
   phone = "";
   code = "";
   translatedKeys = [];
+  otpchannel = null;
 
   constructor(
     public injector: Injector,
@@ -48,16 +49,20 @@ export class OtpVerificationComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.translateService
-      .get([
-        "ManagePassword.Verification code has been sent",
-        "OperationDone",
-        "ErrorOccurred",
-        "generalError",
-        "ManagePassword.Invalid verification code",
-      ])
+    this.sub = forkJoin([
+      this.translateService
+        .get([
+          "ManagePassword.Verification code has been sent",
+          "OperationDone",
+          "ErrorOccurred",
+          "generalError",
+          "ManagePassword.Invalid verification code",
+        ]),
+      this.managePasswordService.getFormConfig()
+    ])
       .subscribe((data) => {
-        this.translatedKeys = data;
+        this.translatedKeys = data[0];
+        this.otpchannel = data[1]?.config?.otpchannel;
         this.sendOTP();
       });
   }
@@ -89,7 +94,7 @@ export class OtpVerificationComponent extends BaseComponent implements OnInit {
 
   private sendOTP() {
     this.formioLoader.loading = true;
-    this.sub = this.managePasswordService.generateOTP(this.userId).subscribe(
+    this.sub = this.managePasswordService.generateOTP(this.userId, this.otpchannel).subscribe(
       (data) => {
         this.formioLoader.loading = false;
         this.startTimer();
