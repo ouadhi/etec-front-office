@@ -8,9 +8,9 @@ export class ManagePasswordService {
     constructor(private http: HttpClient) { }
 
     generateOTP(userId: string, otpchannel?: string) {
-        const data: any = { user: userId };
-        if (otpchannel) data.otpchannel = otpchannel;
-        return this.http.post<any>(`${environment.gateway}${environment.endpoints.notifications}otp/generate/changepassword`, data);
+        return this.http.post<any>(`${environment.gateway}${environment.endpoints.notifications}otp/generate/changepassword`,
+            { user: userId },
+            { params: otpchannel ? { otpchannel: otpchannel } : null });
     }
 
     verify(userId: string, otp: string) {
