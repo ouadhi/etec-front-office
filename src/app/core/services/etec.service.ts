@@ -30,8 +30,11 @@ export class ETECService {
         user_family_name: decodedToken.family_name,
         user_email: decodedToken.email,
         generatedId: generatedId,
-        ...decodedToken.attributes
       };
+      if (decodedToken.attributes)
+        for (const [key, value] of Object.entries(decodedToken.attributes)) {
+          etecData[`user_${key}`] = value
+        }
 
       return { ...etecData };
     } catch (e) {
