@@ -3,16 +3,26 @@
     "gateway": "http://etec-bo.comptechco.com:80",
     "cms": "http://etec-fo.comptechco.com:8089",
     "appConfig": {
-        "endpoint": "/api/collections/get/appConfig/",
-        "id": "6069bbe7666434004e00012d"
+      "endpoint": "/api/collections/get/AppConfig1/",
+      "id": "6069bbe7666434004e00012d",
+      "frontOfficeSettings": "api/singletons/get/frontOfficeSettings",
+      "formioEndpoint": "/api/collections/get/formioConfig/",
+      "formioId": "612bc06a5d4cda7713720b52",
+      "formioSettings": "api/singletons/get/formioSettings"
     },
     "keycloak": {
-        "url": "http://etec-bo.comptechco.com:9080/auth/",
-        "realm": "etec",
-        "clientId": "fo-web"
+      "url": "http://etec-bo.comptechco.com:9080/auth/",
+      "realm": "etec",
+      "clientId": "fo-web"
     },
     "formio": {
-        "apiUrl": "https://api.form.io/",
-        "appUrl": "http://etec-fo.comptechco.com:8084/ksuqnygnhgztelf/"
+      "apiUrl": "http://api.etec-fo.comptechco.com:8084/",
+      "appUrl": "http://etec-fo.comptechco.com:8084/ksuqnygnhgztelf/"
+    },
+    "serviceCatalogControl": {
+      "showCarousel": true,
+      "showHasTask": true,
+      "showMostUsedService": true,
+      "showCatalog": true
     }
-}
+  }
