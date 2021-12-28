@@ -178,6 +178,10 @@ $rms-app-warn);
 @import '~css-star-rating/scss/star-rating';
 @import '~@ionic/angular/css/core.css';
 @import '~bootstrap/scss/bootstrap';
+html {
+    top: 0 !important;
+}
+
 html,
 body,
 .mat-card,
