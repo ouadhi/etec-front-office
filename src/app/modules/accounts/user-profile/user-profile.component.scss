@@ -1,35 +1,31 @@
 .edit-btn {
-  padding-top: 2rem;
-  padding-left: 2rem;
-  text-align: left;
-  justify-content: left;
-
-  .btn {
-    border-radius: 0 !important;
-  }
+    padding-top: 2rem;
+    padding-left: 2rem;
+    text-align: end;
+    justify-content: end;
+    .btn {
+        border-radius: 0 !important;
+    }
 }
 
 .user-border {
-  margin-left: 26px;
-  margin-bottom: 26px;
-  margin-top: 26px;
-  border: 1px solid rgba(215, 215, 215, 0.72);
-
-  .user-image {
-    background: #2185b8;
-    padding: 35px;
-    width: 150px;
-    border-radius: 80px;
-    justify-content: center;
-    text-align: center;
-    display: block;
-    margin: -5rem auto -2rem;
-
-    i {
-      vertical-align: middle;
-      font-size: 5rem;
-      color: #fff;
+    margin-left: 26px;
+    margin-bottom: 26px;
+    margin-top: 26px;
+    border: 1px solid rgba(215, 215, 215, 0.72);
+    .user-image {
+        background: #2185b8;
+        padding: 35px;
+        width: 150px;
+        border-radius: 80px;
+        justify-content: center;
+        text-align: center;
+        display: block;
+        margin: -5rem auto -2rem;
+        i {
+            vertical-align: middle;
+            font-size: 5rem;
+            color: #fff;
+        }
     }
-  }
-
 }
