@@ -85,13 +85,13 @@
             </div>
 
             <mat-menu #menu="matMenu">
-                <button class="user-details sm" mat-menu-item routerLink="/accounts/entity/profile" *ngIf="loggedIn">
+                <button class="user-details sm" mat-menu-item routerLink="/accounts/my-profile" *ngIf="loggedIn">
                     <span>{{'LAYOUT.WELCOME' | translate}}</span>
                     <span>
                         {{userDetails?.firstName}} {{userDetails?.lastName}}
                     </span>
                 </button>
-                <button mat-menu-item routerLink="/accounts/entity/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' |
+                <button mat-menu-item routerLink="/accounts/my-profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' |
                     translate}}</button>
                 <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
                 <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
