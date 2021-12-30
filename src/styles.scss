@@ -1714,3 +1714,15 @@ input[type*='radio'] {
 @import './app/modules/requests/requests.scss';
 @import './app/modules/notifications/notifications.scss';
 @import './app/shared/components/components.scss';
+
+.app-user-profile {
+    .app-formio .control-label{
+        color: rgba(97, 97, 97, 1);
+        font-weight: 600;
+    }
+    .app-formio .form-control[disabled="disabled"] {
+        border: none;
+        border-radius: 0 !important;
+        min-height: 41px !important;
+    }
+}

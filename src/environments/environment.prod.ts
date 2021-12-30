@@ -22,7 +22,8 @@ export const environment = {
     appUrl: 'http://etec-fo.comptechco.com:8084/ksuqnygnhgztelf/'
   },
   endpoints: {
-    tasks: '/requestmanagement/rest/task',
+    tasks: '/requestmanagement/api/portal/tasks',
+    camundaTask: '/requestmanagement/rest/task',
     myRequests: '/requestmanagement/api/portal/requests',
     myBeneficiarySegments: '/requestmanagement/api/portal/beneficiary-segments-cms',
     caseActivity: '/requestmanagement/rest/history/case-activity-instance',

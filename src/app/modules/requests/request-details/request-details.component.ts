@@ -43,8 +43,8 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
     if (event.type === 'task') {
       if (this.tasks && this.tasks.length) {
         this.router.navigate(['/requests/task',
-          this.tasks[0].taskDefinitionKey,
-          this.tasks[0].id,
+          this.tasks[0].task.taskDefinitionKey,
+          this.tasks[0].task.id,
           this.request.caseId,
           this.route.snapshot.params.id,
         ]);

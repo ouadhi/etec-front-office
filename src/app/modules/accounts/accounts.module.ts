@@ -9,22 +9,24 @@ import { ChangePasswordComponent } from './manage-password/change-password/chang
 import { ManagePasswordComponent } from './manage-password/manage-password.component';
 import { OtpVerificationComponent } from './manage-password/otp-verification/otp-verification.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
-    declarations: [
-        AccountsComponent,
-        ProfileComponent,
-        EntityProfileComponent,
-        ManagePasswordComponent,
-        OtpVerificationComponent,
-        ChangePasswordComponent,
-    ],
-    imports: [
-        CommonModule,
-        SharedModule,
-        ResourcesModule,
-        AccountsRouterModule,
-    ]
+	declarations: [
+		AccountsComponent,
+		ProfileComponent,
+		EntityProfileComponent,
+		ManagePasswordComponent,
+		OtpVerificationComponent,
+		ChangePasswordComponent,
+		UserProfileComponent,
+	],
+	imports: [
+		CommonModule,
+		SharedModule,
+		ResourcesModule,
+		AccountsRouterModule,
+	],
 })
 export class AccountsModule {
 }

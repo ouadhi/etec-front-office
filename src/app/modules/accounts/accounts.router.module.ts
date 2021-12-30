@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { AccountsComponent } from './accounts.component';
 import { EntityProfileComponent } from './entity-profile/entity-profile.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 export const appRoutes: Routes = [
     {
@@ -22,6 +23,11 @@ export const appRoutes: Routes = [
     // },
     {
         path: 'entity/profile', component: EntityProfileComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [environment.roles.beneficiary] },
+    },
+    {
+        path: 'my-profile', component: UserProfileComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: [environment.roles.beneficiary] },
     },

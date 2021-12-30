@@ -39,7 +39,7 @@ export class CaseActivityService {
             ));
     }
     getRequestTask(taskId, queryParams = {}) {
-        const endpoint = `${environment.gateway}${environment.endpoints.tasks}/${taskId}`;
+        const endpoint = `${environment.gateway}${environment.endpoints.camundaTask}/${taskId}`;
         return this.http.get<any>(endpoint, { params: queryParams }).pipe(
             map(data => (data)
             ));
