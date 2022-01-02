@@ -91,7 +91,7 @@
                         {{userDetails?.firstName}} {{userDetails?.lastName}}
                     </span>
                 </button>
-                <button mat-menu-item routerLink="/accounts/my-profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' |
+                <button mat-menu-item routerLink="/accounts/entity/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' |
                     translate}}</button>
                 <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
                 <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
