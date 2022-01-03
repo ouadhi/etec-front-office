@@ -33,18 +33,7 @@ export class UserProfileComponent implements OnInit {
             };
         });
         this.submission.data = Object.assign(this.submission.data, ...newObj);
-        setTimeout(() => {
-            this.formReady = true;
-        }, 400);
-    }
-
-    formLoad(formSettings) {
-        setTimeout(() => {
-            const array = $('.app-user-profile [name="data[submit]"]');
-            for (let index = 0; index < array.length; index++) {
-                $(array[index]).hide();
-            }
-        }, 400);
+        setTimeout(() => { this.formReady = true; });
     }
 
     flattenObject(ob) {
