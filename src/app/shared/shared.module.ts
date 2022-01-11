@@ -1,7 +1,7 @@
 import { HasRoleDirective } from './directives/has-role.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -34,85 +34,81 @@ import localeAr from '@angular/common/locales/ar';
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeAr, 'ar');
 
-
 @NgModule({
-    declarations: [
-        NotAllowedComponent,
-        NotFoundComponent,
-        PageComponent,
-        SectionComponent,
-        PageTitleComponent,
-        SelectComponent,
-        NotificationsModalComponent,
-        NotificationsButtonComponent,
-        NotificationItemComponent,
-        NotificationOptionsComponent,
-        HeaderComponent,
-        TimeAgoPipe,
-        LocalizedDatePipe,
-        HasRoleDirective,
-        FooterComponent,
-    ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        FormsModule,
-        ReactiveFormsModule,
-        FlexLayoutModule,
-        MaterialModule,
-        NgSelectModule,
-        IonicModule.forRoot({
-            menuType: 'push'
-        }),
-        FilterPipeModule,
-        SlideshowModule,
-        StarRatingModule.forRoot(),
-        ToastrModule.forRoot({
-            positionClass: 'toast-bottom-right',
-            timeOut: 5000
-        }),
-        FormioModule,
-        NgxCaptchaModule,
-        TranslateModule,
-    ],
-    exports: [
-        CommonModule,
-        RouterModule,
-        FormsModule,
-        ReactiveFormsModule,
-        FlexLayoutModule,
-        MaterialModule,
-        NgSelectModule,
-        IonicModule,
-        FilterPipeModule,
-        SlideshowModule,
-        StarRatingModule,
-        FooterComponent,
-        ToastrModule,
-        FormioModule,
-        NgxCaptchaModule,
-        TranslateModule,
+	declarations: [
+		NotAllowedComponent,
+		NotFoundComponent,
 
-        NotAllowedComponent,
-        NotFoundComponent,
-        PageComponent,
-        SectionComponent,
-        PageTitleComponent,
-        SelectComponent,
-        NotificationsModalComponent,
-        NotificationsButtonComponent,
-        NotificationItemComponent,
-        NotificationOptionsComponent,
-        HeaderComponent,
-        TimeAgoPipe,
-        LocalizedDatePipe,
-        HasRoleDirective,
-    ],
-    entryComponents: [
-        NotificationsModalComponent,
-        NotificationOptionsComponent,
-    ],
-    providers: [
-    ],
+		PageComponent,
+		SectionComponent,
+		PageTitleComponent,
+		SelectComponent,
+		NotificationsModalComponent,
+		NotificationsButtonComponent,
+		NotificationItemComponent,
+		NotificationOptionsComponent,
+		HeaderComponent,
+		TimeAgoPipe,
+		LocalizedDatePipe,
+		HasRoleDirective,
+		FooterComponent,
+	],
+	imports: [
+		CommonModule,
+		RouterModule,
+		FormsModule,
+		ReactiveFormsModule,
+		FlexLayoutModule,
+		MaterialModule,
+		NgSelectModule,
+		IonicModule.forRoot({
+			menuType: 'push',
+		}),
+		FilterPipeModule,
+		SlideshowModule,
+		StarRatingModule.forRoot(),
+		ToastrModule.forRoot({
+			positionClass: 'toast-bottom-right',
+			timeOut: 5000,
+		}),
+		FormioModule,
+		NgxCaptchaModule,
+		TranslateModule,
+	],
+	exports: [
+		CommonModule,
+		RouterModule,
+		FormsModule,
+		ReactiveFormsModule,
+		FlexLayoutModule,
+		MaterialModule,
+		NgSelectModule,
+		IonicModule,
+		FilterPipeModule,
+		SlideshowModule,
+		StarRatingModule,
+		FooterComponent,
+		ToastrModule,
+		FormioModule,
+		NgxCaptchaModule,
+		TranslateModule,
+
+		NotAllowedComponent,
+		NotFoundComponent,
+		PageComponent,
+		SectionComponent,
+		PageTitleComponent,
+		SelectComponent,
+		NotificationsModalComponent,
+		NotificationsButtonComponent,
+		NotificationItemComponent,
+		NotificationOptionsComponent,
+		HeaderComponent,
+		TimeAgoPipe,
+		LocalizedDatePipe,
+		HasRoleDirective,
+	],
+	entryComponents: [NotificationsModalComponent, NotificationOptionsComponent],
+	providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}

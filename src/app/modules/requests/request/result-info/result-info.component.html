@@ -1,20 +1,26 @@
 <div class="app-result-info">
-    <div fxLayout="row wrap" class="center-flex">
-        <div fxFlex="100">
-            <div class='page-container'>
-                <img src="{{icon}}" />
-                <br />
-                <br />
+	<div fxLayout="row wrap" class="center-flex">
+		<div fxFlex="100">
+			<div class="page-container">
+				<img src="{{ icon }}" />
+				<br />
+				<br />
+				<ng-content></ng-content>
+				<br />
+				<div fxFlex="100" class="action-container pad-5 text-center">
+					<button class="ctm-btn action-btn" (click)="callback.emit()">
+						{{ actionLabel | translate }}
+					</button>
 
-                <ng-content></ng-content>
-
-                <br />
-                <div fxFlex="100" class="action-container pad-5 text-center">
-                    <button class="ctm-btn action-btn" (click)="callback.emit()">
-                        {{actionLabel | translate}}
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+					<button
+						class="ctm-btn feedback action-btn-feedback"
+						ngbTooltip="Open Feedback Popup"
+						(click)='openFeedbackDialog()'
+					>
+						<span class="material-icons teal-color"> comment</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

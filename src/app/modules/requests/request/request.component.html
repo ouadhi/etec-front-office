@@ -1,26 +1,52 @@
 <app-page class="app-request">
-    <!-- <button (click)="hasResult = !hasResult">test</button> -->
-    <div class="container-fluid" *ngIf="!hasResult" [@inOutAnimation]>
-        <app-section sectionTitle="{{request ? request.requestName : navParams['serviceName_' + switchLangService.current]}}" [hasPadding]="false">
+	<!-- <button (click)="hasResult = !hasResult">test</button> -->
+	<div class="container-fluid" *ngIf="!hasResult" [@inOutAnimation]>
+		<app-section
+			sectionTitle="{{
+				request ? request.requestName : navParams['serviceName_' + switchLangService.current]
+			}}"
+			[hasPadding]="false"
+		>
+			<formio
+				*ngIf="formReady"
+				[formKey]="id"
+				[readOnly]="false"
+				[params]="params"
+				[submission]="submission"
+				(submit)="onSubmit($event)"
+				class="container"
+			>
+			</formio>
+		</app-section>
+	</div>
 
-            <formio *ngIf="formReady" [formKey]="id" [readOnly]="false" [params]="params" [submission]="submission"
-                (submit)="onSubmit($event)" class="container">
-            </formio>
+	<formio-loader></formio-loader>
 
-        </app-section>
-    </div>
+	<app-result-info
+		[actionLabel]="isLoggedIn ? 'NAV.MY_REQUESTS' : 'Home'"
+		[serviceId]='_id'
+		[userCreator]='etecData?.user_preferred_username'
+		icon="assets/images/icons/success.png"
+		(callback)="goBack()"
+		*ngIf="hasResult"
+		[@inOutAnimation]
+	>
+		<h5 class="result-title" *ngIf="isDraft">
+			{{ 'REQUESTS.SAVE' | translate }} {{ navParams['serviceName_' + switchLangService.current] }}
+			{{ 'REQUESTS.AS_DRAFT' | translate }}
+		</h5>
+		<h5 class="result-title" *ngIf="!isDraft">
+			{{ 'REQUESTS.DONE' | translate }} {{ navParams['serviceName_' + switchLangService.current] }}
+			{{ 'REQUESTS.SUCCESS' | translate }}
+		</h5>
+		<div class="result-sub-title">{{ 'REQUESTS.FOLW_REQUEST_MESSAGE' | translate }}</div>
 
-    <app-result-info [actionLabel]="isLoggedIn ? 'NAV.MY_REQUESTS' : 'Home'"
-        icon="assets/images/icons/success.png" (callback)="goBack()" *ngIf="hasResult" [@inOutAnimation]>
-        <h5 class="result-title" *ngIf="isDraft">{{'REQUESTS.SAVE' | translate}} {{navParams['serviceName_' + switchLangService.current]}} {{'REQUESTS.AS_DRAFT' | translate}}</h5>
-        <h5 class="result-title"  *ngIf="!isDraft">{{'REQUESTS.DONE' | translate}} {{navParams['serviceName_' + switchLangService.current]}} {{'REQUESTS.SUCCESS' | translate}}</h5>
-        <div class="result-sub-title">{{'REQUESTS.FOLW_REQUEST_MESSAGE' | translate}}</div>
-
-        <div class="info-pair">
-            <span>{{'Id' | translate }} : </span> <span>{{requestNumber}}</span>
-        </div>
-        <div class="info-pair">
-            <span>{{ 'Request Date' | translate }} : </span> <span>{{requestDate | date:'dd/MM/yyyy'}}</span>
-        </div>
-    </app-result-info>
+		<div class="info-pair">
+			<span>{{ 'Id' | translate }} : </span> <span>{{ requestNumber }}</span>
+		</div>
+		<div class="info-pair">
+			<span>{{ 'Request Date' | translate }} : </span>
+			<span>{{ requestDate | date: 'dd/MM/yyyy' }}</span>
+		</div>
+	</app-result-info>
 </app-page>

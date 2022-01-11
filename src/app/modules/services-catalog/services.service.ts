@@ -7,326 +7,352 @@ import { DatePipe } from '@angular/common';
 import { LoggerService } from 'src/app/core/services/logger.service';
 
 @Injectable({ providedIn: 'root' })
-
 export class ServicesService {
+	constructor(private http: HttpClient, private loggerService: LoggerService) {}
 
-  constructor(
-    private http: HttpClient,
-    private loggerService: LoggerService) { }
+	getCMSheaders() {
+		let headers: HttpHeaders = new HttpHeaders();
+		// headers = headers.append('Authorization', 'Bearer ' + environment.cms.portalUserToken);
+		return headers;
+	}
 
-  getCMSheaders() {
-    let headers: HttpHeaders = new HttpHeaders();
-    // headers = headers.append('Authorization', 'Bearer ' + environment.cms.portalUserToken);
-    return headers;
-  }
+	getCollectionAll(collection: string): Observable<any> {
+		return this.http.post<any[]>(
+			`${environment.cms}/api/collections/get/${collection}/`,
+			{ populate: 1 },
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
+	getCollectionAllActive(collection: string, activeKey, activeVal): Observable<any> {
+		let filter = {};
+		filter[activeKey] = activeVal;
+		this.loggerService.log(filter);
 
-  getCollectionAll(collection: string): Observable<any> {
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/get/${collection}/`, { "populate": 1 }, {
-      headers: this.getCMSheaders()
-    });
-  }
+		return this.http.post<any[]>(
+			`${environment.cms}/api/collections/get/${collection}/`,
+			{
+				filter,
+				populate: 1,
+				sort: { _o: 1 },
+			},
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-  getCollectionAllActive(collection: string, activeKey, activeVal): Observable<any> {
+	getCollectionEntryById(collection: string, filterKey: string, id: any): Observable<any> {
+		return this.http.post<any[]>(
+			`${environment.cms}/api/collections/get/${collection}/`,
+			{
+				filter: {
+					_id: `${id}`,
+				},
+				populate: 1,
+			},
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-    let filter = {};
-    filter[activeKey] = activeVal;
-    this.loggerService.log(filter);
+	getService(id) {
+		return this.getCollectionEntryById('Service', '_id', id);
+	}
 
+	getServices() {
+		return this.getCollectionAllActive('Service', 'lifeCycle', LifeCycleService.PUBLISHED);
+	}
 
+	getTags() {
+		return this.getCollectionAll('tags');
+	}
 
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/get/${collection}/`, {
-      filter,
-      "populate": 1,
-      "sort": { "_o": 1 }
-    }, {
-      headers: this.getCMSheaders()
-    });
-  }
+	getSegments() {
+		return this.getCollectionAllActive('segment', 'activation', true);
+	}
 
-  getCollectionEntryById(collection: string, filterKey: string, id: any): Observable<any> {
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/get/${collection}/`,
-      {
-        "filter": {
-          "_id": `${id}`
-        },
-        "populate": 1
-      }, {
-      headers: this.getCMSheaders()
-    });
-  }
+	getSegmentType() {
+		return this.getCollectionAllActive('segmentType', 'activation', true);
+	}
 
-  getService(id) {
-    return this.getCollectionEntryById('Service', '_id', id);
-  }
+	getDepartments() {
+		return this.getCollectionAllActive('department', 'activation', true);
+	}
 
-  getServices() {
-    return this.getCollectionAllActive('Service', 'lifeCycle', LifeCycleService.PUBLISHED)
-  }
+	getCategories() {
+		return this.getCollectionAllActive('category', 'activation', true);
+	}
 
-  getTags() {
-    return this.getCollectionAll('tags');
-  }
+	getBanners() {
+		return this.getCollectionAllActive('bannerSlider', 'activation', true);
+	}
 
-  getSegments() {
-    return this.getCollectionAllActive('segment', 'activation', true);
-  }
+	getOpportunity(id) {
+		return this.getCollectionEntryById('opportunity', '_id', id);
+	}
 
-  getSegmentType() {
-    return this.getCollectionAllActive('segmentType', 'activation', true);
-  }
+	postOpportunity(formData): Observable<any> {
+		return this.http.post<any[]>(
+			`${environment.cms}/api/collections/save/opportunity/`,
+			{
+				data: {
+					name: formData.jobTitle,
+					number: formData.id,
+					city: formData.city,
+					employer: formData.organization,
+					description: formData.description,
+					salaryType: formData.salaryNegotiation,
+					salaryAmount: formData.opportunityDetailsPanelColumnsExpectedSalaryinSar,
+					from: formData.applicationStartDate,
+					to: formData.applicationEndDate,
+					education: formData.educationLevel,
+					vacancies: formData.opportunityDetailsPanelColumnsPositionsCounts,
+					requirements: formData.requirements,
+					qualifications: formData.qualifications,
+					certificates: formData.certificates,
+					yearsOfExperience: formData.requiredExperienceYears,
+					notes: formData.notes,
+					branchId: formData.branchId,
+					_cityName: formData._cityName,
+					_cityId: formData._cityId,
+				},
+			},
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-  getDepartments() {
-    return this.getCollectionAllActive('department', 'activation', true);
-  }
+	applyOpportunity(formData): Observable<any> {
+		return this.http.post<any[]>(
+			`${environment.cms}/api/collections/save/opportunitySubmit/`,
+			{
+				data: {
+					isCurrentlyEmployed: formData.currentlyWorking,
+					//"currentEmployer": formData.,
+					//"sectorType": formData.,
+					//"currentTitle": formData.,
+					educationAndMajor: formData.specialization,
+					major: formData.educationalQualification,
+					educationPlace: formData.educationalOrganization,
+					graduationYear: formData.graduationYear,
+					graduationScore: formData.gpa,
+					yearOfExperienceSameTitle: formData.experienceYearsPosition,
+					yearOfExperienceOtherTitles: formData.otherExperienceYears,
+					englishLevel: formData.englishLevel,
+					computerSkillsLevel: formData.computerSkillsLevel,
+					cv: formData.cv[0],
+					linkedinProfile: formData.linkedInProfile,
 
-  getCategories() {
-    return this.getCollectionAllActive('category', 'activation', true);
-  }
+					branchId: formData.branchId,
+					candidate: formData.candidate,
+					opportunityId: formData.opportunityId,
+					_fullName: formData._fullName,
+					_mobile: formData._mobile,
+					_nationalId: formData._nationalId,
+					_birthDate: formData._birthDate,
+				},
+			},
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-  getBanners() {
-    return this.getCollectionAllActive('bannerSlider', 'activation', true);
-  }
+	appliedOpportunity(id): Observable<any> {
+		return this.getCollectionEntryById('opportunitySubmit', '_id', id);
+	}
 
-  getOpportunity(id) {
-    return this.getCollectionEntryById('opportunity', '_id', id);
-  }
+	getAllOpportunitiesAvailForToday(branchId, params?): Observable<any> {
+		let sendParams = {
+			filter: {},
+			populate: 1,
+		};
 
-  postOpportunity(formData): Observable<any> {
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/save/opportunity/`,
-      {
-        "data": {
-          "name": formData.jobTitle,
-          "number": formData.id,
-          "city": formData.city,
-          "employer": formData.organization,
-          "description": formData.description,
-          "salaryType": formData.salaryNegotiation,
-          "salaryAmount": formData.opportunityDetailsPanelColumnsExpectedSalaryinSar,
-          "from": formData.applicationStartDate,
-          "to": formData.applicationEndDate,
-          "education": formData.educationLevel,
-          "vacancies": formData.opportunityDetailsPanelColumnsPositionsCounts,
-          "requirements": formData.requirements,
-          "qualifications": formData.qualifications,
-          "certificates": formData.certificates,
-          "yearsOfExperience": formData.requiredExperienceYears,
-          "notes": formData.notes,
-          "branchId": formData.branchId,
-          "_cityName": formData._cityName,
-          "_cityId": formData._cityId
-        }
-      }, {
-      headers: this.getCMSheaders()
-    });
-  }
+		if (branchId !== false) {
+			sendParams.filter['branchId'] = `${branchId}`;
+		}
 
-  applyOpportunity(formData): Observable<any> {
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/save/opportunitySubmit/`,
-      {
-        "data": {
-          "isCurrentlyEmployed": formData.currentlyWorking,
-          //"currentEmployer": formData.,
-          //"sectorType": formData.,
-          //"currentTitle": formData.,
-          "educationAndMajor": formData.specialization,
-          "major": formData.educationalQualification,
-          "educationPlace": formData.educationalOrganization,
-          "graduationYear": formData.graduationYear,
-          "graduationScore": formData.gpa,
-          "yearOfExperienceSameTitle": formData.experienceYearsPosition,
-          "yearOfExperienceOtherTitles": formData.otherExperienceYears,
-          "englishLevel": formData.englishLevel,
-          "computerSkillsLevel": formData.computerSkillsLevel,
-          "cv": formData.cv[0],
-          "linkedinProfile": formData.linkedInProfile,
+		const todayDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
 
-          "branchId": formData.branchId,
-          "candidate": formData.candidate,
-          "opportunityId": formData.opportunityId,
-          "_fullName": formData._fullName,
-          "_mobile": formData._mobile,
-          "_nationalId": formData._nationalId,
-          "_birthDate": formData._birthDate
-        }
-      }, {
-      headers: this.getCMSheaders()
-    });
-  }
+		if (params.number && params.number.length) {
+			sendParams['filter']['number'] = `${params.number}`;
+		}
+		if (params.name && params.name.length) {
+			sendParams['filter']['name'] = `${params.name}`;
+		}
+		if (params.city && params.city.length) {
+			sendParams['filter']['city'] = `${params.city}`;
+		}
+		if (params.employer && params.employer.length) {
+			sendParams['filter']['employer'] = `${params.employer}`;
+		}
 
+		if (params.sortBy && params.sortDirection) {
+			sendParams['sort'] = {};
+			if (params.sortDirection == 'desc') {
+				sendParams['sort'][params.sortBy] = -1;
+			} else {
+				sendParams['sort'][params.sortBy] = 1;
+			}
+		}
 
-  appliedOpportunity(id): Observable<any> {
-    return this.getCollectionEntryById('opportunitySubmit', '_id', id);
-  }
+		return this.http.post<any[]>(
+			`${environment.cms}/api/collections/get/opportunity/`,
+			sendParams,
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-  getAllOpportunitiesAvailForToday(branchId, params?): Observable<any> {
-    let sendParams = {
-      "filter": {
-      },
-      "populate": 1
-    }
+	getApplicants(opportunityId): Observable<any> {
+		return this.http.post<any[]>(
+			`${environment.cms}/api/collections/get/opportunitySubmit/`,
+			{
+				filter: {
+					opportunityId: `${opportunityId}`,
+				},
+				populate: 1,
+			},
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-    if (branchId !== false) {
-      sendParams.filter["branchId"] = `${branchId}`
-    }
+	getApplicantById(opportunityId, userId): Observable<any> {
+		return this.http.post<any[]>(
+			`${environment.cms}/api/collections/get/opportunitySubmit/`,
+			{
+				filter: {
+					opportunityId: `${opportunityId}`,
+					candidate: `${userId}`,
+				},
+				populate: 1,
+			},
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-    const todayDate = new DatePipe('en-US').transform(Date.now(), 'yyyy-MM-dd');
+	postComment(formData): Observable<any> {
+		return this.http.post<any[]>(
+			`${environment.cms}/collections/save_entry/comment/`,
+			{
+				entry: {
+					_usercreator: formData._usercreator,
+					_collection: 'Service', // Collection name.
+					_oid: formData._oid, // _oid refer to service id.
+					post: formData.post, // This is the comment.
+				},
+				populate: 1,
+			},
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-    if (params.number && params.number.length) { sendParams["filter"]["number"] = `${params.number}` };
-    if (params.name && params.name.length) { sendParams["filter"]["name"] = `${params.name}` };
-    if (params.city && params.city.length) { sendParams["filter"]["city"] = `${params.city}` };
-    if (params.employer && params.employer.length) { sendParams["filter"]["employer"] = `${params.employer}` };
+	getComments(serviceId) {
+		return this.http.post<any>(
+			`${environment.cms}/api/collections/get/comments/`,
+			{
+				filter: {
+					'serviceName._id': `${serviceId}`,
+				},
+				populate: 0,
+			},
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-    if (params.sortBy && params.sortDirection) {
-      sendParams["sort"] = {}
-      if (params.sortDirection == 'desc') {
-        sendParams["sort"][params.sortBy] = -1
-      } else {
-        sendParams["sort"][params.sortBy] = 1
-      }
-    }
+	getSegmentsByIds(ids: Array<string>): Observable<any> {
+		let body = [];
+		ids.forEach((element) => {
+			body.push({ _id: element });
+		});
 
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/get/opportunity/`,
-      sendParams, {
-      headers: this.getCMSheaders()
-    });
-  }
+		return this.http.post<any[]>(
+			`${environment.cms}/api/collections/get/segment/`,
+			{
+				filter: {
+					$or: body,
+				},
+				populate: 1,
+			},
+			{
+				headers: this.getCMSheaders(),
+			}
+		);
+	}
 
-  getApplicants(opportunityId): Observable<any> {
+	search(keyword: string): Observable<any> {
+		let body: object;
+		body = {
+			filter: {
+				$or: [],
+			},
+			limit: 100,
+			populate: 1,
+		};
 
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/get/opportunitySubmit/`,
-      {
-        "filter": {
-          "opportunityId": `${opportunityId}`
-        },
-        "populate": 1
-      }, {
-      headers: this.getCMSheaders()
-    });
-  }
-  getApplicantById(opportunityId, userId): Observable<any> {
+		// keyword prepare
+		let findKeywordOn: Array<string> = ['serviceName_ar', 'description_ar', 'tag'];
+		findKeywordOn.forEach((element) => {
+			body['filter']['$or'].push({ element: { $regex: keyword } });
+		});
 
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/get/opportunitySubmit/`,
-      {
-        "filter": {
-          "opportunityId": `${opportunityId}`,
-          "candidate": `${userId}`
-        },
-        "populate": 1
-      }, {
-      headers: this.getCMSheaders()
-    });
-  }
+		// tags.forEach(element => {
+		//   body['filter']['$or'].push({"tag._id": element})
+		// });
 
+		//body['filter']['$and'].push({"lifeCycle":"Published"}) //@TODO filter inactive
+		//body['filter']['$or'].push({"department._id":{"$eq": category}})
 
+		return this.http.post<any[]>(`${environment.cms}/api/collections/get/Service/`, body, {
+			headers: this.getCMSheaders(),
+		});
+	}
 
-  getComments(serviceId) {
-    return this.http.post<any>(
-      `${environment.cms}/api/collections/get/comments/`,
-      {
-        "filter": {
-          "serviceName._id": `${serviceId}`
-        },
-        "populate": 0
-      }, {
-      headers: this.getCMSheaders()
-    })
-  };
+	getRequest(id: string): Observable<any[]> {
+		return this.http.get<any[]>(`${environment.cms}/api/collections/get/${id}/`, {
+			headers: this.getCMSheaders(),
+		});
+	}
 
-  getSegmentsByIds(ids: Array<string>): Observable<any> {
-    let body = [];
-    ids.forEach(element => {
-      body.push({ "_id": element })
-    });
+	// getStats(id: string): Observable<any[]> {
+	//   return this.http.get<any[]>(
+	//     `${environment.statisticsApi.api}#${id}`);
+	// }
 
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/get/segment/`,
-      {
-        "filter": {
-          "$or": body
-        },
-        "populate": 1
-      }, {
-      headers: this.getCMSheaders()
-    });
-  }
+	getNews() {
+		return this.getCollectionAllActive('news', 'disable', false);
+	}
 
-  search(keyword: string): Observable<any> {
-    let body: object;
-    body = {
-      "filter": {
-        "$or": []
-      },
-      "limit": 100,
-      "populate": 1
-    };
+	getSingleNews(id) {
+		return this.getCollectionEntryById('news', '_id', id);
+	}
 
-    // keyword prepare
-    let findKeywordOn: Array<string> = ['serviceName_ar', 'description_ar', 'tag']
-    findKeywordOn.forEach(element => {
-      body['filter']['$or'].push({ element: { "$regex": keyword } })
-    });
+	getAds() {
+		return this.getCollectionAllActive('ads', 'disable', false);
+	}
 
-    // tags.forEach(element => {
-    //   body['filter']['$or'].push({"tag._id": element})
-    // });
+	getSingleAds(id) {
+		return this.getCollectionEntryById('ads', '_id', id);
+	}
 
-    //body['filter']['$and'].push({"lifeCycle":"Published"}) //@TODO filter inactive
-    //body['filter']['$or'].push({"department._id":{"$eq": category}})
-
-
-
-
-    return this.http.post<any[]>(
-      `${environment.cms}/api/collections/get/Service/`, body, {
-      headers: this.getCMSheaders()
-    });
-  }
-
-
-
-
-  getRequest(id: string): Observable<any[]> {
-    return this.http.get<any[]>(
-      `${environment.cms}/api/collections/get/${id}/`, {
-      headers: this.getCMSheaders()
-    });
-  }
-
-  // getStats(id: string): Observable<any[]> {
-  //   return this.http.get<any[]>(
-  //     `${environment.statisticsApi.api}#${id}`);
-  // }
-
-  getNews() {
-    return this.getCollectionAllActive('news', 'disable', false)
-  }
-
-  getSingleNews(id) {
-    return this.getCollectionEntryById('news', '_id', id);
-  }
-
-  getAds() {
-    return this.getCollectionAllActive('ads', 'disable', false)
-  }
-
-  getSingleAds(id) {
-    return this.getCollectionEntryById('ads', '_id', id);
-  }
-
-  // getProfile(id): Observable<any[]> {
-  //   return this.http.get<any[]>(
-  //     `${environment.profile.api}/${id}`, {
-  //     headers: this.getCMSheaders()
-  //   });
-  // }
-
+	// getProfile(id): Observable<any[]> {
+	//   return this.http.get<any[]>(
+	//     `${environment.profile.api}/${id}`, {
+	//     headers: this.getCMSheaders()
+	//   });
+	// }
 }

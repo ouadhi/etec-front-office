@@ -1,0 +1,54 @@
+<div id="main-image-fading">
+	<div class="header text-center" mat-dialog-title>
+		<h3>Service feedback</h3>
+	</div>
+	<hr />
+	<mat-dialog-content>
+		<div class="modal-body">
+			<form #form="ngForm" [formGroup]="feedbackForm">
+				<div class="form-group text-center mb-4">
+					<!-- [(rate)]="currentRate" -->
+					<ngb-rating class="text-warning" formControlName="rate" [max]="5" required></ngb-rating>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<textarea
+							id="Feedback"
+							class="form-control"
+							placeholder="Please write feedback."
+							name="Feedback"
+							[rows]="5"
+							formControlName="post"
+						></textarea>
+					</div>
+				</div>
+
+				<!-- <div class="form-group">
+					<mat-form-field>
+						<textarea
+							matInput
+							placeholder="Leave a comment"
+							[rows]="10"
+							[formControl]="feedbackField"
+						></textarea> -->
+				<!-- <mat-error *ngIf="feedbackField.invalid">Feedback is required.</mat-error> -->
+				<!-- </mat-form-field>
+				</div> -->
+			</form>
+		</div>
+	</mat-dialog-content>
+	<hr />
+	<mat-dialog-actions align="center">
+		<button
+			mat-raised-button
+			[ngClass]="{ 'mat-tab-label-active': form.valid }"
+			[ngClass]="{ 'mat-select-placeholder': form.invalid }"
+			[disabled]="form.invalid"
+			(click)="onConfirmClick(true)"
+		>
+			Submit
+		</button>
+		<button mat-raised-button (click)="onConfirmClick(false)">Cancel</button>
+		<!-- mat-dialog-close -->
+	</mat-dialog-actions>
+</div>

@@ -1,0 +1,91 @@
+mat-dialog-actions {
+	justify-content: space-around !important;
+}
+
+.header {
+	color: #2185b8 !important;
+}
+
+ngb-rating {
+	font-size: 50px !important;
+}
+
+#Feedback{
+    border: 1px solid #e9ecef;
+}
+
+.modal-body {
+	padding: 0rem 1rem;
+}
+
+#main-image-slide {
+	height: 0;
+	overflow: hidden;
+	background: #fafafa;
+	-moz-animation: slide 0.5s ease 1s forwards;
+	-webkit-animation: slide 0.5s ease 1s forwards;
+	-o-animation: slide 0.5s ease 1s forwards;
+	-ms-animation: slide 0.5s ease 1s forwards;
+	animation: slide 0.5s ease 1s forwards;
+}
+
+@-moz-keyframes slide /* Firefox */ {
+	from {
+		height: 0;
+	}
+	to {
+		height: 400px;
+	}
+}
+
+@-webkit-keyframes slide /* Safari and Chrome */ {
+	from {
+		height: 0;
+	}
+	to {
+		height: 400px;
+	}
+}
+
+@-o-keyframes slide /* Opera */ {
+	from {
+		background: #fafafa;
+	}
+	to {
+		background: #fafafa;
+	}
+}
+
+@-ms-keyframes slide /* IE10 */ {
+	from {
+		height: 0;
+	}
+	to {
+		height: 400px;
+	}
+}
+
+@keyframes slide {
+	from {
+		height: 0;
+	}
+	to {
+		height: 400px;
+	}
+}
+
+#main-image-fading {
+    background: #fafafa;
+	animation: fading 10s;
+}
+@keyframes fading {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
