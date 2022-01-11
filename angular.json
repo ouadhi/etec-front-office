@@ -44,6 +44,8 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.snow.css",
               {
                 "input": "node_modules/font-awesome/scss/font-awesome.scss",
                 "inject": true
@@ -70,7 +72,8 @@
             },
             "scripts": [
               "node_modules/@webcomponents/custom-elements/src/native-shim.js",
-              "node_modules/chart.js/dist/Chart.js"
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/quill/dist/quill.js"
             ],
             "aot": true
           },
