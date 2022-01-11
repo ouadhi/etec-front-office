@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { USE_STORE } from "@ngx-translate/core";
 import { KeycloakService } from "keycloak-angular";
 
 @Injectable({ providedIn: "root" })
@@ -30,10 +31,21 @@ export class ETECService {
         user_family_name: decodedToken.family_name,
         user_email: decodedToken.email,
         generatedId: generatedId,
+        currentUser_name: decodedToken.name,
+        currentUser_roles: decodedToken.roles,
+        currentUser_groups: decodedToken.groups,
+        currentUser_preferred_username: decodedToken.preferred_username,
+        currentUser_type: decodedToken.type,
+        currentUser_locale: decodedToken.locale,
+        currentUser_given_name: decodedToken.given_name,
+        currentUser_family_name: decodedToken.family_name,
+        currentUser_email: decodedToken.email,
+        currentUser_generatedId: generatedId,
       };
       if (decodedToken.attributes)
         for (const [key, value] of Object.entries(decodedToken.attributes)) {
-          etecData[`user_${key}`] = value
+          etecData[`user_${key}`] = value;
+          etecData[`currentUser_${key}`] = value;
         }
 
       return { ...etecData };
@@ -64,11 +76,22 @@ export class ETECService {
         task_family_name: decodedToken.family_name,
         task_email: decodedToken.email,
         task_generatedId: generatedId,
+        currentUser_name: decodedToken.name,
+        currentUser_roles: decodedToken.roles,
+        currentUser_groups: decodedToken.groups,
+        currentUser_preferred_username: decodedToken.preferred_username,
+        currentUser_type: decodedToken.type,
+        currentUser_locale: decodedToken.locale,
+        currentUser_given_name: decodedToken.given_name,
+        currentUser_family_name: decodedToken.family_name,
+        currentUser_email: decodedToken.email,
+        currentUser_generatedId: generatedId,
       };
 
       if (decodedToken.attributes)
         for (const [key, value] of Object.entries(decodedToken.attributes)) {
-          etecData[`task_${key}`] = value
+          etecData[`task_${key}`] = value;
+          etecData[`currentUser_${key}`] = value;
         }
 
       return { ...etecData };
