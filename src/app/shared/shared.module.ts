@@ -31,6 +31,7 @@ import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import localeAr from '@angular/common/locales/ar';
+import { FeedbackModalComponent } from './components/feedback-modal/feedback-modal.component';
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeAr, 'ar');
 
@@ -52,6 +53,7 @@ registerLocaleData(localeAr, 'ar');
 		LocalizedDatePipe,
 		HasRoleDirective,
 		FooterComponent,
+		FeedbackModalComponent,
 	],
 	imports: [
 		CommonModule,
@@ -108,7 +110,11 @@ registerLocaleData(localeAr, 'ar');
 		LocalizedDatePipe,
 		HasRoleDirective,
 	],
-	entryComponents: [NotificationsModalComponent, NotificationOptionsComponent],
+	entryComponents: [
+		NotificationsModalComponent,
+		NotificationOptionsComponent,
+		FeedbackModalComponent
+	],
 	providers: [],
 })
-export class SharedModule {}
+export class SharedModule { }
