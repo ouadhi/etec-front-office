@@ -57,9 +57,6 @@ export class RequestComponent extends BaseComponent implements OnInit {
 			this.navParams = params;
 			this.etecData = await this.etecService.getEtecData();
 			this.submission.data = { serviceId: this.serviceId, ...this.etecData };
-
-			this.openFeedbackDialog();
-
 			if (
 				!this.serviceId ||
 				this.serviceId === null ||
@@ -113,6 +110,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 		this.requestDate = requestDate;
 		this.isDraft = isDraft;
 		this.hasResult = true;
+		this.openFeedbackDialog();
 	}
 
 	openFeedbackDialog() {
