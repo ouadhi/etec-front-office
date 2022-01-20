@@ -1,4 +1,6 @@
-import { ETECService } from 'src/app/core/services/etec.service';
+
+import { KeycloakService } from 'keycloak-angular';
+import { UserService } from 'src/formio/src/public_api';
 
 import { Injector, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -45,7 +47,8 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	constructor(
 		public injector: Injector,
 		public modalController: ModalController,
-		public etecService: ETECService,
+		private userService: UserService,
+		private keycloak: KeycloakService,
 		public caseActivity: CaseActivityService
 	) {
 		super(injector);
@@ -56,7 +59,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	 */
 	goBack() {
 		/* return this.router.navigate(['tasks',
-       ...(this.route.parent.snapshot.params.filterId ? [this.route.parent.snapshot.params.filterId] : [])]);*/
+	   ...(this.route.parent.snapshot.params.filterId ? [this.route.parent.snapshot.params.filterId] : [])]);*/
 		this.location.back();
 	}
 
@@ -118,7 +121,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 
 					this.form.ready = false;
 
-					const etecData = await this.etecService.getTaskData();
+					const etecData = await this.userService.getTaskUserData(await this.keycloak.getToken());
 					this.submission.data = { ...etecData };
 					this.params = [
 						{

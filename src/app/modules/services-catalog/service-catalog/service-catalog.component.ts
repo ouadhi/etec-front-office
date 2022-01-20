@@ -4,7 +4,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { IImage } from 'ng-simple-slideshow';
 import { combineLatest } from 'rxjs';
-import { ETECService } from 'src/app/core/services/etec.service';
+import { KeycloakService } from 'keycloak-angular';
+import { UserService } from 'src/formio/src/public_api';
 import { environment } from 'src/environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { RequestsService } from '../../requests/requests.service';
@@ -48,7 +49,8 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 	constructor(
 		public injector: Injector,
 		private requestsService: RequestsService,
-		private etecService: ETECService
+		private userService: UserService,
+        private keycloak: KeycloakService,
 	) {
 		super(injector);
 	}
@@ -417,7 +419,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 					this.prepareFilters(this.userSegments);
 				},
 				async (err) => {
-					const data = await this.etecService.getTokenData();
+					const data = await this.userService.getTokenData(await this.keycloak.getToken());
 					this.prepareFilters(data.groups || this.userSegments);
 				}
 			);

@@ -1,7 +1,7 @@
 import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { combineLatest } from 'rxjs';
-import { ETECService } from 'src/app/core/services/etec.service';
+import { KeycloakService } from 'keycloak-angular';
+import { UserService } from 'src/formio/src/public_api';
 import { BaseComponent } from '../../../shared/components/base.component';
 
 @Component({
@@ -25,10 +25,11 @@ export class EntityProfileComponent extends BaseComponent implements OnInit {
   submission: any;
 
   constructor(public injector: Injector,
-    private etecService: ETECService) { super(injector); }
+    private userService: UserService,
+    private keycloak: KeycloakService) { super(injector); }
 
   async ngOnInit() {
-    this.etecData = await this.etecService.getEtecData();
+    this.etecData = await this.userService.getUserData(await this.keycloak.getToken());
     this.submission = { data: this.etecData };
     this.type = this.etecData.user_type;
     if (this.type == this.ProfileTypes.entityProfileModel || this.type == this.ProfileTypes.individualProfileModel) {

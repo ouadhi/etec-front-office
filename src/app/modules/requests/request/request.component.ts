@@ -3,7 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
-import { ETECService } from 'src/app/core/services/etec.service';
+import { KeycloakService } from 'keycloak-angular';
+import { UserService } from 'src/formio/src/public_api';
 import { RequestsService } from '../requests.service';
 import { FeedbackModalComponent } from 'src/app/shared/components/feedback-modal/feedback-modal.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,7 +18,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class RequestComponent extends BaseComponent implements OnInit {
 	constructor(
 		public injector: Injector,
-		private etecService: ETECService,
+		private userService: UserService,
+        private keycloak: KeycloakService,
 		private rest: RequestsService,
 		public dialog: MatDialog
 	) {
@@ -55,7 +57,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 			this.serviceId = params['serviceId'];
 			this.caseId = params['caseId'];
 			this.navParams = params;
-			this.etecData = await this.etecService.getEtecData();
+			this.etecData = await this.userService.getUserData(await this.keycloak.getToken());
 			this.submission.data = { serviceId: this.serviceId, ...this.etecData };
 			if (
 				!this.serviceId ||
