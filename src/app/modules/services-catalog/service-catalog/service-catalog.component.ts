@@ -50,7 +50,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 		public injector: Injector,
 		private requestsService: RequestsService,
 		private userService: UserService,
-        private keycloak: KeycloakService,
+		private keycloak: KeycloakService,
 	) {
 		super(injector);
 	}
@@ -88,7 +88,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 				this.dataFilters.segmentsGroup_inline[0] &&
 				this.dataFilters.segmentsGroup_inline[0][a._id] &&
 				Object.keys(this.segmentInput[a._id]).length - 1 ===
-					Object.keys(this.dataFilters.segmentsGroup_inline[0][a._id]).length);
+				Object.keys(this.dataFilters.segmentsGroup_inline[0][a._id]).length);
 		if (
 			this.segmentInput[a._id][b._id] &&
 			this.dataFilters.segmentsGroup_inline[0] &&
@@ -419,7 +419,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 					this.prepareFilters(this.userSegments);
 				},
 				async (err) => {
-					const data = await this.userService.getTokenData(await this.keycloak.getToken());
+					const data = await this.userService.getTokenData(this.isLoggedIn ? await this.keycloak.getToken() : null);
 					this.prepareFilters(data.groups || this.userSegments);
 				}
 			);

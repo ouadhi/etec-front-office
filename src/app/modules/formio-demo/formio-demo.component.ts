@@ -21,7 +21,8 @@ export class FormioDemoComponent extends BaseComponent implements OnInit {
         private keycloak: KeycloakService) { super(injector); }
 
     async ngOnInit(): Promise<void> {
-        const etecData = await this.userService.getUserData(await this.keycloak.getToken());
+        const isLoggedIn = await this.keycloakService.isLoggedIn();
+        const etecData = await this.userService.getUserData(isLoggedIn ? await this.keycloak.getToken() : null);
         const params = this.route.snapshot.params;
         this.extraOptions = this.route.snapshot.queryParams;
 

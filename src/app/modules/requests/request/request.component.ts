@@ -57,7 +57,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 			this.serviceId = params['serviceId'];
 			this.caseId = params['caseId'];
 			this.navParams = params;
-			this.etecData = await this.userService.getUserData(await this.keycloak.getToken());
+			this.etecData = await this.userService.getUserData(this.isLoggedIn ? await this.keycloak.getToken() : null);
 			this.submission.data = { serviceId: this.serviceId, ...this.etecData };
 			if (
 				!this.serviceId ||

@@ -121,7 +121,8 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 
 					this.form.ready = false;
 
-					const etecData = await this.userService.getTaskUserData(await this.keycloak.getToken());
+					const isLoggedIn = await this.keycloakService.isLoggedIn();
+					const etecData = await this.userService.getTaskUserData(isLoggedIn ? await this.keycloak.getToken() : null);
 					this.submission.data = { ...etecData };
 					this.params = [
 						{
