@@ -28,8 +28,10 @@
             </div>
             <ul class="user-assets">
                 <li class="lang-li">
-                    <button mat-menu-item *ngIf="switchLangService.currentLang=='en'" (click)="switchLangService.changeLang('ar')">ع</button>
-                    <button mat-menu-item *ngIf="switchLangService.currentLang=='ar'" (click)="switchLangService.changeLang('en')">En</button>
+                    <button mat-menu-item *ngIf="switchLangService.currentLang=='en'"
+                        (click)="switchLangService.changeLang('ar')">ع</button>
+                    <button mat-menu-item *ngIf="switchLangService.currentLang=='ar'"
+                        (click)="switchLangService.changeLang('en')">En</button>
 
                     <!-- <div class="switcher" [matMenuTriggerFor]="langDropdown">
                        
@@ -91,8 +93,14 @@
                         {{userDetails?.firstName}} {{userDetails?.lastName}}
                     </span>
                 </button>
-                <button mat-menu-item routerLink="/accounts/entity/profile" *ngIf="loggedIn">{{'LAYOUT.PROFILE' |
-                    translate}}</button>
+                <button mat-menu-item routerLink="/accounts/entity/profile" *ngIf="loggedIn">
+                    <ng-container *ngIf="type == 'facilityInformation';else normal">
+                        {{'LAYOUT.FACILITY_PROFILE' | translate}}
+                    </ng-container>
+                    <ng-template #normal>
+                        {{'LAYOUT.PROFILE' | translate}}
+                    </ng-template>
+                </button>
                 <button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">{{'LAYOUT.LOGOUT' | translate}}</button>
                 <button mat-menu-item (click)="login()" *ngIf="!loggedIn">{{'LAYOUT.LOGIN' | translate}}</button>
 

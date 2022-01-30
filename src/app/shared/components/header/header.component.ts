@@ -6,6 +6,7 @@ import { BaseComponent } from '../base.component';
 import { Formio } from 'formiojs';
 import { DatePipe, formatDate } from '@angular/common';
 import myLocaleAr from '@angular/common/locales/Ar';
+import { UserService } from 'src/formio/src/public_api';
 
 @Component({
 	selector: 'app-header',
@@ -29,13 +30,18 @@ export class HeaderComponent extends BaseComponent {
 		{ name: 'ARABIC', code: 'ar' },
 	];
 	selectedLang = this.translateService.currentLang;
-	constructor(public injector: Injector, public datePipe: DatePipe, public platform: Platform) {
+	type = '';
+
+	constructor(public injector: Injector,
+		public datePipe: DatePipe,
+		public platform: Platform,
+		private userService: UserService) {
 		super(injector);
 		this.newDate = this.datePipe.transform(this.myDate, ' d MMMM y');
 		this.time = this.myDate.toLocaleString('en-US', { hour: 'numeric', hour12: true });
 		this.todaysDataTime = formatDate(this.myDate, ' hh:mm a', 'en-US', '+3');
 		// this.hijriDate = this.today.toHijri();
-		this.configService.loadConfig().then((config) => {});
+		this.configService.loadConfig().then((config) => { });
 		const DelayPlugin = {
 			priority: 100,
 			preRequest: (requestArgs) => {
@@ -86,6 +92,7 @@ export class HeaderComponent extends BaseComponent {
 
 		if (await this.keycloakService.isLoggedIn()) {
 			this.userDetails = await this.sessionService.loadUserProfile();
+			this.type = (await this.userService.getTokenData(await this.keycloakService.getToken())).type;
 			this.loggedIn = true;
 		} else {
 			this.loggedIn = false;

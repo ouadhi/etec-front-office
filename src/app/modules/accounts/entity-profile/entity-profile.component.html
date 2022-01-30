@@ -8,6 +8,10 @@
   <lib-profile-resource *ngIf="generatedId && type == ProfileTypes.educationalInstitutionInformation"
     query="data.generatedId={{generatedId}}" [submission]="submission" defaultResource="educationalinstitutioninformation">
   </lib-profile-resource>
+
+  <lib-profile-resource *ngIf="generatedId && type == ProfileTypes.facilityInformation"
+    query="data.generatedId={{generatedId}}" [submission]="submission" defaultResource="facilityInformation">
+  </lib-profile-resource>
 </ng-container>
 
 <ng-template #noProfile>

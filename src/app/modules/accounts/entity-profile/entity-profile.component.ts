@@ -15,7 +15,8 @@ export class EntityProfileComponent extends BaseComponent implements OnInit {
   ProfileTypes = {
     entityProfileModel: 'entityprofilemodel',
     individualProfileModel: 'individualprofilemodel',
-    educationalInstitutionInformation: 'educationalinstitutioninformation'
+    educationalInstitutionInformation: 'educationalinstitutioninformation',
+    facilityInformation: 'facilityInformation'
   }
 
   type: string;
@@ -35,7 +36,7 @@ export class EntityProfileComponent extends BaseComponent implements OnInit {
     if (this.type == this.ProfileTypes.entityProfileModel || this.type == this.ProfileTypes.individualProfileModel) {
       this.profileId = this.sessionService.getUsername();
     }
-    else if (this.type == this.ProfileTypes.educationalInstitutionInformation) {
+    else if ([this.ProfileTypes.educationalInstitutionInformation, this.ProfileTypes.facilityInformation].includes(this.type)) {
       const group = this.etecData.user_groups[0];
       this.generatedId = group.split('_')[0];
     }
