@@ -25,6 +25,7 @@ export const environment = {
   },
   endpoints: {
     tasks: '/requestmanagement/api/portal/tasks',
+    anonymousTasks: '/requestmanagement/api/portal/tasks/anonymous',
     camundaTask: '/requestmanagement/rest/task',
     myRequests: '/requestmanagement/api/portal/requests',
     myBeneficiarySegments: '/requestmanagement/api/portal/beneficiary-segments-cms',

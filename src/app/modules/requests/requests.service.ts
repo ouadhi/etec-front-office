@@ -83,9 +83,9 @@ export class RequestsService {
       })
     );
   }
-  getTaskByProcessInstanceId(queryParams = {}): Observable<any> {
+  getTaskByProcessInstanceId(queryParams = {}, isAnonymous: boolean = false): Observable<any> {
     return this.http.get<any>(
-      `${environment.gateway}${environment.endpoints.tasks}`,
+      `${environment.gateway}${isAnonymous ? environment.endpoints.anonymousTasks : environment.endpoints.tasks}`,
       {
         params: {
           ...queryParams,

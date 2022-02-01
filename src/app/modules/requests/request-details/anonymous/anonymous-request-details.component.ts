@@ -42,8 +42,8 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
     if (event.type === 'task') {
       if (this.tasks && this.tasks.length) {
         this.router.navigate(['/requests/task',
-          this.tasks[0].taskDefinitionKey,
-          this.tasks[0].id,
+          this.tasks[0].task.taskDefinitionKey,
+          this.tasks[0].task.id,
           this.request.caseId,
           this.route.snapshot.params.id,
         ]);
@@ -68,24 +68,6 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
     this.sub = this.route.params.subscribe(params => {
       this.sub = this.rest.queryAnonymousRequests(this.route.snapshot.params.id).subscribe(data => {
         this.processInstanceId = data.procInstID;
-        if (this.processInstanceId)
-          this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
-            .subscribe(data => {
-              this.tasks = data;
-
-              if (data.length) {
-                const taskName = `taskTitle.${data[0].taskDefinitionKey}`;
-                this.sub = this.translateService.get([taskName, this.updateTask])
-                  .subscribe(keys => {
-                    if (keys[taskName] != taskName) {
-                      this.taskName = `${keys[taskName]}`;
-                    } else {
-                      this.taskName = keys[this.updateTask];
-                    }
-                  });
-              }
-            });
-
         this.request = data;
         this.link = this.request.link;
         this.formData = this.request.data;
@@ -95,6 +77,25 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
           this.submission = data;
           this.showEditTask = this.route.snapshot.params.timestamp == data.data.timestamp && data.data.timestamp;
           this.moreInfo = (data.data.moreInfo && Object.keys(data.data.moreInfo).length) ? data.data.moreInfo : null;
+
+          if (this.processInstanceId && this.showEditTask)
+            this.sub = this.rest.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId }, true)
+              .subscribe(data => {
+                this.tasks = data;
+
+                if (data.length) {
+                  const taskName = `taskTitle.${data[0].taskDefinitionKey}`;
+                  this.sub = this.translateService.get([taskName, this.updateTask])
+                    .subscribe(keys => {
+                      if (keys[taskName] != taskName) {
+                        this.taskName = `${keys[taskName]}`;
+                      } else {
+                        this.taskName = keys[this.updateTask];
+                      }
+                    });
+                }
+              });
+
           /*this.params = [
             {
               url: environment.beneficiaryApi.api,
