@@ -84,7 +84,7 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
                 this.tasks = data;
 
                 if (data.length) {
-                  const taskName = `taskTitle.${data[0].taskDefinitionKey}`;
+                  const taskName = `taskTitle.${data[0].task.taskDefinitionKey}`;
                   this.sub = this.translateService.get([taskName, this.updateTask])
                     .subscribe(keys => {
                       if (keys[taskName] != taskName) {
