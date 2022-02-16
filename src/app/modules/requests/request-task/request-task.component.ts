@@ -115,7 +115,8 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 							if (keys[requestName] != requestName && keys[taskName] != taskName) {
 								this.proccessName = `${keys[requestName]} - ${keys[taskName]}`;
 							} else {
-								this.proccessName = keys[this.updateTask];
+								this.proccessName = `${keys[requestName]} - ${keys[taskName]}`;
+								// this.proccessName = keys[this.updateTask];
 							}
 						});
 

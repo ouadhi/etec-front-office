@@ -90,7 +90,8 @@ export class AnonymousRequestDetailsComponent extends BaseComponent implements O
                       if (keys[taskName] != taskName) {
                         this.taskName = `${keys[taskName]}`;
                       } else {
-                        this.taskName = keys[this.updateTask];
+                        this.taskName = `${keys[taskName]}`;
+                        // this.taskName = keys[this.updateTask];
                       }
                     });
                 }
