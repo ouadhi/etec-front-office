@@ -1,8 +1,8 @@
-[dir=rtl] {
+[dir="rtl"] {
     .app-request-task {
-         :host::ng-deep {
+        :host::ng-deep {
             .disable-in-task {
-                .choices[data-type*=select-one]:after {
+                .choices[data-type*="select-one"]:after {
                     display: none;
                 }
             }
@@ -11,7 +11,7 @@
 }
 
 .app-request-task {
-    .mat-expansion-panel-spacing{
+    .mat-expansion-panel-spacing {
         overflow: inherit !important;
     }
     formio {
@@ -23,7 +23,7 @@
     .alignSwitchEN {
         text-align: left;
     }
-     :host::ng-deep {
+    :host::ng-deep {
         .app-formio {
             margin-top: -50px;
             padding-left: 15px;
@@ -47,7 +47,7 @@
         }
     }
     .app-formio .input-group-prepend:not([class*="tree-group"]) span,
-    .app-formio .input-group-prepend:not([class*="tree-group"])+textarea[disabled="disabled"] {
+    .app-formio .input-group-prepend:not([class*="tree-group"]) + textarea[disabled="disabled"] {
         background: transparent !important;
         border: none !important;
     }
@@ -63,15 +63,51 @@
         margin-right: 5px;
         margin-left: 0;
         @if empty(var(--smallLogo)) {
-            background-image: url('/assets/images/logo.png');
-        }
-        @else {
+            background-image: url("/assets/images/logo.png");
+        } @else {
             $image: var(--smallLogo);
             background-image: $image;
         }
     }
-    .app-formio .input-group-prepend:not([class*="tree-group"])+textarea {
+    .app-formio .input-group-prepend:not([class*="tree-group"]) + textarea {
         width: inherit;
+    }
+    .alert-link {
+        cursor: pointer;
+    }
+    .alert-warning div {
+        align-items: center;
+    }
+    .alert-warning,
+    .alert-warning .alert-link {
+        color: #fff !important;
+        background-color: $primary-color;
+        border-radius: 8px;
+    }
+    .lockContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .lockMessage {
+            color: #fff !important;
+            background-color: $primary-color;
+            border-radius: 8px;
+            display: flex;
+            padding-block: 12px;
+            .lockIcon {
+                padding-inline-start: 16px;
+            }
+        }
+        button.unlock {
+            border: 1px solid var(--accentColor200);
+            padding: 4px 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            ion-icon {
+                margin-inline-end: 5px;
+            }
+        }
     }
 }
 

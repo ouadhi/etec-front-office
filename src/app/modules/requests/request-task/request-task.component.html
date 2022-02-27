@@ -1,13 +1,48 @@
 <app-page class="app-request-task">
-    <app-section *ngIf="proccessName" sectionTitle="{{proccessName}}" [showContainer]="false">
-    </app-section>
-    <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}" [submission]="submission"
-        [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (onSubmit)="onSubmit($event)" (submit)="onSubmit($event)"
-        (formLoad)="formLoad($event)"></formio>
+    <app-section *ngIf="proccessName" sectionTitle="{{proccessName}}">
 
-    <div id="custom-actions" class="form-group has-feedback formio-component formio-component-button formio-component-submit  form-group">
-        <button class="submit-task btn btn-primary btn-md" href="javascript:" (click)="customSubmit(formComponent.submission)"
-            [disabled]="formComponent?.formio?.invalid == true">
+        <formio-loader></formio-loader>
+        <div class="lockContainer" *ngIf="request?.requestLocksDTO?.process == 'LOCKED'">
+            <div class="lockMessage">
+                <div class="lockIcon">
+                    <ion-icon [name]="'lock-closed-outline'"></ion-icon>
+                </div>
+                <div class="col auto-width">
+                    <ng-container
+                        *ngIf="request.requestLocksDTO.processedBy == user.currentUser_preferred_username;else showName">
+                        {{'requestLock.The request has been locked by you' | translate}}
+                    </ng-container>
+                    <ng-template #showName>
+                        {{'requestLock.The request has been locked by' | translate}}
+                        <strong *ngIf="request.requestLocksDTO.processedBy">
+                            {{request.requestLocksDTO.processedBy}}
+                        </strong>
+                    </ng-template>
+
+                    {{'requestLock.in date' | translate}}
+                    <strong *ngIf="request.requestLocksDTO.processDate">
+                        {{request.requestLocksDTO.processDate | date : 'yyyy-MM-dd'}}</strong>.
+                </div>
+            </div>
+            <div *ngIf="user.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin">
+                <button class="unlock" href="javascript:" (click)="unlock()">
+                    <ion-icon name="lock-open-outline"></ion-icon>
+                    {{'requestLock.unLock' | translate}}
+                </button>
+            </div>
+        </div>
+
+    </app-section>
+
+    <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
+        [submission]="submission" [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (onSubmit)="onSubmit($event)"
+        (submit)="onSubmit($event)" (formLoad)="formLoad($event)"></formio>
+
+    <div id="custom-actions"
+        class="form-group has-feedback formio-component formio-component-button formio-component-submit  form-group">
+        <button class="submit-task btn btn-primary btn-md" href="javascript:"
+            (click)="customSubmit(formComponent.submission)"
+            [disabled]="formComponent?.formio?.invalid == true || isLocked()">
             {{'forms.common.Submit' | translate}}
         </button>
         <br />

@@ -36,6 +36,18 @@ export class RequestsService {
     return this.http.get<any>(
       `${environment.formio.appUrl}/recaptcha?recaptchaToken=${token}`);
   }
+
+  unlockRequest(requestId) {
+    const endpoint = `${environment.gateway}${environment.endpoints.myRequests}/${requestId}/unlock`;
+    return this.http.post<any>(endpoint,
+      {
+        reason: 'digital signature'
+      }).pipe(
+        tap(resp => resp),
+        map(resp => (resp))
+      );
+  }
+
   getRequests(queryParams): Observable<any> {
     return this.http.get<any>(
       `${environment.gateway}${environment.endpoints.myRequests}`,

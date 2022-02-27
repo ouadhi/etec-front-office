@@ -1,6 +1,7 @@
 
 import { KeycloakService } from 'keycloak-angular';
-import { UserService } from 'src/formio/src/public_api';
+import { ErrorToast, FormioLoader, UserService } from 'src/formio/src/public_api';
+import { Utils } from 'formiojs';
 
 import { Injector, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,8 @@ import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
 import { FormioComponent, SuccessToast } from 'src/formio/src/public_api';
 import { CaseActivityService } from '../case-activities.service';
+import { forkJoin } from 'rxjs';
+import { RequestsService } from '../requests.service';
 declare var $: any;
 /**
  * Main Task Component
@@ -18,6 +21,7 @@ declare var $: any;
 	templateUrl: './request-task.component.html',
 	// styleUrls: ['./request-task.component.scss'],
 	encapsulation: ViewEncapsulation.None,
+	providers: [FormioLoader]
 })
 export class RequestTaskComponent extends BaseComponent implements OnInit {
 	@ViewChild(FormioComponent) formComponent: FormioComponent;
@@ -39,6 +43,11 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 		ready: false,
 	};
 	params;
+
+	request: any;
+	user: any;
+	isAdmin = false;
+
 	/*
   submitPromise: Promise<any>;
   submitPromiseResolve: any;
@@ -46,6 +55,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 
 	constructor(
 		public injector: Injector,
+		private rest: RequestsService,
 		public modalController: ModalController,
 		private userService: UserService,
 		private keycloak: KeycloakService,
@@ -89,6 +99,16 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	}
 
 	formLoad(formSettings) {
+		this.isLocked();
+		this.formComponent.formio.on('LockFile', () => {
+			if (this.request?.requestLocksDTO?.process != 'LOCKED') {
+				this.request.requestLocksDTO = {
+					process: 'LOCKED',
+					processedBy: this.user?.currentUser_preferred_username,
+					processDate: new Date()
+				};
+			}
+		});
 		setTimeout(() => {
 			if (formSettings.properties && eval(formSettings.properties.hideSubmit)) {
 				document.getElementsByName('data[submit]')[0].style.display = 'none';
@@ -102,9 +122,19 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	/**
 	 * ngOnInit: on init subscribe to route changes
 	 */
-	ngOnInit() {
+	async ngOnInit() {
+		this.user = await this.userService.getUserData(await this.keycloakService.getToken());
+		this.isAdmin = this.user.currentUser_groups.includes('Admins');
+
 		this.sub = this.route.params.subscribe((params) => {
-			this.sub = this.caseActivity.getRequestTask(params.taskId).subscribe(async (data) => {
+			this.sub = forkJoin([
+				this.caseActivity.getRequestTask(params.taskId),
+				this.rest.getRequest(params.requestId)
+			]).subscribe(async result => {
+				const data = result[0];
+				this.request = result[1];
+				this.isLocked();
+
 				if (data.formKey) {
 					const processDefinitionId = data.processDefinitionId.split(':')[0];
 					const requestName = `${processDefinitionId}`;
@@ -143,5 +173,66 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 				}
 			});
 		});
+	}
+	unlock() {
+		this.formioLoader.loading = true;
+		this.sub = this.rest.unlockRequest(this.request.id)
+			.subscribe(data => {
+				if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
+				this.request.requestLocksDTO.process = 'UNLOCKED';
+				this.showSuccessToast();
+				this.isLocked(true);
+				this.formioLoader.loading = false;
+			}, error => {
+				if (error.status == 200) {
+					if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
+					this.request.requestLocksDTO.process = 'UNLOCKED';
+					this.showSuccessToast();
+				} else {
+					this.toastrService.show(
+						this.translateService.instant("generalError"),
+						this.translateService.instant("ErrorOccurred"),
+						{
+							toastClass: "notification-toast",
+							closeButton: true,
+							enableHtml: true,
+							toastComponent: ErrorToast,
+						}
+					);
+				}
+				this.isLocked(true);
+				this.formioLoader.loading = false;
+			});
+	}
+
+	isLocked(notify = false) {
+		const isLocked = this.request?.requestLocksDTO?.process == 'LOCKED' &&
+			this.request?.requestLocksDTO?.processedBy != this.user?.currentUser_preferred_username;
+
+		if (this.formComponent?.formio) {
+			this.formComponent.formio.isLocked = isLocked;
+			if (notify) this.formComponent.formio.emit('changeLockFile', null);
+			const nestedForms = Utils.searchComponents(this.formComponent.formio.components, { type: 'form' });
+			nestedForms.forEach(form => {
+				if (form?.subForm) {
+					form.subForm.isLocked = isLocked;
+					if (notify) form.subForm.emit('changeLockFile', null);
+				}
+			});
+		}
+		return isLocked;
+	}
+
+	private showSuccessToast() {
+		this.toastrService.show(
+			this.translateService.instant('requestLock.The request has been unlocked successfully'),
+			this.translateService.instant('OperationDone'),
+			{
+				toastClass: "notification-toast",
+				closeButton: true,
+				enableHtml: true,
+				toastComponent: SuccessToast,
+			}
+		);
 	}
 }

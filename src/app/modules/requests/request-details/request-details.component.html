@@ -16,6 +16,70 @@
         </div>
       </div>
     </div>
+
+    <formio-loader></formio-loader>
+    <div class="lockContainer" *ngIf="request?.requestLocksDTO?.process == 'LOCKED'">
+      <div class="lockMessage">
+          <div class="lockIcon">
+              <ion-icon [name]="'lock-closed-outline'"></ion-icon>
+          </div>
+          <div class="col auto-width">
+              <ng-container
+                  *ngIf="request.requestLocksDTO.processedBy == user.currentUser_preferred_username;else showName">
+                  {{'requestLock.The request has been locked by you' | translate}}
+              </ng-container>
+              <ng-template #showName>
+                  {{'requestLock.The request has been locked by' | translate}}
+                  <strong *ngIf="request.requestLocksDTO.processedBy">
+                      {{request.requestLocksDTO.processedBy}}
+                  </strong>
+              </ng-template>
+
+              {{'requestLock.in date' | translate}}
+              <strong *ngIf="request.requestLocksDTO.processDate">
+                  {{request.requestLocksDTO.processDate | date : 'yyyy-MM-dd'}}</strong>.
+          </div>
+      </div>
+      <div *ngIf="user.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin">
+          <button class="unlock" href="javascript:" (click)="unlock()">
+              <ion-icon name="lock-open-outline"></ion-icon>
+              {{'requestLock.unLock' | translate}}
+          </button>
+      </div>
+  </div>
+<!--   
+    <div class="padder" *ngIf="request?.requestLocksDTO?.process == 'LOCKED'"
+      [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+      <div class="alert alert-warning">
+        <div class="row">
+          <div class="col-auto align-self-start auto-width">
+            <ion-icon [name]="'lock-closed-outline'" class="alert-icon"></ion-icon>
+          </div>
+          <div class="col auto-width">
+            <ng-container
+              *ngIf="request.requestLocksDTO.processedBy == user.currentUser_preferred_username;else showName">
+              {{'requestLock.The request has been locked by you' | translate}}
+            </ng-container>
+            <ng-template #showName>
+              {{'requestLock.The request has been locked by' | translate}}
+              <strong *ngIf="request.requestLocksDTO.processedBy">
+                {{request.requestLocksDTO.processedBy}}
+              </strong>
+            </ng-template>
+
+            {{'requestLock.in date' | translate}}
+            <strong *ngIf="request.requestLocksDTO.processDate">{{request.requestLocksDTO.processDate | date :
+              'yyyy-MM-dd'}}</strong>.
+
+            <ng-container *ngIf="user.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin">
+              {{'requestLock.pleasePress' | translate}}
+              <a (click)="unlock()" class="alert-link">{{'requestLock.here' | translate}}</a>.
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <br />
     <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId" [requestId]="id">
     </app-case-activities>
   </app-section>

@@ -2,6 +2,7 @@ import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
+import { ErrorToast, FormioLoader, SuccessToast, UserService } from 'src/formio/src/public_api';
 import { NotificationsService } from '../../notifications/notifications.service';
 import { CaseActivityService } from '../case-activities.service';
 import { RequestsService } from '../requests.service';
@@ -10,13 +11,15 @@ import { RequestsService } from '../requests.service';
   selector: 'app-request-details',
   templateUrl: './request-details.component.html',
   // styleUrls: ['./request-details.component.scss']
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [FormioLoader]
 })
 export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
   constructor(public injector: Injector,
     private rest: RequestsService,
     public caseActivity: CaseActivityService,
+    public userService: UserService,
     private notificationsService: NotificationsService) { super(injector); }
   id: string;
   processInstanceId: string;
@@ -38,6 +41,9 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
   currentRequestTask: any;
   isLoggedIn = false;
+
+  user: any;
+  isAdmin = false;
 
   handleAction(event) {
     if (event.type === 'task') {
@@ -66,6 +72,8 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   }
   async ngOnInit() {
     this.isLoggedIn = await this.keycloakService.isLoggedIn();
+    this.user = await this.userService.getUserData(await this.keycloakService.getToken());
+    this.isAdmin = this.user.currentUser_groups.includes('Admins');
     this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
       this.getData();
@@ -81,6 +89,48 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
         this.getData();
       }
     });
+  }
+
+  unlock() {
+    this.formioLoader.loading = true;
+    this.sub = this.rest.unlockRequest(this.request.id)
+      .subscribe(data => {
+        if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
+        this.request.requestLocksDTO.process = 'UNLOCKED';
+        this.showSuccessToast();
+        this.formioLoader.loading = false;
+      }, error => {
+        if (error.status == 200) {
+          if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
+          this.request.requestLocksDTO.process = 'UNLOCKED';
+          this.showSuccessToast();
+        } else {
+          this.toastrService.show(
+            this.translateService.instant("generalError"),
+            this.translateService.instant("ErrorOccurred"),
+            {
+              toastClass: "notification-toast",
+              closeButton: true,
+              enableHtml: true,
+              toastComponent: ErrorToast,
+            }
+          );
+        }
+        this.formioLoader.loading = false;
+      });
+  }
+
+  private showSuccessToast() {
+    this.toastrService.show(
+      this.translateService.instant('requestLock.The request has been unlocked successfully'),
+      this.translateService.instant('OperationDone'),
+      {
+        toastClass: "notification-toast",
+        closeButton: true,
+        enableHtml: true,
+        toastComponent: SuccessToast,
+      }
+    );
   }
 
   private getData() {
