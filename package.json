@@ -63,7 +63,7 @@
         "cordova-plugin-whitelist": "^1.3.3",
         "core-js": "^2.6.12",
         "css-star-rating": "^1.2.4",
-        "dp-formio": "^0.8.1",
+        "dp-formio": "^0.8.2",
         "font-awesome": "^4.7.0",
         "formiojs": "^3.30.1",
         "hijri-date": "^0.2.2",
