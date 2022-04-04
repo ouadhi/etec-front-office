@@ -55,7 +55,8 @@ export const environment = {
     showHasTask : true,
     showMostUsedService : true,
     showCatalog : false
-  }
+  },
+  pdftronLicenceKey: ''
 };
 
 /*
