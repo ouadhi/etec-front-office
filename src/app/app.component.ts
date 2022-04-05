@@ -17,6 +17,7 @@ import {
 	registerStepperComponent,
 	registerRedirectionButtonComponent,
 	registerTableViewWrapperComponent,
+	registerPDFWrapperComponent,
 	registerChartsWrapperComponent,
 } from 'src/formio/src/public_api';
 
@@ -46,6 +47,7 @@ export class AppComponent extends BaseComponent implements OnInit {
 		registerStepperComponent(injector);
 		registerRedirectionButtonComponent(injector);
 		registerTableViewWrapperComponent(injector);
+		registerPDFWrapperComponent(injector);
 		registerChartsWrapperComponent(injector);
 		this.sub = this.router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {
