@@ -30,7 +30,8 @@ export class RoleGuard extends KeycloakAuthGuard {
             resolve(granted);
 
           } else {
-            this.router.navigate(['401']);
+            if (['/403'].indexOf(this.router.url) === -1) localStorage.setItem('_previousUrl', this.router.url);
+            this.router.navigate(['403']);
             resolve(false);
           }
         }

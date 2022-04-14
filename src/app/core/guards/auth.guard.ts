@@ -12,7 +12,7 @@ export class AuthGuard extends KeycloakAuthGuard {
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (!this.authenticated) {
-        if (route.routeConfig.path.includes('401')) {
+        if (route.routeConfig.path.includes('403')) {
           this.router.navigate(['/']);
 
         } else {
@@ -40,7 +40,8 @@ export class AuthGuard extends KeycloakAuthGuard {
           resolve(granted);
 
         } else {
-          resolve(true);
+          if (['/403'].indexOf(this.router.url) === -1) localStorage.setItem('_previousUrl', this.router.url);
+          this.router.navigate(['/errors/403']);
         }
       }
     });

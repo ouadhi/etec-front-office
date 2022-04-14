@@ -13,4 +13,7 @@ export class NotFoundComponent extends BaseComponent {
 
     constructor(public injector: Injector) { super(injector); }
 
+    goBack(): void {
+        this.location.back();
+    }
 }

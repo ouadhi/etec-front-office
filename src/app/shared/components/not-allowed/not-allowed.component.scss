@@ -57,6 +57,8 @@
         color: #333;
     }
     .notfound a {
+        cursor: pointer;
+        min-width: 150px;
         font-size: 14px;
         text-decoration: none;
         text-transform: uppercase;
@@ -72,7 +74,7 @@
         transition: 0.2s all;
     }
     .notfound a:hover {
-        color: #fff;
+        color: #fff !important;
         background-color: #00b5c3;
     }
     @media only screen and (max-width: 480px) {

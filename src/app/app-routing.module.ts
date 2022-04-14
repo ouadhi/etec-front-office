@@ -51,7 +51,7 @@ const routes: Routes = [
   { path: 'formio/:formKey', component: FormioDemoComponent },
   { path: '404', component: NotFoundComponent },
   {
-    path: '401', component: NotAllowedComponent,
+    path: '403', component: NotAllowedComponent,
     canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '404' }

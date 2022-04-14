@@ -2,11 +2,15 @@
     <div id="main-outlet">
         <div id="notfound">
             <div class="notfound">
-                <img style="margin-bottom:75px;width:100px;" src="/assets/401.png" />
-                <h2>عذرا ، غير مسموح لك بالوصول إلى هذه الصفحة</h2>
-                <p> ليس لديكم الصلاحيات لعرض هذه الصفحة.
-                </p>
-                <!-- <a href="#">الرئيسية</a> -->
+                <img style="margin-bottom:75px;width:25%;" src="/assets/401.png" />
+                <h2>{{'ERROR_PAGES.FORBIDDEN' | translate}}</h2>
+                <p> {{'ERROR_PAGES.NO_PERMISSION' | translate}}</p>
+                <ng-container *ngIf="!isFromDashboard;else fromDashboad">
+                    <a (click)="goBack()">{{'ERROR_PAGES.BACK' | translate}}</a>
+                </ng-container>
+                <ng-template #fromDashboad>
+                    <a (click)="logout()">{{'LAYOUT.LOGOUT' | translate}}</a>
+                </ng-template>
             </div>
         </div>
     </div>

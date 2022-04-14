@@ -2,11 +2,10 @@
     <div id="main-outlet">
         <div id="notfound">
             <div class="notfound">
-                <img style="margin-bottom:75px;width:100px;" src="/assets/404.jpg" />
-                <h2>لم يتم العثور على الصفحة</h2>
-                <p>الصفحة التي قمتم بطلبها غير موجودة, او أنه ليس لديكم الصلاحيات الكافية لعرض هذه الصفحة.
-                </p>
-                <!-- <a href="#">الرئيسية</a> -->
+                <img style="margin-bottom:75px;width:25%;" src="/assets/404.jpg" />
+                <h2>{{'ERROR_PAGES.NOT_FOUND' | translate}}</h2>
+                <p>{{'ERROR_PAGES.WE_HELP' | translate}}</p>
+                <a (click)="goBack()">{{'ERROR_PAGES.BACK' | translate}}</a>
             </div>
         </div>
     </div>

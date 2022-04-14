@@ -10,7 +10,21 @@ import { BaseComponent } from '../base.component';
 
 export class NotAllowedComponent extends BaseComponent {
     userDetails;
+    isFromDashboard = false;
 
     constructor(public injector: Injector) { super(injector); }
 
+    ngOnInit(): void {
+        const url = localStorage.getItem('_previousUrl');
+        this.isFromDashboard = ['/', '/service-catalog'].includes(url);
+    }
+
+    goBack(): void {
+        this.location.back();
+    }
+
+    logout() {
+        localStorage.removeItem('_previousUrl');
+        this.keycloakService.logout();
+    }
 }
