@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class RoleGuard extends KeycloakAuthGuard {
@@ -21,7 +22,7 @@ export class RoleGuard extends KeycloakAuthGuard {
           }
           let granted: boolean = false;
           for (const requiredRole of requiredRoles) {
-            if (this.roles.indexOf(requiredRole) > -1 || this.roles.some(q => q.includes('admin'))) {
+            if (this.roles.indexOf(requiredRole) > -1 || this.roles.some(q => q.includes(environment.roles.admin))) {
               granted = true;
               break;
             }
