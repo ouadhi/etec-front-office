@@ -44,7 +44,7 @@ export const environment = {
     dataservice: "/dataservice/api/"
   },
   roles: {
-    beneficiary: 'ROLE_USER',
+    beneficiary: 'ROLE_BENEFICIARY',
     branch_specialist: 'ROLE_SERVICE_SPECIALIST_BRANCH',
     department_specialist: 'ROLE_DEPARTMENT_ENABLEMENT_SPECIALIST',
     admin: 'ROLE_ADMIN'
