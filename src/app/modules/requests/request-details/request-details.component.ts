@@ -72,8 +72,8 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
   }
   async ngOnInit() {
     this.isLoggedIn = await this.keycloakService.isLoggedIn();
-    this.user = await this.userService.getUserData(await this.keycloakService.getToken());
-    this.isAdmin = this.user.currentUser_groups.includes('Admins');
+    this.user = await this.userService.getUserData(this.isLoggedIn ? await this.keycloakService.getToken() : null);
+    this.isAdmin = this.user?.currentUser_groups?.includes('Admins');
     this.sub = this.route.params.subscribe(params => {
       this.id = params.id;
       this.getData();

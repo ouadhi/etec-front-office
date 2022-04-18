@@ -123,16 +123,20 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	 * ngOnInit: on init subscribe to route changes
 	 */
 	async ngOnInit() {
-		this.user = await this.userService.getUserData(await this.keycloakService.getToken());
-		this.isAdmin = this.user.currentUser_groups.includes('Admins');
+		const isLoggedIn = await this.keycloakService.isLoggedIn();
+
+		this.user = await this.userService.getUserData(isLoggedIn ? await this.keycloak.getToken() : null);
+		this.isAdmin = this.user?.currentUser_groups?.includes('Admins');
 
 		this.sub = this.route.params.subscribe((params) => {
-			this.sub = forkJoin([
-				this.caseActivity.getRequestTask(params.taskId),
-				this.rest.getRequest(params.requestId)
-			]).subscribe(async result => {
+
+			const calls = [this.caseActivity.getRequestTask(params.taskId)];
+			if (isLoggedIn)
+				calls.push(this.rest.getRequest(params.requestId));
+
+			this.sub = forkJoin(calls).subscribe(async result => {
 				const data = result[0];
-				this.request = result[1];
+				if (isLoggedIn) this.request = result[1];
 				this.isLocked();
 
 				if (data.formKey) {
@@ -152,7 +156,6 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 
 					this.form.ready = false;
 
-					const isLoggedIn = await this.keycloakService.isLoggedIn();
 					const etecData = await this.userService.getTaskUserData(isLoggedIn ? await this.keycloak.getToken() : null);
 					this.submission.data = { ...etecData };
 					this.params = [
