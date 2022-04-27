@@ -176,7 +176,7 @@
 				{{ data ? data['serviceName_' + switchLangService.current] : '' }}
 			</div>
 			<div class="service-steps-content">
-				{{ data['description_' + switchLangService.current] }}
+				{{ data ? data['description_' + switchLangService.current]  : ''}}
 			</div>
 		</div>
 		<div class="section start-service">
