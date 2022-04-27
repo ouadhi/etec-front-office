@@ -41,6 +41,7 @@ export const environment = {
 		socket: '/notification/websocket/orchestra',
 		dataservice: '/dataservice/api/',
 		eligibilityVerificationReportApi: '/reportingservice/api/requirements',
+		requestFeedback: '/feedbackservice/api/v2/feedbacks/service',
 	},
 	roles: {
 		beneficiary: 'ROLE_BENEFICIARY',

@@ -32,6 +32,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import localeAr from '@angular/common/locales/ar';
 import { FeedbackModalComponent } from './components/feedback-modal/feedback-modal.component';
+import { RequestFeedbackComponent } from './components/request-feedback/request-feedback.component';
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeAr, 'ar');
 
@@ -39,7 +40,7 @@ registerLocaleData(localeAr, 'ar');
 	declarations: [
 		NotAllowedComponent,
 		NotFoundComponent,
-
+		RequestFeedbackComponent,
 		PageComponent,
 		SectionComponent,
 		PageTitleComponent,
@@ -94,7 +95,7 @@ registerLocaleData(localeAr, 'ar');
 		FormioModule,
 		NgxCaptchaModule,
 		TranslateModule,
-
+		RequestFeedbackComponent,
 		NotAllowedComponent,
 		NotFoundComponent,
 		PageComponent,
@@ -113,8 +114,8 @@ registerLocaleData(localeAr, 'ar');
 	entryComponents: [
 		NotificationsModalComponent,
 		NotificationOptionsComponent,
-		FeedbackModalComponent
+		FeedbackModalComponent,
 	],
 	providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}

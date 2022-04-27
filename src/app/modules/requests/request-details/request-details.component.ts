@@ -25,6 +25,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 		super(injector);
 	}
 	id: string;
+	serviceId: string;
 	processInstanceId: string;
 	tasks = [];
 	link: any;
@@ -38,6 +39,9 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 	hasTask: any;
 	params;
 	request;
+	showFeedback = false;
+	feedbackFormKey: string;
+	feedbackId: string;
 
 	updateTask = 'SERVICE.beneficiaryTask';
 	taskName = '';
@@ -64,7 +68,6 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 		});
 
 		this.sub = this.notificationsService.listenerObserver.subscribe((activity) => {
-			console.log(activity);
 			if (this.id == activity.data.id) {
 				this.getData();
 			}
@@ -72,52 +75,79 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 	}
 
 	private getData() {
-		this.sub = this.rest.getRequest(this.id).subscribe((data) => {
-			this.processInstanceId = data.procInstID;
-			if (this.processInstanceId)
+		this.sub = this.rest.getRequest(this.id).subscribe(
+			(data) => {
+				this.processInstanceId = data.procInstID;
+				this.serviceId = data.serviceId;
+				if (this.processInstanceId)
+					this.sub = this.rest
+						.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
+						.subscribe((data) => {
+							this.tasks = data;
+
+							if (data.length) {
+								const taskName = `taskTitle.${data[0].task.taskDefinitionKey}`;
+								this.sub = this.translateService
+									.get([taskName, this.updateTask])
+									.subscribe((keys) => {
+										if (keys[taskName] != taskName) {
+											this.taskName = `${keys[taskName]}`;
+										} else {
+											this.taskName = `${keys[taskName]}`;
+											// this.taskName = keys[this.updateTask];
+										}
+									});
+							}
+						});
+
+				this.request = data;
+				this.link = this.request.link;
+				this.formData = this.request.data;
+				this.cmmnId = this.request.cmmnId;
+
 				this.sub = this.rest
-					.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
+					.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`)
 					.subscribe((data) => {
-						this.tasks = data;
-
-						if (data.length) {
-							const taskName = `taskTitle.${data[0].task.taskDefinitionKey}`;
-							this.sub = this.translateService
-								.get([taskName, this.updateTask])
-								.subscribe((keys) => {
-									if (keys[taskName] != taskName) {
-										this.taskName = `${keys[taskName]}`;
-									} else {
-										this.taskName = `${keys[taskName]}`;
-										// this.taskName = keys[this.updateTask];
-									}
-								});
-						}
-					});
-
-			this.request = data;
-			this.link = this.request.link;
-			this.formData = this.request.data;
-			this.cmmnId = this.request.cmmnId;
-
-			this.sub = this.rest
-				.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`)
-				.subscribe((data) => {
-					this.submission = data;
-					this.moreInfo =
-						data.data.moreInfo && Object.keys(data.data.moreInfo).length
-							? data.data.moreInfo
-							: null;
-					/*this.params = [
+						this.submission = data;
+						this.moreInfo =
+							data.data.moreInfo && Object.keys(data.data.moreInfo).length
+								? data.data.moreInfo
+								: null;
+						/*this.params = [
           {
             url: environment.beneficiaryApi.api,
             success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
             parallel: true
           }
         ];*/
-					this.formReady = true;
-				});
-		});
+						this.formReady = true;
+					});
+			},
+			(err) => console.log(err),
+			() => {
+				this.checkRequestFeedback();
+			}
+		);
+	}
+
+	checkRequestFeedback() {
+		this.rest.checkRequestFeedback(this.serviceId, this.id).subscribe(
+			(res: any) => {
+				if (res && res[0] != null) {
+					this.feedbackFormKey = res[0].formKey;
+					this.feedbackId = res[0].id;
+					this.showFeedback = true;
+				}
+			},
+			(err) => {
+				console.log(err);
+			}
+		);
+	}
+
+	openFeedbackPage() {
+		const url = `/feedback/${this.serviceId}/${this.id}/requestfeedback/100`;
+		window.open(url, '_blank');
 	}
 
 	unlock() {

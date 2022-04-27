@@ -1,0 +1,16 @@
+<app-page class="app-request">
+	<formio-loader></formio-loader>
+	<div class="container-fluid" [@inOutAnimation]>
+		<app-section sectionTitle="{{ 'Request Feedback' }}" [hasPadding]="false">
+			<formio
+				*ngIf="formReady"
+				[formKey]="feedbackFormKey"
+				[readOnly]="false"
+				[params]="params"
+				[submission]="submission"
+				class="container"
+			>
+			</formio>
+		</app-section>
+	</div>
+</app-page>

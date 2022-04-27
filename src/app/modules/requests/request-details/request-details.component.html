@@ -1,53 +1,80 @@
 <app-page class="app-request-details">
-  <app-section sectionTitle="{{'Steps' | translate}} {{request?.requestName}}">
-    <div class="padder" *ngIf="isLoggedIn && (hasTask || tasks?.length)"
-      [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
-      <div class="alert alert-warning">
-        <div class="row">
-          <div class="col-auto align-self-start auto-width">
-            <ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
-          </div>
-          <div class="col auto-width">
-            {{'SERVICE.needs' | translate}} <strong *ngIf="taskName">{{taskName}}</strong>
-            {{'SERVICE.pleasePress' | translate}} <a
-              (click)="handleAction({type:'task',activity:(hasTask || tasks?.length)})"
-              class="alert-link">{{'SERVICE.hereToUpdate' | translate}}</a>.
-          </div>
-        </div>
-      </div>
-    </div>
+	<app-section sectionTitle="{{ 'Steps' | translate }} {{ request?.requestName }}">
+		<div class="action-container pad-5 text-center">
+			<a
+				class="ctm-btn feedback action-btn-feedback"
+				ngbTooltip="Request Feedback"
+				(click)="openFeedbackPage()"
+			>
+				<span class="material-icons teal-color"> comment</span>
+			</a>
+		</div>
+		<div
+			class="padder"
+			*ngIf="isLoggedIn && (hasTask || tasks?.length)"
+			[ngClass]="{
+				alignSwitchAR: switchLangService.currentLang == 'ar',
+				alignSwitchEN: switchLangService.currentLang == 'en'
+			}"
+		>
+			<div class="alert alert-warning">
+				<div class="row">
+					<div class="col-auto align-self-start auto-width">
+						<ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
+					</div>
+					<div class="col auto-width">
+						{{ 'SERVICE.needs' | translate }} <strong *ngIf="taskName">{{ taskName }}</strong>
+						{{ 'SERVICE.pleasePress' | translate }}
+						<a
+							(click)="handleAction({ type: 'task', activity: hasTask || tasks?.length })"
+							class="alert-link"
+							>{{ 'SERVICE.hereToUpdate' | translate }}</a
+						>.
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <formio-loader></formio-loader>
-    <div class="lockContainer" *ngIf="request?.requestLocksDTO?.process == 'LOCKED'">
-      <div class="lockMessage">
-          <div class="lockIcon">
-              <ion-icon [name]="'lock-closed-outline'"></ion-icon>
-          </div>
-          <div class="col auto-width">
-              <ng-container
-                  *ngIf="request.requestLocksDTO.processedBy == user.currentUser_preferred_username;else showName">
-                  {{'requestLock.The request has been locked by you' | translate}}
-              </ng-container>
-              <ng-template #showName>
-                  {{'requestLock.The request has been locked by' | translate}}
-                  <strong *ngIf="request.requestLocksDTO.processedBy">
-                      {{request.requestLocksDTO.processedBy}}
-                  </strong>
-              </ng-template>
+		<formio-loader></formio-loader>
+		<div class="lockContainer" *ngIf="request?.requestLocksDTO?.process == 'LOCKED'">
+			<div class="lockMessage">
+				<div class="lockIcon">
+					<ion-icon [name]="'lock-closed-outline'"></ion-icon>
+				</div>
+				<div class="col auto-width">
+					<ng-container
+						*ngIf="
+							request.requestLocksDTO.processedBy == user.currentUser_preferred_username;
+							else showName
+						"
+					>
+						{{ 'requestLock.The request has been locked by you' | translate }}
+					</ng-container>
+					<ng-template #showName>
+						{{ 'requestLock.The request has been locked by' | translate }}
+						<strong *ngIf="request.requestLocksDTO.processedBy">
+							{{ request.requestLocksDTO.processedBy }}
+						</strong>
+					</ng-template>
 
-              {{'requestLock.in date' | translate}}
-              <strong *ngIf="request.requestLocksDTO.processDate">
-                  {{request.requestLocksDTO.processDate | date : 'yyyy-MM-dd'}}</strong>.
-          </div>
-      </div>
-      <div *ngIf="user.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin">
-          <button class="unlock" href="javascript:" (click)="unlock()">
-              <ion-icon name="lock-open-outline"></ion-icon>
-              {{'requestLock.unLock' | translate}}
-          </button>
-      </div>
-  </div>
-<!--   
+					{{ 'requestLock.in date' | translate }}
+					<strong *ngIf="request.requestLocksDTO.processDate">
+						{{ request.requestLocksDTO.processDate | date: 'yyyy-MM-dd' }}</strong
+					>.
+				</div>
+			</div>
+			<div
+				*ngIf="
+					user.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin
+				"
+			>
+				<button class="unlock" href="javascript:" (click)="unlock()">
+					<ion-icon name="lock-open-outline"></ion-icon>
+					{{ 'requestLock.unLock' | translate }}
+				</button>
+			</div>
+		</div>
+		<!--   
     <div class="padder" *ngIf="request?.requestLocksDTO?.process == 'LOCKED'"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div class="alert alert-warning">
@@ -79,19 +106,29 @@
         </div>
       </div>
     </div> -->
-    <br />
-    <app-case-activities (task)="showTask($event)" *ngIf="cmmnId" [caseInstanceId]="cmmnId" [requestId]="id">
-    </app-case-activities>
-  </app-section>
+		<br />
+		<app-case-activities
+			(task)="showTask($event)"
+			*ngIf="cmmnId"
+			[caseInstanceId]="cmmnId"
+			[requestId]="id"
+		>
+		</app-case-activities>
+	</app-section>
 
-  <formio [ngClass]="{'readOnly': true}" *ngIf="formReady" [params]="params" [formKey]="link" [submission]="submission"
-    [readOnly]="true" [viewOnly]="true">
-  </formio>
-  <app-more-info *ngIf="moreInfo" [data]="moreInfo"></app-more-info>
+	<formio
+		[ngClass]="{ readOnly: true }"
+		*ngIf="formReady"
+		[params]="params"
+		[formKey]="link"
+		[submission]="submission"
+		[readOnly]="true"
+		[viewOnly]="true"
+	>
+	</formio>
+	<app-more-info *ngIf="moreInfo" [data]="moreInfo"></app-more-info>
 
-
-
-  <!-- <div class="container" style="margin-top: 5px;">
+	<!-- <div class="container" style="margin-top: 5px;">
     <nav>
       <div class="nav nav-tabs nav-item d-block p-2 w-100 p-2 d-flex justify-content-center" id="nav-tab"
         role="tablist">
