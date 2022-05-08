@@ -19,6 +19,7 @@ import {
 	registerTableViewWrapperComponent,
 	registerPDFWrapperComponent,
 	registerChartsWrapperComponent,
+	registerRatingWrapperComponent,
 } from 'src/formio/src/public_api';
 
 import { NavigationStart } from '@angular/router';
@@ -48,6 +49,7 @@ export class AppComponent extends BaseComponent implements OnInit {
 		registerRedirectionButtonComponent(injector);
 		registerTableViewWrapperComponent(injector);
 		registerPDFWrapperComponent(injector);
+		registerRatingWrapperComponent(injector);
 		registerChartsWrapperComponent(injector);
 		this.sub = this.router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {

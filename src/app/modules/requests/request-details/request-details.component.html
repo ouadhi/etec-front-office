@@ -1,6 +1,6 @@
 <app-page class="app-request-details">
 	<app-section sectionTitle="{{ 'Steps' | translate }} {{ request?.requestName }}">
-		<div class="action-container pad-5 text-center">
+		<div class="action-container pad-5 text-center" *ngIf="showFeedback">
 			<a
 				class="ctm-btn feedback action-btn-feedback"
 				ngbTooltip="Request Feedback"

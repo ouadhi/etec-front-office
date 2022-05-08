@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { KeycloakService } from 'keycloak-angular';
 import { Subscription } from 'rxjs';
-import { RequestsService } from 'src/app/modules/requests/requests.service';
-import { environment } from 'src/environments/environment';
 import { FormioLoader, UserService } from 'src/formio/src/public_api';
 
 @Component({
@@ -17,6 +14,7 @@ export class RequestFeedbackComponent implements OnInit, OnDestroy {
 	requestId: string;
 	feedbackId: string;
 	feedbackFormKey: string;
+	ratingScale: number;
 	formReady = false;
 	data: any;
 	params;
@@ -32,10 +30,8 @@ export class RequestFeedbackComponent implements OnInit, OnDestroy {
 	constructor(
 		private userService: UserService,
 		private keycloak: KeycloakService,
-		private rest: RequestsService,
 		private route: ActivatedRoute,
 		private router: Router,
-		private translateService: TranslateService,
 		private formioLoader: FormioLoader
 	) {}
 
@@ -47,6 +43,7 @@ export class RequestFeedbackComponent implements OnInit, OnDestroy {
 			this.serviceId = params['serviceId'];
 			this.requestId = params['requestId'];
 			this.feedbackId = params['feedbackId'];
+			this.ratingScale = params['ratingScale'];
 			this.feedbackFormKey = params['feedbackFormKey'];
 
 			this.etecData = await this.userService.getUserData(
@@ -57,6 +54,7 @@ export class RequestFeedbackComponent implements OnInit, OnDestroy {
 				serviceId: this.serviceId,
 				requestId: this.requestId,
 				feedbackId: this.feedbackId,
+				ratingScale: this.ratingScale,
 				...this.etecData,
 			};
 
