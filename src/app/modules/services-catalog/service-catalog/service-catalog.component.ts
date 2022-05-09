@@ -420,7 +420,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 				},
 				async (err) => {
 					const data = await this.userService.getTokenData(this.isLoggedIn ? await this.keycloak.getToken() : null);
-					this.prepareFilters(data.groups || this.userSegments);
+					this.prepareFilters(data.roles || this.userSegments);
 				}
 			);
 		} else {

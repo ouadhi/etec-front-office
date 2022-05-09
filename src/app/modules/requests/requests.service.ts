@@ -18,6 +18,7 @@ interface filterData {
 	page: number;
 	size: number;
 }
+type LockTypes = "digital signature" | "receive a task";
 
 @Injectable({
 	providedIn: 'root',
@@ -28,17 +29,28 @@ export class RequestsService {
 		private datePipe: DatePipe,
 		private dashletFilterAdapter: DashletFilterAdapter,
 		private translate: TranslateService
-	) {}
+	) { }
 
 	verifyToken(token) {
 		return this.http.get<any>(`${environment.formio.appUrl}/recaptcha?recaptchaToken=${token}`);
 	}
 
-	unlockRequest(requestId) {
+	unlockRequest(requestId, reason: LockTypes = 'digital signature') {
 		const endpoint = `${environment.gateway}${environment.endpoints.myRequests}/${requestId}/unlock`;
 		return this.http
 			.post<any>(endpoint, {
-				reason: 'digital signature',
+				reason: reason,
+			})
+			.pipe(
+				tap((resp) => resp),
+				map((resp) => resp)
+			);
+	}
+	lockRequest(requestId, reason: LockTypes = 'digital signature') {
+		const endpoint = `${environment.gateway}${environment.endpoints.myRequests}/${requestId}/lock`;
+		return this.http
+			.post<any>(endpoint, {
+				reason: reason,
 			})
 			.pipe(
 				tap((resp) => resp),
@@ -96,8 +108,7 @@ export class RequestsService {
 	getTaskByProcessInstanceId(queryParams = {}, isAnonymous: boolean = false): Observable<any> {
 		return this.http
 			.get<any>(
-				`${environment.gateway}${
-					isAnonymous ? environment.endpoints.anonymousTasks : environment.endpoints.tasks
+				`${environment.gateway}${isAnonymous ? environment.endpoints.anonymousTasks : environment.endpoints.tasks
 				}`,
 				{
 					params: {

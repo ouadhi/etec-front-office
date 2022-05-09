@@ -1,36 +1,72 @@
 <app-page class="app-request">
 	<!-- <button (click)="hasResult = !hasResult">test</button> -->
 	<div class="container-fluid" *ngIf="!hasResult" [@inOutAnimation]>
-		<app-section
-			sectionTitle="{{
+		<app-section sectionTitle="{{
 				request ? request.requestName : navParams['serviceName_' + switchLangService.current]
-			}}"
-			[hasPadding]="false"
-		>
-			<formio
-				*ngIf="formReady"
-				[formKey]="id"
-				[readOnly]="false"
-				[params]="params"
-				[submission]="submission"
-				(submit)="onSubmit($event)"
-				class="container"
-			>
+			}}" [hasPadding]="false">
+
+			<ng-container *ngIf="enableLock">
+				<div class="lockContainer" *ngIf="request?.requestLocksDTO?.process == 'LOCKED';else notLocked">
+					<div class="lockMessage">
+						<div class="lockIcon">
+							<ion-icon [name]="'lock-closed-outline'"></ion-icon>
+						</div>
+						<div class="col auto-width">
+							<ng-container
+								*ngIf="request.requestLocksDTO.processedBy == user?.currentUser_preferred_username;else showName">
+								{{'requestLock.The request has been locked by you' | translate}}
+							</ng-container>
+							<ng-template #showName>
+								{{'requestLock.The request has been locked by' | translate}}
+								<strong *ngIf="request.requestLocksDTO.processedBy">
+									{{request.requestLocksDTO.processedBy}}
+								</strong>
+							</ng-template>
+
+							{{'requestLock.in date' | translate}}
+							<strong *ngIf="request.requestLocksDTO.processDate">
+								{{request.requestLocksDTO.processDate | date : 'yyyy-MM-dd'}}</strong>.
+						</div>
+					</div>
+					<div *ngIf="user?.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin">
+						<button class="unlock" href="javascript:" (click)="unlock()">
+							<ion-icon name="lock-open-outline"></ion-icon>
+							{{'requestLock.unLock' | translate}}
+						</button>
+					</div>
+				</div>
+
+				<ng-template #notLocked>
+					<div class="lockContainer">
+						<div class="lockMessage">
+							<div class="lockIcon">
+								<ion-icon [name]="'lock-closed-outline'"></ion-icon>
+							</div>
+							<div class="col auto-width">
+								{{'requestLock.lockMessage' | translate}}
+							</div>
+						</div>
+						<div>
+							<button class="unlock" href="javascript:" (click)="lock()">
+								<ion-icon name="lock-closed-outline"></ion-icon>
+								{{'requestLock.lock' | translate}}
+							</button>
+						</div>
+					</div>
+				</ng-template>
+			</ng-container>
+			<formio *ngIf="formReady" [formKey]="id" [params]="params" [submission]="submission"
+				(submit)="onSubmit($event)" (formLoad)="formLoad($event)" class="container"
+				[readOnly]="false" (beforeSetForm)="beforeSetForm($event.formio,$event.form)">
 			</formio>
 		</app-section>
 	</div>
 
 	<formio-loader></formio-loader>
 
-	<app-result-info
-		[actionLabel]="isLoggedIn ? 'NAV.MY_REQUESTS' : 'Home'"
-		[serviceId]='_id'
-		[userCreator]='etecData?.user_preferred_username'
-		icon="assets/images/icons/success.png"
-		(callback)="goBack()"
-		*ngIf="hasResult"
-		[@inOutAnimation]
-	>
+	<app-result-info [actionLabel]="isLoggedIn ? 'NAV.MY_REQUESTS' : 'Home'" [serviceId]='_id'
+		[userCreator]='etecData?.user_preferred_username' icon="assets/images/icons/success.png" (callback)="goBack()"
+		*ngIf="hasResult" [@inOutAnimation]>
 		<h5 class="result-title" *ngIf="isDraft">
 			{{ 'REQUESTS.SAVE' | translate }} {{ navParams['serviceName_' + switchLangService.current] }}
 			{{ 'REQUESTS.AS_DRAFT' | translate }}

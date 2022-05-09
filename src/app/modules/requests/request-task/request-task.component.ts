@@ -12,6 +12,7 @@ import { FormioComponent, SuccessToast } from 'src/formio/src/public_api';
 import { CaseActivityService } from '../case-activities.service';
 import { forkJoin } from 'rxjs';
 import { RequestsService } from '../requests.service';
+import { ComponentType } from 'ngx-toastr';
 declare var $: any;
 /**
  * Main Task Component
@@ -47,6 +48,10 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	request: any;
 	user: any;
 	isAdmin = false;
+
+	enableLock = false;
+	assignee = null;
+
 
 	/*
   submitPromise: Promise<any>;
@@ -115,6 +120,10 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 				document.getElementById('custom-actions').style.display = 'block';
 			}
 
+			if (this.enableLock)
+				document.getElementsByName('data[submit]').forEach(e =>
+					e.style.display = this.formReadOnly ? 'none' : 'block');
+
 			$('.input-group:has(.input-group-addon.input-group-prepend)').css('display', 'block');
 		});
 	}
@@ -136,6 +145,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 
 			this.sub = forkJoin(calls).subscribe(async result => {
 				const data = result[0];
+				this.assignee = data.assignee;
 				if (isLoggedIn) this.request = result[1];
 				this.isLocked();
 
@@ -183,25 +193,22 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 			.subscribe(data => {
 				if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
 				this.request.requestLocksDTO.process = 'UNLOCKED';
-				this.showSuccessToast();
+				this.showToast('OperationDone',
+					'requestLock.The request has been unlocked successfully',
+					SuccessToast);
 				this.isLocked(true);
 				this.formioLoader.loading = false;
 			}, error => {
 				if (error.status == 200) {
 					if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
 					this.request.requestLocksDTO.process = 'UNLOCKED';
-					this.showSuccessToast();
+					this.showToast('OperationDone',
+						'requestLock.The request has been unlocked successfully',
+						SuccessToast);
 				} else {
-					this.toastrService.show(
-						this.translateService.instant("generalError"),
-						this.translateService.instant("ErrorOccurred"),
-						{
-							toastClass: "notification-toast",
-							closeButton: true,
-							enableHtml: true,
-							toastComponent: ErrorToast,
-						}
-					);
+					this.showToast('ErrorOccurred',
+						'generalError',
+						ErrorToast);
 				}
 				this.isLocked(true);
 				this.formioLoader.loading = false;
@@ -226,15 +233,85 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 		return isLocked;
 	}
 
-	private showSuccessToast() {
-		this.toastrService.show(
-			this.translateService.instant('requestLock.The request has been unlocked successfully'),
-			this.translateService.instant('OperationDone'),
+
+	get formReadOnly() {
+		// must be get task and check task.assigne
+		return this.enableLock && !this.assignee &&
+			(!this.request?.requestLocksDTO ||
+				this.request?.requestLocksDTO?.process == 'UNLOCKED' ||
+				this.request?.requestLocksDTO?.process == 'LOCKED' && this.request?.requestLocksDTO?.processedBy != this.user?.currentUser_preferred_username);
+	}
+	beforeSetForm(formio: FormioComponent, form?: any) {
+		this.enableLock = (form as any)?.properties?.enableLock == 'true';
+		// formio.readOnly = this.formReadOnly;
+		// formio.viewOnly = this.formReadOnly;
+	}
+	lockTask() {
+		this.formioLoader.loading = true;
+		this.sub = this.rest.lockRequest(this.request.id, 'receive a task').subscribe(
+			(data) => {
+				this.handleLockTask();
+				this.formioLoader.loading = false;
+			},
+			(error) => {
+				if (error.status == 200) {
+					this.handleLockTask();
+				} else {
+					this.showToast('ErrorOccurred',
+						'generalError',
+						ErrorToast);
+				}
+				this.formioLoader.loading = false;
+			}
+		);
+	}
+	private handleLockTask() {
+		if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
+		this.request.requestLocksDTO.process = 'LOCKED';
+		this.request.requestLocksDTO.processDate = new Date();
+		this.request.requestLocksDTO.processedBy = this.user.currentUser_preferred_username;
+		this.form.ready = false;
+		setTimeout(() => this.form.ready = true);
+
+		this.showToast('OperationDone',
+			'requestLock.The request has been locked successfully',
+			SuccessToast);
+	}
+	unlockTask() {
+		this.formioLoader.loading = true;
+		this.sub = this.rest.unlockRequest(this.request.id, 'receive a task').subscribe(
+			(data) => {
+				this.handleunLockTask();
+				this.formioLoader.loading = false;
+			},
+			(error) => {
+				if (error.status == 200) {
+					this.handleunLockTask();
+				} else {
+					this.showToast('ErrorOccurred',
+						'generalError',
+						ErrorToast);
+				}
+				this.formioLoader.loading = false;
+			}
+		);
+	}
+	private handleunLockTask() {
+		if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
+		this.request.requestLocksDTO.process = 'UNLOCKED';
+		this.showToast('OperationDone',
+			'requestLock.The request has been unlocked successfully',
+			SuccessToast);
+		this.form.ready = false;
+		setTimeout(() => this.form.ready = true);
+	}
+	private showToast(title: string, message: string, component: ComponentType<any>) {
+		this.toastrService.show(this.translateService.instant(message), this.translateService.instant(title),
 			{
-				toastClass: "notification-toast",
+				toastClass: 'notification-toast',
 				closeButton: true,
 				enableHtml: true,
-				toastComponent: SuccessToast,
+				toastComponent: component,
 			}
 		);
 	}

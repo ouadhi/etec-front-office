@@ -1,13 +1,14 @@
-import { Injector, ViewEncapsulation } from '@angular/core';
+import { Injector, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 import { KeycloakService } from 'keycloak-angular';
-import { UserService } from 'src/formio/src/public_api';
+import { ErrorToast, FormioComponent, SuccessToast, UserService, } from 'src/formio/src/public_api';
 import { RequestsService } from '../requests.service';
 import { FeedbackModalComponent } from 'src/app/shared/components/feedback-modal/feedback-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ComponentType } from 'ngx-toastr';
 @Component({
 	selector: 'app-request',
 	templateUrl: './request.component.html',
@@ -19,12 +20,15 @@ export class RequestComponent extends BaseComponent implements OnInit {
 	constructor(
 		public injector: Injector,
 		private userService: UserService,
-        private keycloak: KeycloakService,
+		private keycloak: KeycloakService,
 		private rest: RequestsService,
 		public dialog: MatDialog
 	) {
 		super(injector);
 	}
+
+	@ViewChild(FormioComponent) formComponent: FormioComponent;
+	enableLock = false;
 
 	id: any;
 	_id: any;
@@ -45,11 +49,15 @@ export class RequestComponent extends BaseComponent implements OnInit {
 	isDraft: false;
 
 	etecData: any = {};
+	user: any;
 
 	async ngOnInit() {
 		this.formioLoader.loading = false;
-
 		this.isLoggedIn = await this.keycloakService.isLoggedIn();
+		this.user = await this.userService.getUserData(
+			this.isLoggedIn ? await this.keycloakService.getToken() : null
+		);
+
 		this.sub = this.translateService.onLangChange.subscribe(() => this.getData());
 		this.sub = this.route.params.subscribe(async (params) => {
 			this._id = params['_id'];
@@ -135,5 +143,91 @@ export class RequestComponent extends BaseComponent implements OnInit {
 		} else {
 			this.router.navigate(['/']);
 		}
+	}
+
+
+	formLoad(event) {
+	}
+
+	get formReadOnly() {
+		return this.enableLock &&
+			(!this.request?.requestLocksDTO ||
+				this.request?.requestLocksDTO?.process == 'UNLOCKED' ||
+				this.request?.requestLocksDTO?.process == 'LOCKED' && this.request?.requestLocksDTO?.processedBy != this.user?.currentUser_preferred_username);
+	}
+	beforeSetForm(formio: FormioComponent, form?: any) {
+		this.enableLock = (form as any)?.properties?.enableLock == 'true';
+		formio.readOnly = this.formReadOnly;
+		formio.viewOnly = this.formReadOnly;
+	}
+
+	lock() {
+		this.formioLoader.loading = true;
+		this.sub = this.rest.lockRequest(this.request.id, 'receive a task').subscribe(
+			(data) => {
+				this.handleLock();
+				this.formioLoader.loading = false;
+			},
+			(error) => {
+				if (error.status == 200) {
+					this.handleLock();
+				} else {
+					this.showToast('ErrorOccurred',
+						'generalError',
+						ErrorToast);
+				}
+				this.formioLoader.loading = false;
+			}
+		);
+	}
+	private handleLock() {
+		if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
+		this.request.requestLocksDTO.process = 'LOCKED';
+		this.request.requestLocksDTO.processDate = new Date();
+		this.request.requestLocksDTO.processedBy = this.user.currentUser_preferred_username;
+		this.formReady = false;
+		setTimeout(() => this.formReady = true);
+
+		this.showToast('OperationDone',
+			'requestLock.The request has been locked successfully',
+			SuccessToast);
+	}
+	unlock() {
+		this.formioLoader.loading = true;
+		this.sub = this.rest.unlockRequest(this.request.id, 'receive a task').subscribe(
+			(data) => {
+				this.handleunLock();
+				this.formioLoader.loading = false;
+			},
+			(error) => {
+				if (error.status == 200) {
+					this.handleunLock();
+				} else {
+					this.showToast('ErrorOccurred',
+						'generalError',
+						ErrorToast);
+				}
+				this.formioLoader.loading = false;
+			}
+		);
+	}
+	private handleunLock() {
+		if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
+		this.request.requestLocksDTO.process = 'UNLOCKED';
+		this.showToast('OperationDone',
+			'requestLock.The request has been unlocked successfully',
+			SuccessToast);
+		this.formReady = false;
+		setTimeout(() => this.formReady = true);
+	}
+	private showToast(title: string, message: string, component: ComponentType<any>) {
+		this.toastrService.show(this.translateService.instant(message), this.translateService.instant(title),
+			{
+				toastClass: 'notification-toast',
+				closeButton: true,
+				enableHtml: true,
+				toastComponent: component,
+			}
+		);
 	}
 }
