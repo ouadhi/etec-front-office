@@ -158,7 +158,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 	beforeSetForm(formio: FormioComponent, form?: any) {
 		this.enableLock = (form as any)?.properties?.enableLock == 'true';
 		formio.readOnly = this.formReadOnly;
-		formio.viewOnly = this.formReadOnly;
+		// formio.viewOnly = this.formReadOnly;
 	}
 
 	lock() {
