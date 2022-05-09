@@ -42,6 +42,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 	showFeedback = false;
 	feedbackFormKey: string;
 	feedbackId: string;
+	ratingScale: number;
 
 	updateTask = 'SERVICE.beneficiaryTask';
 	taskName = '';
@@ -136,17 +137,19 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 				if (res && res[0] != null) {
 					this.feedbackFormKey = res[0].formKey;
 					this.feedbackId = res[0].id;
+					this.ratingScale = res[0].ratingScale;
 					this.showFeedback = true;
 				}
 			},
 			(err) => {
+				this.showFeedback = false;
 				console.log(err);
 			}
 		);
 	}
 
 	openFeedbackPage() {
-		const url = `/feedback/${this.serviceId}/${this.id}/requestfeedback/100`;
+		const url = `/feedback/${this.serviceId}/${this.id}/${this.feedbackFormKey}/${this.feedbackId}/${this.ratingScale}`;
 		window.open(url, '_blank');
 	}
 
