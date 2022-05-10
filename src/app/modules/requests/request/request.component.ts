@@ -156,7 +156,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 				this.request?.requestLocksDTO?.process == 'LOCKED' && this.request?.requestLocksDTO?.processedBy != this.user?.currentUser_preferred_username);
 	}
 	beforeSetForm(formio: FormioComponent, form?: any) {
-		this.enableLock = (form as any)?.properties?.enableLock == 'true';
+		this.enableLock = !!this.request && (form as any)?.properties?.enableLock == 'true';
 		formio.readOnly = this.formReadOnly;
 		// formio.viewOnly = this.formReadOnly;
 	}
