@@ -8,14 +8,14 @@
 				<ng-content></ng-content>
 				<br />
 				<div fxFlex="100" class="action-container pad-5 text-center">
-					<button class="ctm-btn action-btn" (click)="callback.emit()">
+					<button class="ctm-btn action-btn mb-3" (click)="callback.emit()">
 						{{ actionLabel | translate }}
 					</button>
 
 					<button
 						class="ctm-btn feedback action-btn-feedback"
 						ngbTooltip="Open Feedback Popup"
-						(click)='openFeedbackDialog()'
+						(click)="openFeedbackDialog()"
 					>
 						<span class="material-icons teal-color"> comment</span>
 					</button>

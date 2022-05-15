@@ -41,6 +41,7 @@
 	<mat-dialog-actions align="center">
 		<button
 			mat-raised-button
+			class="btn-submit"
 			[ngClass]="{ 'mat-tab-label-active': form.valid }"
 			[ngClass]="{ 'mat-select-placeholder': form.invalid }"
 			[disabled]="form.invalid"
@@ -48,7 +49,7 @@
 		>
 			Submit
 		</button>
-		<button mat-raised-button (click)="onConfirmClick(false)">Cancel</button>
+		<button class="btn-cancel" mat-raised-button (click)="onConfirmClick(false)">Cancel</button>
 		<!-- mat-dialog-close -->
 	</mat-dialog-actions>
 </div>

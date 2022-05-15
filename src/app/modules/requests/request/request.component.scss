@@ -28,33 +28,36 @@
 	}
 	.info-pair {
 		font-size: 14px;
+		&.request-id {
+			line-height: 4;
+		}
 	}
 	.info-pair span:first-child {
 		font-weight: 900;
 	}
 	.lockContainer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .lockMessage {
-            color: #fff !important;
-            background-color: $primary-color;
-            border-radius: 8px;
-            display: flex;
-            padding-block: 12px;
-            .lockIcon {
-                padding-inline-start: 16px;
-            }
-        }
-        button.unlock {
-            border: 1px solid var(--accentColor200);
-            padding: 4px 16px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            ion-icon {
-                margin-inline-end: 5px;
-            }
-        }
-    }
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.lockMessage {
+			color: #fff !important;
+			background-color: $primary-color;
+			border-radius: 8px;
+			display: flex;
+			padding-block: 12px;
+			.lockIcon {
+				padding-inline-start: 16px;
+			}
+		}
+		button.unlock {
+			border: 1px solid var(--accentColor200);
+			padding: 4px 16px;
+			border-radius: 12px;
+			display: flex;
+			align-items: center;
+			ion-icon {
+				margin-inline-end: 5px;
+			}
+		}
+	}
 }
