@@ -56,6 +56,7 @@ export const environment = {
 		showCatalog: false,
 	},
 	pdftronLicenceKey: '',
+	showFeedbackButton: true,
 };
 
 /*
