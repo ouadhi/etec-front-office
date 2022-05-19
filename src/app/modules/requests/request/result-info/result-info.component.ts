@@ -2,6 +2,7 @@ import { Component, Injector, Input, Output, EventEmitter, ViewEncapsulation } f
 import { MatDialog } from '@angular/material/dialog';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { FeedbackModalComponent } from 'src/app/shared/components/feedback-modal/feedback-modal.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-result-info',
@@ -16,8 +17,11 @@ export class ResultInfoComponent extends BaseComponent {
 	@Input() userCreator: string;
 	@Output() callback = new EventEmitter();
 
+	showFeedbackButton: boolean;
+
 	constructor(public injector: Injector, public dialog: MatDialog) {
 		super(injector);
+		this.showFeedbackButton = environment.showFeedbackButton;
 	}
 
 	openFeedbackDialog() {
