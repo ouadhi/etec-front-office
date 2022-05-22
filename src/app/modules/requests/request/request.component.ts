@@ -120,7 +120,8 @@ export class RequestComponent extends BaseComponent implements OnInit {
 		this.requestDate = requestDate;
 		this.isDraft = isDraft;
 		this.hasResult = true;
-		this.openFeedbackDialog();
+
+		if (environment.showFeedbackButton) this.openFeedbackDialog();
 	}
 
 	openFeedbackDialog() {

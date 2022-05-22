@@ -24,5 +24,6 @@
       "showHasTask": true,
       "showMostUsedService": true,
       "showCatalog": true
-    }
+    },
+    "showFeedbackButton": false
   }
