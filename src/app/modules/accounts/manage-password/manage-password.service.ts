@@ -1,15 +1,20 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 import { environment } from "src/environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class ManagePasswordService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,
+        private translateService: TranslateService) { }
 
     generateOTP(userId: string, otpchannel?: string) {
         return this.http.post<any>(`${environment.gateway}${environment.endpoints.notifications}otp/generate/changepassword`,
-            { user: userId },
+            {
+                user: userId,
+                msgContent: this.translateService.instant('To complete enbale account enter this number : {}')
+            },
             { params: otpchannel ? { otpchannel: otpchannel } : null });
     }
 
