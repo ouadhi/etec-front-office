@@ -22,9 +22,20 @@
 
   <ng-template #noProfile>
     <app-page>
-      <div>
+      <div *ngIf="!loading">
         <app-section>
-          <div class="form-custom-warning">{{'Your profile not completed' | translate}} ...</div>
+          <ng-container [ngSwitch]="type">
+            <div class="form-custom-warning" *ngSwitchCase="ProfileTypes.educationalInstitutionInformation">
+              {{'forms.common.Incomplete profile' | translate}} ...
+            </div>
+            <div class="form-custom-warning" *ngSwitchCase="ProfileTypes.facilityInformation">
+              {{'forms.common.Incomplete facility profile' | translate}} ...
+            </div>
+            <div class="form-custom-warning" *ngSwitchDefault>
+              {{'Your profile not completed' | translate}} ...
+            </div>
+          </ng-container>
+
         </app-section>
       </div>
     </app-page>

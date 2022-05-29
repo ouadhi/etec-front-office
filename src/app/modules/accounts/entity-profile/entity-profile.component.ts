@@ -25,6 +25,7 @@ export class EntityProfileComponent extends BaseComponent implements OnInit {
   generatedId: string;
   etecData: any;
   submission: any;
+  loading = true;
 
   constructor(public injector: Injector,
     private userService: UserService,
