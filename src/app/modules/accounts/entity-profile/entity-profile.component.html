@@ -1,25 +1,32 @@
-<ng-container *ngIf="type && (profileId || generatedId);else noProfile">
-  <lib-profile-resource *ngIf="profileId && type == ProfileTypes.entityProfileModel"
-    query="data.userName={{profileId}}" [submission]="submission" [type]="type" defaultResource="entityprofilemodel"></lib-profile-resource>
+<div>
+  <div [class.loader]="loading"></div>
+  <ng-container *ngIf="!loading && type && (profileId || generatedId);else noProfile">
+    <lib-profile-resource *ngIf="profileId && type == ProfileTypes.entityProfileModel"
+      query="data.userName={{profileId}}" [submission]="submission" [type]="type" defaultResource="entityprofilemodel">
+    </lib-profile-resource>
 
-  <lib-profile-resource *ngIf="profileId && type == ProfileTypes.individualProfileModel"
-    query="data.userName={{profileId}}" [submission]="submission" [type]="type" defaultResource="individualprofilemodel"></lib-profile-resource>
+    <lib-profile-resource *ngIf="profileId && type == ProfileTypes.individualProfileModel"
+      query="data.userName={{profileId}}" [submission]="submission" [type]="type"
+      defaultResource="individualprofilemodel"></lib-profile-resource>
 
-  <lib-profile-resource *ngIf="generatedId && type == ProfileTypes.educationalInstitutionInformation"
-    query="data.generatedId={{generatedId}}" [submission]="submission" [type]="type" defaultResource="educationalinstitutioninformation">
-  </lib-profile-resource>
+    <lib-profile-resource *ngIf="generatedId && type == ProfileTypes.educationalInstitutionInformation"
+      query="data.generatedId={{generatedId}}" [submission]="submission" [type]="type"
+      defaultResource="educationalinstitutioninformation">
+    </lib-profile-resource>
 
-  <lib-profile-resource *ngIf="generatedId && type == ProfileTypes.facilityInformation"
-    query="data.generatedId={{generatedId}}" [submission]="submission" [type]="type" defaultResource="facilityInformation">
-  </lib-profile-resource>
-</ng-container>
+    <lib-profile-resource *ngIf="generatedId && type == ProfileTypes.facilityInformation"
+      query="data.generatedId={{generatedId}}" [submission]="submission" [type]="type"
+      defaultResource="facilityInformation">
+    </lib-profile-resource>
+  </ng-container>
 
-<ng-template #noProfile>
-  <app-page>
-    <div>
-      <app-section>
-        <div class="form-custom-warning">{{'Your profile not completed' | translate}} ...</div>
-      </app-section>
-    </div>
-  </app-page>
-</ng-template>
+  <ng-template #noProfile>
+    <app-page>
+      <div>
+        <app-section>
+          <div class="form-custom-warning">{{'Your profile not completed' | translate}} ...</div>
+        </app-section>
+      </div>
+    </app-page>
+  </ng-template>
+</div>
