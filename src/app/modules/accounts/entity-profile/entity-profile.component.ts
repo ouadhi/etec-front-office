@@ -1,7 +1,8 @@
+import { I } from '@angular/cdk/keycodes';
 import { Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
-import { UserService } from 'src/formio/src/public_api';
+import { ResourceNameService, UserService } from 'src/formio/src/public_api';
 import { BaseComponent } from '../../../shared/components/base.component';
 
 @Component({
@@ -24,9 +25,11 @@ export class EntityProfileComponent extends BaseComponent implements OnInit {
   generatedId: string;
   etecData: any;
   submission: any;
+  loading = true;
 
   constructor(public injector: Injector,
     private userService: UserService,
+    private resourceNameService: ResourceNameService,
     private keycloak: KeycloakService) { super(injector); }
 
   async ngOnInit() {
@@ -40,6 +43,22 @@ export class EntityProfileComponent extends BaseComponent implements OnInit {
       const group = this.etecData.user_groups[0];
       this.generatedId = group.split('_')[0];
     }
+    this.checkIfProfileExist();
+  }
+
+  private checkIfProfileExist() {
+    if (this.generatedId && this.type) {
+      this.sub = this.resourceNameService.checksSubmissionExistance(this.type, 'generatedId', this.generatedId)
+        .subscribe(data => {
+          if (!data?.length) {
+            this.generatedId = null;
+            this.profileId = null;
+          }
+          this.loading = false;
+        }, error => {
+          this.loading = false;
+        });
+    } else this.loading = false;
   }
 
 }
