@@ -1,12 +1,18 @@
 <app-page class="app-request-details">
 	<app-section sectionTitle="{{ 'Steps' | translate }} {{ request?.requestName }}">
-		<div class="action-container pad-5 text-center" *ngIf="showFeedback">
+		<div class="action-container pad-5 text-center" *ngIf="showFeedbackButton">
 			<a
 				class="ctm-btn feedback action-btn-feedback"
-				ngbTooltip="Request Feedback"
-				(click)="openFeedbackPage()"
+				[ngClass]="{ 'feedback-ltr': dir === 'ltr' }"
+				(click)="openFeedbackDialog()"
 			>
-				<span class="material-icons teal-color"> comment</span>
+				<span
+					[ngbTooltip]="'forms.common.Request Feedback' | translate"
+					[placement]="dir === 'rtl' ? 'right' : 'left'"
+					class="teal-color"
+				>
+					<img type="image/png" rel="icon" src="../../../../assets/images/icons8-rating-97.png"
+				/></span>
 			</a>
 		</div>
 		<div
@@ -174,3 +180,31 @@
     </div>
   </div> -->
 </app-page>
+
+<div class="row" id="feedback-section">
+	<div class="col-12">
+		<p-dialog
+			[(visible)]="showFeedbackDialog"
+			[style]="{ width: '30vw' }"
+			[position]="'bottom-right'"
+			[modal]="true"
+			[baseZIndex]="10000"
+			[draggable]="false"
+			[resizable]="false"
+		>
+			<p-header>
+				<p-button (click)="goToFeedbackPage()" icon="pi pi-external-link"></p-button>
+				<span class="px-3">{{ 'forms.common.Request Feedback' | translate }}</span>
+			</p-header>
+			<formio
+				*ngIf="feedbackFormReady"
+				[formKey]="feedbackFormKey"
+				[readOnly]="false"
+				[submission]="feedbackSubmission"
+				class="container"
+				(submit)="afterFeedbackSubmitted($event)"
+			>
+			</formio>
+		</p-dialog>
+	</div>
+</div>

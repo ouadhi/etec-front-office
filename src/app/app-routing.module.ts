@@ -17,7 +17,7 @@ const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: 'service-catalog' },
 
 	{
-		path: 'feedback/:serviceId/:requestId/:feedbackFormKey/:feedbackId/:ratingScale',
+		path: 'feedback/:feedbackId/:requestId',
 		component: RequestFeedbackComponent,
 	},
 

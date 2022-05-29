@@ -1,4 +1,4 @@
-import { Injector, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
@@ -14,7 +14,7 @@ import { RequestsService } from '../requests.service';
 	encapsulation: ViewEncapsulation.None,
 	providers: [FormioLoader],
 })
-export class RequestDetailsComponent extends BaseComponent implements OnInit {
+export class RequestDetailsComponent extends BaseComponent implements OnInit, AfterViewInit {
 	constructor(
 		public injector: Injector,
 		private rest: RequestsService,
@@ -24,6 +24,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 	) {
 		super(injector);
 	}
+	dir: 'rtl' | 'ltr';
 	id: string;
 	serviceId: string;
 	processInstanceId: string;
@@ -39,10 +40,13 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 	hasTask: any;
 	params;
 	request;
-	showFeedback = false;
-	feedbackFormKey: string;
+	showFeedbackButton = false;
 	feedbackId: string;
-	ratingScale: number;
+	feedbackFormKey: string;
+	showLoader: boolean;
+	feedbackFormReady: boolean;
+	showFeedbackDialog: boolean;
+	feedbackSubmission = { data: {} };
 
 	updateTask = 'SERVICE.beneficiaryTask';
 	taskName = '';
@@ -52,6 +56,19 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
 	user: any;
 	isAdmin = false;
+
+	ngAfterViewInit(): void {
+		this.sub = this.translateService.onLangChange.subscribe((data) => {
+			this.changeDirection(data.lang);
+		});
+	}
+
+	private changeDirection(lang) {
+		this.dir = null;
+		setTimeout(() => {
+			this.dir = lang == 'ar' ? 'rtl' : 'ltr';
+		});
+	}
 
 	async ngOnInit() {
 		this.isLoggedIn = await this.keycloakService.isLoggedIn();
@@ -135,22 +152,52 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 		this.rest.checkRequestFeedback(this.serviceId, this.id).subscribe(
 			(res: any) => {
 				if (res && res[0] != null) {
-					this.feedbackFormKey = res[0].formKey;
 					this.feedbackId = res[0].id;
-					this.ratingScale = res[0].ratingScale;
-					this.showFeedback = true;
+					this.feedbackFormKey = res[0].formKey;
+					this.feedbackSubmission.data = {
+						feedbackId: this.feedbackId,
+						requestId: this.id,
+						serviceId: this.serviceId,
+						ratingScale: res[0].ratingScale,
+					};
+					this.showFeedbackButton = true;
 				}
 			},
 			(err) => {
-				this.showFeedback = false;
+				this.showFeedbackButton = false;
 				console.log(err);
 			}
 		);
 	}
 
-	openFeedbackPage() {
-		const url = `/feedback/${this.serviceId}/${this.id}/${this.feedbackFormKey}/${this.feedbackId}/${this.ratingScale}`;
+	openFeedbackDialog() {
+		this.feedbackFormReady = false;
+		this.showFeedbackDialog = true;
+		setTimeout(() => {
+			this.feedbackFormReady = true;
+		});
+	}
+
+	goToFeedbackPage() {
+		const url = `/feedback/${this.feedbackId}/${this.id}`;
 		window.open(url, '_blank');
+	}
+
+	afterFeedbackSubmitted(event) {
+		if (event && event.submission && event.submission.data) {
+			this.showToast('', this.translateService.instant('Feedback is sent successfully'), false);
+			this.showFeedbackDialog = false;
+			this.showFeedbackButton = false;
+		}
+	}
+
+	private showToast(title?: string, message?: string, isError?: boolean) {
+		this.toastrService.show(message, title, {
+			toastClass: 'notification-toast',
+			closeButton: true,
+			enableHtml: true,
+			toastComponent: isError ? ErrorToast : SuccessToast,
+		});
 	}
 
 	unlock() {

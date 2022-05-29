@@ -1,14 +1,28 @@
 <app-page class="app-request">
 	<!-- <formio-loader></formio-loader> -->
 	<div class="container-fluid" [@inOutAnimation]>
-		<app-section sectionTitle="{{ 'Request Feedback' }}" [hasPadding]="false">
+		<app-section
+			sectionTitle="{{ 'forms.common.Request Feedback' | translate }}"
+			[hasPadding]="false"
+		>
+			<formio
+				*ngIf="formReady"
+				[readOnly]="true"
+				[viewOnly]="true"
+				[ngClass]="{ readOnly: true }"
+				[formKey]="'feedbackrequestdetails'"
+				[submission]="requestDetailsSubmission"
+				class="container"
+			>
+			</formio>
+
 			<formio
 				*ngIf="formReady"
 				[formKey]="feedbackFormKey"
 				[readOnly]="false"
-				[params]="params"
-				[submission]="submission"
+				[submission]="feedbackSubmission"
 				class="container"
+				(submit)="afterFeedbackSubmitted($event)"
 			>
 			</formio>
 		</app-section>

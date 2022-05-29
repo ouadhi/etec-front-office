@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { KeycloakService } from 'keycloak-angular';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { FormioLoader, UserService } from 'src/formio/src/public_api';
+import { switchMap } from 'rxjs/operators';
+import { RequestsService } from 'src/app/modules/requests/requests.service';
+import { ErrorToast, FormioLoader, SuccessToast } from 'src/formio/src/public_api';
 
 @Component({
 	selector: 'app-request-feedback',
@@ -17,10 +20,9 @@ export class RequestFeedbackComponent implements OnInit, OnDestroy {
 	ratingScale: number;
 	formReady = false;
 	data: any;
-	params;
 	isLoggedIn = false;
-	submission = { data: {} };
-	etecData: any = {};
+	feedbackSubmission = { data: {} };
+	requestDetailsSubmission: any = { data: {} };
 
 	private subs: Subscription[] = [];
 	set sub(s: Subscription) {
@@ -28,46 +30,88 @@ export class RequestFeedbackComponent implements OnInit, OnDestroy {
 	}
 
 	constructor(
-		private userService: UserService,
-		private keycloak: KeycloakService,
+		private translateService: TranslateService,
+		private requestsService: RequestsService,
 		private route: ActivatedRoute,
 		private router: Router,
-		private formioLoader: FormioLoader
+		private formioLoader: FormioLoader,
+		private toastrService: ToastrService
 	) {}
 
-	async ngOnInit() {
-		this.formioLoader.loading = false;
-
-		// this.sub = this.translateService.onLangChange.subscribe(() => this.getData());
-		this.sub = this.route.params.subscribe(async (params) => {
-			this.serviceId = params['serviceId'];
-			this.requestId = params['requestId'];
+	ngOnInit() {
+		this.formioLoader.loading = true;
+		this.sub = this.route.params.subscribe((params) => {
 			this.feedbackId = params['feedbackId'];
-			this.ratingScale = params['ratingScale'];
-			this.feedbackFormKey = params['feedbackFormKey'];
+			this.requestId = params['requestId'];
 
-			this.etecData = await this.userService.getUserData(
-				this.isLoggedIn ? await this.keycloak.getToken() : null
-			);
-
-			this.submission.data = {
-				serviceId: this.serviceId,
-				requestId: this.requestId,
-				feedbackId: this.feedbackId,
-				ratingScale: this.ratingScale,
-				...this.etecData,
-			};
-
-			this.formReady = true;
+			this.getRequestAndFeedbackDetails();
 		});
 	}
 
-	goBack() {
-		if (this.isLoggedIn) {
-			this.router.navigate(['/requests/my']);
-		} else {
-			this.router.navigate(['/']);
+	getRequestAndFeedbackDetails() {
+		this.sub = this.requestsService
+			.getRequest(this.requestId)
+			.pipe(
+				switchMap((res: any) => {
+					this.requestDetailsSubmission.data = {
+						...res,
+						requestDate: res.requestDate.substr(0, res.requestDate.length - 5),
+					};
+
+					return this.requestsService.checkRequestFeedback(
+						this.requestDetailsSubmission.data.serviceId,
+						this.requestId
+					);
+				})
+			)
+			.subscribe((res: any[]) => {
+				if (res && res[0] != null) {
+					if (
+						this.requestDetailsSubmission.data.serviceId === res[0].serviceKey &&
+						this.requestDetailsSubmission.data.id === res[0].requestId
+					) {
+						this.feedbackSubmission.data = {
+							feedbackId: this.feedbackId,
+							requestId: this.requestId,
+							serviceId: this.requestDetailsSubmission.data.serviceId,
+							ratingScale: res[0].ratingScale,
+						};
+						this.feedbackFormKey = res[0].formKey;
+						this.formReady = true;
+					} else {
+						this.goToRequestDetails(false);
+					}
+				} else {
+					this.goToRequestDetails(false);
+				}
+			});
+	}
+
+	afterFeedbackSubmitted(event) {
+		if (event && event.submission && event.submission.data) {
+			this.showToast(
+				this.translateService.instant('Done'),
+				this.translateService.instant('Feedback is sent successfully'),
+				false
+			);
+
+			setTimeout(() => {
+				this.goToRequestDetails(true);
+			}, 3000);
 		}
+	}
+
+	private showToast(title: string, message: string, isError: boolean) {
+		this.toastrService.show(message, title, {
+			toastClass: 'notification-toast',
+			closeButton: true,
+			enableHtml: true,
+			toastComponent: isError ? ErrorToast : SuccessToast,
+		});
+	}
+
+	goToRequestDetails(afterSubmit: boolean) {
+		afterSubmit ? window.close() : this.router.navigate([`/requests/details/${this.requestId}`]);
 	}
 
 	ngOnDestroy() {

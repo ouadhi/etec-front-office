@@ -33,6 +33,8 @@ import localeEn from '@angular/common/locales/en';
 import localeAr from '@angular/common/locales/ar';
 import { FeedbackModalComponent } from './components/feedback-modal/feedback-modal.component';
 import { RequestFeedbackComponent } from './components/request-feedback/request-feedback.component';
+import { DialogModule } from 'primeng/dialog';
+
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeAr, 'ar');
 
@@ -77,6 +79,7 @@ registerLocaleData(localeAr, 'ar');
 		FormioModule,
 		NgxCaptchaModule,
 		TranslateModule,
+		DialogModule,
 	],
 	exports: [
 		CommonModule,
@@ -110,6 +113,7 @@ registerLocaleData(localeAr, 'ar');
 		TimeAgoPipe,
 		LocalizedDatePipe,
 		HasRoleDirective,
+		DialogModule,
 	],
 	entryComponents: [
 		NotificationsModalComponent,

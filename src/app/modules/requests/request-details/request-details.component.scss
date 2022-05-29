@@ -90,22 +90,28 @@
 	}
 
 	.feedback {
-		width: 50px !important;
-		height: 50px !important;
+		width: 70px !important;
+		height: 70px !important;
 		box-shadow: 0 5px 30px #6c757d;
 	}
 
 	.action-btn-feedback {
-		position: absolute;
-		right: 0;
+		position: fixed;
+		left: 0;
+		top: 23%;
 		bottom: 10px;
 		margin: 0px 10px;
 		border-radius: 100%;
 		background-color: #16c6d9;
 	}
 
+	.feedback-ltr {
+		right: 0 !important;
+		left: unset;
+	}
+
 	.action-btn-feedback:hover {
-		width: 55px !important;
-		height: 55px !important;
+		width: 75px !important;
+		height: 75px !important;
 	}
 }
