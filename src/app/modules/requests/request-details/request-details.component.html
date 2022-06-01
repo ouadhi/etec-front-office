@@ -42,7 +42,7 @@
 		</div>
 
 		<formio-loader></formio-loader>
-		<div class="lockContainer" *ngIf="request?.requestLocksDTO?.process == 'LOCKED'">
+		<div class="lockContainer padder" *ngIf="request?.requestLocksDTO?.process == 'LOCKED'">
 			<div class="lockMessage">
 				<div class="lockIcon">
 					<ion-icon [name]="'lock-closed-outline'"></ion-icon>
@@ -59,7 +59,7 @@
 					<ng-template #showName>
 						{{ 'requestLock.The request has been locked by' | translate }}
 						<strong *ngIf="request.requestLocksDTO.processedBy">
-							{{ request.requestLocksDTO.processedBy }}
+							{{ request.requestLocksDTO.processorFullName }}
 						</strong>
 					</ng-template>
 

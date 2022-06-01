@@ -6,7 +6,7 @@
 			}}" [hasPadding]="false">
 
 			<ng-container *ngIf="enableLock">
-				<div class="lockContainer" *ngIf="request?.requestLocksDTO?.process == 'LOCKED';else notLocked">
+				<div class="lockContainer padder" *ngIf="request?.requestLocksDTO?.process == 'LOCKED';else notLocked">
 					<div class="lockMessage">
 						<div class="lockIcon">
 							<ion-icon [name]="'lock-closed-outline'"></ion-icon>
@@ -19,7 +19,7 @@
 							<ng-template #showName>
 								{{'requestLock.The request has been locked by' | translate}}
 								<strong *ngIf="request.requestLocksDTO.processedBy">
-									{{request.requestLocksDTO.processedBy}}
+									{{request.requestLocksDTO.processorFullName}}
 								</strong>
 							</ng-template>
 
@@ -37,7 +37,7 @@
 				</div>
 
 				<ng-template #notLocked>
-					<div class="lockContainer">
+					<div class="lockContainer padder">
 						<div class="lockMessage">
 							<div class="lockIcon">
 								<ion-icon [name]="'lock-closed-outline'"></ion-icon>

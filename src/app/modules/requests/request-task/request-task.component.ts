@@ -110,6 +110,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 				this.request.requestLocksDTO = {
 					process: 'LOCKED',
 					processedBy: this.user?.currentUser_preferred_username,
+					processorFullName: this.user.currentUser_given_name,
 					processDate: new Date()
 				};
 			}
@@ -270,6 +271,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 		this.request.requestLocksDTO.process = 'LOCKED';
 		this.request.requestLocksDTO.processDate = new Date();
 		this.request.requestLocksDTO.processedBy = this.user.currentUser_preferred_username;
+		this.request.requestLocksDTO.processorFullName = this.user.currentUser_given_name;
 		this.form.ready = false;
 		setTimeout(() => this.form.ready = true);
 
