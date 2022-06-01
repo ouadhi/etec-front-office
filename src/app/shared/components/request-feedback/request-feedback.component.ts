@@ -13,14 +13,11 @@ import { ErrorToast, FormioLoader, SuccessToast } from 'src/formio/src/public_ap
 	styleUrls: ['./request-feedback.component.scss'],
 })
 export class RequestFeedbackComponent implements OnInit, OnDestroy {
-	serviceId: any;
+	data: any;
 	requestId: string;
 	feedbackId: string;
 	feedbackFormKey: string;
-	ratingScale: number;
 	formReady = false;
-	data: any;
-	isLoggedIn = false;
 	feedbackSubmission = { data: {} };
 	requestDetailsSubmission: any = { data: {} };
 
