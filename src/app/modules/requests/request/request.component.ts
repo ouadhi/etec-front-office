@@ -186,7 +186,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 		this.request.requestLocksDTO.process = 'LOCKED';
 		this.request.requestLocksDTO.processDate = new Date();
 		this.request.requestLocksDTO.processedBy = this.user.currentUser_preferred_username;
-		this.request.requestLocksDTO.processorFullName = this.user.currentUser_given_name;
+		this.request.requestLocksDTO.processorFullName = this.user.currentUser_name;
 		this.formReady = false;
 		setTimeout(() => this.formReady = true);
 
