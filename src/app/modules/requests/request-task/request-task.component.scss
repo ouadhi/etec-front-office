@@ -46,8 +46,7 @@
             }
         }
     }
-    .app-formio .input-group-prepend:not([class*="tree-group"]) span,
-    .app-formio .input-group-prepend:not([class*="tree-group"]) + textarea[disabled="disabled"] {
+    .app-formio .input-group-prepend:not([class*="tree-group"]) span {
         background: transparent !important;
         border: none !important;
     }
