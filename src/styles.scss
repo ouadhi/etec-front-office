@@ -122,7 +122,7 @@ $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($rms-app-theme);
-@import "~css-star-rating/scss/star-rating";
+// @import "~css-star-rating/scss/star-rating";
 @import "~@ionic/angular/css/core.css";
 @import "~bootstrap/scss/bootstrap";
 html {
