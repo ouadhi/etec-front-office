@@ -30,9 +30,8 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 	tags: any[];
 	tagsInput: object;
 	hasTask = false;
-
+	requestsTotalCount: string;
 	env = environment;
-
 	public keyword = '';
 
 	dataFilters: any = {
@@ -50,7 +49,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 		public injector: Injector,
 		private requestsService: RequestsService,
 		private userService: UserService,
-		private keycloak: KeycloakService,
+		private keycloak: KeycloakService
 	) {
 		super(injector);
 	}
@@ -62,6 +61,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 				this.ngOnInit();
 			});
 		});
+		this.getUserRequests();
 		this.loadBanners();
 		this.mostUsed();
 
@@ -78,6 +78,23 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 			}
 		});
 	}
+
+	getUserRequests() {
+		const params = {
+			page: 0,
+			size: 10,
+			sort: 'requestDate,desc',
+			sortBy: 'requestDate',
+			sortDirection: 'desc',
+		};
+
+		return this.requestsService.getRequests(params).subscribe((res: any) => {
+			if (res) {
+				this.requestsTotalCount = res.totalCount;
+			}
+		});
+	}
+
 	ngOnDestroy() {
 		// this.keycloakService.keycloakEvents$.unsubscribe();
 	}
@@ -88,7 +105,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 				this.dataFilters.segmentsGroup_inline[0] &&
 				this.dataFilters.segmentsGroup_inline[0][a._id] &&
 				Object.keys(this.segmentInput[a._id]).length - 1 ===
-				Object.keys(this.dataFilters.segmentsGroup_inline[0][a._id]).length);
+					Object.keys(this.dataFilters.segmentsGroup_inline[0][a._id]).length);
 		if (
 			this.segmentInput[a._id][b._id] &&
 			this.dataFilters.segmentsGroup_inline[0] &&
@@ -419,7 +436,9 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 					this.prepareFilters(this.userSegments);
 				},
 				async (err) => {
-					const data = await this.userService.getTokenData(this.isLoggedIn ? await this.keycloak.getToken() : null);
+					const data = await this.userService.getTokenData(
+						this.isLoggedIn ? await this.keycloak.getToken() : null
+					);
 					this.prepareFilters(data.roles || this.userSegments);
 				}
 			);
