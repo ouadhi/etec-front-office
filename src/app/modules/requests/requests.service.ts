@@ -18,7 +18,7 @@ interface filterData {
 	page: number;
 	size: number;
 }
-type LockTypes = "digital signature" | "receive a task";
+type LockTypes = 'digital signature' | 'receive a task';
 
 @Injectable({
 	providedIn: 'root',
@@ -29,7 +29,7 @@ export class RequestsService {
 		private datePipe: DatePipe,
 		private dashletFilterAdapter: DashletFilterAdapter,
 		private translate: TranslateService
-	) { }
+	) {}
 
 	verifyToken(token) {
 		return this.http.get<any>(`${environment.formio.appUrl}/recaptcha?recaptchaToken=${token}`);
@@ -108,7 +108,8 @@ export class RequestsService {
 	getTaskByProcessInstanceId(queryParams = {}, isAnonymous: boolean = false): Observable<any> {
 		return this.http
 			.get<any>(
-				`${environment.gateway}${isAnonymous ? environment.endpoints.anonymousTasks : environment.endpoints.tasks
+				`${environment.gateway}${
+					isAnonymous ? environment.endpoints.anonymousTasks : environment.endpoints.tasks
 				}`,
 				{
 					params: {

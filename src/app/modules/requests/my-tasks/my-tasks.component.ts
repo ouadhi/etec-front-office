@@ -1,14 +1,14 @@
-import { Component, Injector, ViewEncapsulation } from '@angular/core';
+import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
+import { BaseComponent } from 'src/app/shared/components/base.component';
 import { RequestsService } from '../requests.service';
-import { BaseComponent } from '../../../shared/components/base.component';
 
 @Component({
-	selector: 'app-my-requests',
-	templateUrl: './my-requests.component.html',
-	// styleUrls: ['./my-requests.component.css']
+	selector: 'app-my-tasks',
+	templateUrl: './my-tasks.component.html',
+	// styleUrls: ['./my-tasks.component.scss']
 	encapsulation: ViewEncapsulation.None,
 })
-export class MyRequestsComponent extends BaseComponent {
+export class MyTasksComponent extends BaseComponent {
 	constructor(public injector: Injector, private requestsService: RequestsService) {
 		super(injector);
 	}
@@ -40,7 +40,6 @@ export class MyRequestsComponent extends BaseComponent {
 	};
 
 	dashletService = (params) => {
-		debugger;
 		params.sort = params.sortBy + ',' + params.sortDirection;
 
 		// DUE TO Server do not accepet a format, only like this 1997-07-16T19:20:30.45+01:00
