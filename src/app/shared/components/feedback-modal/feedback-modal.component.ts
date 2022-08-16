@@ -45,7 +45,6 @@ export class FeedbackModalComponent {
 		// 	: {
 		// 			isSubmitClicked,
 		// 	  };
-		debugger;
 		if (isSubmitClicked) {
 			this.addServiceComments(this.feedbackForm.value);
 		} else {
@@ -64,7 +63,6 @@ export class FeedbackModalComponent {
 		this.servicesService.postComment(formData).subscribe(
 			(res: any) => {
 				if (res) {
-					debugger;
 					this.dialogRef.close(formData);
 				}
 			},

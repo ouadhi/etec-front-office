@@ -18,9 +18,12 @@
 						'NAV.SERVICES_CATALOG' | translate
 					}}</a>
 
-					<a mat-button [matMenuTriggerFor]="afterMenu">{{
-						'NAV.MENULIST' | translate
-					}}</a>
+					<a
+						mat-button
+						[matMenuTriggerFor]="afterMenu"
+						*ngIf="showDashboardCounters; else myRequestsContainer"
+						>{{ 'NAV.MENULIST' | translate }}</a
+					>
 					<mat-menu #afterMenu="matMenu" xPosition="after">
 						<button
 							mat-menu-item
@@ -34,16 +37,29 @@
 						<button
 							mat-menu-item
 							*ngIf="loggedIn"
-                            [routerLink]="['/requests/myTasks', { u: 1 }]"
+							[routerLink]="['/requests/myTasks', { u: 1 }]"
 							routerLinkActive="active"
 						>
 							{{ 'NAV.MY_TASKS' | translate }}
 						</button>
 					</mat-menu>
 
+					<ng-template #myRequestsContainer>
+						<a mat-button *ngIf="loggedIn" routerLink="/requests/my" routerLinkActive="active">{{
+							'NAV.MY_REQUESTS' | translate
+						}}</a>
+						<a
+							mat-button
+							*ngIf="!loggedIn"
+							routerLink="/requests/query"
+							routerLinkActive="active"
+							>{{ 'NAV.QUERY_REQUEST' | translate }}</a
+						>
+					</ng-template>
+					<!-- 
 					<a mat-button *ngIf="!loggedIn" routerLink="/requests/query" routerLinkActive="active">{{
 						'NAV.QUERY_REQUEST' | translate
-					}}</a>
+					}}</a> -->
 				</span>
 			</div>
 			<ul class="user-assets">

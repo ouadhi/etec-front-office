@@ -31,17 +31,20 @@ export class HeaderComponent extends BaseComponent {
 	];
 	selectedLang = this.translateService.currentLang;
 	type = '';
+	showDashboardCounters = environment.showDashboardCounters;
 
-	constructor(public injector: Injector,
+	constructor(
+		public injector: Injector,
 		public datePipe: DatePipe,
 		public platform: Platform,
-		private userService: UserService) {
+		private userService: UserService
+	) {
 		super(injector);
 		this.newDate = this.datePipe.transform(this.myDate, ' d MMMM y');
 		this.time = this.myDate.toLocaleString('en-US', { hour: 'numeric', hour12: true });
 		this.todaysDataTime = formatDate(this.myDate, ' hh:mm a', 'en-US', '+3');
 		// this.hijriDate = this.today.toHijri();
-		this.configService.loadConfig().then((config) => { });
+		this.configService.loadConfig().then((config) => {});
 		const DelayPlugin = {
 			priority: 100,
 			preRequest: (requestArgs) => {

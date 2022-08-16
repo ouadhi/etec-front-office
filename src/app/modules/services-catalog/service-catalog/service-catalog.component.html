@@ -54,7 +54,7 @@
 		</div>
 	</div> -->
 
-	<div fxLayout="row" fxLayoutAlign="center top" class="service-search">
+	<div fxLayout="row" fxLayoutAlign="center top" class="service-search" *ngIf="showDashboardCounters">
 		<div class="" fxFlex.lt-lg="100" fxFlex.lt-xl="90" fxFlex.xl="83">
 			<div class="header">
 				<h1>{{ 'CATALOG.Total Requests' | translate }}</h1>

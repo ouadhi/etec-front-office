@@ -61,6 +61,7 @@ export const environment = {
 	},
 	pdftronLicenceKey: '',
 	showFeedbackButton: true,
+	showDashboardCounters: true,
 };
 
 /*

@@ -44,6 +44,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 
 	userSegments: string[] = [];
 	isLoggedIn = false;
+	showDashboardCounters = environment.showDashboardCounters;
 
 	constructor(
 		public injector: Injector,

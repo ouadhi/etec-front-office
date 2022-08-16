@@ -40,7 +40,6 @@ export class MyRequestsComponent extends BaseComponent {
 	};
 
 	dashletService = (params) => {
-		debugger;
 		params.sort = params.sortBy + ',' + params.sortDirection;
 
 		// DUE TO Server do not accepet a format, only like this 1997-07-16T19:20:30.45+01:00
