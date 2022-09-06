@@ -21,6 +21,7 @@ import {
 	registerChartsWrapperComponent,
 	registerRatingWrapperComponent,
 	registerClassificationIndicatorsComponent,
+	registerResourceDropdownWrapperComponent,
 } from 'src/formio/src/public_api';
 
 import { NavigationStart } from '@angular/router';
@@ -53,6 +54,7 @@ export class AppComponent extends BaseComponent implements OnInit {
 		registerRatingWrapperComponent(injector);
 		registerChartsWrapperComponent(injector);
 		registerClassificationIndicatorsComponent(injector);
+		registerResourceDropdownWrapperComponent(injector);
 		this.sub = this.router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {
 				this.fullPage = event.url.includes('reset-password');
