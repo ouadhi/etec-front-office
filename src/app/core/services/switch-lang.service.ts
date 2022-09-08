@@ -17,7 +17,7 @@ export class SwitchLangService {
     document.documentElement.setAttribute('dir', dir);
   }
 
-  changeLang(lang) {
+  changeLang(lang = this.getSelectedLang()) {
     this.currentLang = lang;
     localStorage.setItem('lang', lang);
     this.translate.setDefaultLang(lang);
@@ -28,6 +28,7 @@ export class SwitchLangService {
       this.titleService.setTitle(this.translate.instant('LAYOUT.TITLE'));
     });
   }
+
 
   getTranslated(string, source = null) {
     if (!string) return '';
