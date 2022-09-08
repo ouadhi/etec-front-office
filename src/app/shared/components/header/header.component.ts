@@ -1,50 +1,93 @@
-import { Component, Injector, ViewEncapsulation } from '@angular/core';
-import { Platform } from '@ionic/angular';
-import HijriDate, { toHijri } from 'hijri-date/lib/safe';
-import { environment } from 'src/environments/environment';
-import { BaseComponent } from '../base.component';
+import { formatDate } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { Formio } from 'formiojs';
-import { DatePipe, formatDate } from '@angular/common';
-import myLocaleAr from '@angular/common/locales/Ar';
+import HijriDate from 'hijri-date/lib/safe';
+import { combineLatest, from, Observable, of } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { UserService } from 'src/formio/src/public_api';
+import { BaseComponent } from '../base.component';
 
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
 	// styleUrls: ['./header.component.scss'],
-	providers: [DatePipe],
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent extends BaseComponent {
 	logo = '';
 	loggedIn = false;
-	userDetails;
+	userDetails: { [k: string]: any };
 	myDate = new Date();
-	newDate;
-	time;
-	todaysDataTime;
+	newDate: string;
+	time: string;
+	todaysDataTime: string;
 	today = new HijriDate().format('dd mmmm yyyy');
-	hijriDate;
+
+	type = '';
+	showDashboardCounters = environment.showDashboardCounters;
 	languages = [
 		{ name: 'ENGLISH', code: 'en' },
 		{ name: 'ARABIC', code: 'ar' },
 	];
 	selectedLang = this.translateService.currentLang;
-	type = '';
-	showDashboardCounters = environment.showDashboardCounters;
 
-	constructor(
-		public injector: Injector,
-		public datePipe: DatePipe,
-		public platform: Platform,
-		private userService: UserService
-	) {
+	constructor(public injector: Injector, private userService: UserService) {
 		super(injector);
-		this.newDate = this.datePipe.transform(this.myDate, ' d MMMM y');
+		this._registerDelayPlugin();
+	}
+
+	ngOnInit() {
+		this.switchLangService.changeLang();
+		this._prepareDates();
+
+		combineLatest([
+			from(this.keycloakService.isLoggedIn()).pipe(
+				switchMap((isLogin) => (isLogin ? this._getUserDataToken() : of(isLogin)))
+			),
+			this.keycloakService.keycloakEvents$.pipe(startWith({})),
+		]).subscribe(([DataToken]) => {
+			this.loggedIn = !!DataToken;
+			this.type = DataToken ? DataToken?.type : '';
+		});
+	}
+
+	doLogout() {
+		localStorage.setItem('needLogin', 'true');
+		localStorage.setItem('_etec_data', null);
+		this.keycloakService.logout();
+	}
+
+	login() {
+		this.keycloakService.login();
+	}
+
+	goToLink() {
+		window.open('https://www.etec.gov.sa/ar/Pages/default.aspx', '_blank');
+	}
+
+	// #region private methods
+
+	private _getUserDataToken(): Observable<any> {
+		return combineLatest([
+			this.sessionService.loadUserProfile(),
+			this.keycloakService.getToken(),
+		]).pipe(
+			switchMap(([profile, token]) => {
+				this.userDetails = profile;
+				return from(this.userService.getTokenData(token));
+			})
+		);
+	}
+
+	private _prepareDates(): void {
+		this.newDate = formatDate(this.myDate, ' d MMMM y', this.translateService.currentLang);
 		this.time = this.myDate.toLocaleString('en-US', { hour: 'numeric', hour12: true });
 		this.todaysDataTime = formatDate(this.myDate, ' hh:mm a', 'en-US', '+3');
-		// this.hijriDate = this.today.toHijri();
-		this.configService.loadConfig().then((config) => {});
+	}
+
+	private _registerDelayPlugin(): void {
 		const DelayPlugin = {
 			priority: 100,
 			preRequest: (requestArgs) => {
@@ -90,47 +133,5 @@ export class HeaderComponent extends BaseComponent {
 
 		Formio.registerPlugin(DelayPlugin, 'delay');
 	}
-	async ngOnInit() {
-		this.switchLangService.changeLang(this.switchLangService.getSelectedLang());
-
-		if (await this.keycloakService.isLoggedIn()) {
-			this.userDetails = await this.sessionService.loadUserProfile();
-			this.type = (await this.userService.getTokenData(await this.keycloakService.getToken())).type;
-			this.loggedIn = true;
-		} else {
-			this.loggedIn = false;
-		}
-		this.keycloakService.keycloakEvents$.subscribe(async () => {
-			if (await this.keycloakService.isLoggedIn()) {
-				// window.location.reload();
-				this.zone.run(async () => {
-					this.userDetails = await this.sessionService.loadUserProfile();
-					this.loggedIn = true;
-				});
-			}
-		});
-	}
-
-	async doLogout() {
-		localStorage.setItem('needLogin', 'true');
-		localStorage.setItem('_etec_data', null);
-		await this.keycloakService.logout();
-	}
-
-	login() {
-		this.keycloakService.login();
-	}
-	goToLink() {
-		window.open('https://www.etec.gov.sa/ar/Pages/default.aspx', '_blank');
-	}
-	selectLang(lang): void {
-		this.selectedLang = this.switchLangService.getSelectedLang();
-		this.switchLangService.changeLang(lang.value);
-	}
-	get currentLang() {
-		const lang = this.languages.find(
-			(lang) => lang.code === this.switchLangService.getSelectedLang()
-		);
-		return lang ? lang.name.toLocaleUpperCase() : '';
-	}
+	//#endregion
 }
