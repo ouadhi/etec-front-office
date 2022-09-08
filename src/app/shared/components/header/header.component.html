@@ -21,7 +21,7 @@
 					<a
 						mat-button
 						[matMenuTriggerFor]="afterMenu"
-						*ngIf="showDashboardCounters; else myRequestsContainer"
+						*ngIf="showDashboardCounters && loggedIn; else myRequestsContainer"
 						>{{ 'NAV.MENULIST' | translate }}</a
 					>
 					<mat-menu #afterMenu="matMenu" xPosition="after">
