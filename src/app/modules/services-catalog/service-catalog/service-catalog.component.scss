@@ -1,10 +1,6 @@
 @import 'colors.scss';
 [dir='rtl'] {
-	.app-service-catalog {
-		.filtersSection__keywordForm {
-			text-align: right;
-		}
-	}
+	--text-align: right;
 	.filtersList {
 		.label {
 			input {
@@ -15,11 +11,6 @@
 }
 
 [dir='ltr'] {
-	.app-service-catalog {
-		.filtersSection__keywordForm {
-			text-align: left;
-		}
-	}
 	.filtersList {
 		.label {
 			input {
@@ -85,6 +76,7 @@
 		.filtersSection__keywordForm {
 			display: flex;
 			align-items: center;
+			text-align: var(--text-align, start);
 		}
 	}
 	.filtersList {
@@ -115,16 +107,11 @@
 				.list {
 					margin: 0px 15px;
 				}
-				.list,
-				.grid {
+				svg {
 					cursor: pointer;
+					color: rgba(147, 147, 147, 0.31);
 					&.active {
-						path {
-							fill: $primary-color;
-						}
-					}
-					path {
-						fill: rgba(147, 147, 147, 0.31);
+						color: $primary-color;
 					}
 				}
 			}

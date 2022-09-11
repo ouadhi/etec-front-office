@@ -63,8 +63,13 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 			});
 		});
 		this.getUserRequests();
-		this.loadBanners();
-		this.mostUsed();
+
+		/**
+		 * It is not part of the template
+
+	  	his.loadBanners(); // not used in template
+		  this.mostUsed();
+		 */
 
 		this.search();
 		this.prepareFiltersFetch(); // this.prepareFilters(this.userSegments);
@@ -126,25 +131,28 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 		let tags = true;
 		let keyword = false;
 
-		if (this.dataFilters.category._id) {
-			category = this.dataFilters.category._id === item.category._id;
-		}
 		if (!category) {
 			return false;
 		}
+
+		if (!department) {
+			return false;
+		}
+
+		if (this.dataFilters.category._id) {
+			category = this.dataFilters.category._id === item.category._id;
+		}
+
 		if (this.dataFilters.category.department._id) {
 			department =
 				item.category.department &&
 				this.dataFilters.category.department._id === item.category.department._id;
 		}
-		if (!department) {
-			return false;
-		}
 
 		if (this.dataFilters.$or && this.dataFilters.$or.length) {
 			this.dataFilters.$or.forEach((element) => {
 				const key = Object.keys(element)[0];
-				if (!element[key] || item[key].includes(element[key])) {
+				if (!element[key] || item[key]?.includes(element[key])) {
 					keyword = true;
 					return false;
 				}
@@ -313,25 +321,17 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 
 	// action filter for department
 	changeTap(event, data) {
-		const _id = event.index != 0 ? data[event.index - 1]._id : null;
+		const _id = +event >= 0 ? data[event]._id : null;
 		this.filterDepartment(_id);
 	}
-	filterDepartment(_id?) {
-		if (_id) {
-			this.dataFilters.category.department._id = _id;
-		} else {
-			this.dataFilters.category.department._id = null;
-		}
+	filterDepartment(_id = null) {
+		this.dataFilters.category.department._id = _id;
 		this.filterCategory();
 	}
 
 	// action filter for category
-	filterCategory(_id?) {
-		if (_id) {
-			this.dataFilters.category._id = _id;
-		} else {
-			this.dataFilters.category._id = null;
-		}
+	filterCategory(_id = null) {
+		this.dataFilters.category._id = _id;
 		this.filtered = this.filterPipe.transform(this.data, this.doFilter);
 	}
 

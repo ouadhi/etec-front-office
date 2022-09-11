@@ -1,37 +1,8 @@
 <!-- <formio formKey="testimadservice"></formio> -->
 
 <div class="app-service-catalog">
-	<div class="padder" *ngIf="!sessionService.isLicenseValid">
-		<div class="alert alert-warning-orange">
-			<div class="row">
-				<div class="col-auto align-self-start">
-					<ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
-				</div>
-				<div class="col">
-					{{ 'LICENSE.ERROR' | translate }}
-				</div>
-			</div>
-		</div>
-	</div>
+	<ng-container [ngTemplateOutlet]="alerts"></ng-container>
 
-	<div class="padder" *ngIf="hasTask">
-		<div class="alert alert-warning">
-			<div class="row">
-				<div class="col-auto align-self-start">
-					<ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
-				</div>
-				<div class="col">
-					{{ 'CATALOG.needs' | translate }}
-					<strong>{{ 'CATALOG.beneficiaryTask' | translate }}</strong>
-					{{ 'CATALOG.pleasePress' | translate }}
-					<a [routerLink]="['/requests/my', { u: 1 }]" class="alert-link">{{
-						'CATALOG.hereToUpdate' | translate
-					}}</a
-					>.
-				</div>
-			</div>
-		</div>
-	</div>
 	<div fxLayout="row" class="service-page-title">
 		<img src="/assets/images/page-title.jpg" />
 	</div>
@@ -54,7 +25,12 @@
 		</div>
 	</div> -->
 
-	<div fxLayout="row" fxLayoutAlign="center top" class="service-search" *ngIf="showDashboardCounters">
+	<div
+		fxLayout="row"
+		fxLayoutAlign="center top"
+		class="service-search"
+		*ngIf="showDashboardCounters"
+	>
 		<div class="" fxFlex.lt-lg="100" fxFlex.lt-xl="90" fxFlex.xl="83">
 			<div class="header">
 				<h1>{{ 'CATALOG.Total Requests' | translate }}</h1>
@@ -118,35 +94,26 @@
 						class="list"
 						(click)="isList = true"
 						[ngClass]="{ active: isList }"
-						xmlns="http://www.w3.org/2000/svg"
-						width="26.002"
-						height="25.999"
-						viewBox="0 0 26.002 25.999"
+						width="26"
+						height="25"
 					>
-						<path
-							id="Union_8"
-							data-name="Union 8"
-							d="M-4628-12146h-10a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h14a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm-20,0a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm20-10h-10a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h14a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm-20,0a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm20-10h-10a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h14a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm-20,0a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Z"
-							transform="translate(4649.001 12172)"
-							fill="rgba(147,147,147,0.31)"
-						/>
+						<use
+							xlink:href="/assets/images/service-grid-icon.svg#grid-list"
+							href="/assets/images/service-grid-icon.svg#grid-list"
+						></use>
 					</svg>
+
 					<svg
-						class="grid"
+						width="26"
+						height="25"
 						(click)="isList = false"
 						[ngClass]="{ active: !isList }"
-						xmlns="http://www.w3.org/2000/svg"
-						width="26.002"
-						height="25.999"
-						viewBox="0 0 26.002 25.999"
+						class="grid"
 					>
-						<path
-							id="Union_9"
-							data-name="Union 9"
-							d="M-4628-12146a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm-10,0a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm-10,0a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm20-10a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm-10,0a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm-10,0a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm20-10a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm-10,0a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Zm-10,0a1,1,0,0,1-1-1v-4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v4a1,1,0,0,1-1,1Z"
-							transform="translate(4649.001 12172)"
-							fill="#2185b8"
-						/>
+						<use
+							xlink:href="/assets/images/service-grid-icon.svg#grid-icon"
+							href="/assets/images/service-grid-icon.svg#grid-icon"
+						></use>
 					</svg>
 				</div>
 			</div>
@@ -380,3 +347,35 @@
 		</div>
 	</app-page>
 </div>
+
+<ng-template #alerts>
+	<div class="padder">
+		<div class="alert alert-warning-orange" *ngIf="!sessionService.isLicenseValid">
+			<div class="row">
+				<div class="col-auto align-self-start">
+					<ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
+				</div>
+				<div class="col">
+					{{ 'LICENSE.ERROR' | translate }}
+				</div>
+			</div>
+		</div>
+
+		<div class="alert alert-warning" *ngIf="hasTask">
+			<div class="row">
+				<div class="col-auto align-self-start">
+					<ion-icon [name]="'alert-circle-outline'" class="alert-icon"></ion-icon>
+				</div>
+				<div class="col">
+					{{ 'CATALOG.needs' | translate }}
+					<strong>{{ 'CATALOG.beneficiaryTask' | translate }}</strong>
+					{{ 'CATALOG.pleasePress' | translate }}
+					<a [routerLink]="['/requests/my', { u: 1 }]" class="alert-link">{{
+						'CATALOG.hereToUpdate' | translate
+					}}</a
+					>.
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>
