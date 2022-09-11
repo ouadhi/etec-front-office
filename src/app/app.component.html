@@ -1,12 +1,12 @@
 <div class="app-root">
-    <div class="mainWrapper" [class.mainWrapper--rtl]="switchLangService.currentLang=='ar'" dir="{{switchLangService.currentLang=='ar' ? 'rtl' : 'ltr'}}">
-        <div class="footer-pattern" *ngIf="!fullPage"></div>
-
-        <app-header *ngIf="!fullPage"></app-header>
-
-        <div class="routerOutletContainer">
-            <router-outlet></router-outlet>
-        </div>
-        <app-footer></app-footer>
-    </div>
+	<div class="mainWrapper">
+		<ng-container *ngIf="!(fullPage$ | async)">
+			<div class="footer-pattern"></div>
+			<app-header></app-header>
+		</ng-container>
+		<div class="routerOutletContainer">
+			<router-outlet></router-outlet>
+		</div>
+		<app-footer></app-footer>
+	</div>
 </div>

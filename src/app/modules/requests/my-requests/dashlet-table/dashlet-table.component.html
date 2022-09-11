@@ -3,8 +3,8 @@
 		<div class="content">
 			<app-dashlet-filter
 				[show]="showFilter"
-				(filter)="onFilter($event)"
-				[currentLang]="currentLanguage"
+				(onFilter)="onFilter($event)"
+				[currentLang]="currentLanguage$ | async"
 			></app-dashlet-filter>
 
 			<br />

@@ -1,5 +1,7 @@
 import { AfterViewInit, Injector, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { combineLatest, from, of } from 'rxjs';
+import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
 import { ErrorToast, FormioLoader, SuccessToast, UserService } from 'src/formio/src/public_api';
@@ -14,7 +16,7 @@ import { RequestsService } from '../requests.service';
 	encapsulation: ViewEncapsulation.None,
 	providers: [FormioLoader],
 })
-export class RequestDetailsComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class RequestDetailsComponent extends BaseComponent implements OnInit {
 	constructor(
 		public injector: Injector,
 		private rest: RequestsService,
@@ -24,7 +26,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit, Af
 	) {
 		super(injector);
 	}
-	dir: 'rtl' | 'ltr';
+	isRtl$ = of(false);
 	id: string;
 	serviceId: string;
 	processInstanceId: string;
@@ -57,31 +59,29 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit, Af
 	user: any;
 	isAdmin = false;
 
-	ngAfterViewInit(): void {
-		this.sub = this.translateService.onLangChange.subscribe((data) => {
-			this.changeDirection(data.lang);
-		});
-	}
-
-	private changeDirection(lang) {
-		this.dir = null;
-		setTimeout(() => {
-			this.dir = lang == 'ar' ? 'rtl' : 'ltr';
-		});
-	}
-
 	async ngOnInit() {
-		this.isLoggedIn = await this.keycloakService.isLoggedIn();
-		this.user = await this.userService.getUserData(
-			this.isLoggedIn ? await this.keycloakService.getToken() : null
+		this.isRtl$ = this.translateService.onLangChange.pipe(
+			map((data) => data.lang == 'ar'),
+			shareReplay(),
+			tap((rs) => {
+				this.getData();
+			})
 		);
-		this.isAdmin = this.user?.currentUser_groups?.includes('Admins');
-		this.sub = this.route.params.subscribe((params) => {
-			this.id = params.id;
-			this.getData();
-		});
+		this.sub = from(this.keycloakService.isLoggedIn())
+			.pipe(
+				tap((res) => {
+					this.isLoggedIn = res;
+				}),
+				switchMap((isLoggedIn) => from(isLoggedIn ? this.keycloakService.getToken() : null)),
+				switchMap((token) => this.userService.getUserData(token))
+			)
+			.subscribe((userData) => {
+				this.user = userData;
+				this.isAdmin = userData?.currentUser_groups?.includes('Admins');
+			});
 
-		this.translateService.onLangChange.subscribe(() => {
+		this.route.params.subscribe((params) => {
+			this.id = params.id;
 			this.getData();
 		});
 
@@ -97,7 +97,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit, Af
 			(data) => {
 				this.processInstanceId = data.procInstID;
 				this.serviceId = data.serviceId;
-				if (this.processInstanceId)
+				if (this.processInstanceId){
 					this.sub = this.rest
 						.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
 						.subscribe((data) => {
@@ -117,7 +117,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit, Af
 									});
 							}
 						});
-
+				}
 				this.request = data;
 				this.link = this.request.link;
 				this.formData = this.request.data;
@@ -141,7 +141,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit, Af
 						this.formReady = true;
 					});
 			},
-			(err) => console.log(err),
+			(err) => console.error(err),
 			() => {
 				this.checkRequestFeedback();
 			}

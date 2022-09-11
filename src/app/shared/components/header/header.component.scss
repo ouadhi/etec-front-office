@@ -67,10 +67,10 @@
 			width: 235px;
 		}
 	}
-	.mat-toolbar-row {
+	.banner {
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16) !important;
 	}
-	.mat-toolbar-row,
+	.banner,
 	.mat-toolbar-single-row {
 		height: auto;
 		z-index: 9;
@@ -307,6 +307,7 @@
 		padding: 0 15px;
 		height: 100%;
 		justify-content: end;
+		margin-bottom: 0;
 		& li {
 			list-style: none;
 			align-items: center;
@@ -385,7 +386,7 @@
 	min-width: 150px !important;
 }
 
-.mat-toolbar-row {
+.banner {
 	background-image: url('/assets/images/head-bg.jpg');
 	background-color: #ffffff;
 	padding: 0px 0 0 0 !important;

@@ -3,12 +3,12 @@
 		<div class="action-container pad-5 text-center" *ngIf="showFeedbackButton">
 			<a
 				class="ctm-btn feedback action-btn-feedback"
-				[ngClass]="{ 'feedback-ltr': dir === 'ltr' }"
+				[ngClass]="{ 'feedback-ltr': isRtl$ | async }"
 				(click)="openFeedbackDialog()"
 			>
 				<span
 					[ngbTooltip]="'forms.common.Request Feedback' | translate"
-					[placement]="dir === 'rtl' ? 'right' : 'left'"
+					[placement]="(isRtl$ | async) ? 'right' : 'left'"
 					class="teal-color"
 				>
 					<img type="image/png" rel="icon" src="../../../../assets/images/icons8-rating-97.png"
@@ -80,7 +80,7 @@
 				</button>
 			</div>
 		</div>
-		<!--   
+		<!--
     <div class="padder" *ngIf="request?.requestLocksDTO?.process == 'LOCKED'"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div class="alert alert-warning">
