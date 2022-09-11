@@ -1,11 +1,12 @@
-import { TranslateService } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { tap, map, catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DashletFilterAdapter } from './dashlet-filter.adapter';
+import { RequestModel } from './my-requests/model';
 
 interface filterData {
 	services: string[];
@@ -41,10 +42,7 @@ export class RequestsService {
 			.post<any>(endpoint, {
 				reason: reason,
 			})
-			.pipe(
-				tap((resp) => resp),
-				map((resp) => resp)
-			);
+			.pipe(map((resp) => resp));
 	}
 	lockRequest(requestId, reason: LockTypes = 'digital signature') {
 		const endpoint = `${environment.gateway}${environment.endpoints.myRequests}/${requestId}/lock`;
@@ -52,20 +50,19 @@ export class RequestsService {
 			.post<any>(endpoint, {
 				reason: reason,
 			})
-			.pipe(
-				tap((resp) => resp),
-				map((resp) => resp)
-			);
+			.pipe(map((resp) => resp));
 	}
 
-	getRequests(queryParams): Observable<any> {
+	getRequests(queryParams): Observable<{
+		items: RequestModel[];
+		totalCount: string;
+	}> {
 		return this.http
 			.get<any>(`${environment.gateway}${environment.endpoints.myRequests}`, {
 				observe: 'response',
 				params: this.dashletFilterAdapter.adapt(queryParams),
 			})
 			.pipe(
-				tap((resp) => resp),
 				map((resp) => {
 					return { items: resp.body, totalCount: resp.headers.get('X-Total-Count') };
 				})
@@ -79,10 +76,7 @@ export class RequestsService {
 					language: this.translate.currentLang,
 				},
 			})
-			.pipe(
-				tap((resp) => resp),
-				map((resp) => resp)
-			);
+			.pipe(map((resp) => resp));
 	}
 	queryAnonymousRequests(id): Observable<any> {
 		return this.http
@@ -91,10 +85,7 @@ export class RequestsService {
 					language: this.translate.currentLang,
 				},
 			})
-			.pipe(
-				tap((resp) => resp),
-				map((resp) => resp)
-			);
+			.pipe(map((resp) => resp));
 	}
 
 	getGeneric(url, queryParams = {}): Observable<any> {
@@ -118,20 +109,14 @@ export class RequestsService {
 					},
 				}
 			)
-			.pipe(
-				tap((resp) => resp),
-				map((resp) => resp)
-			);
+			.pipe(map((resp) => resp));
 	}
 	getRequest(id, queryParams = {}): Observable<any> {
 		return this.http
 			.get<any>(`${environment.gateway}${environment.endpoints.myRequests}/${id}`, {
 				params: this.dashletFilterAdapter.adapt(queryParams),
 			})
-			.pipe(
-				tap((resp) => resp),
-				map((resp) => resp)
-			);
+			.pipe(map((resp) => resp));
 	}
 	getRequestsCount(serviceId) {
 		const d = new Date(new Date().getFullYear(), 0, 1);
@@ -142,10 +127,7 @@ export class RequestsService {
 					'serviceId.equals': serviceId,
 				},
 			})
-			.pipe(
-				tap((resp) => resp),
-				map((resp) => resp)
-			);
+			.pipe(map((resp) => resp));
 	}
 
 	getListOfUserSegments(): Observable<any> {

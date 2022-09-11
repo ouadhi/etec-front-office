@@ -1,4 +1,3 @@
-import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import {
 	AfterViewInit,
 	Component,
@@ -9,14 +8,15 @@ import {
 	ViewChild,
 	ViewEncapsulation,
 } from '@angular/core';
-import { merge, Observable, of, Subscription } from 'rxjs';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { DashletFilterComponent } from '../dashlet-filter/dashlet-filter.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { BehaviorSubject, merge, Observable, of, Subscription } from 'rxjs';
+import { catchError, startWith, switchMap, tap } from 'rxjs/operators';
+import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { FormioLoader } from 'src/formio/src/public_api';
+import { RequestFilterModel } from '../model';
 
 /**
  * Permission Table
@@ -32,14 +32,15 @@ export class DashletTableComponent
 	extends BaseComponent
 	implements OnInit, AfterViewInit, OnDestroy
 {
-	@ViewChild(MatSort, { static: true }) sort: MatSort;
-	@ViewChild(MatTable, { static: true }) table: MatTable<any>;
-	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-	@ViewChild(DashletFilterComponent, { static: true }) casesFilter: DashletFilterComponent;
 	@Input() title: any = '';
 	@Input() columns;
 	@Input() detailsRouterForEachItem?;
 	@Input() service: (param) => Observable<any>;
+
+	@ViewChild(MatSort, { static: true }) sort: MatSort;
+	@ViewChild(MatTable, { static: true }) table: MatTable<any>;
+	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
 	data = [];
 	pageSize = 10;
 	showFilter = false;
@@ -47,11 +48,11 @@ export class DashletTableComponent
 	isRateLimitReached = false;
 	displayedColumns: string[] = [];
 	expandableColumns: string[] = [];
-	expandedElement;
 	resultsLength = 0;
 	subscription: Subscription;
-	currentLanguage: any;
+	currentLanguage$: Observable<string>;
 
+	filterSub = new BehaviorSubject<RequestFilterModel>(null);
 	constructor(public injector: Injector, private notificationService: NotificationsService) {
 		super(injector);
 	}
@@ -61,37 +62,17 @@ export class DashletTableComponent
 	}
 
 	onFilter(filterData) {
-		this.loggerService.log('filterData');
 		this.loggerService.log(filterData);
-		// this.toggleFilter();
+		this.filterSub.next(filterData);
 	}
 
 	ngOnInit() {
-		const data = this.fromQueryString() || {};
-		if (data.page) {
-			this.paginator.pageIndex = +data.page;
-		}
-		if (data.size) {
-			this.paginator.pageSize = +data.size;
-		}
-		if (data.sort) {
-			const segments = decodeURIComponent(data.sort).split(',');
-			this.sort.sort({ id: segments[0], start: segments[1] } as MatSortable);
-		} else this.sort.sort({ id: 'requestDate', start: 'desc' } as MatSortable);
-
-		this.displayedColumns = Object.keys(this.columns);
-		this.expandableColumns = this.displayedColumns.filter((item) => {
-			return this.columns[item].expandable === true;
-		});
-		this.expandableColumns.forEach((item) => {
-			this.displayedColumns.splice(this.displayedColumns.indexOf(item), 1);
-		});
+		this.currentLanguage$ = this.translateService.onLangChange.pipe(switchMap((chn) => chn?.lang));
+		this._prepareTableMetaData();
+		this._prepareTableColumns();
 
 		this.sub = this.notificationService.listenerObserver.subscribe((data) => {
 			this.getData();
-		});
-		this.translateService.onLangChange.subscribe((chn) => {
-			this.currentLanguage = chn.lang;
 		});
 	}
 
@@ -111,29 +92,28 @@ export class DashletTableComponent
 		this.subscription = merge(
 			this.sort.sortChange,
 			this.paginator.page,
-			this.casesFilter.filter,
+			this.filterSub,
 			this.translateService.onLangChange
 		)
 			.pipe(
 				startWith({}),
-				switchMap(() => {
+				tap(() => {
 					this.formioLoader.loading = true;
-					const data = this.fromQueryString();
-					return this.service({
-						...this.casesFilter.filterData,
+				}),
+				switchMap(() =>
+					this.service({
+						...this.filterSub.value,
 						sortBy: this.sort.active,
 						sortDirection: this.sort.direction,
 						page: this.paginator.pageIndex,
 						size: this.paginator.pageSize,
-					});
-				}),
-				map((data) => {
+					})
+				),
+				tap((data) => {
 					// Flip flag to show that loading has finished.
 					this.formioLoader.loading = false;
 					this.isRateLimitReached = false;
 					this.resultsLength = data.totalCount;
-
-					return data;
 				}),
 				catchError(() => {
 					// Catch if the API has reached its rate limit. Return empty data.
@@ -143,7 +123,32 @@ export class DashletTableComponent
 			)
 			.subscribe((data) => {
 				this.data = data.items;
-				// this.changeRef.detectChanges();
 			});
+	}
+
+	private _prepareTableMetaData(): void {
+		const data = this.fromQueryString() || {};
+		if (data?.page) {
+			this.paginator.pageIndex = +data.page;
+		}
+		if (data?.size) {
+			this.paginator.pageSize = +data.size;
+		}
+		if (data.sort) {
+			const segments = decodeURIComponent(data.sort).split(',');
+			this.sort.sort({ id: segments[0], start: segments[1] } as MatSortable);
+		} else {
+			this.sort.sort({ id: 'requestDate', start: 'desc' } as MatSortable);
+		}
+	}
+
+	private _prepareTableColumns(): void {
+		this.displayedColumns = Object.keys(this.columns);
+		this.expandableColumns = this.displayedColumns.filter((item) => {
+			return this.columns[item].expandable === true;
+		});
+		this.expandableColumns.forEach((item) => {
+			this.displayedColumns.splice(this.displayedColumns.indexOf(item), 1);
+		});
 	}
 }

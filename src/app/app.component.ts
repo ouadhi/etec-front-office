@@ -1,41 +1,50 @@
-import { Injector, OnInit, ViewEncapsulation, Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Component, Injector, ViewEncapsulation } from '@angular/core';
 import { BaseComponent } from './shared/components/base.component';
 
 import {
 	registerAssessmentComponent,
+	registerChartsWrapperComponent,
+	registerClassificationIndicatorsComponent,
 	registerEditgridResourceComponent,
 	registerFormKeyWrapperComponent,
+	registerGroupedTableComponent,
 	registerHijriDateComponent,
 	registerIndicatorsComponent,
 	registerMapComponent,
 	registerMasterDetailsResourceComponent,
-	registerProccessRequirmentsComponent,
-	registerTableTreeComponent,
-	registerTemplateComponent,
-	registerGroupedTableComponent,
-	registerStepperComponent,
-	registerRedirectionButtonComponent,
-	registerTableViewWrapperComponent,
 	registerPDFWrapperComponent,
-	registerChartsWrapperComponent,
+	registerProccessRequirmentsComponent,
 	registerRatingWrapperComponent,
-	registerClassificationIndicatorsComponent,
+	registerRedirectionButtonComponent,
 	registerResourceDropdownWrapperComponent,
+	registerStepperComponent,
+	registerTableTreeComponent,
+	registerTableViewWrapperComponent,
+	registerTemplateComponent
 } from 'src/formio/src/public_api';
 
 import { NavigationStart } from '@angular/router';
+import { of } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	// styleUrls: ['./app.component.scss'],
 	encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent extends BaseComponent implements OnInit {
-	fullPage = false;
+export class AppComponent extends BaseComponent {
+	fullPage$ = of(false);
 
-	constructor(public injector: Injector, public platform: Platform) {
+	constructor(public injector: Injector) {
 		super(injector);
+		this._registerCustomComponents(injector);
+		this.fullPage$ = this.router.events.pipe(
+			filter((event) => event instanceof NavigationStart),
+			map((event: NavigationStart) => event?.url.includes('reset-password'))
+		);
+	}
+
+	private _registerCustomComponents(injector) {
 		registerTableTreeComponent(injector);
 		registerAssessmentComponent(injector);
 		registerTemplateComponent(injector);
@@ -55,12 +64,5 @@ export class AppComponent extends BaseComponent implements OnInit {
 		registerChartsWrapperComponent(injector);
 		registerClassificationIndicatorsComponent(injector);
 		registerResourceDropdownWrapperComponent(injector);
-		this.sub = this.router.events.subscribe((event) => {
-			if (event instanceof NavigationStart) {
-				this.fullPage = event.url.includes('reset-password');
-			}
-		});
 	}
-
-	ngOnInit() {}
 }

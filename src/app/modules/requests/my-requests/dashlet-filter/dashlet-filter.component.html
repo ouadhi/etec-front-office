@@ -1,55 +1,80 @@
 <div class="app-dashlet-filter">
-    <div fxLayout="row wrap">
-        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
-            <label>{{'From Date' | translate}}</label>
-            <mat-form-field floatLabel="never" appearance="outline">
-                <input matInput [(ngModel)]="filterData.requestDateAfter" [matDatepicker]="fd"
-                    placeholder="{{'REQUESTS.SELECT_REQUEST_DATE' | translate}}" style="height:20px">
-                <mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
-                <mat-datepicker #fd></mat-datepicker>
-            </mat-form-field>
-        </div>
-        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
-            <label>{{'To Date' | translate}}</label>
-            <mat-form-field floatLabel="never" appearance="outline">
-                <input matInput [(ngModel)]="filterData.requestDateBefore" [matDatepicker]="td"
-                    placeholder="{{'REQUESTS.SELECT_REQUEST_DATE'  | translate}}" style="height:20px">
-                <mat-datepicker-toggle matSuffix [for]="td"></mat-datepicker-toggle>
-                <mat-datepicker #td></mat-datepicker>
-            </mat-form-field>
-        </div>
-        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5 input-container">
-            <div style="display: flex;align-items: center;">
-                <label class="pad-5">{{'SERVICE.NEEDS_UPDATE_SHORT' | translate}} </label>
-                <input type="checkbox" class="switch" [(ngModel)]="filterData.activeTask" />
-            </div>
-        </div>
-        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
-            <label>{{'Service' | translate}}</label>
-            <app-select [hideLoaded]="true" (select)="handleStatus($event)" [(ngModel)]="filterData.services"
-                [closeOnSelect]='true' [data]="servicesFilterData" [bindValue]="'id'" [bindLabel]="'name'"
-                [multiple]="false" maxWidth="300px">
-            </app-select>
-        </div>
-        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
-            <label>{{'Status' | translate}}</label>
-            <app-select [hideLoaded]="true" [(ngModel)]="filterData.statuses" [data]="statusFilterData"
-                [bindValue]="'id'" [bindLabel]="'name'" [multiple]="true" maxWidth="300px">
-            </app-select>
-        </div>
-        <div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5 btn-control-container">
-            <button class="margin-5 btn search" mat-raised-button type="button" (click)="applyFilter()">
-                <i class="fa fa-search btn-icon" aria-hidden="true"></i>
-                {{'search' | translate}}
-            </button>
-            <button class="margin-5 btn reset" mat-raised-button type="button" (click)="reset()">
-                <i class="fa fa-refresh btn-icon" aria-hidden="true"></i>
-                {{'reset' | translate}}
-            </button>
-        </div>
-    </div>
-
-    <!-- 
+	<div fxLayout="row wrap">
+		<div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
+			<label>{{ 'From Date' | translate }}</label>
+			<mat-form-field floatLabel="never" appearance="outline">
+				<input
+					matInput
+					[(ngModel)]="filterData.requestDateAfter"
+					[matDatepicker]="fd"
+					[placeholder]="'REQUESTS.SELECT_REQUEST_DATE' | translate"
+					style="height: 20px"
+				/>
+				<mat-datepicker-toggle matSuffix [for]="fd"></mat-datepicker-toggle>
+				<mat-datepicker #fd></mat-datepicker>
+			</mat-form-field>
+		</div>
+		<div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
+			<label>{{ 'To Date' | translate }}</label>
+			<mat-form-field floatLabel="never" appearance="outline">
+				<input
+					matInput
+					[(ngModel)]="filterData.requestDateBefore"
+					[matDatepicker]="td"
+					[placeholder]="'REQUESTS.SELECT_REQUEST_DATE' | translate"
+					style="height: 20px"
+					[min]="filterData.requestDateAfter"
+				/>
+				<mat-datepicker-toggle matSuffix [for]="td"></mat-datepicker-toggle>
+				<mat-datepicker #td></mat-datepicker>
+			</mat-form-field>
+		</div>
+		<div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5 input-container">
+			<div style="display: flex; align-items: center">
+				<label class="pad-5">{{ 'SERVICE.NEEDS_UPDATE_SHORT' | translate }} </label>
+				<input type="checkbox" class="switch" [(ngModel)]="filterData.activeTask" />
+			</div>
+		</div>
+		<div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
+			<label>{{ 'Service' | translate }}</label>
+			<app-select
+				[hideLoaded]="true"
+				(select)="handleStatus($event)"
+				[(ngModel)]="filterData.services"
+				[closeOnSelect]="true"
+				[data]="servicesFilterData"
+				[bindValue]="'id'"
+				[bindLabel]="'name'"
+				[multiple]="false"
+				maxWidth="300px"
+			>
+			</app-select>
+		</div>
+		<div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5">
+			<label>{{ 'Status' | translate }}</label>
+			<app-select
+				[hideLoaded]="true"
+				[(ngModel)]="filterData.statuses"
+				[data]="statusFilterData"
+				bindValue="id"
+				bindLabel="name"
+				[multiple]="true"
+				maxWidth="300px"
+			>
+			</app-select>
+		</div>
+		<div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5 btn-control-container">
+			<button class="margin-5 btn search" mat-raised-button type="button" (click)="applyFilter()">
+				<i class="fa fa-search btn-icon" aria-hidden="true"></i>
+				{{ 'search' | translate }}
+			</button>
+			<button class="margin-5 btn reset" mat-raised-button type="button" (click)="reset()">
+				<i class="fa fa-refresh btn-icon" aria-hidden="true"></i>
+				{{ 'reset' | translate }}
+			</button>
+		</div>
+	</div>
+	<!--
 <div class="filter" [@slideInOut]="show ? 'in' : 'out'">
     <div class="row">
         <div class="col-12 col-md-10 col-lg-10">

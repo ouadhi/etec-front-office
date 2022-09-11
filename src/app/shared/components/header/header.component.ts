@@ -4,6 +4,7 @@ import { Formio } from 'formiojs';
 import HijriDate from 'hijri-date/lib/safe';
 import { combineLatest, from, Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
+import { APP_MAIN_PAGE } from 'src/app/core/consts';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/formio/src/public_api';
 import { BaseComponent } from '../base.component';
@@ -53,7 +54,7 @@ export class HeaderComponent extends BaseComponent {
 		});
 	}
 
-	doLogout() {
+	logout() {
 		localStorage.setItem('needLogin', 'true');
 		localStorage.setItem('_etec_data', null);
 		this.keycloakService.logout();
@@ -64,7 +65,7 @@ export class HeaderComponent extends BaseComponent {
 	}
 
 	goToLink() {
-		window.open('https://www.etec.gov.sa/ar/Pages/default.aspx', '_blank');
+		window.open(APP_MAIN_PAGE, '_blank');
 	}
 
 	// #region private methods
