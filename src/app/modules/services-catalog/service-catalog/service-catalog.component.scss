@@ -37,6 +37,7 @@
 			font-size: 30px;
 			font-weight: 700;
 			margin-bottom: 20px;
+			text-align: start;
 			@media (min-width: 1920px) {
 				font-size: 35px;
 			}
@@ -147,6 +148,7 @@
 			box-shadow: 0px 0px 3px $box-shadow;
 			border-radius: 5px;
 			overflow: visible;
+			height: calc(100% - var(--padding, 50px));
 			.filtersSection {
 				background-color: $white !important;
 			}
@@ -397,4 +399,7 @@
 		top: 85%;
 		left: 1%;
 	}
+}
+.app-service-card {
+	height: 100%;
 }
