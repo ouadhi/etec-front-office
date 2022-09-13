@@ -1,12 +1,9 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Injector, ViewEncapsulation } from '@angular/core';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 import { IImage } from 'ng-simple-slideshow';
 import { combineLatest } from 'rxjs';
-import { KeycloakService } from 'keycloak-angular';
-import { UserService } from 'src/formio/src/public_api';
 import { environment } from 'src/environments/environment';
+import { UserService } from 'src/formio/src/public_api';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { RequestsService } from '../../requests/requests.service';
 
@@ -16,7 +13,7 @@ import { RequestsService } from '../../requests/requests.service';
 	// styleUrls: ['./service-catalog.component.scss']
 	encapsulation: ViewEncapsulation.None,
 })
-export class ServiceCatalogComponent extends BaseComponent implements OnInit, OnDestroy {
+export class ServiceCatalogComponent extends BaseComponent implements OnInit {
 	dataMostUsed: any;
 	data: any[];
 	totalResult: number;
@@ -55,6 +52,10 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 		super(injector);
 	}
 
+	trackByFn(index, item) {
+		return item._id;
+	}
+
 	ngOnInit() {
 		this.isList = false;
 		this.sub = this.keycloakService.keycloakEvents$.subscribe(async () => {
@@ -63,8 +64,13 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 			});
 		});
 		this.getUserRequests();
-		this.loadBanners();
-		this.mostUsed();
+
+		/**
+		 * It is not part of the template
+
+	  	his.loadBanners(); // not used in template
+		  this.mostUsed();
+		 */
 
 		this.search();
 		this.prepareFiltersFetch(); // this.prepareFilters(this.userSegments);
@@ -96,9 +102,6 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 		});
 	}
 
-	ngOnDestroy() {
-		// this.keycloakService.keycloakEvents$.unsubscribe();
-	}
 	isDisabled(a, b) {
 		const bool =
 			this.disabled.includes(a._id) ||
@@ -107,18 +110,9 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 				this.dataFilters.segmentsGroup_inline[0][a._id] &&
 				Object.keys(this.segmentInput[a._id]).length - 1 ===
 					Object.keys(this.dataFilters.segmentsGroup_inline[0][a._id]).length);
-		if (
-			this.segmentInput[a._id][b._id] &&
-			this.dataFilters.segmentsGroup_inline[0] &&
-			this.dataFilters.segmentsGroup_inline[0][a._id]
-		) {
-		}
-
 		return bool;
 	}
-	trackByFn(index, item) {
-		return item._id;
-	}
+
 	doFilter = (item, index, array) => {
 		let category = true;
 		let department = true;
@@ -126,25 +120,28 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 		let tags = true;
 		let keyword = false;
 
-		if (this.dataFilters.category._id) {
-			category = this.dataFilters.category._id === item.category._id;
-		}
 		if (!category) {
 			return false;
 		}
+
+		if (!department) {
+			return false;
+		}
+
+		if (this.dataFilters.category._id) {
+			category = this.dataFilters.category._id === item.category._id;
+		}
+
 		if (this.dataFilters.category.department._id) {
 			department =
 				item.category.department &&
 				this.dataFilters.category.department._id === item.category.department._id;
 		}
-		if (!department) {
-			return false;
-		}
 
 		if (this.dataFilters.$or && this.dataFilters.$or.length) {
 			this.dataFilters.$or.forEach((element) => {
 				const key = Object.keys(element)[0];
-				if (!element[key] || item[key].includes(element[key])) {
+				if (!element[key] || item[key]?.includes(element[key])) {
 					keyword = true;
 					return false;
 				}
@@ -196,6 +193,8 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 
 		return department && category && segment && keyword && tags;
 	};
+
+	// not used yet
 	loadBanners() {
 		this.sub = this.servicesService.getBanners().subscribe((data) => {
 			this.imagesSlider = [];
@@ -209,7 +208,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 			});
 		});
 	}
-
+	// not used yet
 	mostUsed() {
 		this.dataMostUsed = [];
 		this.sub = this.servicesService.getServices().subscribe((data) => {
@@ -250,24 +249,22 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 			this.filterSegment();
 		});
 
-		this.sub = this.servicesService.getDepartments().subscribe((data) => {
-			this.departments = data.entries;
+		this.sub = combineLatest([
+			this.servicesService.getDepartments(),
+			this.servicesService.getTags(),
+			this.servicesService.getCategories(),
+		]).subscribe(([departments, tags, categories]) => {
+			this.departments = departments.entries;
+			this.categories = categories.entries;
+			this.tags = tags.entries;
+			if (tags) {
+				this.tags.forEach((element, i) => {
+					const newObj = {};
+					newObj[element._id] = false;
+					this.tagsInput = { ...this.tagsInput, ...newObj };
+				});
+			}
 		});
-
-		this.sub = this.servicesService.getTags().subscribe((data) => {
-			this.tags = data.entries;
-
-			this.tags.forEach((element, i) => {
-				const newObj = {};
-				newObj[element._id] = false;
-				this.tagsInput = { ...this.tagsInput, ...newObj };
-			});
-		});
-
-		this.sub = this.servicesService.getCategories().subscribe((data) => {
-			this.categories = data.entries;
-		});
-
 		return true;
 	}
 
@@ -275,63 +272,32 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 	// and add two new keys : 1st (segments_inline -> for beneficiaries), 2nd (tags_inline -> for tags)
 	search() {
 		this.sub = this.servicesService.getServices().subscribe((data) => {
-			this.filtered = this.data = data.entries;
-			this.totalResult = data.entries.length;
-
+			this.filtered = this.data = data?.entries;
+			this.totalResult = data?.entries?.length;
 			// transform data structure
 			this.data.forEach((element, i) => {
 				// change segment object to object of arrays with new key
-				let segmentsGroup_inline = [];
-				if (element.beneficiaries.length > 0) {
-					element.beneficiaries.forEach((element2) => {
-						segmentsGroup_inline.push(element2.segments);
-					});
-
-					const segments = segmentsGroup_inline;
-					segmentsGroup_inline = [];
-					segments.forEach((segmentSet) => {
-						const set = {};
-						segmentSet.forEach((segment) => {
-							set[segment._id] = true;
-						});
-						segmentsGroup_inline.push(set);
-					});
-				}
-				this.data[i].segmentsGroup_inline = segmentsGroup_inline;
+				this.data[i].segmentsGroup_inline = this._prepareSegmentsObject(element);
 
 				// change tag object to array with new key
-				const tags_inline = {};
-				if (element.tag && element.tag.length > 0) {
-					element.tag.forEach((element2) => {
-						tags_inline[element2._id] = true;
-					});
-				}
-				this.data[i].tags_inline = tags_inline;
+				this.data[i].tags_inline = this._prepareTagsObject(element);
 			});
 		});
 	}
 
 	// action filter for department
 	changeTap(event, data) {
-		const _id = event.index != 0 ? data[event.index - 1]._id : null;
+		const _id = +event >= 0 ? data[event]._id : null;
 		this.filterDepartment(_id);
 	}
-	filterDepartment(_id?) {
-		if (_id) {
-			this.dataFilters.category.department._id = _id;
-		} else {
-			this.dataFilters.category.department._id = null;
-		}
+	filterDepartment(_id = null) {
+		this.dataFilters.category.department._id = _id;
 		this.filterCategory();
 	}
 
 	// action filter for category
-	filterCategory(_id?) {
-		if (_id) {
-			this.dataFilters.category._id = _id;
-		} else {
-			this.dataFilters.category._id = null;
-		}
+	filterCategory(_id = null) {
+		this.dataFilters.category._id = _id;
 		this.filtered = this.filterPipe.transform(this.data, this.doFilter);
 	}
 
@@ -446,5 +412,35 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit, On
 		} else {
 			this.prepareFilters(this.userSegments);
 		}
+	}
+
+	private _prepareTagsObject(element: any) {
+		const tags_inline = {};
+		if (element.tag && element.tag.length > 0) {
+			element.tag.forEach((element2) => {
+				tags_inline[element2._id] = true;
+			});
+		}
+		return tags_inline;
+	}
+
+	private _prepareSegmentsObject(element: any) {
+		let segmentsGroup_inline = [];
+		if (element.beneficiaries.length > 0) {
+			element.beneficiaries.forEach((element2) => {
+				segmentsGroup_inline.push(element2.segments);
+			});
+
+			const segments = segmentsGroup_inline;
+			segmentsGroup_inline = [];
+			segments.forEach((segmentSet) => {
+				const set = {};
+				segmentSet.forEach((segment) => {
+					set[segment._id] = true;
+				});
+				segmentsGroup_inline.push(set);
+			});
+		}
+		return segmentsGroup_inline;
 	}
 }

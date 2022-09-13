@@ -1,10 +1,6 @@
 @import 'colors.scss';
 [dir='rtl'] {
-	.app-service-catalog {
-		.filtersSection__keywordForm {
-			text-align: right;
-		}
-	}
+	--text-align: right;
 	.filtersList {
 		.label {
 			input {
@@ -15,11 +11,6 @@
 }
 
 [dir='ltr'] {
-	.app-service-catalog {
-		.filtersSection__keywordForm {
-			text-align: left;
-		}
-	}
 	.filtersList {
 		.label {
 			input {
@@ -46,6 +37,7 @@
 			font-size: 30px;
 			font-weight: 700;
 			margin-bottom: 20px;
+			text-align: start;
 			@media (min-width: 1920px) {
 				font-size: 35px;
 			}
@@ -85,6 +77,7 @@
 		.filtersSection__keywordForm {
 			display: flex;
 			align-items: center;
+			text-align: var(--text-align, start);
 		}
 	}
 	.filtersList {
@@ -115,16 +108,11 @@
 				.list {
 					margin: 0px 15px;
 				}
-				.list,
-				.grid {
+				svg {
 					cursor: pointer;
+					color: rgba(147, 147, 147, 0.31);
 					&.active {
-						path {
-							fill: $primary-color;
-						}
-					}
-					path {
-						fill: rgba(147, 147, 147, 0.31);
+						color: $primary-color;
 					}
 				}
 			}
@@ -160,6 +148,7 @@
 			box-shadow: 0px 0px 3px $box-shadow;
 			border-radius: 5px;
 			overflow: visible;
+			height: calc(100% - var(--padding, 50px));
 			.filtersSection {
 				background-color: $white !important;
 			}
@@ -410,4 +399,7 @@
 		top: 85%;
 		left: 1%;
 	}
+}
+.app-service-card {
+	height: 100%;
 }

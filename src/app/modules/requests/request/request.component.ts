@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 import { KeycloakService } from 'keycloak-angular';
-import { ErrorToast, FormioComponent, SuccessToast, UserService, } from 'src/formio/src/public_api';
+import { ErrorToast, FormioComponent, SuccessToast, UserService } from 'src/formio/src/public_api';
 import { RequestsService } from '../requests.service';
 import { FeedbackModalComponent } from 'src/app/shared/components/feedback-modal/feedback-modal.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -65,7 +65,9 @@ export class RequestComponent extends BaseComponent implements OnInit {
 			this.serviceId = params['serviceId'];
 			this.caseId = params['caseId'];
 			this.navParams = params;
-			this.etecData = await this.userService.getUserData(this.isLoggedIn ? await this.keycloak.getToken() : null);
+			this.etecData = await this.userService.getUserData(
+				this.isLoggedIn ? await this.keycloak.getToken() : null
+			);
 			this.submission.data = { serviceId: this.serviceId, ...this.etecData };
 			if (
 				!this.serviceId ||
@@ -146,15 +148,16 @@ export class RequestComponent extends BaseComponent implements OnInit {
 		}
 	}
 
-
-	formLoad(event) {
-	}
+	formLoad(event) {}
 
 	get formReadOnly() {
-		return this.enableLock &&
+		return (
+			this.enableLock &&
 			(!this.request?.requestLocksDTO ||
 				this.request?.requestLocksDTO?.process == 'UNLOCKED' ||
-				this.request?.requestLocksDTO?.process == 'LOCKED' && this.request?.requestLocksDTO?.processedBy != this.user?.currentUser_preferred_username);
+				(this.request?.requestLocksDTO?.process == 'LOCKED' &&
+					this.request?.requestLocksDTO?.processedBy != this.user?.currentUser_preferred_username))
+		);
 	}
 	beforeSetForm(formio: FormioComponent, form?: any) {
 		this.enableLock = !!this.request && (form as any)?.properties?.enableLock == 'true';
@@ -173,9 +176,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 				if (error.status == 200) {
 					this.handleLock();
 				} else {
-					this.showToast('ErrorOccurred',
-						'generalError',
-						ErrorToast);
+					this.showToast('ErrorOccurred', 'generalError', ErrorToast);
 				}
 				this.formioLoader.loading = false;
 			}
@@ -188,11 +189,13 @@ export class RequestComponent extends BaseComponent implements OnInit {
 		this.request.requestLocksDTO.processedBy = this.user.currentUser_preferred_username;
 		this.request.requestLocksDTO.processorFullName = this.user.currentUser_name;
 		this.formReady = false;
-		setTimeout(() => this.formReady = true);
+		setTimeout(() => (this.formReady = true));
 
-		this.showToast('OperationDone',
+		this.showToast(
+			'OperationDone',
 			'requestLock.The request has been locked successfully',
-			SuccessToast);
+			SuccessToast
+		);
 	}
 	unlock() {
 		this.formioLoader.loading = true;
@@ -205,9 +208,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 				if (error.status == 200) {
 					this.handleunLock();
 				} else {
-					this.showToast('ErrorOccurred',
-						'generalError',
-						ErrorToast);
+					this.showToast('ErrorOccurred', 'generalError', ErrorToast);
 				}
 				this.formioLoader.loading = false;
 			}
@@ -216,14 +217,18 @@ export class RequestComponent extends BaseComponent implements OnInit {
 	private handleunLock() {
 		if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
 		this.request.requestLocksDTO.process = 'UNLOCKED';
-		this.showToast('OperationDone',
+		this.showToast(
+			'OperationDone',
 			'requestLock.The request has been unlocked successfully',
-			SuccessToast);
+			SuccessToast
+		);
 		this.formReady = false;
-		setTimeout(() => this.formReady = true);
+		setTimeout(() => (this.formReady = true));
 	}
 	private showToast(title: string, message: string, component: ComponentType<any>) {
-		this.toastrService.show(this.translateService.instant(message), this.translateService.instant(title),
+		this.toastrService.show(
+			this.translateService.instant(message),
+			this.translateService.instant(title),
 			{
 				toastClass: 'notification-toast',
 				closeButton: true,

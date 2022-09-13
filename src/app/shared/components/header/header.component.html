@@ -1,6 +1,6 @@
 <div class="app-header">
 	<mat-toolbar id="toolbar-lg">
-		<div class="top-bar">
+		<mat-toolbar-row class="top-bar">
 			<div class="datetime">
 				<i class="fa fa-calendar" aria-hidden="true"></i>
 				<span *ngIf="switchLangService.currentLang == 'ar'">{{ today }}</span>
@@ -56,7 +56,7 @@
 							>{{ 'NAV.QUERY_REQUEST' | translate }}</a
 						>
 					</ng-template>
-					<!-- 
+					<!--
 					<a mat-button *ngIf="!loggedIn" routerLink="/requests/query" routerLinkActive="active">{{
 						'NAV.QUERY_REQUEST' | translate
 					}}</a> -->
@@ -80,7 +80,7 @@
 					</button>
 
 					<!-- <div class="switcher" [matMenuTriggerFor]="langDropdown">
-                       
+
                         <span class="lang lg">{{'HEADER.currentLang' | translate}}&nbsp;:&nbsp;</span>
                         <span class="selected-language lg">{{'HEADER.currentLang' | translate}}</span>
                     </div> -->
@@ -125,9 +125,9 @@
 					></a>
 				</li>
 			</ul>
-		</div>
+		</mat-toolbar-row>
 
-		<mat-toolbar-row style="padding: 0; flex-direction: column">
+		<mat-toolbar-row class="banner" style="padding: 0; flex-direction: column">
 			<div class="log-row d-flex justify-content-between">
 				<div class="logo" (click)="goToLink()">
 					<span class="logo-container">
@@ -168,14 +168,14 @@
 						{{ 'LAYOUT.PROFILE' | translate }}
 					</ng-template>
 				</button>
-				<button mat-menu-item (click)="doLogout()" *ngIf="loggedIn">
+				<button mat-menu-item (click)="logout()" *ngIf="loggedIn">
 					{{ 'LAYOUT.LOGOUT' | translate }}
 				</button>
 				<button mat-menu-item (click)="login()" *ngIf="!loggedIn">
 					{{ 'LAYOUT.LOGIN' | translate }}
 				</button>
 			</mat-menu>
-			<!-- 
+			<!--
             <div class="user-actions">
                 <div class="switcher" [matMenuTriggerFor]="langDropdown">
                     <mat-icon>language</mat-icon>
