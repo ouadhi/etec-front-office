@@ -65,6 +65,33 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 				this.stats = requestsCount;
 				this.comments = comments.entries;
 				this.segments = segments.entries;
+				if(environment.skipServiceDetailsPage){
+					if((this.isLoggedIn && this.data?.canAnonymousApply) || !this.data?.canAnonymousApply){
+						this.router.navigate(
+							['/requests/request',this.data?.link,
+								{
+									serviceId: data?.key,
+									serviceName_ar: data?.serviceName_ar,
+									serviceName_en: data?.serviceName_en,
+									_id: data?._id
+								}
+							]
+							, { skipLocationChange: true }
+					)
+					}else if(!this.isLoggedIn && this.data?.canAnonymousApply){
+						this.router.navigate(
+							['/requests/arequest',this.data?.link,
+								{
+									serviceId: data?.key,
+									serviceName_ar: data?.serviceName_ar,
+									serviceName_en: data?.serviceName_en,
+									_id: data?._id
+								}
+							]
+							, { skipLocationChange: true }
+					)
+					}
+				}
 				const { 0: department } = collection?.entries;
 				this.department = {
 					departmentName_ar: department?.departmentName_ar,

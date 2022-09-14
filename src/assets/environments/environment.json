@@ -26,5 +26,6 @@
         "showCatalog": true
     },
     "showFeedbackButton": false,
-    "showDashboardCounters": true
+    "showDashboardCounters": true,
+    "skipServiceDetailsPage":false
 }
