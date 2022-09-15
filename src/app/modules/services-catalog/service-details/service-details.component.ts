@@ -28,8 +28,8 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 		departmentName_ar: '',
 		departmentName_en: '',
 	};
-
 	assets_url: string = environment.cms;
+	env = environment;
 
 	ngOnInit() {
 		this.keycloakService.isLoggedIn().then((data) => {

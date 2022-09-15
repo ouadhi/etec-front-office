@@ -1,14 +1,11 @@
-<div
-	fxLayout="row"
-	class="page-title"
-	[ngClass]="{
+<div *ngIf="!env.skipServiceDetailsPage">
+	<div fxLayout="row" class="page-title" [ngClass]="{
 		alignSwitchAR: switchLangService.currentLang == 'ar',
 		alignSwitchEN: switchLangService.currentLang == 'en'
-	}"
->
-	<div class="page-title-content">
-		<!-- <div class="page-title-content-right"> -->
-		<!-- <div class="last-edit">
+	}">
+		<div class="page-title-content">
+			<!-- <div class="page-title-content-right"> -->
+			<!-- <div class="last-edit">
               <div class="icon">
                   <svg id="clock" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
                       <g id="Group_19421" data-name="Group 19421" transform="translate(7.842 3.944)">
@@ -32,13 +29,13 @@
                   <span class="time">06 صفر 1443</span>
               </p>
           </div> -->
-		<!-- <p class="title mb-0">{{'SERVICE.SERVICE' | translate}} {{data ? data['serviceName_' + switchLangService.current]: ''}}
+			<!-- <p class="title mb-0">{{'SERVICE.SERVICE' | translate}} {{data ? data['serviceName_' + switchLangService.current]: ''}}
           </p>
           <p class="desc mb-0">
               {{data['description_' + switchLangService.current]}}
           </p> -->
-		<!-- </div> -->
-		<!-- <div class="page-title-content-left">
+			<!-- </div> -->
+			<!-- <div class="page-title-content-left">
           <div class="section">
               <div class="section-title">
                   <span>
@@ -76,19 +73,15 @@
               </div>
           </div>
       </div> -->
+		</div>
 	</div>
-</div>
-<div
-	fxLayout="row"
-	class="short-details"
-	[ngClass]="{
+	<div fxLayout="row" class="short-details" [ngClass]="{
 		alignSwitchAR: switchLangService.currentLang == 'ar',
 		alignSwitchEN: switchLangService.currentLang == 'en'
-	}"
->
-	<!-- <div class="short-details-content"> -->
+	}">
+		<!-- <div class="short-details-content"> -->
 
-	<!-- <div class="section rating-section">
+		<!-- <div class="section rating-section">
           <div class="section-title">
               <div>
                   <span>
@@ -114,7 +107,7 @@
               </div>
           </div>
       </div>  -->
-	<!-- <div class="section request">
+		<!-- <div class="section request">
 
           <div class="section-title">
               <span>
@@ -132,7 +125,7 @@
           </div>
 
       </div> -->
-	<!-- <div class="section start-service">
+		<!-- <div class="section start-service">
           <button *ngIf="(isLoggedIn && data?.canAnonymousApply) || !data?.canAnonymousApply" class="ctm-btn" [routerLink]="['/requests/request', data?.link, { serviceId: data?.key, serviceName_ar: data['serviceName_ar'], serviceName_en: data['serviceName_en'] }]"
               skipLocationChange=true target="_blank" [disabled]="data?.isApplyActive == false ? true : false">{{'SERVICE.START_SERVICE' | translate}}
           </button>
@@ -141,11 +134,11 @@
           </button>
       </div> -->
 
-	<!-- </div> -->
-</div>
+		<!-- </div> -->
+	</div>
 
-<app-page class="app-service-details">
-	<!-- <div class="service-steps" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
+	<app-page class="app-service-details">
+		<!-- <div class="service-steps" [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
       <div class="service-steps-head">
           <div class="service-steps-title">
               {{'SERVICE.STEPS' | translate}}
@@ -169,21 +162,19 @@
           </ng-container>
       </div>
   </div> -->
-	<div class="service-steps">
-		<div class="service-steps-head">
-			<div class="service-steps-title">
-				{{ 'SERVICE.SERVICE' | translate }}
-				{{ data ? data['serviceName_' + switchLangService.current] : '' }}
+		<div class="service-steps">
+			<div class="service-steps-head">
+				<div class="service-steps-title">
+					{{ 'SERVICE.SERVICE' | translate }}
+					{{ data ? data['serviceName_' + switchLangService.current] : '' }}
+				</div>
+				<div class="service-steps-content">
+					{{ data ? data['description_' + switchLangService.current] : ''}}
+				</div>
 			</div>
-			<div class="service-steps-content">
-				{{ data ? data['description_' + switchLangService.current]  : ''}}
-			</div>
-		</div>
-		<div class="section start-service">
-			<button
-				*ngIf="(isLoggedIn && data?.canAnonymousApply) || !data?.canAnonymousApply"
-				class="ctm-btn"
-				[routerLink]="[
+			<div class="section start-service">
+				<button *ngIf="(isLoggedIn && data?.canAnonymousApply) || !data?.canAnonymousApply" class="ctm-btn"
+					[routerLink]="[
 					'/requests/request',
 					data?.link,
 					{
@@ -192,17 +183,10 @@
 						serviceName_en: data?.serviceName_en,
 						_id: data?._id
 					}
-				]"
-				skipLocationChange="true"
-				target="_blank"
-				[disabled]="data?.isApplyActive == false ? true : false"
-			>
-				{{ 'SERVICE.START_SERVICE' | translate }}
-			</button>
-			<button
-				*ngIf="!isLoggedIn && data?.canAnonymousApply"
-				class="ctm-btn"
-				[routerLink]="[
+				]" skipLocationChange="true" target="_blank" [disabled]="data?.isApplyActive == false ? true : false">
+					{{ 'SERVICE.START_SERVICE' | translate }}
+				</button>
+				<button *ngIf="!isLoggedIn && data?.canAnonymousApply" class="ctm-btn" [routerLink]="[
 					'/requests/arequest',
 					data?.link,
 					{
@@ -211,61 +195,48 @@
 						serviceName_en: data?.serviceName_en,
 						_id: data?._id
 					}
-				]"
-				skipLocationChange="true"
-				target="_blank"
-				[disabled]="data?.isApplyActive == false ? true : false"
-			>
-				{{ 'SERVICE.START_SERVICE' | translate }}
-			</button>
+				]" skipLocationChange="true" target="_blank" [disabled]="data?.isApplyActive == false ? true : false">
+					{{ 'SERVICE.START_SERVICE' | translate }}
+				</button>
+			</div>
+			<div class="clearfix"></div>
 		</div>
-		<div class="clearfix"></div>
-	</div>
-	<!-- <app-page-title title="{{'SERVICE.SERVICE' | translate}} {{data ? data['serviceName_' + switchLangService.current]: '' }}">
+		<!-- <app-page-title title="{{'SERVICE.SERVICE' | translate}} {{data ? data['serviceName_' + switchLangService.current]: '' }}">
   </app-page-title> -->
-	<div *ngIf="!active">
-		{{ 'SERVICE.IS_NOT_ACTIVE' | translate }}
-	</div>
-	<div
-		fxLayout="row"
-		fxLayout.sm="column"
-		fxLayout.xs="column"
-		fxLayoutAlign="space-between top"
-		*ngIf="active"
-	>
-		<div fxFlex.lt-lg="100" fxFlex.lt-xl="70" fxFlex.xl="74">
-			<!-- <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
+		<div *ngIf="!active">
+			{{ 'SERVICE.IS_NOT_ACTIVE' | translate }}
+		</div>
+		<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between top" *ngIf="active">
+			<div fxFlex.lt-lg="100" fxFlex.lt-xl="70" fxFlex.xl="74">
+				<!-- <app-section sectionTitle="{{'SERVICE.DETAILS' | translate}}">
               {{data['description_' + switchLangService.current]}}
           </app-section> -->
-			<app-section sectionTitle=" {{ 'SERVICE.STEPS' | translate }}">
-				<!-- <a class="float-left link"> 
+				<app-section sectionTitle=" {{ 'SERVICE.STEPS' | translate }}">
+					<!-- <a class="float-left link"> 
                   {{'SERVICE.EXLORE_USER_MANUAL' | translate}}
               </a> -->
-				<ol class="my-list" *ngIf="data['steps_' + switchLangService.current]?.length">
-					<li *ngFor="let step of data['steps_' + switchLangService.current]; let i = index">
-						{{ step.value }}
-					</li>
-				</ol>
-			</app-section>
-			<app-section sectionTitle="{{ 'SERVICE.CONDITIONS' | translate }}">
-				<ul
-					class="my-list"
-					*ngIf="data['conditionsAndRequirements_' + switchLangService.current]?.length"
-				>
-					<li *ngFor="let item of data['conditionsAndRequirements_' + switchLangService.current]">
-						{{ item.value }}
-					</li>
-				</ul>
-			</app-section>
+					<ol class="my-list" *ngIf="data['steps_' + switchLangService.current]?.length">
+						<li *ngFor="let step of data['steps_' + switchLangService.current]; let i = index">
+							{{ step.value }}
+						</li>
+					</ol>
+				</app-section>
+				<app-section sectionTitle="{{ 'SERVICE.CONDITIONS' | translate }}">
+					<ul class="my-list" *ngIf="data['conditionsAndRequirements_' + switchLangService.current]?.length">
+						<li *ngFor="let item of data['conditionsAndRequirements_' + switchLangService.current]">
+							{{ item.value }}
+						</li>
+					</ul>
+				</app-section>
 
-			<app-section sectionTitle="{{ 'SERVICE.REQUIRED_DOCS' | translate }}">
-				<ul class="my-list" *ngIf="data['requiredDocs_' + switchLangService.current]">
-					<li *ngFor="let doc of data['requiredDocs_' + switchLangService.current]">
-						{{ doc.value }}
-					</li>
-				</ul>
-			</app-section>
-			<!-- 
+				<app-section sectionTitle="{{ 'SERVICE.REQUIRED_DOCS' | translate }}">
+					<ul class="my-list" *ngIf="data['requiredDocs_' + switchLangService.current]">
+						<li *ngFor="let doc of data['requiredDocs_' + switchLangService.current]">
+							{{ doc.value }}
+						</li>
+					</ul>
+				</app-section>
+				<!-- 
           <app-section sectionTitle="{{'SERVICE.FAQ' | translate}}">
 
               <mat-accordion *ngIf="data?.FAQ?.length">
@@ -280,7 +251,7 @@
 
           </app-section> -->
 
-			<!-- <div class="app-section comments">
+				<!-- <div class="app-section comments">
               <div class="container-fluid p-0 no-padding">
                   <div class="section" class="sectionCard NoBack">
                       <div class="title">
@@ -350,7 +321,7 @@
                   </div>
               </div>
           </div> -->
-			<!-- <app-section NoBack={true} [hasPadding]="false" sectionTitle="{{'SERVICE.COMMENTS' | translate}}">
+				<!-- <app-section NoBack={true} [hasPadding]="false" sectionTitle="{{'SERVICE.COMMENTS' | translate}}">
               <div *ngFor="let comment of comments">
                   <small>{{'SERVICE.COMMENT_ON' | translate}}: {{comment._created*1000 | date:'yyyy-MM-dd'}}</small>
                   <p>
@@ -361,14 +332,14 @@
                   {{'service.No Comments' | translate}}
               </div>
           </app-section> -->
-			<!-- <app-section sectionTitle="{{'SERVICE.STEPS' | translate}}">
+				<!-- <app-section sectionTitle="{{'SERVICE.STEPS' | translate}}">
               <ol *ngIf=" data['steps_' + switchLangService.current]?.length">
                   <li *ngFor="let step of data['steps_' + switchLangService.current]">
                       {{step.value}}
                   </li>
               </ol>
           </app-section> -->
-			<!-- <app-section sectionTitle="{{'SERVICE.PRIMARY_SERVICE' |translate}}">
+				<!-- <app-section sectionTitle="{{'SERVICE.PRIMARY_SERVICE' |translate}}">
 
 
               <div class="inlineRowItem">
@@ -377,241 +348,201 @@
                       translate}}</span>
               </div>
           </app-section> -->
-			<!-- Tabs -->
-			<mat-tab-group animationDuration="0ms">
-				<mat-tab label="{{ 'SERVICE.FAQ' | translate }}">
-					<mat-accordion *ngIf="data?.FAQ?.length">
-						<mat-expansion-panel *ngFor="let item of data.FAQ">
-							<mat-expansion-panel-header>
-								{{ item['question_' + switchLangService.current] }}
-							</mat-expansion-panel-header>
-							{{ item['answer_' + switchLangService.current] }}
-						</mat-expansion-panel>
-					</mat-accordion>
-				</mat-tab>
-				<mat-tab label="{{ 'SERVICE.COMMENTS' | translate }}">
-					<div
-						fxLayout="row"
-						fxLayoutAlign="center top"
-						fxLayout.xs="column"
-						class="section__container"
-						[ngClass]="{
+				<!-- Tabs -->
+				<mat-tab-group animationDuration="0ms">
+					<mat-tab label="{{ 'SERVICE.FAQ' | translate }}">
+						<mat-accordion *ngIf="data?.FAQ?.length">
+							<mat-expansion-panel *ngFor="let item of data.FAQ">
+								<mat-expansion-panel-header>
+									{{ item['question_' + switchLangService.current] }}
+								</mat-expansion-panel-header>
+								{{ item['answer_' + switchLangService.current] }}
+							</mat-expansion-panel>
+						</mat-accordion>
+					</mat-tab>
+					<mat-tab label="{{ 'SERVICE.COMMENTS' | translate }}">
+						<div fxLayout="row" fxLayoutAlign="center top" fxLayout.xs="column" class="section__container"
+							[ngClass]="{
 							alignSwitchAR: switchLangService.currentLang == 'ar',
 							alignSwitchEN: switchLangService.currentLang == 'en'
-						}"
-					>
-						<div fxFlex="100">
-							<div *ngFor="let comment of comments">
-								<div class="comment-item">
-									<div class="comment-item-header">
-										<div class="user-info">
-											<div class="img">
-												<img src="../../../../assets/images/person.png" alt="user-img" />
+						}">
+							<div fxFlex="100">
+								<div *ngFor="let comment of comments">
+									<div class="comment-item">
+										<div class="comment-item-header">
+											<div class="user-info">
+												<div class="img">
+													<img src="../../../../assets/images/person.png" alt="user-img" />
+												</div>
+												<div class="info">
+													<div class="name">أسامة الزاهر</div>
+													<div class="email">example@example.example</div>
+												</div>
 											</div>
-											<div class="info">
-												<div class="name">أسامة الزاهر</div>
-												<div class="email">example@example.example</div>
+											<div class="time">
+												<div class="icon">
+													<svg id="clock" xmlns="http://www.w3.org/2000/svg" width="17"
+														height="17" viewBox="0 0 17 17">
+														<g id="Group_19421" data-name="Group 19421"
+															transform="translate(7.842 3.944)">
+															<g id="Group_19420" data-name="Group 19420">
+																<path id="Path_20424" data-name="Path 20424"
+																	d="M239.856,124.836l-2.37-1.778v-3.621a.658.658,0,1,0-1.317,0v3.95a.657.657,0,0,0,.263.527l2.634,1.975a.658.658,0,0,0,.79-1.053Z"
+																	transform="translate(-236.169 -118.779)"
+																	fill="#0eb3dd" />
+															</g>
+														</g>
+														<g id="Group_19423" data-name="Group 19423">
+															<g id="Group_19422" data-name="Group 19422">
+																<path id="Path_20425" data-name="Path 20425"
+																	d="M8.5,0A8.5,8.5,0,1,0,17,8.5,8.509,8.509,0,0,0,8.5,0Zm0,15.683A7.183,7.183,0,1,1,15.683,8.5,7.192,7.192,0,0,1,8.5,15.683Z"
+																	fill="#0eb3dd" />
+															</g>
+														</g>
+													</svg>
+												</div>
+												<div class="comment-time">
+													{{ 'SERVICE.COMMENT_ON' | translate }}
+													{{ comment._created * 1000 | date: 'yyyy-MM-dd' }}
+												</div>
 											</div>
 										</div>
-										<div class="time">
-											<div class="icon">
-												<svg
-													id="clock"
-													xmlns="http://www.w3.org/2000/svg"
-													width="17"
-													height="17"
-													viewBox="0 0 17 17"
-												>
-													<g
-														id="Group_19421"
-														data-name="Group 19421"
-														transform="translate(7.842 3.944)"
-													>
-														<g id="Group_19420" data-name="Group 19420">
-															<path
-																id="Path_20424"
-																data-name="Path 20424"
-																d="M239.856,124.836l-2.37-1.778v-3.621a.658.658,0,1,0-1.317,0v3.95a.657.657,0,0,0,.263.527l2.634,1.975a.658.658,0,0,0,.79-1.053Z"
-																transform="translate(-236.169 -118.779)"
-																fill="#0eb3dd"
-															/>
-														</g>
-													</g>
-													<g id="Group_19423" data-name="Group 19423">
-														<g id="Group_19422" data-name="Group 19422">
-															<path
-																id="Path_20425"
-																data-name="Path 20425"
-																d="M8.5,0A8.5,8.5,0,1,0,17,8.5,8.509,8.509,0,0,0,8.5,0Zm0,15.683A7.183,7.183,0,1,1,15.683,8.5,7.192,7.192,0,0,1,8.5,15.683Z"
-																fill="#0eb3dd"
-															/>
-														</g>
-													</g>
-												</svg>
-											</div>
-											<div class="comment-time">
-												{{ 'SERVICE.COMMENT_ON' | translate }}
-												{{ comment._created * 1000 | date: 'yyyy-MM-dd' }}
-											</div>
+										<div class="comment-item-body">
+											<div class="header">header</div>
+											<div class="body"></div>
+											{{ comment.commentText }}
 										</div>
-									</div>
-									<div class="comment-item-body">
-										<div class="header">header</div>
-										<div class="body"></div>
-										{{ comment.commentText }}
 									</div>
 								</div>
-							</div>
-							<div [hidden]="comments?.length">
-								{{ 'service.No Comments' | translate }}
-							</div>
-						</div>
-					</div>
-					<div class="comments comments-float-left">
-						<div class="sectionCard">
-							<div class="title">
-								<button>
-									<a> {{ 'SERVICE.ADD_COMMENT' | translate }}</a>
-								</button>
+								<div [hidden]="comments?.length">
+									{{ 'service.No Comments' | translate }}
+								</div>
 							</div>
 						</div>
-					</div>
-				</mat-tab>
-				<mat-tab label="{{ 'SERVICE.TAGS' | translate }}">
-					<div class="inlineRowItem">
-						<span [hidden]="data?.tag?.length">{{ 'SERVICE.NO_ENTRY' | translate }}</span>
-						<mat-chip-list class="mat-chip-list--inlineBlock" *ngIf="data?.tag">
-							<ng-container *ngFor="let tag of data.tag">
-								<mat-chip color="primary" *ngIf="tag.tag">{{ tag.tag }}</mat-chip>
-							</ng-container>
-						</mat-chip-list>
-					</div>
-				</mat-tab>
-			</mat-tab-group>
-		</div>
+						<div class="comments comments-float-left">
+							<div class="sectionCard">
+								<div class="title">
+									<button>
+										<a> {{ 'SERVICE.ADD_COMMENT' | translate }}</a>
+									</button>
+								</div>
+							</div>
+						</div>
+					</mat-tab>
+					<mat-tab label="{{ 'SERVICE.TAGS' | translate }}">
+						<div class="inlineRowItem">
+							<span [hidden]="data?.tag?.length">{{ 'SERVICE.NO_ENTRY' | translate }}</span>
+							<mat-chip-list class="mat-chip-list--inlineBlock" *ngIf="data?.tag">
+								<ng-container *ngFor="let tag of data.tag">
+									<mat-chip color="primary" *ngIf="tag.tag">{{ tag.tag }}</mat-chip>
+								</ng-container>
+							</mat-chip-list>
+						</div>
+					</mat-tab>
+				</mat-tab-group>
+			</div>
 
-		<div fxFlex.lt-lg="100" fxFlex.lt-xl="28" fxFlex.xl="24">
-			<app-section TypeB="{true}" sectionTitle=" {{ 'SERVICE.THE_RATING' | translate }}">
-				<div class="rating-stars">
-					<star-rating
-						[starType]="'custom-icon'"
-						[rating]="data?.rating ? data.rating : 0"
-						[readOnly]="true"
-						[showHalfStars]="true"
-					>
-					</star-rating>
-					<p class="mb-0 section-info">
-						<span>(</span>
-						<span>
-							{{ 'SERVICE.NUM_OF_VOTES' | translate }}
-						</span>
-						<span>:</span>
-						<span>40</span>
-						<span>)</span>
-						<span class="rate-precentage">{{
-							((data?.rating ? +data?.rating : 0) / 5) * 100
-						}}</span>
-					</p>
-					<!-- labelText="({{data?.rating ? data?.rating : 0}} / 5)*100" labelPosition="bottom" -->
-				</div>
-			</app-section>
-			<app-section TypeB="{true}" sectionTitle=" {{ 'SERVICE.REQUESTED_COUNT' | translate }}">
-				<div class="section-info">
-					<span>
-						{{ stats }}
-					</span>
-					<span class="sperator-sm">
-						{{ 'SERVICE.LAST_30DAYS' | translate }}
-					</span>
-				</div>
-			</app-section>
-			<app-section TypeB="{true}" sectionTitle="{{ 'SERVICE.BENEFICIARIES' | translate }}">
-				<div class="beneficiaries" *ngIf="segments && data?.beneficiaries">
-					<ng-container *ngFor="let item of data.beneficiaries; let i = index">
-						<span class="item">{{ item.description }}</span>
-						<span class="sperator" *ngIf="i < data?.beneficiaries.length - 1">|</span>
-					</ng-container>
-				</div>
-			</app-section>
-
-			<app-section TypeB="{true}" sectionTitle="{{ 'SERVICE.CLASSIFICATION' | translate }}">
-				<div class="section-info">
-					<p class="mb-0">
-						<span>
-							{{ 'service.Category' | translate }}
-						</span>
-						<span class="sperator-sm">:</span>
-						<span> {{ data?.category['categoryName_' + switchLangService.current] }} </span>
-					</p>
-					<!-- <span class="sperator">|</span> -->
-					<p class="mb-0">
-						<span>{{ 'service.Department' | translate }}</span>
-						<span class="sperator-sm">:</span>
-						<span>{{ department['departmentName_' + switchLangService.current] }}</span>
-					</p>
-				</div>
-			</app-section>
-
-			<app-section TypeB="{true}" sectionTitle="{{ 'SERVICE.GUIDE' | translate }}">
-				<div class="text-center">
-					<a *ngIf="!data?.serviceGuide">
-						<img src="../../../../assets/images/service-guid.png" alt="" />
-					</a>
-					<a
-						*ngIf="data?.serviceGuide"
-						href="{{ assets_url }}/{{ data?.serviceGuide }}"
-						target="_blank"
-					>
-						<img src="/assets/pdf.png" width="80" alt="" />
-					</a>
-				</div>
-			</app-section>
-			<app-section TypeB="{true}" [hidden]="true" sectionTitle="{{ 'SERVICE.VIDEO' | translate }}">
-				<!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-				<video
-					controls
-					width="324"
-					height="196"
-					src="{{ assets_url }}/storage/uploads/{{ data?.video?.path }}"
-				></video>
-			</app-section>
-			<app-section
-				TypeB="{true}"
-				sectionTitle="{{ 'SERVICE.SERVICE_LEVEL_AGREEMENT' | translate }}"
-			>
-				<div class="">{{ 'SERVICE.EXPECTED_TIME' | translate }}: {{ data?.expectedTime }}</div>
-
-				<div class="channels">
-					<span> {{ 'SERVICE.CHANNEL' | translate }}: </span>
-					<ng-container
-						*ngIf="data['channel_' + switchLangService.current]?.length"
-						class="mat-chip-list--inlineBlock"
-					>
-						<div
-							*ngFor="let channel of data['channel_' + switchLangService.current]; let i = index"
-						>
+			<div fxFlex.lt-lg="100" fxFlex.lt-xl="28" fxFlex.xl="24">
+				<app-section TypeB="{true}" sectionTitle=" {{ 'SERVICE.THE_RATING' | translate }}">
+					<div class="rating-stars">
+						<star-rating [starType]="'custom-icon'" [rating]="data?.rating ? data.rating : 0"
+							[readOnly]="true" [showHalfStars]="true">
+						</star-rating>
+						<p class="mb-0 section-info">
+							<span>(</span>
 							<span>
-								{{ channel.value }}
+								{{ 'SERVICE.NUM_OF_VOTES' | translate }}
 							</span>
-							<span
-								class="sperator"
-								*ngIf="i < data['channel_' + switchLangService.current]?.length - 1"
-							>
-								/
-							</span>
-						</div>
-					</ng-container>
-				</div>
-			</app-section>
+							<span>:</span>
+							<span>40</span>
+							<span>)</span>
+							<span class="rate-precentage">{{
+								((data?.rating ? +data?.rating : 0) / 5) * 100
+								}}</span>
+						</p>
+						<!-- labelText="({{data?.rating ? data?.rating : 0}} / 5)*100" labelPosition="bottom" -->
+					</div>
+				</app-section>
+				<app-section TypeB="{true}" sectionTitle=" {{ 'SERVICE.REQUESTED_COUNT' | translate }}">
+					<div class="section-info">
+						<span>
+							{{ stats }}
+						</span>
+						<span class="sperator-sm">
+							{{ 'SERVICE.LAST_30DAYS' | translate }}
+						</span>
+					</div>
+				</app-section>
+				<app-section TypeB="{true}" sectionTitle="{{ 'SERVICE.BENEFICIARIES' | translate }}">
+					<div class="beneficiaries" *ngIf="segments && data?.beneficiaries">
+						<ng-container *ngFor="let item of data.beneficiaries; let i = index">
+							<span class="item">{{ item.description }}</span>
+							<span class="sperator" *ngIf="i < data?.beneficiaries.length - 1">|</span>
+						</ng-container>
+					</div>
+				</app-section>
 
-			<!-- <app-section TypeB={true} sectionTitle="{{'SERVICE.REQUIRED_DOCS' | translate}}">
+				<app-section TypeB="{true}" sectionTitle="{{ 'SERVICE.CLASSIFICATION' | translate }}">
+					<div class="section-info">
+						<p class="mb-0">
+							<span>
+								{{ 'service.Category' | translate }}
+							</span>
+							<span class="sperator-sm">:</span>
+							<span> {{ data?.category['categoryName_' + switchLangService.current] }} </span>
+						</p>
+						<!-- <span class="sperator">|</span> -->
+						<p class="mb-0">
+							<span>{{ 'service.Department' | translate }}</span>
+							<span class="sperator-sm">:</span>
+							<span>{{ department['departmentName_' + switchLangService.current] }}</span>
+						</p>
+					</div>
+				</app-section>
+
+				<app-section TypeB="{true}" sectionTitle="{{ 'SERVICE.GUIDE' | translate }}">
+					<div class="text-center">
+						<a *ngIf="!data?.serviceGuide">
+							<img src="../../../../assets/images/service-guid.png" alt="" />
+						</a>
+						<a *ngIf="data?.serviceGuide" href="{{ assets_url }}/{{ data?.serviceGuide }}" target="_blank">
+							<img src="/assets/pdf.png" width="80" alt="" />
+						</a>
+					</div>
+				</app-section>
+				<app-section TypeB="{true}" [hidden]="true" sectionTitle="{{ 'SERVICE.VIDEO' | translate }}">
+					<!-- <iframe width="324" height="196" src="https://www.youtube.com/embed/neOr5KdPW_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+					<video controls width="324" height="196"
+						src="{{ assets_url }}/storage/uploads/{{ data?.video?.path }}"></video>
+				</app-section>
+				<app-section TypeB="{true}" sectionTitle="{{ 'SERVICE.SERVICE_LEVEL_AGREEMENT' | translate }}">
+					<div class="">{{ 'SERVICE.EXPECTED_TIME' | translate }}: {{ data?.expectedTime }}</div>
+
+					<div class="channels">
+						<span> {{ 'SERVICE.CHANNEL' | translate }}: </span>
+						<ng-container *ngIf="data['channel_' + switchLangService.current]?.length"
+							class="mat-chip-list--inlineBlock">
+							<div *ngFor="let channel of data['channel_' + switchLangService.current]; let i = index">
+								<span>
+									{{ channel.value }}
+								</span>
+								<span class="sperator"
+									*ngIf="i < data['channel_' + switchLangService.current]?.length - 1">
+									/
+								</span>
+							</div>
+						</ng-container>
+					</div>
+				</app-section>
+
+				<!-- <app-section TypeB={true} sectionTitle="{{'SERVICE.REQUIRED_DOCS' | translate}}">
               <ul class="my-list" *ngIf="data['requiredDocs_' + switchLangService.current]">
                   <li *ngFor="let doc of data['requiredDocs_' + switchLangService.current]">
                       {{doc.value}}
                   </li>
               </ul>
           </app-section> -->
-			<!-- 
+				<!-- 
           <app-section NoBack={true} sectionTitle="{{'SERVICE.TAGS' | translate}}">
 
               <div class="inlineRowItem">
@@ -626,18 +557,18 @@
 
           </app-section> -->
 
-			<!-- <app-section sectionTitle="{{'SERVICE.STATISTICS' | translate}}">
+				<!-- <app-section sectionTitle="{{'SERVICE.STATISTICS' | translate}}">
               <b [translate]="'SERVICE.REQUESTED_ON_LAST_30DAYS'" [translateParams]="{value: stats}"></b>
           </app-section> -->
 
-			<!-- <app-section sectionTitle="{{'SERVICE.RATING' | translate}}">
+				<!-- <app-section sectionTitle="{{'SERVICE.RATING' | translate}}">
 
               <star-rating [starType]="'icon'" [rating]="data?.rating ? data.rating : 0" [readOnly]="true" [showHalfStars]="true" labelText="{{data?.rating ? data?.rating : 0}} / 5" labelPosition="bottom">
               </star-rating>
 
           </app-section> -->
 
-			<!-- <app-section sectionTitle="{{'SERVICE.BENEFICIARIES' | translate}}">
+				<!-- <app-section sectionTitle="{{'SERVICE.BENEFICIARIES' | translate}}">
               <ul *ngIf="segments && data?.beneficiaries">
                   <ng-container *ngFor="let item of data.beneficiaries">
                       <li>{{item.description}}</li>
@@ -645,7 +576,7 @@
               </ul>
           </app-section> -->
 
-			<!-- <app-section sectionTitle="{{'SERVICE.CLASSIFICATION' | translate}}">
+				<!-- <app-section sectionTitle="{{'SERVICE.CLASSIFICATION' | translate}}">
               <ul>
                   <li>{{'service.Category' | translate }}: {{data?.category['categoryName_' + switchLangService.current]}}
                   </li>
@@ -653,6 +584,7 @@
                   </li>
               </ul>
           </app-section> -->
+			</div>
 		</div>
-	</div>
-</app-page>
+	</app-page>
+</div>
