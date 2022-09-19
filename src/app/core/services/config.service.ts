@@ -1,237 +1,202 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable, of } from 'rxjs';
-import { map } from 'rxjs/internal/operators/map';
-import { catchError, tap } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { TranslateService } from '@ngx-translate/core';
 import { FormConfigService } from 'src/formio/src/public_api';
+import { DEFAULTS_IMAGES, DEFAULTS_THEM_OPTIONS, DEFAULT_CONFIG } from '../consts';
 declare let FontFace: any;
 
 @Injectable({ providedIn: 'root' })
-
 export class ConfigService {
-    private storageCssKey = "_fo_css_variable"
-    private style = 'locale-style';
-    private config = null;
-    private defaults = [{
-        backgroundColor: 'rgb(235, 235, 235)',
-        primary50: 'rgb(232, 243, 245)',
-        primary100: 'rgb(197, 224, 230)',
-        primary200: 'rgb(158, 204, 213)',
-        primary300: 'rgb(119, 183, 196)',
-        primary400: 'rgb(90, 167, 183)',
-        primary500: 'rgb(61, 152, 170)',
-        primary600: 'rgb(55, 144, 163)',
-        primary700: 'rgb(47, 133, 153)',
-        primary800: 'rgb(39, 123, 144)',
-        primary900: 'rgb(26, 106, 127)',
-        primaryA100: 'rgb(184, 239, 255)',
-        primaryA200: '#85e3ff',
-        primaryA400: 'rgb(82, 215, 255)',
-        primaryA700: 'rgb(57, 209, 255)',
-        primaryContrast50: 'rgb(0, 0, 0)',
-        primaryContrast100: 'rgb(0, 0, 0)',
-        primaryContrast200: 'rgb(0, 0, 0)',
-        primaryContrast300: 'rgb(0, 0, 0)',
-        primaryContrast400: 'rgb(0, 0, 0)',
-        primaryContrast500: 'rgb(255, 255, 255)',
-        primaryContrast600: 'rgb(255, 255, 255)',
-        primaryContrast700: 'rgb(255, 255, 255)',
-        primaryContrast800: 'rgb(255, 255, 255)',
-        primaryContrast900: 'rgb(255, 255, 255)',
-        primaryContrastA100: 'rgb(0, 0, 0)',
-        primaryContrastA200: 'rgb(0, 0, 0)',
-        primaryContrastA400: 'rgb(0, 0, 0)',
-        primaryContrastA700: 'rgb(0, 0, 0)',
-        accent50: 'rgb(230, 243, 240)',
-        accent100: 'rgb(191, 224, 218)',
-        accent200: 'rgb(149, 204, 194)',
-        accent300: 'rgb(107, 184, 170)',
-        accent400: 'rgb(75, 168, 151)',
-        accent500: 'rgb(43, 153, 133)',
-        accent600: 'rgb(38, 145, 125)',
-        accent700: 'rgb(32, 134, 114)',
-        accent800: 'rgb(26, 124, 104)',
-        accent900: 'rgb(16, 107, 85)',
-        accentA100: 'rgb(160, 255, 230)',
-        accentA200: 'rgb(109, 255, 217)',
-        accentA400: 'rgb(58, 255, 203)',
-        accentA700: 'rgb(32, 255, 197)',
-        accentContrast50: 'rgb(0, 0, 0)',
-        accentContrast100: 'rgb(0, 0, 0)',
-        accentContrast200: 'rgb(0, 0, 0)',
-        accentContrast300: 'rgb(0, 0, 0)',
-        accentContrast400: 'rgb(0, 0, 0)',
-        accentContrast500: 'rgb(255, 255, 255)',
-        accentContrast600: 'rgb(255, 255, 255)',
-        accentContrast700: 'rgb(255, 255, 255)',
-        accentContrast800: 'rgb(255, 255, 255)',
-        accentContrast900: 'rgb(255, 255, 255)',
-        accentContrastA100: 'rgb(0, 0, 0)',
-        accentContrastA200: 'rgb(0, 0, 0)',
-        accentContrastA400: 'rgb(0, 0, 0)',
-        accentContrastA700: 'rgb(0, 0, 0)',
-        primaryColor: '#00adc3',
-        warningColor: '#f0b432',
-        accentColor: '#0c7782',
-        secondaryColor: '#666',
-        successColor: '#3aad6d',
-        accentColor200: '#2185b8',
-        redColor: 'rgb(255, 0, 0)',
-        accentColor50: '#1c719b',
-        customCss: `
-        .app-formio .btn:not(.editgrid-add-btn){
-            border-radius: 12px!important;
-        }`
-    }];
+	private storageCssKey = '_fo_css_variable';
+	private style = 'locale-style';
+	private config = null;
 
-    constructor(private http: HttpClient, private translate: TranslateService, private formConfigService: FormConfigService) {
-    }
+	get logo(): string {
+		return !this.config || !this.config?.logo
+			? null
+			: `${environment.cms}${this.config?.logo?.path}`;
+	}
 
-    getAppConfig(queryParams = {}): Observable<any> {
-        if (!environment.appConfig['endpoint'] || !environment.appConfig['id'])
-            return from(
-                [{
-                    entries: this.defaults
-                }]
-            );
+	get smallLogo(): string {
+		return !this.config || !this.config.smallLogo
+			? null
+			: `${environment.cms}${this.config.smallLogo.path}`;
+	}
 
-        const endpoint = `${environment.cms}${environment.appConfig['endpoint']}?filter[_id]=${environment.appConfig['id']}`;
-        return this.http.post<any>(endpoint, {}).pipe(
-            map(resp => (resp)),
-            catchError((e) => {
-                return from(
-                    [{
-                        entries: this.defaults
-                    }]
-                );
-            }));
-    }
+	get userAvatar(): string {
+		return !this.config || !this.config?.userAvatar
+			? null
+			: `${environment.cms}${this.config?.userAvatar?.path}`;
+	}
 
-    async loadConfig(): Promise<any> {
-        const cssVariable = localStorage.getItem(this.storageCssKey);
-        if (cssVariable) {
-            const cachedData = JSON.parse(cssVariable);
+	constructor(private http: HttpClient, private formConfigService: FormConfigService) {}
 
-            // //just for test
-            // return  this.getUpdatedConfig();
+	getAppConfig(queryParams = {}): Observable<any> {
+		const defaultConfig$ = from([
+			{
+				entries: DEFAULT_CONFIG,
+			},
+		]);
 
-            if (!environment.appConfig['frontOfficeSettings']) this.getUpdatedConfig();
-            const endpoint = `${environment.cms}/${environment.appConfig['frontOfficeSettings']}`;
-            try {
-                const result = await this.http.post<any>(endpoint, {}).toPromise();
-                if (result.revisionsNumber == cachedData.entries[0].revisionsNumber)
-                    return this.getDefaultCachedData(cachedData);
-                else return this.getUpdatedConfig();
-            } catch (e) {
-                return this.getDefaultCachedData(cachedData);
-            }
-        } else {
-            return this.getUpdatedConfig();
-        }
-    }
+		if (!environment.appConfig['endpoint'] || !environment.appConfig['id']) {
+			return defaultConfig$;
+		}
+		const endpoint = `${environment.cms}${environment.appConfig['endpoint']}?filter[_id]=${environment.appConfig['id']}`;
 
-    private getDefaultCachedData(cachedData) {
-        return new Promise((resolve, _) => {
-            this.config = cachedData.entries[0];
-            resolve(this.config);
-        });
-    }
+		return this.http.post<any>(endpoint, {}).pipe(catchError((e) => defaultConfig$));
+	}
 
-    private getUpdatedConfig() {
-        return new Promise(async (resolve, reject) => {
-            if (this.config) {
-                resolve(this.config);
-                return;
-            }
+	async loadConfig(): Promise<any> {
+		const cssVariable = localStorage.getItem(this.storageCssKey);
+		if (!cssVariable) {
+			return this.getUpdatedConfig();
+		}
 
-            this.getAppConfig().toPromise()
-                .then(async (result) => {
-                    localStorage.setItem(this.storageCssKey, JSON.stringify(result));
-                    this.config = result.entries[0];
-                    resolve(this.config);
-                },
-                    () => reject('App Config could not be loaded.')
-                );
-        });
-    }
+		const cachedData = JSON.parse(cssVariable);
+		const currentRevision = cachedData.entries[0].revisionsNumber;
 
-    setupEssentials() {
-        if (!this.config) return;
-        this.formConfigService.config$.next(this.config);
-        Object.keys(this.config).forEach(key => {
-            if ((key.includes('primary') || key.includes('accent') || key.includes('background') || key.includes('Color')) && this.config[key]) {
-                document.documentElement.style.setProperty(`--${key}`, this.config[key]);
-                document.documentElement.style.setProperty(`--${key}-parts`,
-                    this.config[key].replace('rgb', '').replace('(', '').replace(')', ''));
-            } else if (key.includes('favicon') && this.config[key] && document.getElementById('favicon')) {
-                document.getElementById('favicon').setAttribute('href', `${environment.cms}/${this.config[key].path}`);
-            } else if ((key.includes('logo') || key.includes('smallLogo') || key.includes('userAvatar') || key.includes('sectionsIcon')) && this.config[key] && this.config[key].path) {
-                const path = `url("${environment.cms}${this.config[key].path}")`;
-                document.documentElement.style.setProperty(`--${key}`, path);
-            } else if (key.includes('fontFamily') && this.config[key]) {
-                document.documentElement.style.setProperty(`--font`, 'font');
-            }
-        });
-        if (!this.config.fontFamily)
-            document.documentElement.style.setProperty(`--font`, 'Din-Next-Lt-Arabic_Regular');
+		if (!environment.appConfig['frontOfficeSettings']) {
+			this.getUpdatedConfig();
+		}
 
-        if (!this.config.favicon)
-            document.getElementById('favicon').setAttribute('href', `/assets/favicon.ico`);
+		try {
+			const isSameVersion = await this._validateCurrentRevisions(currentRevision);
+			return isSameVersion ? this.getDefaultCachedData(cachedData) : this.getUpdatedConfig();
+		} catch (e) {
+			return this.getDefaultCachedData(cachedData);
+		}
+	}
 
-        if (this.config.name)
-            document.title = this.config.name;
+	private async _validateCurrentRevisions(currentRevision) {
+		const endpoint = `${environment.cms}/${environment.appConfig['frontOfficeSettings']}`;
+		const result = await this.http.post<any>(endpoint, {}).toPromise();
+		return result.revisionsNumber == currentRevision;
+	}
 
-        this.changeFont();
-        this.loadOverrideCss();
-    }
+	private getDefaultCachedData(cachedData) {
+		return new Promise((resolve, _) => {
+			this.config = cachedData.entries[0];
+			resolve(this.config);
+		});
+	}
 
-    private changeFont() {
-        if (this.config.fontFamily) {
-            var customfont = new FontFace('font', `url(${this.config.fontFamily})`);
-            customfont.load().then(loaded_face => {
-                (document as any).fonts.add(loaded_face);
-            }).catch(error => {
-                console.log(error);
-            });
-        }
-    }
+	private getUpdatedConfig() {
+		return new Promise(async (resolve, reject) => {
+			if (this.config) {
+				resolve(this.config);
+				return;
+			}
 
-    private loadOverrideCss() {
-        const stylesheet = document.createElement('link');
-        stylesheet.addEventListener('load', () => { });
-        stylesheet.rel = 'stylesheet';
-        stylesheet.href = this.style + '.css';
-        document.getElementsByTagName('head')[0].appendChild(stylesheet);
+			this.getAppConfig()
+				.toPromise()
+				.then(
+					async (result) => {
+						localStorage.setItem(this.storageCssKey, JSON.stringify(result));
+						this.config = result.entries[0];
+						resolve(this.config);
+					},
+					() => reject('App Config could not be loaded.')
+				);
+		});
+	}
 
-        const css = this.config.customCss;
-        var head = document.head || document.getElementsByTagName('head')[0],
-            style = document.createElement('style') as any;
+	setupEssentials(): void {
+		if (!this.config) {
+			return;
+		}
+		this.formConfigService.config$.next(this.config);
+		this.changeFont();
+		const cssVars = this._generateCssVars();
+		this._appendCssVarsToRoot(cssVars);
+		this.loadOverrideCss();
+	}
 
-        head.appendChild(style);
+	private _extendsOptions(config): { [x: string]: any } {
+		return {
+			...DEFAULTS_THEM_OPTIONS,
+			...config,
+			fontFamily: !!config?.fontFamily ? 'font' : DEFAULTS_THEM_OPTIONS?.fontFamily,
+			favicon: !!config?.favicon?.path
+				? `${environment.cms}/${config?.favicon?.path}`
+				: DEFAULTS_THEM_OPTIONS.favicon,
+		};
+	}
 
-        style.type = 'text/css';
-        if (style.styleSheet) {
-            // This is required for IE8 and below.
-            style.styleSheet.cssText = css;
-        } else {
-            style.appendChild(document.createTextNode(css));
-        }
-    }
+	private _getCssColorVar(key, color): string {
+		const [red, green, blue] = color.match(/[\d\.]+/g);
+		const parts = red + ',' + green + ',' + blue;
+		return `--${key}:${color};--${key}-parts:${parts} ;`;
+	}
 
-    get logo() {
-        if (!this.config || !this.config.logo) return null;
-        return `${environment.cms}${this.config.logo.path}`;
-    }
+	private _generateCssVars(): string {
+		let cssVars = '';
+		const imagesKeys = Object.keys(DEFAULTS_IMAGES);
+		const options = this._extendsOptions(this.config);
 
-    get smallLogo() {
-        if (!this.config || !this.config.smallLogo) return null;
-        return `${environment.cms}${this.config.smallLogo.path}`;
-    }
+		for (const [key, value] of Object.entries(options)) {
+			if (key === 'name') {
+				document.title = `${value}`;
+				continue;
+			}
+			if (key === 'fontFamily') {
+				cssVars += `--font:${value};`;
+				continue;
+			}
 
-    get userAvatar() {
-        if (!this.config || !this.config.userAvatar) return null;
-        return `${environment.cms}${this.config.userAvatar.path}`;
-    }
+			if (CSS.supports('color', value as any)) {
+				cssVars += this._getCssColorVar(key, value);
+				continue;
+			}
+
+			if (imagesKeys.includes(key) && (value as any)?.path) {
+				const path = `url("${environment.cms}${(value as any)?.path}")`;
+				cssVars += `--${key}:${path};`;
+				continue;
+			}
+
+			if (key === 'favicon') {
+				document.getElementById('favicon').setAttribute('href', `${value}`);
+				continue;
+			}
+		}
+		return cssVars;
+	}
+
+	private _appendCssVarsToRoot(cssVars): void {
+		const sheet = document.createElement('style');
+		sheet.id = 'root';
+		sheet.innerHTML = `:root{${cssVars}}`;
+		document.head.appendChild(sheet);
+	}
+
+	private changeFont(): void {
+		if (this.config.fontFamily) {
+			var customFont = new FontFace('font', `url(${this.config.fontFamily})`);
+			customFont
+				.load()
+				.then((loaded_face) => {
+					(document as any).fonts.add(loaded_face);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+	}
+
+	private loadOverrideCss(): void {
+		const head = document.head || document.getElementsByTagName('head')[0];
+
+		const stylesheet = document.createElement('link');
+		stylesheet.rel = 'stylesheet';
+		stylesheet.href = this.style + '.css';
+		head.appendChild(stylesheet);
+
+		const css = this.config?.customCss ?? '';
+		var style = document.createElement('style') as any;
+		style.type = 'text/css';
+		style.innerHTML = css;
+		head.appendChild(style);
+	}
 }
