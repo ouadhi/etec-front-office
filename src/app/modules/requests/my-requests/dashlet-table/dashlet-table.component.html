@@ -1,7 +1,7 @@
 <div class="app-dashlet-table">
 	<app-section sectionTitle="{{ title }}" [hasPadding]="false">
 		<div class="content">
-			<app-dashlet-filter
+		<app-dashlet-filter
 				[show]="showFilter"
 				(onFilter)="onFilter($event)"
 				[currentLang]="currentLanguage$ | async"

@@ -24,6 +24,7 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 	stats = 0;
 	isLoggedIn = false;
 	active = false;
+	loading = true;
 	department = {
 		departmentName_ar: '',
 		departmentName_en: '',
@@ -54,13 +55,14 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 						this.servicesService.getCollectionEntryById(
 							'department',
 							'_id',
-							res.category.department._id
+							res?.category?.department?._id
 						),
 						this._getSegmentsByIds(res.beneficiaries),
 					])
 				)
 			)
 			.subscribe(([data, requestsCount, comments, collection, segments]) => {
+				this.loading = false;
 				this.data = data;
 				this.stats = requestsCount;
 				this.comments = comments.entries;

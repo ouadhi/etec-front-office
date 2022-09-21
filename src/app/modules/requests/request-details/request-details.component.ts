@@ -55,7 +55,7 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 
 	currentRequestTask: any;
 	isLoggedIn = false;
-
+	loading = true;
 	user: any;
 	isAdmin = false;
 
@@ -95,9 +95,10 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 	private getData() {
 		this.sub = this.rest.getRequest(this.id).subscribe(
 			(data) => {
+				this.loading = false;
 				this.processInstanceId = data.procInstID;
 				this.serviceId = data.serviceId;
-				if (this.processInstanceId){
+				if (this.processInstanceId) {
 					this.sub = this.rest
 						.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
 						.subscribe((data) => {

@@ -1,6 +1,7 @@
 <!-- <formio formKey="testimadservice"></formio> -->
+<div class="loader" *ngIf="loading"></div>
 
-<div class="app-service-catalog">
+<div class="app-service-catalog" *ngIf="!loading">
 	<ng-container [ngTemplateOutlet]="alerts"></ng-container>
 
 	<div fxLayout="row" class="service-page-title">
@@ -24,6 +25,7 @@
 			</div>
 		</div>
 	</div> -->
+
 
 	<div
 		fxLayout="row"
@@ -346,6 +348,7 @@
 			</mat-drawer-container>
 		</div>
 	</app-page>
+
 </div>
 
 <ng-template #alerts>

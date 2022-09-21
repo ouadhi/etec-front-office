@@ -1,4 +1,5 @@
-<div class="app-page">
+<div class="loader" *ngIf="showLoader"></div>
+<div class="app-page" *ngIf="!showLoader">
 	<div class="container-fluid">
 		<div class="page" fxLayout="row" fxLayoutAlign="center top" fxLayout.xs="column" fxFlexFill>
 			<div fxFlex="100">
