@@ -41,6 +41,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 	data: any;
 	params;
 	isLoggedIn = false;
+	isAdmin = false;
 	submission = { data: {} };
 
 	hasResult = false;
@@ -57,6 +58,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 		this.user = await this.userService.getUserData(
 			this.isLoggedIn ? await this.keycloakService.getToken() : null
 		);
+		this.isAdmin = this.user?.currentUser_groups?.includes('Admins');
 
 		this.sub = this.translateService.onLangChange.subscribe(() => this.getData());
 		this.sub = this.route.params.subscribe(async (params) => {
