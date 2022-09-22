@@ -30,7 +30,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit {
 	requestsTotalCount: string;
 	env = environment;
 	public keyword = '';
-
+	loading = true;
 	dataFilters: any = {
 		category: { _id: null, department: { _id: null } },
 		segmentsGroup_inline: [],
@@ -272,6 +272,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit {
 	// and add two new keys : 1st (segments_inline -> for beneficiaries), 2nd (tags_inline -> for tags)
 	search() {
 		this.sub = this.servicesService.getServices().subscribe((data) => {
+			this.loading = false;
 			this.filtered = this.data = data?.entries;
 			this.totalResult = data?.entries?.length;
 			// transform data structure

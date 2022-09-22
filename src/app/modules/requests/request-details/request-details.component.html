@@ -1,4 +1,5 @@
-<app-page class="app-request-details">
+
+<app-page class="app-request-details" [showLoader]="loading">
 	<app-section sectionTitle="{{ 'Steps' | translate }} {{ request?.requestName }}">
 		<div class="action-container pad-5 text-center" *ngIf="showFeedbackButton">
 			<a

@@ -1,107 +1,144 @@
-<app-page class="app-request-task">
-    <app-section *ngIf="proccessName" sectionTitle="{{proccessName}}">
+<app-page class="app-request-task" [showLoader]="loading">
+	<app-section *ngIf="proccessName" sectionTitle="{{ proccessName }}">
+		<formio-loader></formio-loader>
+		<!-- file lock -->
+		<div
+			class="lockContainer padder"
+			*ngIf="!enableLock && request?.requestLocksDTO?.process == 'LOCKED'"
+		>
+			<div class="lockMessage">
+				<div class="lockIcon">
+					<ion-icon [name]="'lock-closed-outline'"></ion-icon>
+				</div>
+				<div class="col auto-width">
+					<ng-container
+						*ngIf="
+							request.requestLocksDTO.processedBy == user.currentUser_preferred_username;
+							else showName
+						"
+					>
+						{{ 'requestLock.The request has been locked by you' | translate }}
+					</ng-container>
+					<ng-template #showName>
+						{{ 'requestLock.The request has been locked by' | translate }}
+						<strong *ngIf="request.requestLocksDTO.processedBy">
+							{{ request.requestLocksDTO.processorFullName }}
+						</strong>
+					</ng-template>
 
-        <formio-loader></formio-loader>
-        <!-- file lock -->
-        <div class="lockContainer padder" *ngIf="!enableLock && request?.requestLocksDTO?.process == 'LOCKED'">
-            <div class="lockMessage">
-                <div class="lockIcon">
-                    <ion-icon [name]="'lock-closed-outline'"></ion-icon>
-                </div>
-                <div class="col auto-width">
-                    <ng-container
-                        *ngIf="request.requestLocksDTO.processedBy == user.currentUser_preferred_username;else showName">
-                        {{'requestLock.The request has been locked by you' | translate}}
-                    </ng-container>
-                    <ng-template #showName>
-                        {{'requestLock.The request has been locked by' | translate}}
-                        <strong *ngIf="request.requestLocksDTO.processedBy">
-                            {{request.requestLocksDTO.processorFullName}}
-                        </strong>
-                    </ng-template>
+					{{ 'requestLock.in date' | translate }}
+					<strong *ngIf="request.requestLocksDTO.processDate">
+						{{ request.requestLocksDTO.processDate | date: 'yyyy-MM-dd' }}</strong
+					>.
+				</div>
+			</div>
+			<div
+				*ngIf="
+					user.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin
+				"
+			>
+				<button class="unlock" href="javascript:" (click)="unlock()">
+					<ion-icon name="lock-open-outline"></ion-icon>
+					{{ 'requestLock.unLock' | translate }}
+				</button>
+			</div>
+		</div>
 
-                    {{'requestLock.in date' | translate}}
-                    <strong *ngIf="request.requestLocksDTO.processDate">
-                        {{request.requestLocksDTO.processDate | date : 'yyyy-MM-dd'}}</strong>.
-                </div>
-            </div>
-            <div *ngIf="user.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin">
-                <button class="unlock" href="javascript:" (click)="unlock()">
-                    <ion-icon name="lock-open-outline"></ion-icon>
-                    {{'requestLock.unLock' | translate}}
-                </button>
-            </div>
-        </div>
+		<!-- task lock -->
+		<ng-container *ngIf="enableLock">
+			<div
+				class="lockContainer padder"
+				*ngIf="request?.requestLocksDTO?.process == 'LOCKED'; else notLocked"
+			>
+				<div class="lockMessage">
+					<div class="lockIcon">
+						<ion-icon [name]="'lock-closed-outline'"></ion-icon>
+					</div>
+					<div class="col auto-width">
+						<ng-container
+							*ngIf="
+								request.requestLocksDTO.processedBy == user?.currentUser_preferred_username;
+								else showName
+							"
+						>
+							{{ 'requestLock.The request has been locked by you' | translate }}
+						</ng-container>
+						<ng-template #showName>
+							{{ 'requestLock.The request has been locked by' | translate }}
+							<strong *ngIf="request.requestLocksDTO.processedBy">
+								{{ request.requestLocksDTO.processorFullName }}
+							</strong>
+						</ng-template>
 
-        <!-- task lock -->
-        <ng-container *ngIf="enableLock">
-            <div class="lockContainer padder" *ngIf="request?.requestLocksDTO?.process == 'LOCKED';else notLocked">
-                <div class="lockMessage">
-                    <div class="lockIcon">
-                        <ion-icon [name]="'lock-closed-outline'"></ion-icon>
-                    </div>
-                    <div class="col auto-width">
-                        <ng-container
-                            *ngIf="request.requestLocksDTO.processedBy == user?.currentUser_preferred_username;else showName">
-                            {{'requestLock.The request has been locked by you' | translate}}
-                        </ng-container>
-                        <ng-template #showName>
-                            {{'requestLock.The request has been locked by' | translate}}
-                            <strong *ngIf="request.requestLocksDTO.processedBy">
-                                {{request.requestLocksDTO.processorFullName}}
-                            </strong>
-                        </ng-template>
+						{{ 'requestLock.in date' | translate }}
+						<strong *ngIf="request.requestLocksDTO.processDate">
+							{{ request.requestLocksDTO.processDate | date: 'yyyy-MM-dd' }}</strong
+						>.
+					</div>
+				</div>
+				<div
+					*ngIf="
+						user?.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin
+					"
+				>
+					<button class="unlock" href="javascript:" (click)="unlockTask()">
+						<ion-icon name="lock-open-outline"></ion-icon>
+						{{ 'requestLock.unLock' | translate }}
+					</button>
+				</div>
+			</div>
 
-                        {{'requestLock.in date' | translate}}
-                        <strong *ngIf="request.requestLocksDTO.processDate">
-                            {{request.requestLocksDTO.processDate | date : 'yyyy-MM-dd'}}</strong>.
-                    </div>
-                </div>
-                <div *ngIf="user?.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin">
-                    <button class="unlock" href="javascript:" (click)="unlockTask()">
-                        <ion-icon name="lock-open-outline"></ion-icon>
-                        {{'requestLock.unLock' | translate}}
-                    </button>
-                </div>
-            </div>
+			<ng-template #notLocked>
+				<div class="lockContainer padder">
+					<div class="lockMessage">
+						<div class="lockIcon">
+							<ion-icon [name]="'lock-closed-outline'"></ion-icon>
+						</div>
+						<div class="col auto-width">
+							{{ 'requestLock.lockMessage' | translate }}
+						</div>
+					</div>
+					<div>
+						<button class="unlock" href="javascript:" (click)="lockTask()">
+							<ion-icon name="lock-closed-outline"></ion-icon>
+							{{ 'requestLock.lock' | translate }}
+						</button>
+					</div>
+				</div>
+			</ng-template>
+		</ng-container>
+	</app-section>
 
-            <ng-template #notLocked>
-                <div class="lockContainer padder">
-                    <div class="lockMessage">
-                        <div class="lockIcon">
-                            <ion-icon [name]="'lock-closed-outline'"></ion-icon>
-                        </div>
-                        <div class="col auto-width">
-                            {{'requestLock.lockMessage' | translate}}
-                        </div>
-                    </div>
-                    <div>
-                        <button class="unlock" href="javascript:" (click)="lockTask()">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
-                            {{'requestLock.lock' | translate}}
-                        </button>
-                    </div>
-                </div>
-            </ng-template>
-        </ng-container>
-    </app-section>
+	<formio
+		*ngIf="form.ready"
+		[formKey]="form.formKey"
+		[params]="params"
+		[ngClass]="{ readOnly: form.readOnly }"
+		[submission]="submission"
+		[viewOnly]="form.readOnly"
+		[readOnly]="form.readOnly"
+		(beforeSetForm)="beforeSetForm($event.formio, $event.form)"
+		(onSubmit)="onSubmit($event)"
+		(submit)="onSubmit($event)"
+		(formLoad)="formLoad($event)"
+	></formio>
 
-    <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
-        [submission]="submission" [viewOnly]="form.readOnly" [readOnly]="form.readOnly"
-        (beforeSetForm)="beforeSetForm($event.formio,$event.form)" (onSubmit)="onSubmit($event)"
-        (submit)="onSubmit($event)" (formLoad)="formLoad($event)"></formio>
-
-    <div id="custom-actions"
-        class="form-group has-feedback formio-component formio-component-button formio-component-submit  form-group">
-        <button class="submit-task btn btn-primary btn-md" href="javascript:"
-            (click)="customSubmit(formComponent.submission)"
-            [disabled]="formComponent?.formio?.invalid == true || isLocked()">
-            {{'forms.common.Submit' | translate}}
-        </button>
-        <br />
-        <br />
-    </div>
-    <!-- <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
+	<div
+		id="custom-actions"
+		class="form-group has-feedback formio-component formio-component-button formio-component-submit form-group"
+	>
+		<button
+			class="submit-task btn btn-primary btn-md"
+			href="javascript:"
+			(click)="customSubmit(formComponent.submission)"
+			[disabled]="formComponent?.formio?.invalid == true || isLocked()"
+		>
+			{{ 'forms.common.Submit' | translate }}
+		</button>
+		<br />
+		<br />
+	</div>
+	<!-- <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
         [submission]="submission" [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (onSubmit)="onSubmit($event)"
         (submit)="onSubmit($event)" (formLoad)="formLoad($event)"></formio>
 

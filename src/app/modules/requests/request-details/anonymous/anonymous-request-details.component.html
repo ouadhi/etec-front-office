@@ -1,4 +1,4 @@
-<app-page class="app-anonymous-request-details">
+<app-page class="app-anonymous-request-details" [showLoader]="!formReady">
   <app-section sectionTitle="{{'Steps' | translate}} {{request?.requestName}}">
     <div class="padder" *ngIf="(isLoggedIn || showEditTask) && (hasTask || tasks?.length)"
       [ngClass]="{'alignSwitchAR': switchLangService.currentLang=='ar', 'alignSwitchEN':switchLangService.currentLang=='en'}">
