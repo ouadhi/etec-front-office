@@ -12,6 +12,7 @@ export class PageComponent extends BaseComponent implements OnInit {
 	@Input() pageTitle?;
 	@Input() pageTitleNarrow?;
 	@Input() hasBackButton?;
+	@Input() showLoader = false;
 
 	constructor(public injector: Injector) {
 		super(injector);

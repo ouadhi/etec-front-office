@@ -1,18 +1,25 @@
-<app-page class="app-user-profile">
-    <!-- <button (click)="hasResult = !hasResult">test</button> -->
-    <div class="container-fluid">
-        <app-section sectionTitle="{{userInfoObject ? userInfoObject?.FName : ''}}" [hasPadding]="false">
-            <div class="edit-btn">
-                <a [href]="url" class="btn btn-primary" target="_blank"><i class="fa fa-edit"></i> </a>
-            </div>
-            <h4>{{  "MY_PROFILE"|translate }} </h4>
-            <div class="user-border">
-                <div class="user-image"><i class="fa fa-user"></i></div>
-                <formio *ngIf="formReady" [formKey]="id" [readOnly]="true" [submission]="submission"
-                        class="container">
-                </formio>
-            </div>
-
-        </app-section>
-    </div>
+<app-page class="app-user-profile" [showLoader]="!formReady">
+	<!-- <button (click)="hasResult = !hasResult">test</button> -->
+	<div class="container-fluid">
+		<app-section
+			sectionTitle="{{ userInfoObject ? userInfoObject?.FName : '' }}"
+			[hasPadding]="false"
+		>
+			<div class="edit-btn">
+				<a [href]="url" class="btn btn-primary" target="_blank"><i class="fa fa-edit"></i> </a>
+			</div>
+			<h4>{{ 'MY_PROFILE' | translate }}</h4>
+			<div class="user-border">
+				<div class="user-image"><i class="fa fa-user"></i></div>
+				<formio
+					*ngIf="formReady"
+					[formKey]="id"
+					[readOnly]="true"
+					[submission]="submission"
+					class="container"
+				>
+				</formio>
+			</div>
+		</app-section>
+	</div>
 </app-page>

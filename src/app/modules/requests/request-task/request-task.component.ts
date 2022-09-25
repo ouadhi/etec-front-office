@@ -52,7 +52,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	enableLock = false;
 	assignee = null;
 
-
+loading = true;
 	/*
   submitPromise: Promise<any>;
   submitPromiseResolve: any;
@@ -183,6 +183,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 
 					setTimeout(() => {
 						this.form.ready = true;
+						this.loading = false;
 					}, 0);
 				}
 			});

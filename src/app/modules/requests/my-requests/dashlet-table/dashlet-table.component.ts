@@ -51,7 +51,7 @@ export class DashletTableComponent
 	resultsLength = 0;
 	subscription: Subscription;
 	currentLanguage$: Observable<string>;
-
+	expandedElement:any;
 	filterSub = new BehaviorSubject<RequestFilterModel>(null);
 	constructor(public injector: Injector, private notificationService: NotificationsService) {
 		super(injector);
