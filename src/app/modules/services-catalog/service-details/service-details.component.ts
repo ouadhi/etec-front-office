@@ -30,11 +30,13 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 	};
 	assets_url: string = environment.cms;
 	env = environment;
+	isApply = false;
 
 	ngOnInit() {
 		this.keycloakService.isLoggedIn().then((data) => {
 			this.isLoggedIn = data;
 		});
+		this.isApply = this.route.snapshot.url.some(q => q.path == 'apply');
 		this.sub = this.route.params.subscribe((params) => {
 			this.id = params.id;
 			this.loadData(this.id);
@@ -65,10 +67,10 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 				this.stats = requestsCount;
 				this.comments = comments.entries;
 				this.segments = segments.entries;
-				if(environment.skipServiceDetailsPage){
-					if((this.isLoggedIn && this.data?.canAnonymousApply) || !this.data?.canAnonymousApply){
+				if (environment.skipServiceDetailsPage || this.isApply) {
+					if ((this.isLoggedIn && this.data?.canAnonymousApply) || !this.data?.canAnonymousApply) {
 						this.router.navigate(
-							['/requests/request',this.data?.link,
+							['/requests/request', this.data?.link,
 								{
 									serviceId: data?.key,
 									serviceName_ar: data?.serviceName_ar,
@@ -77,10 +79,10 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 								}
 							]
 							, { skipLocationChange: true }
-					)
-					}else if(!this.isLoggedIn && this.data?.canAnonymousApply){
+						)
+					} else if (!this.isLoggedIn && this.data?.canAnonymousApply) {
 						this.router.navigate(
-							['/requests/arequest',this.data?.link,
+							['/requests/arequest', this.data?.link,
 								{
 									serviceId: data?.key,
 									serviceName_ar: data?.serviceName_ar,
@@ -89,7 +91,7 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 								}
 							]
 							, { skipLocationChange: true }
-					)
+						)
 					}
 				}
 				const { 0: department } = collection?.entries;

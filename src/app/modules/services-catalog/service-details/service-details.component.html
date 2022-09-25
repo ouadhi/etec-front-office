@@ -1,4 +1,4 @@
-<div *ngIf="!env.skipServiceDetailsPage">
+<div *ngIf="!env.skipServiceDetailsPage && !isApply">
 	<div fxLayout="row" class="page-title" [ngClass]="{
 		alignSwitchAR: switchLangService.currentLang == 'ar',
 		alignSwitchEN: switchLangService.currentLang == 'en'
