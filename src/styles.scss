@@ -192,7 +192,9 @@ h5,
 body {
     margin: 0;
     background: var(--backgroundColor);
+    text-align: start;
 }
+
 
 .mainWrapper {
     &--rtl {
