@@ -136,29 +136,31 @@ export class ConfigService {
 		const options = this._extendsOptions(this.config);
 
 		for (const [key, value] of Object.entries(options)) {
-			if (key === 'name') {
-				document.title = `${value}`;
-				continue;
-			}
-			if (key === 'fontFamily') {
-				cssVars += `--font:${value};`;
-				continue;
-			}
+			if (value && key !== 'customCss') {
+				if (key === 'name') {
+					document.title = `${value}`;
+					continue;
+				}
+				if (key === 'fontFamily') {
+					cssVars += `--font:${value};`;
+					continue;
+				}
 
-			if (CSS.supports('color', value as any)) {
-				cssVars += this._getCssColorVar(key, value);
-				continue;
-			}
+				if (CSS.supports('color', value as any)) {
+					cssVars += this._getCssColorVar(key, value);
+					continue;
+				}
 
-			if (imagesKeys.includes(key) && (value as any)?.path) {
-				const path = `url("${environment.cms}${(value as any)?.path}")`;
-				cssVars += `--${key}:${path};`;
-				continue;
-			}
+				if (imagesKeys.includes(key) && (value as any)?.path) {
+					const path = `url("${environment.cms}${(value as any)?.path}")`;
+					cssVars += `--${key}:${path};`;
+					continue;
+				}
 
-			if (key === 'favicon') {
-				document.getElementById('favicon').setAttribute('href', `${value}`);
-				continue;
+				if (key === 'favicon') {
+					document.getElementById('favicon').setAttribute('href', `${value}`);
+					continue;
+				}
 			}
 		}
 		return cssVars;
