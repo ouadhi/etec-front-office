@@ -206,7 +206,7 @@ body {
 .routerOutletContainer {
     position: relative;
     min-height: 100vh;
-    background-color: $gray-light;
+    background-color:var(--r-container-bg , #{ $gray-light});
 }
 
 img {

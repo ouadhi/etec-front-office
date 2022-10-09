@@ -1,7 +1,7 @@
 @import 'colors.scss';
 .app-service-card {
     .mat-card {
-        background-color: $white !important;
+        background-color: var(--service-card-bg, #ffffff);
         border: 0px;
         box-shadow: none;
         align-items: center;
@@ -59,7 +59,7 @@
         -webkit-box-orient: vertical;
     }
     .title {
-        color: $primary-color;
+        color: var(--service-title-color , #{$primary-color});
         font-size: 20px;
         font-weight: 700;
         margin: auto;
