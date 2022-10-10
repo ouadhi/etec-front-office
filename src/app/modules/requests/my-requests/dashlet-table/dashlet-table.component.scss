@@ -216,7 +216,7 @@
         position: absolute;
         font-size: 11px;
         z-index: 999;
-        color: #0c7782;
+        color: var(--table-update-flag-color ,  #0c7782);
         border-radius: 6px;
         font-size: 15px;
     }

@@ -331,8 +331,8 @@
 		align-items: center;
 	}
 	.alert-warning {
-		color: #fff;
-		background-color: $primary-color;
+		color:  var(--service-warning-color , #fff);
+		background-color: var(--service-warning-bg , #{$primary-color});
 		border-radius: 0;
 		display: flex;
 		&-orange {
