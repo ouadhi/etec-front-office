@@ -14,7 +14,7 @@
     margin-top: 26px;
     border: 1px solid rgba(215, 215, 215, 0.72);
     .user-image {
-        background: #2185b8;
+        background: var(--user-image-bg , #2185b8);
         padding: 35px;
         width: 150px;
         border-radius: 80px;

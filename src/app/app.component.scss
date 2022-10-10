@@ -5,7 +5,7 @@
     .footer-pattern {
         width: 100%;
         height: 150px;
-        background: url('/assets/images/triangle-pattern.png') !important;
+        background: var(--footer-pattern-bg, url('/assets/images/triangle-pattern.png')) ;
         position: fixed;
         left: 0;
         bottom: 0;

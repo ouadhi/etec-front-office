@@ -95,9 +95,9 @@
 		align-items: center;
 		height: auto;
 		font-size: 17px;
-		background-color: #2185b8;
+		background-color: var(--h-link-bg, #2185b8);
 		border-radius: 0;
-		color: #fff;
+		color: var(--h-link-color, #fff);
 		padding: 0px 40px;
 		position: relative;
 		display: flex;
@@ -107,22 +107,24 @@
 		span {
 			height: 100%;
 		}
+		&:after {
+			background: none repeat scroll 0 0 transparent;
+			content: '';
+			top: 50%;
+			transform: translateY(-50%);
+			height: 90%;
+			position: absolute;
+			background: $white;
+			transition: width 0.3s ease 0s, left 0.3s ease 0s;
+			width: 1px;
+		}
+
+		&:hover {
+			color: var(--h-link-color, #fff);
+			background-color: var(--h-link-hover-bg, #0c7782);
+		}
 	}
-	.department a:after {
-		background: none repeat scroll 0 0 transparent;
-		content: '';
-		top: 50%;
-		transform: translateY(-50%);
-		height: 90%;
-		position: absolute;
-		background: $white;
-		transition: width 0.3s ease 0s, left 0.3s ease 0s;
-		width: 1px;
-	}
-	.department a:hover {
-		color: $white;
-		background-color: #0c7782;
-	}
+
 	.department .mat-button {
 		.mat-button-focus-overlay,
 		.mat-button-ripple {
@@ -132,7 +134,7 @@
 	.department .active {
 		font-weight: 700;
 		color: $white;
-		background-color: #0c7782;
+		background-color: var(--h-link-active-bg, #0c7782);
 		position: relative;
 	}
 	// .department a.active:after {
@@ -166,13 +168,13 @@
 	//     left: 0;
 	// }
 	.user-actions {
-		background: #2b5294;
+		background: var(--user-actions-background, #2b5294);
 		height: inherit;
 		display: flex;
 		align-items: center;
 		padding-left: 1.5rem;
 		border-bottom-left-radius: 1.3rem;
-		color: #fff;
+		color: var(--user-actions-color, #fff);
 		.user-container {
 			display: flex;
 			align-items: center;
@@ -295,9 +297,10 @@
 }
 
 .top-bar {
-	background: #ebebeb;
-	border-bottom: 1px #fff solid;
-	height: 41px;
+	background: var(--topBar-bg, #ebebeb);
+	border: var(--topBar-border, 1px #fff solid);
+	border-width: var(--topBar-border-width, 0 0 1px 0);
+	height: var(--topBar-height, 41px);
 	display: flex;
 	justify-content: space-between;
 	& .user-assets {
@@ -314,15 +317,15 @@
 			height: 100%;
 			border-left: 1px solid #fff;
 			width: 34px;
-			background-color: #2185b8;
-			color: #ffffff;
+			background-color: var(--tobBar-btn-bg ,  #2185b8);
+			color:  var(--tobBar-btn-color ,  #fff);
 			padding: 4px;
 			text-align: center;
 			line-height: 18px;
 			& button {
 				border: none;
 				box-shadow: none;
-				color: #fff !important;
+				color: var(--tobBar-btn-color ,  #fff) !important;
 				font-size: 15px !important;
 				&:hover {
 					background: none !important;
@@ -334,7 +337,7 @@
 			height: 100%;
 			align-items: center;
 			justify-content: center;
-			color: #ffffff;
+			color: var(--tobBar-btn-color ,  #fff);
 		}
 	}
 }
@@ -345,7 +348,7 @@
 	font-size: 13px;
 	margin-left: 12px;
 	margin-right: 0;
-	color: #a1a0a0;
+	color:var( --tobBar-datetime, #a1a0a0);
 	& i.fa.fa-calendar {
 		margin-right: 5px;
 		margin-left: 0;
@@ -387,15 +390,14 @@
 }
 
 .banner {
-	background-image: url('/assets/images/head-bg.jpg');
-	background-color: #ffffff;
+	background: var(--banner-background, #ffffff url('/assets/images/head-bg.jpg'));
 	padding: 0px 0 0 0 !important;
 }
 
 .vision-logo {
 	margin-top: 10px;
 	& .logo-container img {
-		width: 118px;
+		width: var(--vision-logo-width , 118px);
 	}
 }
 

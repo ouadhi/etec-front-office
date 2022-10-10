@@ -41,7 +41,7 @@
             font-size: 22px;
             text-transform: capitalize;
             font-weight: 700;
-            color: $light-blue;
+            color: var(--section-title-color, #{$light-blue});
             position: relative;
             @media (min-width: 1920px) {
                 font-size: 25px;
@@ -138,7 +138,7 @@
     .TypeB {
         padding: 0px !important;
         .section__title {
-            background: $primary-color;
+            background: var(--section-title-bg, #{ $primary-color});
             margin-bottom: 0px;
             padding: 16px 22px;
             color: $white;

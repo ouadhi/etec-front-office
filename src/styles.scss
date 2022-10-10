@@ -206,7 +206,7 @@ body {
 .routerOutletContainer {
     position: relative;
     min-height: 100vh;
-    background-color: $gray-light;
+    background-color:var(--r-container-bg , #{ $gray-light});
 }
 
 img {
@@ -938,8 +938,8 @@ html[dir="rtl"] {
 }
 
 .app-outline-btn {
-    color: $primary-color;
-    border: 2px solid $primary-color !important;
+    color: var(--outline-btn-color , #{$primary-color});
+    border:  var(--outline-btn-border , 2px solid #{$primary-color}) !important;
     font-weight: 700;
 }
 
