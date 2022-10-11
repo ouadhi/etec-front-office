@@ -4,7 +4,6 @@ import { Formio } from 'formiojs';
 import HijriDate from 'hijri-date/lib/safe';
 import { combineLatest, from, Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { APP_MAIN_PAGE } from 'src/app/core/consts';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/formio/src/public_api';
 import { BaseComponent } from '../base.component';
@@ -64,9 +63,6 @@ export class HeaderComponent extends BaseComponent {
 		this.keycloakService.login();
 	}
 
-	goToLink() {
-		window.open(APP_MAIN_PAGE, '_blank');
-	}
 
 	// #region private methods
 
