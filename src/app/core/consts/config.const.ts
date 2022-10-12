@@ -21,6 +21,10 @@ export const CUSTOM_CSS = {
         }`,
 };
 
+export const DEFAULT_FOOTER = {
+	footer : ''
+}
+
 export const DEFAULTS_COLORS = {
 	backgroundColor: 'rgb(235, 235, 235)',
 	primary50: 'rgb(232, 243, 245)',
@@ -95,6 +99,7 @@ export const DEFAULTS_THEM_OPTIONS = {
 	...DEFAULTS_COLORS,
 	...DEFAULTS_IMAGES,
 	...CUSTOM_CSS,
+	...DEFAULT_FOOTER,
 };
 
 export const DEFAULT_CONFIG = [DEFAULTS_THEM_OPTIONS];
