@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { from, Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { FormConfigService } from 'src/formio/src/public_api';
@@ -30,6 +30,9 @@ export class ConfigService {
 			? null
 			: `${environment.cms}${this.config?.userAvatar?.path}`;
 	}
+
+	footerSub = new Subject<string>();
+	footerTemplate$ : Observable<string> = this.footerSub.asObservable();
 
 	constructor(private http: HttpClient, private formConfigService: FormConfigService) {}
 
@@ -111,7 +114,9 @@ export class ConfigService {
 		const cssVars = this._generateCssVars();
 		this._appendCssVarsToRoot(cssVars);
 		this.loadOverrideCss();
+		this.footerSub.next(this.config?.footer ?? '');
 	}
+
 
 	private _extendsOptions(config): { [x: string]: any } {
 		return {
@@ -134,9 +139,9 @@ export class ConfigService {
 		let cssVars = '';
 		const imagesKeys = Object.keys(DEFAULTS_IMAGES);
 		const options = this._extendsOptions(this.config);
-
+		const excludesKeys = ['customCss', 'footer'];
 		for (const [key, value] of Object.entries(options)) {
-			if (value && key !== 'customCss') {
+			if (value && !excludesKeys.includes(key)) {
 				if (key === 'name') {
 					document.title = `${value}`;
 					continue;
