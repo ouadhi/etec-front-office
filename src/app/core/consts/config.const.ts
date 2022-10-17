@@ -15,10 +15,7 @@ export const DEFAULTS_IMAGES: DefaultsImagesType = {
 	sectionsIcon: null,
 };
 export const CUSTOM_CSS = {
-	customCss: `
-        .app-formio .btn:not(.editgrid-add-btn){
-            border-radius: 12px !important;
-        }`,
+	customCss: ``,
 };
 
 export const DEFAULT_FOOTER = {

@@ -37,34 +37,33 @@
 							}
 						],
             "styles": [
-              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
-              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-              "node_modules/quill/dist/quill.core.css",
-              "node_modules/quill/dist/quill.snow.css",
-              {
-                "input": "node_modules/font-awesome/scss/font-awesome.scss",
-                "inject": true
-              },
-              {
-                "input": "node_modules/@ng-select/ng-select/themes/material.theme.css",
-                "inject": true
-              },
-              {
-                "input": "src/styles.scss",
-                "inject": false,
-                "bundleName": "locale-style"
-              },
-              {
-                "input": "src/formio/src/lib/formio.lib.scss",
-                "inject": false,
-                "bundleName": "formio-locale-style"
-              }
-            ],
+							"node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+							"node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+							"src/styles/primeng/bootstrap4-green.css",
+							"node_modules/primeng/resources/primeng.min.css",
+							"node_modules/primeicons/primeicons.css",
+							"node_modules/bootstrap-icons/font/bootstrap-icons.css",
+							"node_modules/quill/dist/quill.core.css",
+							"node_modules/quill/dist/quill.snow.css",
+							{
+								"input": "node_modules/font-awesome/scss/font-awesome.scss",
+								"inject": true
+							},
+							{
+								"input": "node_modules/@ng-select/ng-select/themes/material.theme.css",
+								"inject": true
+							},
+							{
+								"input": "src/styles.scss",
+								"inject": false,
+								"bundleName": "locale-style"
+							},
+							{
+								"input": "src/formio/src/lib/formio.lib.scss",
+								"inject": false,
+								"bundleName": "formio-locale-style"
+							}
+						],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/"

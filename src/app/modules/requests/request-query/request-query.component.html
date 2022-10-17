@@ -64,12 +64,12 @@
 
 											<div fxFlex="100" class="query-container text-center">
 												<button
-													class="ctm-btn query-btn"
+													pButton
+													class="mt-4 w-100"
 													[disabled]="query.invalid"
 													(click)="doQuery()"
-												>
-													{{ 'SERVICE.QUERY' | translate }}
-												</button>
+													[label]="'SERVICE.QUERY' | translate "
+												></button>
 											</div>
 										</div>
 									</div>

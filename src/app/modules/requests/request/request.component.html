@@ -28,11 +28,17 @@
 								{{request.requestLocksDTO.processDate | date : 'yyyy-MM-dd'}}</strong>.
 						</div>
 					</div>
-					<div *ngIf="user?.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin">
-						<button class="unlock" href="javascript:" (click)="unlock()">
-							<ion-icon name="lock-open-outline"></ion-icon>
-							{{'requestLock.unLock' | translate}}
-						</button>
+					<div
+						*ngIf="
+							user?.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin
+						"
+					>
+						<button
+							pButton
+							[label]="'requestLock.unLock' | translate"
+							icon="pi pi-lock-open"
+							(click)="unlock()"
+						></button>
 					</div>
 				</div>
 

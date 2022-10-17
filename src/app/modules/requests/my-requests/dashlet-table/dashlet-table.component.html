@@ -69,32 +69,31 @@
 									"
 								>
 									<button
-										mat-stroked-button
-										class="app-outline-btn"
+										pButton
+										class="p-button-outlined p-button-sm"
+										[label]="columns[col].condition.name | translate"
 										[routerLink]="[
 											columns[col].condition.link,
 											element.link,
 											element.serviceId,
 											element[columns[col].condition.param1]
 										]"
-									>
-										{{ columns[col].condition.name | translate }}
-									</button>
+									></button>
 								</div>
 
 								<ng-template #details>
 									<button
-										mat-stroked-button
-										class="app-outline-btn"
+										pButton
+										class="p-button-outlined p-button-sm"
+										[label]="'Details' | translate"
 										[routerLink]="[detailsRouterForEachItem + '/' + element[columns[col].param1]]"
-									>
-										{{ 'Details' | translate }}
-									</button>
-									<ion-button
-										size="small"
-										fill="none"
+									></button>
+
+									<button
+										pButton
 										*ngIf="element.activeTask"
-										class="update"
+										class="p-button-rounded  p-button-outlined p-button-xs update"
+										icon="pi pi-info"
 										[matTooltip]="
 											element?.tasks.length > 0
 												? ('STATUSES.' + element?.tasks[0]?.taskDefinitionKey | translate) !=
@@ -104,23 +103,16 @@
 												: ('SERVICE.NEEDS_UPDATE' | translate)
 										"
 										[matTooltipPosition]="'below'"
-									>
-										<ion-icon
-											[name]="'alert-circle-outline'"
-											size="large"
-											class="alert-icon"
-										></ion-icon>
-									</ion-button>
+									></button>
 								</ng-template>
 							</ng-container>
 							<ng-container *ngIf="columns[col].display == 'detailsButton_oneParam'">
 								<button
-									mat-stroked-button
-									class="app-outline-btn"
+									pButton
+									class="p-button-outlined p-button-sm"
 									[routerLink]="[detailsRouterForEachItem, element[columns[col].param1] || '']"
-								>
-									{{ 'Details' | translate }}
-								</button>
+									[label]="'Details' | translate"
+								></button>
 							</ng-container>
 
 							<ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">

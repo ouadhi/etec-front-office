@@ -63,19 +63,28 @@
 			>
 			</app-select>
 		</div>
-		<div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5 btn-control-container">
-			<button class="margin-5 btn search" mat-raised-button type="button" (click)="applyFilter()">
-				<i class="fa fa-search btn-icon" aria-hidden="true"></i>
-				{{ 'search' | translate }}
-			</button>
-			<button class="margin-5 btn reset" mat-raised-button type="button" (click)="reset()">
-				<i class="fa fa-refresh btn-icon" aria-hidden="true"></i>
-				{{ 'reset' | translate }}
-			</button>
+		<div [fxFlex.xs]="100" [fxFlex.sm]="50" fxFlex="33" class="pad-5 btn-control-container d-flex gap-1 align-self-end mb-3">
+
+				<button
+					class="px-3 gap-1"
+					pButton
+					(click)="applyFilter()"
+					icon="pi pi-search "
+					[label]="'search' | translate"
+				></button>
+				<button
+					class="p-button-secondary p-button-outlined px-3 gap-1"
+					pButton
+					icon="pi pi-refresh "
+					[label]="'reset' | translate"
+					(click)="reset()"
+				></button>
+
 		</div>
 	</div>
+
 	<!--
-<div class="filter" [@slideInOut]="show ? 'in' : 'out'">
+ <div class="filter" [@slideInOut]="show ? 'in' : 'out'">
     <div class="row">
         <div class="col-12 col-md-10 col-lg-10">
             <div class="row">

@@ -37,10 +37,12 @@
 					user.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin
 				"
 			>
-				<button class="unlock" href="javascript:" (click)="unlock()">
-					<ion-icon name="lock-open-outline"></ion-icon>
-					{{ 'requestLock.unLock' | translate }}
-				</button>
+				<button
+					pButton
+					icon="pi pi-unlock"
+					(click)="unlock()"
+					[label]="'requestLock.unLock' | translate"
+				></button>
 			</div>
 		</div>
 
@@ -81,10 +83,12 @@
 						user?.currentUser_preferred_username == request.requestLocksDTO.processedBy || isAdmin
 					"
 				>
-					<button class="unlock" href="javascript:" (click)="unlockTask()">
-						<ion-icon name="lock-open-outline"></ion-icon>
-						{{ 'requestLock.unLock' | translate }}
-					</button>
+					<button
+						pButton
+						icon="pi pi-unlock"
+						(click)="unlockTask()"
+						[label]="'requestLock.unLock' | translate"
+					></button>
 				</div>
 			</div>
 
@@ -99,9 +103,13 @@
 						</div>
 					</div>
 					<div>
-						<button class="unlock" href="javascript:" (click)="lockTask()">
-							<ion-icon name="lock-closed-outline"></ion-icon>
-							{{ 'requestLock.lock' | translate }}
+						<button
+							pButton
+							class="p-button-outlined"
+							[label]="'requestLock.lock' | translate"
+							icon="pi pi-lock"
+							(click)="lockTask()"
+						>
 						</button>
 					</div>
 				</div>
@@ -129,7 +137,6 @@
 	>
 		<button
 			class="submit-task btn btn-primary btn-md"
-			href="javascript:"
 			(click)="customSubmit(formComponent.submission)"
 			[disabled]="formComponent?.formio?.invalid == true || isLocked()"
 		>
@@ -138,6 +145,7 @@
 		<br />
 		<br />
 	</div>
+
 	<!-- <formio *ngIf="form.ready" [formKey]="form.formKey" [params]="params" [ngClass]="{'readOnly': form.readOnly}"
         [submission]="submission" [viewOnly]="form.readOnly" [readOnly]="form.readOnly" (onSubmit)="onSubmit($event)"
         (submit)="onSubmit($event)" (formLoad)="formLoad($event)"></formio>

@@ -7,19 +7,21 @@
 				<br />
 				<ng-content></ng-content>
 				<br />
-				<div fxFlex="100" class="action-container pad-5 text-center">
-					<button class="ctm-btn action-btn mb-3" (click)="callback.emit()">
-						{{ actionLabel | translate }}
-					</button>
-
+				<div fxFlex="100" class="action-container pad-5 text-center  d-flex gap-1 align-items-center">
 					<button
+						pButton
+						class="mb-3"
+						(click)="callback.emit()"
+						[label]="'actionLabel | translate'"
+					></button>
+					<button
+						pButton
 						*ngIf="showFeedbackButton"
-						class="ctm-btn feedback action-btn-feedback"
+						class="p-button-rounded p-button-outlined"
 						ngbTooltip="Open Feedback Popup"
 						(click)="openFeedbackDialog()"
-					>
-						<span class="material-icons teal-color"> comment</span>
-					</button>
+						icon="pi pi-comment"
+					></button>
 				</div>
 			</div>
 		</div>
