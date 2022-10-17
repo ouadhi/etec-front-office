@@ -538,6 +538,6 @@ ol.my-list {
 
 .mat-tab-labels {
     .mat-tab-label {
-        border-radius: 5px;
+        border-radius: var(--btn-border-radius , 5px);
     }
 }
