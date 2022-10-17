@@ -26,7 +26,6 @@
 		</div>
 	</div> -->
 
-
 	<div
 		fxLayout="row"
 		fxLayoutAlign="center top"
@@ -81,9 +80,12 @@
 					[(ngModel)]="keyword"
 					placeholder="{{ 'CATALOG.SEARCH_KEYWORD_BY_SERVICE_NAME' | translate }}"
 				/>
-				<button class="search" mat-button (click)="filterKeyword()">
-					{{ 'CATALOG.SEARCH' | translate }}
-				</button>
+				<button
+					pButton
+					class="search"
+					(click)="filterKeyword()"
+					[label]="'CATALOG.SEARCH' | translate"
+				></button>
 			</div>
 		</div>
 	</div>
@@ -272,14 +274,15 @@
 										<mat-card>
 											<h5>{{ 'CATALOG.NO_RESULTS_MATCHED_APPLIED_FILTERS' | translate }}</h5>
 											<br />
+
 											<button
-												mat-stroked-button
+												pButton
 												color="warn"
+												class="p-button-outlined"
 												(click)="resetFilters()"
 												[disabled]="userSegments?.length > 0"
-											>
-												{{ 'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate }}
-											</button>
+												[label]="'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate"
+											></button>
 										</mat-card>
 									</div>
 								</div>
@@ -348,7 +351,6 @@
 			</mat-drawer-container>
 		</div>
 	</app-page>
-
 </div>
 
 <ng-template #alerts>

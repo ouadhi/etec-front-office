@@ -1,134 +1,117 @@
 .app-request-query {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .query-button {
-        margin: 14px;
-    }
-    .page-container {
-        padding: 45px 50px 60px;
-    }
-    .note {
-        font-size: 15px;
-        margin: 0px;
-        margin-bottom: 28px;
-        color: $dark-gray;
-        font-weight: 500;
-    }
-    label {
-        font-size: 14px;
-        color: #595a59;
-    }
-    .full-width {
-        width: 100%;
-    }
-    mat-form-field {
-        margin-bottom: 28px;
-    }
-    .mat-form-field-flex {
-        &:hover {}
-    }
-    .query-btn {
-        margin-top: 36px;
-        width: 100%;
-        border-radius: 3px;
-        background-color: $primary-color;
-        color: $white !important;
-        padding: 15px;
-        height: 50px;
-        font-size: 15px;
-        &:hover {
-            background-color: $primary-color;
-            color: $white !important;
-        }
-    }
-    mat-datepicker-toggle {
-        .mat-button-wrapper {
-            svg {
-                fill: #25aab2;
-            }
-        }
-    }
-    .query-container {
-        display: flex;
-        justify-content: center;
-    }
-    .center-flex {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .center-flex span {
-        margin-top: 32px;
-    }
-    @media (max-width: 599px) {
-        .center-flex {
-            display: none;
-        }
-    }
-    :host::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-        white-space: inherit !important;
-        line-height: normal !important;
-        display: flex;
-        align-items: center;
-    }
-    .alert-icon {
-        font-size: 30px;
-        margin-bottom: 0px;
-    }
-    .alert-text {
-        line-height: 44px;
-    }
-    .alert-link {
-        cursor: pointer;
-    }
-    .alert-warning div {
-        align-items: center;
-    }
-    .alert-warning {
-        color: #fff;
-        background-color: $primary-color;
-        border-radius: 8px;
-    }
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.query-button {
+		margin: 14px;
+	}
+	.page-container {
+		padding: 45px 50px 60px;
+	}
+	.note {
+		font-size: 15px;
+		margin: 0px;
+		margin-bottom: 28px;
+		color: $dark-gray;
+		font-weight: 500;
+	}
+	label {
+		font-size: 14px;
+		color: #595a59;
+	}
+	.full-width {
+		width: 100%;
+	}
+	mat-form-field {
+		margin-bottom: 28px;
+	}
+
+	mat-datepicker-toggle {
+		.mat-button-wrapper {
+			svg {
+				fill: #25aab2;
+			}
+		}
+	}
+	.query-container {
+		display: flex;
+		justify-content: center;
+	}
+	.center-flex {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.center-flex span {
+		margin-top: 32px;
+	}
+	@media (max-width: 599px) {
+		.center-flex {
+			display: none;
+		}
+	}
+	:host::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+		white-space: inherit !important;
+		line-height: normal !important;
+		display: flex;
+		align-items: center;
+	}
+	.alert-icon {
+		font-size: 30px;
+		margin-bottom: 0px;
+	}
+	.alert-text {
+		line-height: 44px;
+	}
+	.alert-link {
+		cursor: pointer;
+	}
+	.alert-warning div {
+		align-items: center;
+	}
+	.alert-warning {
+		color: #fff;
+		background-color: var(--query-alert-warning, #{$primary-color});
+		border-radius: 8px;
+	}
 }
 
 .app-request-query-content {
-    width: 100%;
-    background: $white;
-    box-shadow: 0px 0px 6px $box-shadow;
-    margin: 3rem 0px;
-    border-radius: 40px 40px 0px 0px;
-    overflow: hidden;
-    .section-title {
-        background-color: $primary-color;
-        color: $white;
-        font-size: 20px;
-        font-weight: 700;
-        span {
-            background-color: $primary-color-shadow;
-            display: flex;
-            padding: 18px 14px;
-        }
-    }
+	width: 100%;
+	background: $white;
+	box-shadow: 0px 0px 6px $box-shadow;
+	margin: 3rem 0px;
+	border-radius: 40px 40px 0px 0px;
+	overflow: hidden;
+	.section-title {
+		background-color: var(--section-title-bg, #{$primary-color});
+		color: $white;
+		font-size: 20px;
+		font-weight: 700;
+		span {
+			display: flex;
+			padding: 18px 14px;
+		}
+	}
 }
 
 .mat-datepicker-input {
-    min-height: 28px;
+	min-height: 28px;
 }
 
 [dir='rtl'] .app-request-query-content {
-    .section-title {
-        span {
-            margin-right: 50px;
-        }
-    }
+	.section-title {
+		span {
+			margin-right: 50px;
+		}
+	}
 }
 
 [dir='ltr'] .app-request-query-content {
-    .section-title {
-        span {
-            margin-left: 50px;
-        }
-    }
+	.section-title {
+		span {
+			margin-left: 50px;
+		}
+	}
 }

@@ -13,6 +13,6 @@
       {{(description_plainText.length>maxDescriptionLength)? (description_plainText |
       slice:0:maxDescriptionLength)+'..':(description_plainText)}}
     </p>
-    <button mat-button>{{'NEWS.MORE_DETAILS' | translate}}</button>
+    <button  pButton [label]="'NEWS.MORE_DETAILS' | translate"></button>
   </div>
 </a>

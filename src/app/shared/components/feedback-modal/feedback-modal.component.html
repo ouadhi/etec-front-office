@@ -40,16 +40,21 @@
 	<hr />
 	<mat-dialog-actions align="center">
 		<button
-			mat-raised-button
+			pButton
 			class="btn-submit"
 			[ngClass]="{ 'mat-tab-label-active': form.valid }"
 			[ngClass]="{ 'mat-select-placeholder': form.invalid }"
 			[disabled]="form.invalid"
 			(click)="onConfirmClick(true)"
+			[label]="'SUBMIT' | translate"
+		></button>
+		<button
+			pButton
+			class="btn-cancel p-button-outlined"
+			[label]="'CANCEL' | translate"
+			(click)="onConfirmClick(false)"
 		>
-			Submit
 		</button>
-		<button class="btn-cancel" mat-raised-button (click)="onConfirmClick(false)">Cancel</button>
 		<!-- mat-dialog-close -->
 	</mat-dialog-actions>
 </div>

@@ -1,4 +1,4 @@
-@import 'colors.scss';
+@import 'styles/colors.scss';
 .app-case-activities {
     .case-name {
         overflow: hidden;
@@ -7,8 +7,8 @@
         height: 3em;
         overflow-wrap: break-word;
         white-space: break-spaces;
-        display: table-cell; 
-        vertical-align: middle; 
+        display: table-cell;
+        vertical-align: middle;
     }
     ion-chip {
         width: 100%;
