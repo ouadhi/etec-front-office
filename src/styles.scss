@@ -898,9 +898,19 @@ html[dir="rtl"] {
     background: #fff;
 }
 
+ion-chip,
+.mat-standard-chip {
+    border-radius: 5px !important;
+}
+.mat-chip.mat-standard-chip.mat-chip-disabled{
+    opacity: 1 !important;
+}
 .selected-chip {
     background: $primary-color !important;
     color: #fff;
+    &:hover {
+        background: #{darken($primary-color, 10%)} !important;
+    }
 }
 
 ::-webkit-scrollbar {
