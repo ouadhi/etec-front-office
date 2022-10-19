@@ -1,14 +1,15 @@
 @import 'styles/colors.scss';
 .app-request-details {
+	--sec-title-margin : 0;
 	.mat-expansion-panel-spacing {
 		overflow: inherit !important;
 	}
 	.nav-tabs {
 		background-color: #fff;
-		color: #6c757d;
+		color: rgba(36, 36, 36, 0.2);
 	}
 	a {
-		color: #6c757d;
+		color: rgba(36, 36, 36, 0.2);
 	}
 	.tab-content {
 		background-color: #fff;
