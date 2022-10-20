@@ -8,8 +8,8 @@
 				(click)="openFeedbackDialog()"
 			>
 				<span
-					[ngbTooltip]="'forms.common.Request Feedback' | translate"
-					[placement]="(isRtl$ | async) ? 'right' : 'left'"
+					[matTooltip]="'forms.common.Request Feedback' | translate"
+					[matTooltipPosition]="(isRtl$ | async) ? 'right' : 'left'"
 					class="teal-color"
 				>
 					<img type="image/png" rel="icon" src="../../../../assets/images/icons8-rating-97.png"

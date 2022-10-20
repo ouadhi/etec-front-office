@@ -2,7 +2,6 @@
 
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~ngx-toastr/toastr';
-@import '~bootstrap/scss/functions';
 @import '~@angular/material/theming';
 @import './styles/styles';
 @import './theme/variables.scss';
@@ -947,9 +946,9 @@ html[dir='rtl'] {
 	background: #fff;
 }
 
-ion-chip,
-.mat-standard-chip {
-    border-radius: 5px !important;
+ion-chip:not(.rounded),
+.mat-standard-chip:not(.border-rounded) {
+    border-radius: var(--chip-radius , 5px) !important;
 }
 .mat-chip.mat-standard-chip.mat-chip-disabled{
     opacity: 1 !important;
@@ -1932,4 +1931,29 @@ label {
 	.control-label {
 		@include sub-title-mixin;
 	}
+}
+
+ul.ul-list-style{
+		list-style: none;
+ 		li::before {
+			content: "•";
+			color: $success-color;
+			display: inline-block;
+			width: 1em;
+    		margin-left: 0em;
+			font-size: 20px;
+		}
+}
+
+ol.ol-list-style{
+	list-style: none;
+	counter-reset: li;
+	li::before {
+		content: counter(li) ".";
+		color: $success-color;
+		display: inline-block;
+		width: 2em;
+		margin-left: 0em
+	};
+	li {counter-increment: li}
 }
