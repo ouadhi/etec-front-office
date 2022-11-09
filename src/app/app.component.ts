@@ -6,6 +6,7 @@ import {
 	registerChartsWrapperComponent,
 	registerClassificationIndicatorsComponent,
 	registerEditgridResourceComponent,
+	registerEventTreeComponent,
 	registerFormKeyWrapperComponent,
 	registerGroupedTableComponent,
 	registerHijriDateComponent,
@@ -64,5 +65,6 @@ export class AppComponent extends BaseComponent {
 		registerChartsWrapperComponent(injector);
 		registerClassificationIndicatorsComponent(injector);
 		registerResourceDropdownWrapperComponent(injector);
+		registerEventTreeComponent(injector);
 	}
 }
