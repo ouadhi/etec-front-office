@@ -21,7 +21,8 @@ import {
 	registerStepperComponent,
 	registerTableTreeComponent,
 	registerTableViewWrapperComponent,
-	registerTemplateComponent
+	registerTemplateComponent,
+	registerVisitScheduleComponent
 } from 'src/formio/src/public_api';
 
 import { NavigationStart } from '@angular/router';
@@ -66,5 +67,6 @@ export class AppComponent extends BaseComponent {
 		registerClassificationIndicatorsComponent(injector);
 		registerResourceDropdownWrapperComponent(injector);
 		registerEventTreeComponent(injector);
+		registerVisitScheduleComponent(injector);
 	}
 }
