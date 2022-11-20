@@ -916,8 +916,8 @@ html[dir='rtl'] {
 }
 
 .mat-tab-label-active {
-	background: var(--mat-tab-label-active-bg , #{$primary-color})  !important;
-	color:var(--mat-tab-label-active-color ,#fff) !important;
+	background: var(--mat-tab-label-active-bg, #{$primary-color}) !important;
+	color: var(--mat-tab-label-active-color, #fff) !important;
 	opacity: 1 !important;
 	font-weight: bold !important;
 	// font-size: 16px !important;
@@ -948,10 +948,10 @@ html[dir='rtl'] {
 
 ion-chip:not(.rounded),
 .mat-standard-chip:not(.border-rounded) {
-    border-radius: var(--chip-radius , 5px) !important;
+	border-radius: var(--chip-radius, 5px) !important;
 }
-.mat-chip.mat-standard-chip.mat-chip-disabled{
-    opacity: 1 !important;
+.mat-chip.mat-standard-chip.mat-chip-disabled {
+	opacity: 1 !important;
 }
 .selected-chip {
 	background: $success-color !important;
@@ -1126,7 +1126,6 @@ ion-chip:not(.rounded),
 .radio-selected label {
 	color: var(--primaryColor);
 }
-
 
 [dir='rtl'] .ng-option input {
 	margin-left: 10px;
@@ -1669,8 +1668,6 @@ ion-chip:not(.rounded),
 	width: auto !important;
 }
 
-
-
 .mat-menu-item:hover:not([disabled]),
 .mat-menu-item.cdk-program-focused:not([disabled]),
 .mat-menu-item.cdk-keyboard-focused:not([disabled]),
@@ -1777,29 +1774,31 @@ label {
 	}
 }
 
-ul.ul-list-style{
-		list-style: none;
- 		li::before {
-			content: "•";
-			color: $success-color;
-			display: inline-block;
-			width: 1em;
-    		margin-left: 0em;
-			font-size: 20px;
-		}
+ul.ul-list-style {
+	list-style: none;
+	li::before {
+		content: '•';
+		color: $success-color;
+		display: inline-block;
+		width: 1em;
+		margin-left: 0em;
+		font-size: 20px;
+	}
 }
 
-ol.ol-list-style{
+ol.ol-list-style {
 	list-style: none;
 	counter-reset: li;
 	li::before {
-		content: counter(li) ".";
+		content: counter(li) '.';
 		color: $success-color;
 		display: inline-block;
 		width: 2em;
-		margin-left: 0em
-	};
-	li {counter-increment: li}
+		margin-left: 0em;
+	}
+	li {
+		counter-increment: li;
+	}
 }
 
 .to-top {
@@ -1809,44 +1808,13 @@ ol.ol-list-style{
 	position: fixed;
 	right: 0;
 	opacity: 0;
-  }
-
-  .show-scrollTop {
-	opacity: 1 !important;
-	transition: all 0.2s ease-in-out;
-  }
-
-  mat-expansion-panel{
-    background: white !important;
-    border: none !important;
-    border-top: solid 2px rgba(0,0,0,.068) !important;
-    border-radius: 0 !important;
-    padding:.7rem !important;
-    &:last-child{
-        border-bottom: solid 2px rgba(0,0,0,.068) !important;
-    }
-    &:hover{
-        background: white !important;
-        border: none !important;
-        border-top: solid 2px rgba(0,0,0,.068) !important;
-        border-radius: 0 !important;
-        &:last-child{
-            border-bottom: solid 2px rgba(0,0,0,.068) !important;
-        }
-    }
-    mat-expansion-panel-header{
-        &:hover{
-            background: white !important;
-        }
-    }
-    mat-expansion-panel-header.mat-expanded{
-        span.mat-content{
-            font-weight: bold;
-
-        }
-    }
 }
 
-.underline-link{
-	text-decoration:underline !important;
+.show-scrollTop {
+	opacity: 1 !important;
+	transition: all 0.2s ease-in-out;
+}
+
+.underline-link {
+	text-decoration: underline !important;
 }
