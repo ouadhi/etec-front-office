@@ -23,6 +23,7 @@ import {
 	registerTableViewWrapperComponent,
 	registerTemplateComponent,
 	registerCalenderWrapperComponent,
+	registerOrgWrapperComponent,
 } from 'src/formio/src/public_api';
 
 import { NavigationStart } from '@angular/router';
@@ -68,5 +69,6 @@ export class AppComponent extends BaseComponent {
 		registerResourceDropdownWrapperComponent(injector);
 		registerEventTreeComponent(injector);
 		registerCalenderWrapperComponent(injector);
+		registerOrgWrapperComponent(injector);
 	}
 }
