@@ -34,6 +34,7 @@
 		"@fullcalendar/angular": "^5.11.2",
 		"@fullcalendar/daygrid": "^5.11.3",
 		"@fullcalendar/interaction": "^5.11.3",
+		"vanilla-js-wheel-zoom": "^6.17.2",
 		"@fullcalendar/timegrid": "^5.11.3",
 		"@ionic-native/browser-tab": "^5.19.1",
 		"@ionic-native/core": "^5.0.0",
