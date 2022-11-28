@@ -262,7 +262,7 @@
 							<div class="row">
 								<ng-container *ngFor="let x of filtered; trackBy: trackByFn">
 									<app-service-card
-										id="{{ x?._id }}"
+										[id]="x?._id"
 										cardTitle="{{ x['serviceName_' + switchLangService.current] }}"
 										text="{{ x['description_' + switchLangService.current] }}"
 										class="{{ !isList ? 'col-lg-3' : 'col-lg-12 full-card' }}"
@@ -280,7 +280,6 @@
 												color="warn"
 												class="p-button-outlined"
 												(click)="resetFilters()"
-												[disabled]="userSegments?.length > 0"
 												[label]="'CATALOG.REMOVE_ALL_SEARCH_PARAMS' | translate"
 											></button>
 										</mat-card>
