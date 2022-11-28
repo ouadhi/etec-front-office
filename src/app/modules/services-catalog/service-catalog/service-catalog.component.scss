@@ -336,6 +336,7 @@
 	.alert-warning {
 		color: var(--service-warning-color, #fff);
 		background-color: var(--service-warning-bg, #{$primary-color});
+		border-color: var(--service-warning-bg, #{$primary-color});
 		border-radius: 0;
 		display: flex;
 		&-orange {
