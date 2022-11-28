@@ -1,7 +1,6 @@
-import { AfterViewInit, Injector, ViewEncapsulation } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { combineLatest, from, of } from 'rxjs';
-import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
+import { from, of } from 'rxjs';
+import { finalize, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
 import { ErrorToast, FormioLoader, SuccessToast, UserService } from 'src/formio/src/public_api';
@@ -93,60 +92,67 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 	}
 
 	private getData() {
-		this.sub = this.rest.getRequest(this.id).subscribe(
-			(data) => {
-				this.loading = false;
-				this.processInstanceId = data.procInstID;
-				this.serviceId = data.serviceId;
-				if (this.processInstanceId) {
+		this.sub = this.rest
+			.getRequest(this.id)
+			.pipe(
+				finalize(() => {
+					this.formioLoader.loading = false;
+				})
+			)
+			.subscribe(
+				(data) => {
+					this.loading = false;
+					this.processInstanceId = data.procInstID;
+					this.serviceId = data.serviceId;
+					if (this.processInstanceId) {
+						this.sub = this.rest
+							.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
+							.subscribe((data) => {
+								this.tasks = data;
+
+								if (data.length) {
+									const taskName = `taskTitle.${data[0].task.taskDefinitionKey}`;
+									this.sub = this.translateService
+										.get([taskName, this.updateTask])
+										.subscribe((keys) => {
+											if (keys[taskName] != taskName) {
+												this.taskName = `${keys[taskName]}`;
+											} else {
+												this.taskName = `${keys[taskName]}`;
+												// this.taskName = keys[this.updateTask];
+											}
+										});
+								}
+							});
+					}
+					this.request = data;
+					this.link = this.request.link;
+					this.formData = this.request.data;
+					this.cmmnId = this.request.cmmnId;
+
 					this.sub = this.rest
-						.getTaskByProcessInstanceId({ processInstanceId: this.processInstanceId })
+						.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`)
 						.subscribe((data) => {
-							this.tasks = data;
-
-							if (data.length) {
-								const taskName = `taskTitle.${data[0].task.taskDefinitionKey}`;
-								this.sub = this.translateService
-									.get([taskName, this.updateTask])
-									.subscribe((keys) => {
-										if (keys[taskName] != taskName) {
-											this.taskName = `${keys[taskName]}`;
-										} else {
-											this.taskName = `${keys[taskName]}`;
-											// this.taskName = keys[this.updateTask];
-										}
-									});
-							}
-						});
-				}
-				this.request = data;
-				this.link = this.request.link;
-				this.formData = this.request.data;
-				this.cmmnId = this.request.cmmnId;
-
-				this.sub = this.rest
-					.getGeneric(`${environment.formio.appUrl}${this.link}/submission/${this.formData}`)
-					.subscribe((data) => {
-						this.submission = data;
-						this.moreInfo =
-							data.data.moreInfo && Object.keys(data.data.moreInfo).length
-								? data.data.moreInfo
-								: null;
-						/*this.params = [
+							this.submission = data;
+							this.moreInfo =
+								data.data.moreInfo && Object.keys(data.data.moreInfo).length
+									? data.data.moreInfo
+									: null;
+							/*this.params = [
           {
             url: environment.beneficiaryApi.api,
             success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
             parallel: true
           }
         ];*/
-						this.formReady = true;
-					});
-			},
-			(err) => console.error(err),
-			() => {
-				this.checkRequestFeedback();
-			}
-		);
+							this.formReady = true;
+						});
+				},
+				(err) => console.error(err),
+				() => {
+					this.checkRequestFeedback();
+				}
+			);
 	}
 
 	checkRequestFeedback() {
