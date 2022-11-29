@@ -381,7 +381,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit {
 			const innerObj = (newObj[type._id] = {});
 			this.segments.forEach((element, i) => {
 				if (element.activation && type._id === element.segmentType._id) {
-					if (this.userSegments.includes(element._id)) {
+					if (this.userSegments.includes(element._id) || this.userSegments.includes(element.key)) {
 						this.loggerService.log('ok?');
 						innerObj[element._id] = true;
 					} else {
@@ -407,6 +407,7 @@ export class ServiceCatalogComponent extends BaseComponent implements OnInit {
 					const data = await this.userService.getTokenData(
 						this.isLoggedIn ? await this.keycloak.getToken() : null
 					);
+					this.userSegments = data.roles;
 					this.prepareFilters(data.roles || this.userSegments);
 				}
 			);
