@@ -138,14 +138,19 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 								data.data.moreInfo && Object.keys(data.data.moreInfo).length
 									? data.data.moreInfo
 									: null;
-							/*this.params = [
-          {
-            url: environment.beneficiaryApi.api,
-            success: `submission.data = {... submission.data, requesterInfo: {data: response}};`,
-            parallel: true
-          }
-        ];*/
 							this.formReady = true;
+						}, error => {
+							// try get mobile data
+							this.sub = this.rest
+								.getGeneric(`${environment.formio.appUrl}${this.link}Mobile/submission/${this.formData}`)
+								.subscribe((data) => {
+									this.submission = data;
+									this.moreInfo =
+										data.data.moreInfo && Object.keys(data.data.moreInfo).length
+											? data.data.moreInfo
+											: null;
+									this.formReady = true;
+								});
 						});
 				},
 				(err) => console.error(err),
