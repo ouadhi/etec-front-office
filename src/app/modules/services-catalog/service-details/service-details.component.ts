@@ -92,6 +92,7 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 								toastComponent: ErrorToast,
 							}
 						);
+						return;
 					}
 				}
 
