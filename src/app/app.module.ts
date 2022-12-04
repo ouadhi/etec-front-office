@@ -9,8 +9,12 @@ import { TranslateLoaderHelper } from './core/helpers/translate-loader.helper';
 import { KeycloakAngularModule } from 'keycloak-angular';
 import { FormioDemoComponent } from './modules/formio-demo/formio-demo.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DynamicQrComponent } from './modules/dynamic-qr/dynamic-qr.component';
 @NgModule({
-	declarations: [AppComponent, FormioDemoComponent],
+	declarations: [AppComponent,
+		FormioDemoComponent,
+		DynamicQrComponent
+	],
 	imports: [
 		CoreModule,
 		SharedModule,
@@ -29,4 +33,4 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 	bootstrap: [AppComponent],
 	entryComponents: [],
 })
-export class AppModule {}
+export class AppModule { }

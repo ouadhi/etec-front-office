@@ -47,7 +47,7 @@
         background: #fff !important;
     }
     mat-header-row {
-        background: #2185b8;
+        background: var(--mat-header-row-bg , #007367);
         min-height: 45px;
         padding: 2px 0;
     }

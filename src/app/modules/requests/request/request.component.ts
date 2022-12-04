@@ -17,6 +17,7 @@ import { ComponentType } from 'ngx-toastr';
 	animations: [InOutAnimation],
 })
 export class RequestComponent extends BaseComponent implements OnInit {
+	routeState = null;
 	constructor(
 		public injector: Injector,
 		private userService: UserService,
@@ -25,6 +26,8 @@ export class RequestComponent extends BaseComponent implements OnInit {
 		public dialog: MatDialog
 	) {
 		super(injector);
+		const state = this.router.getCurrentNavigation().extras.state;
+		this.routeState = state ? state : "";
 	}
 
 	@ViewChild(FormioComponent) formComponent: FormioComponent;
@@ -71,6 +74,11 @@ export class RequestComponent extends BaseComponent implements OnInit {
 				this.isLoggedIn ? await this.keycloak.getToken() : null
 			);
 			this.submission.data = { serviceId: this.serviceId, ...this.etecData };
+			if (this.routeState) {
+				for (let k in this.routeState) {
+					this.submission.data[k] = this.routeState[k]
+				}
+			}
 			if (
 				!this.serviceId ||
 				this.serviceId === null ||
@@ -150,7 +158,7 @@ export class RequestComponent extends BaseComponent implements OnInit {
 		}
 	}
 
-	formLoad(event) {}
+	formLoad(event) { }
 
 	get formReadOnly() {
 		return (

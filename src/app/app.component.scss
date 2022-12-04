@@ -1,3 +1,4 @@
+@import'../styles/colors.scss';
 .app-root {
     .padding-top {
         padding-top: 40px;
@@ -13,4 +14,9 @@
     .mainWrapper {
         position: relative;
     }
+}
+
+.fa-arrow-circle-o-up{
+    font-size: 35px;
+    color:$success-color;
 }

@@ -13,8 +13,11 @@ import { LifeCycleService } from '../life-cycle-service.config';
 	encapsulation: ViewEncapsulation.None,
 })
 export class ServiceDetailsComponent extends BaseComponent implements OnInit {
+	routeState = null;
 	constructor(public injector: Injector, private requestsService: RequestsService) {
 		super(injector);
+		const state = this.router.getCurrentNavigation().extras.state;
+		this.routeState = state ? state : '';
 	}
 
 	id: string;
@@ -80,7 +83,7 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 									_id: data?._id
 								}
 							]
-							, { skipLocationChange: true }
+							, { skipLocationChange: true, state: { ...this.routeState } }
 						)
 					} else if (!this.isLoggedIn && this.data?.canAnonymousApply) {
 						this.router.navigate(
@@ -92,7 +95,7 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 									_id: data?._id
 								}
 							]
-							, { skipLocationChange: true }
+							, { skipLocationChange: true, state: { ...this.routeState } }
 						)
 					}
 				}

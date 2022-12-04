@@ -52,7 +52,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	enableLock = false;
 	assignee = null;
 
-loading = true;
+	loading = true;
 	/*
   submitPromise: Promise<any>;
   submitPromiseResolve: any;
@@ -94,7 +94,46 @@ loading = true;
 				toastComponent: SuccessToast,
 			}
 		);
-		this.goBack();
+
+		if (environment.taskRedirection && this.formComponent?.form['properties']?.nextTaskRedirection === "true") {
+			const conditionalValue = this.formComponent?.form['properties']?.conditional
+			let conditionalData
+			if (conditionalValue) {
+				conditionalData = Utils.evaluate(
+					conditionalValue,
+					{ submission: submission.submission }
+				);
+				if (conditionalData === true) {
+					let nextRoute = this.formComponent?.form['properties']?.nextRoute
+					const value = this.formComponent?.form['properties']?.nextTaskParams
+					let data
+					if (value) {
+						data = Utils.evaluate(
+							value,
+							{ submission: submission.submission }
+						);
+					}
+					this.router.navigateByUrl(nextRoute, { state: data ? { ...data } : "" });
+				} else {
+					this.goBack()
+				}
+			} else if (conditionalValue === null || conditionalValue === undefined) {
+				let nextRoute = this.formComponent?.form['properties']?.nextRoute
+				const value = this.formComponent?.form['properties']?.nextTaskParams
+				let data
+				if (value) {
+					data = Utils.evaluate(
+						value,
+						{ submission: submission.submission }
+					);
+				}
+				this.router.navigateByUrl(nextRoute, { state: data ? { ...data } : "" });
+			} else {
+				this.goBack()
+			}
+		} else {
+			this.goBack()
+		}
 	}
 
 	customSubmit(submission) {

@@ -16,6 +16,7 @@ export class SectionComponent extends BaseComponent implements OnInit {
   @Input() hasPadding = true;
   @Input() TypeB = false;
   @Input() NoBack = false;
+  @Input() titleClass = "sub-main-title";
 
   constructor(public injector: Injector) { super(injector); }
 

@@ -29,6 +29,9 @@ import {
 import { NavigationStart } from '@angular/router';
 import { of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { ViewportScroller } from '@angular/common';
+import { environment } from 'src/environments/environment';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -37,14 +40,23 @@ import { filter, map } from 'rxjs/operators';
 })
 export class AppComponent extends BaseComponent {
 	fullPage$ = of(false);
+	windowScrolled = false;
+	backToTop = environment.backToTop
 
-	constructor(public injector: Injector) {
+	constructor(public injector: Injector,
+		private viewportScroller: ViewportScroller) {
 		super(injector);
 		this._registerCustomComponents(injector);
 		this.fullPage$ = this.router.events.pipe(
 			filter((event) => event instanceof NavigationStart),
 			map((event: NavigationStart) => event?.url.includes('reset-password'))
 		);
+	}
+
+	ngOnInit() {
+		window.addEventListener('scroll', () => {
+			this.windowScrolled = window.pageYOffset !== 0;
+		});
 	}
 
 	private _registerCustomComponents(injector) {
@@ -70,5 +82,9 @@ export class AppComponent extends BaseComponent {
 		registerEventTreeComponent(injector);
 		registerCalenderWrapperComponent(injector);
 		registerOrgWrapperComponent(injector);
+	}
+
+	scrollTo(elementId) {
+		this.viewportScroller.scrollToAnchor(elementId)
 	}
 }

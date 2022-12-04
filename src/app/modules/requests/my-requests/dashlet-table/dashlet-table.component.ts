@@ -30,8 +30,7 @@ import { RequestFilterModel } from '../model';
 })
 export class DashletTableComponent
 	extends BaseComponent
-	implements OnInit, AfterViewInit, OnDestroy
-{
+	implements OnInit, AfterViewInit, OnDestroy {
 	@Input() title: any = '';
 	@Input() columns;
 	@Input() detailsRouterForEachItem?;
@@ -51,7 +50,7 @@ export class DashletTableComponent
 	resultsLength = 0;
 	subscription: Subscription;
 	currentLanguage$: Observable<string>;
-	expandedElement:any;
+	expandedElement: any;
 	filterSub = new BehaviorSubject<RequestFilterModel>(null);
 	constructor(public injector: Injector, private notificationService: NotificationsService) {
 		super(injector);

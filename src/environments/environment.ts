@@ -62,7 +62,9 @@ export const environment = {
 	pdftronLicenceKey: '',
 	showFeedbackButton: true,
 	showDashboardCounters: true,
-    skipServiceDetailsPage:false
+    skipServiceDetailsPage:false,
+	backToTop:true,
+	taskRedirection:true
 };
 
 /*

@@ -7,6 +7,7 @@ import { RoleGuard } from './core/guards/role.guard';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { FormioDemoComponent } from './modules/formio-demo/formio-demo.component';
 import { RequestFeedbackComponent } from './shared/components/request-feedback/request-feedback.component';
+import { DynamicQrComponent } from './modules/dynamic-qr/dynamic-qr.component';
 
 const routes: Routes = [
 	// {
@@ -59,6 +60,7 @@ const routes: Routes = [
 		loadChildren: () => import('./resource-wrapper.module').then((m) => m.ResourceWrapperModule),
 	},
 	{ path: 'formio/:formKey', component: FormioDemoComponent },
+	{ path: 'info/:formKey/:dataId', component: DynamicQrComponent },
 	{ path: '404', component: NotFoundComponent },
 	{
 		path: '403',
@@ -69,8 +71,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+	imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy', anchorScrolling: 'enabled' })],
 	exports: [RouterModule],
 	providers: [AuthGuard, RoleGuard],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

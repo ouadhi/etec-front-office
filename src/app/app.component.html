@@ -2,10 +2,14 @@
 	<div class="mainWrapper">
 		<ng-container *ngIf="!(fullPage$ | async)">
 			<div class="footer-pattern"></div>
-			<app-header></app-header>
+			<app-header id="header"></app-header>
 		</ng-container>
 		<div class="routerOutletContainer">
 			<router-outlet></router-outlet>
+			<div class="to-top" (click)="scrollTo('header')" [ngClass]="{ 'show-scrollTop': windowScrolled }"
+				*ngIf="backToTop">
+				<i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i>
+			</div>
 		</div>
 		<app-footer></app-footer>
 	</div>

@@ -1,0 +1,12 @@
+<app-page *ngIf="formReady">
+    <app-section sectionTitle="{{'forms.common.qr' + formKey | translate}}" [hasPadding]="false">
+        <formio [formKey]="'qr' + formKey" [submission]="submission" [readOnly]="true" [viewOnly]="true"></formio>
+
+        <!-- <div class="flex-action">
+            <button class="btn btn-primary" (click)="goBack">
+                {{ 'Back to home' | translate }}
+            </button>
+        </div> -->
+    </app-section>
+
+</app-page>

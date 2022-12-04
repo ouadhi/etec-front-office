@@ -5,37 +5,41 @@
 @import '~@angular/material/theming';
 @import './styles/styles';
 @import './theme/variables.scss';
+
 @function mat-color($palette, $hue: default, $opacity: null) {
-	@if type-of($hue) ==number and $hue>=0 and $hue <=1 {
+	@if type-of($hue)==number and $hue>=0 and $hue <=1 {
 		@return mat-color($palette, default, $hue);
 	}
+
 	$color: map-get($palette, $hue);
+
 	@if (type-of($color) !=color) {
 		@if ($opacity==null) {
 			@return $color;
 		}
+
 		// Here is the change from the original function:
 		// If the $color resolved to something different from a color, we assume it is a CSS variable
 		// in the form of rgba(rgba(var(--rgba-css-var), a) and replace the 'a' value.
 		@return #{str-slice($color, 0, str-index($color, ',')) + $opacity + ')'};
 	}
+
 	@return rgba($color, if($opacity==null, opacity($color), $opacity));
 }
 
 @function empty($value) {
-	@if not $value or $value== '' or $value==0 or $value==() or length($value) ==0 {
+	@if not $value or $value=='' or $value==0 or $value==() or length($value)==0 {
 		@return true;
 	}
+
 	@return false;
 }
 
 @font-face {
 	font-family: 'Din-Next-Lt-Arabic_Regular';
 	src: url('./assets/fonts/DinNextLtArabic/regular/Din-Next-Lt-Arabic_Regular.eot');
-	src: url('./assets/fonts/DinNextLtArabic/regular/Din-Next-Lt-Arabic_Regular.eot?#iefix')
-			format('embedded-opentype'),
-		url('./assets/fonts/DinNextLtArabic/regular/Din-Next-Lt-Arabic_Regular.svg#Din-Next-Lt-Arabic_Regular')
-			format('svg'),
+	src: url('./assets/fonts/DinNextLtArabic/regular/Din-Next-Lt-Arabic_Regular.eot?#iefix') format('embedded-opentype'),
+		url('./assets/fonts/DinNextLtArabic/regular/Din-Next-Lt-Arabic_Regular.svg#Din-Next-Lt-Arabic_Regular') format('svg'),
 		url('./assets/fonts/DinNextLtArabic/regular/Din-Next-Lt-Arabic_Regular.woff') format('woff'),
 		url('./assets/fonts/DinNextLtArabic/regular/Din-Next-Lt-Arabic_Regular.woff2') format('woff2');
 }
@@ -60,8 +64,7 @@ $md-ekhaa: (
 	A200: rgba(var(--primaryA200-parts), 1),
 	A400: rgba(var(--primaryA400-parts), 1),
 	A700: rgba(var(--primaryA700-parts), 1),
-	contrast: (
-		50: rgba(var(--primaryContrast50-parts), 1),
+	contrast: (50: rgba(var(--primaryContrast50-parts), 1),
 		100: rgba(var(--primaryContrast100-parts), 1),
 		200: rgba(var(--primaryContrast200-parts), 1),
 		300: rgba(var(--primaryContrast300-parts), 1),
@@ -92,8 +95,7 @@ $md-accents: (
 	A200: rgba(var(--accentA200-parts), 1),
 	A400: rgba(var(--accentA400-parts), 1),
 	A700: rgba(var(--accentA700-parts), 1),
-	contrast: (
-		50: rgba(var(--accentContrast50-parts), 1),
+	contrast: (50: rgba(var(--accentContrast50-parts), 1),
 		100: rgba(var(--accentContrast100-parts), 1),
 		200: rgba(var(--accentContrast200-parts), 1),
 		300: rgba(var(--accentContrast300-parts), 1),
@@ -124,6 +126,7 @@ $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn
 @include angular-material-theme($rms-app-theme);
 // @import "~css-star-rating/scss/star-rating";
 @import '~@ionic/angular/css/core.css';
+
 html {
 	top: 0 !important;
 }
@@ -136,7 +139,7 @@ body,
 ion-chip:not([class*='selected-chip']) ion-label,
 .mat-chip.mat-standard-chip,
 .mat-expansion-panel {
-	color: $secondary-color !important;
+	color: $secondary-color  !important;
 }
 
 html,
@@ -168,7 +171,9 @@ th,
 .mat-menu-item {
 	@if empty(var(--font)) {
 		font-family: 'Droid Arabic Kufi', 'Quicksand', sans-serif;
-	} @else {
+	}
+
+	@else {
 		font-family: var(--font), 'Quicksand', sans-serif;
 	}
 }
@@ -183,7 +188,9 @@ h5,
 .lang-ar body {
 	@if empty(var(--font)) {
 		font-family: 'Droid Arabic Kufi', sans-serif;
-	} @else {
+	}
+
+	@else {
 		font-family: var(--font), sans-serif;
 	}
 }
@@ -211,8 +218,7 @@ img {
 	max-width: 100%;
 }
 
-.serviceCard {
-}
+.serviceCard {}
 
 .department__section {
 	border-bottom: 5px $secondary-color solid;
@@ -296,6 +302,7 @@ mat-checkbox .mat-checkbox-inner-container {
 .mat-menu-panel.notifications {
 	height: 50vh !important;
 	min-width: 420px !important;
+
 	.mat-menu-content {
 		height: 100%;
 		overflow: hidden;
@@ -317,12 +324,12 @@ a:hover {
 	text-align: left;
 }
 
-.right-aligned-header > .mat-content {
+.right-aligned-header>.mat-content {
 	justify-content: space-between;
 }
 
-.mat-content > mat-panel-title,
-.mat-content > mat-panel-description {
+.mat-content>mat-panel-title,
+.mat-content>mat-panel-description {
 	flex: 0 0 auto;
 }
 
@@ -331,208 +338,180 @@ a:hover {
 	border-radius: 6px;
 	overflow: hidden;
 	margin-bottom: 10px;
+
 	h6 {
 		display: flex;
 		font-size: 13px;
+
 		[slot='start'] {
 			font-weight: bold;
 		}
 	}
+
 	ion-icon[slot='start'] {
 		-webkit-margin-end: 16px;
 		margin-inline-end: 16px;
 		margin-top: 5px;
 		margin-bottom: 5px;
 	}
+
 	color: rgba(0, 0, 0, 0.64);
+
 	&.tertiary {
 		//--background: rgba(var(--ion-color-tertiary-rgb), 0.1);
 		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&0+0,1+100 */
-		--background: -moz-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
-		);
+		--background: -moz-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
 		/* FF3.6-15 */
-		--background: -webkit-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
-		);
+		--background: -webkit-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
 		/* Chrome10-25,Safari5.1-6 */
-		--background: linear-gradient(
-			to left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
-		);
+		--background: linear-gradient(to left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
+
 		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		ion-icon {
 			color: var(--ion-color-tertiary);
 		}
 	}
+
 	&.success {
 		// --background: rgba(var(--ion-color-success-rgb), 0.1);
-		--background: -moz-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-success-rgb), 0.1) 100%
-		);
+		--background: -moz-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-success-rgb), 0.1) 100%);
 		/* FF3.6-15 */
-		--background: -webkit-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-success-rgb), 0.1) 100%
-		);
+		--background: -webkit-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-success-rgb), 0.1) 100%);
 		/* Chrome10-25,Safari5.1-6 */
-		--background: linear-gradient(
-			to left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-success-rgb), 0.1) 100%
-		);
+		--background: linear-gradient(to left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-success-rgb), 0.1) 100%);
+
 		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		ion-icon {
 			color: var(--ion-color-success);
 		}
 	}
+
 	&.warning {
 		//--background: rgba(var(--ion-color-warning-rgb), 0.1);
-		--background: -moz-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-warning-rgb), 0.1) 100%
-		);
+		--background: -moz-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-warning-rgb), 0.1) 100%);
 		/* FF3.6-15 */
-		--background: -webkit-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-warning-rgb), 0.1) 100%
-		);
+		--background: -webkit-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-warning-rgb), 0.1) 100%);
 		/* Chrome10-25,Safari5.1-6 */
-		--background: linear-gradient(
-			to left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-warning-rgb), 0.1) 100%
-		);
+		--background: linear-gradient(to left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-warning-rgb), 0.1) 100%);
+
 		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		ion-icon {
 			color: var(--ion-color-warning);
 		}
 	}
+
 	&.primary {
 		//--background: rgba(var(--ion-color-primary-rgb), 0.1);
-		--background: -moz-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-primary-rgb), 0.1) 100%
-		);
+		--background: -moz-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-primary-rgb), 0.1) 100%);
 		/* FF3.6-15 */
-		--background: -webkit-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-primary-rgb), 0.1) 100%
-		);
+		--background: -webkit-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-primary-rgb), 0.1) 100%);
 		/* Chrome10-25,Safari5.1-6 */
-		--background: linear-gradient(
-			to left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-primary-rgb), 0.1) 100%
-		);
+		--background: linear-gradient(to left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-primary-rgb), 0.1) 100%);
+
 		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		ion-icon {
 			color: var(--ion-color-primary);
 		}
 	}
+
 	&.secondary {
 		//--background: rgba(var(--ion-color-secondary-rgb), 0.1);
-		--background: -moz-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-secondary-rgb), 0.1) 100%
-		);
+		--background: -moz-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
 		/* FF3.6-15 */
-		--background: -webkit-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-secondary-rgb), 0.1) 100%
-		);
+		--background: -webkit-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
 		/* Chrome10-25,Safari5.1-6 */
-		--background: linear-gradient(
-			to left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-secondary-rgb), 0.1) 100%
-		);
+		--background: linear-gradient(to left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
+
 		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		ion-icon {
 			color: var(--ion-color-secondary);
 		}
 	}
+
 	&.danger {
 		//--background: rgba(var(--ion-color-danger-rgb), 0.1);
-		--background: -moz-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-danger-rgb), 0.1) 100%
-		);
+		--background: -moz-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-danger-rgb), 0.1) 100%);
 		/* FF3.6-15 */
-		--background: -webkit-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-danger-rgb), 0.1) 100%
-		);
+		--background: -webkit-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-danger-rgb), 0.1) 100%);
 		/* Chrome10-25,Safari5.1-6 */
-		--background: linear-gradient(
-			to left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-danger-rgb), 0.1) 100%
-		);
+		--background: linear-gradient(to left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-danger-rgb), 0.1) 100%);
+
 		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		ion-icon {
 			color: var(--ion-color-danger);
 		}
 	}
+
 	&.light {
 		//--background: rgba(var(--ion-color-light-rgb), 1);
-		--background: -moz-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-light-rgb), 1) 100%
-		);
+		--background: -moz-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-light-rgb), 1) 100%);
 		/* FF3.6-15 */
-		--background: -webkit-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-light-rgb), 1) 100%
-		);
+		--background: -webkit-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-light-rgb), 1) 100%);
 		/* Chrome10-25,Safari5.1-6 */
-		--background: linear-gradient(
-			to left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-light-rgb), 1) 100%
-		);
+		--background: linear-gradient(to left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-light-rgb), 1) 100%);
+
 		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		ion-icon {
 			color: var(--ion-color-medium);
 		}
 	}
+
 	&.medium {
 		//--background: rgba(var(--ion-color-medium-rgb), 0.1);
-		--background: -moz-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-medium-rgb), 0.1) 100%
-		);
+		--background: -moz-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-medium-rgb), 0.1) 100%);
 		/* FF3.6-15 */
-		--background: -webkit-linear-gradient(
-			left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-medium-rgb), 0.1) 100%
-		);
+		--background: -webkit-linear-gradient(left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-medium-rgb), 0.1) 100%);
 		/* Chrome10-25,Safari5.1-6 */
-		--background: linear-gradient(
-			to left,
-			rgba(30, 87, 153, 0) 50%,
-			rgba(var(--ion-color-medium-rgb), 0.1) 100%
-		);
+		--background: linear-gradient(to left,
+				rgba(30, 87, 153, 0) 50%,
+				rgba(var(--ion-color-medium-rgb), 0.1) 100%);
+
 		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		ion-icon {
 			color: var(--ion-color-medium);
@@ -546,220 +525,195 @@ a:hover {
 		border-radius: 6px;
 		overflow: hidden;
 		margin-bottom: 10px;
+
 		h6 {
 			display: flex;
 			font-size: 13px;
+
 			[slot='start'] {
 				font-weight: bold;
 			}
 		}
+
 		ion-icon[slot='start'] {
 			-webkit-margin-end: 16px;
 			margin-inline-end: 16px;
 			margin-top: 5px;
 			margin-bottom: 5px;
 		}
+
 		color: rgba(0, 0, 0, 0.64);
+
 		&.tertiary {
 			//--background: rgba(var(--ion-color-tertiary-rgb), 0.1);
 			/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&0+0,1+100 */
-			--background: -moz-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
-			);
+			--background: -moz-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
 			/* FF3.6-15 */
-			--background: -webkit-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
-			);
+			--background: -webkit-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
 			/* Chrome10-25,Safari5.1-6 */
-			--background: linear-gradient(
-				to right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-tertiary-rgb), 0.1) 100%
-			);
+			--background: linear-gradient(to right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-tertiary-rgb), 0.1) 100%);
+
 			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			ion-icon {
 				color: var(--ion-color-tertiary);
 			}
 		}
+
 		&.success {
 			// --background: rgba(var(--ion-color-success-rgb), 0.1);
-			--background: -moz-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-success-rgb), 0.1) 100%
-			);
+			--background: -moz-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-success-rgb), 0.1) 100%);
 			/* FF3.6-15 */
-			--background: -webkit-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-success-rgb), 0.1) 100%
-			);
+			--background: -webkit-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-success-rgb), 0.1) 100%);
 			/* Chrome10-25,Safari5.1-6 */
-			--background: linear-gradient(
-				to right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-success-rgb), 0.1) 100%
-			);
+			--background: linear-gradient(to right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-success-rgb), 0.1) 100%);
+
 			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			ion-icon {
 				color: var(--ion-color-success);
 			}
 		}
+
 		&.warning {
 			//--background: rgba(var(--ion-color-warning-rgb), 0.1);
-			--background: -moz-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-warning-rgb), 0.1) 100%
-			);
+			--background: -moz-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-warning-rgb), 0.1) 100%);
 			/* FF3.6-15 */
-			--background: -webkit-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-warning-rgb), 0.1) 100%
-			);
+			--background: -webkit-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-warning-rgb), 0.1) 100%);
 			/* Chrome10-25,Safari5.1-6 */
-			--background: linear-gradient(
-				to right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-warning-rgb), 0.1) 100%
-			);
+			--background: linear-gradient(to right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-warning-rgb), 0.1) 100%);
+
 			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			ion-icon {
 				color: var(--ion-color-warning);
 			}
 		}
+
 		&.primary {
 			//--background: rgba(var(--ion-color-primary-rgb), 0.1);
-			--background: -moz-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-primary-rgb), 0.1) 100%
-			);
+			--background: -moz-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-primary-rgb), 0.1) 100%);
 			/* FF3.6-15 */
-			--background: -webkit-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-primary-rgb), 0.1) 100%
-			);
+			--background: -webkit-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-primary-rgb), 0.1) 100%);
 			/* Chrome10-25,Safari5.1-6 */
-			--background: linear-gradient(
-				to right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-primary-rgb), 0.1) 100%
-			);
+			--background: linear-gradient(to right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-primary-rgb), 0.1) 100%);
+
 			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			ion-icon {
 				color: var(--ion-color-primary);
 			}
 		}
+
 		&.secondary {
 			//--background: rgba(var(--ion-color-secondary-rgb), 0.1);
-			--background: -moz-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-secondary-rgb), 0.1) 100%
-			);
+			--background: -moz-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
 			/* FF3.6-15 */
-			--background: -webkit-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-secondary-rgb), 0.1) 100%
-			);
+			--background: -webkit-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
 			/* Chrome10-25,Safari5.1-6 */
-			--background: linear-gradient(
-				to right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-secondary-rgb), 0.1) 100%
-			);
+			--background: linear-gradient(to right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-secondary-rgb), 0.1) 100%);
+
 			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			ion-icon {
 				color: var(--ion-color-secondary);
 			}
 		}
+
 		&.danger {
 			//--background: rgba(var(--ion-color-danger-rgb), 0.1);
-			--background: -moz-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-danger-rgb), 0.1) 100%
-			);
+			--background: -moz-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-danger-rgb), 0.1) 100%);
 			/* FF3.6-15 */
-			--background: -webkit-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-danger-rgb), 0.1) 100%
-			);
+			--background: -webkit-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-danger-rgb), 0.1) 100%);
 			/* Chrome10-25,Safari5.1-6 */
-			--background: linear-gradient(
-				to right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-danger-rgb), 0.1) 100%
-			);
+			--background: linear-gradient(to right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-danger-rgb), 0.1) 100%);
+
 			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			ion-icon {
 				color: var(--ion-color-danger);
 			}
 		}
+
 		&.light {
 			//--background: rgba(var(--ion-color-light-rgb), 1);
-			--background: -moz-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-light-rgb), 1) 100%
-			);
+			--background: -moz-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-light-rgb), 1) 100%);
 			/* FF3.6-15 */
-			--background: -webkit-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-light-rgb), 1) 100%
-			);
+			--background: -webkit-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-light-rgb), 1) 100%);
 			/* Chrome10-25,Safari5.1-6 */
-			--background: linear-gradient(
-				to right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-light-rgb), 1) 100%
-			);
+			--background: linear-gradient(to right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-light-rgb), 1) 100%);
+
 			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			ion-icon {
 				color: var(--ion-color-medium);
 			}
 		}
+
 		&.medium {
 			//--background: rgba(var(--ion-color-medium-rgb), 0.1);
-			--background: -moz-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-medium-rgb), 0.1) 100%
-			);
+			--background: -moz-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-medium-rgb), 0.1) 100%);
 			/* FF3.6-15 */
-			--background: -webkit-linear-gradient(
-				right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-medium-rgb), 0.1) 100%
-			);
+			--background: -webkit-linear-gradient(right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-medium-rgb), 0.1) 100%);
 			/* Chrome10-25,Safari5.1-6 */
-			--background: linear-gradient(
-				to right,
-				rgba(30, 87, 153, 0) 50%,
-				rgba(var(--ion-color-medium-rgb), 0.1) 100%
-			);
+			--background: linear-gradient(to right,
+					rgba(30, 87, 153, 0) 50%,
+					rgba(var(--ion-color-medium-rgb), 0.1) 100%);
+
 			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			ion-icon {
 				color: var(--ion-color-medium);
 			}
 		}
 	}
+
 	.justSection {
 		border-right: none !important;
 		border-left: 5px solid $primary-color;
+
 		&__title span {
 			padding-left: 20px !important;
 		}
+
 		&__title::after {
 			left: 0 !important;
 			right: -5px !important;
@@ -772,12 +726,14 @@ a:hover {
 	display: flow-root;
 	padding-top: 10px;
 	position: relative;
+
 	[slot='start'] {
 		float: left;
 		margin: 0px;
 		margin-right: 5px;
 		flex: 1;
 	}
+
 	[slot='end'] {
 		float: right;
 		margin: 0px;
@@ -797,19 +753,23 @@ a:hover {
 		padding: 0px;
 		margin: -6px -15px;
 	}
-	.mat-dialog-title {
-	}
+
+	.mat-dialog-title {}
+
 	.cdk-overlay-pane {
 		max-width: 100vw !important;
 		width: 93% !important;
 	}
+
 	.ngx-toastr {
 		width: calc(100vw - 25px) !important;
 	}
+
 	.formio-component-file {
 		position: relative !important;
 		overflow: hidden;
 	}
+
 	.alignSwitchAR {
 		padding-left: 0px;
 		padding-right: 0px;
@@ -828,60 +788,72 @@ html[dir='rtl'] {
 		--font-family-ios-base: 'Droid Arabic Kufi', sans-serif;
 		--font-family-wp-base: 'Droid Arabic Kufi', sans-serif;
 		--ion-font-family: 'Droid Arabic Kufi', sans-serif !important;
-	} @else {
+	}
+
+	@else {
 		--font-family-md-base: var(--font), sans-serif;
 		--font-family-ios-base: var(--font), sans-serif;
 		--font-family-wp-base: var(--font), sans-serif;
 		--ion-font-family: var(--font), sans-serif !important;
 	}
+
 	.mat-dialog-title {
 		direction: rtl;
 		text-align: right;
 		font-size: 15px;
+
 		@if empty(var(--font)) {
 			font-family: 'Droid Arabic Kufi', sans-serif;
-		} @else {
+		}
+
+		@else {
 			font-family: var(--font), sans-serif;
 		}
 	}
+
 	.big-chip h6 {
 		direction: rtl;
 	}
+
 	.slotted {
 		[slot='start'] {
 			float: right;
 			margin: 0px;
 			margin-left: 5px;
 		}
+
 		[slot='end'] {
 			float: left;
 			margin: 0px;
 			margin-right: 5px;
 		}
 	}
+
 	.toast-container {
 		left: 12px !important;
 		right: auto !important;
 		direction: rtl;
 		text-align: right;
+
 		.ngx-toastr {
 			background-position: 10px center !important;
 		}
+
 		.toast-close-button {
 			float: left;
 		}
 	}
+
 	ion-title,
 	.page-title {
 		text-align: right;
 	}
+
 	.ng-select .ng-has-value .ng-placeholder,
 	.ng-select.ng-select-focused .ng-placeholder,
 	.ng-select.ng-select-opened .ng-placeholder {
-		-webkit-transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px)
-			translateZ(0.001px) !important;
-		transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px)
-			translateZ(0.001px) !important;
+		-webkit-transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px) translateZ(0.001px) !important;
+		transform: translateY(-1.28125em) translateX(1px) scale(0.8) perspective(100px) translateZ(0.001px) !important;
 		transform-origin: right;
 	}
 }
@@ -890,12 +862,14 @@ html[dir='rtl'] {
 	right: 12px !important;
 	bottom: 12px !important;
 	pointer-events: all !important;
+
 	.ngx-toastr {
 		padding: 25px !important;
 		background-position: 263px center !important;
 		border-radius: 10px !important;
 		box-shadow: none !important;
 	}
+
 	.toast-title {
 		font-weight: normal;
 	}
@@ -950,11 +924,13 @@ ion-chip:not(.rounded),
 .mat-standard-chip:not(.border-rounded) {
 	border-radius: var(--chip-radius, 5px) !important;
 }
+
 .mat-chip.mat-standard-chip.mat-chip-disabled {
 	opacity: 1 !important;
 }
+
 .selected-chip {
-	background: $success-color !important;
+	background: $success-color  !important;
 	color: #fff;
 }
 
@@ -1019,7 +995,7 @@ ion-chip:not(.rounded),
 }
 
 .mat-calendar-body-selected {
-	background: $primary-color !important;
+	background: $primary-color  !important;
 	color: #fff;
 }
 
@@ -1055,7 +1031,7 @@ ion-chip:not(.rounded),
 .ctm-btn:hover:enabled {
 	background: var(--primaryColor);
 	box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
-	color: $white !important;
+	color: $white  !important;
 }
 
 .ctm-btn:disabled,
@@ -1082,10 +1058,12 @@ ion-chip:not(.rounded),
 		&.unread {
 			border-right: 4px solid $primary-color;
 		}
+
 		&.read {
 			border-right: 4px solid #ddd;
 		}
 	}
+
 	.mat-menu-panel.notifications {
 		.mat-menu-content {
 			direction: rtl;
@@ -1098,10 +1076,12 @@ ion-chip:not(.rounded),
 		&.unread {
 			border-left: 4px solid $primary-color;
 		}
+
 		&.read {
 			border-left: 4px solid #ddd;
 		}
 	}
+
 	.mat-menu-panel.notifications {
 		.mat-menu-content {
 			direction: ltr;
@@ -1154,7 +1134,7 @@ ion-chip:not(.rounded),
 }
 
 .rating.color-positive .star-container .star i {
-	color: $primary-color !important;
+	color: $primary-color  !important;
 }
 
 //--------------------------------------------------------------------------------------------
@@ -1621,6 +1601,7 @@ ion-chip:not(.rounded),
 				border-top-color: var(--primaryColor) !important;
 			}
 		}
+
 		.p-tooltip-text {
 			background: var(--primaryColor) !important;
 		}
@@ -1631,9 +1612,11 @@ ion-chip:not(.rounded),
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+
 	.action {
 		font-size: 1.2rem;
 		color: #25aab2;
+
 		&:hover {
 			cursor: pointer;
 		}
@@ -1646,18 +1629,22 @@ ion-chip:not(.rounded),
 		margin-right: 0 !important;
 		margin-left: 0.5rem !important;
 	}
+
 	.records-list .add-new {
 		right: auto !important;
 		left: 2rem !important;
+
 		.icon {
 			margin-right: 0 !important;
 			margin-left: 0.5rem !important;
 		}
 	}
+
 	.records-list .filter-with-add {
 		right: auto !important;
 		left: 9rem !important;
 	}
+
 	.records-list .filter {
 		right: auto !important;
 		left: 2rem !important;
@@ -1704,6 +1691,7 @@ ion-chip:not(.rounded),
 		color: rgba(97, 97, 97, 1);
 		font-weight: 600;
 	}
+
 	.app-formio .form-control[disabled='disabled'] {
 		border: none;
 		border-radius: 0 !important;
@@ -1719,10 +1707,12 @@ ion-chip:not(.rounded),
 	font-size: 24px !important;
 	font-weight: 900 !important;
 }
+
 @mixin sub-main-title-mixin {
 	font-size: 18px !important;
 	font-weight: 600 !important;
 }
+
 @mixin sub-title-mixin {
 	font-size: 16px !important;
 	font-weight: normal !important;
@@ -1743,9 +1733,11 @@ ion-chip:not(.rounded),
 .mat-tab-label-content {
 	@include sub-main-title-mixin;
 }
+
 .mat-tab-label {
 	@include sub-main-title-mixin;
 }
+
 .mat-tab-label-active {
 	@include sub-main-title-mixin;
 }
@@ -1759,16 +1751,20 @@ ion-chip:not(.rounded),
 label {
 	@include sub-title-mixin;
 }
+
 .panel-title {
 	@include sub-main-title-mixin;
 }
+
 .formio-form {
 	dt {
 		@include sub-title-mixin;
 	}
+
 	.panel-title {
 		@include sub-main-title-mixin;
 	}
+
 	.control-label {
 		@include sub-title-mixin;
 	}
@@ -1776,6 +1772,7 @@ label {
 
 ul.ul-list-style {
 	list-style: none;
+
 	li::before {
 		content: '•';
 		color: $success-color;
@@ -1789,6 +1786,7 @@ ul.ul-list-style {
 ol.ol-list-style {
 	list-style: none;
 	counter-reset: li;
+
 	li::before {
 		content: counter(li) '.';
 		color: $success-color;
@@ -1796,8 +1794,45 @@ ol.ol-list-style {
 		width: 2em;
 		margin-left: 0em;
 	}
+
 	li {
 		counter-increment: li;
+	}
+}
+
+.underline-link {
+	text-decoration: underline !important;
+}
+
+ul.ul-list-style {
+	list-style: none;
+
+	li::before {
+		content: "•";
+		color: $success-color;
+		display: inline-block;
+		width: 1em;
+		margin-left: 0em;
+		font-size: 20px;
+	}
+}
+
+ol.ol-list-style {
+	list-style: none;
+	counter-reset: li;
+
+	li::before {
+		content: counter(li) ".";
+		color: $success-color;
+		display: inline-block;
+		width: 2em;
+		margin-left: 0em
+	}
+
+	;
+
+	li {
+		counter-increment: li
 	}
 }
 
@@ -1813,6 +1848,42 @@ ol.ol-list-style {
 .show-scrollTop {
 	opacity: 1 !important;
 	transition: all 0.2s ease-in-out;
+}
+
+mat-expansion-panel {
+	background: white !important;
+	border: none !important;
+	border-top: solid 2px rgba(0, 0, 0, .068) !important;
+	border-radius: 0 !important;
+	padding: .7rem !important;
+
+	&:last-child {
+		border-bottom: solid 2px rgba(0, 0, 0, .068) !important;
+	}
+
+	&:hover {
+		background: white !important;
+		border: none !important;
+		border-top: solid 2px rgba(0, 0, 0, .068) !important;
+		border-radius: 0 !important;
+
+		&:last-child {
+			border-bottom: solid 2px rgba(0, 0, 0, .068) !important;
+		}
+	}
+
+	mat-expansion-panel-header {
+		&:hover {
+			background: white !important;
+		}
+	}
+
+	mat-expansion-panel-header.mat-expanded {
+		span.mat-content {
+			font-weight: bold;
+
+		}
+	}
 }
 
 .underline-link {
