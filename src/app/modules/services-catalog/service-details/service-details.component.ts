@@ -2,6 +2,7 @@ import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ErrorToast, UserService } from 'src/formio/src/public_api';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { RequestsService } from '../../requests/requests.service';
 import { LifeCycleService } from '../life-cycle-service.config';
@@ -14,7 +15,9 @@ import { LifeCycleService } from '../life-cycle-service.config';
 })
 export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 	routeState = null;
-	constructor(public injector: Injector, private requestsService: RequestsService) {
+	constructor(public injector: Injector,
+		private requestsService: RequestsService,
+		private userService: UserService) {
 		super(injector);
 		const state = this.router.getCurrentNavigation().extras.state;
 		this.routeState = state ? state : '';
@@ -66,12 +69,32 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 					])
 				)
 			)
-			.subscribe(([data, requestsCount, comments, collection, segments]) => {
+			.subscribe(async ([data, requestsCount, comments, collection, segments]) => {
 				this.loading = false;
 				this.data = data;
 				this.stats = requestsCount;
 				this.comments = comments.entries;
 				this.segments = segments.entries;
+
+				if (this.isLoggedIn) {
+					const user = await this.userService.getUserData(await this.keycloakService.getToken());
+					const isAdmin = user.currentUser_groups?.includes('Admins');
+
+					if (!isAdmin && !this.segments.filter(q => q.activation).some(q => user.currentUser_roles.includes(q.key))) {
+						this.router.navigate(['/']);
+						this.toastrService.show(
+							this.translateService.instant("Sorry, you do not have permission to view this service"),
+							this.translateService.instant("generalError"),
+							{
+								toastClass: "notification-toast",
+								closeButton: true,
+								enableHtml: true,
+								toastComponent: ErrorToast,
+							}
+						);
+					}
+				}
+
 				if (environment.skipServiceDetailsPage || this.isApply) {
 					if ((this.isLoggedIn && this.data?.canAnonymousApply) || !this.data?.canAnonymousApply) {
 						this.router.navigate(
