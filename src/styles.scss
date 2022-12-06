@@ -1850,42 +1850,6 @@ ol.ol-list-style {
 	transition: all 0.2s ease-in-out;
 }
 
-mat-expansion-panel {
-	background: white !important;
-	border: none !important;
-	border-top: solid 2px rgba(0, 0, 0, .068) !important;
-	border-radius: 0 !important;
-	padding: .7rem !important;
-
-	&:last-child {
-		border-bottom: solid 2px rgba(0, 0, 0, .068) !important;
-	}
-
-	&:hover {
-		background: white !important;
-		border: none !important;
-		border-top: solid 2px rgba(0, 0, 0, .068) !important;
-		border-radius: 0 !important;
-
-		&:last-child {
-			border-bottom: solid 2px rgba(0, 0, 0, .068) !important;
-		}
-	}
-
-	mat-expansion-panel-header {
-		&:hover {
-			background: white !important;
-		}
-	}
-
-	mat-expansion-panel-header.mat-expanded {
-		span.mat-content {
-			font-weight: bold;
-
-		}
-	}
-}
-
 .underline-link {
 	text-decoration: underline !important;
 }
