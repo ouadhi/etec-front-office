@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DEFAULT_CONFIG } from '@angular/flex-layout';
 import { from, Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { FormConfigService } from 'src/formio/src/public_api';
-import { DEFAULTS_THEM_OPTIONS, DEFAULTS_IMAGES } from '../consts/config.const';
+import { DEFAULTS_IMAGES, DEFAULTS_THEM_OPTIONS, DEFAULT_CONFIG } from '../consts';
 
 declare let FontFace: any;
 
