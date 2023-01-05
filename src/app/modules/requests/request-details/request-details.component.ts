@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
-import { from, of } from 'rxjs';
+import { LangChangeEvent } from '@ngx-translate/core';
+import { from, Observable, of } from 'rxjs';
 import { finalize, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
@@ -59,8 +60,8 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 	isAdmin = false;
 
 	async ngOnInit() {
-		this.isRtl$ = this.translateService.onLangChange.pipe(
-			map((data) => data.lang == 'ar'),
+		this.isRtl$ = (this.translateService.onLangChange as Observable<LangChangeEvent>).pipe(
+			map((data: LangChangeEvent) => data.lang == 'ar'),
 			shareReplay(),
 			tap((rs) => {
 				this.getData();
@@ -68,11 +69,11 @@ export class RequestDetailsComponent extends BaseComponent implements OnInit {
 		);
 		this.sub = from(this.keycloakService.isLoggedIn())
 			.pipe(
-				tap((res) => {
+				tap((res: boolean) => {
 					this.isLoggedIn = res;
 				}),
 				switchMap((isLoggedIn) => from(isLoggedIn ? this.keycloakService.getToken() : null)),
-				switchMap((token) => this.userService.getUserData(token))
+				switchMap((token: string) => this.userService.getUserData(token))
 			)
 			.subscribe((userData) => {
 				this.user = userData;

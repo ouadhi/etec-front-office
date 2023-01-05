@@ -19,7 +19,7 @@ export class CaseActivityService {
     getCaseHistoryActivities(queryParams = {}) {
         const endpoint = `${environment.gateway}${environment.endpoints.caseActivity}`;
         return this.http.get<any[]>(endpoint, { params: queryParams }).pipe(
-            map(data => (
+            map((data: any[]) => (
                 data.map(item => this.activityInstanceAdapter.adapt(item))
             )
             ));
@@ -27,7 +27,7 @@ export class CaseActivityService {
     getCaseHistoryActivitiesDetails(queryParams = {}) {
         const endpoint = `${environment.gateway}${environment.endpoints.caseActivityDetails}`;
         return this.http.get<any[]>(endpoint, { params: queryParams }).pipe(
-            map(data => (
+            map((data: any[]) => (
                 data.map(item => this.activityInstanceAdapter.adapt(item))
             )
             ));

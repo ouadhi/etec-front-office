@@ -54,8 +54,8 @@ export class ServiceDetailsComponent extends BaseComponent implements OnInit {
 		this.sub = this.servicesService
 			.getService(id)
 			.pipe(
-				map((data) => data?.entries[0]),
-				switchMap((res) =>
+				map((data: { entries: any[] }) => data?.entries[0]),
+				switchMap((res: any) =>
 					combineLatest([
 						of(res),
 						this.requestsService.getRequestsCount(res?.key),

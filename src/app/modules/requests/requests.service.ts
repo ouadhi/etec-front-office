@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
@@ -30,7 +30,7 @@ export class RequestsService {
 		private datePipe: DatePipe,
 		private dashletFilterAdapter: DashletFilterAdapter,
 		private translate: TranslateService
-	) {}
+	) { }
 
 	verifyToken(token) {
 		return this.http.get<any>(`${environment.formio.appUrl}/recaptcha?recaptchaToken=${token}`);
@@ -63,7 +63,7 @@ export class RequestsService {
 				params: this.dashletFilterAdapter.adapt(queryParams),
 			})
 			.pipe(
-				map((resp) => {
+				map((resp: HttpResponse<any>) => {
 					return { items: resp.body, totalCount: resp.headers.get('X-Total-Count') };
 				})
 			);
@@ -99,8 +99,7 @@ export class RequestsService {
 	getTaskByProcessInstanceId(queryParams = {}, isAnonymous: boolean = false): Observable<any> {
 		return this.http
 			.get<any>(
-				`${environment.gateway}${
-					isAnonymous ? environment.endpoints.anonymousTasks : environment.endpoints.tasks
+				`${environment.gateway}${isAnonymous ? environment.endpoints.anonymousTasks : environment.endpoints.tasks
 				}`,
 				{
 					params: {

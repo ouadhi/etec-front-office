@@ -56,7 +56,7 @@ export class DashletFilterComponent extends BaseComponent implements OnInit {
 				tap((params) => {
 					this.loggerService.log(params);
 				}),
-				filter((params) => params.u === '1')
+				filter((params: { u: string }) => params.u === '1')
 			)
 			.subscribe((_) => {
 				this.filterData.activeTask = true;

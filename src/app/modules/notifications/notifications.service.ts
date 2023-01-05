@@ -1,5 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, publishReplay, refCount } from 'rxjs/operators';
@@ -177,7 +177,7 @@ export class NotificationsService implements OnInit {
   doGetNotifications(userId, queryParams = {}) {
     const endpoint = `${environment.gateway}${environment.endpoints.notifications}system-notifications/all/backOffice/${userId}`;
     return this.http.get<any>(endpoint, { observe: 'response', params: queryParams }).pipe(
-      map(resp => ({
+      map((resp: HttpResponse<any>) => ({
         totalCount: resp.headers.get('x-total-count'),
         items: resp.body.map((item) => item)
       })),

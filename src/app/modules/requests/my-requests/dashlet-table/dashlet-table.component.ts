@@ -11,6 +11,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { LangChangeEvent } from '@ngx-translate/core';
 import { BehaviorSubject, merge, Observable, of, Subscription } from 'rxjs';
 import { catchError, startWith, switchMap, tap } from 'rxjs/operators';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
@@ -66,7 +67,7 @@ export class DashletTableComponent
 	}
 
 	ngOnInit() {
-		this.currentLanguage$ = this.translateService.onLangChange.pipe(switchMap((chn) => chn?.lang));
+		this.currentLanguage$ = (this.translateService.onLangChange as Observable<LangChangeEvent>).pipe(switchMap((chn: LangChangeEvent) => chn?.lang));
 		this._prepareTableMetaData();
 		this._prepareTableColumns();
 
@@ -108,7 +109,7 @@ export class DashletTableComponent
 						size: this.paginator.pageSize,
 					})
 				),
-				tap((data) => {
+				tap((data: { totalCount: number }) => {
 					// Flip flag to show that loading has finished.
 					this.formioLoader.loading = false;
 					this.isRateLimitReached = false;

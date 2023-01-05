@@ -17,7 +17,7 @@ export class TranslateLoaderHelper implements TranslateLoader {
             return combineLatest([
                 this.http.get<any>(
                     `${environment.cms}/api/collections/get/i18n?filter[name]=frontoffice_${lang}`, {}).pipe(
-                        tap(data => {
+                        tap((data: { entries: any[] }) => {
                             if (data && data.entries[0]) {
                                 return data;
                             } else {

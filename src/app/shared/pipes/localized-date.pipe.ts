@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform, OnDestroy } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Subject } from 'rxjs';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Pipe({
@@ -19,7 +19,7 @@ export class LocalizedDatePipe implements PipeTransform, OnDestroy {
 
 	constructor(public translateService: TranslateService) {
 		this.defaultLocale = translateService.currentLang;
-		this.translateService.onLangChange.pipe(takeUntil(this.onDestroy$)).subscribe((event) => {
+		(this.translateService.onLangChange as Observable<LangChangeEvent>).pipe(takeUntil(this.onDestroy$)).subscribe((event) => {
 			this.defaultLocale = event.lang;
 		});
 	}
