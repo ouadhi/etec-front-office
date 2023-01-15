@@ -14,8 +14,8 @@
 	"private": true,
 	"dependencies": {
 		"@agm/core": "^3.0.0-beta.0",
-		"@alfresco/adf-extensions": "^4.3.0",
-		"@alfresco/js-api": "^4.3.0",
+		"@alfresco/adf-extensions": "4.3.0",
+		"@alfresco/js-api": "4.3.0",
 		"@angular/animations": "^11.2.6",
 		"@angular/cdk": "^11.2.5",
 		"@angular/common": "~11.2.14",
