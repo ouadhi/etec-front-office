@@ -25,6 +25,8 @@ import {
 	registerCalenderWrapperComponent,
 	registerOrgWrapperComponent,
 	registerHtmlEditorComponent,
+	registerExecuteVisitComponent,
+	registerVisitScheduleComponent,
 } from 'src/formio/src/public_api';
 
 import { NavigationStart } from '@angular/router';
@@ -84,6 +86,8 @@ export class AppComponent extends BaseComponent {
 		registerCalenderWrapperComponent(injector);
 		registerOrgWrapperComponent(injector);
 		registerHtmlEditorComponent(injector);
+		registerExecuteVisitComponent(this.injector);
+		registerVisitScheduleComponent(injector);
 	}
 
 	scrollTo(elementId) {
