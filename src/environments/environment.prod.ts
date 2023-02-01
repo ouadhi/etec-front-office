@@ -42,6 +42,16 @@ export const environment = {
 		dataservice: '/dataservice/api/',
 		eligibilityVerificationReportApi: '/reportingservice/api/requirements',
 		requestFeedback: '/feedbackservice/api/v2/feedbacks/service',
+		reportingservice: '/reportingservice/api/',
+		criterionInformations: '/reportingservice/api/v1/criterion-informations/',
+		finalCriterionInformations: '/reportingservice/api/v1/criterion-final-reports/',
+		criterion: '/reportingservice/api/criterion/',
+		visitMembers: '/reportingservice/api/visit-members/',
+		assessmentResource: {
+			process: 'proccessassessmentresult',
+			categories: 'categoryassessmentresult',
+			questions: 'questionsassessmentresult',
+		},
 	},
 	roles: {
 		beneficiary: 'ROLE_BENEFICIARY',
