@@ -47,6 +47,9 @@ export const environment = {
 		finalCriterionInformations: '/reportingservice/api/v1/criterion-final-reports/',
 		criterion: '/reportingservice/api/criterion/',
 		visitMembers: '/reportingservice/api/visit-members/',
+		executivePlan: '/reportingservice/api/executive-plans/',
+		customExecutivePlan: '/reportingservice/api/v1/executive-plans/',
+		finalReportMistakes: '/reportingservice/api/final-report-mistakes',
 		assessmentResource: {
 			process: 'proccessassessmentresult',
 			categories: 'categoryassessmentresult',
@@ -68,9 +71,9 @@ export const environment = {
 	pdftronLicenceKey: '',
 	showFeedbackButton: true,
 	showDashboardCounters: true,
-    skipServiceDetailsPage:false,
-	backToTop:true,
-	taskRedirection:true
+	skipServiceDetailsPage: false,
+	backToTop: true,
+	taskRedirection: true
 };
 
 /*
