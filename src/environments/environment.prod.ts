@@ -50,6 +50,7 @@ export const environment = {
 		executivePlan: '/reportingservice/api/executive-plans/',
 		customExecutivePlan: '/reportingservice/api/v1/executive-plans/',
 		finalReportMistakes: '/reportingservice/api/final-report-mistakes',
+		finalReportResponses: '/reportingservice/api/v1/final-report-responses/',
 		assessmentResource: {
 			process: 'proccessassessmentresult',
 			categories: 'categoryassessmentresult',
