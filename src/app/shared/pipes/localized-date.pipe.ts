@@ -11,9 +11,12 @@ import { takeUntil } from 'rxjs/operators';
 export class LocalizedDatePipe implements PipeTransform, OnDestroy {
 	static DEFAULT_LOCALE = 'en-US';
 	static DEFAULT_DATE_FORMAT = 'dd MMMM yyyy hh:mm a';
+	static ISO = 'ISO';
 
 	defaultLocale: string = LocalizedDatePipe.DEFAULT_LOCALE;
 	defaultFormat: string = LocalizedDatePipe.DEFAULT_DATE_FORMAT;
+	defaultDateFormat: string = LocalizedDatePipe.ISO;
+
 
 	private onDestroy$ = new Subject<boolean>();
 
@@ -28,12 +31,13 @@ export class LocalizedDatePipe implements PipeTransform, OnDestroy {
 		return date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
 	}
 
-	transform(value: any, format?: string, locale?: string): any {
+	transform(value: any, format?: string, locale?: string, defaultDateFormat?: string): any {
 		try {
 			const actualFormat = format || this.defaultFormat;
 			const actualLocale = locale || this.defaultLocale;
+			const isDefaultDateFormat = (defaultDateFormat || this.defaultDateFormat) == LocalizedDatePipe.ISO;
 			const datePipe: DatePipe = new DatePipe(actualLocale);
-			return datePipe.transform(this.addHours(3, new Date(value)), actualFormat, 'GMT+3');
+			return datePipe.transform(isDefaultDateFormat ? this.addHours(3, new Date(value)) : new Date(value), actualFormat, 'GMT+3');
 		} catch (e) {
 			console.warn(e);
 			return this.addHours(3, new Date(value));

@@ -117,7 +117,7 @@
 
 							<ng-container *ngIf="!columns[col].display || columns[col].display == 'text'">
 								<ng-container *ngIf="columns[col]['formatDate']; else normal">
-									{{ element[col].substring(0, 19) | localizedDate: 'EEE, d/MM/yyyy hh:mma' }}
+									{{ element[col].substring(0, 19) | localizedDate: 'EEE, d/MM/yyyy hh:mma' : null :  'GMT'}}
 								</ng-container>
 								<ng-template #normal>
 									{{
