@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable, Subject } from 'rxjs';
+import { from, Observable, ReplaySubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { FormConfigService } from 'src/formio/src/public_api';
@@ -32,7 +32,7 @@ export class ConfigService {
 			: `${environment.cms}${this.config?.userAvatar?.path}`;
 	}
 
-	footerSub = new Subject<string>();
+	footerSub = new ReplaySubject<string>();
 	footerTemplate$ : Observable<string> = this.footerSub.asObservable();
 
 	constructor(private http: HttpClient, private formConfigService: FormConfigService) {}
