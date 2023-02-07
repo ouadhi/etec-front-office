@@ -1,60 +1,43 @@
 <header class="login-pf-header">
-	<div class="otp-hint">
-		<h1 id="kc-page-title">
-			{{ 'ManagePassword.OTP Verification' | translate }}
-		</h1>
-		<mat-icon
+	<!-- <div class="otp-hint"> -->
+	<h5 id="kc-page-title" class="h5 text-primary fw-normal mb-2">{{ 'ManagePassword.OTP Verification' | translate }}
+	</h5>
+	<span class="border border-warning border-3 d-inline-flex mb-2 bg-warning" style="width:75px;"></span>
+	<!-- <mat-icon
 			class="hint"
 			[matTooltipPosition]="'above'"
 			[matTooltip]="'ManagePassword.OTP Hint' | translate"
 			>info
-		</mat-icon>
-	</div>
+		</mat-icon> -->
+	<!-- </div> -->
 </header>
 
 <formio-loader></formio-loader>
 
-<form [formGroup]="formGroup">
+<form [formGroup]="formGroup" class="mt-4">
 	<div class="form-group">
-		<div class="input-icon-wrap">
-			<span class="input-icon"><span class="fa fa-code"></span></span>
-			<input
-				tabindex="1"
-				placeholder="{{ 'ManagePassword.Code' | translate }}"
-				id="code"
-				class="input-with-icon"
-				name="code"
-				value=""
-				type="text"
-				autofocus=""
-				autocomplete="off"
-				formControlName="code"
-			/>
+		<label for="code" class="fs-6 form-label text-primary">{{ 'ManagePassword.Code' | translate }}</label>
+		<div class="input-group has-validation border border-gray rounded-3 shadow-sm">
+			<span class="input-group-text bg-white border-0 p-0 px-2"><i
+					class="fa fa-code text-primary opacity-25"></i></span>
+			<input tabindex="1" placeholder="{{ 'ManagePassword.Code' | translate }}" id="code" class="form-control border-0 fs-6 px-2 text-primary" 
+				name="code" value="" type="text" autofocus="" autocomplete="off" formControlName="code" />
 		</div>
 	</div>
 
 	<div class="flex-space">
-		<p class="f-12">
+		<p class="text-black-50 fs-6">
 			{{ 'ManagePassword.Didnt you receive the verification number?' | translate }}
 		</p>
 		<div>
-			<a
-				class="f-12"
-				href="javascript: void(0);"
-				(click)="resendVerification($event)"
-				[class.disabled]="counter != 0"
-				>{{ 'ManagePassword.Resend Verification' | translate }}</a
-			>
+			<a class="text-black-50 fs-6" href="javascript: void(0);" (click)="resendVerification($event)"
+				[class.disabled]="counter != 0" style="text-decoration: underline;">{{ 'ManagePassword.Resend Verification' | translate }}</a>
 			<span *ngIf="counter" class="counter"> ({{ counter }})</span>
 		</div>
 	</div>
 	<br />
 
-	<button
-		pButton
-		type="button"
-		[label]="'ManagePassword.Verify' | translate"
-		[disabled]="!formGroup.valid"
-		(click)="checkVerify()"
-	></button>
+	<button  class="h-100 btn btn-primary border-0 rounded-3 mt-2 d-block m-auto" pButton type="button" [label]="'ManagePassword.Verify' | translate" [disabled]="!formGroup.valid"
+		(click)="checkVerify()"></button>
 </form>
+
