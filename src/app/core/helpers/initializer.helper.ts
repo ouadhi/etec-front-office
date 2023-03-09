@@ -50,11 +50,11 @@ export function initializer(keycloak: KeycloakService,
           });
 
           if (await keycloak.isLoggedIn()) {
+            const token = await keycloak.getToken();
+            localStorage.setItem('_token', token);
             if (localStorage.getItem('needLogin') == 'true' || !localStorage.getItem('needLogin')) {
               //take lang from token and change language
               const helper = new JwtHelperService();
-              const token = await keycloak.getToken();
-              localStorage.setItem('_token', token);
               const decodedToken = helper.decodeToken(token);
               switchLangService.changeLang((decodedToken.locale || 'ar').toLowerCase());
               localStorage.setItem('needLogin', 'false');

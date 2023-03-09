@@ -89,41 +89,16 @@ export class HeaderComponent extends BaseComponent {
 			priority: 100,
 			preRequest: (requestArgs) => {
 				return new Promise((resolve, reject) => {
-					if (this.loggedIn) {
-						this.keycloakService.getToken().then((token) => {
-							this.loggerService.log(requestArgs);
-							if (!requestArgs.opts) {
-								requestArgs.opts = {};
-							}
-							if (!requestArgs.opts.header) {
-								requestArgs.opts.header = new Headers();
-							}
-							if (requestArgs.type !== 'submission' && requestArgs.type !== 'form') {
-								if (requestArgs.opts.header.has('authorization')) {
-									// requestArgs.opts.header.append('BE-Authorization', `bearer ${token}`);
-									requestArgs.opts.header.set('Authorization', `bearer ${token}`);
-								} else {
-									requestArgs.opts.header.append('Authorization', `bearer ${token}`);
-								}
-							}
-							if (requestArgs.type === 'submission') {
-								requestArgs.opts.header.append('content-type', `application/json`);
-								requestArgs.opts.header.append('Authorization', `bearer ${token}`);
-							}
-							resolve(true);
-						});
-					} else {
-						if (!requestArgs.opts) {
-							requestArgs.opts = {};
-						}
-						if (!requestArgs.opts.header) {
-							requestArgs.opts.header = new Headers();
-						}
-						if (requestArgs.type === 'submission') {
-							requestArgs.opts.header.append('content-type', `application/json`);
-						}
-						resolve(true);
+					if (!requestArgs.opts) {
+						requestArgs.opts = {};
 					}
+					if (!requestArgs.opts.header) {
+						requestArgs.opts.header = new Headers();
+					}
+					if (requestArgs.type === 'submission') {
+						requestArgs.opts.header.append('content-type', `application/json`);
+					}
+					resolve(true);
 				});
 			},
 		};
