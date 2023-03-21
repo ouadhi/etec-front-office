@@ -3,3 +3,8 @@
 	url = http://bitbucket.comptechco.com/scm/etec/formio.git
       branch = develop
 	ignore = all
+[submodule "src/formio-custom-components"]
+	path = src/formio-custom-components
+	url = http://bitbucket.comptechco.com/scm/etec/dp-formio-custom-component.git
+      branch = master
+	ignore = all
