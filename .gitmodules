@@ -1,7 +1,7 @@
 [submodule "src/formio"]
 	path = src/formio
 	url = http://bitbucket.comptechco.com/scm/etec/formio.git
-      branch = develop
+      branch = develop_V1
 	ignore = all
 [submodule "src/formio-custom-components"]
 	path = src/formio-custom-components
