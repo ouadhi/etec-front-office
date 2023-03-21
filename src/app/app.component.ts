@@ -27,7 +27,7 @@ import {
 	registerHtmlEditorComponent,
 	registerExecuteVisitComponent,
 	registerVisitScheduleComponent,
-} from 'src/formio/src/public_api';
+} from 'src/formio-custom-components/src/public-api';
 
 import { NavigationStart } from '@angular/router';
 import { of } from 'rxjs';

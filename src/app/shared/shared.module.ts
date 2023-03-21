@@ -24,6 +24,7 @@ import { NotificationOptionsComponent } from './components/notifications/notific
 import { NotificationsModalComponent } from './components/notifications/notifications-modal/notifications-modal.component';
 import { RouterModule } from '@angular/router';
 import { FormioModule } from 'src/formio/src/public_api';
+import { FormioCustomComponentModule } from 'src/formio-custom-components/src/public-api';
 import { HeaderComponent } from './components/header/header.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -77,6 +78,7 @@ registerLocaleData(localeAr, 'ar');
 			timeOut: 5000,
 		}),
 		FormioModule,
+		FormioCustomComponentModule,
 		NgxCaptchaModule,
 		TranslateModule,
 		DialogModule,
@@ -96,6 +98,7 @@ registerLocaleData(localeAr, 'ar');
 		FooterComponent,
 		ToastrModule,
 		FormioModule,
+		FormioCustomComponentModule,
 		NgxCaptchaModule,
 		TranslateModule,
 		RequestFeedbackComponent,
