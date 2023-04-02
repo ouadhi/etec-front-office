@@ -62,6 +62,7 @@ export function initializer(keycloak: KeycloakService,
             await session.checkLicense();
             await session.loadUserProfile();
           } else {
+            localStorage.setItem('_token', '');
             const kc = keycloak.getKeycloakInstance();
             loggerService.log(kc);
           }
