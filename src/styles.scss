@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
-@import '~ngx-toastr/toastr';
-@import '~@angular/material/theming';
+@import 'ngx-toastr/toastr';
+@import '@angular/material/theming';
 @import './styles/styles';
 @import './theme/variables.scss';
 
@@ -125,7 +125,7 @@ $rms-app-theme: mat-light-theme($rms-app-primary, $rms-app-accent, $rms-app-warn
 // that you are using.
 @include angular-material-theme($rms-app-theme);
 // @import "~css-star-rating/scss/star-rating";
-@import '~@ionic/angular/css/core.css';
+@import '@ionic/angular/css/core.css';
 
 html {
 	top: 0 !important;
