@@ -207,17 +207,19 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 					this.form.ready = false;
 
 					const etecData = await this.userService.getTaskUserData(isLoggedIn ? await this.keycloak.getToken() : null);
-					this.submission.data = { ...etecData };
-					this.params = [
-						{
-							url: `${environment.gateway}${environment.endpoints.humanTask}${data.formKey.replace(
-								'{caseId}',
-								params.caseId
-							)}`,
-							parallel: false,
-							success: `submission.data = {...response.data,...submission.data, taskId:"${params.taskId}", requestId:"${params.requestId}"};`,
-						},
-					];
+					this.submission.data = { ...etecData, taskParams: params };
+					if (isLoggedIn) {
+						this.params = [
+							{
+								url: `${environment.gateway}${environment.endpoints.humanTask}${data.formKey.replace(
+									'{caseId}',
+									params.caseId
+								)}`,
+								parallel: false,
+								success: `submission.data = {...response.data,...submission.data, taskId:"${params.taskId}", requestId:"${params.requestId}"};`,
+							},
+						];
+					}
 					this.form.formKey = data.formKey.split('/')[2];
 
 					setTimeout(() => {
