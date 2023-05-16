@@ -27,6 +27,7 @@ import {
 	registerHtmlEditorComponent,
 	registerExecuteVisitComponent,
 	registerVisitScheduleComponent,
+	registerResourceAutocompleteWrapperComponent,
 } from 'src/formio-custom-components/src/public-api';
 
 import { NavigationStart } from '@angular/router';
@@ -88,6 +89,7 @@ export class AppComponent extends BaseComponent {
 		registerHtmlEditorComponent(injector);
 		registerExecuteVisitComponent(this.injector);
 		registerVisitScheduleComponent(injector);
+		registerResourceAutocompleteWrapperComponent(injector);
 	}
 
 	scrollTo(elementId) {
