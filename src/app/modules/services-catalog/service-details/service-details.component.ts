@@ -2,7 +2,7 @@ import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ErrorToast, UserService } from 'src/formio/src/public_api';
+import { ErrorToast, UserService } from 'dp-formio';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { RequestsService } from '../../requests/requests.service';
 import { LifeCycleService } from '../life-cycle-service.config';

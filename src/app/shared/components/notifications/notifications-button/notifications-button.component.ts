@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { take } from 'rxjs/operators';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import { BaseComponent } from 'src/app/shared/components/base.component';
-import { NotificationToast } from 'src/formio/src/public_api';
+import { NotificationToast } from 'dp-formio';
 @Component({
     selector: 'app-notifications-button',
     templateUrl: './notifications-button.component.html',

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/modules/services-catalog/services.service';
-import { FormioLoader } from 'src/formio/src/lib/features/loader/formio.loader';
+import { FormioLoader } from 'dp-formio';
 
 @Component({
 	selector: 'app-feedback-modal',

@@ -1,6 +1,6 @@
 import { Component, Injector, ViewEncapsulation, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
-import { UserService } from 'src/formio/src/public_api';
+import { UserService } from 'dp-formio';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 
 @Component({

@@ -2,7 +2,7 @@ import { Injector, Input, ViewEncapsulation } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BaseComponent } from "src/app/shared/components/base.component";
-import { ErrorToast, FormioLoader } from "src/formio/src/public_api";
+import { ErrorToast, FormioLoader } from "dp-formio";
 import { ManagePasswordService } from "../manage-password.service";
 
 @Component({

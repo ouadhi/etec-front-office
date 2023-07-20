@@ -1,6 +1,6 @@
 
 import { KeycloakService } from 'keycloak-angular';
-import { UserService } from 'src/formio/src/public_api';
+import { UserService } from 'dp-formio';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 

@@ -1,6 +1,6 @@
-
+import { HttpParams } from '@angular/common/http';
 import { KeycloakService } from 'keycloak-angular';
-import { ErrorToast, FormioLoader, UserService } from 'src/formio/src/public_api';
+import { ErrorToast, FormioLoader, UserService } from 'dp-formio';
 import { Utils } from 'formiojs';
 
 import { Injector, ViewChild, ViewEncapsulation } from '@angular/core';
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
-import { FormioComponent, SuccessToast } from 'src/formio/src/public_api';
+import { FormioComponent, SuccessToast } from 'dp-formio';
 import { CaseActivityService } from '../case-activities.service';
 import { forkJoin } from 'rxjs';
 import { RequestsService } from '../requests.service';
@@ -22,7 +22,7 @@ declare var $: any;
 	templateUrl: './request-task.component.html',
 	// styleUrls: ['./request-task.component.scss'],
 	encapsulation: ViewEncapsulation.None,
-	providers: [FormioLoader]
+	providers: [FormioLoader],
 })
 export class RequestTaskComponent extends BaseComponent implements OnInit {
 	@ViewChild(FormioComponent) formComponent: FormioComponent;
@@ -95,44 +95,38 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 			}
 		);
 
-		if (environment.taskRedirection && this.formComponent?.form['properties']?.nextTaskRedirection === "true") {
-			const conditionalValue = this.formComponent?.form['properties']?.conditional
-			let conditionalData
+		if (
+			environment.taskRedirection &&
+			this.formComponent?.form['properties']?.nextTaskRedirection === 'true'
+		) {
+			const conditionalValue = this.formComponent?.form['properties']?.conditional;
+			let conditionalData;
 			if (conditionalValue) {
-				conditionalData = Utils.evaluate(
-					conditionalValue,
-					{ submission: submission.submission }
-				);
+				conditionalData = Utils.evaluate(conditionalValue, { submission: submission.submission });
 				if (conditionalData === true) {
-					let nextRoute = this.formComponent?.form['properties']?.nextRoute
-					const value = this.formComponent?.form['properties']?.nextTaskParams
-					let data
+					let nextRoute = this.formComponent?.form['properties']?.nextRoute;
+					const value = this.formComponent?.form['properties']?.nextTaskParams;
+					let data;
 					if (value) {
-						data = Utils.evaluate(
-							value,
-							{ submission: submission.submission }
-						);
+						data = Utils.evaluate(value, { submission: submission.submission });
 					}
-					this.router.navigateByUrl(nextRoute, { state: data ? { ...data } : "" });
+					this.router.navigateByUrl(nextRoute, { state: data ? { ...data } : '' });
 				} else {
-					this.goBack()
+					this.goBack();
 				}
 			} else if (conditionalValue === null || conditionalValue === undefined) {
-				let nextRoute = this.formComponent?.form['properties']?.nextRoute
-				const value = this.formComponent?.form['properties']?.nextTaskParams
-				let data
+				let nextRoute = this.formComponent?.form['properties']?.nextRoute;
+				const value = this.formComponent?.form['properties']?.nextTaskParams;
+				let data;
 				if (value) {
-					data = Utils.evaluate(
-						value,
-						{ submission: submission.submission }
-					);
+					data = Utils.evaluate(value, { submission: submission.submission });
 				}
-				this.router.navigateByUrl(nextRoute, { state: data ? { ...data } : "" });
+				this.router.navigateByUrl(nextRoute, { state: data ? { ...data } : '' });
 			} else {
-				this.goBack()
+				this.goBack();
 			}
 		} else {
-			this.goBack()
+			this.goBack();
 		}
 	}
 
@@ -150,7 +144,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 					process: 'LOCKED',
 					processedBy: this.user?.currentUser_preferred_username,
 					processorFullName: this.user.currentUser_name,
-					processDate: new Date()
+					processDate: new Date(),
 				};
 			}
 		});
@@ -161,8 +155,9 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 			}
 
 			if (this.enableLock)
-				document.getElementsByName('data[submit]').forEach(e =>
-					e.style.display = this.formReadOnly ? 'none' : 'block');
+				document
+					.getElementsByName('data[submit]')
+					.forEach((e) => (e.style.display = this.formReadOnly ? 'none' : 'block'));
 
 			$('.input-group:has(.input-group-addon.input-group-prepend)').css('display', 'block');
 		});
@@ -174,16 +169,16 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	async ngOnInit() {
 		const isLoggedIn = await this.keycloakService.isLoggedIn();
 
-		this.user = await this.userService.getUserData(isLoggedIn ? await this.keycloak.getToken() : null);
+		this.user = await this.userService.getUserData(
+			isLoggedIn ? await this.keycloak.getToken() : null
+		);
 		this.isAdmin = this.user?.currentUser_groups?.includes('Admins');
 
 		this.sub = this.route.params.subscribe((params) => {
-
 			const calls = [this.caseActivity.getRequestTask(params.taskId)];
-			if (isLoggedIn)
-				calls.push(this.rest.getRequest(params.requestId));
+			if (isLoggedIn) calls.push(this.rest.getRequest(params.requestId));
 
-			this.sub = forkJoin(calls).subscribe(async result => {
+			this.sub = forkJoin(calls).subscribe(async (result) => {
 				const data = result[0];
 				this.assignee = data.assignee;
 				if (isLoggedIn) this.request = result[1];
@@ -206,15 +201,16 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 
 					this.form.ready = false;
 
-					const etecData = await this.userService.getTaskUserData(isLoggedIn ? await this.keycloak.getToken() : null);
+					const etecData = await this.userService.getTaskUserData(
+						isLoggedIn ? await this.keycloak.getToken() : null
+					);
 					this.submission.data = { ...etecData, taskParams: params };
 					if (isLoggedIn) {
 						this.params = [
 							{
-								url: `${environment.gateway}${environment.endpoints.humanTask}${data.formKey.replace(
-									'{caseId}',
-									params.caseId
-								)}`,
+								url: `${environment.gateway}${
+									environment.endpoints.humanTask
+								}${data.formKey.replace('{caseId}', params.caseId)}`,
 								parallel: false,
 								success: `submission.data = {...response.data,...submission.data, taskId:"${params.taskId}", requestId:"${params.requestId}"};`,
 							},
@@ -232,41 +228,48 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	}
 	unlock() {
 		this.formioLoader.loading = true;
-		this.sub = this.rest.unlockRequest(this.request.id)
-			.subscribe(data => {
+		this.sub = this.rest.unlockRequest(this.request.id).subscribe(
+			(data) => {
 				if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
 				this.request.requestLocksDTO.process = 'UNLOCKED';
-				this.showToast('OperationDone',
+				this.showToast(
+					'OperationDone',
 					'requestLock.The request has been unlocked successfully',
-					SuccessToast);
+					SuccessToast
+				);
 				this.isLocked(true);
 				this.formioLoader.loading = false;
-			}, error => {
+			},
+			(error) => {
 				if (error.status == 200) {
 					if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
 					this.request.requestLocksDTO.process = 'UNLOCKED';
-					this.showToast('OperationDone',
+					this.showToast(
+						'OperationDone',
 						'requestLock.The request has been unlocked successfully',
-						SuccessToast);
+						SuccessToast
+					);
 				} else {
-					this.showToast('ErrorOccurred',
-						'generalError',
-						ErrorToast);
+					this.showToast('ErrorOccurred', 'generalError', ErrorToast);
 				}
 				this.isLocked(true);
 				this.formioLoader.loading = false;
-			});
+			}
+		);
 	}
 
 	isLocked(notify = false) {
-		const isLocked = this.request?.requestLocksDTO?.process == 'LOCKED' &&
+		const isLocked =
+			this.request?.requestLocksDTO?.process == 'LOCKED' &&
 			this.request?.requestLocksDTO?.processedBy != this.user?.currentUser_preferred_username;
 
 		if (this.formComponent?.formio) {
 			this.formComponent.formio.isLocked = isLocked;
 			if (notify) this.formComponent.formio.emit('changeLockFile', null);
-			const nestedForms = Utils.searchComponents(this.formComponent.formio.components, { type: 'form' });
-			nestedForms.forEach(form => {
+			const nestedForms = Utils.searchComponents(this.formComponent.formio.components, {
+				type: 'form',
+			});
+			nestedForms.forEach((form) => {
 				if (form?.subForm) {
 					form.subForm.isLocked = isLocked;
 					if (notify) form.subForm.emit('changeLockFile', null);
@@ -276,13 +279,16 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 		return isLocked;
 	}
 
-
 	get formReadOnly() {
 		// must be get task and check task.assigne
-		return this.enableLock && !this.assignee &&
+		return (
+			this.enableLock &&
+			!this.assignee &&
 			(!this.request?.requestLocksDTO ||
 				this.request?.requestLocksDTO?.process == 'UNLOCKED' ||
-				this.request?.requestLocksDTO?.process == 'LOCKED' && this.request?.requestLocksDTO?.processedBy != this.user?.currentUser_preferred_username);
+				(this.request?.requestLocksDTO?.process == 'LOCKED' &&
+					this.request?.requestLocksDTO?.processedBy != this.user?.currentUser_preferred_username))
+		);
 	}
 	beforeSetForm(formio: FormioComponent, form?: any) {
 		this.enableLock = (form as any)?.properties?.enableLock == 'true';
@@ -300,9 +306,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 				if (error.status == 200) {
 					this.handleLockTask();
 				} else {
-					this.showToast('ErrorOccurred',
-						'generalError',
-						ErrorToast);
+					this.showToast('ErrorOccurred', 'generalError', ErrorToast);
 				}
 				this.formioLoader.loading = false;
 			}
@@ -315,11 +319,13 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 		this.request.requestLocksDTO.processedBy = this.user.currentUser_preferred_username;
 		this.request.requestLocksDTO.processorFullName = this.user.currentUser_name;
 		this.form.ready = false;
-		setTimeout(() => this.form.ready = true);
+		setTimeout(() => (this.form.ready = true));
 
-		this.showToast('OperationDone',
+		this.showToast(
+			'OperationDone',
 			'requestLock.The request has been locked successfully',
-			SuccessToast);
+			SuccessToast
+		);
 	}
 	unlockTask() {
 		this.formioLoader.loading = true;
@@ -332,9 +338,7 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 				if (error.status == 200) {
 					this.handleunLockTask();
 				} else {
-					this.showToast('ErrorOccurred',
-						'generalError',
-						ErrorToast);
+					this.showToast('ErrorOccurred', 'generalError', ErrorToast);
 				}
 				this.formioLoader.loading = false;
 			}
@@ -343,14 +347,18 @@ export class RequestTaskComponent extends BaseComponent implements OnInit {
 	private handleunLockTask() {
 		if (!this.request.requestLocksDTO) this.request.requestLocksDTO = {};
 		this.request.requestLocksDTO.process = 'UNLOCKED';
-		this.showToast('OperationDone',
+		this.showToast(
+			'OperationDone',
 			'requestLock.The request has been unlocked successfully',
-			SuccessToast);
+			SuccessToast
+		);
 		this.form.ready = false;
-		setTimeout(() => this.form.ready = true);
+		setTimeout(() => (this.form.ready = true));
 	}
 	private showToast(title: string, message: string, component: ComponentType<any>) {
-		this.toastrService.show(this.translateService.instant(message), this.translateService.instant(title),
+		this.toastrService.show(
+			this.translateService.instant(message),
+			this.translateService.instant(title),
 			{
 				toastClass: 'notification-toast',
 				closeButton: true,

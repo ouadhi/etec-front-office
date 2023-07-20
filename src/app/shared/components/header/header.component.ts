@@ -5,7 +5,7 @@ import HijriDate from 'hijri-date/lib/safe';
 import { combineLatest, from, Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { UserService } from 'src/formio/src/public_api';
+import { UserService } from 'dp-formio';
 import { BaseComponent } from '../base.component';
 
 @Component({

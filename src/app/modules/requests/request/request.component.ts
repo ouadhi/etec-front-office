@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { InOutAnimation } from 'src/app/core/animations/in-out.animation';
 import { KeycloakService } from 'keycloak-angular';
-import { ErrorToast, FormioComponent, SuccessToast, UserService } from 'src/formio/src/public_api';
+import { ErrorToast, FormioComponent, SuccessToast, UserService } from 'dp-formio';
 import { RequestsService } from '../requests.service';
 import { FeedbackModalComponent } from 'src/app/shared/components/feedback-modal/feedback-modal.component';
 import { MatDialog } from '@angular/material/dialog';

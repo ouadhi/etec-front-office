@@ -3,7 +3,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { IImage } from 'ng-simple-slideshow';
 import { combineLatest } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserService } from 'src/formio/src/public_api';
+import { UserService } from 'dp-formio';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { RequestsService } from '../../requests/requests.service';
 

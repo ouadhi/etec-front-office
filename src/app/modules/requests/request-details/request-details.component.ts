@@ -4,7 +4,7 @@ import { from, Observable, of } from 'rxjs';
 import { finalize, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 import { environment } from 'src/environments/environment';
-import { ErrorToast, FormioLoader, SuccessToast, UserService } from 'src/formio/src/public_api';
+import { ErrorToast, FormioLoader, SuccessToast, UserService } from 'dp-formio';
 import { NotificationsService } from '../../notifications/notifications.service';
 import { CaseActivityService } from '../case-activities.service';
 import { RequestsService } from '../requests.service';

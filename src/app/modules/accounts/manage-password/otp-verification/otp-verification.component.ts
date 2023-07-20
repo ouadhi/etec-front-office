@@ -15,7 +15,7 @@ import {
   ErrorToast,
   FormioLoader,
   SuccessToast,
-} from "src/formio/src/public_api";
+} from "dp-formio";
 import { ManagePasswordService } from "../manage-password.service";
 
 @Component({

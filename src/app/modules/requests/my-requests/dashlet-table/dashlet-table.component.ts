@@ -16,7 +16,7 @@ import { BehaviorSubject, merge, Observable, of, Subscription } from 'rxjs';
 import { catchError, startWith, switchMap, tap } from 'rxjs/operators';
 import { NotificationsService } from 'src/app/modules/notifications/notifications.service';
 import { BaseComponent } from 'src/app/shared/components/base.component';
-import { FormioLoader } from 'src/formio/src/public_api';
+import { FormioLoader } from 'dp-formio';
 import { RequestFilterModel } from '../model';
 
 /**

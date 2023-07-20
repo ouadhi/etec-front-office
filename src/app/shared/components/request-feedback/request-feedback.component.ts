@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { RequestsService } from 'src/app/modules/requests/requests.service';
-import { ErrorToast, FormioLoader, SuccessToast } from 'src/formio/src/public_api';
+import { ErrorToast, FormioLoader, SuccessToast } from 'dp-formio';
 
 @Component({
 	selector: 'app-request-feedback',

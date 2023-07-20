@@ -1,32 +1,73 @@
 {
-    "production": true,
-    "gateway": "http://etec-bo.comptechco.com:80",
-    "cms": "http://etec-fo.comptechco.com:8089",
-    "appConfig": {
-        "endpoint": "/api/collections/get/AppConfig1/",
-        "id": "6069bbe7666434004e00012d",
-        "frontOfficeSettings": "api/singletons/get/frontOfficeSettings",
-        "formioEndpoint": "/api/collections/get/formioConfig/",
-        "formioId": "612bc06a5d4cda7713720b52",
-        "formioSettings": "api/singletons/get/formioSettings"
-    },
-    "keycloak": {
-        "url": "http://etec-bo.comptechco.com:9080/auth/",
-        "realm": "etec",
-        "clientId": "fo-web"
-    },
-    "formio": {
-        "apiUrl": "http://api.etec-fo.comptechco.com:8084/",
-        "appUrl": "http://etec-fo.comptechco.com:8084/ksuqnygnhgztelf/"
-    },
-    "serviceCatalogControl": {
-        "showCarousel": true,
-        "showHasTask": true,
-        "showMostUsedService": true,
-        "showCatalog": true
-    },
-    "showDashboardCounters": true,
-    "showFeedbackButton": false,
-    "backToTop": true,
-    "taskRedirection": true
+	"gateway": "https://artl.etec.gov.sa/gateway",
+
+	"cms": "https://artl.etec.gov.sa/cms",
+
+	"keycloak": {
+		"url": "https://artl.etec.gov.sa/auth/",
+
+		"realm": "etec",
+
+		"clientId": "bo-web"
+	},
+
+	"appConfig": {
+		"endpoint": "/api/collections/get/AppConfig1/",
+
+		"id": "60ea922f666434041a0003ac",
+
+		"backOfficeSettings": "api/singletons/get/backOfficeSettings",
+
+		"formioEndpoint": "/api/collections/get/formioConfig/",
+
+		"formioId": "612bc06a5d4cda7713720b52",
+
+		"formioSettings": "api/singletons/get/formioSettings"
+	},
+
+	"formio": {
+		"apiUrl": "https://artl.etec.gov.sa/formioApi/",
+
+		"appUrl": "https://artl.etec.gov.sa/formioUrl/",
+
+		"resourceModal": false
+	},
+
+	"createCase": true,
+
+	"dailyReports": true,
+
+	"dailyLateReports": false,
+
+	"caseReports": true,
+
+	"reports": true,
+
+	"productivityCharts": true,
+
+	"branchCharts": false,
+
+	"segmentFilter": false,
+
+	"taskReports": false,
+
+	"servicesManagement": false,
+
+	"caseDetails": {
+		"showTabs": true,
+
+		"redirectTasks": true,
+
+		"showDateAndDuration": true,
+
+		"showBusinessLog": false
+	},
+
+	"knowledgeManagement": {
+		"enableDocumentsKnowledge": true,
+
+		"enableFaqKnowledge": true,
+
+		"enablePostKnowledge": true
+	}
 }
